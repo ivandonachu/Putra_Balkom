@@ -155,6 +155,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM dokumen");
                 <a class="collapse-item" href="VDataKaryawan" style="font-size: 15px;">Data Karyawan</a>
                 <a class="collapse-item" href="VAset" style="font-size: 15px;">Daftar Aset</a>
                 <a class="collapse-item" href="VDokumen" style="font-size: 15px;">Daftar Dokumen</a>
+                <a class="collapse-item" href="VAbsensiPerta" style="font-size: 15px;">Absensi Pertashop</a>
             </div>
         </div>
     </li>

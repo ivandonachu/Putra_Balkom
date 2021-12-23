@@ -1,15 +1,15 @@
- <?php
- session_start();
+<?php
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$db_name= "pertashop";
 
- $_SESSION = [];
+$koneksi = mysqli_connect($hostname,$username,$password);
 
- session_unset();
- session_destroy();
+if($koneksi){
+	mysqli_select_db($koneksi,$db_name);
+}else{
+	echo "koneksi gagal";
+}
 
- setcookie('id_cookie','', time() - 86400);
-
-
- header("Location: /index");
- exit;
-
- ?> 
+?>

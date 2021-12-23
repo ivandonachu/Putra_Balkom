@@ -1009,6 +1009,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
                 <a class="collapse-item" href="VDataKaryawan" style="font-size: 15px;">Data Karyawan</a>
                 <a class="collapse-item" href="VAset" style="font-size: 15px;">Daftar Aset</a>
                 <a class="collapse-item" href="VDokumen" style="font-size: 15px;">Daftar Dokumen</a>
+                <a class="collapse-item" href="VAbsensiPerta" style="font-size: 15px;">Absensi Pertashop</a>
             </div>
         </div>
     </li>
@@ -1111,8 +1112,9 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
         <div class="col-sm-9">
         </div>
         <div class="col-sm-3" style="color: black; font-size: 18px;">
+        
         <script type='text/javascript'>
-            <!--
+           
             var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
             var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
             var date = new Date();
@@ -1123,8 +1125,8 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
             var yy = date.getYear();
             var year = (yy < 1000) ? yy + 1900 : yy;
             document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
-            //-->
-        </script>
+          
+        </script>  
     </div>
 </div> 
 

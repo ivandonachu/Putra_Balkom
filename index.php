@@ -35,7 +35,8 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="login">LOGIN</a>
+                            <a class="nav-link" href="/login.php">LOGIN</a>
+
                         </li>
                     </ul>
                 </div>
@@ -49,7 +50,7 @@
             <br><br>
             <h3 class="display-8" style="text-align: center; color: white;"><span class="font-weight-bold"> WEB APP LAPORAN KEUANGAN</span></h3>
             <hr class="my-10">
-            <p class="lead" style=" text-align: center; color: white; ">By Sriwijaya Teknik Energi</p>
+            <p class="lead" style=" text-align: center; color: white; ">By PT Sriwijaya Teknik Energi</p>
             <br><br>
         </div>
     </div>

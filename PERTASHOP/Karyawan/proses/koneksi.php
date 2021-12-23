@@ -1,8 +1,8 @@
 <?php
 $hostname = "localhost";
-$username = "u971562990_LaporanPerta";
-$password = "@PertaJaya0613";
-$db_name= "u971562990_Pertashop";
+$username = "root";
+$password = "";
+$db_name= "pertashop";
 
 $koneksi = mysqli_connect($hostname,$username,$password);
 
