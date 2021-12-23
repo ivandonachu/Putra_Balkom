@@ -264,7 +264,7 @@ else{
        <div class="row">
           <div class="col-md-6">
           <label>Nama Driver</label>
-         <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
+         <select id="tokens" class="selectpicker form-control" name="nama_driver" multiple data-live-search="true">
         <?php
         include 'koneksi.php';
         $result = mysqli_query($koneksipbj, "SELECT * FROM driver");   

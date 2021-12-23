@@ -63,12 +63,12 @@
 /PT.BALSRI/Manager/proses/koneksi.php
 /PT.BALSRI/Manager/file_manager
 
-/PERTAHOP/Administrasi/view/koneksi.php
-/PERTAHOP/Administrasi/proses/koneksi.php
-/PERTAHOP/Administrasi/file_administrasi
-/PERTAHOP/Karyawan/view/koneksi.php
-/PERTAHOP/Karyawan/proses/koneksi.php
-/PERTAHOP/Karyawan/file_karyawan
+/PERTASHOP/Administrasi/view/koneksi.php
+/PERTASHOP/Administrasi/proses/koneksi.php
+/PERTASHOP/Administrasi/file_administrasi
+/PERTASHOP/Karyawan/view/koneksi.php
+/PERTASHOP/Karyawan/proses/koneksi.php
+/PERTASHOP/Karyawan/file_karyawan
 
 
 
