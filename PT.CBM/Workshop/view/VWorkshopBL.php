@@ -267,7 +267,7 @@ else{
          <select id="tokens" class="selectpicker form-control" name="nama_driver" multiple data-live-search="true">
         <?php
         include 'koneksi.php';
-        $result = mysqli_query($koneksipbj, "SELECT * FROM driver");   
+        $result = mysqli_query($koneksibalsri, "SELECT * FROM driver");   
 
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['nama_driver'];

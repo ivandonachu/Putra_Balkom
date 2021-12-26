@@ -1,4 +1,4 @@
-<?php
+ <?php
  session_start();
 
  $_SESSION = [];
@@ -9,7 +9,7 @@
  setcookie('id_cookie','', time() - 86400);
 
 
- header("Location: /index");
+ header("Location: /PutraBalkomCorp2/index");
  exit;
 
  ?> 

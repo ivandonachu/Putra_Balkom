@@ -19,6 +19,7 @@ exit;
 }
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,7 @@ exit;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Direktur Utama</title>
+    <title>Dashboard Kasir</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -73,51 +74,73 @@ exit;
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsDirekturUtama.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+                <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px;" src="../gambar/Logo PBJ.PNG" ></div>
             </a>
-
+            <br>
+            
+            <br>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-              <li class="nav-item active" >
-                <a class="nav-link" href="DsDirekturUtama">
+            <li class="nav-item active" >
+                <a class="nav-link" href="DsCVPBJ">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
+
+                 <!-- Divider -->
+                <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Direktur Utama
+                     Menu CV.PBJ
                 </div>
-
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+                </a>
+                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+                    </div>
+                </div>
+            </li>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+                    <span style="font-size: 15px; color:white;" >Laporan</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="PT.CBM/view/DsPTCBM">PT. CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="PT.BALSRI/view/DsPTBALSRI">PT. BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="BatuBara/view/DsCVPBJ">Transport BB</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="Kebun/view/DsKebun">Kebun</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="PERTASHOP/view/DsPertashop">Pertasop</a>
+                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLR2">Laba Rugi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
+    
                     </div>
                 </div>
             </li>
 
-    
-           
 
+           
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -216,7 +239,20 @@ exit;
         <div class="col-sm-9">
         </div>
         <div class="col-sm-3" style="color: black; font-size: 18px;">
-       
+        <script type='text/javascript'>
+      
+            var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+            var date = new Date();
+            var day = date.getDate();
+            var month = date.getMonth();
+            var thisDay = date.getDay(),
+                thisDay = myDays[thisDay];
+            var yy = date.getYear();
+            var year = (yy < 1000) ? yy + 1900 : yy;
+            document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+           
+        </script>
     </div>
 </div> 
 
@@ -231,8 +267,9 @@ exit;
             </div>
         </div>
     </div>
-
-
+<div class="container">
+        <img style="margin-top: 60px; margin-left: 100px;" src="../gambar/kasir_toko.svg">
+    </div>
 
 </div>
 <!-- End of Main Content -->

@@ -1,6 +1,5 @@
 /KepalaIT
 /koneksi.php
-/.gtignore
 /.htaccess
 /login.php
 /proses_login.php
@@ -15,7 +14,8 @@
 /DirekturUtama/view/PT.MESPBR/view/koneksi.php
 /DirekturUtama/view/PT.MESPBR/view/VRincianLR/koneksi.php
 /DirekturUtama/view/PT.MESPBR/view/VRincianLRMES/koneksi.php
-
+/DirekturUtama/view/CV.PBJ/view/koneksi.php
+/DirekturUtama/view/CV.PBJ/view/VRincianLR/koneksi.php
 
 /PT.CBM/Administrasi/view/koneksi.php
 /PT.CBM/Administrasi/proses/koneksi.php
