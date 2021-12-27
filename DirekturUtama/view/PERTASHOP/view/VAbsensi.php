@@ -117,7 +117,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="DsPertashop">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="DsPertashop">Pertashop</a>
                     </div>
                 </div>
             </li>
@@ -134,6 +134,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Laporan Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Laporan Pengeluran</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Laporan Pembelian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
                     </div>

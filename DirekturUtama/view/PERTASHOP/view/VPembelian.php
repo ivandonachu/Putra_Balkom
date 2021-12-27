@@ -18,7 +18,6 @@ else{ header("Location: logout.php");
 exit;
 }
 
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -34,15 +33,17 @@ $tanggal_akhir = date('Y-m-31');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksiperta, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksiperta,"SELECT * FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' ");
+   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
 }
+
 else{
-  $table = mysqli_query($koneksiperta, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksiperta,"SELECT * FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
 }
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +55,8 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran Pertashop</title>
+  <title>Pembelian</title>
+
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -76,15 +78,14 @@ else{
 
 <body id="page-top">
 
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
    <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-          <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPertashop">
+   <!-- Sidebar - Brand -->
+   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPertashop">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -137,18 +138,16 @@ else{
                 </div>
             </li>
 
-
-
-<!-- Divider -->
-<hr class="sidebar-divider">
+  <!-- Divider -->
+  <hr class="sidebar-divider">
 
 
 
 
-<!-- Sidebar Toggler (Sidebar) -->
-<div class="text-center d-none d-md-inline">
-  <button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
 
 
 
@@ -163,8 +162,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengeluaranPul2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pengeluaran Pertashop</h5></a>"; ?>
-
+      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pembelian Pertashop</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -174,6 +172,7 @@ else{
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
+
 
 
 
@@ -217,19 +216,24 @@ else{
 <div>   
 
 
-  <!-- Name Page -->
-  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-    <?php  echo "<form  method='POST' action='VPengeluaranPul2' style='margin-bottom: 15px;'>" ?>
-    <div>
-      <div align="left" style="margin-left: 20px;"> 
-        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-        <span>-</span>
-        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
-      </div>
+ <div style="margin-right: 100px; margin-left: 100px;">
+
+  <?php  echo "<form  method='POST' action='VPembelian'>" ?>
+  <div>
+    <div align="left" style="margin-left: 20px;"> 
+      <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+      <span>-</span>
+      <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+      <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
     </div>
-  </form>
- 
+  </div>
+</form>
+
+<div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+ </div>
+ <br>
+
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
@@ -237,19 +241,21 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Kode Perta</th>
+      <th>Kode Pertashop</th>   
       <th>Lokasi</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Pengeluaran</th>
-      <th>Total</th>
-      <th>file</th>
-      <th>Aksi</th>
+      <th>Nama Barang</th>
+      <th>QTY</th>
+      <th>Harga</th>
+      <th>Jumlah</th>
+     <th>Losis PS</th>
+     <th>Losis Angkutan</th>
+      <th>KET</th>
+      <th>File</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <?php
-    $total = 0;
     $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
@@ -257,48 +263,112 @@ else{
     }
 
     ?>
-
     <?php while($data = mysqli_fetch_array($table)){
-     $no_laporan = $data['no_transaksi'];
-     $tanggal =$data['tanggal'];
-     $kode_perta =$data['kode_perta'];
-     $lokasi =$data['lokasi'];
-     $nama_akun = $data['nama_akun'];
-     $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
-     $file_bukti = $data['file_bukti'];
+      $no_pembelian = $data['no_pembelian'];
+      $tanggal =$data['tanggal'];
+      $kode_perta =$data['kode_perta'];
+      $nama_barang =$data['nama_barang'];
+      $lokasi = $data['lokasi'];
+      $losis = $data['losis'];
+      $losis_angkutan = $data['losis_angkutan'];
+      $qty = $data['qty'];
+      $harga = $data['harga'];
+      $jumlah = $qty * $harga;
+      $keterangan = $data['keterangan'];
+      $file_bukti = $data['file_bukti'];
 
-     $total = $total + $jumlah;
-     $urut = $urut + 1;
+      $urut = $urut + 1;
 
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 14px' align = 'center'>$lokasi</td>
+      <td style='font-size: 14px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 14px' align = 'center'>$qty/L</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>$losis/L</td>
+      <td style='font-size: 14px' align = 'center'>$losis_angkutan/L</td>
+      <td style='font-size: 14px' align = 'center'>$keterangan</td>
+      "; ?>
+      <?php echo "
+      <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
+    
 
-     echo "<tr>
-     <td style='font-size: 14px'>$urut</td>
-     <td style='font-size: 14px'>$tanggal</td>
-     <td style='font-size: 14px'>$kode_perta</td>
-     <td style='font-size: 14px'>$lokasi</td>
-     <td style='font-size: 14px'>$nama_akun</td>
-     <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" href="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     
-    <?php echo  "  </tr>";
-  }
+<!-- Button Hapus -->
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_pembelian']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $data['no_pembelian']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+ <div class="modal-dialog" role ="document">
+   <div class="modal-content"> 
+    <div class="modal-header">
+      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
 
+    <div class="modal-body">
+      <form action="../proses/hapus_pembelian" method="POST">
+        <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian;?>">
+        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+        <div class="form-group">
+          <h6> Yakin Ingin Hapus Data? </h6>             
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Hapus </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<?php echo  " </td> </tr>";
+}
 ?>
 
 </tbody>
 </table>
 </div>
-<br>
-<br>
-<br>
-
-
 </div>
+<br>
+<br>
+<div style="margin-right: 100px; margin-left: 100px;">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Kode Barang</th>
+      <th>Kode Perta</th>
+      <th>Nama Barang</th>
+      <th>STOK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $kode_barang = $data['kode_barang'];
+      $kode_perta =$data['kode_perta'];
+      $nama_barang =$data['nama_barang'];
+      $stok = $data['stok'];
 
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$kode_barang</td>
+      <td style='font-size: 14px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 14px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 14px' align = 'center'>$stok</td>
+     
+  </tr>";
+}
+?>
+
+</tbody>
+</table>
+</div>
 </div>
 <!-- End of Main Content -->
 
@@ -380,6 +450,8 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+
+
 
 </body>
 
