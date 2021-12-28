@@ -678,8 +678,10 @@ else{
             <div class="col-md-6">
               <label>Satuan</label>
               <select id="satuan" name="satuan" class="form-control">
-                <option>Zak</option>
-                <option>Bag</option>
+              <?php $dataSelect = $data['satuan']; ?>  
+                 <option <?php echo ($dataSelect == 'Zak') ? "selected": "" ?> >Zak</option>
+                 <option <?php echo ($dataSelect == 'Bag') ? "selected": "" ?> >Bag</option>
+                
               </select>
             </div>                
           </div>

@@ -10,7 +10,7 @@ $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$i
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Administrasi') {
+if ($jabatan_valid == 'Admin Kebun') {
 
 }
 
@@ -34,7 +34,7 @@ $nama = $data['nama_karyawan'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Administrasi</title>
+    <title>Dashboard Admin Kebun</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -76,11 +76,11 @@ $nama = $data['nama_karyawan'];
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKebun">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;"  ></div>
             </a>
 
             <!-- Divider -->
@@ -88,7 +88,7 @@ $nama = $data['nama_karyawan'];
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsAdministrasi">
+                <a class="nav-link" href="DsKebun">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
@@ -98,28 +98,41 @@ $nama = $data['nama_karyawan'];
 
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                   Menu Administrasi
-               </div>
-
-               <!-- Nav Item - Pages Collapse Menu -->
-               <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                15  aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                <span style="font-size: 15px; color:white;" >SDM</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-                    <a class="collapse-item" style="font-size: 15px;" href="VAkunKaryawan">Akun Karyawan</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VPertashop">Pertashop</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+                     Menu Admin Kebun
                 </div>
-            </div>
-        </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Laporan</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLHarian">Laporan Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKaret">Laporan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLSawit">Laporan Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Pengeluaran Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLMinyak">Stok Minyak</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPupuk">Stok Pupuk</a>
+                    </div>
+                </div>
+            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                  15  aria-expanded="true" aria-controls="collapseTwo1">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >SDM</span>
+                </a>
+                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriverS">Driver Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMobilS">Mobil Sawit</a>
+                    </div>
+                </div>
+            </li>
 
         
         <!-- Divider -->
