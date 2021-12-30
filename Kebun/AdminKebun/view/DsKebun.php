@@ -110,7 +110,7 @@ $nama = $data['nama_karyawan'];
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLHarian">Laporan Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKegiatan">Laporan Kegiatan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKaret">Laporan Karet</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLSawit">Laporan Sawit</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Pengeluaran Kebun</a>
@@ -130,6 +130,7 @@ $nama = $data['nama_karyawan'];
                         <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VDriverS">Driver Sawit</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMobilS">Mobil Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawanK">Karyawan Karet</a>
                     </div>
                 </div>
             </li>

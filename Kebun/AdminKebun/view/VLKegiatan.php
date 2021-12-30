@@ -21,9 +21,6 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-
-
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -32,11 +29,21 @@ if (isset($_GET['tanggal1'])) {
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
-}  
+} 
+else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+}
 
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksi,"SELECT * FROM laporan_kegiatan WHERE tanggal ='$tanggal_awal' ");
+}
 
+else{
+  $table = mysqli_query($koneksi,"SELECT * FROM laporan_kegiatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
-$table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +57,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Driver Sawit</title>
+  <title>Laporan Kegiatan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -76,11 +83,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKebun">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKebun">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -163,7 +170,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VDriverS'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Driver Sawit</h5></a>"; ?>
+      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Laporan Kegiatan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -217,113 +224,80 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
 <div>   
 
 
+ <div style="margin-right: 100px; margin-left: 100px;">
 
-  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-   <div class="row">
-    <div class="col-md-10">
-
-    </div>
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Driver</button> <br> <br>
-      </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form Pencatatan Driver</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_driver_s' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
-
-            <div class="row">
-              <div class="col-md-6">
-                <label>Nama Driver</label>
-                <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="">
-              </div>    
-
-
-          
-            </div>
-           
-
-
-           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary"> CATAT</button>
-            <button type="reset" class="btn btn-danger"> RESET</button>
-          </div>
-        </form>
-      </div>
-
+  <?php  echo "<form  method='POST' action='VLKegiatan'>" ?>
+  <div>
+    <div align="left" style="margin-left: 20px;"> 
+      <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+      <span>-</span>
+      <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+      <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
     </div>
   </div>
-</div>
+</form>
 
-</div>
-</div>
+<div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+ </div>
+ <br>
 
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Nama Driver</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <?php while($data = mysqli_fetch_array($table)){
-      $no_driver = $data['no_driver'];
-      $nama_driver =$data['nama_driver'];
+ <div class="row">
+  <div class="col-md-10">
 
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no_driver</td>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      "; ?>
-      <?php echo "<td style='font-size: 12px' align = 'center'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_driver']; ?>">Edit</button>
+  </div>
+  <div class="col-md-2">
+    <!-- Button Input Data Bayar -->
+    <div align="right">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Kegiatan</button> <br> <br>
+    </div>
+    <!-- Form Modal  -->
+    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role ="document">
+       <div class="modal-content"> 
+        <div class="modal-header">
+          <h5 class="modal-title"> Form Pencatatan Kegiatan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
 
-      <!-- Form EDIT DATA -->
+        <!-- Form Input Data -->
+        <div class="modal-body" align="left">
+          <?php  echo "<form action='../proses/proses_kegiatan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
-      <div class="modal fade" id="formedit<?php echo $data['no_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role ="document">
-          <div class="modal-content"> 
-            <div class="modal-header">
-              <h5 class="modal-title"> Form Edit Driver </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                <span aria-hidden="true"> &times; </span>
-              </button>
-            </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
 
-            <!-- Form Edit Data -->
-            <div class="modal-body">
-              <form action="../proses/edit_driver_s" enctype="multipart/form-data" method="POST">
+              <label>Tanggal</label>
+              <div class="col-sm-10">
+               <input type="date" id="tanggal" name="tanggal" required="">
+             </div>      
 
-                <input type="hidden" name="no_driver" value="<?php echo $no_driver;?>"> 
+           </div>
+           <div class="col-md-6">
 
-                 <div class="row">
-              <div class="col-md-6">
-                <label>Nama Driver</label>
-                <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="" value="<?php echo $nama_driver;?>">
-              </div>    
 
-            </div>
-           
+           </div>
+         </div>
+         <br>
+
+      <div>
+       <label>Keterangan</label>
+       <div class="form-group">
+         <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
+       </div>
+     </div>
+
+     <div>
+      <label>Upload File</label> 
+      <input type="file" name="file"> 
+    </div> 
 
 
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary"> Ubah </button>
+      <button type="submit" class="btn btn-primary"> CATAT</button>
       <button type="reset" class="btn btn-danger"> RESET</button>
     </div>
   </form>
@@ -331,22 +305,64 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
 </div>
 </div>
 </div>
+</div>
+</div>
+
+
+
+<!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>KET</th>
+      <th>File</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $urut = 0;
+
+
+    ?>
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $keterangan = $data['keterangan'];
+      $file_bukti = $data['file_bukti'];
+
+      $urut = $urut + 1;
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$keterangan</td>
+      "; ?>
+      <?php echo "
+      <td style='font-size: 14px'>"; ?> <a download="../file_kebun/<?= $file_bukti ?>" href="../file_kebun/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
+    
 
 <!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_driver']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $data['no_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Driver </b> </h4>
+      <h4 class="modal-title"> <b> Hapus Data Kegiatan </b> </h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="close">
         <span aria-hidden="true"> &times; </span>
       </button>
     </div>
 
     <div class="modal-body">
-      <form action="../proses/hapus_driver_s" method="POST">
-        <input type="hidden" name="no_driver" value="<?php echo $no_driver;?>">
+      <form action="../proses/hapus_kegiatan" method="POST">
+        <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
+        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             
         </div>
@@ -367,13 +383,9 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
 </tbody>
 </table>
 </div>
-<br>
-<br>
-<br>
-
-
 </div>
-
+<br>
+<br>
 </div>
 <!-- End of Main Content -->
 
