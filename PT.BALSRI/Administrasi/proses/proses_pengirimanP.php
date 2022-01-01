@@ -30,7 +30,17 @@ $jns_trans = $_POST['jns_trans'];
 $jml_trans = $_POST['jml_trans'];
 $muatan = $_POST['muatan'];
 $keterangan = $_POST['keterangan'];
-$dexlite = $jt_gps/5;
+$result2 = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE no_polisi = '$mt' ");
+$data_kendaraan = mysqli_fetch_array($result2);
+$no = $data_kendaraan['no'];
+$jen_ken = $data_kendaraan['jenis_kendaraan'];
+
+if($jen_ken == '8000 L'){
+	$dexlite = $jt_gps/5;
+}
+else{
+	$dexlite = $jt_gps/6;
+}
 $u_dex = $dexlite*9700;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
@@ -122,10 +132,6 @@ else if ( $nama_file != "" ) {
 $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE nama_driver = '$amt' ");
 $data_driver = mysqli_fetch_array($result);
 $no_driver = $data_driver['no_driver'];
-
-$result2 = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE no_polisi = '$mt' ");
-$data_kendaraan = mysqli_fetch_array($result2);
-$no = $data_kendaraan['no'];
 
 if ($jns_trans == 'Lost') {
 	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_p VALUES('','$tanggal','$no','$no_driver','$muatan','$rit','$jt_gps','$jt_odo','$dexlite','$uang_makan','$uang_gaji','$uang_jalan','$jns_trans','$total_lost','$keterangan','$file')");

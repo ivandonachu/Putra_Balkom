@@ -29,7 +29,18 @@ $jns_trans = $_POST['jns_trans'];
 $jml_trans = $_POST['jml_trans'];
 $muatan = $_POST['muatan'];
 $keterangan = $_POST['keterangan'];
-$dexlite = $jt_gps/5;
+
+$result2 = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE no_polisi = '$mt' ");
+$data_kendaraan = mysqli_fetch_array($result2);
+$no = $data_kendaraan['no'];
+$jen_ken = $data_kendaraan['jenis_kendaraan'];
+
+if($jen_ken == '8000 L'){
+	$dexlite = $jt_gps/5;
+}
+else{
+	$dexlite = $jt_gps/6;
+}
 $u_dex = $dexlite*9700;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
@@ -125,24 +136,24 @@ $data_kendaraan = mysqli_fetch_array($result2);
 $no = $data_kendaraan['no'];
 	
 
-	if ($jns_trans == 'Lost') {
-		if ($file == '') {
-		$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
-	}
-		else{
-		$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no' , jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
-	}
-
-	
-			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPengirimanP2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-	}
+if ($jns_trans == 'Lost') {
+	if ($file == '') {
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' ,no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
+}
 	else{
-		if ($file == '') {
-		$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
-	}
-		else{
-		$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no' , jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
-	}
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no' , jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
+}
+
+
+		echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPengiriman2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+}
+else{
+	if ($file == '') {
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
+}
+	else{
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no' , jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
+}
 
 	
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPengirimanP2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
