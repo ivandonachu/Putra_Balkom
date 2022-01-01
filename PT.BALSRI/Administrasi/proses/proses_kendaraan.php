@@ -24,7 +24,7 @@ $jenis_kendaraan = $_POST['jenis_kendaraan'];
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO kendaraan VALUES('','$no_polisi','$jenis_kendaraan')");
+	$query = mysqli_query($koneksi,"INSERT INTO kendaraan VALUES('','$no_polisi','','$jenis_kendaraan')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMT';</script>";exit;
