@@ -282,7 +282,7 @@ else{
 <div>   
 
 
- <div style="margin-right: 100px; margin-left: 100px;">
+ <div style="margin-right: 20px; margin-left: 20px;">
 
   <?php  echo "<form  method='POST' action='VPembelian'>" ?>
   <div>
@@ -404,7 +404,7 @@ else{
 </div>
 <br>
 <br>
-<div style="margin-right: 100px; margin-left: 100px;">
+<div style="margin-right: 20px; margin-left: 20px;">
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
