@@ -625,9 +625,9 @@ else{
                     while ($data2 = mysqli_fetch_array($result)){
                       $data_tarif = $data2['delivery_point'];
 
-                      if (mysqli_num_rows($result2) == 0) {
+                      
                        echo "<option" ?> <?php echo ($dataSelect == $data_tarif) ? "selected" : "" ?>> <?php echo $data_tarif; ?> <?php echo "</option>" ;
-                     }
+                     
                    }
                    ?>
                  </select>
