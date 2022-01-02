@@ -349,7 +349,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               include 'koneksi.php';
                               $result2 = mysqli_query($koneksi, "SELECT * FROM master_tarif");
 
-                              while ($data2 = mysqli_fetch_array($result)) {
+                              while ($data2 = mysqli_fetch_array($result2)) {
                                 $data_tarif = $data2['delivery_point'];
 
                       
