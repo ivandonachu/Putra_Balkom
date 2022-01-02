@@ -250,7 +250,6 @@ else{
       <th>KET</th>
       <th>File</th>
       <th>Status</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
