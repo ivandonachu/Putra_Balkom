@@ -175,6 +175,22 @@ $nama = $data['nama_karyawan'];
                     </div>
                 </div>
             </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse22"
+                  15  aria-expanded="true" aria-controls="collapse22">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Pertashop</span>
+                </a>
+                <div id="collapse22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Pertashop</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+                    </div>
+                </div>
+            </li>
 
 
 
@@ -278,7 +294,7 @@ $nama = $data['nama_karyawan'];
         </div>
         <div class="col-sm-3" style="color: black; font-size: 18px;">
         <script type='text/javascript'>
-            <!--
+        
             var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
             var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
             var date = new Date();
@@ -289,7 +305,7 @@ $nama = $data['nama_karyawan'];
             var yy = date.getYear();
             var year = (yy < 1000) ? yy + 1900 : yy;
             document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
-            //-->
+        
         </script>
     </div>
 </div> 

@@ -22,9 +22,27 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
 
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+} 
+else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+}
 
-$table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' ");
+}
+
+else{
+  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+}
 
 
 ?>
@@ -39,7 +57,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Master Tarif</title>
+  <title>Penjualan Pertashop</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -65,11 +83,12 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+      
+           <!-- Sidebar - Brand -->
+           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -184,16 +203,17 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
                     </div>
                 </div>
             </li>
-<!-- Divider -->
-<hr class="sidebar-divider">
+
+  <!-- Divider -->
+  <hr class="sidebar-divider">
 
 
 
 
-<!-- Sidebar Toggler (Sidebar) -->
-<div class="text-center d-none d-md-inline">
-  <button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
 
 
 
@@ -208,7 +228,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VMasterTarif'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif</h5></a>"; ?>
+      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pertashop </h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -262,312 +282,131 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 <div>   
 
 
+ <div style="margin-right: 20px; margin-left: 20px;">
 
-  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-
-   <div class="row">
-    <div class="col-md-10">
-
+  <?php  echo "<form  method='POST' action='VPembelian'>" ?>
+  <div>
+    <div align="left" style="margin-left: 20px;"> 
+      <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+      <span>-</span>
+      <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+      <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
     </div>
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Master Tarif</button> <br> <br>
-      </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form Pencatatan Master Tarif</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_master_tarif' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
-            <div class="row">
-              <div class="col-md-6">
-               <label>Supplay Point</label>
-               <input class="form-control form-control-sm" type="text" id="supply_point" name="supply_point" required="">
-             </div>
-             <div class="col-md-6">
-               <label>Delivey Point</label>
-               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-            <div class="col-md-6">
-             <label>Cluster</label>
-             <input class="form-control form-control-sm" type="text" id="cluster" name="cluster" required="">
-           </div>
-
-           <div class="col-md-6">
-             <label>Alamat</label>
-             <textarea id = "alamat" name="alamat" style="width: 300px;"></textarea>
-           </div>            
-         </div>
-
-         <br>
-
-         <div class="row">
-          <div class="col-md-4">
-            <label>Jarak Tempuh</label>
-            <input class="form-control form-control-sm" type="number" id="jt" name="jt" required="">
-          </div>    
-          <div class="col-md-4">
-            <label>Harga BBM</label>
-            <input class="form-control form-control-sm" type="number" id="hrg_bbm" name="hrg_bbm" required="">
-          </div>
-          <div class="col-md-4">
-            <label>KL 1</label>
-            <input class="form-control form-control-sm" type="float" id="kl1" name="kl1" required="">
-          </div>                
-
-        </div>
-
-        <br>
-
-        <div class="row">
-         <div class="col-md-6">
-             <label>KL 2</label>
-            <input class="form-control form-control-sm" type="float" id="kl2" name="kl2" required="">
-           </div>
-
-           <div class="col-md-6">
-             <label>KL 3</label>
-            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required="">
-           </div>                 
-        </div>
-
-        <div class="row">
-         <div class="col-md-6">
-             <label>KL 4</label>
-            <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required="">
-           </div>
-
-           <div class="col-md-6">
-             <label>KL 5</label>
-            <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required="">
-           </div>                 
-        </div>
-
-
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"> CATAT</button>
-        <button type="reset" class="btn btn-danger"> RESET</button>
-      </div>
-    </form>
   </div>
+</form>
 
-</div>
-</div>
-</div>
+<div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+ </div>
+ <br>
 
-</div>
-</div>
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
-      <th>Supply Point</th>
-      <th>Delivery Point</th>   
-      <th>Cluster</th>
-      <th>Alamat</th>
-      <th>JT</th>
-      <th>Harga BBM</th>
-      <th>KL 1</th>
-      <th>KL 2</th>
-      <th>KL 3</th>
-      <th>KL 4</th>
-      <th>KL 5</th>
+      <th>Tanggal</th>
+      <th>Kode Pertashop</th>   
+      <th>Lokasi</th>
+      <th>Nama Karyawan</th>
+      <th>QTY</th>
+      <th>Harga</th>
+      <th>Jumlah</th>
+      <th>KET</th>
+      <th>File</th>
+      <th>Status</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
+    <?php
+    $urut = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
 
+    ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no = $data['no'];
-      $supply_point =$data['supply_point'];
-      $delivery_point =$data['delivery_point'];
-      $cluster = $data['cluster'];
-      $alamat = $data['alamat'];
-      $jt = $data['jt'];
-      $hrg_bbm = $data['hrg_bbm'];
-      $kl1 = $data['kl1'];
-      $kl2 = $data['kl2'];
-      $kl3 = $data['kl3'];
-      $kl4 = $data['kl4'];
-      $kl5 = $data['kl5'];
+      $no_penjualan = $data['no_penjualan'];
+      $tanggal =$data['tanggal'];
+      $kode_perta =$data['kode_perta'];
+      $lokasi = $data['lokasi'];
+      $nama_karyawan = $data['nama_karyawan'];
+      $qty = $data['qty'];
+      $harga = $data['harga'];
+      $jumlah = $qty * $harga;
+      $keterangan = $data['keterangan'];
+      $file_bukti = $data['file_bukti'];
+      $status = $data['persetujuan'];
+      $urut = $urut + 1;
 
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no</td>
-      <td style='font-size: 14px' align = 'center'>$supply_point</td>
-      <td style='font-size: 14px' align = 'center'>$delivery_point</td>
-      <td style='font-size: 14px' align = 'center'>$cluster</td>
-      <td style='font-size: 14px' align = 'center'>$alamat</td>
-      <td style='font-size: 14px' align = 'center'>$jt/KM</td>
-      <td style='font-size: 14px' align = 'center'>$hrg_bbm</td>
-      <td style='font-size: 14px' align = 'center'>$kl1/L</td>
-      <td style='font-size: 14px' align = 'center'>$kl2/L</td>
-      <td style='font-size: 14px' align = 'center'>$kl3/L</td>
-      <td style='font-size: 14px' align = 'center'>$kl4/L</td>
-      <td style='font-size: 14px' align = 'center'>$kl5/L</td>
+      <td style='font-size: 14px' align = 'center'>$urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 14px' align = 'center'>$lokasi</td>
+      <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
+      <td style='font-size: 14px' align = 'center'>$qty/L</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>$keterangan</td>
       "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no']; ?>">Edit</button>
+     <?php echo "<td style='font-size: 12px'>"; ?>
 
-      <!-- Form EDIT DATA -->
+        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Lihat</button>
 
-      <div class="modal fade" id="formedit<?php echo $data['no']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role ="document">
-          <div class="modal-content"> 
-            <div class="modal-header">
-              <h5 class="modal-title"> Form Edit Master Tarif </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                <span aria-hidden="true"> &times; </span>
-              </button>
+        <!-- Form EDIT DATA -->
+
+        <div class="modal fade" id="formedit<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role ="document">
+            <div class="modal-content"> 
+              <div class="modal-header">
+                <h5 class="modal-title"> Foto Penjualan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+
+              <!-- Form Edit Data -->
+              <div class="modal-body">
+                       <img  style="height: 100%; width: 100%;" s src="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" >
+                </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" href="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>">Download</a>  </button>
+              
+                  </div>
+                </form>
+              </div>
             </div>
-
-            <!-- Form Edit Data -->
-            <div class="modal-body">
-              <form action="../proses/edit_master_tarif" enctype="multipart/form-data" method="POST">
-
-                <input type="hidden" name="no" value="<?php echo $no;?>"> 
-                
-
-                <div class="row">
-              <div class="col-md-6">
-               <label>Supplay Point</label>
-               <input class="form-control form-control-sm" type="text" id="supply_point" name="supply_point" required=""  value="<?php echo $supply_point;?>" >
-             </div>
-             <div class="col-md-6">
-               <label>Delivey Point</label>
-               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" value="<?php echo $delivery_point;?>" >
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-            <div class="col-md-6">
-             <label>Cluster</label>
-             <input class="form-control form-control-sm" type="text" id="cluster" name="cluster" required=""  value="<?php echo $cluster;?>" >
-           </div>
-
-           <div class="col-md-6">
-             <label>Alamat</label>
-             <textarea id = "alamat" name="alamat" style="width: 300px;"> <?php echo $alamat;?></textarea>
-           </div>            
-         </div>
-
-         <br>
-
-         <div class="row">
-          <div class="col-md-4">
-            <label>Jarak Tempuh</label>
-            <input class="form-control form-control-sm" type="number" id="jt" name="jt" required=""  value="<?php echo $jt;?>">
-          </div>    
-          <div class="col-md-4">
-            <label>Harga BBM</label>
-            <input class="form-control form-control-sm" type="number" id="hrg_bbm" name="hrg_bbm" required=""  value="<?php echo $hrg_bbm;?>">
           </div>
-          <div class="col-md-4">
-            <label>KL 1</label>
-            <input class="form-control form-control-sm" type="float" id="kl1" name="kl1" required=""  value="<?php echo $kl1;?>">
-          </div>                
-
-        </div>
-
-        <br>
-
-        <div class="row">
-         <div class="col-md-6">
-             <label>KL 2</label>
-            <input class="form-control form-control-sm" type="float" id="kl2" name="kl2" required=""  value="<?php echo $kl2;?>">
-           </div>
-
-           <div class="col-md-6">
-             <label>KL 3</label>
-            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required=""  value="<?php echo $kl3;?>">
-           </div>                 
-        </div>
-
-        <div class="row">
-         <div class="col-md-6">
-             <label>KL 4</label>
-            <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required=""  value="<?php echo $kl4;?>">
-           </div>
-
-           <div class="col-md-6">
-             <label>KL 5</label>
-            <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required=""  value="<?php echo $kl5;?>">
-           </div>                 
         </div>
 
 
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Ubah </button>
-          <button type="reset" class="btn btn-danger"> RESET</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
 
-<!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $data['no']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
- <div class="modal-dialog" role ="document">
-   <div class="modal-content"> 
-    <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-        <span aria-hidden="true"> &times; </span>
-      </button>
-    </div>
 
-    <div class="modal-body">
-      <form action="../proses/hapus_master_tarif" method="POST">
-        <input type="hidden" name="no" value="<?php echo $no;?>">
-        <div class="form-group">
-          <h6> Yakin Ingin Hapus Data? </h6>             
-        </div>
+        <?php echo "</td> "; ?>
+      <?php
+      if ($status == 0) {
+       echo "<td style='font-size: 14px; color: red;' align = 'center'>Belum di Setujui</td>";
+      }
+      else{
+         echo "<td style='font-size: 14px; color: green;' align = 'center'>Telah di Setujui</td>";
+      }
+      ?>
 
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Hapus </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
 
-<?php echo  " </td> </tr>";
+<?php echo  "</tr>";
 }
 ?>
 
 </tbody>
 </table>
 </div>
-<br>
-<br>
-<br>
-
-
 </div>
-
 </div>
 <!-- End of Main Content -->
 
@@ -642,7 +481,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: []
     } );
 
     table.buttons().container()

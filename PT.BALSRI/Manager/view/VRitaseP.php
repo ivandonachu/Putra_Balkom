@@ -164,7 +164,22 @@ $table = mysqli_query($koneksi,"SELECT * FROM pengiriman_a ")
                     </div>
                 </div>
             </li>
-
+                <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse22"
+                  15  aria-expanded="true" aria-controls="collapse22">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Pertashop</span>
+                </a>
+                <div id="collapse22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Pertashop</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+                    </div>
+                </div>
+            </li>
   <!-- Divider -->
   <hr class="sidebar-divider">
 
