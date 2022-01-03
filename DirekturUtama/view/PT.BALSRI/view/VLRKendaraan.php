@@ -21,6 +21,7 @@ exit;
 if (isset($_GET['tanggal1'])) {
    $tanggal_awal = $_GET['tanggal1'];
    $tanggal_akhir = $_GET['tanggal2'];
+   $no_polisilr = $_GET['no_polisi'];
 } 
 
 elseif (isset($_POST['tanggal1'])) {
@@ -36,7 +37,7 @@ function formatuang($angka){
 
 if ($tanggal_awal == $tanggal_akhir) {
   // Tagihan
-  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.no=b.no  WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.no=b.no  WHERE tanggal = '$tanggal_awal'  AND no_polisi ='$no_polisilr'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
   //pengiriman
@@ -47,37 +48,6 @@ if ($tanggal_awal == $tanggal_akhir) {
   $total_ug= $data2['uang_gaji'];
   $total_dexlite = $jml_dex * 9700;
 
-  //pengeluran Pul Biaya Kantor
-   $table3 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Kantor' ");
-   $data3 = mysqli_fetch_array($table3);
-   $jml_biaya_kantor = $data3['jumlah_biaya_kantor'];
-    if (!isset($data3['jumlah_biaya_kantor'])) {
-    $jml_biaya_kantor = 0;
-    }
-
-   //pengeluran Pul Listrik & Telepon
-   $table4 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Listrik & Telepon' ");
-   $data4 = mysqli_fetch_array($table4);
-   $jml_listrik = $data4['jumlah_listrik'];
-    if (!isset($data4['jumlah_listrikr'])) {
-    $jml_listrik = 0;
-    }
-
-   //pengeluran Biaya Sewa
-   $table5 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Sewa' ");
-   $data5 = mysqli_fetch_array($table5);
-   $jml_sewa = $data5['jumlah_sewa'];
-    if (!isset($data5['jumlah_sewa'])) {
-    $jml_sewa = 0;
-    }
-
-   //pengeluran Alat Tulis Kantor
-   $table6 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Alat Tulis Kantor' ");
-   $data6 = mysqli_fetch_array($table6);
-   $jml_atk = $data6['jumlah_atk'];
-    if (!isset($data6['jumlah_atk'])) {
-    $jml_atk = 0;
-    }
 
     //pengeluran perbaikan
    $table7 = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan WHERE tanggal = '$tanggal_awal'");
@@ -91,68 +61,33 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
     // Tagihan
-  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
   //pengiriman
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(a.dexlite) AS total_dex, SUM(a.um) AS uang_makan FROM pengiriman a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
   $data2 = mysqli_fetch_array($table2);
   $jml_dex= $data2['total_dex'];
   $total_um= $data2['uang_makan'];
  
   $total_dexlite = $jml_dex * 9700;
     
-
+   
     
-  //pengeluran Pul Biaya Kantor
-   $table3 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
-   $data3 = mysqli_fetch_array($table3);
-   $jml_biaya_kantor = $data3['jumlah_biaya_kantor'];
-    if (!isset($data3['jumlah_biaya_kantor'])) {
-    $jml_biaya_kantor = 0;
-    }
-
-   //pengeluran Pul Listrik & Telepon
-   $table4 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
-   $data4 = mysqli_fetch_array($table4);
-   $jml_listrik = $data4['jumlah_listrik'];
-    if (!isset($data4['jumlah_listrikr'])) {
-    $jml_listrik = 0;
-    }
-
-   //pengeluran Biaya Sewa
-   $table5 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
-   $data5 = mysqli_fetch_array($table5);
-   $jml_sewa = $data5['jumlah_sewa'];
-    if (!isset($data5['jumlah_sewa'])) {
-    $jml_sewa = 0;
-    }
-
-   //pengeluran Alat Tulis Kantor
-   $table6 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
-   $data6 = mysqli_fetch_array($table6);
-   $jml_atk = $data6['jumlah_atk'];
-    if (!isset($data6['jumlah_atk'])) {
-    $jml_atk = 0;
-    }
 
     //pengeluran perbaikan
-   $table7 = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $table7 = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr' ");
    $data7 = mysqli_fetch_array($table7);
    $jml_perbaikan = $data7['jumlah_perbaikan'];
     if (!isset($data7['jumlah_perbaikan'])) {
     $jml_perbaikan = 0;
     }
     
-     //Gaji karyawan
-   $table8 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI LMG' ");
-   $data8 = mysqli_fetch_array($table8);
-   $gaji_karyawan = $data8['jumlah_gaji'];
-    if (!isset($data8['jumlah_gaji'])) {
+
     $gaji_karyawan = 0;
-    }
+
     //Gaji dRIVER
-   $table9 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver LMG' ");
+    $table9 = mysqli_query($koneksibalsri, "SELECT SUM(a.ug) AS jumlah_gaji FROM pengiriman a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
    $data9 = mysqli_fetch_array($table9);
    $gaji_driver = $data9['jumlah_gaji'];
     if (!isset($data9['jumlah_gaji'])) {
@@ -165,8 +100,8 @@ else{
     $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
 }
 
-    $laba_bersih_sebelum_pajak = $total_tagihan - ($total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $total_gaji_karaywan + $total_um);
-    $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $total_um + $total_gaji_karaywan;
+    $laba_bersih_sebelum_pajak = $total_tagihan - ($total_dexlite  + $jml_perbaikan + $total_gaji_karaywan + $total_um);
+    $total_biaya_usaha_final = $total_dexlite  + $jml_perbaikan + $total_um + $total_gaji_karaywan;
 ?>
 
 
@@ -183,7 +118,7 @@ else{
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Laporan Laba Rugi BALSRI</title>
+    <title>Laba Rugi <?= $no_polisilr; ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -415,11 +350,8 @@ else{
 <div class="container" style="color : black;">
    <?php  echo "<form  method='POST' action='VLabaRugi2' style='margin-bottom: 15px;'>" ?>
    <div>
-      <div align="left" style="margin-left: 20px;"> 
-        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-        <span>-</span>
-        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+   <div align="left">
+      <?php echo "<a href='VLabaRugi2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
 </div>
 </form>
@@ -434,7 +366,7 @@ else{
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laba Rugi Balsri Lampung</strong></h3>
+            <h3 class="panel-title" align="Center"><strong>Laba Rugi  <?= $no_polisilr; ?> (Lampung)</strong></h3>
         </div>
 
         <div>
@@ -469,7 +401,7 @@ else{
                  <td class="text-left">Tagihan Patra</td>
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
-                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                 <td class="text-right"></td>
              </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
@@ -494,60 +426,31 @@ else{
             </tr>
             <tr>
                 <td>5-510</td>
-                <td class="text-left">GAJI</td>
+                <td class="text-left">Gaji Driver</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_gaji_karaywan); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'></td>"; ?>
             </tr>
-            <tr>
-                <td>5-520</td>
-                <td class="text-left">Alat Tulis Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_atk); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-            </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRBiayaKantor?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-            </tr>
-            <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-            </tr>
-            
             <tr>
                 <td>5-595</td>
                 <td class="text-left">Biaya Perbaikan Kendaraan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_perbaikan); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+               <?php echo "<td class='text-right'></td>"; ?>
             </tr>
             <tr>
                 <td>5-596</td>
                 <td class="text-left">Uang Makan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_um); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'></td>"; ?>
             </tr>
             <tr>
                 <td>5-597</td>
                 <td class="text-left">Uang Dexlite</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
