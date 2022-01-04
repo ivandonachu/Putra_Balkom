@@ -31,12 +31,12 @@ elseif (isset($_POST['tanggal1'])) {
 if ($tanggal_awal == $tanggal_akhir) {
 
   $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_perbaikan_p WHERE tanggal = '$tanggal_awal'");
-
+ 
 }
 else{
 
   $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_perbaikan_p  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan, no_polisi FROM riwayat_perbaikan_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi ");
 }
 
 ?>
@@ -52,7 +52,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Perbaikan Kendaraan</title>
+  <title>Riwayat Perbaikan Kendaraan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -117,7 +117,7 @@ else{
                 </div>
             </li>
              <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+             <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                   15  aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -128,9 +128,13 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi Pelmbang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi Palembang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
                     </div>
                 </div>
             </li>
@@ -147,10 +151,14 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
+                        
                     </div>
                 </div>
             </li>
@@ -166,11 +174,14 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji Driver LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji Driver PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Rekap Gaji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                     </div>
                 </div>
             </li>
@@ -216,7 +227,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VCatatPerbaikan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pencatatan Perbaikan Kendaraan PLG</h5></a>"; ?>
+      <?php echo "<a href='VCatatPerbaikan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Riwayat Perbaikan Kendaraan PLG</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -289,110 +300,6 @@ else{
   <div class="col-md-6">
    <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
  </div>
- <div class="col-md-6">
-  <!-- Button Input Data Bayar -->
-
-
-  <!-- Form Modal  -->
-  <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-lg" role ="document">
-     <div class="modal-content"> 
-      <div class="modal-header">
-        <h5 class="modal-title"> Form Pengeluaran Perbakian </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div> 
-
-      <!-- Form Input Data -->
-      <div class="modal-body" align="left">
-        <?php  echo "<form action='../proses/proses_catat_perbaikanP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-        <div class="row">
-          <div class="col-md-6">
-
-            <label>Tanggal</label>
-            <div class="col-sm-10">
-             <input type="date" id="tanggal" name="tanggal" required="">
-           </div>
-
-         </div>
-       </div>
-
-
-       <br>
-
-       <div class="row">
-
-        <div class="col-md-6">
-         <label>AMT</label>
-         <select id="amt" name="amt" class="form-control ">
-          <?php
-          include 'koneksi.php';
-          $result = mysqli_query($koneksi, "SELECT * FROM driver");   
-
-          while ($data2 = mysqli_fetch_array($result)){
-            $nama_driver = $data2['nama_driver'];
-
-
-            echo "<option> $nama_driver </option> ";
-
-          }
-          ?>
-        </select>
-      </div>
-
-      <div class="col-md-6">
-        <label>MT</label>
-        <select id="mt" name="mt" class="form-control">
-          <?php
-          include 'koneksi.php';
-          $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
-
-          while ($data2 = mysqli_fetch_array($result)){
-            $no_polisi = $data2['no_polisi'];
-
-
-            echo "<option> $no_polisi </option> ";
-
-          }
-          ?>
-        </select>
-      </div>            
-
-    </div>
-    <br>
-
-    <div class="row">
-      <div class="col-md-6">
-        <label>Jumlah Pengeluaran</label>
-        <input class="form-control form-control-sm" type="float" id="jml_pengeluaran" name="jml_pengeluaran" required="">
-      </div>      
-      <div class="col-md-6">
-       <label>Keterangan Kerusakan / Maintenance</label>
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
-     </div>  
-   </div>
-
-
-   <br>
-
-   <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> BAYAR</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 
 
@@ -448,14 +355,40 @@ else{
 
 </tbody>
 </table>
+
+<br>
+<br>
+<h3 class="text-center" >Total Pengeluaran Per Kendaraan</h3>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<thead>
+    <tr>
+      <th class="text-center" >No Polisi</th>
+      <th class="text-center" >Total Perbaikan</th>
+ 
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+     $no_polisi = $data['no_polisi'];
+     $total_perbaikan = $data['jumlah_perbaikan'];
+
+     echo "<tr>
+     <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+     <td style='font-size: 14px' align = 'center'>$total_perbaikan</td>"?>
+     
+    
+  <?php echo  " </tr>";
+}
+?>
+
+</tbody>
+</table>
+<br>
+<br>
+<br>
 </div>
-<br>
-<br>
-<br>
-
-
 </div>
-
 </div>
 <!-- End of Main Content -->
 

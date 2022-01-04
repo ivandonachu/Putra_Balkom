@@ -22,6 +22,10 @@ $no_polisi = $_POST['no_polisi'];
 $jenis_kendaraan = $_POST['jenis_kendaraan'];
 $wilayah_operasi = $_POST['wilayah_operasi'];
 
+$result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE no_polisi = '$no_polisi'  ");
+ if(mysqli_num_rows($result) == 1 ){
+  	echo "<script>alert('Kendaraan Sudah Tercatat :)'); window.location='../view/VMT';</script>"; exit;
+      }
 
 
 

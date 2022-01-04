@@ -49,7 +49,14 @@ else{
   $total_um= $data2['uang_makan'];
  
   $total_dexlite = $jml_dex * 9700;
-    
+          // Potongan 10%
+  $jumlah_potongan = (($total_tagihan * 10) / 100);
+
+  // Kredit Mobil 
+  $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
+  $dataa = mysqli_fetch_array($tablee);
+  $total_kredit= $dataa['total_kredit'];
+   
 
     //pengeluran perbaikan
    $table7 = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr' ");
@@ -75,9 +82,9 @@ else{
     //list supir
     $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
 }
-
-    $laba_bersih_sebelum_pajak = $total_tagihan - ($total_dexlite  + $jml_perbaikan + $total_gaji_karaywan + $total_um);
-    $total_biaya_usaha_final = $total_dexlite  + $jml_perbaikan + $total_um + $total_gaji_karaywan;
+    $total_laba_kotor = $total_tagihan - $jumlah_potongan;
+    $laba_bersih_sebelum_pajak = $total_laba_kotor - ($total_dexlite  + $jml_perbaikan + $total_gaji_karaywan + $total_um+ $total_kredit);
+    $total_biaya_usaha_final = $total_dexlite  + $jml_perbaikan + $total_um + $total_gaji_karaywan+ $total_kredit;
 ?>
 
 
@@ -154,8 +161,8 @@ else{
                     </div>
                 </div>
             </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                   15  aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -166,9 +173,13 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi Pelmbang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi Palembang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
                     </div>
                 </div>
             </li>
@@ -185,10 +196,14 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
+                        
                     </div>
                 </div>
             </li>
@@ -204,11 +219,14 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji Driver LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji Driver PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Rekap Gaji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                     </div>
                 </div>
             </li>
@@ -377,12 +395,19 @@ else{
                  <td class="text-left">Tagihan Patra</td>
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
-                 <td class="text-right"></td>
+                 <?php echo "<td class='text-right'><a href='VRDriverPLG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+             </tr>
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Tagihan 10%</td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"></td>
              </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
-                <td class="no-line text-left"><?= formatuang($total_tagihan); ?> </td>
+                <td class="no-line text-left"><?= formatuang($total_laba_kotor); ?> </td>
                 <td class="no-line text-left"><?= formatuang(0); ?> </td>
                 <td class="thick-line"></td>
             </tr>
@@ -405,28 +430,35 @@ else{
                 <td class="text-left">Gaji Driver</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_gaji_karaywan); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRDriverPLG/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-595</td>
                 <td class="text-left">Biaya Perbaikan Kendaraan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_perbaikan); ?></td>
-               <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRDriverPLG/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-596</td>
                 <td class="text-left">Uang Makan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_um); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRDriverPLG/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-597</td>
                 <td class="text-left">Uang Dexlite</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRDriverPLG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit); ?></td>
+                <td class="text-left"></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>

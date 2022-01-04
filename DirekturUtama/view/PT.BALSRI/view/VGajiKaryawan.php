@@ -34,7 +34,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_penggajian");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Gaji Karyawan</title>
+  <title> Gaji Karyawan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -99,7 +99,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_penggajian");
                 </div>
             </li>
              <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+             <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                   15  aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -110,9 +110,13 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_penggajian");
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi Pelmbang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi Palembang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
                     </div>
                 </div>
             </li>
@@ -129,10 +133,14 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_penggajian");
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
+                        
                     </div>
                 </div>
             </li>
@@ -148,11 +156,14 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_penggajian");
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji Driver LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji Driver PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Rekap Gaji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                     </div>
                 </div>
             </li>
@@ -198,7 +209,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_penggajian");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VGajiKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pencatatan Gaji Karyawan</h5></a>"; ?>
+  <?php echo "<a href='VGajiKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Gaji Karyawan dan Driver</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -256,85 +267,6 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_penggajian");
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-  <div class="row">
-    <div class="col-md-10">
- 
-   </div>
-   <div class="col-md-2">
-    <!-- Button Input Data Bayar -->
-    <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Penggajian Karyawan</button> <br> <br>
-    </div>
-    <!-- Form Modal  -->
-    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-       <div class="modal-content"> 
-        <div class="modal-header">
-          <h5 class="modal-title"> Form Pencatatan Gaji</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> 
-
-        <!-- Form Input Data -->
-        <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_catat_gaji' enctype='multipart/form-data' method='POST'>";  ?>
-
-          <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
-               
-
-          </div>
-        </div>
-
-      <br>
-      <div class="row">
-          
-           <div class="col-md-6">
-          <label>REF</label>
-          <select id="referensi" name="referensi" class="form-control">
-            <option>BALSRI LMG</option>
-            <option>BALSRI PLG</option>
-            <option>Driver LMG</option>
-            <option>Driver PLG</option>
-          </select>
-        </div>  
-        
-        <div class="col-md-6">
-          <label>Jumlah Gaji</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="">
-        </div>
-
-                    
-      </div>
-    
-<br>
-
-   <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> BAYAR</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -343,7 +275,6 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_penggajian");
       <th>Referensi</th>
       <th>Jumlah</th>
       <th>File</th>
-      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
@@ -371,37 +302,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_penggajian");
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-
-       <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Gaji'></button>
-
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-       <div class="modal-dialog" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus Data Gaji </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <form action="../proses/hapus_catat_gaji" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
-              </div>
-
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <?php echo  " </td> </tr>";
+    <?php echo  " </tr>";
   }
   ?>
 

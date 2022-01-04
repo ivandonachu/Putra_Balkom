@@ -335,7 +335,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
       <th>No</th>
       <th>No Polisi</th>
       <th>Jenis Kendaraan</th>
-      <th></th>
+      <th>Wilayah Operasi</th>
+
     </tr>
   </thead>
   <tbody>
@@ -344,11 +345,13 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
      $no = $data['no'];
      $no_polisi = $data['no_polisi'];
      $jenis_kendaraan =$data['jenis_kendaraan'];
+     $wilayah_operasi =$data['wilayah_operasi'];
 
      echo "<tr>
      <td style='font-size: 14px' align = 'center'>$no</td>
      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
      <td style='font-size: 14px' align = 'center'>$jenis_kendaraan</td>
+     <td style='font-size: 14px' align = 'center'>$wilayah_operasi</td>
      "; ?>
      <?php echo "<td style='font-size: 12px'>"; ?>
      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no']; ?>">Edit</button>

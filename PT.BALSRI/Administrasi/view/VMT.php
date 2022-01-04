@@ -370,10 +370,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
           <div class="modal-body">
             <form action="../proses/edit_kendaraan.php" enctype="multipart/form-data" method="POST">
               <input type="hidden" name="no" value="<?php echo $no;?>">
+              <input type="hidden" name="no_polisi" value="<?php echo $no_polisi;?>">
               <div class="row">
                 <div class="col-md-6">
                   <label>No Polisi</label>
-                  <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required=""  value="<?php echo $no_polisi;?>" >
+                  <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required=""  value="<?php echo $no_polisi;?>" disabled>
                 </div>    
 
 
