@@ -305,6 +305,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
                 <label>Jenis Kendaraan</label>
                 <input class="form-control form-control-sm" type="text" id="jenis_kendaraan" name="jenis_kendaraan" >
               </div>
+
+              <div class="col-md-6">
+                <label>Wilayah Operasi</label>
+                <input class="form-control form-control-sm" type="text" id="wilayah_operasi" name="wilayah_operasi" >
+              </div>
             </div>
             
             <div class="modal-footer">
@@ -328,6 +333,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
       <th>No</th>
       <th>No Polisi</th>
       <th>Jenis Kendaraan</th>
+      <th>Wilayah Operasi</th>
       <th></th>
     </tr>
   </thead>
@@ -337,11 +343,13 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
      $no = $data['no'];
      $no_polisi = $data['no_polisi'];
      $jenis_kendaraan =$data['jenis_kendaraan'];
+     $wilayah_operasi =$data['wilayah_operasi'];
 
      echo "<tr>
      <td style='font-size: 14px' align = 'center'>$no</td>
      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
      <td style='font-size: 14px' align = 'center'>$jenis_kendaraan</td>
+     <td style='font-size: 14px' align = 'center'>$wilayah_operasi</td>
      "; ?>
      <?php echo "<td style='font-size: 12px'>"; ?>
      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no']; ?>">Edit</button>
@@ -372,6 +380,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
                 <div class="col-md-6">
                   <label>Jenis Kendaraan</label>
                   <input class="form-control form-control-sm" type="text" id="jenis_kendaraan" name="jenis_kendaraan"  value="<?php echo $jenis_kendaraan;?>">
+                </div>
+                <div class="col-md-6">
+                  <label>Wilayah Operasi</label>
+                  <input class="form-control form-control-sm" type="text" id="wilayah_operasi" name="wilayah_operasi"  value="<?php echo $wilayah_operasi;?>">
                 </div>
               </div>
 

@@ -21,13 +21,14 @@ exit;
 $no = $_POST['no'];
 $no_polisi = $_POST['no_polisi'];
 $jenis_kendaraan = $_POST['jenis_kendaraan'];
+$wilayah_operasi = $_POST['wilayah_operasi'];
 
 
 
 
 	
 
-		$query = mysqli_query($koneksi,"UPDATE kendaraan SET no_polisi = '$no_polisi' , jenis_kendaraan = '$jenis_kendaraan' WHERE no = '$no'");
+		$query = mysqli_query($koneksi,"UPDATE kendaraan SET no_polisi = '$no_polisi' , jenis_kendaraan = '$jenis_kendaraan' , wilayah_operasi = '$wilayah_operasi'  WHERE no = '$no'");
 	
 	
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMT';</script>";exit;
