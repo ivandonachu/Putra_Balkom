@@ -125,6 +125,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopSE">Workshop Semen</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBP">Workshop Balsri PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBL">Workshop Balsri LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBR">Workshop Balsri BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBB">Workshop Batu Bara</a>
                     </div>
                 </div>

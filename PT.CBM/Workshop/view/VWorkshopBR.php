@@ -36,11 +36,11 @@ $tanggal_akhir = date('Y-m-31');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM riwayat_pengeluaran_workshop WHERE tanggal ='$tanggal_awal' ");
+  $table = mysqli_query($koneksibalsri,"SELECT * FROM riwayat_pengeluaran_workshop_br WHERE tanggal ='$tanggal_awal' ");
 }
 
 else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM riwayat_pengeluaran_workshop WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksibalsri,"SELECT * FROM riwayat_pengeluaran_workshop_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 }
 
 ?>
@@ -55,7 +55,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Workshop PBJ Batu Bara</title>
+  <title>Workshop BALSRI Baturaja</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -157,7 +157,7 @@ else{
 
       <!-- Topbar -->
       <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VWorkshopBB'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Workshop PBJ Batu Bara</h5></a>"; ?>
+      <?php echo "<a href='VWorkshopBR'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Workshop BALSRI Baturaja</h5></a>"; ?>
 
        <!-- Sidebar Toggle (Topbar) -->
        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -214,7 +214,7 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php  echo "<form  method='POST' action='VWorkshopBB' style='margin-bottom: 15px;'>" ?>
+ <?php  echo "<form  method='POST' action='VWorkshopBR' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -247,7 +247,7 @@ else{
             <!-- Form Input Data -->
             <div class="modal-body" align="left">
               
-                  <?php  echo "<form action='../proses/proses_workshop_bb?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                  <?php  echo "<form action='../proses/proses_workshop_br?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
          
            <div class="row">
@@ -268,7 +268,7 @@ else{
          <select id="tokens" class="selectpicker form-control" name="nama_driver" multiple data-live-search="true">
         <?php
         include 'koneksi.php';
-        $result = mysqli_query($koneksipbj, "SELECT * FROM driver");   
+        $result = mysqli_query($koneksibalsri, "SELECT * FROM driver");   
 
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['nama_driver'];
@@ -381,7 +381,7 @@ else{
           </div>
 
           <div class="modal-body">
-            <form action="../proses/hapus_workshop_bb" method="POST">
+            <form action="../proses/hapus_workshop_br" method="POST">
               <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
