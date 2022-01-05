@@ -99,8 +99,8 @@ else{
     <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+           <!-- Sidebar - Brand -->
+           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -136,11 +136,14 @@ else{
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Palembang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi BTA</a>
                     </div>
                 </div>
             </li> <?php
@@ -158,12 +161,17 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Rekap Gaji</a>
                     </div>
                 </div>
             </li>
@@ -177,10 +185,12 @@ else{
                 <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Lap Perbaikan LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Lap Perbaikan PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Lap Perbaikan BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
                     </div>
                 </div>
             </li>
@@ -199,7 +209,7 @@ else{
                     </div>
                 </div>
             </li>
-                <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse22"
                   15  aria-expanded="true" aria-controls="collapse22">
@@ -327,7 +337,7 @@ else{
       <th>Status Maintenance</th>
       <th>Terakhir Maintenance</th>
       <th></th>
-      <th></th>
+
 
     </tr>
   </thead>
@@ -352,52 +362,9 @@ else{
       } ?> <?php echo "
       <td style='font-size: 14px' align = 'center'>$tgl_perbaikan</td>
       <td align = 'center'><a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
+    
 
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php $no_polisi ?>">Konfirmasi Perbaikan</button>
-
-      <!-- Form EDIT DATA -->
-
-      <div class="modal fade" id="formedit<?php $no_polisi ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role ="document">
-          <div class="modal-content"> 
-            <div class="modal-header">Konfirmasi Perbaikan</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                <span aria-hidden="true"> &times; </span>
-              </button>
-            </div>
-
-
-            <!-- Form Edit Data -->
-            <div class="modal-body">
-              <form action="../proses/konfirmasi_perbaikan"  method="POST">
-
-
-               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-               <input type="hidden" name="no_polisi" value="<?php echo $no_polisi;?>">
-
-               <div class="row">
-                <div class="col-md-6">
-                  <label>Tanggal</label>
-                  <div class="col-sm-10">
-                   <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
-                 </div>
-               </div>
-              
-             </div>
-
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary"> Konfirmasi </button>
-              <button type="reset" class="btn btn-danger"> RESET</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <?php echo  " </td> </tr>";
+  <?php echo  " </tr>";
 }
 
 ?>

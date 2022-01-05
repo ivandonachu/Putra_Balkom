@@ -18,11 +18,10 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$pemilik = $_POST['pemilik'];
+$supply_point = $_POST['supply_point'];
 $delivery_point = $_POST['delivery_point'];
 $alamat = $_POST['alamat'];
-$shipto = $_POST['shipto'];
-$kordinat = $_POST['kordinat'];
+$hrg_bbm = $_POST['hrg_bbm'];
 $jt = $_POST['jt'];
 $kl1 = $_POST['kl1'];
 $kl2 = $_POST['kl2'];
@@ -34,7 +33,7 @@ $kl5 = $_POST['kl5'];
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_br VALUES('','$shipto','$delivery_point','$pemilik','$jt','$kordinat','$alamat','$kl1','$kl2','$kl3','$kl4','$kl5')");
+	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_br VALUES('','$supply_point','$delivery_point','$alamat','$jt','$hrg_bbm','$kl1','$kl2','$kl3','$kl4','$kl5')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMasterTarifBr';</script>";exit;
