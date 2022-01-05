@@ -287,7 +287,7 @@ else{
    <div class="col-md-6">
     <!-- Button Input Data Bayar -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Tagihan </button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pengeluaran </button> <br> <br>
     </div>
     
      <!-- Form Modal  -->
