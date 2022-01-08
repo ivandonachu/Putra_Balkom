@@ -116,7 +116,7 @@ else{
    $table4 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
    $data4 = mysqli_fetch_array($table4);
    $jml_listrik = $data4['jumlah_listrik'];
-    if (!isset($data4['jumlah_listrikr'])) {
+    if (!isset($data4['jumlah_listrik'])) {
     $jml_listrik = 0;
     }
 
@@ -137,7 +137,7 @@ else{
     }
 
     //pengeluran Transnport / Perjalanan Dinas
-   $table61 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transnport / Perjalanan Dinas' ");
+   $table61 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
    $data61 = mysqli_fetch_array($table61);
    $jml_transport = $data61['jumlah_transport'];
     if (!isset($data61['jumlah_transport'])) {
@@ -286,6 +286,7 @@ else{
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLuangOP">Lap uang Oprasional</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>

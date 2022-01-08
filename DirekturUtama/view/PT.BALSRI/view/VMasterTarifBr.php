@@ -36,7 +36,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_br ");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Master Tarif Baturaja</title>
+  <title>Master Tarif</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -65,8 +65,8 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_br ");
      <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-           <!-- Sidebar - Brand -->
-           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
+            <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -95,11 +95,12 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_br ");
                         <a class="collapse-item" style="font-size: 15px;" href="DsPTBALSRI">PT.BALSRI</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
                     </div>
                 </div>
             </li>
-           <!-- Nav Item - Pages Collapse Menu -->
-           <li class="nav-item">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                   15  aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -108,6 +109,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_br ");
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLuangOP">Lap uang Oprasional</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
@@ -263,17 +265,24 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_br ");
 
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
+
+   <div class="row">
+    <div class="col-md-10">
+
+    </div>
+    
+</div>
+
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
-      <th>Pemilik</th>
+      <th>Supply Point</th>
       <th>Delivery Point</th> 
-      <th>JT</th>
-      <th>Shipto</th>
-      <th>Kordinat</th>
       <th>Alamat</th>   
+      <th>JT</th>
+      <th>Harga BBM</th>
       <th>KL 1</th>
       <th>KL 2</th>
       <th>KL 3</th>
@@ -292,12 +301,11 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_br ");
     ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no =$data['no'];
-      $pemilik =$data['pemilik'];
       $delivery_point =$data['delivery_point'];
       $alamat = $data['alamat'];
-      $shipto = $data['shipto'];
+      $supply_point = $data['supply_point'];
+      $hrg_bbm = $data['hrg_bbm'];
       $jt = $data['jt'];
-      $kordinat = $data['kordinat'];
       $kl1 = $data['kl1'];
       $kl2 = $data['kl2'];
       $kl3 = $data['kl3'];
@@ -306,18 +314,17 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_br ");
       $urut = $urut + 1;
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$urut</td>
-      <td style='font-size: 14px' align = 'center'>$pemilik</td>
+      <td style='font-size: 14px' align = 'center'>$supply_point</td>
       <td style='font-size: 14px' align = 'center'>$delivery_point</td>
-      <td style='font-size: 14px' align = 'center'>$jt/KM</td>
-      <td style='font-size: 14px' align = 'center'>$shipto</td>
-      <td style='font-size: 14px' align = 'center'>$kordinat</td>
       <td style='font-size: 14px' align = 'center'>$alamat</td>
+      <td style='font-size: 14px' align = 'center'>$jt/KM</td>
+      <td style='font-size: 14px' align = 'center'>$hrg_bbm</td>
       <td style='font-size: 14px' align = 'center'>$kl1/L</td>
       <td style='font-size: 14px' align = 'center'>$kl2/L</td>
       <td style='font-size: 14px' align = 'center'>$kl3/L</td>
       <td style='font-size: 14px' align = 'center'>$kl4/L</td>
       <td style='font-size: 14px' align = 'center'>$kl5/L</td>
-       </tr>";
+     </tr>";
 }
 ?>
 

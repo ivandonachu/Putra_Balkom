@@ -20,7 +20,6 @@ exit;
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,11 +50,11 @@ $nama = $data['nama_karyawan'];
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+       <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-           <!-- Sidebar - Brand -->
-           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -181,6 +180,8 @@ $nama = $data['nama_karyawan'];
                 </div>
             </li>
 
+
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -205,7 +206,7 @@ $nama = $data['nama_karyawan'];
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-               <a href="VLabaRugi"><h5 class="text-center sm" style="color:white; margin-top: 8px;  ">Laba Rugi Balsri Palembang</h5></a>
+               <a href="VLabaRugi"><h5 class="text-center sm" style="color:white; margin-top: 8px;  ">Laba Rugi Balsri Palembng</h5></a>
 
 
             <!-- Sidebar Toggle (Topbar) -->

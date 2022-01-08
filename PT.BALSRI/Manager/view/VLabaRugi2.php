@@ -21,7 +21,6 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-
 if (isset($_GET['tanggal1'])) {
    $tanggal_awal = $_GET['tanggal1'];
    $tanggal_akhir = $_GET['tanggal2'];
@@ -99,13 +98,15 @@ else{
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
   //pengiriman
-  $table2 = mysqli_query($koneksi, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $jml_dex= $data2['total_dex'];
   $total_um= $data2['uang_makan'];
-  $total_ug= $data2['uang_gaji'];
+ 
   $total_dexlite = $jml_dex * 9700;
+    
 
+    
   //pengeluran Pul Biaya Kantor
    $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
    $data3 = mysqli_fetch_array($table3);
@@ -118,7 +119,7 @@ else{
    $table4 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
    $data4 = mysqli_fetch_array($table4);
    $jml_listrik = $data4['jumlah_listrik'];
-    if (!isset($data4['jumlah_listrikr'])) {
+    if (!isset($data4['jumlah_listrik'])) {
     $jml_listrik = 0;
     }
 
@@ -138,6 +139,21 @@ else{
     $jml_atk = 0;
     }
 
+    //pengeluran Transnport / Perjalanan Dinas
+   $table61 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $data61 = mysqli_fetch_array($table61);
+   $jml_transport = $data61['jumlah_transport'];
+    if (!isset($data61['jumlah_transport'])) {
+    $jml_transport = 0;
+    }
+    //pengeluran Biaya Konsumsi
+   $table62 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $data62 = mysqli_fetch_array($table62);
+   $jml_konsumsi = $data62['jumlah_konsumsi'];
+    if (!isset($data62['jumlah_konsumsi'])) {
+    $jml_konsumsi = 0;
+    }
+
     //pengeluran perbaikan
    $table7 = mysqli_query($koneksi, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
    $data7 = mysqli_fetch_array($table7);
@@ -145,11 +161,48 @@ else{
     if (!isset($data7['jumlah_perbaikan'])) {
     $jml_perbaikan = 0;
     }
+    
+    
+     //Gaji karyawan
+   $table8 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI LMG' ");
+   $data8 = mysqli_fetch_array($table8);
+   $gaji_karyawan = $data8['jumlah_gaji'];
+    if (!isset($data8['jumlah_gaji'])) {
+    $gaji_karyawan = 0;
+    }
+    //Gaji dRIVER
+   $table9 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver LMG' ");
+   $data9 = mysqli_fetch_array($table9);
+   $gaji_driver = $data9['jumlah_gaji'];
+    if (!isset($data9['jumlah_gaji'])) {
+    $gaji_driver = 0;
+    }
+    
+    $total_gaji_karaywan = $gaji_karyawan + $gaji_driver;
+
+    //list supir
+    $table10 =  mysqli_query($koneksi, "SELECT mt FROM tagihan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+
+    $table101 =  mysqli_query($koneksi, "SELECT mt FROM tagihan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    //totalkredit
+    $total_kredit = 0;
+    while($data = mysqli_fetch_array($table101)){
+        $mt = $data['mt'];
+        $tablee = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataa = mysqli_fetch_array($tablee);
+        $jml_kredit= $dataa['total_kredit'];
+        if(isset($total_kredit)){
+            $total_kredit += $jml_kredit;
+        }
+        
+    }
+
+
 
 }
 
-    $laba_bersih_sebelum_pajak = $total_tagihan - ($total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan);
-    $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan;
+    $laba_bersih_sebelum_pajak = $total_tagihan - ($total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $total_gaji_karaywan + $total_um + $jml_transport +  $jml_konsumsi + $total_kredit);
+    $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $total_um + $total_gaji_karaywan + $jml_transport +  $jml_konsumsi+ $total_kredit;
 ?>
 
 
@@ -166,7 +219,7 @@ else{
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Laba Rugi Balsri Lampung</title>
+    <title>Laporan Laba Rugi BALSRI</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -192,8 +245,8 @@ else{
          <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-           <!-- Sidebar - Brand -->
-           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+             <!-- Sidebar - Brand -->
+             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -318,6 +371,8 @@ else{
                     </div>
                 </div>
             </li>
+
+
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -470,7 +525,7 @@ else{
                  <td class="text-left">Tagihan Patra</td>
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
-                 <td class="text-right"></td>
+                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
              </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
@@ -497,36 +552,50 @@ else{
                 <td>5-510</td>
                 <td class="text-left">GAJI</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($total_ug); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <td class="text-left"><?= formatuang($total_gaji_karaywan); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-520</td>
                 <td class="text-left">Alat Tulis Kantor</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_atk); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-530</td>
+                <td class="text-left">Transport & Perjalanan Dinas</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_transport); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRPerjalanan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-540</td>
                 <td class="text-left">Biaya Kantor</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_biaya_kantor); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRBiayaKantor?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-550</td>
                 <td class="text-left">Listrik & Telepon</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_listrik); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-560</td>
+                <td class="text-left">Biaya Konsumsi</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_konsumsi); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRKonsumsi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-570</td>
                 <td class="text-left">Biaya Sewa</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_sewa); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             
             <tr>
@@ -534,21 +603,28 @@ else{
                 <td class="text-left">Biaya Perbaikan Kendaraan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_perbaikan); ?></td>
-               <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-596</td>
                 <td class="text-left">Uang Makan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_um); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-597</td>
                 <td class="text-left">Uang Dexlite</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite); ?></td>
-                <?php echo "<td class='text-right'></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
@@ -602,8 +678,11 @@ else{
 </div>
 </div>
 </div>
-</div>
 
+<br>
+<br>
+
+</div>
 </div>
 <!-- End of Main Content -->
 

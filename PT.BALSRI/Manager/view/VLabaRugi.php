@@ -51,11 +51,11 @@ $nama = $data['nama_karyawan'];
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+       <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-           <!-- Sidebar - Brand -->
-           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+                 <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -180,6 +180,8 @@ $nama = $data['nama_karyawan'];
                     </div>
                 </div>
             </li>
+
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">

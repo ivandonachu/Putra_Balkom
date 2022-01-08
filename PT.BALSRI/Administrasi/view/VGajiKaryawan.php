@@ -302,8 +302,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
           <select id="referensi" name="referensi" class="form-control">
             <option>BALSRI LMG</option>
             <option>BALSRI PLG</option>
+            <option>BALSRI BTA</option>
             <option>Driver LMG</option>
             <option>Driver PLG</option>
+            <option>Driver BTA</option>
           </select>
         </div>  
         
