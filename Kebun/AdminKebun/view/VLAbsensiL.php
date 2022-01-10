@@ -273,37 +273,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         </div>
                                                     </div>
                                                     
-                                                </div>
-
-                                                <br>
-
-                                                <div class="row">
-                                                <div class="col-md-6">
-                                                        <label>Nama Karywawan</label>
-                                                        <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
-                                                        <option></option>
-                                                        <?php
-                                                        include 'koneksi.php';
-                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti");   
-
-                                                        while ($data2 = mysqli_fetch_array($result2)){
-                                                        $data_pangakalan = $data2['nama_karyawan'];
-
-                                                       
-                                                            echo "<option> $data_pangakalan </option> ";
-                                                        
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                    <label>Potongan Bon</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="number" name="potongan_bon">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+</div>
                                              
                                             
                                                 <div class="modal-footer">
@@ -361,7 +331,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($potongan_bon); ?> <?php echo "</td>
                                 "; ?>
                                 <?php echo "<td style='font-size: 12px'>"; ?>
-                                <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+                                <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Input Potongan Bon</button>
 
                                 <!-- Form EDIT DATA -->
 
@@ -387,7 +357,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <div class="col-md-6">
                                                         <label>Tanggal</label>
                                                         <div class="col-sm-10">
-                                                            <input type="date" name="tanggal" value="<?php echo $tanggal;?>">
+                                                            <input type="date" name="tanggal" value="<?php echo $tanggal;?>" disabled>
                                                         </div>
                                                     </div>
                                                     
@@ -397,23 +367,10 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                 <div class="row">
                                                 <div class="col-md-6">
-                                                        <label>Nama Karywawan</label>
-                                                        <div>
-                                                        <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
-                                                        <option></option>
-                                                        <?php
-                                                        include 'koneksi.php';
-                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti");   
-                                                        $dataSelect = $data['nama_karyawan'];
-                                                        while ($data2 = mysqli_fetch_array($result2)){
-                                                        $data_pangakalan = $data2['nama_karyawan'];
-
-                                                       
-                                                            echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-                                                        
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                <label>Nama Karyawan</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="date" name="tanggal" value="<?php echo $nama_karyawan;?>" disabled>
+                                                        </div>
                                                     </div>
                                                     </div>
                                                     <div class="col-md-6">

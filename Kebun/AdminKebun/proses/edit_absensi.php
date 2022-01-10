@@ -21,18 +21,14 @@ exit;
 $no_laporan = $_POST['no_laporan'];
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
-$tanggal = $_POST['tanggal'];
-$nama_karyawan = $_POST['nama_karyawan'];
 $potongan_bon = $_POST['potongan_bon'];
 
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti WHERE nama_karyawan = '$nama_karyawan' ");
-$data_perta = mysqli_fetch_array($result);
-$upah_kerja = $data_perta['upah_kerja'];
 
 
 
 
-			$query3 = mysqli_query($koneksi,"UPDATE absensi_lengkiti SET tanggal = '$tanggal' , nama_karyawan = '$nama_karyawan' , upah_kerja = '$upah_kerja' , potongan_bon = '$potongan_bon' WHERE no_laporan = '$no_laporan'");
+
+			$query3 = mysqli_query($koneksi,"UPDATE absensi_lengkiti SET potongan_bon = '$potongan_bon' WHERE no_laporan = '$no_laporan'");
 
 
 
