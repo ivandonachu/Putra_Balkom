@@ -400,7 +400,7 @@ else{
              </tr>
              <tr>
                  <td>4-101</td>
-                 <td class="text-left">Potongan Tagihan 10%</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
                  <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <td class="text-left"></td>
