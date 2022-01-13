@@ -35,7 +35,7 @@ $no_pembelian = $_POST['no_pembelian'];
         $kode_perta = $data_pembelian['kode_perta'];
         $nama_barang = $data_pembelian['nama_barang'];
         $qty = $data_pembelian['qty'];
-        $losis = $data_pembelian['losis'];
+  
         
         
         if($kode_perta == '2P.323.208' && $nama_barang == 'Pertamax'){
@@ -46,7 +46,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = ($stok_awal + $losis) - $qty ;
+                $stok_baru = ($stok_awal - $qty)  ;
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
                 	if ($query != "") {
@@ -60,7 +60,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = ($stok_awal + $losis) - $qty ;
+                $stok_baru = ($stok_awal - $qty)  ;
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 	if ($query != "") {
@@ -74,7 +74,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = ($stok_awal + $losis) - $qty ;
+                $stok_baru = ($stok_awal - $qty) ;
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
                 	if ($query != "") {
@@ -88,7 +88,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = ($stok_awal + $losis) - $qty ;
+                $stok_baru = ($stok_awal - $qty) ;
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
                 	if ($query != "") {
@@ -102,7 +102,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = ($stok_awal + $losis) - $qty ;
+                $stok_baru = ($stok_awal - $qty)  ;
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 	if ($query != "") {

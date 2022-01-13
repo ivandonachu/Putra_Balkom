@@ -314,6 +314,20 @@ $kode_perta = $data_perta['kode_perta'];
 
         </div>         
       </div>
+      <div class="row">
+      
+        <div class="col-md-4">
+          <label>Stok Awal</label>
+             <input class="form-control form-control-sm" type="float" id="stok_awal" name="stok_awal" required="">
+        </div>                
+
+
+        <div class="col-md-4">
+          <label>Stok Akhir</label>
+          <input class="form-control form-control-sm" type="float" id="stok_akhir" name="stok_akhir" required="">
+
+        </div>         
+      </div>
 
       <div>
        <label>Keterangan</label>
@@ -346,18 +360,20 @@ $kode_perta = $data_perta['kode_perta'];
 <table id='example' class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%;  ">
   <thead>
     <tr>
-      <th  style="font-size: 12px" >No</th>
-      <th  style="font-size: 12px">Tanggal</th>
-      <th  style="font-size: 12px">Kode Pertashop</th>   
-      <th  style="font-size: 12px">Lokasi</th>
-      <th  style="font-size: 12px">Penjual</th>
-      <th  style="font-size: 12px">Barang</th>
-      <th  style="font-size: 12px">QTY</th>
-      <th  style="font-size: 12px">Harga</th>
-      <th  style="font-size: 12px">Jumlah</th>
-      <th  style="font-size: 12px">KET</th>
-      <th  style="font-size: 12px">File</th>
-      <th  style="font-size: 12px">Status</th>
+      <th  style="font-size: 11px" >No</th>
+      <th  style="font-size: 11px">Tanggal</th>
+      <th  style="font-size: 11px">Kode Pertashop</th>   
+      <th  style="font-size: 11px">Lokasi</th>
+      <th  style="font-size: 11px">Penjual</th>
+      <th  style="font-size: 11px">Barang</th>
+      <th  style="font-size: 11px">QTY</th>
+      <th  style="font-size: 11px">Harga</th>
+      <th  style="font-size: 11px">Jumlah</th>
+      <th  style="font-size: 11px">Stok awal</th>
+      <th  style="font-size: 11px">Stok Akhir</th>
+      <th  style="font-size: 11px">KET</th>
+      <th  style="font-size: 11px">File</th>
+      <th  style="font-size: 11px">Status</th>
       <th></th>
     </tr>
   </thead>
@@ -378,6 +394,8 @@ $kode_perta = $data_perta['kode_perta'];
       $nama_barang = $data['nama_barang'];
       $nama_karyawan = $data['nama_karyawan'];
       $qty = $data['qty'];
+      $stok_awal = $data['stok_awal'];
+      $stok_akhir = $data['stok_akhir'];
       $harga = $data['harga'];
       $jumlah = $qty * $harga;
       $keterangan = $data['keterangan'];
@@ -386,24 +404,26 @@ $kode_perta = $data_perta['kode_perta'];
       $urut = $urut + 1;
 
       echo "<tr>
-      <td style='font-size: 12px' align = 'center'>$urut</td>
-      <td style='font-size: 12px' align = 'center'>$tanggal</td>
-      <td style='font-size: 12px' align = 'center'>$kode_perta</td>
-      <td style='font-size: 12px' align = 'center'>$lokasi</td>
-      <td style='font-size: 12px' align = 'center'>$nama_karyawan</td>
-      <td style='font-size: 12px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 12px' align = 'center'>$qty/L</td>
-      <td style='font-size: 12px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 12px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 12px' align = 'center'>$keterangan</td>
+      <td style='font-size: 11px' align = 'center'>$urut</td>
+      <td style='font-size: 11px' align = 'center'>$tanggal</td>
+      <td style='font-size: 11px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 11px' align = 'center'>$lokasi</td>
+      <td style='font-size: 11px' align = 'center'>$nama_karyawan</td>
+      <td style='font-size: 11px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 11px' align = 'center'>$qty/L</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
+      <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
+      <?php echo "<td style='font-size: 11px'>"; ?>
 
-        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_absen']; ?>">Lihat</button>
+        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Lihat</button>
 
         <!-- Form EDIT DATA -->
 
-        <div class="modal fade" id="formedit<?php echo $data['no_absen']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="formedit<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
             <div class="modal-content"> 
               <div class="modal-header">

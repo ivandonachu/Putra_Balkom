@@ -210,6 +210,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiPerta">Laba Rugi</a>
                     </div>
                 </div>
             </li>

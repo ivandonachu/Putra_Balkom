@@ -10,7 +10,7 @@ $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$i
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Manager') {
+if ($jabatan_valid == 'Admin Semen') {
 
 }
 
@@ -23,20 +23,7 @@ $nama = $data['nama_karyawan'];
 
 
 
-
-if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-
-
-
-$table = mysqli_query($koneksi, "SELECT * FROM driver");
+$table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +37,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Driver</title>
+  <title>Pencatatan Kendaraan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -77,22 +64,24 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
   <div id="wrapper">
 
     <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-           <!-- Sidebar - Brand -->
-           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+                <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px;" src="../gambar/Logo PBJ.PNG" ></div>
             </a>
-
+            <br>
+            
+            <br>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsManager">
+                <a class="nav-link" href="DsKasir">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
@@ -102,107 +91,38 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Manager
+                     Menu Admin Semen
                 </div>
-                <?php if ($nama =='Tanry Yanoda Donachu') {
-                   ?>  <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                  15  aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Tagihan</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Palembang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi BTA</a>
-                    </div>
-                </div>
-            </li> <?php
-                }
-                ?>
+
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengiriman</span>
+                    <span style="font-size: 15px; color:white;" >Kasir</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Rekap Gaji</a>
+                        <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusan">Penebusan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
                     </div>
                 </div>
             </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
-                  15  aria-expanded="true" aria-controls="collapseTwo22">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengeluaran</span>
-                </a>
-                <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Lap Perbaikan LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Lap Perbaikan PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Lap Perbaikan BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
-                    </div>
-                </div>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+            <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
                   15  aria-expanded="true" aria-controls="collapseTwo1">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
                     <span style="font-size: 15px; color:white;" >SDM</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse22"
-                  15  aria-expanded="true" aria-controls="collapse22">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pertashop</span>
-                </a>
-                <div id="collapse22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Pertashop</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
-                        
+                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>  
+                        <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
                     </div>
                 </div>
             </li>
@@ -231,7 +151,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VAMT'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Driver</h5></a>"; ?>
+      <?php echo "<a href='VMT'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Kendaraan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -295,14 +215,14 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
       <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Driver</button> <br> <br>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Kendaraan</button> <br> <br>
       </div>
       <!-- Form Modal  -->
       <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-lg" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h5 class="modal-title"> Form Pencatatan Driver</h5>
+            <h5 class="modal-title"> Form Pencatatan Kendaraan</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -310,29 +230,25 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_driver' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_kendaraan' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
             <div class="row">
               <div class="col-md-6">
-                <label>Nama Driver</label>
-                <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="">
+                <label>No Polisi</label>
+                <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required="">
               </div>    
 
 
               <div class="col-md-6">
-                <label>No Hp</label>
-                <input class="form-control form-control-sm" type="text" id="no_hp" name="no_hp" >
-              </div>
-            </div>
-            <div>
-             <label>Alamat</label>
-             <div class="form-group">
-               <textarea id = "alamat" name="alamat" style="width: 300px;"></textarea>
+                <label>Jenis Kendaraan</label>
+                <select id="jenis_kendaraan" name="jenis_kendaraan" class="form-control">
+                 <option>Pribadi</option>
+                 <option>Non Pribadi </option>
+               </select>
              </div>
            </div>
-
 
            <div class="modal-footer">
             <button type="submit" class="btn btn-primary"> CATAT</button>
@@ -353,28 +269,98 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
   <thead>
     <tr>
       <th>No</th>
-      <th>Nama Driver</th>
-      <th>No Hp</th>   
-      <th>Alamat</th>
- 
+      <th>No Polisi</th>
+      <th>Status Kendaraan</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    
-    <?php while($data = mysqli_fetch_array($table)){
-      $no_driver = $data['no_driver'];
-      $nama_driver =$data['nama_driver'];
-      $no_hp =$data['no_hp'];
-      $alamat = $data['alamat'];
 
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no_driver</td>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>$no_hp</td>
-      <td style='font-size: 14px' align = 'center'>$alamat</td>
-      "; ?>
-     
-<?php echo  " </tr>";
+    <?php while($data = mysqli_fetch_array($table)){
+      $no = $data['no_kendaraan'];
+     $no_polisi = $data['no_polisi'];
+     $jenis_kendaraan =$data['status_kendaraan'];
+
+     echo "<tr>
+     <td style='font-size: 14px' align = 'center'>$no</td>
+     <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+     <td style='font-size: 14px' align = 'center'>$jenis_kendaraan</td>
+     "; ?>
+     <?php echo "<td style='font-size: 12px'>"; ?>
+     <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_kendaraan']; ?>">Edit</button>
+
+     <!-- Form EDIT DATA -->
+
+     <div class="modal fade" id="formedit<?php echo $data['no_kendaraan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role ="document">
+        <div class="modal-content"> 
+          <div class="modal-header">
+            <h5 class="modal-title"> Form Edit Driver </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true"> &times; </span>
+            </button>
+          </div>
+
+          <!-- Form Edit Data -->
+          <div class="modal-body">
+            <form action="../proses/edit_kendaraan.php" enctype="multipart/form-data" method="POST">
+              <input type="hidden" name="no" value="<?php echo $no;?>">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>No Polisi</label>
+                  <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required=""  value="<?php echo $no_polisi;?>" >
+                </div>    
+
+
+                <div class="col-md-6">
+                  <label>Jenis Kendaraan</label>
+                  <select id="jenis_kendaraan" name="jenis_kendaraan" class="form-control">
+                   <option>Pribadi</option>
+                   <option>Non Pribadi </option>
+                 </select>
+               </div>
+             </div>
+
+
+             <div class="modal-footer">
+              <button type="submit" class="btn btn-primary"> Ubah </button>
+              <button type="reset" class="btn btn-danger"> RESET</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button Hapus -->
+  <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_kendaraan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+  <div class="modal fade" id="PopUpHapus<?php echo $data['no_kendaraan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+   <div class="modal-dialog" role ="document">
+     <div class="modal-content"> 
+      <div class="modal-header">
+        <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form action="../proses/hapus_kendaraan" method="POST">
+          <input type="hidden" name="no" value="<?php echo $no;?>">
+          <div class="form-group">
+            <h6> Yakin Ingin Hapus Data? </h6>             
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Hapus </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php echo  " </td> </tr>";
 }
 ?>
 

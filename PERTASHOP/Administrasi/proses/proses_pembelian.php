@@ -20,8 +20,9 @@ exit;
 
 $tanggal = $_POST['tanggal'];
 $lokasi = $_POST['lokasi'];
-$losis = $_POST['losis'];
-$losis_angkutan = $_POST['losis_angkutan'];
+$volume_tangki = $_POST['volume_tangki'];
+$sonding_awal = $_POST['sonding_awal'];
+$sonding_akhir = $_POST['sonding_akhir'];
 $nama_barang = $_POST['nama_barang'];
 $qty = $_POST['qty'];
 $harga = $_POST['harga'];
@@ -70,13 +71,13 @@ $kode_perta = $data_perta['kode_perta'];
 
         if($kode_perta == '2P.323.208' && $nama_barang == 'Pertamax'){
             
-            	$query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$losis','$losis_angkutan','$keterangan','$file')");
+            	$query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = ($stok_awal + $qty) - $losis;
+                $stok_baru = ($stok_awal + $qty);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
                 	if ($query != "") {
@@ -84,13 +85,13 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == '2P.323.208' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$losis','$losis_angkutan','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-               $stok_baru = ($stok_awal + $qty) - $losis;
+               $stok_baru = ($stok_awal + $qty);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 	if ($query != "") {
@@ -98,13 +99,13 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$losis','$losis_angkutan','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = ($stok_awal + $qty) - $losis;
+                $stok_baru = ($stok_awal + $qty);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
                 	if ($query != "") {
@@ -112,13 +113,13 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'sumberjaya' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$losis','$losis_angkutan','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-               $stok_baru = ($stok_awal + $qty) - $losis;
+               $stok_baru = ($stok_awal + $qty);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
                 	if ($query != "") {
@@ -126,13 +127,13 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$losis','$losis_angkutan','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = ($stok_awal + $qty) - $losis;
+                $stok_baru = ($stok_awal + $qty);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 	if ($query != "") {

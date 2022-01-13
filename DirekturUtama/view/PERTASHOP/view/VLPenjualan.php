@@ -18,16 +18,16 @@ else{ header("Location: logout.php");
 exit;
 }
 
-
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
+   $tanggal_awal = $_GET['tanggal1'];
+   $tanggal_akhir = $_GET['tanggal2'];
 } 
 
 elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-} 
+   $tanggal_awal = $_POST['tanggal1'];
+   $tanggal_akhir = $_POST['tanggal2'];
+}  
+
 else{
   $tanggal_awal = date('Y-m-1');
 $tanggal_akhir = date('Y-m-31');
@@ -35,10 +35,22 @@ $tanggal_akhir = date('Y-m-31');
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' ");
+    $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop  ");
+$data_perta = mysqli_fetch_array($result);
+$kode_perta = $data_perta['kode_perta'];
+   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
+
+
 }
 
 else{
   $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop  ");
+$data_perta = mysqli_fetch_array($result);
+$kode_perta = $data_perta['kode_perta'];
+   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
+
+
 }
 
 
@@ -54,7 +66,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penjualan Pertashop</title>
+  <title>Laporan Penjualan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -83,9 +95,8 @@ else{
    <!-- Sidebar -->
    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-      
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPertashop">
+       <!-- Sidebar - Brand -->
+       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPertashop">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -162,7 +173,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pertashop </h5></a>"; ?>
+      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Laporan Penjualan Pertashop</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -216,9 +227,9 @@ else{
 <div>   
 
 
- <div style="margin-right: 100px; margin-left: 100px;">
+ <div style="margin-right: 10px; margin-left: 10px;">
 
-  <?php  echo "<form  method='POST' action='VLPenjualan'>" ?>
+  <?php  echo "<form  method='POST' action='VPenjualan'>" ?>
   <div>
     <div align="left" style="margin-left: 20px;"> 
       <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -235,26 +246,42 @@ else{
  <br>
 
 
+
+
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id='example' class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%;  ">
   <thead>
     <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>Kode Pertashop</th>   
-      <th>Lokasi</th>
-      <th>Nama Karyawan</th>
-      <th>QTY</th>
-      <th>Harga</th>
-      <th>Jumlah</th>
-      <th>KET</th>
-      <th>File</th>
-      <th>Status</th>
+      <th  style="font-size: 11px" >No</th>
+      <th  style="font-size: 11px">Tanggal</th>
+      <th  style="font-size: 11px">Kode Pertashop</th>   
+      <th  style="font-size: 11px">Lokasi</th>
+      <th  style="font-size: 11px">Penjual</th>
+      <th  style="font-size: 11px">Barang</th>
+      <th  style="font-size: 11px">QTY</th>
+      <th  style="font-size: 11px">Harga</th>
+      <th  style="font-size: 11px">Jumlah</th>
+      <th  style="font-size: 11px">Stok awal</th>
+      <th  style="font-size: 11px">Stok Akhir</th>
+      <th  style="font-size: 11px">KET</th>
+      <th  style="font-size: 11px">File</th>
+      <th  style="font-size: 11px">Status</th>
+
     </tr>
   </thead>
   <tbody>
     <?php
     $urut = 0;
+    $uang_nb_max = 0;
+    $terjual_nb_max = 0;
+    $uang_nb_dex = 0;
+    $terjual_nb_dex = 0 ;
+    $uang_be =0;
+    $terjual_be = 0;
+    $uang_md = 0;
+    $terjual_md = 0;
+    $uang_sj = 0 ;
+    $terjual_sj = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -266,8 +293,11 @@ else{
       $tanggal =$data['tanggal'];
       $kode_perta =$data['kode_perta'];
       $lokasi = $data['lokasi'];
+      $nama_barang = $data['nama_barang'];
       $nama_karyawan = $data['nama_karyawan'];
       $qty = $data['qty'];
+      $stok_awal = $data['stok_awal'];
+      $stok_akhir = $data['stok_akhir'];
       $harga = $data['harga'];
       $jumlah = $qty * $harga;
       $keterangan = $data['keterangan'];
@@ -275,18 +305,46 @@ else{
       $status = $data['persetujuan'];
       $urut = $urut + 1;
 
+      if($kode_perta == '2P.323.208'){
+        if($nama_barang == 'Pertamax'){
+          $uang_nb_max = $uang_nb_max + $jumlah; 
+          $terjual_nb_max = $terjual_nb_max + $qty;
+        }
+        else{
+          $uang_nb_dex = $uang_nb_dex + $jumlah; 
+          $terjual_nb_dex = $terjual_nb_dex + $qty;
+        }
+        
+      }
+      else if($kode_perta == 'bedilan'){
+        $uang_be = $uang_be + $jumlah; 
+        $terjual_be = $terjual_be + $qty;
+      }
+      else if($kode_perta == 'muaradua'){
+        $uang_md = $uang_md + $jumlah; 
+        $terjual_md = $terjual_md + $qty;
+      }
+      else if($kode_perta == 'sumberjaya'){
+        $uang_sj = $uang_sj + $jumlah; 
+        $terjual_sj = $terjual_sj + $qty;
+      }
+
+
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$urut</td>
-      <td style='font-size: 14px' align = 'center'>$tanggal</td>
-      <td style='font-size: 14px' align = 'center'>$kode_perta</td>
-      <td style='font-size: 14px' align = 'center'>$lokasi</td>
-      <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
-      <td style='font-size: 14px' align = 'center'>$qty/L</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>$keterangan</td>
+      <td style='font-size: 11px' align = 'center'>$urut</td>
+      <td style='font-size: 11px' align = 'center'>$tanggal</td>
+      <td style='font-size: 11px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 11px' align = 'center'>$lokasi</td>
+      <td style='font-size: 11px' align = 'center'>$nama_karyawan</td>
+      <td style='font-size: 11px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 11px' align = 'center'>$qty/L</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
+      <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
-     <?php echo "<td style='font-size: 12px'>"; ?>
+      <?php echo "<td style='font-size: 11px'>"; ?>
 
         <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Lihat</button>
 
@@ -332,15 +390,144 @@ else{
       ?>
 
 
-<?php echo  "</tr>";
+    
+<?php echo  " </tr>";
 }
 ?>
 
 </tbody>
 </table>
 </div>
+<br>
+<hr>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Stok</h6>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>STOK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_barang =$data['nama_barang'];
+      $stok = $data['stok'];
+
+
+      echo "<tr>
+      <td style='font-size: 11px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 11px' align = 'center'>$stok</td>
+     
+  </tr>";
+}
+?>
+
+</tbody>
+</table>
+</div>
+<br>
+<hr>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Barang Terjual</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Terjual</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+<br>
+<hr>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center"  >Laporan Keuangan</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Pendapatan</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md); ?></td>
+     
+  </tr>
+
+
+
+</tbody>
+</table>
+</div>
+<br>
 </div>
 </div>
+
 <!-- End of Main Content -->
 
 <!-- Footer -->
@@ -414,7 +601,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: [ 'colvis' ]
     } );
 
     table.buttons().container()

@@ -11,6 +11,9 @@
 /CV.PBJ/KasirSemen/file_semen
 /CV.PBJ/KasirSemen/proses/koneksi.php
 /CV.PBJ/KasirSemen/view/koneksi.php
+/CV.PBJ/AdminSemen/file_admin_semen
+/CV.PBJ/AdminSemen/proses/koneksi.php
+/CV.PBJ/AdminSemen/view/koneksi.php
 
 /DirekturUtama/view/koneksi.php
 /DirekturUtama/view/BatuBara/view/koneksi.php

@@ -157,7 +157,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pembelian Pertashop</h5></a>"; ?>
+      <?php echo "<a href='VPembelian'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pembelian Pertashop</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -211,7 +211,7 @@ else{
 <div>   
 
 
- <div style="margin-right: 100px; margin-left: 100px;">
+ <div style="margin-right: 20px; margin-left: 20px;">
 
   <?php  echo "<form  method='POST' action='VPembelian'>" ?>
   <div>
@@ -329,14 +329,24 @@ else{
           <input class="form-control form-control-sm" type="float" id="harga" name="harga" required="">
         </div>   
         <div class="col-md-6">
-          <label>Losis PS</label>
-          <input class="form-control form-control-sm" type="float" id="losis" name="losis" required="">
+          <label>Volume Tangki</label>
+          <input class="form-control form-control-sm" type="float" id="volume_tangki" name="volume_tangki" required="">
         </div> 
-        <div class="col-md-6">
-          <label>Losis Angkutan</label>
-          <input class="form-control form-control-sm" type="float" id="losis_angkutan" name="losis_angkutan" required="">
-        </div> 
+        
       </div>
+
+      <div class="row">
+
+                
+<div class="col-md-6">
+  <label>Soding Sebelum Isi</label>
+  <input class="form-control form-control-sm" type="float" id="sonding_awal" name="sonding_awal" required="">
+</div>   
+<div class="col-md-6">
+  <label>Soding Setelah Isi</label>
+  <input class="form-control form-control-sm" type="float" id="sonding_akhir" name="sonding_akhir" required="">
+</div> 
+</div>
 
       <div>
        <label>Keterangan</label>
@@ -369,24 +379,36 @@ else{
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>Kode Pertashop</th>   
-      <th>Lokasi</th>
-      <th>Nama Barang</th>
-      <th>QTY</th>
-      <th>Harga</th>
-      <th>Jumlah</th>
-     <th>Losis PS</th>
-     <th>Losis Angkutan</th>
-      <th>KET</th>
-      <th>File</th>
+      <th style="font-size: 11px" >No</th>
+      <th style="font-size: 11px" >Tanggal</th>
+      <th style="font-size: 11px" >Kode Pertashop</th>   
+      <th style="font-size: 11px" >Lokasi</th>
+      <th style="font-size: 11px" >Nama Barang</th>
+      <th style="font-size: 11px" >QTY</th>
+      <th style="font-size: 11px" >Harga</th>
+      <th style="font-size: 11px" >Jumlah</th>
+      <th style="font-size: 11px" >Volume Tanki</th>
+      <th style="font-size: 11px" >Sonding Sebelum Isi</th>
+      <th style="font-size: 11px" >Sonding Setelah Isi</th>
+      <th style="font-size: 11px" >Selisih S1 & S2</th>
+      <th style="font-size: 11px" >Losis</th>
+      <th style="font-size: 11px" >Keterangan</th>
+      <th style="font-size: 11px" >File</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <?php
     $urut = 0;
+    $selisih = 0;
+    $losis = 0;
+ 
+
+    $losis_nb_dex = 0;
+    $losis_nb_max = 0;
+    $losis_sj = 0 ;
+    $losis_md =0;
+    $losis_be = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -399,33 +421,67 @@ else{
       $kode_perta =$data['kode_perta'];
       $nama_barang =$data['nama_barang'];
       $lokasi = $data['lokasi'];
-      $losis = $data['losis'];
-      $losis_angkutan = $data['losis_angkutan'];
+      $volume_tangki = $data['volume_tangki'];
+      $sonding_awal = $data['sonding_awal'];
+      $sonding_akhir = $data['sonding_akhir'];
       $qty = $data['qty'];
       $harga = $data['harga'];
       $jumlah = $qty * $harga;
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
-
+      $selisih = $sonding_akhir - $sonding_awal;
+      $losis = $selisih - $qty; 
+      
       $urut = $urut + 1;
 
+
+      if($losis < 0){
+        if($kode_perta == '2P.323.208'){
+          if($nama_barang == 'Pertamax'){
+            $losis_nb_dex = $losis_nb_dex + $losis;
+          }
+          else{
+            $losis_nb_max = $losis_nb_max + $losis; 
+           
+          }
+          
+        }
+        else if($kode_perta == 'bedilan'){
+          $losis_be = $losis_be + $losis; 
+         
+        }
+        else if($kode_perta == 'muaradua'){
+          $losis_md = $losis_md + $losis; 
+         
+        }
+        else if($kode_perta == 'sumberjaya'){
+          $losis_sj = $losis_sj + $losis; 
+          
+        }
+      }
+
+     
+
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$urut</td>
-      <td style='font-size: 14px' align = 'center'>$tanggal</td>
-      <td style='font-size: 14px' align = 'center'>$kode_perta</td>
-      <td style='font-size: 14px' align = 'center'>$lokasi</td>
-      <td style='font-size: 14px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 14px' align = 'center'>$qty/L</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>$losis/L</td>
-      <td style='font-size: 14px' align = 'center'>$losis_angkutan/L</td>
-      <td style='font-size: 14px' align = 'center'>$keterangan</td>
+      <td style='font-size: 11px' align = 'center'>$urut</td>
+      <td style='font-size: 11px' align = 'center'>$tanggal</td>
+      <td style='font-size: 11px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 11px' align = 'center'>$lokasi</td>
+      <td style='font-size: 11px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 11px' align = 'center'>$qty/L</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>$volume_tangki/L</td>
+      <td style='font-size: 11px' align = 'center'>$sonding_awal/L</td>
+      <td style='font-size: 11px' align = 'center'>$sonding_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$selisih/L</td>
+      <td style='font-size: 11px' align = 'center'>$losis/L</td>
+      <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "
-      <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 11px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
+      <?php echo "<td style='font-size: 11px'>"; ?>
     
 
 <!-- Button Hapus -->
@@ -465,17 +521,18 @@ else{
 </tbody>
 </table>
 </div>
-</div>
+
 <br>
 <br>
 <div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Stok</h6>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Kode Barang</th>
-      <th>Kode Perta</th>
-      <th>Nama Barang</th>
-      <th>STOK</th>
+      <th  style='font-size: 12px' >Kode Barang</th>
+      <th  style='font-size: 12px'>Kode Perta</th>
+      <th  style='font-size: 12px'>Nama Barang</th>
+      <th  style='font-size: 12px'>STOK</th>
     </tr>
   </thead>
   <tbody>
@@ -487,10 +544,10 @@ else{
 
 
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$kode_barang</td>
-      <td style='font-size: 14px' align = 'center'>$kode_perta</td>
-      <td style='font-size: 14px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 14px' align = 'center'>$stok</td>
+      <td style='font-size: 12px' align = 'center'>$kode_barang</td>
+      <td style='font-size: 12px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 12px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 12px' align = 'center'>$stok</td>
      
   </tr>";
 }
@@ -498,6 +555,57 @@ else{
 
 </tbody>
 </table>
+</div>
+<br>
+<hr>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Losis</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Losis</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($losis_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($losis_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($losis_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($losis_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($losis_md); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+<br>
 </div>
 </div>
 <!-- End of Main Content -->

@@ -337,9 +337,8 @@ else{
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['no_polisi'];
 
-          if (mysqli_num_rows($result2) == 0) {
             echo "<option> $data_pangakalan </option> ";
-          }
+          
         }
         ?>
       </select>
@@ -367,9 +366,9 @@ else{
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['nama_driver'];
 
-          if (mysqli_num_rows($result2) == 0) {
+      
             echo "<option> $data_pangakalan </option> ";
-          }
+          
         }
         ?>
       </select>
@@ -431,9 +430,8 @@ else{
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['nm_lokasi'];
 
-          if (mysqli_num_rows($result2) == 0) {
             echo "<option> $data_pangakalan </option> ";
-          }
+          
         }
         ?>
       </select>

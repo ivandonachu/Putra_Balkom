@@ -10,7 +10,7 @@ $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$i
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Kasir Semen') {
+if ($jabatan_valid == 'Admin Semen') {
 
 }
 
@@ -34,7 +34,7 @@ $nama = $data['nama_karyawan'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Kasir</title>
+    <title>Dashboard Admin Semen</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -100,7 +100,7 @@ $nama = $data['nama_karyawan'];
 
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Kasir
+                     Menu Admin Semen
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
@@ -114,9 +114,8 @@ $nama = $data['nama_karyawan'];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusan">Penebusan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
                     </div>
                 </div>
             </li>
@@ -130,9 +129,9 @@ $nama = $data['nama_karyawan'];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
-                        
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>  
                         <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
                     </div>
                 </div>
             </li>
