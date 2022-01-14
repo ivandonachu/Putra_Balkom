@@ -391,17 +391,7 @@ else{
         </div>                
       </div>
 
-      <script>
-
-        function sum() {
-          var banyak_barang = document.getElementById('qty').value;
-          var harga = document.getElementById('harga').value;
-          var result = parseInt(banyak_barang) * parseInt(harga);
-          if (!isNaN(result)) {
-           document.getElementById('jumlah').value = result;
-         }
-       }
-     </script>
+     
 
      <br>
 
@@ -625,9 +615,8 @@ else{
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['no_polisi'];
 
-              if (mysqli_num_rows($result2) == 0) {
                 echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              }
+              
             }
             ?>
           </select>
@@ -656,9 +645,9 @@ else{
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nama_driver'];
 
-              if (mysqli_num_rows($result2) == 0) {
+             
                 echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              }
+              
             }
             ?>
           </select>
@@ -724,9 +713,9 @@ else{
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nm_lokasi'];
 
-              if (mysqli_num_rows($result2) == 0) {
+           
                 echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              }
+              
             }
             ?>
           </select>

@@ -27,7 +27,7 @@ if($no_do == ''){
     
 }
 else{
-$result = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE no_do = '$no_do' AND tanggal_kirim = '$tanggal_kirim' ");
+$result = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE no_do = '$no_do' ");
  if(mysqli_num_rows($result) == 1 ){
   	echo "<script>alert('DO sudah tercatat :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
       }

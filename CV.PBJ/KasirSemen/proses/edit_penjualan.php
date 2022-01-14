@@ -76,14 +76,26 @@ else if ( $nama_file != "" ) {
 }
 
 
-
+$result3 = mysqli_query($koneksi, "SELECT * FROM pengiriman_s WHERE no_penjualan = '$no_penjualan' ");
+$data_perta = mysqli_fetch_array($result3);
+$no_pengiriman = $data_perta['no_pengiriman'];
 
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' WHERE no_penjualan = '$no_penjualan'");
+			$query3 = mysqli_query($koneksi,"UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
+			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
+			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' WHERE no_penjualan = '$no_penjualan'");
+
+			$query4 = mysqli_query($koneksi,"UPDATE pengiriman_s SET no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi', 
+			toko_do = '$toko_do' WHERE no_pengiriman = '$no_pengiriman'");
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver', no_polisi = '$no_polisi' , tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' , file_bukti = '$file'  WHERE no_penjualan = '$no_penjualan'");
+			$query3 = mysqli_query($koneksi,"UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver', no_polisi = '$no_polisi' , 
+			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
+			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' , file_bukti = '$file'  WHERE no_penjualan = '$no_penjualan'");
+
+			$query4 = mysqli_query($koneksi,"UPDATE pengiriman_s SET  no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi',
+			toko_do = '$toko_do' WHERE no_pengiriman = '$no_pengiriman'");
 	}
 
 

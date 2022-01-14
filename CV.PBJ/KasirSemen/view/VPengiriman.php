@@ -353,9 +353,9 @@ else{
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nm_lokasi'];
 
-              if (mysqli_num_rows($result2) == 0) {
+             
                 echo "<option> $data_pangakalan </option> ";
-              }
+              
             }
             ?>
           </select>
@@ -618,9 +618,9 @@ else{
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nm_lokasi'];
 
-              if (mysqli_num_rows($result2) == 0) {
+            
                  echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              }
+              
             }
             ?>
           </select>
