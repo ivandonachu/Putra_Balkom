@@ -10,7 +10,7 @@ $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$i
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Kasir Semen') {
+if ($jabatan_valid == 'Admin Semen') {
 
 }
 
@@ -67,25 +67,25 @@ else if ( $nama_file != "" ) {
 
 }
 
-	$result = mysqli_query($koneksi, "SELECT * FROM pengiriman_s WHERE no_pengiriman = '$no_pengiriman' ");
+	$result = mysqli_query($koneksi, "SELECT * FROM pengiriman_sl WHERE no_pengiriman = '$no_pengiriman' ");
 	$data_perta = mysqli_fetch_array($result);
 	$no_penjualan = $data_perta['no_penjualan'];
 
 
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_s SET tanggal_antar = '$tanggal_antar', no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi', 
+			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET tanggal_antar = '$tanggal_antar', no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi', 
 			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan' WHERE no_pengiriman = '$no_pengiriman'");
 
-			$query4 = mysqli_query($koneksi,"UPDATE penjualan_s SET  no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
+			$query4 = mysqli_query($koneksi,"UPDATE penjualan_sl SET  no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
 			toko_do = '$toko_do' WHERE no_penjualan = '$no_penjualan'");
 
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_s SET tanggal_antar = '$tanggal_antar', no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi',
+			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET tanggal_antar = '$tanggal_antar', no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi',
 			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan', file_bukti = '$file'  WHERE no_pengiriman = '$no_pengiriman'");
 
-			$query4 = mysqli_query($koneksi,"UPDATE penjualan_s SET no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
+			$query4 = mysqli_query($koneksi,"UPDATE penjualan_sl SET no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
 			toko_do = '$toko_do' WHERE no_penjualan = '$no_penjualan'");
 	}
 

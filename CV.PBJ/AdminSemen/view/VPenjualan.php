@@ -10,7 +10,7 @@ $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$i
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Kasir Semen') {
+if ($jabatan_valid == 'Admin Semen') {
 
 }
 
@@ -37,10 +37,10 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' ");
 
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' ");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' ");
   $data2 = mysqli_fetch_array($table2);
   $penjualan_zak = $data2['penjualan_zak'];
   $uang_zak= $data2['uang_zak'];
@@ -49,24 +49,24 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' ");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' ");
   $data2 = mysqli_fetch_array($table2);
   $penjualan_zak = $data2['penjualan_zak'];
   $uang_zak= $data2['uang_zak'];
 
-  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak'");
+  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak'");
   $data3 = mysqli_fetch_array($table3);
   $penjualan_zak_bon = $data3['penjualan_zak_bon'];
   $uang_zak_bon = $data3['uang_zak_bon'];
 
-  $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
+  $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
   $data4 = mysqli_fetch_array($table4);
   $penjualan_bag = $data4['penjualan_bag'];
   $uang_bag= $data4['uang_bag'];
 
-  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag'");
+  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag'");
   $data5 = mysqli_fetch_array($table5);
   $penjualan_bag_bon = $data5['penjualan_bag_bon'];
   $uang_bag_bon = $data5['uang_bag_bon'];
@@ -122,65 +122,64 @@ else{
 
      <!-- Sidebar - Brand -->
      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
-      <div class="sidebar-brand-icon rotate-n-15">
+                <div class="sidebar-brand-icon rotate-n-15">
 
-      </div>
-      <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px;" src="../gambar/Logo PBJ.PNG" ></div>
-    </a>
-    <br>
+                </div>
+                <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px;" src="../gambar/Logo PBJ.PNG" ></div>
+            </a>
+            <br>
+            
+            <br>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-    <br>
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active" >
+                <a class="nav-link" href="DsKasir">
+                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+                    <span style="font-size: 16px;" >Dashboard</span></a>
+                </li>
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active" >
-      <a class="nav-link" href="DsKasir">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-      </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider">
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                     Menu Admin Semen
+                </div>
 
-      <!-- Heading -->
-      <div class="sidebar-heading" style="font-size: 15px; color:white;">
-       Menu Kasir
-     </div>
-
-     <!-- Nav Item - Pages Collapse Menu -->
-     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-      <span style="font-size: 15px; color:white;" >Kasir</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
-        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
-      </div>
-    </div>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-    15  aria-expanded="true" aria-controls="collapseTwo1">
-    <i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
-    <span style="font-size: 15px; color:white;" >SDM</span>
-  </a>
-  <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-      <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
-      <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
-      
-      <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
-    </div>
-  </div>
-</li>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Kasir</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusan">Penebusan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                  15  aria-expanded="true" aria-controls="collapseTwo1">
+                    <i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >SDM</span>
+                </a>
+                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>  
+                        <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
+                    </div>
+                </div>
+            </li>
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -332,7 +331,7 @@ else{
         <option></option>
         <?php
         include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_s");   
+        $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");   
 
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['no_polisi'];
@@ -361,7 +360,7 @@ else{
         <option></option>
         <?php
         include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM driver_s");   
+        $result = mysqli_query($koneksi, "SELECT * FROM driver_sl");   
 
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['nama_driver'];
@@ -415,7 +414,7 @@ else{
         <option></option>
         <?php
         include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM toko_do");   
+        $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");   
 
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['nm_lokasi'];
@@ -613,7 +612,7 @@ else{
             <option></option>
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_s");   
+            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");   
             $dataSelect = $data['no_polisi'];
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['no_polisi'];
@@ -643,7 +642,7 @@ else{
             <option></option>
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM driver_s");   
+            $result = mysqli_query($koneksi, "SELECT * FROM driver_sl");   
             $dataSelect = $data['driver'];
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nama_driver'];
@@ -711,7 +710,7 @@ else{
             <option></option>
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM toko_do");   
+            $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");   
             $dataSelect = $data['toko_do'];
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nm_lokasi'];
