@@ -334,7 +334,8 @@ else{
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -557,7 +558,7 @@ else{
 
 
 </div>
-
+</div>
 </div>
 <!-- End of Main Content -->
 
@@ -601,7 +602,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
-
+</div>
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

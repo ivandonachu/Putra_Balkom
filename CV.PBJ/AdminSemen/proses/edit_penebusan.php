@@ -18,12 +18,19 @@ else{  header("Location: logout.php");
 exit;
 }
 
+$no_pembelian = $_POST['no_pembelian'];
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
-$no_transaksi = $_POST['no_transaksi'];
 $tanggal = $_POST['tanggal'];
-$status_saldo = $_POST['status_saldo'];
+$no_polisi = $_POST['no_polisi'];
+$driver = $_POST['driver'];
+$tujuan = $_POST['tujuan'];
+$qty = $_POST['qty'];
+$material = $_POST['material'];
+$harga = $_POST['harga'];
 $jumlah = $_POST['jumlah'];
+$nama_kota = $_POST['nama_kota'];
+$tipe_bayar = $_POST['tipe_bayar'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -59,19 +66,24 @@ else if ( $nama_file != "" ) {
 	}
 
 }
+
+	
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE keuangan_s SET tanggal = '$tanggal' , keterangan = '$keterangan' , status_saldo = '$status_saldo'  ,jumlah = '$jumlah'  WHERE no_transaksi = 
-		'$no_transaksi'");
+			$query3 = mysqli_query($koneksi,"UPDATE pembelian_sl SET tanggal = '$tanggal', tujuan = '$tujuan', kota = '$nama_kota', material = '$material', 
+			qty = '$qty', harga = '$harga', jumlah = '$jumlah', driver = '$driver', no_polisi = '$no_polisi', tipe_bayar = '$tipe_bayar', keterangan = '$keterangan' 
+            WHERE no_pembelian = '$no_pembelian'");
+
+	
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE keuangan_s SET tanggal = '$tanggal' , keterangan = '$keterangan' , status_saldo = '$status_saldo'  ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_transaksi = 
-		'$no_transaksi'");
+			$query3 = mysqli_query($koneksi,"UPDATE pembelian_sl SET tanggal = '$tanggal', tujuan = '$tujuan', kota = '$nama_kota', material = '$material', 
+			qty = '$qty', harga = '$harga', jumlah = '$jumlah', driver = '$driver', no_polisi = '$no_polisi', tipe_bayar = '$tipe_bayar', keterangan = '$keterangan'
+            , file_bukti = '$file'  WHERE no_pembelian = '$no_pembelian'");
+
+		
 	}
-	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VLKeuangan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VPenebusan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
-
-
-  ?>
+?>
