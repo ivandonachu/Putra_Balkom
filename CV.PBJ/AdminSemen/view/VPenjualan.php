@@ -733,17 +733,7 @@ else{
             </div>                
           </div>
 
-          <script>
-
-            function sum() {
-              var banyak_barang = document.getElementById('qty').value;
-              var harga = document.getElementById('harga').value;
-              var result = parseInt(banyak_barang) * parseInt(harga);
-              if (!isNaN(result)) {
-               document.getElementById('jumlah').value = result;
-             }
-           }
-         </script>
+         
 
          <br>
 
@@ -1521,6 +1511,17 @@ aria-hidden="true">
     liveSearch: true,
     maxOptions: 1
   });
+</script>
+<script>
+
+function sum() {
+  var banyak_barang = document.getElementById('qty').value;
+  var harga = document.getElementById('harga').value;
+  var result = parseInt(banyak_barang) * parseInt(harga);
+  if (!isNaN(result)) {
+   document.getElementById('jumlah').value = result;
+ }
+}
 </script>
 </body>
 
