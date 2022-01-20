@@ -281,19 +281,19 @@ else{
 
            </div>
            <div class="col-md-6">
+           
            </div>
          </div>
          <br>
 
-
-
          <div class="row">
            <div class="col-md-6">
-            <label>Status Saldo</label>
-            <select id="status_saldo" name="status_saldo" class="form-control">
-              <option></option>
-              <option>Keluar</option>
-              <option>Masuk</option>
+           <label>Akun</label>
+            <select id="nama_akun" name="nama_akun" class="form-control">
+              <option>Bayar Piutang</option>
+              <option>Karyawan Bon</option>
+              <option>Setor Uang</option>
+              <option>Bayar Tarikan</option>
             </select>
           </div>    
           <div class="col-md-6">
@@ -340,6 +340,7 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
+      <th>Akun</th>
       <th></th>
       <th>Keterangan</th>
       <th>Masuk</th>
@@ -363,6 +364,7 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_transaksi'];
       $tanggal =$data['tanggal'];
+      $nama_akun =$data['nama_akun'];
       $status_saldo = $data['status_saldo'];
       $jumlah = $data['jumlah'];
       $keterangan = $data['keterangan'];
@@ -377,6 +379,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$nama_akun</td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
 
@@ -415,6 +418,8 @@ else{
 
                  </div>
                  <div class="col-md-6">
+                 
+          
                  </div>
                </div>
                <br>
@@ -423,11 +428,13 @@ else{
 
                <div class="row">
                  <div class="col-md-6">
-                  <label>Status Saldo</label>
-                  <select id="status_saldo" name="status_saldo" class="form-control">
-                    <?php $dataSelect = $data['status_saldo']; ?>
-                    <option <?php echo ($dataSelect == 'Keluar') ? "selected": "" ?> >Keluar</option>
-                    <option <?php echo ($dataSelect == 'Masuk') ? "selected": "" ?> >Masuk</option>
+                 <label>Akun</label>
+                  <select id="nama_akun" name="nama_akun" class="form-control">
+                    <?php $dataSelect = $data['nama_akun']; ?>
+                    <option <?php echo ($dataSelect == 'Bayar Piutang') ? "selected": "" ?> >Bayar Piutang</option>
+                    <option <?php echo ($dataSelect == 'Karyawan Bon') ? "selected": "" ?> >Karyawan Bon</option>
+                    <option <?php echo ($dataSelect == 'Setor Uang') ? "selected": "" ?> >Setor Uang</option>
+                    <option <?php echo ($dataSelect == 'Bayar Tarikan') ? "selected": "" ?> >Bayar Tarikan</option>
                   </select>
                 </div>    
                 <div class="col-md-6">
