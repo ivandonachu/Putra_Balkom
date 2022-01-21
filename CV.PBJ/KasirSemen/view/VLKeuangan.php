@@ -294,7 +294,14 @@ else{
               <option>Karyawan Bon</option>
               <option>Setor Uang</option>
               <option>Bayar Tarikan</option>
+              <option>Ongkos Kuli</option>
               <option>Kembalikan Saldo Brankas</option>
+              <option>Biaya Kantor</option>
+            <option>Transport / Perjalanan Dinas</option>
+            <option>Listrik & Telepon</option>>
+            <option>Alat Tulis Kantor</option>
+            
+            
             </select>
           </div>    
           <div class="col-md-6">
@@ -436,7 +443,12 @@ else{
                     <option <?php echo ($dataSelect == 'Karyawan Bon') ? "selected": "" ?> >Karyawan Bon</option>
                     <option <?php echo ($dataSelect == 'Setor Uang') ? "selected": "" ?> >Setor Uang</option>
                     <option <?php echo ($dataSelect == 'Bayar Tarikan') ? "selected": "" ?> >Bayar Tarikan</option>
+                    <option <?php echo ($dataSelect == 'Ongkos Kuli') ? "selected": "" ?> >Ongkos Kuli</option>
                     <option <?php echo ($dataSelect == 'Kembalikan Saldo Brankas') ? "selected": "" ?> >Kembalikan Saldo Brankas</option>
+                    <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
+                    <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
+                    <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
+                    <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                   </select>
                 </div>    
                 <div class="col-md-6">
