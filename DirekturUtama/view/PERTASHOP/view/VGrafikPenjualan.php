@@ -310,7 +310,20 @@ while($data21 = mysqli_fetch_array($table21)){
 
 </nav>
 <!-- End of Topbar -->
-
+<?php  echo "<form  method='POST' action='VGrafikPenjualan'>" ?>
+  <div>
+    <div align="left" style="margin-left: 20px;"> 
+      <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+      <span>-</span>
+      <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+      <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+    </div>
+  </div>
+  <div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+ </div>
+ <br>
+</form>
     <div id="chart_penjualan_pertamax" >
 
     </div>
