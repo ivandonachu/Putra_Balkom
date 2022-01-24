@@ -17,8 +17,68 @@ if ($jabatan_valid == 'Direktur Utama') {
 else{ header("Location: logout.php");
 exit;
 }
+if (isset($_GET['tanggal1'])) {
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+ }  
+ 
+ else{
+   $tanggal_awal = date('Y-m-1');
+ $tanggal_akhir = date('Y-m-31');
+ }
+ 
+//data tanggal
+$table= mysqli_query($koneksiperta, "SELECT tanggal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+                                        WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY tanggal ");
+
+
+while($data = mysqli_fetch_assoc($table)){
+    $tanggal = $data['tanggal'];
+
+    $data_tanggal[] = "$tanggal";
+}
+
+//data pendapatan sumberjaya
+$table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Sumber Jaya' GROUP BY tanggal  ");
+
+while($data2 = mysqli_fetch_array($table2)){
+    $qty = $data2['qty'];
+    $harga = $data2['harga'];
+    $jumlah = $qty * $harga;
+    $data_penjualan_sj[] = "$jumlah";
+}
+
+//data pendapatan bedilan
+$table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Bedilan' GROUP BY tanggal  ");
+
+while($data2 = mysqli_fetch_array($table2)){
+    $qty = $data2['qty'];
+    $harga = $data2['harga'];
+    $jumlah = $qty * $harga;
+    $data_penjualan_b[] = "$jumlah";
+}
+
+//data pendapatan nusa bakti
+$table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Nusa Bakti' GROUP BY tanggal  ");
+
+while($data2 = mysqli_fetch_array($table2)){
+    $qty = $data2['qty'];
+    $harga = $data2['harga'];
+    $jumlah = $qty * $harga;
+    $data_penjualan_nb[] = "$jumlah";
+}
+
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +90,7 @@ exit;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Pertashop</title>
+    <title>Grafik Penjualan</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -223,27 +283,11 @@ exit;
 
 </nav>
 <!-- End of Topbar -->
-<div class="row">
-        <div class="col-sm-9">
-        </div>
-        <div class="col-sm-3" style="color: black; font-size: 18px;">
-       
-    </div>
-</div> 
 
-        <div class="row">
-        <div class="col-sm-9">
-        </div>
-        <div class="col-sm-3">
-            <div id="jam-digital">
-                <div id="hours"><p id="jam"></p> </div> 
-                <div id="minute"><p id="menit"> </p></div>
-                <div id="second"><p id="detik"> </p></div>
-            </div>
-        </div>
+    <div id="chart_penjualan" >
+
     </div>
 
-  
 
 </div>
 <!-- End of Main Content -->
@@ -298,7 +342,78 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>  
+Highcharts.chart('chart_penjualan', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Grafik Pendapatan Pertamax'
+    },
+  
+    xAxis: {
+        categories: [
+             <?php 
+                
+                foreach($data_tanggal as $a){
+                 ?> ' <?php print_r($a);
+             
+                ?> ' <?php echo",";
+                } ?> 
+                     
+                 
+                 
+                 
+    
+           
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Pendapatan (Rp)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>Rp.{point.y:.1f}.,</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Sumber Jaya',
+        data: [<?php foreach($data_penjualan_sj as $x){
+            print_r($x);
+            echo",";
+       } ?>]
 
+    }, {
+        name: 'Bedilan',
+        data: [<?php foreach($data_penjualan_b as $x){
+            print_r($x);
+            echo",";
+       } ?>]
+
+    }, {
+        name: 'Nusa Bakti',
+        data: [<?php foreach($data_penjualan_nb as $x){
+            print_r($x);
+            echo",";
+       } ?>]
+
+    }]
+});
+</script>
 </body>
 
 </html>
