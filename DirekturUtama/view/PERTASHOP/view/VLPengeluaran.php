@@ -133,6 +133,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Laporan Pembelian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
                     </div>
                 </div>
             </li>

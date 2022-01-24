@@ -32,9 +32,10 @@ if (isset($_GET['tanggal1'])) {
  $tanggal_akhir = date('Y-m-31');
  }
  
+ //DATA PERTAMAX
 //data tanggal
 $table= mysqli_query($koneksiperta, "SELECT tanggal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
-                                        WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY tanggal ");
+                                        WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.nama_barang = 'Pertamax' GROUP BY tanggal ");
 
 
 while($data = mysqli_fetch_assoc($table)){
@@ -43,9 +44,9 @@ while($data = mysqli_fetch_assoc($table)){
     $data_tanggal[] = "$tanggal";
 }
 
-//data pendapatan sumberjaya
+//data pendapatan sumberjaya pertamax
 $table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
-WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Sumber Jaya' GROUP BY tanggal  ");
+WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Sumber Jaya' AND a.nama_barang = 'Pertamax' GROUP BY tanggal  ");
 
 while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
@@ -54,9 +55,9 @@ while($data2 = mysqli_fetch_array($table2)){
     $data_penjualan_sj[] = "$jumlah";
 }
 
-//data pendapatan bedilan
+//data pendapatan bedilan pertamax
 $table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
-WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Bedilan' GROUP BY tanggal  ");
+WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Bedilan'  AND a.nama_barang = 'Pertamax' GROUP BY tanggal  ");
 
 while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
@@ -65,15 +66,40 @@ while($data2 = mysqli_fetch_array($table2)){
     $data_penjualan_b[] = "$jumlah";
 }
 
-//data pendapatan nusa bakti
+//data pendapatan nusa bakti pertamax
 $table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
-WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Nusa Bakti' GROUP BY tanggal  ");
+WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Nusa Bakti'  AND a.nama_barang = 'Pertamax' GROUP BY tanggal  ");
 
 while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
     $jumlah = $qty * $harga;
     $data_penjualan_nb[] = "$jumlah";
+}
+
+//DATA DEXLITE
+
+//data tanggal
+$table11= mysqli_query($koneksiperta, "SELECT tanggal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+                                        WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.nama_barang = 'Dexlite' GROUP BY tanggal ");
+
+
+while($data11 = mysqli_fetch_assoc($table11)){
+    $tanggal = $data11['tanggal'];
+
+    $data_tanggal_dex[] = "$tanggal";
+}
+
+
+//data pendapatan nusa bakti dexlite
+$table21 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Nusa Bakti'  AND a.nama_barang = 'Dexlite' GROUP BY tanggal  ");
+
+while($data21 = mysqli_fetch_array($table21)){
+    $qty = $data21['qty'];
+    $harga = $data21['harga'];
+    $jumlah = $qty * $harga;
+    $data_penjualan_nb_dex[] = "$jumlah";
 }
 
 
@@ -182,6 +208,7 @@ while($data2 = mysqli_fetch_array($table2)){
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
                     </div>
                 </div>
             </li>
@@ -284,7 +311,13 @@ while($data2 = mysqli_fetch_array($table2)){
 </nav>
 <!-- End of Topbar -->
 
-    <div id="chart_penjualan" >
+    <div id="chart_penjualan_pertamax" >
+
+    </div>
+<br>
+<hr>
+<br>
+    <div id="chart_penjualan_dexlite" >
 
     </div>
 
@@ -344,12 +377,12 @@ aria-hidden="true">
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>  
-Highcharts.chart('chart_penjualan', {
+Highcharts.chart('chart_penjualan_pertamax', {
     chart: {
         type: 'column'
     },
     title: {
-        text: 'Grafik Pendapatan Pertamax'
+        text: 'Grafik Penjualan Pertamax'
     },
   
     xAxis: {
@@ -414,6 +447,66 @@ Highcharts.chart('chart_penjualan', {
     }]
 });
 </script>
+
+<script>  
+Highcharts.chart('chart_penjualan_dexlite', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Grafik Penjualan Dexlite'
+    },
+  
+    xAxis: {
+        categories: [
+             <?php 
+                
+                foreach($data_tanggal_dex as $a){
+                 ?> ' <?php print_r($a);
+             
+                ?> ' <?php echo",";
+                } ?> 
+                     
+                 
+                 
+                 
+    
+           
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Pendapatan (Rp)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>Rp.{point.y:.1f}.,</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+  
+        name: 'Nusa Bakti',
+        data: [<?php foreach($data_penjualan_nb_dex as $x){
+            print_r($x);
+            echo",";
+       } ?>]
+
+    }]
+});
+</script>
+
 </body>
 
 </html>
