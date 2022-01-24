@@ -208,7 +208,7 @@ while($data21 = mysqli_fetch_array($table21)){
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
+                   
                     </div>
                 </div>
             </li>
