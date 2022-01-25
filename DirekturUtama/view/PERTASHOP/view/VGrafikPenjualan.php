@@ -367,7 +367,7 @@ aria-hidden="true">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
+                <span aria-hidden="true"></span>
             </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -425,7 +425,7 @@ Highcharts.chart('chart_penjualan_pertamax', {
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>Rp.{point.y:.1f}.,</b></td></tr>',
+            '<td style="padding:0"><b>Rp {point.y:.2f}</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
@@ -497,7 +497,7 @@ Highcharts.chart('chart_penjualan_dexlite', {
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>Rp.{point.y:.1f}.,</b></td></tr>',
+            '<td style="padding:0"><b>Rp {point.y:.2f}</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
