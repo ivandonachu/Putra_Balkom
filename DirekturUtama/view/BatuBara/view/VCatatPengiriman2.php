@@ -30,7 +30,7 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal = '$tanggal_awal' ");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal = '$tanggal_awal' ORDER BY tanggal ");
   $table2 = mysqli_query($koneksipbj, "SELECT b.nama_driver, SUM(rit) AS total_rit  FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY b.nama_driver ");
 
   $table3 = mysqli_query($koneksipbj, "SELECT b.no_polisi, SUM(rit) AS total_rit  FROM riwayat_pengiriman a INNER JOIN kendaraan b ON a.no_kendaraan=b.no_kendaraan WHERE tanggal = '$tanggal_awal' GROUP BY b.no_polisi ");
@@ -43,7 +43,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ");
 
   $table2 = mysqli_query($koneksipbj, "SELECT b.nama_driver, SUM(rit) AS total_rit  FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY b.nama_driver ");
 

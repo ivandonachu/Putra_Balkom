@@ -207,8 +207,8 @@ else{
 
 }
 
-    $laba_bersih_sebelum_pajak = $total_tagihan - ($total_uj + $total_gaji + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $jml_pembelian + $jml_biaya_kantor);
-    $total_biaya_usaha_final =  $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $jml_pembelian + $total_uj + $total_gaji ;
+    $laba_bersih_sebelum_pajak = $total_tagihan - ($total_uj + $total_gaji + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $jml_pembelian + $jml_biaya_kantor + $jml_pemasaran);
+    $total_biaya_usaha_final =  $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $jml_pembelian + $total_uj + $total_gaji + $jml_pemasaran ;
 ?>
 
 
@@ -225,7 +225,7 @@ else{
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Laba Rugi CV PBJ</title>
+    <title>Laba Rugi Angkutan Batu Bara</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
