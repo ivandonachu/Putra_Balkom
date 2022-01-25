@@ -17,6 +17,8 @@ $qty = $_POST['qty'];
 $harga = $_POST['harga'];
 $nama_karyawan = $_POST['nama_karyawan'];
 
+$tanggal_awal = $_GET['tanggal1'];
+$tanggal_akhir = $_GET['tanggal2'];
 $result = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];

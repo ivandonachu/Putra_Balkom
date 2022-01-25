@@ -10,6 +10,9 @@ $result = mysqli_query($koneksi, "SELECT * FROM akun_perta a INNER JOIN pertasho
 $data = mysqli_fetch_array($result);
 $nama = $data['nama'];
 $lokasi = $data['lokasi'];
+
+$tanggal_awal = $_GET['tanggal1'];
+$tanggal_akhir = $_GET['tanggal2'];
 $nama_barang = $_POST['nama_barang'];
 $tanggal = $_POST['tanggal'];
 $lokasi = $_POST['lokasi'];
