@@ -75,7 +75,7 @@ $kode_perta = $data_perta['kode_perta'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VPenjualan';</script>";exit;
+				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == '2P.323.208' && $nama_barang == 'Dexlite'){
@@ -89,7 +89,7 @@ $kode_perta = $data_perta['kode_perta'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VPenjualan';</script>";exit;
+				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
@@ -103,7 +103,7 @@ $kode_perta = $data_perta['kode_perta'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
                 if ($query != "") {
-				echo "<script> window.location='../view/VPenjualan';</script>";exit;
+				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == 'bedilan' && $nama_barang == 'Dexlite'){
@@ -123,7 +123,7 @@ $kode_perta = $data_perta['kode_perta'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
                 if ($query != "") {
-				echo "<script> window.location='../view/VPenjualan';</script>";exit;
+				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == 'sumberjaya' && $nama_barang == 'Dexlite'){
@@ -143,7 +143,7 @@ $kode_perta = $data_perta['kode_perta'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 if ($query != "") {
-				echo "<script> window.location='../view/VPenjualan';</script>";exit;
+				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == 'muaradua' && $nama_barang == 'Dexlite'){

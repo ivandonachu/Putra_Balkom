@@ -33,19 +33,19 @@ $tanggal_akhir = date('Y-m-31');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' AND b.lokasi = '$lokasi'");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' AND b.lokasi = '$lokasi'");
     $result = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
-   $table2 = mysqli_query($koneksi,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
+
 }
 
 else{
-  $table = mysqli_query($koneksi,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'");
   $result = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
-   $table2 = mysqli_query($koneksi,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
+
 
 }
 
@@ -159,7 +159,7 @@ $kode_perta = $data_perta['kode_perta'];
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pertashop $lokasi</h5></a>"; ?>
+      <?php echo "<a href='VPenjualanPagi'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pagi Pertashop $lokasi</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -215,7 +215,7 @@ $kode_perta = $data_perta['kode_perta'];
 
  <div style="margin-right: 10px; margin-left: 10px;">
 
-  <?php  echo "<form  method='POST' action='VPenjualan'>" ?>
+  <?php  echo "<form  method='POST' action='VPenjualanPagi'>" ?>
   <div>
     <div align="left" style="margin-left: 20px;"> 
       <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -251,7 +251,7 @@ $kode_perta = $data_perta['kode_perta'];
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_penjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_penjualan_pagi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <br>
           <div class="row">
@@ -308,41 +308,13 @@ $kode_perta = $data_perta['kode_perta'];
              <input class="form-control form-control-sm" type="float" id="qty" name="qty" required="">
         </div>                
 
-
+        <input type="hidden" name="nama_karyawan" value="<?php echo $nama_karyawan;?>">  
         <div class="col-md-4">
           <label>Harga</label>
           <input class="form-control form-control-sm" type="float" id="harga" name="harga" required="">
 
         </div>         
       </div>
-      <div class="row">
-      
-        <div class="col-md-4">
-          <label>Stok Awal</label>
-             <input class="form-control form-control-sm" type="float" id="stok_awal" name="stok_awal" required="">
-        </div>                
-
-
-        <div class="col-md-4">
-          <label>Stok Akhir</label>
-          <input class="form-control form-control-sm" type="float" id="stok_akhir" name="stok_akhir" required="">
-
-        </div>         
-      </div>
-
-      <div>
-       <label>Keterangan</label>
-       <div class="form-group">
-         <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
-       </div>
-     </div>
-    <input type="hidden" name="nama_karyawan" value="<?php echo $nama_karyawan;?>">  
-     <div>
-      <label>Upload File</label> 
-      <input type="file" name="file"> 
-    </div> 
-
-
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary"> CATAT</button>
       <button type="reset" class="btn btn-danger"> RESET</button>
@@ -370,11 +342,6 @@ $kode_perta = $data_perta['kode_perta'];
       <th  style="font-size: 11px">QTY</th>
       <th  style="font-size: 11px">Harga</th>
       <th  style="font-size: 11px">Jumlah</th>
-      <th  style="font-size: 11px">Stok awal</th>
-      <th  style="font-size: 11px">Stok Akhir</th>
-      <th  style="font-size: 11px">KET</th>
-      <th  style="font-size: 11px">File</th>
-      <th  style="font-size: 11px">Status</th>
       <th></th>
     </tr>
   </thead>
@@ -395,13 +362,8 @@ $kode_perta = $data_perta['kode_perta'];
       $nama_barang = $data['nama_barang'];
       $nama_karyawan = $data['nama_karyawan'];
       $qty = $data['qty'];
-      $stok_awal = $data['stok_awal'];
-      $stok_akhir = $data['stok_akhir'];
       $harga = $data['harga'];
       $jumlah = $qty * $harga;
-      $keterangan = $data['keterangan'];
-      $file_bukti = $data['file_bukti'];
-      $status = $data['persetujuan'];
       $urut = $urut + 1;
 
       echo "<tr>
@@ -414,56 +376,8 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>$qty/L</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
-      <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
-      <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
-      <?php echo "<td style='font-size: 11px'>"; ?>
-
-        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Lihat</button>
-
-        <!-- Form EDIT DATA -->
-
-        <div class="modal fade" id="formedit<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role ="document">
-            <div class="modal-content"> 
-              <div class="modal-header">
-                <h5 class="modal-title"> Foto Penjualan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
-
-
-              <!-- Form Edit Data -->
-              <div class="modal-body">
-                       <img  style="height: 100%; width: 100%;" s src="../file_karyawan/<?= $file_bukti ?>" >
-                </div>
-
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="../file_karyawan/<?= $file_bukti ?>" href="../file_karyawan/<?= $file_bukti ?>">Download</a>  </button>
-              
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-        <?php echo "</td> "; ?>
-      <?php
-      if ($status == 0) {
-       echo "<td style='font-size: 14px; color: red;' align = 'center'>Belum di Setujui</td>";
-      }
-      else{
-         echo "<td style='font-size: 14px; color: green;' align = 'center'>Telah di Setujui</td>";
-      }
-      ?>
-
-
+    
       <?php echo "<td style='font-size: 12px'>"; ?>
     
 <!-- Button Hapus -->
@@ -472,14 +386,14 @@ $kode_perta = $data_perta['kode_perta'];
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+      <h4 class="modal-title"> <b> Hapus Data Penjualan </b> </h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="close">
         <span aria-hidden="true"> &times; </span>
       </button>
     </div>
 
     <div class="modal-body">
-      <form action="../proses/hapus_penjualan" method="POST">
+      <form action="../proses/hapus_penjualan_pagi" method="POST">
         <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan;?>">
         <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
@@ -505,28 +419,7 @@ $kode_perta = $data_perta['kode_perta'];
 </div>
 <br>
 <div style="margin-right: 100px; margin-left: 100px;">
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-      <th>Nama Barang</th>
-      <th>STOK</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php while($data = mysqli_fetch_array($table2)){
-      $nama_barang =$data['nama_barang'];
-      $stok = $data['stok'];
-
-
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 14px' align = 'center'>$stok</td>
-     
-  </tr>";
-}
-?>
-
-</tbody>
-</table>
+Chart
 </div>
 </div>
 </div>

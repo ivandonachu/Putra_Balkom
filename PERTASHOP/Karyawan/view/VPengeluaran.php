@@ -121,6 +121,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPagi">Penjualan Pagi</a>
                     </div>
                 </div>
             </li>
