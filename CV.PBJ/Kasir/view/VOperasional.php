@@ -448,10 +448,14 @@ else{
           <label>Akun</label>
           <select id="akun" name="akun" class="form-control">
             <?php $dataSelect = $data['nama_akun']; ?>
+            <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
+            <option <?php echo ($dataSelect == 'Transport & Akomodasi') ? "selected": "" ?> >Transport & Akomodasi</option>
+            <option <?php echo ($dataSelect == 'Biaya Lain - Lain') ? "selected": "" ?> >Biaya Lain - Lain</option>
             <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
             <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
             <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
              <option <?php echo ($dataSelect == 'Biaya Sewa') ? "selected": "" ?> >Biaya Sewa</option>
+             
           </select>
 
         </div>            
