@@ -420,7 +420,7 @@ Highcharts.chart('chart_penjualan_pertamax', {
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:}/L</b></td></tr>',
+            '<td style="padding:0"><b>{point.y:,0f}/L</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
@@ -492,7 +492,7 @@ Highcharts.chart('chart_penjualan_dexlite', {
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:}/L</b></td></tr>',
+            '<td style="padding:0"><b>{point.y:.0f}/L</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
