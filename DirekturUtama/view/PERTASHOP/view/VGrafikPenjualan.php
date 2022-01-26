@@ -64,7 +64,7 @@ while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
     $jumlah = $qty * $harga;
-    $data_pedapatan_b[] = "$jumlah";
+    $data_pendapatan_b[] = "$jumlah";
     $data_penjualan_b[] = "$qty";
 }
 
