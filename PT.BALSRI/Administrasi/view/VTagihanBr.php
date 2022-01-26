@@ -116,8 +116,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
                      Menu Administrasi
                 </div>
-                <?php if ($nama =='Komang Sastra') {
-                   ?>  <!-- Nav Item - Pages Collapse Menu -->
+                <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                   15  aria-expanded="true" aria-controls="collapseOne">
@@ -135,9 +134,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
                     </div>
                 </div>
-            </li> <?php
-                }
-                ?>
+            </li>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
