@@ -34,7 +34,7 @@ if (isset($_GET['tanggal1'])) {
  
  //DATA PERTAMAX
 //data tanggal
-$table= mysqli_query($koneksiperta, "SELECT tanggal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table= mysqli_query($koneksiperta, "SELECT tanggal FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
                                         WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.nama_barang = 'Pertamax' GROUP BY tanggal ");
 
 
@@ -45,42 +45,38 @@ while($data = mysqli_fetch_assoc($table)){
 }
 
 //data pendapatan sumberjaya pertamax
-$table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
 WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Sumber Jaya' AND a.nama_barang = 'Pertamax' GROUP BY tanggal  ");
 
 while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
-    $harga = $data2['harga'];
-    $jumlah = $qty * $harga;
-    $data_penjualan_sj[] = "$jumlah";
+
+    $data_penjualan_sj[] = "$qty";
 }
 
 //data pendapatan bedilan pertamax
-$table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
 WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Bedilan'  AND a.nama_barang = 'Pertamax' GROUP BY tanggal  ");
 
 while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
-    $harga = $data2['harga'];
-    $jumlah = $qty * $harga;
-    $data_penjualan_b[] = "$jumlah";
+
+    $data_penjualan_b[] = "$qty";
 }
 
 //data pendapatan nusa bakti pertamax
-$table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table2 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
 WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Nusa Bakti'  AND a.nama_barang = 'Pertamax' GROUP BY tanggal  ");
 
 while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
-    $harga = $data2['harga'];
-    $jumlah = $qty * $harga;
-    $data_penjualan_nb[] = "$jumlah";
+    $data_penjualan_nb[] = "$qty";
 }
 
 //DATA DEXLITE
 
 //data tanggal
-$table11= mysqli_query($koneksiperta, "SELECT tanggal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table11= mysqli_query($koneksiperta, "SELECT tanggal FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
                                         WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.nama_barang = 'Dexlite' GROUP BY tanggal ");
 
 
@@ -92,14 +88,13 @@ while($data11 = mysqli_fetch_assoc($table11)){
 
 
 //data pendapatan nusa bakti dexlite
-$table21 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table21 = mysqli_query($koneksiperta, "SELECT qty, harga FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
 WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Nusa Bakti'  AND a.nama_barang = 'Dexlite' GROUP BY tanggal  ");
 
 while($data21 = mysqli_fetch_array($table21)){
     $qty = $data21['qty'];
-    $harga = $data21['harga'];
-    $jumlah = $qty * $harga;
-    $data_penjualan_nb_dex[] = "$jumlah";
+
+    $data_penjualan_nb_dex[] = "$qty";
 }
 
 
@@ -395,7 +390,7 @@ Highcharts.chart('chart_penjualan_pertamax', {
         type: 'column'
     },
     title: {
-        text: 'Grafik Penjualan Pertamax'
+        text: 'Grafik Penjualan Pertamax Pagi'
     },
   
     xAxis: {
@@ -419,13 +414,13 @@ Highcharts.chart('chart_penjualan_pertamax', {
     yAxis: {
         min: 0,
         title: {
-            text: 'Pendapatan (Rp)'
+            text: 'Penjualan (L)'
         }
     },
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>Rp {point.y:.2f}</b></td></tr>',
+            '<td style="padding:0"><b>{point.y:.2f}/L</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
@@ -467,7 +462,7 @@ Highcharts.chart('chart_penjualan_dexlite', {
         type: 'column'
     },
     title: {
-        text: 'Grafik Penjualan Dexlite'
+        text: 'Grafik Penjualan Dexlite Pagi'
     },
   
     xAxis: {
@@ -491,13 +486,13 @@ Highcharts.chart('chart_penjualan_dexlite', {
     yAxis: {
         min: 0,
         title: {
-            text: 'Pendapatan (Rp)'
+            text: 'Penjualan (L)'
         }
     },
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>Rp {point.y:.2f}</b></td></tr>',
+            '<td style="padding:0"><b>{point.y:.2f}/L</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
