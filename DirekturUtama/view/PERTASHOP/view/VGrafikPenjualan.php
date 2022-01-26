@@ -52,7 +52,8 @@ while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
     $jumlah = $qty * $harga;
-    $data_penjualan_sj[] = "$jumlah";
+    $data_pendapatan_sj[] = "$jumlah";
+    $data_penjualan_sj[] = "$qty";
 }
 
 //data pendapatan bedilan pertamax
@@ -63,7 +64,8 @@ while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
     $jumlah = $qty * $harga;
-    $data_penjualan_b[] = "$jumlah";
+    $data_pedapatan_b[] = "$jumlah";
+    $data_penjualan_b[] = "$qty";
 }
 
 //data pendapatan nusa bakti pertamax
@@ -74,7 +76,8 @@ while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
     $jumlah = $qty * $harga;
-    $data_penjualan_nb[] = "$jumlah";
+    $data_pendapatan_nb[] = "$jumlah";
+    $data_penjualan_nb[] = "$qty";
 }
 
 //DATA DEXLITE
@@ -99,7 +102,8 @@ while($data21 = mysqli_fetch_array($table21)){
     $qty = $data21['qty'];
     $harga = $data21['harga'];
     $jumlah = $qty * $harga;
-    $data_penjualan_nb_dex[] = "$jumlah";
+    $data_pendapatan_nb_dex[] = "$jumlah";
+    $data_penjualan_nb_dex[] = "$qty";
 }
 
 
@@ -324,10 +328,22 @@ while($data21 = mysqli_fetch_array($table21)){
  </div>
  <br>
 </form>
-    <div id="chart_penjualan_pertamax" >
+    <div id="chart_pendapatan_pertamax" >
 
     </div>
 <br>
+<hr>
+<br>
+    <div id="chart_pendapatan_dexlite" >
+
+    </div>
+    <br>
+<hr>
+<br>
+    <div id="chart_penjualan_pertamax" >
+
+    </div>
+    <br>
 <hr>
 <br>
     <div id="chart_penjualan_dexlite" >
@@ -390,12 +406,12 @@ aria-hidden="true">
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>  
-Highcharts.chart('chart_penjualan_pertamax', {
+Highcharts.chart('chart_pendapatan_pertamax', {
     chart: {
         type: 'column'
     },
     title: {
-        text: 'Grafik Penjualan Pertamax'
+        text: 'Grafik Pendapatan Pertamax'
     },
   
     xAxis: {
@@ -426,6 +442,137 @@ Highcharts.chart('chart_penjualan_pertamax', {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>Rp {point.y:.2f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Sumber Jaya',
+        data: [<?php foreach($data_pendapatan_sj as $x){
+            print_r($x);
+            echo",";
+       } ?>]
+
+    }, {
+        name: 'Bedilan',
+        data: [<?php foreach($data_pendapatan_b as $x){
+            print_r($x);
+            echo",";
+       } ?>]
+
+    }, {
+        name: 'Nusa Bakti',
+        data: [<?php foreach($data_pendapatan_nb as $x){
+            print_r($x);
+            echo",";
+       } ?>]
+
+    }]
+});
+</script>
+
+<script>  
+Highcharts.chart('chart_pendapatan_dexlite', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Grafik Pendapatan Dexlite'
+    },
+  
+    xAxis: {
+        categories: [
+             <?php 
+                
+                foreach($data_tanggal_dex as $a){
+                 ?> ' <?php print_r($a);
+             
+                ?> ' <?php echo",";
+                } ?> 
+                     
+                 
+                 
+                 
+    
+           
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Pendapatan (Rp)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>Rp {point.y:.2f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+  
+        name: 'Nusa Bakti',
+        data: [<?php foreach($data_pendapatan_nb_dex as $x){
+            print_r($x);
+            echo",";
+       } ?>]
+
+    }]
+});
+</script>
+
+<script>  
+Highcharts.chart('chart_penjualan_pertamax', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Grafik Penjualan Pertamax'
+    },
+  
+    xAxis: {
+        categories: [
+             <?php 
+                
+                foreach($data_tanggal as $a){
+                 ?> ' <?php print_r($a);
+             
+                ?> ' <?php echo",";
+                } ?> 
+                     
+                 
+                 
+                 
+    
+           
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Penjualan (L)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.2f}/L</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
@@ -497,7 +644,7 @@ Highcharts.chart('chart_penjualan_dexlite', {
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>Rp {point.y:.2f}</b></td></tr>',
+            '<td style="padding:0"><b>{point.y:.2f}/L</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
