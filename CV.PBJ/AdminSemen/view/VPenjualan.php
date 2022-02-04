@@ -212,6 +212,7 @@ else{
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenebusan">Penebusan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
@@ -518,10 +519,6 @@ else{
 
 
  <br>
- <label>Catatan</label>
- <div class="form-group">
-   <textarea id = "catatan" name="catatan" style="width: 300px;"></textarea>
- </div>
  <div class="col-md-6">
    <label>Bulan</label>
    <input class="form-control form-control-sm" type="text" id="bulan" name="bulan" > 
@@ -573,7 +570,6 @@ else{
       <th>TGL Bayar</th>
       <th>Status Bayar</th>
       <th>Ket</th>
-      <th>Catatan</th>
       <th>File</th>
       
     </tr>
@@ -605,7 +601,6 @@ else{
       $tanggal_bayar = $data['tanggal_bayar'];
       $status_bayar = $data['status_bayar'];
       $keterangan = $data['keterangan'];
-      $catatan = $data['catatan'];
       $bulan = $data['bulan'];
       $file_bukti = $data['file_bukti'];
       $no_urut = $no_urut + 1;
@@ -812,12 +807,6 @@ else{
    </div>
 
      <br>
-     <div>
-     <label>Catatan</label>
-     <div class="form-group">
-       <textarea id = "catatan" name="catatan" style="width: 300px;"><?php echo $catatan;?></textarea>
-     </div>
-     </div>
      <div>
      <div class="form-group">
        <label>Bulan</label>
