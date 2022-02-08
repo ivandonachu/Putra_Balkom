@@ -31,6 +31,7 @@ $harga = $_POST['harga'];
 $jumlah = $_POST['jumlah'];
 $nama_kota = $_POST['nama_kota'];
 $tipe_bayar = $_POST['tipe_bayar'];
+$tempo = $_POST['tempo'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -70,14 +71,14 @@ else if ( $nama_file != "" ) {
 	
 	if ($file == '') {
 			$query3 = mysqli_query($koneksi,"UPDATE pembelian_sl SET tanggal = '$tanggal', tujuan = '$tujuan', kota = '$nama_kota', material = '$material', 
-			qty = '$qty', harga = '$harga', jumlah = '$jumlah', driver = '$driver', no_polisi = '$no_polisi', tipe_bayar = '$tipe_bayar', keterangan = '$keterangan' 
+			qty = '$qty', harga = '$harga', jumlah = '$jumlah', driver = '$driver', no_polisi = '$no_polisi', tipe_bayar = '$tipe_bayar', tempo = '$tempo', keterangan = '$keterangan' 
             WHERE no_pembelian = '$no_pembelian'");
 
 	
 	}
 	else{
 			$query3 = mysqli_query($koneksi,"UPDATE pembelian_sl SET tanggal = '$tanggal', tujuan = '$tujuan', kota = '$nama_kota', material = '$material', 
-			qty = '$qty', harga = '$harga', jumlah = '$jumlah', driver = '$driver', no_polisi = '$no_polisi', tipe_bayar = '$tipe_bayar', keterangan = '$keterangan'
+			qty = '$qty', harga = '$harga', jumlah = '$jumlah', driver = '$driver', no_polisi = '$no_polisi', tipe_bayar = '$tipe_bayar', tempo = '$tempo', keterangan = '$keterangan'
             , file_bukti = '$file'  WHERE no_pembelian = '$no_pembelian'");
 
 		

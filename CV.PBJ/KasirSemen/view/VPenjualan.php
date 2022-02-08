@@ -328,22 +328,8 @@ else{
         </div>
     <div class="col-md-6">
       <label>No Polisi</label>
-      <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
-        <option></option>
-        <?php
-        include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_s");   
-
-        while ($data2 = mysqli_fetch_array($result)){
-          $data_pangakalan = $data2['no_polisi'];
-
-            echo "<option> $data_pangakalan </option> ";
-          
-        }
-        ?>
-      </select>
-    </div>
-        
+      <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required="">
+    </div>   
       </div>
 
       <br>
@@ -357,21 +343,7 @@ else{
         </div>
         <div class="col-md-6">
       <label>Driver</label>
-      <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
-        <option></option>
-        <?php
-        include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM driver_s");   
-
-        while ($data2 = mysqli_fetch_array($result)){
-          $data_pangakalan = $data2['nama_driver'];
-
-      
-            echo "<option> $data_pangakalan </option> ";
-          
-        }
-        ?>
-      </select>
+      <input class="form-control form-control-sm" type="text" id="driver" name="driver" required="">
     </div>
       </div>
 
@@ -411,20 +383,7 @@ else{
    <div class="row">
     <div class="col-md-6">
       <label>Nama Toko di DO</label>
-      <select id="tokens" class="selectpicker form-control" name="toko_do" multiple data-live-search="true">
-        <option></option>
-        <?php
-        include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM toko_do");   
-
-        while ($data2 = mysqli_fetch_array($result)){
-          $data_pangakalan = $data2['nm_lokasi'];
-
-            echo "<option> $data_pangakalan </option> ";
-          
-        }
-        ?>
-      </select>
+      <input class="form-control form-control-sm" type="text" id="toko_do" name="toko_do" required="">
     </div>
     <div class="col-md-6">
       <label>Tempo</label>
@@ -608,22 +567,9 @@ else{
             </div>
              <div class="col-md-6">
           <label>No Polisi</label>
-          <div>
-          <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
-            <option></option>
-            <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_s");   
-            $dataSelect = $data['no_polisi'];
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['no_polisi'];
-
-                echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              
-            }
-            ?>
-          </select>
-          </div>
+          <div class="col-sm-10">
+                <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi"  value="<?php echo $no_polisi;?>">
+            </div>
         </div>
           </div>
 
@@ -638,23 +584,9 @@ else{
             </div>
              <div class="col-md-6">
           <label>Driver</label>
-          <div>
-          <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
-            <option></option>
-            <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM driver_s");   
-            $dataSelect = $data['driver'];
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['nama_driver'];
-
-             
-                echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              
-            }
-            ?>
-          </select>
-          </div>
+          <div class="col-sm-12">
+                <input class="form-control form-control-sm" type="text" id="driver" name="driver"  required="" value="<?php echo $driver;?>">
+            </div>
         </div>
           </div>
 
@@ -676,17 +608,7 @@ else{
             </div>                
           </div>
 
-          <script>
-
-            function sum() {
-              var banyak_barang = document.getElementById('qty').value;
-              var harga = document.getElementById('harga').value;
-              var result = parseInt(banyak_barang) * parseInt(harga);
-              if (!isNaN(result)) {
-               document.getElementById('jumlah').value = result;
-             }
-           }
-         </script>
+          
 
          <br>
 
@@ -706,23 +628,7 @@ else{
        <div class="row">
         <div class="col-md-6">
           <label>Nama Toko di DO</label>
-          <div>
-          <select id="tokens" class="selectpicker form-control" name="toko_do" multiple data-live-search="true">
-            <option></option>
-            <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM toko_do");   
-            $dataSelect = $data['toko_do'];
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['nm_lokasi'];
-
-           
-                echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              
-            }
-            ?>
-          </select>
-          </div>
+          <input class="form-control form-control-sm" type="text" id="toko_do" name="toko_do" value="<?php echo $toko_do;?>">
         </div>
 
         <div class="col-md-6">
@@ -1251,6 +1157,18 @@ aria-hidden="true">
     maxOptions: 1
   });
 </script>
+
+<script>
+
+            function sum() {
+              var banyak_barang = document.getElementById('qty').value;
+              var harga = document.getElementById('harga').value;
+              var result = parseInt(banyak_barang) * parseInt(harga);
+              if (!isNaN(result)) {
+               document.getElementById('jumlah').value = result;
+             }
+           }
+         </script>
 </body>
 
 </html>

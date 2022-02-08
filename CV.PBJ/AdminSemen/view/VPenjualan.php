@@ -380,22 +380,12 @@ else{
             <input class="form-control form-control-sm" type="text" id="no_do" name="no_do"  >
           </div>
         </div>
+
     <div class="col-md-6">
       <label>No Polisi</label>
-      <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
-        <option></option>
-        <?php
-        include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");   
-
-        while ($data2 = mysqli_fetch_array($result)){
-          $data_pangakalan = $data2['no_polisi'];
-
-            echo "<option> $data_pangakalan </option> ";
-          
-        }
-        ?>
-      </select>
+      <div class="col-sm-10">
+            <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi"  required="">
+          </div>
     </div>
         
       </div>
@@ -409,23 +399,12 @@ else{
             <input class="form-control form-control-sm" type="text" id="tujuan_pengiriman" name="tujuan_pengiriman"  required="">
           </div>
         </div>
+
         <div class="col-md-6">
       <label>Driver</label>
-      <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
-        <option></option>
-        <?php
-        include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM driver_sl");   
-
-        while ($data2 = mysqli_fetch_array($result)){
-          $data_pangakalan = $data2['nama_driver'];
-
-      
-            echo "<option> $data_pangakalan </option> ";
-          
-        }
-        ?>
-      </select>
+      <div class="col-sm-12">
+        <input class="form-control form-control-sm" type="text" id="driver" name="driver"  required="">
+      </div>
     </div>
       </div>
 
@@ -532,8 +511,8 @@ else{
 
 
 <div class="modal-footer">
-  <button type="submit" class="btn btn-primary"> BAYAR</button>
-  <button type="reset" class="btn btn-danger"> RESET</button>
+  <button type="submit" class="btn btn-primary"> OKE </button>
+  <button type="reset" class="btn btn-danger"> BATAL </button>
 </div>
 </form>
 </div>
@@ -659,22 +638,7 @@ else{
             </div>
              <div class="col-md-6">
           <label>No Polisi</label>
-          <div>
-          <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
-            <option></option>
-            <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");   
-            $dataSelect = $data['no_polisi'];
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['no_polisi'];
-
-                echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              
-            }
-            ?>
-          </select>
-          </div>
+          <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required="" value="<?php echo $no_polisi;?>">
         </div>
           </div>
 
@@ -689,23 +653,7 @@ else{
             </div>
              <div class="col-md-6">
           <label>Driver</label>
-          <div>
-          <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
-            <option></option>
-            <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM driver_sl");   
-            $dataSelect = $data['driver'];
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['nama_driver'];
-
-             
-                echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              
-            }
-            ?>
-          </select>
-          </div>
+          <input class="form-control form-control-sm" type="text" id="driver" name="driver" required="" value="<?php echo $driver;?>">
         </div>
           </div>
 
@@ -821,8 +769,8 @@ else{
 
 
 <div class="modal-footer">
-  <button type="submit" class="btn btn-primary"> Ubah </button>
-  <button type="reset" class="btn btn-danger"> RESET</button>
+  <button type="submit" class="btn btn-primary"> UBAH </button>
+  <button type="reset" class="btn btn-danger"> BATAL </button>
 </div>
 </form>
 </div>
@@ -961,8 +909,8 @@ else{
 
 
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary"> CATAT</button>
-      <button type="reset" class="btn btn-danger"> RESET</button>
+      <button type="submit" class="btn btn-primary"> OKE </button>
+      <button type="reset" class="btn btn-danger"> BATAL </button>
     </div>
   </form>
 </div>
@@ -1020,7 +968,6 @@ else{
       <td style='font-size: 14px'>$tanggal_bayar</td>
       <td style='font-size: 14px'>$status_bayar</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>$catatan</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_semen/<?= $file_bukti ?>" href="../file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
    
