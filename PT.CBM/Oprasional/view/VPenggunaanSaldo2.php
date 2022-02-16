@@ -862,9 +862,9 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
       echo "<tr>
 
       <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_cbm + $masuk_cbm_mt + $masuk_cbm_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbj_cbm + $masuk_mt_cbm + $keluar_cbm_balsri + $keluar_cbm_keling + $keluar_cbm_cbm + $keluar_cbm_pbr + $keluar_cbm_mt + $keluar_cbm_pbj); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbj_cbm + $masuk_mt_cbm + $keluar_cbm_balsri + $keluar_cbm_keling + $keluar_cbm_cbm + $keluar_cbm_pbr + $keluar_cbm_mt + $keluar_cbm_pbj + $keluar_cbm_ste); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($setor_cbm_cbm + $setor_cbm_mt + $setor_cbm_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_cbm_cbm + $masuk_cbm_mt + $masuk_cbm_pbj + 15000000) - ($masuk_pbj_cbm + $masuk_mt_cbm + $keluar_cbm_balsri + $setor_cbm_cbm + $setor_cbm_mt + $setor_cbm_pbj + $keluar_cbm_keling + $keluar_cbm_cbm + $keluar_cbm_pbr + $keluar_cbm_mt + $keluar_cbm_pbj)); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_cbm_cbm + $masuk_cbm_mt + $masuk_cbm_pbj + 15000000) - ($masuk_pbj_cbm + $masuk_mt_cbm + $keluar_cbm_balsri + $keluar_cbm_ste  + $setor_cbm_cbm + $setor_cbm_mt + $setor_cbm_pbj + $keluar_cbm_keling + $keluar_cbm_cbm + $keluar_cbm_pbr + $keluar_cbm_mt + $keluar_cbm_pbj)); ?> <?php echo "</td>
       <td class='text-center'><a href='VRincianCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
         </tr>";
   
@@ -894,9 +894,9 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
     <?php 
       echo "<tr>
       <td style='font-size: 14px'>";?> <?= formatuang($masuk_mt_mt + $masuk_mt_cbm + $masuk_mt_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_mt + $masuk_pbj_mt + $keluar_mt_balsri + $keluar_mt_keling + $keluar_mt_mt + $keluar_mt_pbr + $keluar_mt_cbm + $keluar_mt_pbj); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_mt + $masuk_pbj_mt + $keluar_mt_balsri + $keluar_mt_keling + $keluar_mt_mt + $keluar_mt_pbr + $keluar_mt_cbm + $keluar_mt_pbj + $keluar_mt_ste); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($setor_mt_mt + $setor_mt_cbm + $setor_mt_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_mt_mt + $masuk_mt_cbm + $masuk_mt_pbj)-($masuk_cbm_mt + $masuk_pbj_mt + $keluar_mt_balsri + $setor_mt_mt + $setor_mt_cbm + $setor_mt_pbj + $keluar_mt_keling + $keluar_mt_mt + $keluar_mt_pbr + $keluar_mt_cbm + $keluar_mt_pbj)); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_mt_mt + $masuk_mt_cbm + $masuk_mt_pbj)-($masuk_cbm_mt + $masuk_pbj_mt + $keluar_mt_balsri + $keluar_mt_ste + $setor_mt_mt + $setor_mt_cbm + $setor_mt_pbj + $keluar_mt_keling + $keluar_mt_mt + $keluar_mt_pbr + $keluar_mt_cbm + $keluar_mt_pbj)); ?> <?php echo "</td>
       <td class='text-center'><a href='VRincianMT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
         </tr>";
   
@@ -926,9 +926,9 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
     <?php 
       echo "<tr>
       <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbj_mt + $masuk_pbj_cbm + $masuk_pbj_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_pbj + $masuk_mt_pbj + $keluar_pbj_balsri + $keluar_pbj_keling + $keluar_pbj_pbj + $keluar_pbj_pbr + $keluar_pbj_cbm + $keluar_pbj_mt ); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_pbj + $masuk_mt_pbj + $keluar_pbj_balsri + $keluar_pbj_keling + $keluar_pbj_pbj + $keluar_pbj_pbr + $keluar_pbj_cbm + $keluar_pbj_mt + $keluar_pbj_ste ); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($setor_pbj_mt + $setor_pbj_cbm + $setor_pbj_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_pbj_mt + $masuk_pbj_cbm + $masuk_pbj_pbj)-($setor_pbj_mt + $setor_pbj_cbm + $setor_pbj_pbj + $masuk_cbm_pbj + $masuk_mt_pbj + $keluar_pbj_balsri + $keluar_pbj_keling + $keluar_pbj_pbj + $keluar_pbj_pbr + $keluar_pbj_cbm + $keluar_pbj_mt )); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_pbj_mt + $masuk_pbj_cbm + $masuk_pbj_pbj)-($setor_pbj_mt + $setor_pbj_cbm + $setor_pbj_pbj + $masuk_cbm_pbj + $masuk_mt_pbj + $keluar_pbj_balsri + $keluar_pbj_ste + $keluar_pbj_keling + $keluar_pbj_pbj + $keluar_pbj_pbr + $keluar_pbj_cbm + $keluar_pbj_mt )); ?> <?php echo "</td>
       <td class='text-center'><a href='VRincianPBJ?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
         </tr>";
   
