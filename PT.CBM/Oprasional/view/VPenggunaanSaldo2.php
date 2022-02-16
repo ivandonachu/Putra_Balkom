@@ -269,6 +269,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             <option>BALSRI</option>
             <option>Kebun Lengkiti</option>
             <option>MES/PBR</option>
+            <option>STE</option>
           </select>
           <small></small>
         </div>
@@ -286,6 +287,9 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             <option>Pemakaian Pribadi</option>
             <option>Bayar Pajak</option>
             <option>Bayar Kir</option>
+            <option>Mocash</option>
+            <option>Pengeluaran Pak Nyoman</option>
+            <option>Pengeluaran Buk Mery</option>
           </select>
         </div>            
 
@@ -440,7 +444,12 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
     $keluar_pbj_pbr = 0 ;
     //keluar mt ke pbr
     $keluar_mt_pbr = 0 ;
-
+    //keluar cbm ke ste
+    $keluar_cbm_ste = 0 ;
+    //keluar pbj ke ste
+    $keluar_pbj_ste = 0 ;
+    //keluar mt ke ste
+    $keluar_mt_ste = 0 ;
     
     $urut = 0;
     function formatuang($angka){
@@ -573,6 +582,21 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
         $keluar_mt_pbr = $keluar_mt_pbr + $jumlah;
       }
     
+      //keluar cbm masuk balsri
+    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'STE') {
+      $keluar_cbm_ste = $keluar_cbm_ste + $jumlah;
+    }
+  //keluar pbj masuk balsri
+  else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'STE') {
+      $keluar_pbj_ste = $keluar_pbj_ste + $jumlah;
+    }
+  //keluar mt masuk balsri
+  else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'STE') {
+      $keluar_mt_ste = $keluar_mt_ste + $jumlah;
+    }
+  
+
+
     //setor dana cbm ke cbm
     if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'CBM' && $nama_akun == 'Setor ke Bank' ) {
         $setor_cbm_cbm = $setor_cbm_cbm + $jumlah;
@@ -689,6 +713,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             <option <?php echo ($dataSelect == 'BALSRI') ? "selected": "" ?> >BALSRI</option>
             <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
             <option <?php echo ($dataSelect == 'MES/PBR') ? "selected": "" ?> >MES/PBR</option>
+            <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
           </select>
 
         </div>            
@@ -705,6 +730,11 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             <option <?php echo ($dataSelect == 'Bon Karyawan') ? "selected": "" ?> >Bon Karyawan</option>
             <option <?php echo ($dataSelect == 'Transfer Ke Bos') ? "selected": "" ?> >Transfer Ke Bos</option>
             <option <?php echo($dataSelect == 'Bayar Pajak')?"selected": ""?>>Bayar Pajak</option>
+            <option <?php echo($dataSelect == 'Bayar Kir')?"selected": ""?>>Bayar Kir</option>
+            <option <?php echo($dataSelect == 'Mocash')?"selected": ""?>>Mocash</option>
+            <option <?php echo($dataSelect == 'Pengeluaran Pak Nyoman')?"selected": ""?>>Pengeluaran Pak Nyoman</option>
+            <option <?php echo($dataSelect == 'Pengeluaran Buk Mery')?"selected": ""?>>Pengeluaran Buk Mery</option>
+
           </select>
 
         </div>
@@ -908,6 +938,66 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 </table>
 </div>
 <br>
+
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+<h6 align="center">Pengeluaran Untuk Balsri</h6>
+<!-- Tabel -->    
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Total Uang CBM ke BALSRI</th>
+      <th>Total Uang PBJ ke BALSRI</th>
+      <th>Total Uang MT ke BALSRI</th>
+    
+      <th>Rincian</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_cbm_balsri); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbj_balsri); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mt_balsri); ?> <?php echo "</td>
+      <td class='text-center'><a href='VRincianBALSRI?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
+        </tr>";
+  
+  ?>
+
+</tbody>
+</table>
+</div>
+<br>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+<h6 align="center">Pengeluaran Untuk STE</h6>
+<!-- Tabel -->    
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Total Uang CBM ke STE</th>
+      <th>Total Uang PBJ ke STE</th>
+      <th>Total Uang MT ke STE</th>
+    
+      <th>Rincian</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_cbm_ste); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbj_ste); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mt_ste); ?> <?php echo "</td>
+      <td class='text-center'><a href='VRincianSTE?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
+        </tr>";
+  
+  ?>
+
+</tbody>
+</table>
+</div>
+<br>
+
 <br>
 <br>
 
