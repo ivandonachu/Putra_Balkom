@@ -35,6 +35,12 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_karet WHERE tanggal = '$tanggal_akhir' ");
 } else {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
+    $table2 = mysqli_query($koneksi, "SELECT SUM(box_karet) AS total_box, SUM(berat) AS total_berat, SUM(upah_bersih) AS total_upah_bersih  FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data2 = mysqli_fetch_array($table2);
+    $total_box = $data2['total_box'];
+    $total_berat = $data2['total_berat'];
+    $total_upah_bersih = $data2['total_upah_bersih'];
+
 }
 
 
@@ -611,7 +617,59 @@ if ($tanggal_awal == $tanggal_akhir) {
     </div>
     <br>
    
+         <br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;"  align = 'center'>
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Box</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $total_box ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Berat</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_berat ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Upah Bersih</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_upah_bersih)   ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+</div>
     </div>
     </div>
     <!-- End of Main Content -->

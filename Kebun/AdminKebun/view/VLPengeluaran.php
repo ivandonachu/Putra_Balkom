@@ -33,6 +33,25 @@ if (isset($_GET['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_keb_lengkiti WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran  FROM pengeluaran_keb_lengkiti 
+  WHERE  tanggal = '$tanggal_awal'");
+$data2 = mysqli_fetch_array($table2);
+$total_pengeluaran = $data2['total_pengeluaran'];
+
+$table3 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_karet_sawit  FROM pengeluaran_keb_lengkiti 
+  WHERE  tanggal = '$tanggal_awal' AND referensi = 'Karet dan Sawit' ");
+$data3 = mysqli_fetch_array($table3);
+$total_karet_sawit = $data3['total_karet_sawit'];
+
+$table4 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_buah  FROM pengeluaran_keb_lengkiti 
+  WHERE  tanggal = '$tanggal_awal' AND referensi = 'Buah' ");
+$data4 = mysqli_fetch_array($table4);
+$total_buah = $data4['total_buah'];
+
+$table5 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_umum  FROM pengeluaran_keb_lengkiti 
+WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
+$data5 = mysqli_fetch_array($table5);
+$total_umum = $data5['total_umum'];
 } else {
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_keb_lengkiti WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   

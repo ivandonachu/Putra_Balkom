@@ -35,6 +35,13 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_sawit WHERE tanggal_muat = '$tanggal_akhir' ");
 } else {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_sawit WHERE tanggal_muat BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_muat ASC");
+    $table2 = mysqli_query($koneksi, "SELECT SUM(gross) AS total_gross, SUM(tare) AS total_tare, SUM(deduction) AS total_deduction, SUM(sortasi) AS total_sortasi FROM laporan_sawit WHERE tanggal_muat BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data2 = mysqli_fetch_array($table2);
+    $total_gross = $data2['total_gross'];
+    $total_tare = $data2['total_tare'];
+    $total_deduction = $data2['total_deduction'];
+    $total_sortasi = $data2['total_sortasi'];
+
 }
 
 
@@ -611,7 +618,77 @@ if ($tanggal_awal == $tanggal_akhir) {
         </table>
     </div>
     <br>
-   
+    <br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;"  align = 'center'>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Gross</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $total_gross ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Tare</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_tare ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Deduction</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   $total_deduction ?></div>
+          </div>
+          <div class="col-auto">
+           <i class=" fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Setelah Sortasi</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_sortasi  ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
 
     </div>
     </div>
