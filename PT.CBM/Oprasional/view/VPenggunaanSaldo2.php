@@ -945,9 +945,9 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Total Uang CBM ke BALSRI</th>
-      <th>Total Uang PBJ ke BALSRI</th>
-      <th>Total Uang MT ke BALSRI</th>
+      <th>Total Uang CBM dipakai BALSRI</th>
+      <th>Total Uang PBJ dipakai BALSRI</th>
+      <th>Total Uang MT dipakai BALSRI</th>
     
       <th>Rincian</th>
     </tr>
@@ -974,9 +974,9 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Total Uang CBM ke STE</th>
-      <th>Total Uang PBJ ke STE</th>
-      <th>Total Uang MT ke STE</th>
+      <th>Total Uang CBM dipakai STE</th>
+      <th>Total Uang PBJ dipakai STE</th>
+      <th>Total Uang MT dipakai STE</th>
     
       <th>Rincian</th>
     </tr>
