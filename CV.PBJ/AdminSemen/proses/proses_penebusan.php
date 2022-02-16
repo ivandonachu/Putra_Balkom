@@ -21,6 +21,16 @@ exit;
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
+$no_do = $_POST['no_do'];
+if($no_do == ''){
+    
+}
+else{
+$result = mysqli_query($koneksi, "SELECT * FROM pembelian_sl WHERE no_do = '$no_do' ");
+ if(mysqli_num_rows($result) == 1 ){
+  	echo "<script>alert('DO sudah tercatat :)'); window.location='../view/VPenebusan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
+      }
+}
 $no_polisi = $_POST['no_polisi'];
 $driver = $_POST['driver'];
 $tujuan = $_POST['tujuan'];
@@ -68,8 +78,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$tujuan','$nama_kota','$material','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar', '$tempo'
-                                                                    ,'$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$no_do','$tujuan','$nama_kota','$material','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar', '$tempo','$keterangan','$file')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPenebusan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

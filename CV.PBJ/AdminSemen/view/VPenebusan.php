@@ -391,7 +391,17 @@ else{
                <input type="date"  name="tanggal">
              </div>
            </div>
-           <div class="col-md-6">
+           
+       </div>
+<br>
+       <div class="row">
+      
+        <div class="col-md-6">
+      <label>NO DO</label>
+      <input class="form-control form-control-sm" type="text" id="no_do" name="no_do">
+    </div>
+
+    <div class="col-md-6">
       <label>Tujuan</label>
       <select id="tokens" class="selectpicker form-control" name="tujuan" multiple data-live-search="true">
         <option></option>
@@ -408,7 +418,7 @@ else{
         ?>
       </select>
     </div>
-       </div>
+      </div>
 
        <br>
 
@@ -548,6 +558,7 @@ function sum() {
       <th>Edit</th>
       <th>Delete</th>
       <th>Tanggal</th>
+      <th>NO DO</th>
       <th>Tujuan</th>
       <th>Kota</th>
       <th>Material</th>
@@ -576,6 +587,7 @@ function sum() {
     <?php while($data = mysqli_fetch_array($table)){
       $no_pembelian = $data['no_pembelian'];
       $tanggal =$data['tanggal'];
+      $no_do =$data['no_do'];
       $tujuan = $data['tujuan'];
       $kota = $data['kota'];
       $material = $data['material'];
@@ -625,7 +637,16 @@ function sum() {
                <input type="date"  name="tanggal" value="<?php echo $tanggal;?>">
              </div>
            </div>
-           <div class="col-md-6">
+           
+       </div>
+<br>
+       <div class="row">    
+        <div class="col-md-6">
+          <label>NO DO</label>
+          <input class="form-control form-control-sm" type="text" id="no_do" name="no_do" value="<?php echo $no_do;?>">
+        </div>
+
+        <div class="col-md-6">
              <div>
              <label>Tujuan</label>
              </div>
@@ -646,7 +667,7 @@ function sum() {
             ?>
           </select>
     </div>
-       </div>
+      </div>
 
        <br>
 
@@ -802,6 +823,7 @@ function sum() {
 </div>
 <?php echo " </td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$no_do</td>
       <td style='font-size: 14px'>$tujuan</td>
       <td style='font-size: 14px'>$kota</td>
       <td style='font-size: 14px'>$material</td>
@@ -811,6 +833,7 @@ function sum() {
       <td style='font-size: 14px'>$driver</td>
       <td style='font-size: 14px'>$no_polisi</td>
       <td style='font-size: 14px'>$tipe_bayar</td>
+      <td style='font-size: 14px'>$tempo</td>
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_admin_semen/<?= $file_bukti ?>" href="../file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
