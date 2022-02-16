@@ -240,6 +240,7 @@ else{
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenebusan">Penebusan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
@@ -449,38 +450,12 @@ else{
       
         <div class="col-md-6">
       <label>Driver</label>
-      <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
-        <option></option>
-        <?php
-        include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM driver_sl");   
-
-        while ($data2 = mysqli_fetch_array($result)){
-          $data_pangakalan = $data2['nama_driver'];
-
-      
-            echo "<option> $data_pangakalan </option> ";
-          
-        }
-        ?>
-      </select>
+      <input class="form-control form-control-sm" type="text" id="driver" name="driver">
     </div>
+
     <div class="col-md-6">
       <label>No Polisi</label>
-      <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
-        <option></option>
-        <?php
-        include 'koneksi.php';
-        $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");   
-
-        while ($data2 = mysqli_fetch_array($result)){
-          $data_pangakalan = $data2['no_polisi'];
-
-            echo "<option> $data_pangakalan </option> ";
-          
-        }
-        ?>
-      </select>
+      <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi">
     </div>
       </div>
 
@@ -525,8 +500,13 @@ function sum() {
       <option>Bon</option>
     </select>
   </div>
-</div>
 
+
+  <div class="col-md-6">
+    <label>Tempo</label>
+    <input class="form-control form-control-sm" type="text" id="tempo" name="tempo">
+  </div> 
+</div>
 <br>
 
 <div>
@@ -544,8 +524,8 @@ function sum() {
 
 
 <div class="modal-footer">
-  <button type="submit" class="btn btn-primary"> BAYAR</button>
-  <button type="reset" class="btn btn-danger"> RESET</button>
+  <button type="submit" class="btn btn-primary"> OKE </button>
+  <button type="reset" class="btn btn-danger"> BATAL </button>
 </div>
 </form>
 </div>
@@ -577,6 +557,7 @@ function sum() {
       <th>Driver</th>
       <th>No Polisi</th>
       <th>Tipe Pembayaran</th>
+      <th>Tempo</th>
       <th>Ket</th>
       <th>File</th>
       
@@ -604,6 +585,7 @@ function sum() {
       $driver = $data['driver'];
       $no_polisi = $data['no_polisi'];
       $tipe_bayar = $data['tipe_bayar'];
+      $tempo = $data['tempo'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
       $no_urut = $no_urut + 1;
@@ -707,48 +689,15 @@ function sum() {
 
       <br>
 
-      <div class="row">
-      
+      <div class="row">    
         <div class="col-md-6">
-          <div>
           <label>Driver</label>
-          </div>
-      
-      <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
-            <option></option>
-            <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM driver_sl");   
-            $dataSelect = $data['driver'];
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['nama_driver'];
+          <input class="form-control form-control-sm" type="text" id="driver" name="driver" value="<?php echo $driver;?>">
+        </div>
 
-             
-                echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              
-            }
-            ?>
-          </select>
-    </div>
     <div class="col-md-6">
-      <div>
       <label>No Polisi</label>
-      </div>
-      
-      <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
-            <option></option>
-            <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");   
-            $dataSelect = $data['no_polisi'];
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['no_polisi'];
-
-                echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-              
-            }
-            ?>
-          </select>
+      <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" value="<?php echo $no_polisi;?>">  
     </div>
       </div>
 
@@ -785,6 +734,11 @@ function sum() {
          <option <?php echo ($dataSelect == 'Bon') ? "selected": "" ?> >Bon</option>
        </select>
   </div>
+
+  <div class="col-md-6">
+      <label>Tempo</label>
+      <input class="form-control form-control-sm" type="text" id="tempo" name="tempo" value="<?php echo $tempo;?>">  
+    </div>
 </div>
 
 <br>

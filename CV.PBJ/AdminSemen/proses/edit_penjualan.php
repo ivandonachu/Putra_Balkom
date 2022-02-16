@@ -36,7 +36,6 @@ $tempo = $_POST['tempo'];
 $tanggal_bayar = $_POST['tanggal_bayar'];
 $status_bayar = $_POST['status_bayar'];
 $keterangan = $_POST['keterangan'];
-$catatan = $_POST['catatan'];
 $bulan = $_POST['bulan'];
 
 
@@ -84,7 +83,7 @@ $no_pengiriman = $data_perta['no_pengiriman'];
 	if ($file == '') {
 			$query3 = mysqli_query($koneksi,"UPDATE penjualan_sl SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
 			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
-			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' WHERE no_penjualan = '$no_penjualan'");
+			status_bayar = '$status_bayar' , keterangan = '$keterangan' , bulan = '$bulan' WHERE no_penjualan = '$no_penjualan'");
 
 			$query4 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi', 
 			toko_do = '$toko_do' WHERE no_pengiriman = '$no_pengiriman'");
@@ -92,7 +91,7 @@ $no_pengiriman = $data_perta['no_pengiriman'];
 	else{
 			$query3 = mysqli_query($koneksi,"UPDATE penjualan_sl SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver', no_polisi = '$no_polisi' , 
 			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
-			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' , file_bukti = '$file'  WHERE no_penjualan = '$no_penjualan'");
+			status_bayar = '$status_bayar' , keterangan = '$keterangan' , bulan = '$bulan' , file_bukti = '$file'  WHERE no_penjualan = '$no_penjualan'");
 
 			$query4 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET  no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi',
 			toko_do = '$toko_do' WHERE no_pengiriman = '$no_pengiriman'");

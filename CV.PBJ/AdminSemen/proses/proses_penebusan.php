@@ -30,6 +30,7 @@ $harga = $_POST['harga'];
 $jumlah = $_POST['jumlah'];
 $nama_kota = $_POST['nama_kota'];
 $tipe_bayar = $_POST['tipe_bayar'];
+$tempo = $_POST['tempo'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -67,7 +68,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$tujuan','$nama_kota','$material','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar'
+	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$tujuan','$nama_kota','$material','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar', '$tempo'
                                                                     ,'$keterangan','$file')");
 
 			if ($query != "") {
