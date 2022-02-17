@@ -45,36 +45,36 @@ while($data = mysqli_fetch_assoc($table)){
 }
 
 //data pendapatan sumberjaya pertamax
-$table2 = mysqli_query($koneksiperta, "SELECT sum(qty) AS total_qty , sum(harga) AS total_harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table2 = mysqli_query($koneksiperta, "SELECT sum(qty) AS total_qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
 WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Sumber Jaya' AND a.nama_barang = 'Pertamax' GROUP BY tanggal  ");
 
 while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['total_qty'];
-    $harga = $data2['total_harga'];
+    $harga = $data2['harga'];
     $jumlah = $qty * $harga;
     $data_pendapatan_sj[] = "$jumlah";
     $data_penjualan_sj[] = "$qty";
 }
 
 //data pendapatan bedilan pertamax
-$table3 = mysqli_query($koneksiperta, "SELECT sum(qty) AS total_qty , sum(harga) AS total_harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table3 = mysqli_query($koneksiperta, "SELECT sum(qty) AS total_qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
 WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Bedilan'  AND a.nama_barang = 'Pertamax' GROUP BY tanggal  ");
 
 while($data3 = mysqli_fetch_array($table3)){
     $qty = $data3['total_qty'];
-    $harga = $data3['total_harga'];
+    $harga = $data3['harga'];
     $jumlah = $qty * $harga;
     $data_pendapatan_b[] = "$jumlah";
     $data_penjualan_b[] = "$qty";
 }
 
 //data pendapatan nusa bakti pertamax
-$table4 = mysqli_query($koneksiperta, "SELECT sum(qty) AS total_qty , sum(harga) AS total_harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table4 = mysqli_query($koneksiperta, "SELECT sum(qty) AS total_qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
 WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Nusa Bakti'  AND a.nama_barang = 'Pertamax' GROUP BY tanggal  ");
 
 while($data4 = mysqli_fetch_array($table4)){
     $qty = $data4['total_qty'];
-    $harga = $data4['total_harga'];
+    $harga = $data4['harga'];
     $jumlah = $qty * $harga;
     $data_pendapatan_nb[] = "$jumlah";
     $data_penjualan_nb[] = "$qty";
@@ -95,12 +95,12 @@ while($data11 = mysqli_fetch_assoc($table11)){
 
 
 //data pendapatan nusa bakti dexlite
-$table21 = mysqli_query($koneksiperta, "SELECT sum(qty) AS total_qty , sum(harga) AS total_harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
+$table21 = mysqli_query($koneksiperta, "SELECT sum(qty) AS total_qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta
 WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = 'Nusa Bakti'  AND a.nama_barang = 'Dexlite' GROUP BY tanggal  ");
 
 while($data21 = mysqli_fetch_array($table21)){
     $qty = $data21['total_qty'];
-    $harga = $data21['total_harga'];
+    $harga = $data21['harga'];
     $jumlah = $qty * $harga;
     $data_pendapatan_nb_dex[] = "$jumlah";
     $data_penjualan_nb_dex[] = "$qty";
