@@ -492,13 +492,13 @@ else{
                                 <tr>
                                     <td>4-100</td>
                                     <td class="text-left">Penjualan Pertamax</td>
-                                    <td class="text-left"><?= formatuang($total_dexlite); ?></td>
+                                    <td class="text-left"><?= formatuang($total_pertamax); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="thick-line"></td>
                                 </tr>
                                 <tr>
                                     <td>4-110</td>
-                                    <td class="text-left">Penjualan Bio Solar</td>
+                                    <td class="text-left">Penjualan Dexlite</td>
                                     <td class="text-left"><?= formatuang($total_dexlite); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="thick-line"></td>
@@ -534,7 +534,7 @@ else{
                                 </tr>
                                 <tr>
                                     <td>5-110</td>
-                                    <td class="text-left">Pembelian Bio Solar</td>
+                                    <td class="text-left">Pembelian Dexlite</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_dexlite_b); ?></td>
                                    <td class="thick-line"></td>
