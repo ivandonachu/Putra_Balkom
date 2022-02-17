@@ -38,7 +38,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_perbaikan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN driver c ON c.no_driver=a.no_driver INNER JOIN kendaraan d ON  d.no_kendaraan=a.no_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_perbaikan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN driver c ON c.no_driver=a.no_driver INNER JOIN kendaraan d ON  d.no_kendaraan=a.no_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC ");
 
 }
 
