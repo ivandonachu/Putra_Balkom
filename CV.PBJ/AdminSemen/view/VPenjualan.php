@@ -413,7 +413,7 @@ else{
       <div class="row">
         <div class="col-md-6">
           <label>QTY</label>
-          <input class="form-control form-control-sm" type="number" id="qty" name="qty" onkeyup="sum();" required="">
+          <input class="form-control form-control-sm" type="float" id="qty" name="qty" onkeyup="sum();" required="">
         </div>    
         <div class="col-md-6">
           <label>Satuan</label>
@@ -434,11 +434,11 @@ else{
      <div class="row">
       <div class="col-md-6">
         <label>Harga</label>
-        <input class="form-control form-control-sm" type="number" id="harga" name="harga" onkeyup="sum();" required="">
+        <input class="form-control form-control-sm" type="float" id="harga" name="harga" onkeyup="sum();" required="">
       </div>    
       <div class="col-md-6">
        <label>Jumlah</label>
-       <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required=""> 
+       <input class="form-control form-control-sm" type="float" id="jumlah" name="jumlah" required=""> 
      </div>                
    </div>
 
@@ -662,7 +662,7 @@ else{
           <div class="row">
             <div class="col-md-6">
               <label>QTY</label>
-              <input class="form-control form-control-sm" type="number" id="qty" name="qty" onkeyup="sum();" required="" value="<?php echo $qty;?>">
+              <input class="form-control form-control-sm" type="float" id="qty" name="qty" onkeyup="sum();" required="" value="<?php echo $qty;?>">
             </div>    
             <div class="col-md-6">
               <label>Satuan</label>
@@ -684,11 +684,11 @@ else{
          <div class="row">
           <div class="col-md-6">
             <label>Harga</label>
-            <input class="form-control form-control-sm" type="number" id="harga" name="harga" onkeyup="sum();" required="" value="<?php echo $harga;?>">
+            <input class="form-control form-control-sm" type="float" id="harga" name="harga" onkeyup="sum();" required="" value="<?php echo $harga;?>">
           </div>    
           <div class="col-md-6">
            <label>Jumlah</label>
-           <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="" value="<?php echo $jumlah;?>"> 
+           <input class="form-control form-control-sm" type="float" id="jumlah" name="jumlah" required="" value="<?php echo $jumlah;?>"> 
          </div>                
        </div>
 
@@ -1454,7 +1454,7 @@ aria-hidden="true">
 function sum() {
   var banyak_barang = document.getElementById('qty').value;
   var harga = document.getElementById('harga').value;
-  var result = parseInt(banyak_barang) * parseInt(harga);
+  var result = parseFloat(banyak_barang) * parseFloat(harga);
   if (!isNaN(result)) {
    document.getElementById('jumlah').value = result;
  }
