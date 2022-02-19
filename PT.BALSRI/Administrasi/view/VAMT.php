@@ -304,7 +304,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
               </div>
             </div>
             <div>
-             <label>Alamat</label>
+             <label>Wilayah Operasi</label>
              <div class="form-group">
                <textarea id = "alamat" name="alamat" style="width: 300px;"></textarea>
              </div>
@@ -332,7 +332,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
       <th>No</th>
       <th>Nama Driver</th>
       <th>No Hp</th>   
-      <th>Alamat</th>
+      <th>Wilayah Operasi</th>
       <th></th>
     </tr>
   </thead>
@@ -384,7 +384,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
               </div>
             </div>
             <div>
-             <label>Alamat</label>
+             <label>Wilayah Oprasi</label>
              <div class="form-group">
                <textarea id = "alamat" name="alamat" style="width: 300px;"><?php echo $alamat;?></textarea>
              </div>

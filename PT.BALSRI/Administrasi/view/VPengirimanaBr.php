@@ -402,7 +402,7 @@ else{
           <select id="mt" name="mt" class="form-control">
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
+            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Baturaja'");   
 
             while ($data2 = mysqli_fetch_array($result)){
               $no_polisi = $data2['no_polisi'];
@@ -631,7 +631,7 @@ else{
                   <?php
                   $dataSelect = $data['mt']; 
                   include 'koneksi.php';
-                  $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
+                  $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Baturaja'");   
 
                   while ($data2 = mysqli_fetch_array($result)){
                     $no_polisi = $data2['no_polisi'];

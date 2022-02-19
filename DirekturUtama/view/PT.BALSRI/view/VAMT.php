@@ -276,65 +276,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM driver");
 
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-   <div class="row">
-    <div class="col-md-10">
 
-    </div>
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Driver</button> <br> <br>
-      </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form Pencatatan Driver</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_driver' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
-
-            <div class="row">
-              <div class="col-md-6">
-                <label>Nama Driver</label>
-                <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="">
-              </div>    
-
-
-              <div class="col-md-6">
-                <label>No Hp</label>
-                <input class="form-control form-control-sm" type="text" id="no_hp" name="no_hp" >
-              </div>
-            </div>
-            <div>
-             <label>Alamat</label>
-             <div class="form-group">
-               <textarea id = "alamat" name="alamat" style="width: 300px;"></textarea>
-             </div>
-           </div>
-
-
-           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary"> CATAT</button>
-            <button type="reset" class="btn btn-danger"> RESET</button>
-          </div>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-</div>
-</div>
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
@@ -343,7 +285,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM driver");
       <th>No</th>
       <th>Nama Driver</th>
       <th>No Hp</th>   
-      <th>Alamat</th>
+      <th>Wilayah Operasi</th>
     </tr>
   </thead>
   <tbody>
