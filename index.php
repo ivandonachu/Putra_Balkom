@@ -2,71 +2,109 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Home</title>
+    <meta content="" name="description">
 
-    <!-- Bootstrap core CSS -->
-    <link href="/sbadmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <meta content="" name="keywords">
 
-    <!-- Custom styles for this template -->
-    <link href="/sbadmin/css/heroic-features.css" rel="stylesheet">
-    <link href="/sbadmin/css/cssivan.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <div id="header">
-        <nav class="navbar navbar-expand-lg fixed-top" style=" background-color: #004445">
-            <div class="container">
-                <a class="navbar-brand" style="color: white;" href="#">Melody Group</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <div style="background-color: white">
-          <span class="navbar-toggler-icon" ></span>
-        </div>
-       
-      </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login.php">LOGIN</a>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-                        </li>
-                    </ul>
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="assets/img/melodi.png" alt="">
+                <span>Melody Group</span>
+            </a>
+
+            <nav id="navbar" class="navbar">
+                <a class="getstarted scrollto" href="#about">LOGIN</a>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <!-- .navbar -->
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="hero d-flex align-items-center">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <h1 data-aos="fade-up"> <b> WEB APP LAPORAN KEUANGAN </b></h1>
+                    <h2 data-aos="fade-up" data-aos-delay="400">By PT Sriwijaya Teknik Energi </h2>
+                </div>
+                <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+                    <img src="assets/img/finance.svg" class="img-fluid" alt="">
                 </div>
             </div>
-        </nav>
-    </div>
-
-    <div id="content" class="container" style="margin-top: 300px; margin-bottom: 500px;">
-        <div class="jumbotron" style="background-color: #2C7873;">
-
-            <br><br>
-            <h3 class="display-8" style="text-align: center; color: white;"><span class="font-weight-bold"> WEB APP LAPORAN KEUANGAN</span></h3>
-            <hr class="my-10">
-            <p class="lead" style=" text-align: center; color: white; ">By PT Sriwijaya Teknik Energi</p>
-            <br><br>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <div id="footer">
-        <footer class="py-1 " style="background-color: #004445">
-            <div class="container">
-                <p class="m-3 text-center text-white" style="color: white;">Copyright &copy; PutraBalkomTech 2021</p>
+    </section>
+    <!-- End Hero -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>PT Sriwijaya Teknik Energi </span></strong>. All Rights Reserved
             </div>
-            <!-- /.container -->
-        </footer>
-    </div>
-    <!-- Bootstrap core JavaScript -->
-    <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
-    <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
 </body>
 
