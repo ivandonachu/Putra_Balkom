@@ -204,7 +204,7 @@ else{
    $table42 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' AND b.lokasi = '$lokasi'  ");
    $data42 = mysqli_fetch_array($table42);
    $jml_listrik = $data42['jumlah_listrik'];
-    if (!isset($data42['jumlah_listrikr'])) {
+    if (!isset($data42['jumlah_listrik'])) {
     $jml_listrik = 0;
     }
 
@@ -224,7 +224,7 @@ else{
     $jml_atk = 0;
     }
 
-    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_sewa;
+    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa;
     $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
 }
