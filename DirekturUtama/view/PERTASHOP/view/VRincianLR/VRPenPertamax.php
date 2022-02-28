@@ -48,7 +48,7 @@ $kode_perta = $data_perta['kode_perta'];
 else{
   $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
-  $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop ");
+  $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
    $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang WHERE kode_perta = '$kode_perta' AND nama_barang = 'Pertamax' ");
@@ -411,7 +411,7 @@ $kode_perta = $data_perta['kode_perta'];
     </tr>
   </thead>
   <tbody>
-    <?php while($data = mysqli_fetch_array($table2)){
+    <?php $data = mysqli_fetch_array($table2);
       $nama_barang =$data['nama_barang'];
       $stok = $data['stok'];
 
@@ -421,7 +421,7 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>$stok / L</td>
      
   </tr>";
-}
+
 ?>
 
 </tbody>
