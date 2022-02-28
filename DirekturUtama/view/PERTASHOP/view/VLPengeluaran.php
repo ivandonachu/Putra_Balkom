@@ -221,7 +221,7 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-    <?php  echo "<form  method='POST' action='VPengeluaranPul2' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VLPengeluaran' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -246,7 +246,6 @@ else{
       <th>Pengeluaran</th>
       <th>Total</th>
       <th>file</th>
-      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>

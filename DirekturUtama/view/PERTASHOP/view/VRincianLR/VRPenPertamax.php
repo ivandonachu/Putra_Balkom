@@ -21,11 +21,13 @@ exit;
 if (isset($_GET['tanggal1'])) {
    $tanggal_awal = $_GET['tanggal1'];
    $tanggal_akhir = $_GET['tanggal2'];
+   $lokasi = $_GET['lokasi'];
 } 
 
 elseif (isset($_POST['tanggal1'])) {
    $tanggal_awal = $_POST['tanggal1'];
    $tanggal_akhir = $_POST['tanggal2'];
+   $lokasi = $_POST['lokasi'];
 }  
 
 else{
@@ -44,12 +46,12 @@ $kode_perta = $data_perta['kode_perta'];
 }
 
 else{
-  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-  $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop  ");
+  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN 
+  '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop WHERE lokasi = '$lokasi'  ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
-   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
-
+   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang WHERE kode_perta = '$kode_perta' AND nama_barang = 'Pertamax' ");
 
 }
 
@@ -66,7 +68,7 @@ $kode_perta = $data_perta['kode_perta'];
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Laporan Penjualan</title>
+  <title>Rincian Penjualan Pertamax  <?php echo $lokasi ?></title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -175,7 +177,7 @@ $kode_perta = $data_perta['kode_perta'];
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Laporan Penjualan Pertashop</h5></a>"; ?>
+      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Penjualan Pertamax PS  $lokasi </h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -231,21 +233,19 @@ $kode_perta = $data_perta['kode_perta'];
 
  <div style="margin-right: 10px; margin-left: 10px;">
 
-  <?php  echo "<form  method='POST' action='VLPenjualan'>" ?>
   <div>
-    <div align="left" style="margin-left: 20px;"> 
-      <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-      <span>-</span>
-      <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-      <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+    <div align="left">
+    <?php echo "<a href='../VLabaRugi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
-  </div>
-</form>
-
-<div class="col-md-8">
-   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
- </div>
- <br>
+    </div>
+  
+  
+  <div class="row">
+    <div class="col-md-6">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   
+</div>
 
 
 

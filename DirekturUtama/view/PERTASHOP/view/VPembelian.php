@@ -257,7 +257,7 @@ else{
       <th style="font-size: 11px" >Losis</th>
       <th style="font-size: 11px" >Keterangan</th>
       <th style="font-size: 11px" >File</th>
-      <th></th>
+    
     </tr>
   </thead>
   <tbody>
