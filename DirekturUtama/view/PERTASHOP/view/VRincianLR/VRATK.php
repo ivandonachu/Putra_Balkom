@@ -252,7 +252,6 @@ else{
       <th>Pengeluaran</th>
       <th>Total</th>
       <th>file</th>
-      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
