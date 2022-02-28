@@ -444,31 +444,31 @@ $kode_perta = $data_perta['kode_perta'];
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); "/ L" ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); ?> / L</td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_max); "/ L" ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_max);  ?> / L</td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sj); "/ L"?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sj); ?> / L</td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Bedilan</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_be); "/ L"?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_be); ?> / L</td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); "/ L"?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?> / L</td>
      
   </tr>
 
