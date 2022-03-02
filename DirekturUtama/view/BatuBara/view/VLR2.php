@@ -510,7 +510,7 @@ else{
                 <td class="text-left">Transport & Akomodasi</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_akomodasi); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLR/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLR/VRTransport?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-540</td>
@@ -538,14 +538,14 @@ else{
                 <td class="text-left">Biaya Penjualan & Pemasaran</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_pemasaran); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLR/VRBiayaSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLR/VRBiayaPen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-590</td>
                 <td class="text-left">Biaya Lain - Lain</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_lain); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLR/VRBiayaSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLR/VRBiayaLain?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             
             <tr>
