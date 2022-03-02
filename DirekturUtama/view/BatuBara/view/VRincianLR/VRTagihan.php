@@ -55,6 +55,17 @@ else{
    $table5 = mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='2'  GROUP BY tanggal ");
 
   $table6 =  mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='3'  GROUP BY tanggal ");
+  
+  $table7 =  mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman 
+  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='4'  GROUP BY tanggal ");
+  
+  $table8 =  mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman 
+  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='5'  GROUP BY tanggal ");
+
+  $table9 =  mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman 
+  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='6'  GROUP BY tanggal ");
+
+
 }
 ?>
 <!DOCTYPE html>
@@ -550,6 +561,99 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table6)){
+      $tanggal = $data['tanggal'];
+      $total_rit =$data['total_rit'];
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$total_rit</td>
+      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+<br>
+
+<h5 align="center" >Rit Rute PT. SLR Service 71-KM</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Tanggal</th>
+      <th>Total Rit</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table7)){
+      $tanggal = $data['tanggal'];
+      $total_rit =$data['total_rit'];
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$total_rit</td>
+      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+<br>
+
+<h5 align="center" >Rit Rute PT. SLR Service 36-KM</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Tanggal</th>
+      <th>Total Rit</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table8)){
+      $tanggal = $data['tanggal'];
+      $total_rit =$data['total_rit'];
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$total_rit</td>
+      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+<br>
+
+<h5 align="center" >Rit Rute PT. BSP service BP ROM-36 KM</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Tanggal</th>
+      <th>Total Rit</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table9)){
       $tanggal = $data['tanggal'];
       $total_rit =$data['total_rit'];
 

@@ -557,6 +557,99 @@ else{
 
 <br>
 <br>
+
+<h5 align="center" >Rit Rute PT. SLR Service 71-KM</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Tanggal</th>
+      <th>Total Rit</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table7)){
+      $tanggal = $data['tanggal'];
+      $total_rit =$data['total_rit'];
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$total_rit</td>
+      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+<br>
+
+<h5 align="center" >Rit Rute PT. SLR Service 36-KM</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Tanggal</th>
+      <th>Total Rit</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table8)){
+      $tanggal = $data['tanggal'];
+      $total_rit =$data['total_rit'];
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$total_rit</td>
+      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+<br>
+
+<h5 align="center" >Rit Rute PT. BSP service BP ROM-36 KM</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Tanggal</th>
+      <th>Total Rit</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table9)){
+      $tanggal = $data['tanggal'];
+      $total_rit =$data['total_rit'];
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$total_rit</td>
+      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+<br>
 <br>
 </div>
 </div>
