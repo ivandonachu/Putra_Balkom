@@ -54,6 +54,16 @@ else{
    $table5 = mysqli_query($koneksipbj, "SELECT tanggal_keluar, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='2'  GROUP BY tanggal_keluar ");
 
   $table6 =  mysqli_query($koneksipbj, "SELECT tanggal_keluar, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='3'  GROUP BY tanggal_keluar ");
+
+  $table7 =  mysqli_query($koneksipbj, "SELECT tanggal_keluar, SUM(rit) AS total_rit FROM riwayat_pengiriman 
+  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='4'  GROUP BY tanggal_keluar ");
+  
+  $table8 =  mysqli_query($koneksipbj, "SELECT tanggal_keluar, SUM(rit) AS total_rit FROM riwayat_pengiriman 
+  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='5'  GROUP BY tanggal_keluar ");
+
+  $table9 =  mysqli_query($koneksipbj, "SELECT tanggal_keluar, SUM(rit) AS total_rit FROM riwayat_pengiriman 
+  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='6'  GROUP BY tanggal_keluar ");
+
 }
 ?>
 <!DOCTYPE html>
