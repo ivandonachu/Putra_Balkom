@@ -35,7 +35,7 @@ $tanggal = $_GET['tanggal'];
 $no_lokasi = $_GET['no_lokasi'];
 
 
-    $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal_keluar = '$tanggal' AND d.no_lokasi = $no_lokasi ");
+    $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal = '$tanggal' AND d.no_lokasi = $no_lokasi ");
 
 ?>
 <!DOCTYPE html>
