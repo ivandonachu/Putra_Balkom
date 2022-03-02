@@ -51,9 +51,9 @@ else{
 
    $table4 = mysqli_query($koneksipbj, "SELECT b.nama_driver, SUM(gaji_tagihan) AS total_gaji FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY b.nama_driver "); 
 
-   $table5 = mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='2'  GROUP BY tanggal ");
+   $table5 = mysqli_query($koneksipbj, "SELECT tanggal_keluar, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='2'  GROUP BY tanggal_keluar ");
 
-  $table6 =  mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='3'  GROUP BY tanggal ");
+  $table6 =  mysqli_query($koneksipbj, "SELECT tanggal_keluar, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='3'  GROUP BY tanggal_keluar ");
 }
 ?>
 <!DOCTYPE html>
@@ -510,7 +510,7 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table5)){
-      $tanggal = $data['tanggal'];
+      $tanggal = $data['tanggal_keluar'];
       $total_rit =$data['total_rit'];
 
       echo "<tr>
@@ -541,7 +541,7 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table6)){
-      $tanggal = $data['tanggal'];
+      $tanggal = $data['tanggal_keluar'];
       $total_rit =$data['total_rit'];
 
       echo "<tr>
