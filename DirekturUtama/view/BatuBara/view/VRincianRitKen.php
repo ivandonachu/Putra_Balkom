@@ -229,7 +229,7 @@ else{
 
    <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
  <div align="left">
-      <?php echo "<a href='VCatatPengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='VCatatPengiriman2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     <br>
     <br>

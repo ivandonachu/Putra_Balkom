@@ -35,7 +35,7 @@ $tanggal = $_GET['tanggal'];
 $no_lokasi = $_GET['no_lokasi'];
 
 
-    $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal = '$tanggal' AND d.no_lokasi = $no_lokasi ");
+    $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal_keluar = '$tanggal' AND d.no_lokasi = $no_lokasi ");
 
 ?>
 <!DOCTYPE html>
@@ -226,7 +226,7 @@ $no_lokasi = $_GET['no_lokasi'];
 
    <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
  <div align="left">
-      <?php echo "<a href='VCatatPengiriman2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='VRCatatPengiriman2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     <br>
     <br>
