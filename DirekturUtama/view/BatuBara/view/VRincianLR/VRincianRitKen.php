@@ -18,6 +18,9 @@ else{ header("Location: logout.php");
 exit;
 }
 
+
+
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -28,33 +31,16 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
 }  
 
+$no_polisi = $_GET['no_polisi'];
+
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE a.tanggal = '$tanggal_awal' ");
-  
-  $table2 = mysqli_query($koneksipbj, "SELECT b.nama_driver, SUM(rit) AS total_rit  FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver WHERE a.tanggal = '$tanggal_awal' GROUP BY b.nama_driver ");
-
-  $table3 = mysqli_query($koneksipbj, "SELECT b.no_polisi, SUM(rit) AS total_rit  FROM riwayat_pengiriman a INNER JOIN kendaraan b ON a.no_kendaraan=b.no_kendaraan WHERE a.tanggal = '$tanggal_awal' GROUP BY b.no_polisi ");
-
-  $table4 = mysqli_query($koneksipbj, "SELECT b.nama_driver, SUM(gaji_tagihan) AS total_gaji FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver WHERE a.tanggal = '$tanggal_awal' GROUP BY b.nama_driver "); 
-
-  $table5 = mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal = '$tanggal_awal' AND no_lokasi ='2'  GROUP BY tanggal ");
-
-  $table6 = mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal = '$tanggal_awal' AND no_lokasi ='3'  GROUP BY tanggal ");
+    $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal = '$tanggal_awal' AND  no_polisi = '$no_polisi' ");
 }
 else{
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal ");
+   $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  no_polisi = '$no_polisi'");
 
-  $table2 = mysqli_query($koneksipbj, "SELECT b.nama_driver, SUM(rit) AS total_rit  FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver WHERE a.tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY b.nama_driver ");
-
-  $table3 = mysqli_query($koneksipbj, "SELECT b.no_polisi, SUM(rit) AS total_rit  FROM riwayat_pengiriman a INNER JOIN kendaraan b ON a.no_kendaraan=b.no_kendaraan WHERE a.tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY b.no_polisi ");
-
-   $table4 = mysqli_query($koneksipbj, "SELECT b.nama_driver, SUM(gaji_tagihan) AS total_gaji FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver WHERE a.tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY b.nama_driver "); 
-
-   $table5 = mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='2'  GROUP BY tanggal ");
-
-  $table6 =  mysqli_query($koneksipbj, "SELECT tanggal, SUM(rit) AS total_rit FROM riwayat_pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_lokasi ='3'  GROUP BY tanggal ");
 }
 ?>
 <!DOCTYPE html>
@@ -68,7 +54,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Pengiriman</title>
+  <title>Rincian Ritase Kendaraan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -93,6 +79,7 @@ else{
 
   <!-- Page Wrapper -->
   <div id="wrapper">
+
    <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
@@ -134,7 +121,7 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../DsCVPBJ">Transport BB</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="DsCVPBJ">Transport BB</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
@@ -152,12 +139,11 @@ else{
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VLR">Laba Rugi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VLSaldo">Laporan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VCatatPengiriman">Riwayat Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VPerbaikan">Beban Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VOperasional">Beban Operasional</a>
-
+                        <a class="collapse-item" style="font-size: 15px;" href="VLR">Laba Rugi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLSaldo">Laporan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Riwayat Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
                          </div>
                 </div>
             </li>
@@ -185,7 +171,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Tagihan</h5></a>"; ?>
+      <?php echo "<a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Ritase Kendaraan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -240,10 +226,13 @@ else{
 
 
 
-  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-<div align="left">
-      <?php echo "<a href='../VLR2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+
+   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+ <div align="left">
+      <?php echo "<a href='VCatatPengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
+    <br>
+    <br>
 
 
   <div class="col-md-8">
@@ -251,6 +240,11 @@ else{
  </div>
  <br>
 
+ <div class="row">
+  <div class="col-md-10">
+
+  </div>
+</div>
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%;  ">
   <thead>
@@ -262,7 +256,6 @@ else{
       <th>Barang</th>
       <th>Rute</th>
       <th>Muatan</th>
-      <th>Harga</th>
       <th>Jasa Transport</th>
       <th>No Polisi</th>
       <th>Driver</th>
@@ -270,6 +263,7 @@ else{
       <th>Gaji</th>
       <th>KET</th>
       <th>File</th>
+
     </tr>
   </thead>
   <tbody>
@@ -293,11 +287,11 @@ else{
       $nm_perusahaan = $data['nm_perusahaan'];
       $nm_lokasi = $data['nm_lokasi'];
       $muatan = $data['muatan'];
-      $harga = $data['harga_tagihan'];
+      $harga = $data['harga'];
       $no_polisi = $data['no_polisi'];
       $nama_driver = $data['nama_driver'];
-      $uj = $data['uj_tagihan'];
-      $gaji = $data['gaji_tagihan'];
+      $uj = $data['uj'];
+      $gaji = $data['gaji'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
       $jasa_transport = $muatan * $harga;
@@ -317,7 +311,6 @@ else{
       <td style='font-size: 14px' align = 'center'>$nm_perusahaan</td>
       <td style='font-size: 14px' align = 'center'>$nm_lokasi</td>
       <td style='font-size: 14px' align = 'center'>$muatan</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jasa_transport); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$nama_driver</td>
@@ -329,6 +322,7 @@ else{
       <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>" href="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
    
+
 <?php echo  " </tr>";
 }
 ?>
@@ -408,167 +402,15 @@ else{
     </div>
   </div>
 </div>
-<br>
-<br>
-
-<h5 align="center" >Ritease Driver</h5>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Nama Driver</th>
-      <th>Total Rit</th>
-      <th></th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php while($data = mysqli_fetch_array($table2)){
-      $nama_driver = $data['nama_driver'];
-      $total_rit =$data['total_rit'];
-
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td  align = 'center'><a href='VRincianRitDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
-      </tr>";
-}
-?>
-
-</tbody>
-</table>
-
-
-<br>
-<br>
-
-<h5 align="center" >Ritease Kendaraan</h5>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>No Polisi</th>
-      <th>Total Rit</th>
-      <th></th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php while($data = mysqli_fetch_array($table3)){
-      $no_polisi = $data['no_polisi'];
-      $total_rit =$data['total_rit'];
-
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td  align = 'center'><a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
-      </tr>";
-}
-?>
-
-</tbody>
-</table>
-
-<br>
-<br>
-
-<h5 align="center" >Gaji Driver</h5>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Nama Driver</th>
-      <th>Total Gaji</th>
-      <th></th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php while($data = mysqli_fetch_array($table4)){
-      $no_polisi = $data['no_polisi'];
-      $total_gaji =$data['total_gaji'];
-
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
-      <td style='font-size: 14px' align = 'center'>$total_gaji</td>
-      <td  align = 'center'><a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
-      </tr>";
-}
-?>
-
-</tbody>
-</table>
-
-<br>
-<br>
-
-<h5 align="center" >Rit Rute PT. SLR Service 40-KM</h5>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Nama Driver</th>
-      <th>Total Rit</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php while($data = mysqli_fetch_array($table5)){
-      $tanggal = $data['tanggal_keluar'];
-      $total_rit =$data['total_rit'];
-
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$tanggal</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
-      </tr>";
-}
-?>
-
-</tbody>
-</table>
-
-<br>
-<br>
-
-<h5 align="center" >Rit Rute PT. SLR Service 107-KM</h5>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Nama Driver</th>
-      <th>Total Rit</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php while($data = mysqli_fetch_array($table6)){
-      $tanggal = $data['tanggal_keluar'];
-      $total_rit =$data['total_rit'];
-
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$tanggal</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
-      </tr>";
-}
-?>
-
-</tbody>
-</table>
 
 <br>
 <br>
 <br>
+
+
 </div>
 </div>
+
 </div>
 <!-- End of Main Content -->
 
