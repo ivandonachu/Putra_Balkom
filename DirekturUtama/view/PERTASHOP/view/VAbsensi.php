@@ -40,7 +40,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 else{
   $table = mysqli_query($koneksiperta,"SELECT * FROM absensi  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksiperta, "SELECT nama_karyawan, lokasi, COUNT(nama_karyawan) as jumlah_absen FROM absensi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_karyawan ");
+  $table2 = mysqli_query($koneksiperta, "SELECT nama_karyawan, COUNT(nama_karyawan) as jumlah_absen FROM absensi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_karyawan ");
 
 
 }
@@ -368,13 +368,13 @@ else{
 
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_driver = $data['nama_karyawan'];
-      $lokasi =$data['lokasi'];
+
       $jumlah_absen =$data['jumlah_absen'];
  
 
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
-      <td style='font-size: 14px' align = 'center'>$lokasi</td>
+
        <td style='font-size: 14px' align = 'center'>$jumlah_absen</td>
 
       </tr>";
