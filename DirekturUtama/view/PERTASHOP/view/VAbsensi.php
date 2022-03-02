@@ -17,9 +17,7 @@ if ($jabatan_valid == 'Direktur Utama') {
 else{ header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
-$data = mysqli_fetch_array($result);
-$nama = $data['nama_karyawan'];
+
 
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
@@ -42,6 +40,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 else{
   $table = mysqli_query($koneksiperta,"SELECT * FROM absensi  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksiperta, "SELECT nama_karyawan, lokasi, COUNT(nama_karyawan) as jumlah_absen FROM absensi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_karyawan ");
 
 
 }
@@ -350,6 +349,40 @@ else{
 
     </tbody>
   </table>
+
+  <br>
+<br>
+<h5 align="center" >Jumlah Absensi Karyawan</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Nama Karyawan</th>
+      <th>Lokasi Karyawan</th>
+      <th>Total Absensi</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_driver = $data['nama_karyawan'];
+      $lokasi =$data['lokasi'];
+      $jumlah_absen =$data['jumlah_absen'];
+ 
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
+      <td style='font-size: 14px' align = 'center'>$lokasi</td>
+       <td style='font-size: 14px' align = 'center'>$jumlah_absen</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
 </div>
 
 
