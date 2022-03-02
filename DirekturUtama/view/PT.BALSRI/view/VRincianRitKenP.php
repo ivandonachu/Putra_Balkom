@@ -227,7 +227,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Ritase Kendaraan PLG</h5></a>"; ?>
+      <?php echo "<a href='VRincianRitKenP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Ritase Kendaraan PLG</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -287,7 +287,7 @@ else{
 
    <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
  <div align="left">
-      <?php echo "<a href='VRitase2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='VRitaseP2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     <br>
     <br>
