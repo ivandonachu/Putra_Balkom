@@ -358,7 +358,7 @@ else{
   <thead>
     <tr>
       <th>Nama Karyawan</th>
-      <th>Lokasi Karyawan</th>
+
       <th>Total Absensi</th>
 
 
@@ -375,7 +375,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
 
-       <td style='font-size: 14px' align = 'center'>$jumlah_absen</td>
+      <td style='font-size: 14px' align = 'center'>$jumlah_absen</td>
 
       </tr>";
 }
