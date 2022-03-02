@@ -323,7 +323,7 @@ else{
         <td style='font-size: 14px'>";?>  <?php echo "</td>";
       }
         ; ?>
-        ?php echo "
+        <?php echo "
          <td style='font-size: 14px';>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
 
