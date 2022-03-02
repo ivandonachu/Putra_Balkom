@@ -494,7 +494,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$total_gaji</td>
-      <td  align = 'center'><a href='VRincianGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
+      <td  align = 'center'><a href='VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
       </tr>";
 }
 ?>
