@@ -488,11 +488,11 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table4)){
-      $no_polisi = $data['no_polisi'];
+      $nama_driver = $data['nama_driver'];
       $total_gaji =$data['total_gaji'];
 
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
       <td style='font-size: 14px' align = 'center'>$total_gaji</td>
       <td  align = 'center'><a href='VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
       </tr>";
@@ -510,7 +510,7 @@ else{
 <table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Nama Driver</th>
+      <th>Tanggal</th>
       <th>Total Rit</th>
 
 
@@ -519,7 +519,7 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table5)){
-      $tanggal = $data['tanggal_keluar'];
+      $tanggal = $data['tanggal'];
       $total_rit =$data['total_rit'];
 
       echo "<tr>
@@ -541,7 +541,7 @@ else{
 <table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Nama Driver</th>
+      <th>Tanggal</th>
       <th>Total Rit</th>
 
 
@@ -550,7 +550,7 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table6)){
-      $tanggal = $data['tanggal_keluar'];
+      $tanggal = $data['tanggal'];
       $total_rit =$data['total_rit'];
 
       echo "<tr>
