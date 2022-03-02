@@ -121,6 +121,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
                     </div>
                 </div>
             </li>
@@ -134,9 +135,13 @@ else{
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VLKeuangan1">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VLPenjualan1">Laporan Penjaulan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VLabaRugi">Laba Rugi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPenggunaanSaldo">Laporan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VBonKaryawan">Laporan BON </a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VRincianSA">Alokasi SA </a>
+                         <a class="collapse-item" style="font-size: 15px;" href="../VUangPBJ">Uang PBJ</a>
                     </div>
                 </div>
             </li>
@@ -151,8 +156,8 @@ else{
                 <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Daftar Aset</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Daftar Dokumen</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VAset">Daftar Aset</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VDokumen">Daftar Dokumen</a>
                     </div>
                 </div>
             </li>
@@ -302,24 +307,24 @@ else{
 
       if ($nama_akun == 'Saldo Awal') {
         echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+        <td style='font-size: 14px'>";?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       else{
         echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+        <td style='font-size: 14px'>";?>  <?php echo "</td>";
       }
 
       if ($nama_akun != 'Saldo Awal') {
         echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+        <td style='font-size: 14px'>";?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       else{
         echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+        <td style='font-size: 14px'>";?>  <?php echo "</td>";
       }
         ; ?>
         ?php echo "
-         <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+         <td style='font-size: 14px';>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
 
     <?php echo  " </td> </tr>";
