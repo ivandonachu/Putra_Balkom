@@ -431,7 +431,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$nama_driver</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td  align = 'center'><a href='VRincianRitDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
+      <td  align = 'center'><a href='../VRincianRitDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
       </tr>";
 }
 ?>
@@ -463,7 +463,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td  align = 'center'><a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
+      <td  align = 'center'><a href='../VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
       </tr>";
 }
 ?>
@@ -480,7 +480,7 @@ else{
   <thead>
     <tr>
       <th>Nama Driver</th>
-      <th>Total Rit</th>
+      <th>Total Gaji</th>
       <th></th>
 
     </tr>
@@ -494,7 +494,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$total_gaji</td>
-      <td  align = 'center'><a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
+      <td  align = 'center'><a href='../VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
       </tr>";
 }
 ?>
