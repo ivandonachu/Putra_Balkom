@@ -127,7 +127,7 @@ $kode_perta = $data_perta['kode_perta'];
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="DsPertashop">Pertashop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../DsPertashop">Pertashop</a>
                     </div>
                 </div>
             </li>
@@ -141,14 +141,14 @@ $kode_perta = $data_perta['kode_perta'];
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Laporan Pengeluran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Laporan Pembelian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualanPagi">Grafik Jual Pagi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VLPenjualan">Laporan Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VLPengeluaran">Laporan Pengeluran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VLKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPembelian">Laporan Pembelian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VLabaRugi">Laba Rugi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VAbsensi">Absensi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VGrafikPenjualan">Grafik Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VGrafikPenjualanPagi">Grafik Jual Pagi</a>
                     </div>
                 </div>
             </li>
