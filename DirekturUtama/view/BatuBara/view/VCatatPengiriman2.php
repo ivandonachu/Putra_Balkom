@@ -588,7 +588,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$tanggal</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=4'>Rincian</a></td>
       </tr>";
 }
 ?>
@@ -619,7 +619,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$tanggal</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=5'>Rincian</a></td>
       </tr>";
 }
 ?>
@@ -650,7 +650,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$tanggal</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=3'>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianRitTanggal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tanggal=$tanggal&no_lokasi=6'>Rincian</a></td>
       </tr>";
 }
 ?>
