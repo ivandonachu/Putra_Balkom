@@ -582,7 +582,7 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table7)){
-      $tanggal = $data['tanggal'];
+      $tanggal = $data['tanggal_keluar'];
       $total_rit =$data['total_rit'];
 
       echo "<tr>
@@ -613,7 +613,7 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table8)){
-      $tanggal = $data['tanggal'];
+      $tanggal = $data['tanggal_keluar'];
       $total_rit =$data['total_rit'];
 
       echo "<tr>
@@ -644,7 +644,7 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table9)){
-      $tanggal = $data['tanggal'];
+      $tanggal = $data['tanggal_keluar'];
       $total_rit =$data['total_rit'];
 
       echo "<tr>
