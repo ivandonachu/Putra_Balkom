@@ -41,7 +41,7 @@ if($jen_ken == '8000 L'){
 else{
 	$dexlite = $jt_gps/6;
 }
-$u_dex = $dexlite*12400;
+$u_dex = $dexlite*13250;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
 if ($jns_trans == 'Lost') {
