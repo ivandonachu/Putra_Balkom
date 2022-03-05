@@ -31,6 +31,12 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 } 
+
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
+
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' ");
 $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
@@ -38,6 +44,145 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 else{
 $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
 $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
+
+// KELUARRRRRR
+//keluar cbm untuk cbm
+$table3 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_cbm FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'CBM' AND status_saldo = 'Keluar' ");
+   $data3 = mysqli_fetch_array($table3);
+   $jumlah_kel_cbm = $data3['jumlah_kel_cbm'];
+    if (!isset($data3['jumlah_kel_cbm'])) {
+    $jumlah_kel_cbm = 0;
+    }
+
+//keluar mes untuk mes
+$table4 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_mes FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'MES' AND referensi = 'MES' AND status_saldo = 'Keluar' ");
+   $data4 = mysqli_fetch_array($table4);
+   $jumlah_kel_mes = $data4['jumlah_kel_mes'];
+    if (!isset($data4['jumlah_kel_mes'])) {
+    $jumlah_kel_mes = 0;
+    }
+
+//keluar pbr untuk pbr
+$table5 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pbr FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBR' AND referensi = 'PBR' AND status_saldo = 'Keluar' ");
+   $data5 = mysqli_fetch_array($table5);
+   $jumlah_kel_pbr = $data5['jumlah_kel_pbr'];
+    if (!isset($data5['jumlah_kel_pbr'])) {
+    $jumlah_kel_pbr = 0;
+    }
+
+//keluar pbj untuk pbj
+$table6 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pbj FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBJ' AND referensi = 'PBJ' AND status_saldo = 'Keluar' ");
+   $data6 = mysqli_fetch_array($table6);
+   $jumlah_kel_pbj = $data6['jumlah_kel_pbj'];
+    if (!isset($data6['jumlah_kel_pbj'])) {
+    $jumlah_kel_pbj = 0;
+    }
+
+  //keluar mt untuk mt
+$table7 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_mt FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'Melodi Tani' AND referensi = 'Melodi Tani' AND status_saldo = 'Keluar' ");
+$data7 = mysqli_fetch_array($table7);
+$jumlah_kel_mt = $data7['jumlah_kel_mt'];
+ if (!isset($data7['jumlah_kel_mt'])) {
+ $jumlah_kel_mt = 0;
+
+ }//keluar balsri untuk balsri
+$table8 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_balsri_balsri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'BALSRI' AND referensi = 'BALSRI' AND status_saldo = 'Keluar' ");
+$data8 = mysqli_fetch_array($table8);
+$jumlah_kel_balsri_balsri = $data8['jumlah_kel_balsri_balsri'];
+ if (!isset($data8['jumlah_kel_balsri_balsri'])) {
+ $jumlah_kel_balsri_balsri = 0;
+
+ }//keluar balsri untuk ste
+$table9 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_balsri_ste FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'BALSRI' AND referensi = 'STE' AND status_saldo = 'Keluar' ");
+$data9 = mysqli_fetch_array($table9);
+$jumlah_kel_balsri_ste = $data9['jumlah_kel_balsri_ste'];
+ if (!isset($data9['jumlah_kel_balsri_ste'])) {
+ $jumlah_kel_balsri_ste = 0;
+
+ }//keluar pribadi untuk kebun 
+$table10 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'Kebun Lenkiti' AND status_saldo = 'Keluar' ");
+$data10 = mysqli_fetch_array($table10);
+$jumlah_kel_pri = $data10['jumlah_kel_pri'];
+ if (!isset($data10['jumlah_kel_pri'])) {
+ $jumlah_kel_pri = 0;
+ }
+
+// MASUKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+
+ //MASUK cbm untuk cbm
+$table11 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_cbm FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'CBM' AND status_saldo = 'Masuk' ");
+$data11 = mysqli_fetch_array($table11);
+$jumlah_mas_cbm = $data11['jumlah_mas_cbm'];
+ if (!isset($data11['jumlah_mas_cbm'])) {
+ $jumlah_mas_cbm = 0;
+ }
+
+//MASUK mes untuk mes
+$table12 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_mes FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'MES' AND referensi = 'MES' AND status_saldo = 'Masuk' ");
+$data12 = mysqli_fetch_array($table12);
+$jumlah_mas_mes = $data12['jumlah_mas_mes'];
+ if (!isset($data12['jumlah_mas_mes'])) {
+ $jumlah_mas_mes = 0;
+ }
+
+//MASUK pbr untuk pbr
+$table13 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_pbr FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBR' AND referensi = 'PBR' AND status_saldo = 'Masuk' ");
+$data13 = mysqli_fetch_array($table13);
+$jumlah_mas_pbr = $data13['jumlah_mas_pbr'];
+ if (!isset($data13['jumlah_mas_pbr'])) {
+ $jumlah_mas_pbr = 0;
+ }
+
+//MASUK pbj untuk pbj
+$table14 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_pbj FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBJ' AND referensi = 'PBJ' AND status_saldo = 'Masuk' ");
+$data14 = mysqli_fetch_array($table14);
+$jumlah_mas_pbj = $data14['jumlah_mas_pbj'];
+ if (!isset($data14['jumlah_mas_pbj'])) {
+ $jumlah_mas_pbj = 0;
+ }
+
+//MASUK mt untuk mt
+$table15 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_mt FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'Melodi Tani' AND referensi = 'Melodi Tani' AND status_saldo = 'Masuk' ");
+$data15 = mysqli_fetch_array($table15);
+$jumlah_mas_mt = $data15['jumlah_mas_mt'];
+if (!isset($data15['jumlah_mas_mt'])) {
+$jumlah_mas_mt = 0;
+
+}//MASUK balsri untuk balsri
+$table16 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_balsri_balsri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'BALSRI' AND referensi = 'BALSRI' AND status_saldo = 'Masuk' ");
+$data16 = mysqli_fetch_array($table16);
+$jumlah_mas_balsri_balsri = $data16['jumlah_mas_balsri_balsri'];
+if (!isset($data16['jumlah_mas_balsri_balsri'])) {
+$jumlah_mas_balsri_balsri = 0;
+
+}//MASUK balsri untuk ste
+$table17 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_balsri_ste FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'BALSRI' AND referensi = 'STE' AND status_saldo = 'Masuk' ");
+$data17 = mysqli_fetch_array($table17);
+$jumlah_mas_balsri_ste = $data17['jumlah_mas_balsri_ste'];
+if (!isset($data17['jumlah_mas_balsri_ste'])) {
+$jumlah_mas_balsri_ste = 0;
+
+}//MASUK pribadi untuk kebun 
+$table18 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_pri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'Kebun Lenkiti' AND status_saldo = 'Masuk' ");
+$data18 = mysqli_fetch_array($table18);
+$jumlah_mas_pri = $data18['jumlah_mas_pri'];
+if (!isset($data18['jumlah_mas_pri'])) {
+$jumlah_mas_pri = 0;
+}
+// kode salado
+
+$CBM = 'CBM';
+$MES = 'MES';
+$PBR = 'PBR';
+$PBJ = 'PBJ';
+$MT = 'Melodi Tani';
+$BALSRI = 'BALSRI';
+$STE = 'STE';
+$PRIBADI = 'PRIBADI';
+$Kebun = 'Kebun Lengkiti';
+$Keluar = 'Keluar';
+$Masuk = 'Masuk';
+
 
 }
  ?>
@@ -205,7 +350,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php  echo "<form  method='POST' action='VPenggunaanSaldo2' style='margin-bottom: 15px;'>" ?>
+ <?php  echo "<form  method='POST' action='VSakdoBaru' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -228,7 +373,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
    <div class="col-md-2">
     <!-- Button Pindah Baja -->
     <div align="right">
- 
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Penggunaan Saldo </button> <br> <br>
     </div>
     <!-- Form Modal  -->
     <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -269,7 +414,8 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             <option>PBJ</option>
             <option>BALSRI</option>
             <option>Kebun Lengkiti</option>
-            <option>MES/PBR</option>
+            <option>MES</option>
+            <option>PBR</option>
             <option>STE</option>
           </select>
           <small></small>
@@ -317,6 +463,11 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             <option>CBM</option>
             <option>Melodi Tani</option>
             <option>PBJ</option>
+            <option>MES</option>
+            <option>PBR</option>
+            <option>PRIBADI</option>
+            <option>BALSRI</option>
+            <option>STE</option>
           </select>
     </div>
     <br>
@@ -335,7 +486,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 
 
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">Pindahkan</button>
+    <button type="submit" class="btn btn-primary">CATAT</button>
     <button type="reset" class="btn btn-danger"> RESET</button>
   </div>
 </form>
@@ -356,9 +507,9 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Akun</th>
-      <th>REF</th>
       <th>Rekening</th>
+      <th>REF/Digunakan</th>
+      <th>Akun</th>
       <th>Debit</th>
       <th>Kredit</th>
       <th>Keterangan</th>
@@ -368,24 +519,56 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
   </thead>
   <tbody>
     <?php
+
+
+
+
+  /*
+    //masuk
+    //Saldo CBM untuk CBM
+    $saldo_cbm_cbm = 0;
+    //Saldo MES untuk MES
+    $saldo_mes_mes = 0;
+    //Saldo PBR untuk PBR
+    $saldo_pbr_pbr = 0;
+    //Saldo PBJ untuk PBJ
+    $saldo_pbj_pbj = 0;
+    //Saldo MT untuk MT
+    $saldo_mt_mt = 0;
+    //saldo Balsri untuk Balsri
+    $saldo_balsri_balsri = 0;
+    //SALDO bASLSRI intuk Kebun STE
+    $saldo_balsri_ste = 0;
+    //SALDO Pribadi intuk Kebun Lengkiti
+    $saldo_pribadi_kebun = 0;
+
+  //MASUK
     //Masuk CBM Keluar CBM
     $masuk_cbm_cbm = 0;
     //Masuk CBM Keluar PBJ
     $masuk_cbm_pbj = 0;
     //mASUK cbm kELUAR MT
     $masuk_cbm_mt = 0;
+
     //masuk mt keluar cbm
     $masuk_mt_cbm = 0;
     //masuk mt keluar pbj
     $masuk_mt_pbj = 0;
     //masuk mt keluar mt
     $masuk_mt_mt = 0;
+
     //masuk pbj keluar cbm
     $masuk_pbj_cbm = 0;
     //masuk pbj keluar pbj
     $masuk_pbj_pbj = 0;
     //masuk pbj keluar mt
     $masuk_pbj_mt = 0;
+    //Masuk CBM Keluar CBM
+    $masuk_cbm_cbm = 0;
+    //Masuk CBM Keluar PBJ
+    $masuk_cbm_pbj = 0;
+    //mASUK cbm kELUAR MT
+    $masuk_cbm_mt = 0;
     
     
     //keluar cbm masuk cbm
@@ -451,6 +634,14 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
     $keluar_pbj_ste = 0 ;
     //keluar mt ke ste
     $keluar_mt_ste = 0 ;
+    //keluar cbm ke mes
+    $keluar_cbm_ste = 0 ;
+    //keluar pbj ke mes
+    $keluar_pbj_ste = 0 ;
+    //keluar mt ke mes
+    $keluar_mt_ste = 0 ;
+    
+    */
     
     $urut = 0;
     function formatuang($angka){
@@ -462,13 +653,14 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
+      $nama_rekening = $data['nama_rekening'];
       $referensi = $data['referensi'];
       $nama_akun = $data['nama_akun'];
-      $nama_rekening = $data['nama_rekening'];
       $jumlah = $data['jumlah'];
       $file_bukti = $data['file_bukti'];
       $keterangan = $data['keterangan'];
       $status_saldo = $data['status_saldo'];
+    /*
     if($nama_akun == 'Transfer Ke Bos'){
         
     }
@@ -634,14 +826,17 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
     else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'Melodi Tani' && $nama_akun == 'Setor ke Bank' ) {
         $setor_pbj_mt = $setor_pbj_mt + $jumlah;
       }
+      */
 
         $urut = $urut + 1;
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$nama_rekening</td>
       <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_rekening</td>";
+      <td style='font-size: 14px'>$nama_akun</td>
+      
+     ";
 
 
       if ($status_saldo == 'Masuk') {
@@ -667,7 +862,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
       <td style='font-size: 14px'>"; ?> <a download="../file_oprasional/<?= $file_bukti ?>" href="../file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
-      
+       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
 
         <!-- Form EDIT DATA -->
 
@@ -713,7 +908,8 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
             <option <?php echo ($dataSelect == 'BALSRI') ? "selected": "" ?> >BALSRI</option>
             <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
-            <option <?php echo ($dataSelect == 'MES/PBR') ? "selected": "" ?> >MES/PBR</option>
+            <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+            <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
             <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
           </select>
 
@@ -759,6 +955,11 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
             <option <?php echo ($dataSelect == 'Melodi Tani') ? "selected": "" ?> >Melodi Tani</option>
             <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
+            <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+            <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+            <option <?php echo ($dataSelect == 'BASLRI') ? "selected": "" ?> >BALSRI</option>
+            <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
+            <option <?php echo ($dataSelect == 'PRIBADI') ? "selected": "" ?> >PRIBADI</option>
           </select>
 
   
@@ -795,7 +996,8 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             </div>
           </div>
         </div>
- 
+      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
+
       <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
        <div class="modal-dialog" role ="document">
          <div class="modal-content"> 
@@ -841,8 +1043,167 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 </div>
 <br>
 <br>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Pengeluaran</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'align = 'center'>Rekening</th>
+      <th style='font-size: 11px'align = 'center'>Referensi</th>
+      <th style='font-size: 11px'align = 'center'>Total Keluar</th>
+      <th style='font-size: 11px'align = 'center'></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$CBM&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_mes); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MES&rekening=$MES&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbr); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBR&rekening=$PBR&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbj); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBJ&rekening=$PBJ&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
+      <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_mt); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MT&rekening=$MT&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_balsri_balsri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$BALSRI&rekening=$BALSRI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'>STE</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_balsri_ste); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$STE&rekening=$BALSRI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Lengkiti</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+<br>
 <br>
 
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Pemasukan</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px' align = 'center'>Rekening</th>
+      <th style='font-size: 11px' align = 'center'>Referensi</th>
+      <th style='font-size: 11px' align = 'center'>Total Masuk</th>
+      <th style='font-size: 11px'align = 'center'></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_cbm); ?></td>
+     
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$CBM&rekening=$CBM&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_mes); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MES&rekening=$MES&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pbr); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBR&rekening=$PBR&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pbj); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBJ&rekening=$PBJ&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
+      <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_mt); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MT&rekening=$MT&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_balsri_balsri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$BALSRI&rekening=$BALSRI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'>STE</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_balsri_ste); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$STE&rekening=$BALSRI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Lengkiti</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$PRIBADI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+<br>
+<br>
+
+
+
+
+
+<?php /*
 <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 <h6 align="center">UANG CBM</h6>
 <!-- Tabel -->    
@@ -968,6 +1329,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 </table>
 </div>
 <br>
+
 <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 <h6 align="center">Pengeluaran Untuk STE</h6>
 <!-- Tabel -->    
@@ -997,9 +1359,10 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 </table>
 </div>
 <br>
+*/ ?>
 
-<br>
-<br>
+
+
 
 
 </div>

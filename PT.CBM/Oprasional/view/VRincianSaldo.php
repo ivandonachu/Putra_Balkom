@@ -22,6 +22,27 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+ $referensi1 = $_GET['referensi'];
+ $rekening1 = $_GET['rekening'];
+ $status_saldo1 = $_GET['status_saldo'];
+} 
+
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+} 
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' ");
+
+}
+else{
+$table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = '$referensi1' AND nama_rekening = '$rekening1' AND status_saldo = '$status_saldo1'  ");
+
+
+}
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -34,7 +55,7 @@ $nama = $data['nama_karyawan'];
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penggunaan Saldo Armada</title>
+  <title>Penggunaan Uang</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -185,21 +206,101 @@ $nama = $data['nama_karyawan'];
 <div>   
 
 
-
   <!-- Name Page -->
-  <div style="margin-right: 100px; margin-left: 100px;">
-
-      <?php  echo "<form  method='POST' action='VPenggunaanSaldo2.php'>" ?>
-      <div>
-        <div align="left" style="margin-left: 20px;"> 
-          <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-          <span>-</span>
-          <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-          <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
-      </div>
-  </div>
-</form>
+  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+  <div>
+    <div align="left">
+    <?php echo "<a href='VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    </div>
+    </div>
+  
+  
+  <div class="row">
+    <div class="col-md-6">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   
 </div>
+ <br>
+
+<!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Rekening</th>
+      <th>REF/Digunakan</th>
+      <th>Akun</th>
+      <th>Debit</th>
+      <th>Kredit</th>
+      <th>Keterangan</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+
+    
+    $urut = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
+    ?>
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $nama_rekening = $data['nama_rekening'];
+      $referensi = $data['referensi'];
+      $nama_akun = $data['nama_akun'];
+      $jumlah = $data['jumlah'];
+      $file_bukti = $data['file_bukti'];
+      $keterangan = $data['keterangan'];
+      $status_saldo = $data['status_saldo'];
+
+        $urut = $urut + 1;
+      echo "<tr>
+      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$nama_rekening</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      
+     ";
+
+
+      if ($status_saldo == 'Masuk') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+
+      if ($status_saldo == 'Keluar') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+        
+      echo "
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"; ?> <a download="../file_oprasional/<?= $file_bukti ?>" href="../file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      
+    </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+</div>
+
 
 </div>
 
@@ -208,11 +309,11 @@ $nama = $data['nama_karyawan'];
 
 <!-- Footer -->
 <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
-        </div>
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
     </div>
+  </div>
 </footer>
 <!-- End of Footer -->
 
@@ -224,38 +325,65 @@ $nama = $data['nama_karyawan'];
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
+  <i class="fas fa-angle-up"></i>
 </a>
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
 <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="logout">Logout</a>
-        </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
     </div>
+    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+      <a class="btn btn-primary" href="logout">Logout</a>
+    </div>
+  </div>
 </div>
 </div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
+
+<!-- Tabel -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example').DataTable( {
+      lengthChange: false,
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
 
 </body>
 

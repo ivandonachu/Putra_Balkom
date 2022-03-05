@@ -28,6 +28,20 @@ $rekening = $_POST['rekening'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 
+if($rekening == $referensi  ){
+
+}
+else if($rekening == 'BALSRI' && $referensi == 'STE' ){
+
+}
+else if($rekening == 'PRIBADI' && $referensi == 'Kebun Lengkiti' ){
+
+}
+else{
+	echo "<script>alert('Saldo dan referensi tidak sama :)');  window.location='../view/VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+
+}
+
 if ($akun == 'Dana Masuk') {
 	$status_saldo = 'Masuk';
 }
@@ -75,5 +89,5 @@ $query = mysqli_query($koneksi,"INSERT INTO riwayat_saldo_armada VALUES ('','$ta
 
 
 			if ($query != "") {
-				echo "<script> window.location='../view/VPenggunaanSaldo2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}

@@ -139,6 +139,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tangg
                         <a class="collapse-item" style="font-size: 15px;" href="VListDriver">List Driver</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VListRute">List Rute</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Penggunaan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo Baru</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
                     </div>
                 </div>
