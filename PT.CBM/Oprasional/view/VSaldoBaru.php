@@ -107,6 +107,14 @@ $jumlah_kel_pri = $data10['jumlah_kel_pri'];
  $jumlah_kel_pri = 0;
  }
 
+  //keluar pribadi untuk kebun 
+$table101 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pri_pri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'PRIBADI' AND status_saldo = 'Keluar' ");
+$data101 = mysqli_fetch_array($table101);
+$jumlah_kel_pri = $data101['jumlah_kel_pri_pri'];
+ if (!isset($data101['jumlah_kel_pri_pri'])) {
+ $jumlah_kel_pri_pri = 0;
+ }
+
 // MASUKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
 
  //MASUK cbm untuk cbm
@@ -169,6 +177,15 @@ $jumlah_mas_pri = $data18['jumlah_mas_pri'];
 if (!isset($data18['jumlah_mas_pri'])) {
 $jumlah_mas_pri = 0;
 }
+
+//MASUK pribadi untuk kebun 
+$table19 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_pri_pri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'PRIBADI' AND status_saldo = 'Masuk' ");
+$data19 = mysqli_fetch_array($table19);
+$jumlah_mas_pri = $data19['jumlah_mas_pri_pri'];
+if (!isset($data19['jumlah_mas_pri_pri'])) {
+$jumlah_mas_pri_pri = 0;
+}
+
 // kode salado
 
 $CBM = 'CBM';
@@ -414,6 +431,7 @@ $Masuk = 'Masuk';
             <option>PBJ</option>
             <option>BALSRI</option>
             <option>Kebun Lengkiti</option>
+            <option>PRIBADI</option>
             <option>MES</option>
             <option>PBR</option>
             <option>STE</option>
@@ -908,6 +926,7 @@ $Masuk = 'Masuk';
             <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
             <option <?php echo ($dataSelect == 'BALSRI') ? "selected": "" ?> >BALSRI</option>
             <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
+            <option <?php echo ($dataSelect == 'PRIBADI') ? "selected": "" ?> >PRIBADI</option>
             <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
             <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
             <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
@@ -1112,6 +1131,13 @@ $Masuk = 'Masuk';
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_pri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PRIBADI&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
 
 
 </tbody>
@@ -1191,7 +1217,13 @@ $Masuk = 'Masuk';
 
      
   </tr>
-
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri_pri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PRIBADI&rekening=$PRIBADI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
 
 </tbody>
 </table>
