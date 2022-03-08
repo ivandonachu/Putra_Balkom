@@ -44,7 +44,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 //elseeeeeeee
 else {
     $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
- WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.nama = '$nama' AND a.kode_baja = '$baja' AND referensi = '$referensi' ");
+ WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.nama = '$nama' AND a.kode_baja = '$baja' AND a.referensi = '$referensi' ");
 }
 
 ?>
