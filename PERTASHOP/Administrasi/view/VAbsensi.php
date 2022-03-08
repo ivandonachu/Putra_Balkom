@@ -116,6 +116,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSetoran">Setoran</a>
           </div>
         </div>
       </li>
