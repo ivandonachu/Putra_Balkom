@@ -79,7 +79,7 @@ $table6 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pbj FROM riwa
     }
 
   //keluar mt untuk mt
-$table7 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_mt FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'Melodi Tani' AND referensi = 'Melodi Tani' AND status_saldo = 'Keluar' ");
+$table7 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_mt FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Melodi Tani' AND status_saldo = 'Keluar' ");
 $data7 = mysqli_fetch_array($table7);
 $jumlah_kel_mt = $data7['jumlah_kel_mt'];
  if (!isset($data7['jumlah_kel_mt'])) {
@@ -150,7 +150,7 @@ $jumlah_mas_pbj = $data14['jumlah_mas_pbj'];
  }
 
 //MASUK mt untuk mt
-$table15 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_mt FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'Melodi Tani' AND referensi = 'Melodi Tani' AND status_saldo = 'Masuk' ");
+$table15 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_mt FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Melodi Tani' AND status_saldo = 'Masuk' ");
 $data15 = mysqli_fetch_array($table15);
 $jumlah_mas_mt = $data15['jumlah_mas_mt'];
 if (!isset($data15['jumlah_mas_mt'])) {
@@ -419,10 +419,21 @@ $Masuk = 'Masuk';
           <div class="col-md-6">
           </div>
         </div>
-
+  <br>
 
         <div class="row">
-           
+        <div class="col-md-6">
+       <label>Saldo</label>
+          <select id="rekening" name="rekening" class="form-control">
+            <option>CBM</option>
+            <option>PBJ</option>
+            <option>MES</option>
+            <option>PBR</option>
+            <option>PRIBADI</option>
+            <option>BALSRI</option>
+            <option>STE</option>
+          </select>
+    </div>
           <div class="col-md-6">
            <label>REF Pengeluaran/Pemasukan</label>
           <select id="referensi" name="referensi" class="form-control">
@@ -438,8 +449,17 @@ $Masuk = 'Masuk';
           </select>
           <small></small>
         </div>
+        
+   
 
-        <div class="col-md-6">
+      </div>
+
+      <br>
+
+     
+
+      <div class="row">
+      <div class="col-md-6">
           <label>Akun</label>
           <select id="akun" name="akun" class="form-control">
             <option>Setor ke Bank</option>
@@ -457,38 +477,13 @@ $Masuk = 'Masuk';
             <option>Pengeluaran Buk Mery</option>
           </select>
         </div>            
-
-      </div>
-
-      <br>
-
-     
-
-      <div class="row">
         <div class="col-md-6">
           <label>Jumlah</label>
           <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
         </div>    
-        <div class="col-md-6">
-        </div>         
       </div>
-
       <br>
 
-    <div>
-       <label>Saldo</label>
-          <select id="rekening" name="rekening" class="form-control">
-            <option>CBM</option>
-            <option>Melodi Tani</option>
-            <option>PBJ</option>
-            <option>MES</option>
-            <option>PBR</option>
-            <option>PRIBADI</option>
-            <option>BALSRI</option>
-            <option>STE</option>
-          </select>
-    </div>
-    <br>
 
     <div>
      <label>Keterangan</label>
@@ -537,129 +532,6 @@ $Masuk = 'Masuk';
   </thead>
   <tbody>
     <?php
-
-
-
-
-  /*
-    //masuk
-    //Saldo CBM untuk CBM
-    $saldo_cbm_cbm = 0;
-    //Saldo MES untuk MES
-    $saldo_mes_mes = 0;
-    //Saldo PBR untuk PBR
-    $saldo_pbr_pbr = 0;
-    //Saldo PBJ untuk PBJ
-    $saldo_pbj_pbj = 0;
-    //Saldo MT untuk MT
-    $saldo_mt_mt = 0;
-    //saldo Balsri untuk Balsri
-    $saldo_balsri_balsri = 0;
-    //SALDO bASLSRI intuk Kebun STE
-    $saldo_balsri_ste = 0;
-    //SALDO Pribadi intuk Kebun Lengkiti
-    $saldo_pribadi_kebun = 0;
-
-  //MASUK
-    //Masuk CBM Keluar CBM
-    $masuk_cbm_cbm = 0;
-    //Masuk CBM Keluar PBJ
-    $masuk_cbm_pbj = 0;
-    //mASUK cbm kELUAR MT
-    $masuk_cbm_mt = 0;
-
-    //masuk mt keluar cbm
-    $masuk_mt_cbm = 0;
-    //masuk mt keluar pbj
-    $masuk_mt_pbj = 0;
-    //masuk mt keluar mt
-    $masuk_mt_mt = 0;
-
-    //masuk pbj keluar cbm
-    $masuk_pbj_cbm = 0;
-    //masuk pbj keluar pbj
-    $masuk_pbj_pbj = 0;
-    //masuk pbj keluar mt
-    $masuk_pbj_mt = 0;
-    //Masuk CBM Keluar CBM
-    $masuk_cbm_cbm = 0;
-    //Masuk CBM Keluar PBJ
-    $masuk_cbm_pbj = 0;
-    //mASUK cbm kELUAR MT
-    $masuk_cbm_mt = 0;
-    
-    
-    //keluar cbm masuk cbm
-    $keluar_cbm_cbm = 0;
-    //keluar cbm masuk pbj
-    $keluar_cbm_pbj = 0;
-    //keluar cbm masuk mt
-    $keluar_cbm_mt = 0;
-    //keluar mt masuk cbm
-    $keluar_mt_cbm = 0;
-    //keluar mt masuk pbj
-    $keluar_mt_pbj = 0;
-    //keluar mt masuk mt
-    $keluar_mt_mt = 0;
-    //keluar pbj masuk cbm
-    $keluar_pbj_cbm = 0;
-    //keluar pbj masuk pbj
-    $keluar_pbj_pbj = 0;
-    //keluar pbj masuk mt
-    $keluar_pbj_mt = 0;
-
-    //setor dana cbm ke cbm
-    $setor_cbm_cbm = 0;
-    //setor dana cbm ke pbj
-    $setor_cbm_pbj = 0;
-    //setor dana cbm ke mt
-    $setor_cbm_mt = 0;
-    //setor dana mt ke cbm
-    $setor_mt_cbm = 0;
-    //setor dana mt ke pbj
-    $setor_mt_pbj = 0;
-    //setor dana mt ke mt
-    $setor_mt_mt = 0;
-    //setor dana pbj ke cbm
-    $setor_pbj_cbm = 0;
-    //setor dana pbj ke pbj
-    $setor_pbj_pbj = 0;
-    //setor dana pbj ke mt
-    $setor_pbj_mt = 0;
-
-    //khusus
-    //keluar cbm ke balsri
-    $keluar_cbm_balsri = 0 ;
-    //keluar pbj ke balsri
-    $keluar_pbj_balsri = 0 ;
-    //keluar mt ke balsri
-    $keluar_mt_balsri = 0 ;
-    //keluar cbm ke kebun lengkiti
-    $keluar_cbm_keling = 0 ;
-    //keluar pbj ke kebun lengkiti
-    $keluar_pbj_keling = 0 ;
-    //keluar mt ke kebun lengkiti
-    $keluar_mt_keling = 0 ;
-    //keluar cbm ke pbr
-    $keluar_cbm_pbr = 0 ;
-    //keluar pbj ke pbr
-    $keluar_pbj_pbr = 0 ;
-    //keluar mt ke pbr
-    $keluar_mt_pbr = 0 ;
-    //keluar cbm ke ste
-    $keluar_cbm_ste = 0 ;
-    //keluar pbj ke ste
-    $keluar_pbj_ste = 0 ;
-    //keluar mt ke ste
-    $keluar_mt_ste = 0 ;
-    //keluar cbm ke mes
-    $keluar_cbm_ste = 0 ;
-    //keluar pbj ke mes
-    $keluar_pbj_ste = 0 ;
-    //keluar mt ke mes
-    $keluar_mt_ste = 0 ;
-    
-    */
     
     $urut = 0;
     function formatuang($angka){
@@ -678,174 +550,6 @@ $Masuk = 'Masuk';
       $file_bukti = $data['file_bukti'];
       $keterangan = $data['keterangan'];
       $status_saldo = $data['status_saldo'];
-    /*
-    if($nama_akun == 'Transfer Ke Bos'){
-        
-    }
-    //Masuk CBM Keluar CBM
-    if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'CBM') {
-        $masuk_cbm_cbm = $masuk_cbm_cbm + $jumlah;
-      }
-    //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'PBJ') {
-        $masuk_cbm_pbj = $masuk_cbm_pbj + $jumlah;
-      }
-    //mASUK cbm kELUAR MT
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'Melodi Tani') {
-        $masuk_cbm_mt = $masuk_cbm_mt + $jumlah;
-      }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'Melodi Tani' && $referensi == 'CBM') {
-        $masuk_mt_cbm = $masuk_mt_cbm + $jumlah;
-      }
-    //masuk mt keluar pbj
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'Melodi Tani' && $referensi == 'PBJ') {
-        $masuk_mt_pbj = $masuk_mt_pbj + $jumlah;
-      }
-    //masuk mt keluar mt
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'Melodi Tani' && $referensi == 'Melodi Tani') {
-        $masuk_mt_mt = $masuk_mt_mt + $jumlah;
-      }
-    //masuk pbj keluar cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBJ' && $referensi == 'CBM') {
-        $masuk_pbj_cbm = $masuk_pbj_cbm + $jumlah;
-      }
-    //masuk pbj keluar pbj
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBJ' && $referensi == 'PBJ') {
-        $masuk_pbj_pbj = $masuk_pbj_pbj + $jumlah;
-      }
-    //masuk pbj keluar mt
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBJ' && $referensi == 'Melodi Tani') {
-        $masuk_pbj_mt = $masuk_pbj_mt + $jumlah;
-      }
-    
-    
-    //keluar cbm masuk cbm
-    if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'CBM' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_cbm = $keluar_cbm_cbm + $jumlah;
-      }
-    //keluar cbm masuk pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'PBJ' && $nama_akun != 'Setor ke Bank'  ) {
-        $keluar_cbm_pbj = $keluar_cbm_pbj + $jumlah;
-      }
-    //keluar cbm masuk mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'Melodi Tani' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_mt = $keluar_cbm_mt + $jumlah;
-      }
-    //keluar mt masuk cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'CBM' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_mt_cbm = $keluar_mt_cbm + $jumlah;
-      }
-    //keluar mt masuk pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'PBJ' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_mt_pbj = $keluar_mt_pbj + $jumlah;
-      }
-    //keluar mt masuk mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'Melodi Tani' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_mt_mt = $keluar_mt_mt + $jumlah;
-      }
-    //keluar pbj masuk cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'CBM' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_pbj_cbm = $keluar_pbj_cbm + $jumlah;
-      }
-    //keluar pbj masuk pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'PBJ' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_pbj_pbj = $keluar_pbj_pbj + $jumlah;
-      }
-    //keluar pbj masuk mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'Melodi Tani' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_pbj_mt = $keluar_pbj_mt + $jumlah;
-      }
-    //keluar cbm masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'BALSRI') {
-        $keluar_cbm_balsri = $keluar_cbm_balsri + $jumlah;
-      }
-    //keluar pbj masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'BALSRI') {
-        $keluar_pbj_balsri = $keluar_pbj_balsri + $jumlah;
-      }
-    //keluar mt masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'BALSRI') {
-        $keluar_mt_balsri = $keluar_mt_balsri + $jumlah;
-      }
-    //keluar cbm masuk kebun lengkiti
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'Kebun Lengkiti') {
-        $keluar_cbm_keling = $keluar_cbm_keling + $jumlah;
-      }
-    //keluar pbj masuk  kebun lengkiti
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'Kebun Lengkiti') {
-        $keluar_pbj_keling = $keluar_pbj_keling + $jumlah;
-      }
-    //keluar mt masuk  kebun lengkiti
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'Kebun Lengkiti') {
-        $keluar_mt_keling = $keluar_mt_keling + $jumlah;
-      }
-    //keluar cbm masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'MES/PBR') {
-        $keluar_cbm_pbr = $keluar_cbm_pbr + $jumlah;
-      }
-    //keluar pbj masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'MES/PBR') {
-        $keluar_pbj_pbr = $keluar_pbj_pbr + $jumlah;
-      }
-    //keluar mt masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'MES/PBR') {
-        $keluar_mt_pbr = $keluar_mt_pbr + $jumlah;
-      }
-    
-      //keluar cbm masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'STE') {
-      $keluar_cbm_ste = $keluar_cbm_ste + $jumlah;
-    }
-  //keluar pbj masuk balsri
-  else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'STE') {
-      $keluar_pbj_ste = $keluar_pbj_ste + $jumlah;
-    }
-  //keluar mt masuk balsri
-  else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'STE') {
-      $keluar_mt_ste = $keluar_mt_ste + $jumlah;
-    }
-  
-
-
-    //setor dana cbm ke cbm
-    if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'CBM' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_cbm_cbm = $setor_cbm_cbm + $jumlah;
-      }
-    //setor dana cbm ke pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'PBJ' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_cbm_pbj = $setor_cbm_pbj + $jumlah;
-      }
-    //setor dana cbm ke mt
-   else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'Melodi Tani' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_cbm_mt = $setor_cbm_mt + $jumlah;
-      }
-    //setor dana mt ke cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'CBM' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_mt_cbm = $setor_mt_cbm + $jumlah;
-      }
-    //setor dana mt ke pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'PBJ' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_mt_pbj = $setor_mt_pbj + $jumlah;
-      }
-    //setor dana mt ke mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'Melodi Tani' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_mt_mt = $setor_mt_mt + $jumlah;
-      }
-    //setor dana pbj ke cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'CBM' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_pbj_cbm = $setor_pbj_cbm + $jumlah;
-      }
-    //setor dana pbj ke pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'PBJ' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_pbj_pbj = $setor_pbj_pbj + $jumlah;
-      }
-    //setor dana pbj ke mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'Melodi Tani' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_pbj_mt = $setor_pbj_mt + $jumlah;
-      }
-      */
-
         $urut = $urut + 1;
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
@@ -912,9 +616,25 @@ $Masuk = 'Masuk';
           </div>
         </div>
 
-
+<br>
         <div class="row">
-          
+        <div class="col-md-6">
+       
+
+       <label><label>Saldo</label></label>
+       <select id="rekening" name="rekening" class="form-control">
+         <?php $dataSelect = $data['nama_rekening']; ?>
+         <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
+         <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
+         <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+         <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+         <option <?php echo ($dataSelect == 'BASLRI') ? "selected": "" ?> >BALSRI</option>
+         <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
+         <option <?php echo ($dataSelect == 'PRIBADI') ? "selected": "" ?> >PRIBADI</option>
+       </select>
+
+
+     </div>    
 
         <div class="col-md-6">
 
@@ -933,7 +653,16 @@ $Masuk = 'Masuk';
           </select>
 
         </div>            
-         <div class="col-md-6">
+         
+      </div>
+
+      <br>
+
+     
+
+      <div class="row">
+
+      <div class="col-md-6">
 
           <label><label>Akun</label></label>
           <select id="akun" name="akun" class="form-control">
@@ -954,37 +683,13 @@ $Masuk = 'Masuk';
           </select>
 
         </div>
-      </div>
-
-      <br>
-
-     
-
-      <div class="row">
         <div class="col-md-6">
           <label>Jumlah</label>
           <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
         </div>    
-        <div class="col-md-6">
-       
-
-          <label><label>Saldo</label></label>
-          <select id="rekening" name="rekening" class="form-control">
-            <?php $dataSelect = $data['nama_rekening']; ?>
-            <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
-            <option <?php echo ($dataSelect == 'Melodi Tani') ? "selected": "" ?> >Melodi Tani</option>
-            <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
-            <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
-            <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
-            <option <?php echo ($dataSelect == 'BASLRI') ? "selected": "" ?> >BALSRI</option>
-            <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
-            <option <?php echo ($dataSelect == 'PRIBADI') ? "selected": "" ?> >PRIBADI</option>
-          </select>
-
-  
-        </div>         
+             
       </div>
-
+      <br>
       <div>
      <label>Keterangan</label>
      <div class="form-group">
@@ -1104,7 +809,7 @@ $Masuk = 'Masuk';
      
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
       <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_mt); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MT&rekening=$MT&status_saldo=$Keluar'>Rincian</a></td>"; ?>
@@ -1189,7 +894,7 @@ $Masuk = 'Masuk';
      
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
       <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_mt); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MT&rekening=$MT&status_saldo=$Masuk'>Rincian</a></td>"; ?>
