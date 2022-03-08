@@ -273,7 +273,7 @@ $total_pendapatan = $total_pendapatan_refill + $total_pendapatan_bajaisi + $tota
 
 //HARGA POKOK PENJUALAN
 //TOTAL PEMBELIAN REFILL CBM
-$table4 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_refill_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-110' AND referensi = 'PBR' AND pemabayaran = 'Bank BRI PBR'  ");
+$table4 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_refill_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-110' AND referensi = 'PBR' AND pembayaran = 'Bank BRI PBR'  ");
 $data_pembelian_refill_cbm = mysqli_fetch_array($table4);
 $total_pembelian_refill_cbm = $data_pembelian_refill_cbm['pembelian_refill_cbm'];
 if (!isset($data_pembelian_refill_cbm['pembelian_refill_cbm'])) {

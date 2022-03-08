@@ -363,7 +363,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
       <th>Kredit</th>
       <th>Keterangan</th>
       <th>File</th>
-      <th>Aksi</th>
+
     </tr>
   </thead>
   <tbody>
@@ -473,47 +473,9 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_toko/<?= $file_bukti ?>" href="../file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-       
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
+    
 
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-       <div class="modal-dialog" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-
-
-          <div class="modal-body">
-            <form action="../proses/hapus_penggunaan_saldo" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
-              <input type="hidden" name="status_saldo" value="<?php echo $status_saldo; ?>">
-              <input type="hidden" name="nama_rekening" value="<?php echo $nama_rekening;?>">
-              <input type="hidden" name="jumlah" value="<?php echo $jumlah;?>">
-              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-
-
-
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
-              </div>
-
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <?php echo  " </td> </tr>";
+    <?php echo  " </tr>";
   }
   ?>
 
@@ -545,7 +507,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
       <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_pbj); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_cbm); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_pbj); ?> <?php echo "</td>
-      <td class='text-center'><a href='VRincianCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
+      <td class='text-center'><a href='VRincianCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>
         </tr>";
   
   ?>
@@ -577,7 +539,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
       <td style='font-size: 14px'>";?> <?= formatuang($masuk_mes_pbj); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_cbm); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_pbj); ?> <?php echo "</td>
-      <td class='text-center'><a href='VRincianMT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
+      <td class='text-center'><a href='VRincianMT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>
         </tr>";
   
   ?>

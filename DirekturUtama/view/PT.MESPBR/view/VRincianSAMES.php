@@ -29,6 +29,10 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 } 
+else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+}
 
 if ($tanggal_awal == $tanggal_akhir) {
 
@@ -153,7 +157,7 @@ else{
     $total_alokasib12beli = 0;
   }
 }
-
+$reFmes = 'MES';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -591,7 +595,7 @@ else{
           echo "<tr>
           <td style='font-size: 14px' align = 'center'>$nama</td>
           <td style='font-size: 14px' align = 'center'>$alokasi</td>
-          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja '>Rincian</a></td>
+          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi='$refmes '>Rincian</a></td>
           </tr>";
         }
         ?>
@@ -621,7 +625,7 @@ else{
           echo "<tr>
           <td style='font-size: 14px' align = 'center'>$nama</td>
           <td style='font-size: 14px' align = 'center'>$alokasi</td>
-          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja '>Rincian</a></td>
+          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi='$refmes'>Rincian</a></td>
           </tr>";
         }
         ?>
@@ -659,7 +663,7 @@ else{
         echo "<tr>
         <td style='font-size: 14px' align = 'center'>$nama</td>
         <td style='font-size: 14px' align = 'center'>$alokasi</td>
-        <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja '>Rincian</a></td>
+        <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi='$refmes '>Rincian</a></td>
         </tr>";
       }
       ?>
@@ -690,7 +694,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$nama</td>
       <td style='font-size: 14px' align = 'center'>$alokasi</td>
-      <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja '>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi='$refmes''>Rincian</a></td>
       </tr>";
     }
     ?>
