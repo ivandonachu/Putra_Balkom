@@ -66,7 +66,38 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   }
 
-  $total_pendapatan = $total_pertamax + $total_dexlite;
+  //dividen pertamax
+$table100 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+$data100 = mysqli_fetch_array($table100);
+$total_terjual = $data100['total_terjual'];
+
+if($lokasi == 'Bedilan' ){
+    $dividen_pertamax = $total_terjual * 150;
+}
+elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
+    $dividen_pertamax = $total_terjual + 50;
+}
+else{
+    $dividen_pertamax = 0;
+}
+
+//dividen Dexlite
+$table101 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+$data101 = mysqli_fetch_array($table101);
+$total_terjual = $data101['total_terjual'];
+
+if($lokasi == 'Bedilan' ){
+    $dividen_Dexlite = $total_terjual * 150;
+}
+elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
+    $dividen_Dexlite = $total_terjual + 50;
+}
+else{
+    $dividen_Dexlite = 0;
+}
+
+
+  $total_pendapatan = $total_pertamax + $total_dexlite - ($dividen_pertamax + $dividen_Dexlite);
 
 
     // Pembelian Pertamax
@@ -233,35 +264,6 @@ else{
 
 }
 
-//dividen pertamax
-$table100 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
-$data100 = mysqli_fetch_array($table100);
-$total_terjual = $data100['total_terjual'];
-
-if($lokasi == 'Bedilan' ){
-    $dividen_pertamax = $total_terjual * 150;
-}
-elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
-    $dividen_pertamax = $total_terjual + 50;
-}
-else{
-    $dividen_pertamax = 0;
-}
-
-//dividen Dexlite
-$table101 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
-$data101 = mysqli_fetch_array($table101);
-$total_terjual = $data101['total_terjual'];
-
-if($lokasi == 'Bedilan' ){
-    $dividen_Dexlite = $total_terjual * 150;
-}
-elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
-    $dividen_Dexlite = $total_terjual + 50;
-}
-else{
-    $dividen_Dexlite = 0;
-}
 
 
 ?>
@@ -541,16 +543,16 @@ else{
                                 <tr>
                                     <td>4-100</td>
                                     <td class="text-left">Dividen Penjualan Pertamax</td>
-                                    <td class="text-left"><?= formatuang($dividen_pertamax); ?></td>
+                                    <td class="text-left"><?= formatuang($z); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRPenPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'></a></td>"; ?>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRDivPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>4-110</td>
                                     <td class="text-left">Dividen Penjualan Dexlite</td>
                                     <td class="text-left"><?= formatuang($dividen_Dexlite); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRPenDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'></a></td>"; ?>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRDivDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
                             
                             
