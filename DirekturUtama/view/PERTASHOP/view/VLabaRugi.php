@@ -238,7 +238,7 @@ $table100 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM 
 $data100 = mysqli_fetch_array($table100);
 $total_terjual = $data100['total_terjual'];
 
-if($lokasi == 'Bedilanm' ){
+if($lokasi == 'Bedilan' ){
     $dividen_pertamax = $total_terjual * 150;
 }
 elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
@@ -253,7 +253,7 @@ $table101 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM 
 $data101 = mysqli_fetch_array($table101);
 $total_terjual = $data101['total_terjual'];
 
-if($lokasi == 'Bedilanm' ){
+if($lokasi == 'Bedilan' ){
     $dividen_Dexlite = $total_terjual * 150;
 }
 elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
