@@ -571,15 +571,17 @@ else{
                                 <tr>
                                     <td>4-100</td>
                                     <td class="text-left">Dividen Penjualan Pertamax</td>
-                                    <td class="text-left"><?= formatuang($dividen_pertamax); ?></td>
+                                    
                                     <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($dividen_pertamax); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLR/VRDivPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>4-110</td>
                                     <td class="text-left">Dividen Penjualan Dexlite</td>
-                                    <td class="text-left"><?= formatuang($dividen_Dexlite); ?></td>
+                                   
                                     <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($dividen_Dexlite); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLR/VRDivDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
                             

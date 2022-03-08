@@ -323,12 +323,12 @@ else{
     							<tr>
     								<td>Total Penjualan</td>
     								<td class="text-center"><?php echo formatuang($total_terjual);  ?></td>
-    							
+                                    <td class="text-center">X</td>
     							</tr>
                                 <tr>
         							<td>Rasio Dividen</td>
     								<td class="text-center"><?php echo formatuang($rasio_dividen);  ?></td>
-    						
+                                    <td class="text-center"></td>
     							</tr>
     						
     							<tr>
