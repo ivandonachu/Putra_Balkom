@@ -194,10 +194,38 @@ else{
     
 
   }
+  //dividen pertamax
+  $table100 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $data100 = mysqli_fetch_array($table100);
+  $total_terjual = $data100['total_terjual'];
+  
+  if($lokasi == 'Bedilan' ){
+      $dividen_pertamax = $total_terjual * 150;
+  }
+  elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
+      $dividen_pertamax = $total_terjual + 50;
+  }
+  else{
+      $dividen_pertamax = 0;
+  }
+  
+  //dividen Dexlite
+  $table101 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  $data101 = mysqli_fetch_array($table101);
+  $total_terjual = $data101['total_terjual'];
+  
+  if($lokasi == 'Bedilan' ){
+      $dividen_Dexlite = $total_terjual * 150;
+  }
+  elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
+      $dividen_Dexlite = $total_terjual + 50;
+  }
+  else{
+      $dividen_Dexlite = 0;
+  }
 
 
-
-  $total_pendapatan = $total_pertamax + $total_dexlite;
+  $total_pendapatan = $total_pertamax + $total_dexlite - ($dividen_pertamax + $dividen_Dexlite);
 
 
     // Pembelian Pertamax
