@@ -33,6 +33,7 @@ else{
   $tanggal_awal = date('Y-m-1');
 $tanggal_akhir = date('Y-m-31');
 }
+
 if ($tanggal_awal == $tanggal_akhir) {
 
   //penjualan
@@ -156,7 +157,7 @@ else{
     $total_alokasib12beli = 0;
   }
 }
-$reFpbr = 'PBR';
+
 
 ?>
 <!DOCTYPE html>
@@ -592,10 +593,11 @@ $reFpbr = 'PBR';
           $nama = $data['nama'];
           $alokasi =$data['alokasi'];
           $baja ='L03K01';
+          $reFpbr = 'PBR';
           echo "<tr>
           <td style='font-size: 14px' align = 'center'>$nama</td>
           <td style='font-size: 14px' align = 'center'>$alokasi</td>
-          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi='$refpbr' '>Rincian</a></td>
+          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refpbr '>Rincian</a></td>
           </tr>";
         }
         ?>
@@ -622,10 +624,11 @@ $reFpbr = 'PBR';
           $nama = $data['nama'];
           $alokasi =$data['alokasi'];
           $baja ='L12K01';
+          $reFpbr = 'PBR';
           echo "<tr>
           <td style='font-size: 14px' align = 'center'>$nama</td>
           <td style='font-size: 14px' align = 'center'>$alokasi</td>
-          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi='$refpbr' '>Rincian</a></td>
+          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refpbr '>Rincian</a></td>
           </tr>";
         }
         ?>
@@ -660,10 +663,11 @@ $reFpbr = 'PBR';
         $nama = $data['nama'];
         $alokasi =$data['alokasi'];
         $baja ='B05K01';
+        $reFpbr = 'PBR';
         echo "<tr>
         <td style='font-size: 14px' align = 'center'>$nama</td>
         <td style='font-size: 14px' align = 'center'>$alokasi</td>
-        <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi='$refpbr' '>Rincian</a></td>
+        <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refpbr '>Rincian</a></td>
         </tr>";
       }
       ?>
@@ -691,10 +695,11 @@ $reFpbr = 'PBR';
       $nama = $data['nama'];
       $alokasi =$data['alokasi'];
       $baja ='B12K01';
+      $reFpbr = 'PBR';
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$nama</td>
       <td style='font-size: 14px' align = 'center'>$alokasi</td>
-      <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi='$refpbr''>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refpbr'>Rincian</a></td>
       </tr>";
     }
     ?>
