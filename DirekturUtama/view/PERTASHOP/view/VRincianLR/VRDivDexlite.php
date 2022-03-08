@@ -322,7 +322,7 @@ else{
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
     							<tr>
     								<td>Total Penjualan</td>
-    								<td class="text-center"><?php echo formatuang($total_terjual);  ?></td>
+    								<td class="text-center"><?php $total_terjual ?> Liter</td>
                                     <td class="text-center">X</td>
     							</tr>
                                 <tr>
