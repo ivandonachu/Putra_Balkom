@@ -157,8 +157,7 @@ else{
     $total_alokasib12beli = 0;
   }
 }
-$reFmes1 = 'MES';
-var_dump($reFmes1);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -593,11 +592,11 @@ var_dump($reFmes1);
           $nama = $data['nama'];
           $alokasi =$data['alokasi'];
           $baja ='L03K01';
-          $reFmes = 'MES';
+          $referensi = 'MES';
           echo "<tr>
           <td style='font-size: 14px' align = 'center'>$nama</td>
           <td style='font-size: 14px' align = 'center'>$alokasi</td>
-          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refmes1'>Rincian</a></td>
+          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$referensi'>Rincian</a></td>
           </tr>";
         }
         ?>
@@ -624,11 +623,11 @@ var_dump($reFmes1);
           $nama = $data['nama'];
           $alokasi =$data['alokasi'];
           $baja ='L12K01';
-          $reFmes = 'MES';
+          $referensi = 'MES';
           echo "<tr>
           <td style='font-size: 14px' align = 'center'>$nama</td>
           <td style='font-size: 14px' align = 'center'>$alokasi</td>
-          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refmes'>Rincian</a></td>
+          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$referensi'>Rincian</a></td>
           </tr>";
         }
         ?>
@@ -663,11 +662,11 @@ var_dump($reFmes1);
         $nama = $data['nama'];
         $alokasi =$data['alokasi'];
         $baja ='B05K01';
-        $reFmes = 'MES';
+        $referensi = 'MES';
         echo "<tr>
         <td style='font-size: 14px' align = 'center'>$nama</td>
         <td style='font-size: 14px' align = 'center'>$alokasi</td>
-        <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refmes '>Rincian</a></td>
+        <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$referensi '>Rincian</a></td>
         </tr>";
       }
       ?>
@@ -695,11 +694,11 @@ var_dump($reFmes1);
       $nama = $data['nama'];
       $alokasi =$data['alokasi'];
       $baja ='B12K01';
-      $reFmes = 'MES';
+      $referensi = 'MES';
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$nama</td>
       <td style='font-size: 14px' align = 'center'>$alokasi</td>
-      <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refmes'>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$referensi'>Rincian</a></td>
       </tr>";
     }
     ?>

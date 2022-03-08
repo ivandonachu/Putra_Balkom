@@ -593,11 +593,11 @@ else{
           $nama = $data['nama'];
           $alokasi =$data['alokasi'];
           $baja ='L03K01';
-          $reFpbr = 'PBR';
+          $referensi = 'PBR';
           echo "<tr>
           <td style='font-size: 14px' align = 'center'>$nama</td>
           <td style='font-size: 14px' align = 'center'>$alokasi</td>
-          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refpbr '>Rincian</a></td>
+          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$referensi '>Rincian</a></td>
           </tr>";
         }
         ?>
@@ -624,11 +624,11 @@ else{
           $nama = $data['nama'];
           $alokasi =$data['alokasi'];
           $baja ='L12K01';
-          $reFpbr = 'PBR';
+          $referensi = 'PBR';
           echo "<tr>
           <td style='font-size: 14px' align = 'center'>$nama</td>
           <td style='font-size: 14px' align = 'center'>$alokasi</td>
-          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refpbr '>Rincian</a></td>
+          <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$referensi '>Rincian</a></td>
           </tr>";
         }
         ?>
@@ -663,11 +663,11 @@ else{
         $nama = $data['nama'];
         $alokasi =$data['alokasi'];
         $baja ='B05K01';
-        $reFpbr = 'PBR';
+        $referensi = 'PBR';
         echo "<tr>
         <td style='font-size: 14px' align = 'center'>$nama</td>
         <td style='font-size: 14px' align = 'center'>$alokasi</td>
-        <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refpbr '>Rincian</a></td>
+        <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$referensi '>Rincian</a></td>
         </tr>";
       }
       ?>
@@ -695,11 +695,11 @@ else{
       $nama = $data['nama'];
       $alokasi =$data['alokasi'];
       $baja ='B12K01';
-      $reFpbr = 'PBR';
+      $referensi = 'PBR';
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$nama</td>
       <td style='font-size: 14px' align = 'center'>$alokasi</td>
-      <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$refpbr'>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja&referensi=$referensi'>Rincian</a></td>
       </tr>";
     }
     ?>
