@@ -41,7 +41,7 @@ $kode_perta = $data_perta['kode_perta'];
 }
 
 else{
-  $table = mysqli_query($koneksi,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi' AND nama_barang = 'Pertamax' ");
   $result = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
@@ -62,7 +62,7 @@ $kode_perta = $data_perta['kode_perta'];
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penjualan</title>
+  <title>Penjualan Pertamax</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -160,7 +160,7 @@ $kode_perta = $data_perta['kode_perta'];
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pertashop $lokasi</h5></a>"; ?>
+      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pertamax Ps $lokasi</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -244,7 +244,7 @@ $kode_perta = $data_perta['kode_perta'];
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Pencatatan Pembelian</h5>
+          <h5 class="modal-title"> Form Pencatatan Penjualan Dexlite</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -300,24 +300,28 @@ $kode_perta = $data_perta['kode_perta'];
         <label>Nama Barang</label>
           <select id="nama_barang" name="nama_barang" class="form-control">
             <option>Pertamax</option>
-            <option>Dexlite</option>
           </select>
           </div> 
           
         <div class="col-md-4">
-          <label>QTY</label>
-             <input class="form-control form-control-sm" type="float" id="qty" name="qty" required="">
+          <label>Jual</label>
+             <input class="form-control form-control-sm" type="float" id="jual" name="jual" required="">
         </div>                
 
 
         <div class="col-md-4">
+          <label>Ngecor</label>
+          <input class="form-control form-control-sm" type="float" id="ngecor" name="ngecor" required="">
+
+        </div>    
+             
+      </div>
+      <div class="row">
+      <div class="col-md-4">
           <label>Harga</label>
           <input class="form-control form-control-sm" type="float" id="harga" name="harga" required="">
 
-        </div>         
-      </div>
-      <div class="row">
-      
+        </div>    
         <div class="col-md-4">
           <label>Stok Awal</label>
              <input class="form-control form-control-sm" type="float" id="stok_awal" name="stok_awal" required="">
@@ -360,7 +364,7 @@ $kode_perta = $data_perta['kode_perta'];
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
-              <table class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th  style="font-size: 11px" >No</th>
@@ -369,7 +373,9 @@ $kode_perta = $data_perta['kode_perta'];
       <th  style="font-size: 11px">Lokasi</th>
       <th  style="font-size: 11px">Penjual</th>
       <th  style="font-size: 11px">Barang</th>
-      <th  style="font-size: 11px">QTY</th>
+      <th  style="font-size: 11px">Total Keluar</th>
+      <th  style="font-size: 11px">Ngecor</th>
+      <th  style="font-size: 11px">Jual</th>
       <th  style="font-size: 11px">Harga</th>
       <th  style="font-size: 11px">Jumlah</th>
       <th  style="font-size: 11px">Stok awal</th>
@@ -397,6 +403,8 @@ $kode_perta = $data_perta['kode_perta'];
       $nama_barang = $data['nama_barang'];
       $nama_karyawan = $data['nama_karyawan'];
       $qty = $data['qty'];
+      $ngecor = $data['ngecor'];
+      $total_qty = $data['total_qty'];
       $stok_awal = $data['stok_awal'];
       $stok_akhir = $data['stok_akhir'];
       $harga = $data['harga'];
@@ -405,6 +413,29 @@ $kode_perta = $data_perta['kode_perta'];
       $file_bukti = $data['file_bukti'];
       $status = $data['persetujuan'];
       $urut = $urut + 1;
+      if($kode_perta == '2P.323.208'){
+        if($nama_barang == 'Pertamax'){
+          $uang_nb_max = $uang_nb_max + $jumlah; 
+          $terjual_nb_max = $terjual_nb_max + $qty;
+        }
+        else{
+          $uang_nb_dex = $uang_nb_dex + $jumlah; 
+          $terjual_nb_dex = $terjual_nb_dex + $qty;
+        }
+        
+      }
+      else if($kode_perta == 'bedilan'){
+        $uang_be = $uang_be + $jumlah; 
+        $terjual_be = $terjual_be + $qty;
+      }
+      else if($kode_perta == 'muaradua'){
+        $uang_md = $uang_md + $jumlah; 
+        $terjual_md = $terjual_md + $qty;
+      }
+      else if($kode_perta == 'sumberjaya'){
+        $uang_sj = $uang_sj + $jumlah; 
+        $terjual_sj = $terjual_sj + $qty;
+      }
 
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
@@ -413,6 +444,8 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>$lokasi</td>
       <td style='font-size: 11px' align = 'center'>$nama_karyawan</td>
       <td style='font-size: 11px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 11px' align = 'center'>$total_qty/L</td>
+      <td style='font-size: 11px' align = 'center'>$ngecor/L</td>
       <td style='font-size: 11px' align = 'center'>$qty/L</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
@@ -450,7 +483,7 @@ $kode_perta = $data_perta['kode_perta'];
               </div>
             </div>
           </div>
- 
+       
 
 
 
@@ -531,6 +564,110 @@ $kode_perta = $data_perta['kode_perta'];
 </tbody>
 </table>
 </div>
+<br>
+<hr>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Barang Terjual</h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Terjual</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+</div>
+<br>
+<hr>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center"  >Laporan Keuangan</h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Pendapatan</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md); ?></td>
+     
+  </tr>
+
+
+
+</tbody>
+</table>
+</div>
+</div>
+<br>
 </div>
 </div>
 <!-- End of Main Content -->
