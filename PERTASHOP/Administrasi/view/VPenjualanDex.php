@@ -332,7 +332,9 @@ else{
       <td style='font-size: 14px' align = 'center'>$lokasi</td>
       <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
       <td style='font-size: 14px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 14px' align = 'center'>$qty/L</td>
+      <td style='font-size: 11px' align = 'center'>$total_qty/L</td>
+      <td style='font-size: 11px' align = 'center'>$ngecor/L</td>
+      <td style='font-size: 11px' align = 'center'>$qty/L</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
