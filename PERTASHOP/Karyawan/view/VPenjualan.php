@@ -359,7 +359,8 @@ $kode_perta = $data_perta['kode_perta'];
 
 
 <!-- Tabel -->    
-<table id='example' class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%;  ">
+<div style="overflow-x: auto" align = 'center'>
+              <table class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th  style="font-size: 11px" >No</th>
@@ -449,7 +450,7 @@ $kode_perta = $data_perta['kode_perta'];
               </div>
             </div>
           </div>
-        </div>
+ 
 
 
 
@@ -504,6 +505,7 @@ $kode_perta = $data_perta['kode_perta'];
 </tbody>
 </table>
 </div>
+ </div>
 <br>
 <div style="margin-right: 100px; margin-left: 100px;">
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">

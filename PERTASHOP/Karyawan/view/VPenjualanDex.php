@@ -364,7 +364,7 @@ $kode_perta = $data_perta['kode_perta'];
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
-              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+              <table class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th  style="font-size: 11px" >No</th>
