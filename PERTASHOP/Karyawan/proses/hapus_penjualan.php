@@ -23,6 +23,7 @@ $no_penjualan = $_POST['no_penjualan'];
         $kode_perta = $data_penjualan['kode_perta'];
         $nama_barang = $data_penjualan['nama_barang'];
         $qty = $data_penjualan['qty'];
+        $ngecor = $data_penjualan['ngecor'];
    
 
 		//Hapusriwayat keberangkatan
@@ -42,7 +43,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + $qty;
+                $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
                 	if ($query != "") {
@@ -57,7 +58,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + $qty;
+                $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 	if ($query != "") {
@@ -72,7 +73,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + $qty;
+                $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
                 	if ($query != "") {
@@ -87,7 +88,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + $qty;
+                $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
                 	if ($query != "") {
@@ -102,7 +103,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + $qty;
+                $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 	if ($query != "") {
