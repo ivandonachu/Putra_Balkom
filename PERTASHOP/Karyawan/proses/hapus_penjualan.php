@@ -36,7 +36,7 @@ $no_penjualan = $_POST['no_penjualan'];
 			
         if($kode_perta == '2P.323.208' && $nama_barang == 'Pertamax'){
             
-            	$query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
+            	
 
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
@@ -46,12 +46,14 @@ $no_penjualan = $_POST['no_penjualan'];
                 $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
+
+                $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
                 	if ($query != "") {
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == '2P.323.208' && $nama_barang == 'Dexlite'){
-                	$query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
+                	
 
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
@@ -61,12 +63,13 @@ $no_penjualan = $_POST['no_penjualan'];
                 $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
+                $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
                 	if ($query != "") {
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualanDex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
-                	$query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
+                	
 
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
@@ -76,12 +79,13 @@ $no_penjualan = $_POST['no_penjualan'];
                 $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
+                $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
                 	if ($query != "") {
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == 'sumberjaya' && $nama_barang == 'Pertamax'){
-                	$query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
+                	
 
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
@@ -91,12 +95,13 @@ $no_penjualan = $_POST['no_penjualan'];
                 $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
+                $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
                 	if ($query != "") {
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
-               	$query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
+           
 
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
@@ -106,6 +111,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $stok_baru = $stok_awal + ($qty + $ngecor);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
+                $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
                 	if ($query != "") {
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
