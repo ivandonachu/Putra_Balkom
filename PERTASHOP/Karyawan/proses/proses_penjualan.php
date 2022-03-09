@@ -16,7 +16,8 @@ $tanggal_akhir = $_GET['tanggal2'];
 $nama_barang = $_POST['nama_barang'];
 $tanggal = $_POST['tanggal'];
 $lokasi = $_POST['lokasi'];
-$qty = $_POST['qty'];
+$jual = $_POST['jual'];
+$ngecor = $_POST['ngecor'];
 $stok_awal = $_POST['stok_awal'];
 $stok_akhir = $_POST['stok_akhir'];
 $harga = $_POST['harga'];
@@ -68,7 +69,7 @@ $kode_perta = $data_perta['kode_perta'];
 			
         if($kode_perta == '2P.323.208' && $nama_barang == 'Pertamax'){
             
-            	$query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$qty','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
+            	$query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual','$ngecor','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -82,7 +83,7 @@ $kode_perta = $data_perta['kode_perta'];
 			}
         }
         else if($kode_perta == '2P.323.208' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$qty','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
+                $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual','$ngecor','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -92,11 +93,11 @@ $kode_perta = $data_perta['kode_perta'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VPenjualanDex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$qty','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
+                $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual','$ngecor','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -112,11 +113,11 @@ $kode_perta = $data_perta['kode_perta'];
         else if($kode_perta == 'bedilan' && $nama_barang == 'Dexlite'){
                
 	
-		    	echo "<script>alert('Barang Belum tersedia :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		    	echo "<script>alert('Barang Belum tersedia :)'); window.location='../view/VPenjualanDex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		
         }
         else if($kode_perta == 'sumberjaya' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$qty','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
+                $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual','$ngecor','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -132,11 +133,11 @@ $kode_perta = $data_perta['kode_perta'];
         else if($kode_perta == 'sumberjaya' && $nama_barang == 'Dexlite'){
                
 	
-		    	echo "<script>alert('Barang Belum tersedia :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		    	echo "<script>alert('Barang Belum tersedia :)'); window.location='../view/VPenjualanDex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		
         }
         else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
-               $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$qty','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
+               $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual','$ngecor','$harga','$stok_awal','$stok_akhir','$keterangan','$file',0)");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -152,6 +153,6 @@ $kode_perta = $data_perta['kode_perta'];
         else if($kode_perta == 'muaradua' && $nama_barang == 'Dexlite'){
                
 	
-		    	echo "<script>alert('Barang Belum tersedia :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		    	echo "<script>alert('Barang Belum tersedia :)'); window.location='../view/VPenjualanDex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		
         }

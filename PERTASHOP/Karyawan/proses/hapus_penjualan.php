@@ -61,7 +61,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 	if ($query != "") {
-				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualanDex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
         else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
