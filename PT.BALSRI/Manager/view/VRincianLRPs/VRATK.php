@@ -301,7 +301,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
   <div>
     <div align="left">
-    <?php echo "<a href='../VLabaRugiPS?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    <?php echo "<a href='../VLabaRugiPs?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     </div>
   

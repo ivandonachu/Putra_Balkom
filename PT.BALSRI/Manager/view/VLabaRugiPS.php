@@ -562,7 +562,7 @@ else{
 </nav>
 <!-- End of Topbar -->
 <div class="container" style="color : black;">
-    <?php  echo "<form  method='POST' action='VLabaRugiPS' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VLabaRugiPs' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
