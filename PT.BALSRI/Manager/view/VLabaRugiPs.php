@@ -204,7 +204,7 @@ else{
       $dividen_pertamax = $total_terjual * 150;
   }
   elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
-      $dividen_pertamax = $total_terjual + 50;
+      $dividen_pertamax = $total_terjual * 50;
   }
   else{
       $dividen_pertamax = 0;
@@ -219,7 +219,7 @@ else{
       $dividen_Dexlite = $total_terjual * 150;
   }
   elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
-      $dividen_Dexlite = $total_terjual + 50;
+      $dividen_Dexlite = $total_terjual * 50;
   }
   else{
       $dividen_Dexlite = 0;
