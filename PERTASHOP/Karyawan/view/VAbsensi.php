@@ -120,12 +120,11 @@ else{
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-          <a class="collapse-item" style="font-size: 15px;" href="VAkunKaryawan">Akun Karyawan</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VPertashop">Pertashop</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPagi">Penjualan Pagi</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Pertamax</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanDex">Penjualan Dexlite</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPagi">Penjualan Pagi</a>
         </div>
       </div>
     </li>
