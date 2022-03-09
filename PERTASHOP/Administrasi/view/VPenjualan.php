@@ -41,7 +41,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-  $table = mysqli_query($koneksi,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' ");
   $table2 = mysqli_query($koneksi,"SELECT * FROM barang ");
 }
 
@@ -58,7 +58,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penjualan</title>
+  <title>Penjualan Pertamax</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -125,7 +125,8 @@ else{
           <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
           <a class="collapse-item" style="font-size: 15px;" href="VAkunKaryawan">Akun Karyawan</a>
           <a class="collapse-item" style="font-size: 15px;" href="VPertashop">Pertashop</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Pertamax</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="VPenjualanDex">Penjualan Dexlite</a>
           <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
           <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
           <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
@@ -158,7 +159,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pertashop </h5></a>"; ?>
+      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pertamax Pertashop </h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -242,7 +243,9 @@ else{
       <th  style="font-size: 12px">Lokasi</th>
       <th  style="font-size: 12px">Nama Karyawan</th>
       <th  style="font-size: 12px">Barang</th>
-      <th  style="font-size: 12px">QTY</th>
+      <th  style="font-size: 11px">Total Keluar</th>
+      <th  style="font-size: 11px">Ngecor</th>
+      <th  style="font-size: 11px">Jual</th>
       <th  style="font-size: 12px">Harga</th>
       <th  style="font-size: 11px">Stok awal</th>
       <th  style="font-size: 11px">Stok Akhir</th>
@@ -281,6 +284,8 @@ else{
       $nama_karyawan = $data['nama_karyawan'];
       $nama_barang = $data['nama_barang'];
       $qty = $data['qty'];
+      $ngecor = $data['ngecor'];
+      $total_qty = $qty + $ngecor;
       $harga = $data['harga'];
       $stok_awal = $data['stok_awal'];
       $stok_akhir = $data['stok_akhir'];
@@ -289,29 +294,37 @@ else{
       $file_bukti = $data['file_bukti'];
       $status = $data['persetujuan'];
       $urut = $urut + 1;
+
       if($kode_perta == '2P.323.208'){
         if($nama_barang == 'Pertamax'){
           $uang_nb_max = $uang_nb_max + $jumlah; 
           $terjual_nb_max = $terjual_nb_max + $qty;
+          $cor_nb_max = $cor_nb_max + $ngecor;
         }
         else{
           $uang_nb_dex = $uang_nb_dex + $jumlah; 
           $terjual_nb_dex = $terjual_nb_dex + $qty;
+          $cor_nb_dex = $cor_nb_dex + $ngecor;
         }
         
       }
       else if($kode_perta == 'bedilan'){
         $uang_be = $uang_be + $jumlah; 
         $terjual_be = $terjual_be + $qty;
+        $cor_be = $cor_be + $ngecor;
       }
       else if($kode_perta == 'muaradua'){
         $uang_md = $uang_md + $jumlah; 
         $terjual_md = $terjual_md + $qty;
+        $cor_md = $cor_md + $ngecor;
       }
       else if($kode_perta == 'sumberjaya'){
         $uang_sj = $uang_sj + $jumlah; 
         $terjual_sj = $terjual_sj + $qty;
+        $cor_sj = $cor_sj + $ngecor;
       }
+
+      
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$urut</td>
       <td style='font-size: 14px' align = 'center'>$tanggal</td>
@@ -411,6 +424,7 @@ else{
 
 </tbody>
 </table>
+
 <br>
 <hr>
 <div style="margin-right: 100px; margin-left: 100px;">
@@ -448,6 +462,7 @@ else{
 
 <br>
 <hr>
+
 <div style="margin-right: 100px; margin-left: 100px;">
 <h6 align="Center">Laporan Barang Terjual</h6>
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
@@ -495,6 +510,58 @@ else{
 </tbody>
 </table>
 </div>
+
+<br>
+<hr>
+
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Barang Di Cor</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Terjual</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_md); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+
 <br>
 <hr>
 <div style="margin-right: 100px; margin-left: 100px;">

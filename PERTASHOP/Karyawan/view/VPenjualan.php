@@ -417,24 +417,29 @@ $kode_perta = $data_perta['kode_perta'];
         if($nama_barang == 'Pertamax'){
           $uang_nb_max = $uang_nb_max + $jumlah; 
           $terjual_nb_max = $terjual_nb_max + $qty;
+          $cor_nb_max = $cor_nb_max + $ngecor;
         }
         else{
           $uang_nb_dex = $uang_nb_dex + $jumlah; 
           $terjual_nb_dex = $terjual_nb_dex + $qty;
+          $cor_nb_dex = $cor_nb_dex + $ngecor;
         }
         
       }
       else if($kode_perta == 'bedilan'){
         $uang_be = $uang_be + $jumlah; 
         $terjual_be = $terjual_be + $qty;
+        $cor_be = $cor_be + $ngecor;
       }
       else if($kode_perta == 'muaradua'){
         $uang_md = $uang_md + $jumlah; 
         $terjual_md = $terjual_md + $qty;
+        $cor_md = $cor_md + $ngecor;
       }
       else if($kode_perta == 'sumberjaya'){
         $uang_sj = $uang_sj + $jumlah; 
         $terjual_sj = $terjual_sj + $qty;
+        $cor_sj = $cor_sj + $ngecor;
       }
 
       echo "<tr>
@@ -564,8 +569,10 @@ $kode_perta = $data_perta['kode_perta'];
 </tbody>
 </table>
 </div>
+
 <br>
 <hr>
+
 <div style="margin-right: 100px; margin-left: 100px;">
 <h6 align="Center">Laporan Barang Terjual</h6>
 <div style="overflow-x: auto" align = 'center'>
@@ -607,6 +614,59 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+</div>
+
+<br>
+<hr>
+
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Barang Di Cor</h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Terjual</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_md); ?></td>
      
   </tr>
 
