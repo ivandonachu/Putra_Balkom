@@ -483,6 +483,7 @@ else{
     <select id="status_bayar" name="status_bayar" class="form-control">
       <option>Lunas Transfer</option>
       <option>Lunas Cash</option>
+      <option>Nyicil</option>
       <option>Bon</option>
     </select>
   </div>
@@ -739,6 +740,7 @@ else{
          $dataSelect = $data['status_bayar']; ?>  
          <option <?php echo ($dataSelect == 'Lunas Transfer') ? "selected": "" ?> >Lunas Transfer</option>
          <option <?php echo ($dataSelect == 'Lunas Cash') ? "selected": "" ?> >Lunas Cash</option>
+         <option <?php echo ($dataSelect == 'Nyicil') ? "selected": "" ?> >Nyicil</option>
          <option <?php echo ($dataSelect == 'Bon') ? "selected": "" ?> >Bon</option>
        </select>
 
