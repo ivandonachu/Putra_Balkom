@@ -287,7 +287,7 @@ if (!isset($data_pembelian_refill_tk['pembelian_refill_tk'])) {
     $total_pembelian_refill_tk = 0;
 }
 
-$total_pembelian_refill = $total_pembelian_refill_cbm + $total_pembelian_refill_tk;
+$total_pembelian_refill = $total_pembelian_refill_cbm;
 
 
 //TOTAL PEMBELIAN BAJA + ISI CBM
