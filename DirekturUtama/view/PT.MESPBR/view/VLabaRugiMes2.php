@@ -280,7 +280,7 @@ if (!isset($data_pembelian_refill_cbm['pembelian_refill_cbm'])) {
     $total_pembelian_refill_cbm = 0;
 }
 //TOTAL PEMBELIAN REFILL TK
-$table5 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_refill_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-110' AND referensi = 'ME' ");
+$table5 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_refill_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-110' AND referensi = 'MES' ");
 $data_pembelian_refill_tk = mysqli_fetch_array($table5);
 $total_pembelian_refill_tk = $data_pembelian_refill_tk['pembelian_refill_tk'];
 if (!isset($data_pembelian_refill_tk['pembelian_refill_tk'])) {
@@ -291,32 +291,32 @@ $total_pembelian_refill = $total_pembelian_refill_cbm + $total_pembelian_refill_
 
 
 //TOTAL PEMBELIAN BAJA + ISI CBM
-$table6 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajaisi_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-120' AND referensi = 'ME' ");
+$table6 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajaisi_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-120' AND referensi = 'MES' ");
 $data_pembelian_bajaisi_cbm = mysqli_fetch_array($table6);
 $total_pembelian_bajaisi_cbm = $data_pembelian_bajaisi_cbm['pembelian_bajaisi_cbm'];
 if (!isset($data_pembelian_bajaisi_cbm['pembelian_bajaisi_cbm'])) {
     $total_pembelian_bajaisi_cbm = 0;
 }
 //TOTAL PEMBELIAN REFILL TK
-$table7 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajaisi_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-120' AND referensi = 'ME' ");
+$table7 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajaisi_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-120' AND referensi = 'MES' ");
 $data_pembelian_bajaisi_tk = mysqli_fetch_array($table7);
 $total_pembelian_bajaisi_tk = $data_pembelian_bajaisi_tk['pembelian_bajaisi_tk'];
 if (!isset($data_pembelian_bajaisi_tk['pembelian_bajaisi_tk'])) {
     $total_pembelian_bajaisi_tk = 0;
 }
 
-$total_pembelian_bajaisi = $total_pembelian_bajaisi_cbm + $total_pembelian_bajaisi_tk;
+$total_pembelian_bajaisi = $total_pembelian_bajaisi_cbm ;
 
 
 //TOTAL PEMBELIAN KOSONG CBM
-$table8 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajakosong_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'ME' ");
+$table8 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajakosong_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'MES' ");
 $data_pembelian_bajakosong_cbm = mysqli_fetch_array($table8);
 $total_pembelian_bajakosong_cbm = $data_pembelian_bajakosong_cbm['pembelian_bajakosong_cbm'];
 if (!isset($data_pembelian_bajakosong_cbm['pembelian_bajakosong_cbm'])) {
     $total_pembelian_bajakosong_cbm = 0;
 }
 //TOTAL PEMBELIAN KOSONG TK
-$table9 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajakosong_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'ME' ");
+$table9 = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajakosong_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'MES' ");
 $data_pembelian_bajakosong_tk = mysqli_fetch_array($table9);
 $total_pembelian_bajakosong_tk = $data_pembelian_bajakosong_tk['pembelian_bajakosong_tk'];
 if (!isset($data_pembelian_bajakosong_tk['pembelian_bajakosong_tk'])) {
@@ -341,7 +341,7 @@ if (!isset($data_gaji['total_gaji'])) {
 
 
 //ALAT TULIS KANTOR TK
-$table11 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_atk_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-520' AND referensi = 'ME' ");
+$table11 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_atk_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-520' AND referensi = 'MES' ");
 $data_pengeluaran_atk_tk = mysqli_fetch_array($table11);
 $total_pengeluaran_atk_tk = $data_pengeluaran_atk_tk['total_atk_tk'];
 if (!isset($data_pengeluaran_atk_tk['total_atk_tk'])) {
@@ -353,7 +353,7 @@ $total_pengeluaran_atk =  $total_pengeluaran_atk_tk;
 
 
 //Transport /Perjalanan Dinas
-$table12 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_transport FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-530' AND referensi = 'ME'");
+$table12 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_transport FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-530' AND referensi = 'MES'");
 $data_pengeluaran_transport = mysqli_fetch_array($table12);
 $total_pengeluaran_transport = $data_pengeluaran_transport['total_transport'];
 if (!isset($data_pengeluaran_transport['total_transport'])) {
@@ -361,7 +361,7 @@ if (!isset($data_pengeluaran_transport['total_transport'])) {
 }
 
 //Biaya KANTOR
-$table13 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_kantor_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-540' AND referensi = 'ME'");
+$table13 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_kantor_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-540' AND referensi = 'MES'");
 $data_pengeluaran_kantor_tk = mysqli_fetch_array($table13);
 $total_pengeluaran_kantor_tk = $data_pengeluaran_kantor_tk['total_biaya_kantor_tk'];
 if (!isset($data_pengeluaran_kantor_tk['total_biaya_kantor_tk'])) {
@@ -373,7 +373,7 @@ $total_pengeluaran_kantor = $total_pengeluaran_kantor_tk;
 
 
 //Biaya listrik $ telepon kasir toko
-$table14 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_listrik_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-550' AND referensi = 'ME'");
+$table14 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_listrik_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-550' AND referensi = 'MES'");
 $data_pengeluaran_listrik_tk = mysqli_fetch_array($table14);
 $total_pengeluaran_listrik_tk = $data_pengeluaran_listrik_tk['total_listrik_tk'];
 if (!isset($data_pengeluaran_listrik_tk['total_listrik_tk'])) {
@@ -400,7 +400,7 @@ $total_biaya_pemasaran = $total_biaya_pemasaran_tk;
 
 //BIAYA USAHA LAINNYATK
 //kasir
-$table16 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_usaha_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' AND referensi = 'ME'");
+$table16 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_usaha_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' AND referensi = 'MES'");
 $data_biaya_usaha_tk = mysqli_fetch_array($table16);
 $total_biaya_usaha_tk = $data_biaya_usaha_tk['total_biaya_usaha_tk'];
 if (!isset($data_total_biaya_usaha_tk['total_biaya_usaha_tk'])) {
