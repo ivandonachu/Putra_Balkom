@@ -848,10 +848,10 @@ $mbah = 'Kebun Mbah';
      
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
       <td style='font-size: 11px' align = 'center'>Kebun Lengkiti</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri); ?></td>
-      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
   <tr>
@@ -940,10 +940,10 @@ $mbah = 'Kebun Mbah';
      
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
       <td style='font-size: 11px' align = 'center'>Kebun Lengkiti</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri); ?></td>
-      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$PRIBADI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$CBM&status_saldo=$Masuk'>Rincian</a></td>"; ?>
 
      
   </tr>
