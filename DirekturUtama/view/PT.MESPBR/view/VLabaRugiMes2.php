@@ -432,7 +432,7 @@ $total_perbaikan_ken3 = $data_perbaikan_ken3['total_perbaikan_ken3'];
 if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
     $total_perbaikan_ken3 = 0;
 }
-$total_perbaikan_kendaraan = $total_perbaikan_ken3;
+$total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
                             $total_perbaikan_kendaraan;
@@ -931,7 +931,7 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td>5-595</td>
                                     <td class="text-left">Biaya Perbaikan Kendaraan</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_perbaikan_kendaraan); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLRMES/VRPerbaikanKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr style="background-color:    #F0F8FF; ">
