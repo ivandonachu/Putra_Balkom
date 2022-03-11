@@ -42,7 +42,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 }
 else{
-$table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ");
+$table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal AND no_laporan");
 $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
 
 // KELUARRRRRR
