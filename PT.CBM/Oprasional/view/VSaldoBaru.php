@@ -181,9 +181,25 @@ $jumlah_mas_pri = 0;
 //MASUK pribadi untuk kebun 
 $table19 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_pri_pri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'PRIBADI' AND status_saldo = 'Masuk' ");
 $data19 = mysqli_fetch_array($table19);
-$jumlah_mas_pri = $data19['jumlah_mas_pri_pri'];
+$jumlah_mas_pri_pri = $data19['jumlah_mas_pri_pri'];
 if (!isset($data19['jumlah_mas_pri_pri'])) {
 $jumlah_mas_pri_pri = 0;
+}
+
+//MASUK pribadi untuk kebun 
+$table20 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_mas_pri_mbah FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'Kebun Mbah' AND status_saldo = 'Masuk' ");
+$data20 = mysqli_fetch_array($table20);
+$jumlah_mas_pri_mbah = $data20['jumlah_mas_pri_mbah'];
+if (!isset($data20['jumlah_mas_pri_mbah'])) {
+$jumlah_mas_pri_mbah = 0;
+}
+
+//Keluar pribadi untuk kebun 
+$table21 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pri_mbah FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'Kebun Mbah' AND status_saldo = 'Keluar' ");
+$data21 = mysqli_fetch_array($table21);
+$jumlah_kel_pri_mbah = $data21['jumlah_kel_pri_mbah'];
+if (!isset($data21['jumlah_kel_pri_mbah'])) {
+$jumlah_kel_pri_mbah = 0;
 }
 
 // kode salado
@@ -199,7 +215,7 @@ $PRIBADI = 'PRIBADI';
 $Kebun = 'Kebun Lengkiti';
 $Keluar = 'Keluar';
 $Masuk = 'Masuk';
-
+$mbah = 'Kebun Mbah';
 
 }
  ?>
@@ -442,6 +458,7 @@ $Masuk = 'Masuk';
             <option>PBJ</option>
             <option>BALSRI</option>
             <option>Kebun Lengkiti</option>
+            <option>Kebun Mbah</option>
             <option>PRIBADI</option>
             <option>MES</option>
             <option>PBR</option>
@@ -646,6 +663,7 @@ $Masuk = 'Masuk';
             <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
             <option <?php echo ($dataSelect == 'BALSRI') ? "selected": "" ?> >BALSRI</option>
             <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
+            <option <?php echo ($dataSelect == 'Kebun Mbah') ? "selected": "" ?> >Kebun Mbah</option>
             <option <?php echo ($dataSelect == 'PRIBADI') ? "selected": "" ?> >PRIBADI</option>
             <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
             <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
@@ -843,6 +861,13 @@ $Masuk = 'Masuk';
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PRIBADI&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_mbah); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
 
 
 </tbody>
@@ -927,6 +952,13 @@ $Masuk = 'Masuk';
       <td style='font-size: 11px' align = 'center'>PRIBADI</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri_pri); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PRIBADI&rekening=$PRIBADI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri_mbah); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$PRIBADI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
      
   </tr>
 
