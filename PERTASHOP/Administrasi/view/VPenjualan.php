@@ -247,9 +247,9 @@ else{
       <th  style="font-size: 11px">Ngecor</th>
       <th  style="font-size: 11px">Jual</th>
       <th  style="font-size: 12px">Harga</th>
+      <th  style="font-size: 12px">Jumlah</th>
       <th  style="font-size: 11px">Stok awal</th>
       <th  style="font-size: 11px">Stok Akhir</th>
-      <th  style="font-size: 12px">Jumlah</th>
       <th  style="font-size: 12px">KET</th>
       <th  style="font-size: 12px">File</th>
       <th  style="font-size: 12px">Status</th>
