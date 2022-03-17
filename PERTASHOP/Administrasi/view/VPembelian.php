@@ -477,7 +477,7 @@ else{
       <td style='font-size: 11px' align = 'center'>$sonding_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$sonding_akhir/L</td>
       <td style='font-size: 11px' align = 'center'>$selisih/L</td>
-      <td style='font-size: 11px' align = 'center'>$losis/L</td>
+      <td style='font-size: 11px' align = 'center'>"?> <?= round($losis,2); ?> <?php echo" /L</td>
       <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "
