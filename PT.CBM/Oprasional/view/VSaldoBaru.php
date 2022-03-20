@@ -646,7 +646,7 @@ $mbah = 'Kebun Mbah';
          <option <?php echo ($dataSelect1 == 'PBJ') ? "selected": "" ?> >PBJ</option>
          <option <?php echo ($dataSelect1 == 'MES') ? "selected": "" ?> >MES</option>
          <option <?php echo ($dataSelect1 == 'PBR') ? "selected": "" ?> >PBR</option>
-         <option <?php echo ($dataSelect1 == 'BASLRI') ? "selected": "" ?> >BALSRI</option>
+         <option <?php echo ($dataSelect1 == 'BALSRI') ? "selected": "" ?> >BALSRI</option>
          <option <?php echo ($dataSelect1 == 'STE') ? "selected": "" ?> >STE</option>
          <option <?php echo ($dataSelect1 == 'PRIBADI') ? "selected": "" ?> >PRIBADI</option>
        </select>
