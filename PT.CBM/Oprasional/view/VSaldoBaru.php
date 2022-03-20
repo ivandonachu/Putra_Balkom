@@ -532,7 +532,8 @@ $mbah = 'Kebun Mbah';
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -783,6 +784,7 @@ $mbah = 'Kebun Mbah';
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
 <div style="margin-right: 100px; margin-left: 100px;">
