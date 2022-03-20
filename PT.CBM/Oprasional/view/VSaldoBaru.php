@@ -641,14 +641,14 @@ $mbah = 'Kebun Mbah';
 
        <label><label>Saldo</label></label>
        <select id="rekening" name="rekening" class="form-control">
-         <?php $dataSelect = $data['nama_rekening']; ?>
-         <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
-         <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
-         <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
-         <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
-         <option <?php echo ($dataSelect == 'BASLRI') ? "selected": "" ?> >BALSRI</option>
-         <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
-         <option <?php echo ($dataSelect == 'PRIBADI') ? "selected": "" ?> >PRIBADI</option>
+         <?php $dataSelect1 = $data['nama_rekening']; ?>
+         <option <?php echo ($dataSelect1 == 'CBM') ? "selected": "" ?> >CBM</option>
+         <option <?php echo ($dataSelect1 == 'PBJ') ? "selected": "" ?> >PBJ</option>
+         <option <?php echo ($dataSelect1 == 'MES') ? "selected": "" ?> >MES</option>
+         <option <?php echo ($dataSelect1 == 'PBR') ? "selected": "" ?> >PBR</option>
+         <option <?php echo ($dataSelect1 == 'BASLRI') ? "selected": "" ?> >BALSRI</option>
+         <option <?php echo ($dataSelect1 == 'STE') ? "selected": "" ?> >STE</option>
+         <option <?php echo ($dataSelect1 == 'PRIBADI') ? "selected": "" ?> >PRIBADI</option>
        </select>
 
 
