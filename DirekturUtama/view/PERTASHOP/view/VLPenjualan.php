@@ -38,8 +38,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop  ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
-   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
-
+$table2 = mysqli_query($koneksiperta,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta WHERE kode_perta = '$kode_perta'");
 
 }
 
@@ -48,7 +47,7 @@ else{
   $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop  ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
-   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
+   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta WHERE kode_perta = '$kode_perta'");
 
 
 }
@@ -418,6 +417,7 @@ $kode_perta = $data_perta['kode_perta'];
 <h6 align="Center">Laporan Stok</h6>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
+  <th style='font-size: 11px'>Pertashop</th>
       <th style='font-size: 11px'>Nama Barang</th>
       <th style='font-size: 11px'>STOK</th>
     </tr>
@@ -425,10 +425,12 @@ $kode_perta = $data_perta['kode_perta'];
   <tbody>
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_barang =$data['nama_barang'];
+      $lokasi =$data['lokasi'];
       $stok = $data['stok'];
 
 
       echo "<tr>
+      <td style='font-size: 11px' align = 'center'>$lokasi</td>
       <td style='font-size: 11px' align = 'center'>$nama_barang</td>
       <td style='font-size: 11px' align = 'center'>$stok</td>
      
