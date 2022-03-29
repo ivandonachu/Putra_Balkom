@@ -318,10 +318,10 @@ else{
 
 
     //totalkreditGLOBAL
-    $total_kredit = 0;
+
         $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
         $dataa = mysqli_fetch_array($tablee);
-        $jml_kredit= $dataa['total_kredit'];
+        $total_kredit= $dataa['total_kredit'];
 
         
  
