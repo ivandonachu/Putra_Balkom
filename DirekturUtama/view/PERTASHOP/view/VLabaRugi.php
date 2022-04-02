@@ -66,6 +66,33 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   }
 
+  //ngecor Pertamax
+
+  $tablex1 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  
+  $total_pertamax=0;
+  while($datax1 = mysqli_fetch_array($tablex1)){
+    $ngecor = $datax1['ngecor'];
+    $harga = $datax1['harga'];
+
+    $total_cor_pertamax = $total_cor_pertamax + ($ngecor * $harga);
+
+  }
+
+  //ngecor Dexlite
+  $tablex2 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  
+  $total_dexlite=0;
+  while($datax2 = mysqli_fetch_array($tablex2)){
+    $ngecor = $datax2['ngecor'];
+    $harga = $datax2['harga'];
+
+    $total_cor_dexlite = $total_cor_dexlite + ($ngecor * $harga);
+
+  }
+
+
+
   //dividen pertamax
 $table100 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
 $data100 = mysqli_fetch_array($table100);
@@ -97,7 +124,7 @@ else{
 }
 
 
-  $total_pendapatan = $total_pertamax + $total_dexlite - ($dividen_pertamax + $dividen_Dexlite);
+  $total_pendapatan = $total_pertamax + $total_dexlite + $total_cor_pertamax + $total_cor_dexlite - ($dividen_pertamax + $dividen_Dexlite);
 
 
     // Pembelian Pertamax
@@ -569,7 +596,22 @@ else{
                                     <?php echo "<td class='thick-line'><a href='VRincianLR/VRPenDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
-                                    <td>4-100</td>
+                                    <td>4-101</td>
+                                    <td class="text-left">Ngecor Pertamax</td>
+                                    <td class="text-left"><?= formatuang($total_cor_pertamax); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+                                
+                                <tr>
+                                    <td>4-111</td>
+                                    <td class="text-left">Ngecor Dexlite</td>
+                                    <td class="text-left"><?= formatuang($total_cor_dexlite); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-102</td>
                                     <td class="text-left">Dividen Penjualan Pertamax</td>
                                     
                                     <td class="text-left"><?= formatuang(0); ?></td>
@@ -577,7 +619,7 @@ else{
                                     <?php echo "<td class='thick-line'><a href='VRincianLR/VRDivPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
-                                    <td>4-110</td>
+                                    <td>4-112</td>
                                     <td class="text-left">Dividen Penjualan Dexlite</td>
                                    
                                     <td class="text-left"><?= formatuang(0); ?></td>
@@ -796,7 +838,7 @@ aria-hidden="true">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
+                <span aria-hidden="true"></span>
             </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
