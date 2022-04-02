@@ -70,7 +70,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   $tablex1 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
   
-  $total_pertamax=0;
+  $total_cor_pertamax=0;
   while($datax1 = mysqli_fetch_array($tablex1)){
     $ngecor = $datax1['ngecor'];
     $harga = $datax1['harga'];
@@ -82,7 +82,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //ngecor Dexlite
   $tablex2 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
   
-  $total_dexlite=0;
+  $total_cor_dexlite=0;
   while($datax2 = mysqli_fetch_array($tablex2)){
     $ngecor = $datax2['ngecor'];
     $harga = $datax2['harga'];
