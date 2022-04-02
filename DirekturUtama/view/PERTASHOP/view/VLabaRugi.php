@@ -219,6 +219,30 @@ else{
 
     $total_dexlite = $total_dexlite + ($qty * $harga);
     
+    //ngecor Pertamax
+
+  $tablex1 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  
+  $total_cor_pertamax=0;
+  while($datax1 = mysqli_fetch_array($tablex1)){
+    $ngecor = $datax1['ngecor'];
+    $harga = $datax1['harga'];
+
+    $total_cor_pertamax = $total_cor_pertamax + ($ngecor * $harga);
+
+  }
+
+  //ngecor Dexlite
+  $tablex2 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  
+  $total_cor_dexlite=0;
+  while($datax2 = mysqli_fetch_array($tablex2)){
+    $ngecor = $datax2['ngecor'];
+    $harga = $datax2['harga'];
+
+    $total_cor_dexlite = $total_cor_dexlite + ($ngecor * $harga);
+
+  }
 
   }
   //dividen pertamax
