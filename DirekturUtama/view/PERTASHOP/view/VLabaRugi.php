@@ -42,7 +42,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-  // Penjualan Pertamax
+  // Penjualan Pertamaxaa
   $table = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
   
   $total_pertamax=0;
