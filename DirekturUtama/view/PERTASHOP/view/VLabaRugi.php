@@ -276,7 +276,7 @@ else{
   }
 
 
-  $total_pendapatan = $total_pertamax + $total_dexlite - ($dividen_pertamax + $dividen_Dexlite);
+  $total_pendapatan = $total_pertamax + $total_dexlite + $total_cor_pertamax + $total_cor_dexlite - ($dividen_pertamax + $dividen_Dexlite);
 
 
     // Pembelian Pertamax
