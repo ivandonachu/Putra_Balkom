@@ -21,22 +21,28 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-
-
-
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+  $lokasi = $_GET['lokasi'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $lokasi = $_POST['lokasi'];
+ } 
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' AND b.lokasi = '$lokasi' ");
+  $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
+}
 
+else{
+  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
+}
 
-
-$table = mysqli_query($koneksi, "SELECT * FROM driver");
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +56,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Driver</title>
+  <title>Penjualan Dexlite</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -76,8 +82,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
@@ -234,7 +240,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VAMT'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Driver</h5></a>"; ?>
+      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Dexlite Pertashop </h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -288,96 +294,155 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 <div>   
 
 
+ <div style="margin-right: 20px; margin-left: 20px;">
 
-  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+  <?php  echo "<form  method='POST' action='VLPenjualanDex'>" ?>
+  <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <select id="lokasi" name="lokasi"s>
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop");   
 
-   <div class="row">
-    <div class="col-md-10">
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
 
-    </div>
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Driver</button> <br> <br>
+
+              echo "<option> $nama_driver </option> ";
+              
+            }
+            ?>
+          </select>
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
       </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form Pencatatan Driver</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_driver' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
-
-            <div class="row">
-              <div class="col-md-6">
-                <label>Nama Driver</label>
-                <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="">
-              </div>    
-
-
-              <div class="col-md-6">
-                <label>No Hp</label>
-                <input class="form-control form-control-sm" type="text" id="no_hp" name="no_hp" >
-              </div>
-            </div>
-            <div>
-             <label>Alamat</label>
-             <div class="form-group">
-               <textarea id = "alamat" name="alamat" style="width: 300px;"></textarea>
-             </div>
-           </div>
-
-
-           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary"> CATAT</button>
-            <button type="reset" class="btn btn-danger"> RESET</button>
-          </div>
-        </form>
-      </div>
-
     </div>
-  </div>
-</div>
+</form>
 
-</div>
-</div>
+
+<div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+ </div>
+ <br>
+
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
-      <th>No</th>
-      <th>Nama Driver</th>
-      <th>No Hp</th>   
-      <th>Alamat</th>
- 
+      <th  style="font-size: 12px" >No</th>
+      <th  style="font-size: 12px">Tanggal</th>
+      <th  style="font-size: 12px">Kode Pertashop</th>   
+      <th  style="font-size: 12px">Lokasi</th>
+      <th  style="font-size: 12px">Nama Karyawan</th>
+      <th  style="font-size: 12px">Barang</th>
+      <th  style="font-size: 11px">Total Keluar</th>
+      <th  style="font-size: 11px">Ngecor</th>
+      <th  style="font-size: 11px">Jual</th>
+      <th  style="font-size: 12px">Harga</th>
+      <th  style="font-size: 12px">Jumlah</th>
+      <th  style="font-size: 11px">Stok awal</th>
+      <th  style="font-size: 11px">Stok Akhir</th>
+      
+      <th  style="font-size: 12px">KET</th>
+      <th  style="font-size: 12px">File</th>
+      <th  style="font-size: 12px">Status</th>
+      <th  style="font-size: 12px"></th>
+  
     </tr>
   </thead>
   <tbody>
-    
-    <?php while($data = mysqli_fetch_array($table)){
-      $no_driver = $data['no_driver'];
-      $nama_driver =$data['nama_driver'];
-      $no_hp =$data['no_hp'];
-      $alamat = $data['alamat'];
+    <?php
+    $urut = 0;
+    $uang_nb_max = 0;
+    $terjual_nb_max = 0;
+    $uang_nb_dex = 0;
+    $terjual_nb_dex = 0 ;
+    $uang_be =0;
+    $terjual_be = 0;
+    $uang_md = 0;
+    $terjual_md = 0;
+    $uang_sj = 0 ;
+    $terjual_sj = 0;
+    $cor_nb_max = 0;
+    $cor_nb_dex = 0;
+    $cor_be =0;
+    $cor_md = 0;
+    $cor_sj = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
 
+    ?>
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_penjualan = $data['no_penjualan'];
+      $tanggal =$data['tanggal'];
+      $kode_perta =$data['kode_perta'];
+      $lokasi = $data['lokasi'];
+      $nama_karyawan = $data['nama_karyawan'];
+      $nama_barang = $data['nama_barang'];
+      $qty = $data['qty'];
+      $ngecor = $data['ngecor'];
+      $total_qty = $qty + $ngecor;
+      $harga = $data['harga'];
+      $stok_awal = $data['stok_awal'];
+      $stok_akhir = $data['stok_akhir'];
+      $jumlah = $qty * $harga;
+      $keterangan = $data['keterangan'];
+      $file_bukti = $data['file_bukti'];
+      $status = $data['persetujuan'];
+      $urut = $urut + 1;
+
+      if($kode_perta == '2P.323.208'){
+        if($nama_barang == 'Pertamax'){
+          $uang_nb_max = $uang_nb_max + $jumlah; 
+          $terjual_nb_max = $terjual_nb_max + $qty;
+          $cor_nb_max = $cor_nb_max + $ngecor;
+        }
+        else{
+          $uang_nb_dex = $uang_nb_dex + $jumlah; 
+          $terjual_nb_dex = $terjual_nb_dex + $qty;
+          $cor_nb_dex = $cor_nb_dex + $ngecor;
+        }
+        
+      }
+      else if($kode_perta == 'bedilan'){
+        $uang_be = $uang_be + $jumlah; 
+        $terjual_be = $terjual_be + $qty;
+        $cor_be = $cor_be + $ngecor;
+      }
+      else if($kode_perta == 'muaradua'){
+        $uang_md = $uang_md + $jumlah; 
+        $terjual_md = $terjual_md + $qty;
+        $cor_md = $cor_md + $ngecor;
+      }
+      else if($kode_perta == 'sumberjaya'){
+        $uang_sj = $uang_sj + $jumlah; 
+        $terjual_sj = $terjual_sj + $qty;
+        $cor_sj = $cor_sj + $ngecor;
+      }
+
+      
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no_driver</td>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>$no_hp</td>
-      <td style='font-size: 14px' align = 'center'>$alamat</td>
-      "; ?>
-     
-<?php echo  " </tr>";
+      <td style='font-size: 14px' align = 'center'>$urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 14px' align = 'center'>$lokasi</td>
+      <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
+      <td style='font-size: 14px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 11px' align = 'center'>$total_qty/L</td>
+      <td style='font-size: 11px' align = 'center'>$ngecor/L</td>
+      <td style='font-size: 11px' align = 'center'>$qty/L</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
+      <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
+      <td style='font-size: 14px' align = 'center'>$keterangan</td>
+ </tr>";
 }
 ?>
 
@@ -385,12 +450,195 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 </table>
 </div>
 <br>
-<br>
-<br>
+<hr>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Stok</h6>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Kode Barang</th>
+      <th>Kode Perta</th>
+      <th>Nama Barang</th>
+      <th>STOK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $kode_barang = $data['kode_barang'];
+      $kode_perta =$data['kode_perta'];
+      $nama_barang =$data['nama_barang'];
+      $stok = $data['stok'];
 
 
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$kode_barang</td>
+      <td style='font-size: 14px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 14px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 14px' align = 'center'>$stok</td>
+     
+  </tr>";
+}
+?>
+
+</tbody>
+</table>
 </div>
 
+<br>
+<hr>
+
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Barang Terjual</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Terjual</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+
+<br>
+<hr>
+
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Barang Di Cor</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Terjual</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_md); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+
+<br>
+<hr>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center"  >Laporan Keuangan</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Pendapatan</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md); ?></td>
+     
+  </tr>
+
+
+
+</tbody>
+</table>
+</div>
+<br>
+</div>
+</div>
 </div>
 <!-- End of Main Content -->
 

@@ -187,7 +187,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Pertashop</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Lap Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Penjualan Pertamax</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VLPenjualanDex">Penjualan Dex</a>
                      <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiPs">Laba Rugi</a>
                      <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
                      <a class="collapse-item" style="font-size: 15px;" href="Setoran">Setoran</a>
