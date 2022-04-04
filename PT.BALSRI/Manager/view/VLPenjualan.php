@@ -21,222 +21,515 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+
 if (isset($_GET['tanggal1'])) {
-   $tanggal_awal = $_GET['tanggal1'];
-   $tanggal_akhir = $_GET['tanggal2'];
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+ $lokasi = $_GET['lokasi'];
 } 
 
 elseif (isset($_POST['tanggal1'])) {
-   $tanggal_awal = $_POST['tanggal1'];
-   $tanggal_akhir = $_POST['tanggal2'];
-}  
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+ $lokasi = $_POST['lokasi'];
+} 
 
-else{
-  $tanggal_awal = date('Y-m-1');
-$tanggal_akhir = date('Y-m-31');
+
+function formatuang($angka){
+  $uang = "Rp " . number_format($angka,2,',','.');
+  return $uang;
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' ");
-    $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop  ");
-$data_perta = mysqli_fetch_array($result);
-$kode_perta = $data_perta['kode_perta'];
-   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
 
+
+
+  // Penjualan Pertamax
+  $table = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  
+  $total_pertamax=0;
+  while($data = mysqli_fetch_array($table)){
+    $qty = $data['qty'];
+    $harga = $data['harga'];
+
+    $total_pertamax = $total_pertamax + ($qty * $harga);
+
+  }
+
+   // Penjualan Dexlite
+  $table2 = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  
+  $total_dexlite=0;
+  while($data2 = mysqli_fetch_array($table2)){
+    $qty = $data2['qty'];
+    $harga = $data2['harga'];
+
+    $total_dexlite = $total_dexlite + ($qty * $harga);
+
+  }
+
+  //ngecor Pertamax
+
+  $tablex1 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  
+  $total_cor_pertamax=0;
+  while($datax1 = mysqli_fetch_array($tablex1)){
+    $ngecor = $datax1['ngecor'];
+    $harga = $datax1['harga'];
+
+    $total_cor_pertamax = $total_cor_pertamax + ($ngecor * $harga);
+
+  }
+
+  //ngecor Dexlite
+  $tablex2 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  
+  $total_cor_dexlite=0;
+  while($datax2 = mysqli_fetch_array($tablex2)){
+    $ngecor = $datax2['ngecor'];
+    $harga = $datax2['harga'];
+
+    $total_cor_dexlite = $total_cor_dexlite + ($ngecor * $harga);
+
+  }
+
+
+
+  //dividen pertamax
+$table100 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+$data100 = mysqli_fetch_array($table100);
+$total_terjual = $data100['total_terjual'];
+
+if($lokasi == 'Bedilan' ){
+    $dividen_pertamax = $total_terjual * 150;
+}
+elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
+    $dividen_pertamax = $total_terjual * 50;
+}
+else{
+    $dividen_pertamax = 0;
+}
+
+//dividen Dexlite
+$table101 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+$data101 = mysqli_fetch_array($table101);
+$total_terjual = $data101['total_terjual'];
+
+if($lokasi == 'Bedilan' ){
+    $dividen_Dexlite = $total_terjual * 150;
+}
+elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
+    $dividen_Dexlite = $total_terjual * 50;
+}
+else{
+    $dividen_Dexlite = 0;
+}
+
+
+  $total_pendapatan = $total_pertamax + $total_dexlite + $total_cor_pertamax + $total_cor_dexlite - ($dividen_pertamax + $dividen_Dexlite);
+
+
+    // Pembelian Pertamax
+  $table3 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  
+  $total_pertamax_b=0;
+  while($data3 = mysqli_fetch_array($table3)){
+    $qty = $data3['qty'];
+    $harga = $data3['harga'];
+
+    $total_pertamax_b = $total_pertamax_b + ($qty * $harga);
+
+  }
+
+   // Pembelian Dexlite
+  $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi' ");
+  
+  $total_dexlite_b=0;
+  while($data4 = mysqli_fetch_array($table4)){
+    $qty = $data4['qty'];
+    $harga = $data4['harga'];
+
+    $total_dexlite_b = $total_dexlite_b + ($qty * $harga);
+
+  }
+
+  $total_harga_pokok_penjualan = $total_pertamax_b + $total_dexlite_b;
+  $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
+
+  //pengeluran Biaya Kantor
+   $table3 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE   tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Kantor' AND b.lokasi = '$lokasi'  ");
+   $data3 = mysqli_fetch_array($table3);
+   $jml_biaya_kantor = $data3['jumlah_biaya_kantor'];
+    if (!isset($data3['jumlah_biaya_kantor'])) {
+    $jml_biaya_kantor = 0;
+    }
+
+   //pengeluran Listrik & Telepon
+   $table4 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE  tanggal = '$tanggal_awal' AND nama_akun = 'Listrik & Telepon' AND b.lokasi = '$lokasi'  ");
+   $data4 = mysqli_fetch_array($table4);
+   $jml_listrik = $data4['jumlah_listrik'];
+    if (!isset($data4['jumlah_listrikr'])) {
+    $jml_listrik = 0;
+    }
+
+   //pengeluran Biaya Sewa
+   $table5 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE  tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Sewa'  AND b.lokasi = '$lokasi'  ");
+   $data5 = mysqli_fetch_array($table5);
+   $jml_sewa = $data5['jumlah_sewa'];
+    if (!isset($data5['jumlah_sewa'])) {
+    $jml_sewa = 0;
+    }
+
+   //pengeluran Alat Tulis Kantor
+   $table6 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE   tanggal = '$tanggal_awal' AND nama_akun = 'Alat Tulis Kantor'  ");
+   $data6 = mysqli_fetch_array($table6);
+   $jml_atk = $data6['jumlah_atk'];
+    if (!isset($data6['jumlah_atk'])) {
+    $jml_atk = 0;
+    }
+
+    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_sewa;
+
+    $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
 }
 
 else{
-  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-  $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop  ");
-$data_perta = mysqli_fetch_array($result);
-$kode_perta = $data_perta['kode_perta'];
-   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
 
+
+
+  // Penjualan Pertamax
+  $table = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  
+  $total_pertamax=0;
+  while($data = mysqli_fetch_array($table)){
+    $qty = $data['qty'];
+    $harga = $data['harga'];
+
+    $total_pertamax = $total_pertamax + ($qty * $harga);
+
+
+  }
+
+   // Penjualan Dexlite
+  $table2 = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  
+  $total_dexlite=0;
+  while($data2 = mysqli_fetch_array($table2)){
+    $qty = $data2['qty'];
+    $harga = $data2['harga'];
+
+    $total_dexlite = $total_dexlite + ($qty * $harga);
+    
+    //ngecor Pertamax
+
+  $tablex1 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  
+  $total_cor_pertamax=0;
+  while($datax1 = mysqli_fetch_array($tablex1)){
+    $ngecor = $datax1['ngecor'];
+    $harga = $datax1['harga'];
+
+    $total_cor_pertamax = $total_cor_pertamax + ($ngecor * $harga);
+
+  }
+
+  //ngecor Dexlite
+  $tablex2 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  
+  $total_cor_dexlite=0;
+  while($datax2 = mysqli_fetch_array($tablex2)){
+    $ngecor = $datax2['ngecor'];
+    $harga = $datax2['harga'];
+
+    $total_cor_dexlite = $total_cor_dexlite + ($ngecor * $harga);
+
+  }
+
+  }
+  //dividen pertamax
+  $table100 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $data100 = mysqli_fetch_array($table100);
+  $total_terjual = $data100['total_terjual'];
+  
+  if($lokasi == 'Bedilan' ){
+      $dividen_pertamax = $total_terjual * 150;
+  }
+  elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
+      $dividen_pertamax = $total_terjual * 50;
+  }
+  else{
+      $dividen_pertamax = 0;
+  }
+  
+  //dividen Dexlite
+  $table101 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  $data101 = mysqli_fetch_array($table101);
+  $total_terjual = $data101['total_terjual'];
+  
+  if($lokasi == 'Bedilan' ){
+      $dividen_Dexlite = $total_terjual * 150;
+  }
+  elseif($lokasi == 'Sumber Jaya' || $lokasi == 'Nusa Bakti'){
+      $dividen_Dexlite = $total_terjual * 50;
+  }
+  else{
+      $dividen_Dexlite = 0;
+  }
+
+
+  $total_pendapatan = $total_pertamax + $total_dexlite + $total_cor_pertamax + $total_cor_dexlite - ($dividen_pertamax + $dividen_Dexlite);
+
+
+    // Pembelian Pertamax
+  $table3 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  
+  $total_pertamax_b=0;
+  while($data3 = mysqli_fetch_array($table3)){
+    $qty = $data3['qty'];
+    $harga = $data3['harga'];
+
+    $total_pertamax_b = $total_pertamax_b + ($qty * $harga);
+
+  }
+
+   // Pembelian Dexlite
+  $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi' ");
+  
+  $total_dexlite_b=0;
+  while($data4 = mysqli_fetch_array($table4)){
+    $qty = $data4['qty'];
+    $harga = $data4['harga'];
+
+    $total_dexlite_b = $total_dexlite_b + ($qty * $harga);
+
+  }
+
+  $total_harga_pokok_penjualan = $total_pertamax_b + $total_dexlite_b;
+  $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
+
+  //pengeluran Biaya Kantor
+   $table32= mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' AND b.lokasi = '$lokasi'  ");
+   $data32 = mysqli_fetch_array($table32);
+   $jml_biaya_kantor = $data32['jumlah_biaya_kantor'];
+    if (!isset($data32['jumlah_biaya_kantor'])) {
+    $jml_biaya_kantor = 0;
+    }
+
+   //pengeluran Listrik & Telepon
+   $table42 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' AND b.lokasi = '$lokasi'  ");
+   $data42 = mysqli_fetch_array($table42);
+   $jml_listrik = $data42['jumlah_listrik'];
+    if (!isset($data42['jumlah_listrik'])) {
+    $jml_listrik = 0;
+    }
+
+   //pengeluran Biaya Sewa
+   $table5 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa'  AND b.lokasi = '$lokasi'  ");
+   $data5 = mysqli_fetch_array($table5);
+   $jml_sewa = $data5['jumlah_sewa'];
+    if (!isset($data5['jumlah_sewa'])) {
+    $jml_sewa = 0;
+    }
+    $jml_sewa = $jml_sewa + $dividen_pertamax + $dividen_Dexlite;
+   //pengeluran Alat Tulis Kantor
+   $table6 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor'  ");
+   $data6 = mysqli_fetch_array($table6);
+   $jml_atk = $data6['jumlah_atk'];
+    if (!isset($data6['jumlah_atk'])) {
+    $jml_atk = 0;
+    }
+
+    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa;
+    $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
 }
 
 
+
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>Laporan Penjualan</title>
+    <title>Laporan Penjualan Pertashop </title>
 
-  <!-- Custom fonts for this template-->
-  <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-  href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-  rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/sbadmin/vendor/bootstrap/css/bootstrap.min.css">
-  <!-- Custom styles for this template-->
-  <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
-  <!-- Link Tabel -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Custom fonts for this template-->
+    <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Custom styles for this template-->
+    <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
 
-  <!-- Link datepicker -->
 
 </head>
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-   <!-- Sidebar -->
+          <!-- Sidebar -->
    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
-       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+             <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-            </a>
+             </div>
+             <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+         </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+         <!-- Divider -->
+         <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsManager">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+         <!-- Nav Item - Dashboard -->
+         <li class="nav-item active" >
+             <a class="nav-link" href="DsManager">
+                 <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+                 <span style="font-size: 16px;" >Dashboard</span></a>
+             </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
+             <!-- Divider -->
+             <hr class="sidebar-divider">
 
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Manager
-                </div>
-                <?php if ($nama =='Tanry Yanoda Donachu') {
-                   ?>  <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                  15  aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Tagihan</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Palembang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi BTA</a>
-                    </div>
-                </div>
-            </li> <?php
-                }
-                ?>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengiriman</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Rekap Gaji</a>
-                    </div>
-                </div>
-            </li>
+             <!-- Heading -->
+             <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                  Menu Manager
+             </div>
+             <?php if ($nama =='Tanry Yanoda Donachu') {
+                ?>  <!-- Nav Item - Pages Collapse Menu -->
+             <li class="nav-item">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+               15  aria-expanded="true" aria-controls="collapseOne">
+                 <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                 <span style="font-size: 15px; color:white;" >Tagihan</span>
+             </a>
+             <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+                     <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Palembang</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi LMG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi PLG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi BTA</a>
+                 </div>
+             </div>
+         </li> <?php
+             }
+             ?>
              <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
-                  15  aria-expanded="true" aria-controls="collapseTwo22">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengeluaran</span>
-                </a>
-                <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Lap Perbaikan LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Lap Perbaikan PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Lap Perbaikan BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
-                    </div>
-                </div>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo1">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >SDM</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse22"
-                  15  aria-expanded="true" aria-controls="collapse22">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pertashop</span>
-                </a>
-                <div id="collapse22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Pertashop</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
+             <li class="nav-item">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               15  aria-expanded="true" aria-controls="collapseTwo">
+                 <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                 <span style="font-size: 15px; color:white;" >Pengiriman</span>
+             </a>
+             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
+                     <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Rekap Gaji</a>
+                 </div>
+             </div>
+         </li>
+          <!-- Nav Item - Pages Collapse Menu -->
+             <li class="nav-item">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
+               15  aria-expanded="true" aria-controls="collapseTwo22">
+                 <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                 <span style="font-size: 15px; color:white;" >Pengeluaran</span>
+             </a>
+             <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
+                     <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Lap Perbaikan LMG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Lap Perbaikan PLG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Lap Perbaikan BTA</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
+                 </div>
+             </div>
+         </li>
+          <!-- Nav Item - Pages Collapse Menu -->
+             <li class="nav-item">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+               15  aria-expanded="true" aria-controls="collapseTwo1">
+                 <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                 <span style="font-size: 15px; color:white;" >SDM</span>
+             </a>
+             <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                     <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+                 </div>
+             </div>
+         </li>
+         <!-- Nav Item - Pages Collapse Menu -->
+         <li class="nav-item">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse22"
+               15  aria-expanded="true" aria-controls="collapse22">
+                 <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                 <span style="font-size: 15px; color:white;" >Pertashop</span>
+             </a>
+             <div id="collapse22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <h6 class="collapse-header" style="font-size: 15px;">Pertashop</h6>
+                     <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Lap Penjualan</a>
                      <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiPs">Laba Rugi</a>
                      <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
                      <a class="collapse-item" style="font-size: 15px;" href="Setoran">Setoran</a>
                      <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
-                    </div>
-                </div>
-            </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider">
+                 </div>
+             </div>
+         </li>
 
 
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
+
+
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
+</div>
 
 
 
@@ -246,23 +539,44 @@ $kode_perta = $data_perta['kode_perta'];
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
-  <!-- Main Content -->
-  <div id="content">
+    <!-- Main Content -->
+    <div id="content">
 
-    <!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengiriman'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Laporan Penjualan Pertashop</h5></a>"; ?>
-      <!-- Sidebar Toggle (Topbar) -->
-      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
-      </button>
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
 
-
-
-      <!-- Topbar Navbar -->
-      <ul class="navbar-nav ml-auto">
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
 
 
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                <li class="nav-item dropdown no-arrow d-sm-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small"
+                        placeholder="Search for..." aria-label="Search"
+                        aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
 
 
 
@@ -271,350 +585,349 @@ $kode_perta = $data_perta['kode_perta'];
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-          <img class="img-profile rounded-circle"
-          src="img/undraw_profile.svg">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+            <img class="img-profile rounded-circle"
+            src="img/undraw_profile.svg">
         </a>
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
         aria-labelledby="userDropdown">
         <a class="dropdown-item" href="VProfile">
-          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-          Profile
+            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            Profile
         </a>
         <a class="dropdown-item" href="VSetting">
-          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-          Settings
+            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+            Settings
         </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Logout
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            Logout
         </a>
-      </div>
-    </li>
+    </div>
+</li>
 
-  </ul>
+</ul>
 
 </nav>
 <!-- End of Topbar -->
+<div class="container" style="color : black;">
+    <?php  echo "<form  method='POST' action='VLPenjualans' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <select id="lokasi" name="lokasi"s>
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop");   
 
-<!-- Top content -->
-<div>   
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
 
 
- <div style="margin-right: 10px; margin-left: 10px;">
-
-  <?php  echo "<form  method='POST' action='VPenjualan'>" ?>
-  <div>
-    <div align="left" style="margin-left: 20px;"> 
-      <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-      <span>-</span>
-      <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-      <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+              echo "<option> $nama_driver </option> ";
+              
+            }
+            ?>
+          </select>
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
 
-<div class="col-md-8">
-   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
- </div>
- <br>
-
-
-
-
-<!-- Tabel -->    
-<table id='example' class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%;  ">
-  <thead>
-    <tr>
-      <th  style="font-size: 11px" >No</th>
-      <th  style="font-size: 11px">Tanggal</th>
-      <th  style="font-size: 11px">Kode Pertashop</th>   
-      <th  style="font-size: 11px">Lokasi</th>
-      <th  style="font-size: 11px">Penjual</th>
-      <th  style="font-size: 11px">Barang</th>
-      <th  style="font-size: 11px">QTY</th>
-      <th  style="font-size: 11px">Harga</th>
-      <th  style="font-size: 11px">Jumlah</th>
-      <th  style="font-size: 11px">Stok awal</th>
-      <th  style="font-size: 11px">Stok Akhir</th>
-      <th  style="font-size: 11px">KET</th>
-      <th  style="font-size: 11px">File</th>
-      <th  style="font-size: 11px">Status</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $urut = 0;
-    $uang_nb_max = 0;
-    $terjual_nb_max = 0;
-    $uang_nb_dex = 0;
-    $terjual_nb_dex = 0 ;
-    $uang_be =0;
-    $terjual_be = 0;
-    $uang_md = 0;
-    $terjual_md = 0;
-    $uang_sj = 0 ;
-    $terjual_sj = 0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
-    <?php while($data = mysqli_fetch_array($table)){
-      $no_penjualan = $data['no_penjualan'];
-      $tanggal =$data['tanggal'];
-      $kode_perta =$data['kode_perta'];
-      $lokasi = $data['lokasi'];
-      $nama_barang = $data['nama_barang'];
-      $nama_karyawan = $data['nama_karyawan'];
-      $qty = $data['qty'];
-      $stok_awal = $data['stok_awal'];
-      $stok_akhir = $data['stok_akhir'];
-      $harga = $data['harga'];
-      $jumlah = $qty * $harga;
-      $keterangan = $data['keterangan'];
-      $file_bukti = $data['file_bukti'];
-      $status = $data['persetujuan'];
-      $urut = $urut + 1;
-
-      if($kode_perta == '2P.323.208'){
-        if($nama_barang == 'Pertamax'){
-          $uang_nb_max = $uang_nb_max + $jumlah; 
-          $terjual_nb_max = $terjual_nb_max + $qty;
-        }
-        else{
-          $uang_nb_dex = $uang_nb_dex + $jumlah; 
-          $terjual_nb_dex = $terjual_nb_dex + $qty;
-        }
-        
-      }
-      else if($kode_perta == 'bedilan'){
-        $uang_be = $uang_be + $jumlah; 
-        $terjual_be = $terjual_be + $qty;
-      }
-      else if($kode_perta == 'muaradua'){
-        $uang_md = $uang_md + $jumlah; 
-        $terjual_md = $terjual_md + $qty;
-      }
-      else if($kode_perta == 'sumberjaya'){
-        $uang_sj = $uang_sj + $jumlah; 
-        $terjual_sj = $terjual_sj + $qty;
-      }
-
-
-      echo "<tr>
-      <td style='font-size: 11px' align = 'center'>$urut</td>
-      <td style='font-size: 11px' align = 'center'>$tanggal</td>
-      <td style='font-size: 11px' align = 'center'>$kode_perta</td>
-      <td style='font-size: 11px' align = 'center'>$lokasi</td>
-      <td style='font-size: 11px' align = 'center'>$nama_karyawan</td>
-      <td style='font-size: 11px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 11px' align = 'center'>$qty/L</td>
-      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
-      <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
-      <td style='font-size: 11px' align = 'center'>$keterangan</td>
-      "; ?>
-      <?php echo "<td style='font-size: 11px'>"; ?>
-
-        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Lihat</button>
-
-        <!-- Form EDIT DATA -->
-
-        <div class="modal fade" id="formedit<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role ="document">
-            <div class="modal-content"> 
-              <div class="modal-header">
-                <h5 class="modal-title"> Foto Penjualan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
-
-
-              <!-- Form Edit Data -->
-              <div class="modal-body">
-                       <img  style="height: 100%; width: 100%;" s src="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" >
+<br>
+<br>
+<?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+<br>
+<br>
+<br>
+<div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" align="Center"><strong>Laporan Penjualan <?php echo $lokasi ?></strong></h3>
                 </div>
 
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" href="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>">Download</a>  </button>
-              
-                  </div>
-                </form>
-              </div>
+                <div>
+                    
+                </div>
+
+
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed"  style="color : black;">
+                            <thead>
+                                <tr>
+                                    <td><strong>Akun</strong></td>
+                                    <td class="text-left"><strong>Nama Akun</strong></td>
+                                    <td class="text-left"><strong>Jumlah Terjual</strong></td>
+                                    <td class="text-left"><strong>Debit</strong></td>
+                                    <td class="text-left"><strong>Kredit</strong></td>
+                                    <td class="text-right"><strong>Aksi</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                <tr>
+                                    <td><strong>4-000</strong></td>
+                                    <td class="text-left"><strong>PENDAPATAN</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-100</td>
+                                    <td class="text-left">Penjualan Pertamax</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang($total_pertamax); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                  
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRPenPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+                                
+                                <tr>
+                                    <td>4-110</td>
+                                    <td class="text-left">Penjualan Dexlite</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang($total_dexlite); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                  
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRPenDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-101</td>
+                                    <td class="text-left">Ngecor Pertamax</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang($total_cor_pertamax); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                 
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+                                
+                                <tr>
+                                    <td>4-111</td>
+                                    <td class="text-left">Ngecor Dexlite</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang($total_cor_dexlite); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+
+                            
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Total Pendapatan</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="thick-line"></td>
+                                    <td class="no-line text-left"><?= formatuang($total_pendapatan); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                     <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="thick-line"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5-000</strong></td>
+                                    <td class="text-left"><strong>HARGA POKOK PENJUALAN</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-100</td>
+                                    <td class="text-left">Pembelian Pertamax</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_pertamax_b); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRPembPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-110</td>
+                                    <td class="text-left">Pembelian Dexlite</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_dexlite_b); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRPembDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                   
+                                </tr>
+                            
+                                <tr style="background-color:    #F0F8FF;  ">
+                                    <td><strong>Total Harga Pokok Penjualan</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_harga_pokok_penjualan); ?></td>
+                                    <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="thick-line"></td>
+                                </tr>
+                                <tr style="background-color: navy;  color:white;">
+                                    <td><strong>LABA KOTOR</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="thick-line"></td>
+                                    <?php
+                                   
+                                    if ($laba_kotor > 0) { ?>
+                                    
+                                    <td class="no-line text-left"><?= formatuang($laba_kotor); ?> </td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                                    <?php }
+                                    else if ($laba_kotor < 0) { ?>
+
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <td class="no-line text-left"><?= formatuang($laba_kotor); ?></td>
+                                    <?php }
+                                    else if ($laba_kotor == 0) { ?>
+
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <?php }
+                                    ?>
+
+
+                                    <td class="thick-line"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="thick-line"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5-500</strong></td>
+                                    <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-510</td>
+                                    <td class="text-left">GAJI</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?=  formatuang(0); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>5-520</td>
+                                    <td class="text-left">Alat Tulis Kantor</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($jml_atk); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>5-540</td>
+                                    <td class="text-left">Biaya Kantor</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($jml_biaya_kantor); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRBiayaKantor?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>5-550</td>
+                                    <td class="text-left">Listrik & Telepon</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($jml_listrik); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>5-590</td>
+                                    <td class="text-left">Biaya Sewa</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($jml_sewa); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLR/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                  
+                                </tr>
+                                <tr style="background-color:    #F0F8FF; ">
+                                    <td><strong>Total Biaya Usaha</strong></td>
+                                    <td class="text-left"></td>s
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_biaya_usaha_final); ?></td>
+                                    <td class="thick-line"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="thick-line"></td>
+                                </tr>
+                                <tr style="background-color: navy;  color:white;">
+                                    <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                                    <td class="text-left"></td>s
+                                    <td class="thick-line"></td>
+                                    <?php
+                                   
+                                    if ($laba_bersih_sebelum_pajak > 0) { ?>
+                                    
+                                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?> </td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                                    <?php }
+                                    else if ($laba_bersih_sebelum_pajak < 0) { ?>
+
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?></td>
+
+                                    <?php }
+                                    else if ($laba_kotor == 0) { ?>
+
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <?php }
+                                    ?>
+                                    <td class="thick-line"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-
-
-
-        <?php echo "</td> "; ?>
-      <?php
-      if ($status == 0) {
-       echo "<td style='font-size: 14px; color: red;' align = 'center'>Belum di Setujui</td>";
-      }
-      else{
-         echo "<td style='font-size: 14px; color: green;' align = 'center'>Telah di Setujui</td>";
-      }
-      ?>
-
-
-    
-<?php echo  " </tr>";
-}
-?>
-
-</tbody>
-</table>
-</div>
-<br>
-<hr>
-<div style="margin-right: 100px; margin-left: 100px;">
-<h6 align="Center">Laporan Stok</h6>
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-      <th style='font-size: 11px'>Nama Barang</th>
-      <th style='font-size: 11px'>STOK</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php while($data = mysqli_fetch_array($table2)){
-      $nama_barang =$data['nama_barang'];
-      $stok = $data['stok'];
-
-
-      echo "<tr>
-      <td style='font-size: 11px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 11px' align = 'center'>$stok</td>
-     
-  </tr>";
-}
-?>
-
-</tbody>
-</table>
-</div>
-<br>
-<hr>
-<div style="margin-right: 100px; margin-left: 100px;">
-<h6 align="Center">Laporan Barang Terjual</h6>
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-      <th style='font-size: 11px'>Pertashop</th>
-      <th style='font-size: 11px'>Nama Barang</th>
-      <th style='font-size: 11px'>Total Terjual</th>
-    </tr>
-  </thead>
-  <tbody>
-
-  
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_max); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sj); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_be); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?></td>
-     
-  </tr>
-
-
-</tbody>
-</table>
-</div>
-<br>
-<hr>
-<div style="margin-right: 100px; margin-left: 100px;">
-<h6 align="Center"  >Laporan Keuangan</h6>
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-      <th style='font-size: 11px'>Pertashop</th>
-      <th style='font-size: 11px'>Nama Barang</th>
-      <th style='font-size: 11px'>Total Pendapatan</th>
-    </tr>
-  </thead>
-  <tbody>
-
-  
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md); ?></td>
-     
-  </tr>
-
-
-
-</tbody>
-</table>
-</div>
-<br>
+    </div>
 </div>
 </div>
-
+</div>
+</div>
 <!-- End of Main Content -->
 
 <!-- Footer -->
 <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-  <div class="container my-auto">
-    <div class="copyright text-center my-auto">
-      <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+        </div>
     </div>
-  </div>
 </footer>
 <!-- End of Footer -->
 
@@ -626,68 +939,38 @@ $kode_perta = $data_perta['kode_perta'];
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
+    <i class="fas fa-angle-up"></i>
 </a>
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
 <div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="logout">Logout</a>
+        </div>
     </div>
-    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-      <a class="btn btn-primary" href="logout">Logout</a>
-    </div>
-  </div>
 </div>
 </div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-
-<!-- Tabel -->
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    var table = $('#example').DataTable( {
-      lengthChange: false,
-      buttons: [ 'colvis' ]
-    } );
-
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
-
-
 
 </body>
 

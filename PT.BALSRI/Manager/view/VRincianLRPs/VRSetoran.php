@@ -22,27 +22,25 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
+
+
 if (isset($_GET['tanggal1'])) {
-    $tanggal_awal = $_GET['tanggal1'];
-    $tanggal_akhir = $_GET['tanggal2'];
-    $lokasi = $_GET['lokasi'];
-   } 
-   
-   elseif (isset($_POST['tanggal1'])) {
-    $tanggal_awal = $_POST['tanggal1'];
-    $tanggal_akhir = $_POST['tanggal2'];
-    $lokasi = $_POST['lokasi'];
-   } 
-else{
-  $tanggal_awal = date('Y-m-1');
-$tanggal_akhir = date('Y-m-31');
-}
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+  $lokasi = $_GET['lokasi'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $lokasi = $_POST['lokasi'];
+ } 
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksiperta, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksiperta, "SELECT * FROM setoran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND  b.lokasi = '$lokasi'");
 }
 else{
-  $table = mysqli_query($koneksiperta, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor'AND b.lokasi = '$lokasi' " );
+  $table = mysqli_query($koneksiperta, "SELECT * FROM setoran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  b.lokasi = '$lokasi'");
 }
 
 
@@ -59,7 +57,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian ATK Pertashop <?php echo $lokasi ?></title>
+  <title>Setoran</title>
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -85,8 +83,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
@@ -244,7 +242,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengeluaranPul2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian ATK Pertashop $lokasi </h5></a>"; ?>
+      <?php echo "<a href='VSetoran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Setoran</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -306,14 +304,14 @@ else{
     </div>
     </div>
   
-  
   <div class="row">
     <div class="col-md-6">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-   
-</div>
- <br>
+  </div>
+
+
+
 
 
 <!-- Tabel -->    
@@ -323,12 +321,12 @@ else{
       <th>No</th>
       <th>Tanggal</th>
       <th>Kode Perta</th>
-      <th>Lokasi</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Pengeluaran</th>
-      <th>Total</th>
+      <th>Pertashop</th>
+      <th>Penyetor</th>
+      <th>No Rek</th>
+      <th>Jumlah</th>
       <th>file</th>
+      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
@@ -343,13 +341,13 @@ else{
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-     $no_laporan = $data['no_transaksi'];
+     $no_setoran = $data['no_setoran'];
      $tanggal =$data['tanggal'];
      $kode_perta =$data['kode_perta'];
      $lokasi =$data['lokasi'];
-     $nama_akun = $data['nama_akun'];
+     $penyetor = $data['penyetor'];
      $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
+     $no_rekening = $data['no_rekening'];
      $file_bukti = $data['file_bukti'];
 
      $total = $total + $jumlah;
@@ -361,14 +359,12 @@ else{
      <td style='font-size: 14px'>$tanggal</td>
      <td style='font-size: 14px'>$kode_perta</td>
      <td style='font-size: 14px'>$lokasi</td>
-     <td style='font-size: 14px'>$nama_akun</td>
-     <td style='font-size: 14px'>$keterangan</td>
+     <td style='font-size: 14px'>$penyetor</td>
+     <td style='font-size: 14px'>$no_rekening</td>
      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" href="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     
-    <?php echo  "  </tr>";
+     <td style='font-size: 14px'>"; ?> <a download="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+
+ </tr>";
   }
 
 ?>
@@ -378,6 +374,24 @@ else{
 </div>
 <br>
 <br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Setoran</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total); ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <br>
 
 

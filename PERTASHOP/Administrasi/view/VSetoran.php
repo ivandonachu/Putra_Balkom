@@ -21,25 +21,24 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-} 
-else{
-  $tanggal_awal = date('Y-m-1');
-$tanggal_akhir = date('Y-m-31');
-}
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+  $lokasi = $_GET['lokasi'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $lokasi = $_POST['lokasi'];
+ } 
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM setoran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM setoran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND  b.lokasi = '$lokasi'");
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM setoran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM setoran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  b.lokasi = '$lokasi'");
 }
 
 
@@ -214,16 +213,30 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-    <?php  echo "<form  method='POST' action='VSetoran' style='margin-bottom: 15px;'>" ?>
-    <div>
+  <?php  echo "<form  method='POST' action='VSetoran'>" ?>
+  <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
         <span>-</span>
         <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <select id="lokasi" name="lokasi"s>
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
+
+
+              echo "<option> $nama_driver </option> ";
+              
+            }
+            ?>
+          </select>
         <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
       </div>
     </div>
-  </form>
+</form>
   <div class="row">
     <div class="col-md-6">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
@@ -552,6 +565,24 @@ else{
 </div>
 <br>
 <br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Setoran</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total); ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <br>
 
 
