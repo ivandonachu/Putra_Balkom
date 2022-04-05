@@ -19,7 +19,6 @@ exit;
 }
 
 
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -35,45 +34,16 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ");
 
-
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' ");
-  $data2 = mysqli_fetch_array($table2);
-  $penjualan_zak = $data2['penjualan_zak'];
-  $uang_zak= $data2['uang_zak'];
-
+  $table = mysqli_query($koneksipbj, "SELECT * FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal'");
 
 }
 
 else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
 
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' ");
-  $data2 = mysqli_fetch_array($table2);
-  $penjualan_zak = $data2['penjualan_zak'];
-  $uang_zak= $data2['uang_zak'];
-
-  $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak'");
-  $data3 = mysqli_fetch_array($table3);
-  $penjualan_zak_bon = $data3['penjualan_zak_bon'];
-  $uang_zak_bon = $data3['uang_zak_bon'];
-
-  $table4 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
-  $data4 = mysqli_fetch_array($table4);
-  $penjualan_bag = $data4['penjualan_bag'];
-  $uang_bag= $data4['uang_bag'];
-
-  $table5 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag'");
-  $data5 = mysqli_fetch_array($table5);
-  $penjualan_bag_bon = $data5['penjualan_bag_bon'];
-  $uang_bag_bon = $data5['uang_bag_bon'];
+  $table = mysqli_query($koneksipbj, "SELECT * FROM pengiriman_sl WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_antar ASC");
 
 }
-
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -87,7 +57,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penjualan Semen</title>
+  <title>Pengiriman Semen</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -118,54 +88,54 @@ else{
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-     <!-- Sidebar - Brand -->
-     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px;" src="../gambar/Logo PBJ.PNG" ></div>
-            </a>
-            <br>
-            
-            <br>
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px;" src="../gambar/Logo PBJ.PNG" ></div>
+</a>
+<br>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsCVPBJ">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+<br>
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-                 <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu CV.PBJ
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                    </div>
-                </div>
-            </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsCVPBJ">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
+
+     <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu CV.PBJ
+    </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+        </div>
+    </div>
+</li>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -228,8 +198,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Penjualan Semen Etty</h5></a>"; ?>
-
+      <?php echo "<a href='VPengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pengiriman Semen Kadek</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -239,6 +208,7 @@ else{
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
+
 
 
 
@@ -282,11 +252,11 @@ else{
 <div>   
 
 
-  <!-- Name Page -->
+
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VPenjualan' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VPengirimanL' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -296,106 +266,93 @@ else{
       </div>
     </div>
   </form>
-  <div class="row">
-    <div class="col-md-6">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-   </div>
-  </div>
-  <br>
-  <br>
-  
 
 
+  <div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+ </div>
+ <br>
 
-
+ <
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto">
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
-      <th>TGL DO</th>
-      <th>TGL Kirim</th>
-      <th>NO DO</th>
+      <th>Tgl Antar</th>
+      <th>No Do</th>   
       <th>Driver</th>
-      <th>NO Polisi</th>
+      <th>No Polisi</th>
       <th>Tujuan Pengiriman</th>
-      <th>QTY</th>
-      <th>Satuan</th>
-      <th>Harga</th>
-      <th>Jumlah</th>    
       <th>Nama Toko di DO</th>
-      <th>TGL Bayar</th>
-      <th>Status Bayar</th>
-      <th>Ket</th>
-      <th>Catatan</th>
+      <th>Uang Jalan</th>
+      <th>Uang Gaji</th>
+      <th>Ongkos Mobil</th>
+      <th>Tgl Ambil Gaji</th>
+      <th>Tgl Nota Tarikan</th>
+      <th>KET</th>
       <th>File</th>
-      
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <?php
-    $no_urut = 0;
+    $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
-
     <?php while($data = mysqli_fetch_array($table)){
-      $no_penjualan = $data['no_penjualan'];
-      $tanggal_do =$data['tanggal_do'];
-      $tanggal_kirim = $data['tanggal_kirim'];
-      $no_do = $data['no_do'];
-      $driver = $data['driver'];
+      $no_pengiriman = $data['no_pengiriman'];
+     $no_penjualan = $data['no_penjualan'];
+      $tanggal_antar =$data['tanggal_antar'];
+      $driver =$data['driver'];
       $no_polisi = $data['no_polisi'];
-      $tujuan_pengiriman = $data['tujuan_pengiriman'];
-      $qty = $data['qty'];
-      $satuan = $data['satuan'];
-      $harga = $data['harga'];
-      $jumlah = $data['jumlah'];
       $toko_do = $data['toko_do'];
-      $tempo = $data['tempo'];
-      $tanggal_bayar = $data['tanggal_bayar'];
-      $status_bayar = $data['status_bayar'];
+      $no_do = $data['no_do'];
+      $uj = $data['uj'];
+      $ug = $data['ug'];
+      $om = $data['om'];
+      $tanggal_gaji = $data['tanggal_gaji'];
+      $tanggal_nota = $data['tanggal_nota'];
       $keterangan = $data['keterangan'];
-      $catatan = $data['catatan'];
-      $bulan = $data['bulan'];
       $file_bukti = $data['file_bukti'];
-      $no_urut = $no_urut + 1;
-
+        $result2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman FROM penjualan_sl WHERE no_penjualan = '$no_penjualan'");
+        $data2 = mysqli_fetch_array($result2);
+        $tujuan_pengiriman = $data2['tujuan_pengiriman'];
+      $urut = $urut + 1;
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_urut</td> 
-      <td style='font-size: 14px'>$tanggal_do</td>
-      <td style='font-size: 14px'>$tanggal_kirim</td>
-      <td style='font-size: 14px'>$no_do</td>
-      <td style='font-size: 14px'>$driver</td>
-      <td style='font-size: 14px'>$no_polisi</td>
-      <td style='font-size: 14px'>$tujuan_pengiriman</td>
-      <td style='font-size: 14px'>$qty</td>
-      <td style='font-size: 14px'>$satuan</td>
-      <td style='font-size: 14px'>"?> <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 14px'>$toko_do</td>
-      <td style='font-size: 14px'>$tanggal_bayar</td>
-      <td style='font-size: 14px'>$status_bayar</td>
-      <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>$catatan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px' align = 'center'>$urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal_antar</td>
+      <td style='font-size: 14px' align = 'center'>$no_do</td>
+      <td style='font-size: 14px' align = 'center'>$driver</td>
+      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+      <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
+      <td style='font-size: 14px' align = 'center'>$toko_do</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($om); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal_gaji</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal_nota</td>
+      <td style='font-size: 14px' align = 'center'>$keterangan</td>
       "; ?>
-   
-
-
-
-<?php echo  " </tr>";
+      <?php echo "
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+       </tr>";
 }
 ?>
 
 </tbody>
 </table>
 </div>
+  </div>
 <br>
+<br>
+<!--
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
@@ -403,11 +360,11 @@ else{
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Penjualan ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $penjualan_zak ?></div>
+            Total JT ODO</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_jt_odo  ?></div>
           </div>
           <div class="col-auto">
-           <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+            <i class="fas fa-road fa-2x text-gray-300"></i>
           </div>
         </div>
       </div>
@@ -419,11 +376,11 @@ else{
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_zak) ?></div>
+            Total JT GPS</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_jt_gps  ?></div>
           </div>
           <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            <i class="fas fa-road fa-2x text-gray-300"></i>
           </div>
         </div>
       </div>
@@ -435,76 +392,8 @@ else{
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total ZAK BON</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_zak_bon  ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang ZAK BON</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=formatuang($uang_zak_bon)?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Penjualan BAG</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=    $penjualan_bag   ?></div>
-          </div>
-          <div class="col-auto">
-             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang BAG</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bag) ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total BAG BON</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bag_bon  ?></div>
+            Total LOST</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_lost  ?></div>
           </div>
           <div class="col-auto">
             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -519,11 +408,11 @@ else{
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang BAG BON</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bag_bon)?></div>
+            Total Surplus</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_surplus  ?></div>
           </div>
           <div class="col-auto">
-             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
           </div>
         </div>
       </div>
@@ -532,8 +421,81 @@ else{
 </div>
 <br>
 <br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Jalan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uj)  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Gaji</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_ug)  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Makan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_um)  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total DEX</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_dex  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-moving fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+-->
+
 
 </div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -608,7 +570,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'excel', 'colvis' ]
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
     table.buttons().container()
@@ -652,6 +614,7 @@ aria-hidden="true">
     maxOptions: 1
   });
 </script>
+
 </body>
 
 </html>

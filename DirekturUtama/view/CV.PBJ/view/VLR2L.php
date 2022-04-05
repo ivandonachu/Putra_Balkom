@@ -405,7 +405,7 @@ $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om +$jml_listrik + 
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi CV PBJ (ETTY)</strong></h3>
+                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi CV PBJ (Kadek)</strong></h3>
                                 </div>
 
                                 <div>

@@ -298,10 +298,11 @@ else{
               <option>Kembalikan Saldo Brankas</option>
               <option>Biaya Kantor</option>
             <option>Transport / Perjalanan Dinas</option>
-            <option>Listrik & Telepon</option>>
+            <option>Listrik & Telepon</option>
             <option>Alat Tulis Kantor</option>
             <option>Perbaikan Kendaraan</option>
             
+
             </select>
           </div>    
           <div class="col-md-6">
