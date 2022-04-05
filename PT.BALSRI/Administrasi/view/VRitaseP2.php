@@ -340,7 +340,7 @@ else{
         echo "<td style='font-size: 14px; color: green;' align = 'center'>Kendaraan Aman</td>";
       } ?> <?php echo "
       <td style='font-size: 14px' align = 'center'>$tgl_perbaikan</td>
-      <td align = 'center'><a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
+      <td align = 'center'><a href='VRincianRitKenP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
       <?php echo "<td style='font-size: 12px'>"; ?>
 
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php $no_polisi ?>">Konfirmasi Perbaikan</button>
@@ -422,7 +422,7 @@ else{
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
        <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
       <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>
-      <td  align = 'center'><a href='VRincianRitDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianRitDriverP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
       </tr>";
 }
 ?>
