@@ -392,7 +392,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
       <td style='font-size: 14px'>$jenis_bbm</td>
       <td style='font-size: 14px'>$harga</td>
       <td style='font-size: 14px'>$jumlah</td>
-      <td style='font-size: 14px'>$total</td>
+      <td style='font-size: 14px'>";?> <?=  formatuang($total) ?> <?php echo "</td>
       <td style='font-size: 14px'>$asal</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_oprasional/<?= $file_bukti ?>" href="../file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
