@@ -154,6 +154,7 @@ if (!isset($data_cbm['total_cbm_keluar'])) {
                         <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Penggunaan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo Baru</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Pembelian BBM</a>
                     </div>
                 </div>
             </li>

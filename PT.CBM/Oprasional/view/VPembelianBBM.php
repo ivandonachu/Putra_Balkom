@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include'koneksi.php';
@@ -21,9 +22,31 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
+
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+} 
+
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM driver");
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksi, "SELECT * FROM pembelian_bbm WHERE tanggal = '$tanggal_awal' ");
+$table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
+}
+else{
+$table = mysqli_query($koneksi, "SELECT * FROM pembelian_bbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
+$table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
+
+}
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -36,7 +59,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>List Driver</title>
+  <title>Pembelian BBM</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -65,7 +88,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
+       <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKepalaOprasional">
                 <div class="sidebar-brand-icon rotate-n-15">
 
@@ -134,7 +157,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VListDriver'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Driver</h5></a>"; ?>
+      <?php echo "<a href='VPembelianBBM'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pembelian BBM</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -190,7 +213,22 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+ <?php  echo "<form  method='POST' action='VPembeliabBBM' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
+    </div>
+  </form>
 
+  <div class="row">
+    <div class="col-md-8">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   </div>
   <div class="row">
     <div class="col-md-10">
      
@@ -198,14 +236,14 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
    <div class="col-md-2">
     <!-- Button Pindah Baja -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Tambah Driver </button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pembelian BBM </button> <br> <br>
     </div>
     <!-- Form Modal  -->
     <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Tambah Driver </h5>
+          <h5 class="modal-title"> Form Pembelian BBM </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -213,30 +251,81 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_tambah_driver' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_pembelian_bbm?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
-                  <div class="form-group">
-                    <label> ID Driver </label>
-                    <input type="text" name="id_driver" class="form-control" required=""> 
-                     <small>ID driver adalah Z lalu tambahkan angka yang belum di gunakan oleh driver lain</small>
-                  </div>
-                  <div class="form-group">
-                    <label> Nama Driver </label>
-                    <input type="text" name="nama_driver" class="form-control" required="" > 
-                           
-                  </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label>Tanggal</label>
+               <input class="form-control form-control-sm" t type="date" id="tanggal" name="tanggal" required="">
+             </div>
+          
+          <div class="col-md-4">
+          <label>No Selang</label>
+          <input class="form-control form-control-sm" type="number" id="no_selang" name="no_selang"  required="">
+          </div>
+          <div class="col-md-4">
+          <label>No Nota</label>
+          <input class="form-control form-control-sm" type="number" id="no_nota" name="no_nota"  required="">
+          </div>
+          </div>
 
-                  <div class="form-group">
-                    <label>Status Driver</label>
-                    <input type="text" name="status" class="form-control" required="">             
-                  </div>
-                  <div class="form-group">
-                    <label>No Polisi</label>
-                    <input type="text" name="no_polisi" class="form-control"  required="" >             
-                  </div>
+
+        <div class="row">
+           
+          <div class="col-md-6">
+           <label>Jenis BBM</label>
+          <select id="jenis_bbm" name="jenis_bbm" class="form-control">
+            <option>Dexlite</option>
+            <option>Pertamax</option>
+            <option>Pertalite</option>
+            <option>Solar</option>
+          </select>
+          <small></small>
+        </div>
+
+        <div class="col-md-6">
+          <label>Harga / Liter</label>
+          <input class="form-control form-control-sm" type="number" id="harga" name="harga" onkeyup="sum();" required="">
+        </div>   
+
+     
+      </div>
+
+      <br>
+
+     
+
+      <div class="row">
+        <div class="col-md-6">
+          <label>Jumlah Liter</label>
+          <input class="form-control form-control-sm" type="number" id="qty" name="jumlah" onkeyup="sum();" required="">
+        </div>    
+        <div class="col-md-6">
+        <label>Total</label>
+          <input class="form-control form-control-sm" type="number" id="jumlah" name="total" onkeyup="sum();" required="">
+        </div>         
+      </div>
+
+    <br>
+
+    <div class="row">
+    <div class="col-md-6">
+          <label>Asal</label>
+          <select id="asal" name="asal" class="form-control">
+            <option>2P.323.206 - Nusa Bakti</option>
+          </select>
+        </div>            
+
+   </div>
+    <br>
+   <div>
+    <label>Upload File</label> 
+    <input type="file" name="file"> 
+  </div> 
+
 
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">Tambahkan</button>
+    <button type="submit" class="btn btn-primary">CATAT</button>
     <button type="reset" class="btn btn-danger"> RESET</button>
   </div>
 </form>
@@ -247,39 +336,180 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 </div>
 
 </div>
-</div>
+  </div>
+
 
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
-     <th>ID Driver</th>
-     <th>Nama Driver</th>
-      <th>No Polisi</th>
-      <th>Status</th>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>No Selang</th>
+      <th>No Nota</th>
+      <th>Jenis BBM</th>
+      <th>Harga / L</th>
+      <th>Jumlah / L</th>
+      <th>Total</th>
+      <th>Asal</th>
+      <th>File</th>
       <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
 
+   <?php
+    
+    $urut = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
+    ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $nama_driver = $data['nama_driver'];
-      $no_polisi =$data['no_polisi'];
-      $status = $data['status'];
-      $id_driver = $data['id_driver'];
+      $no_pembelian = $data['no_pembelian'];
+      $tanggal =$data['tanggal'];
+      $no_selang = $data['no_selang'];
+      $no_nota = $data['no_nota'];
+      $jenis_bbm = $data['jenis_bbm'];
+      $harga = $data['harga'];
+      $jumlah = $data['jumlah'];
+      $total = $data['total'];
+      $file_bukti = $data['file_bukti'];
+      $asal = $data['asal'];
+
+
+        $urut = $urut + 1;
       echo "<tr>
-      <td style='font-size: 14px'>$id_driver</td>
-      <td style='font-size: 14px'>$nama_driver</td>
-      <td style='font-size: 14px'>$no_polisi</td>
-      <td style='font-size: 14px'>$status</td>
+      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$no_selang</td>
+      <td style='font-size: 14px'>$no_nota</td>
+      <td style='font-size: 14px'>$jenis_bbm</td>
+      <td style='font-size: 14px'>$harga</td>
+      <td style='font-size: 14px'>$jumlah</td>
+      <td style='font-size: 14px'>$total</td>
+      <td style='font-size: 14px'>$asal</td>
+      <td style='font-size: 14px'>"; ?> <a download="../file_oprasional/<?= $file_bukti ?>" href="../file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
-      <!-- Hapus -->
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['id_driver']; ?>" data-toggle='tooltip' title='Hapus'>HAPUS</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_pembelian']; ?>">Edit</button>
 
-      <div class="modal fade" id="PopUpHapus<?php echo $data['id_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <!-- Form EDIT DATA -->
+
+        <div class="modal fade" id="formedit<?php echo $data['no_pembelian']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role ="document">
+            <div class="modal-content"> 
+              <div class="modal-header">Form Edit Pembelian BBM </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+
+              <!-- Form Edit Data -->
+              <div class="modal-body">
+                <form action="../proses/edit_pembelian_bbm" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+                <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian;?>">
+                  <div class="row">
+            <div class="col-md-6">
+
+              <label>Tanggal</label>
+              <div class="col-sm-10">
+               <input  class="form-control form-control-sm" type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
+             </div>
+   
+
+          </div>
+          <div class="col-md-4">
+          <label>No Selang</label>
+          <input class="form-control form-control-sm" type="number" id="no_selang" name="no_selang"  value="<?php echo $no_selang;?>" required="">
+          </div>
+          <div class="col-md-4">
+          <label>No Nota</label>
+          <input class="form-control form-control-sm" type="number" id="no_nota" name="no_nota"  value="<?php echo $no_nota;?>" required="">
+          </div>
+        </div>
+
+
+        <div class="row">
+        <div class="col-md-6">
+
+          <label>Jenis BBM</label>
+          <select id="jenis_bbm" name="jenis_bbm" class="form-control">
+            <?php $dataSelect = $data['jenis_bbm']; ?>
+            <option <?php echo ($dataSelect == 'Dexlite') ? "selected": "" ?> >Dexlite</option>
+            <option <?php echo ($dataSelect == 'Pertamax') ? "selected": "" ?> >Pertamax</option>
+            <option <?php echo ($dataSelect == 'Pertalite') ? "selected": "" ?> >Pertalite</option>
+            <option <?php echo ($dataSelect == 'Solar') ? "selected": "" ?> >Solar</option>
+          </select>
+
+        </div>            
+        
+        <div class="col-md-6">
+          <label>Harga / Liter</label>
+          <input class="form-control form-control-sm" type="number" id="harga" name="harga"  value="<?php echo $harga;?>"  onkeyup="sum();"  required="">
+        </div>  
+      </div>
+
+      <br>
+
+     
+
+      <div class="row">
+        <div class="col-md-6">
+          <label>Jumlah Liter</label>
+          <input class="form-control form-control-sm" type="number" id="qty" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
+        </div>    
+        <div class="col-md-6">
+          <label>Total</label>
+          <input class="form-control form-control-sm" type="number" id="jumlah" name="total"  value="<?php echo $total;?>"  required="">
+  
+        </div>         
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <label>Asal</label>
+          <select id="asal" name="asal" class="form-control">
+            <?php $dataSelect = $data['jenis_bbm']; ?>
+            <option <?php echo ($dataSelect == '2P.323.206 - Nusa Bakti') ? "selected": "" ?> >2P.323.206 - Nusa Bakti</option>
+          </select>
+
+        </div>     
+      </div>
+
+              
+  
+    <br>
+
+  <div>
+    <label>Upload File</label> 
+    <input type="file" name="file"> 
+  </div> 
+                 
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"> Ubah </button>
+                    <button type="reset" class="btn btn-danger"> RESET</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_pembelian']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
+      <div class="modal fade" id="PopUpHapus<?php echo $data['no_pembelian']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
        <div class="modal-dialog" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
@@ -290,9 +520,16 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
           </div>
 
 
+
           <div class="modal-body">
-            <form action="../proses/hapus_driver" method="POST">
-              <input type="hidden" name="id_driver" value="<?php echo $id_driver; ?>">
+            <form action="../proses/hapus_pembelian_bbm" method="POST">
+              <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian; ?>">
+              <input type="hidden" name="jumlah" value="<?php echo $jumlah; ?>">
+              <input type="hidden" name="jenis_bbm" value="<?php echo $jenis_bbm;?>">
+              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+
+
 
               <div class="form-group">
                 <h6> Yakin Ingin Hapus Data? </h6>             
@@ -306,60 +543,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
         </div>
       </div>
     </div>
-        <!-- Hapus -->
-     <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['id_driver']; ?>">Edit</button>
-
-        <!-- Form EDIT DATA -->
-
-        <div class="modal fade" id="formedit<?php echo $data['id_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role ="document">
-            <div class="modal-content"> 
-              <div class="modal-header">
-                <h5 class="modal-title"> Form Edit Data Driver </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
-
-
-              <!-- Form Edit Data -->
-              <div class="modal-body">
-                <form action="../proses/proses_edit_driver" method="POST">
-
-
-                  <div class="form-group">
-                    <label> ID Driver </label>
-                    <input type="text" name="id_driver" class="form-control" value="<?php echo $id_driver; ?>" disabled=""> 
-                    <input type="hidden" name="id_driver" value="<?php echo $id_driver;?>">            
-                  </div>
-                  <div class="form-group">
-                    <label> Nama Driver </label>
-                    <input type="text" name="nama_driver" class="form-control" value="<?php echo $nama_driver;?>" > 
-                           
-                  </div>
-
-                  <div class="form-group">
-                    <label>Status Driver</label>
-                    <input type="text" name="status" class="form-control" value="<?php echo $status;?>" required="" >             
-                  </div>
-                  <div class="form-group">
-                    <label>No Polisi</label>
-                    <input type="text" name="no_polisi" class="form-control"  value="<?php echo $no_polisi;?>" required="" >             
-                  </div>
-
-
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"> Ubah </button>
-                    <button type="reset" class="btn btn-danger"> RESET</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
 
     <?php echo  " </td> </tr>";
   }
@@ -367,12 +550,39 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 
 </tbody>
 </table>
+  </div>
+  </div>
+  <br>
+  <br>
+
+  <div style="margin-right: 100px; margin-left: 100px;">
+  <h6 align="Center">Stok BBM</h6>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th>Nama BBM</th>
+      <th>STOK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_barang =$data['nama_bbm'];
+      $stok = $data['stok'];
+
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 14px' align = 'center'>$stok</td>
+     
+  </tr>";
+}
+?>
+
+</tbody>
+</table>
 </div>
-<br>
-<br>
-<br>
 
-
+ <br>
+  <br>
 </div>
 
 </div>
@@ -423,7 +633,6 @@ aria-hidden="true">
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
-
 <!-- Core plugin JavaScript-->
 <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -455,6 +664,17 @@ aria-hidden="true">
     table.buttons().container()
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
+</script>
+<script>
+
+function sum() {
+  var banyak_barang = document.getElementById('qty').value;
+  var harga = document.getElementById('harga').value;
+  var result = parseInt(banyak_barang) * parseInt(harga);
+  if (!isNaN(result)) {
+   document.getElementById('jumlah').value = result;
+ }
+}
 </script>
 
 </body>
