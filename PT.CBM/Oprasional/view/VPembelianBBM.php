@@ -285,7 +285,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
         <div class="col-md-6">
           <label>Harga / Liter</label>
-          <input class="form-control form-control-sm" type="number" id="harga" name="harga" onkeyup="sum();" required="">
+          <input class="form-control form-control-sm" type="float" id="harga" name="harga" onkeyup="sum();" required="">
         </div>   
 
      
@@ -298,11 +298,11 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
       <div class="row">
         <div class="col-md-6">
           <label>Jumlah Liter</label>
-          <input class="form-control form-control-sm" type="number" id="qty" name="jumlah" onkeyup="sum();" required="">
+          <input class="form-control form-control-sm" type="float" id="qty" name="jumlah" onkeyup="sum();" required="">
         </div>    
         <div class="col-md-6">
         <label>Total</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="total" onkeyup="sum();" required="">
+          <input class="form-control form-control-sm" type="float" id="jumlah" name="total" onkeyup="sum();" required="">
         </div>         
       </div>
 
@@ -454,7 +454,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
         
         <div class="col-md-6">
           <label>Harga / Liter</label>
-          <input class="form-control form-control-sm" type="number" id="harga" name="harga"  value="<?php echo $harga;?>"  onkeyup="sum();"  required="">
+          <input class="form-control form-control-sm" type="float" id="harga" name="harga"  value="<?php echo $harga;?>"  onkeyup="sum();"  required="">
         </div>  
       </div>
 
@@ -465,11 +465,11 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
       <div class="row">
         <div class="col-md-6">
           <label>Jumlah Liter</label>
-          <input class="form-control form-control-sm" type="number" id="qty" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
+          <input class="form-control form-control-sm" type="float" id="qty" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
         </div>    
         <div class="col-md-6">
           <label>Total</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="total"  value="<?php echo $total;?>"  required="">
+          <input class="form-control form-control-sm" type="float" id="jumlah" name="total"  value="<?php echo $total;?>"  required="">
   
         </div>         
       </div>
