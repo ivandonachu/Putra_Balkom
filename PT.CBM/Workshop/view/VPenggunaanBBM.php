@@ -11,7 +11,7 @@ $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$i
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Kepala Oprasional') {
+if ($jabatan_valid == 'Admin Workshop') {
 
 }
 
@@ -21,6 +21,7 @@ exit;
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
+
 
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
@@ -59,7 +60,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pembelian BBM</title>
+  <title>Penggunaan BBM</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -88,51 +89,53 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKepalaOprasional">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsWorkshop">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-            </a>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsKepalaOprasional">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsWorkshop">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Kepala Oprasional
-       </div>
+    <!-- Heading -->
+     <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu Workshop
+    </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Oprasional</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Oprasional</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VListDriver">List Driver</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VListRute">List Rute</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Penggunaan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo Baru</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Pembelian BBM</a>
-                    </div>
-                </div>
-            </li>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Admin Workshop</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Admin Workshop</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Workshop CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopMD">Workshop Muara Dua</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopSE">Workshop Semen</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBP">Workshop Balsri PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBL">Workshop Balsri LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBR">Workshop Balsri BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBB">Workshop Batu Bara</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Penggunaan BBM</a>
+        </div>
+    </div>
+</li>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -157,7 +160,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPembelianBBM'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pembelian BBM</h5></a>"; ?>
+      <?php echo "<a href='VPembelianBBM'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan BBM</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -213,7 +216,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php  echo "<form  method='POST' action='VPembelianBBM' style='margin-bottom: 15px;'>" ?>
+ <?php  echo "<form  method='POST' action='VPenggunaanBBm' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -243,7 +246,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Pembelian BBM </h5>
+          <h5 class="modal-title"> Form Penggunaan BBM </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -251,7 +254,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_pembelian_bbm?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_pemggunaan_bbm?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-4">
@@ -259,20 +262,49 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
                <input class="form-control form-control-sm" t type="date" id="tanggal" name="tanggal" required="">
              </div>
           
-          <div class="col-md-4">
-          <label>No Selang</label>
-          <input class="form-control form-control-sm" type="number" id="no_selang" name="no_selang"  required="">
+             <div class="col-md-4">
+          <label>Nama Driver</label>
+         <select class=" form-control form-control-sm" name="nama_driver" >
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM driver");   
+            echo "<option> </option> ";
+            while ($data2 = mysqli_fetch_array($result)){
+              $data_driver = $data2['nama_driver'];
+
+                echo "<option> $data_driver </option> ";
+              
+            }
+            ?>
+           </select>
           </div>
           <div class="col-md-4">
-          <label>No Nota</label>
-          <input class="form-control form-control-sm" type="number" id="no_nota" name="no_nota"  required="">
+          <label>No Polisi</label>
+             <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required=""> 
           </div>
           </div>
 
-
+            <br>
         <div class="row">
            
-          <div class="col-md-6">
+        <div class="col-md-4">
+          <label>Tujuan</label>
+          <select class=" form-control form-control-sm" id="tujuan" name="tujuan" >
+            <?php
+            include 'koneksi.php';
+            $result4 = mysqli_query($koneksi, "SELECT * FROM rute_driver");   
+
+            while ($data4 = mysqli_fetch_array($result4)){
+              $posisi_bongkar = $data4['posisi_bongkar'];
+
+             
+                echo "<option> $posisi_bongkar </option> ";
+              
+            }
+            ?>
+          </select>
+        </div>
+        <div class="col-md-4">
            <label>Jenis BBM</label>
           <select id="jenis_bbm" name="jenis_bbm" class="form-control">
             <option>Dexlite</option>
@@ -282,46 +314,13 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
           </select>
           <small></small>
         </div>
-
-        <div class="col-md-6">
-          <label>Harga / Liter</label>
-          <input class="form-control form-control-sm" type="float" id="harga" name="harga" onkeyup="sum();" required="">
-        </div>   
-
-     
-      </div>
-
-      <br>
-
-     
-
-      <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label>Jumlah Liter</label>
           <input class="form-control form-control-sm" type="float" id="qty" name="jumlah" onkeyup="sum();" required="">
-        </div>    
-        <div class="col-md-6">
-        <label>Total</label>
-          <input class="form-control form-control-sm" type="float" id="jumlah" name="total" onkeyup="sum();" required="">
-        </div>         
+        </div>     
+
+     
       </div>
-
-    <br>
-
-    <div class="row">
-    <div class="col-md-6">
-          <label>Asal</label>
-          <select id="asal" name="asal" class="form-control">
-            <option>2P.323.206 - Nusa Bakti</option>
-          </select>
-        </div>            
-
-   </div>
-    <br>
-   <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
 
 
   <div class="modal-footer">
@@ -348,14 +347,11 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>No Selang</th>
-      <th>No Nota</th>
+      <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Tujuan</th>
       <th>Jenis BBM</th>
-      <th>Harga / L</th>
       <th>Jumlah / L</th>
-      <th>Total</th>
-      <th>Asal</th>
-      <th>File</th>
       <th>Aksi</th>
     </tr>
   </thead>
@@ -371,37 +367,32 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no_pembelian = $data['no_pembelian'];
+      $no_penggunaan = $data['no_penggunaan'];
       $tanggal =$data['tanggal'];
-      $no_selang = $data['no_selang'];
-      $no_nota = $data['no_nota'];
+      $nama_driver = $data['nama_driver'];
+      $no_polisi = $data['no_polisi'];
       $jenis_bbm = $data['jenis_bbm'];
-      $harga = $data['harga'];
       $jumlah = $data['jumlah'];
-      $total = $data['total'];
-      $file_bukti = $data['file_bukti'];
-      $asal = $data['asal'];
+      $tujuan = $data['tujuan'];
+
 
 
         $urut = $urut + 1;
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$no_selang</td>
-      <td style='font-size: 14px'>$no_nota</td>
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$tujuan</td>
       <td style='font-size: 14px'>$jenis_bbm</td>
-      <td style='font-size: 14px'>$harga</td>
-      <td style='font-size: 14px'>$jumlah</td>
-      <td style='font-size: 14px'>";?> <?=  formatuang($total) ?> <?php echo "</td>
-      <td style='font-size: 14px'>$asal</td>
-      <td style='font-size: 14px'>"; ?> <a download="../file_oprasional/<?= $file_bukti ?>" href="../file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>$jumlah /L </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_pembelian']; ?>">Edit</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penggunaan']; ?>">Edit</button>
 
         <!-- Form EDIT DATA -->
 
-        <div class="modal fade" id="formedit<?php echo $data['no_pembelian']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="formedit<?php echo $data['no_penggunaan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
             <div class="modal-content"> 
               <div class="modal-header">Form Edit Pembelian BBM </h5>
@@ -428,17 +419,52 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
           </div>
           <div class="col-md-4">
-          <label>No Selang</label>
-          <input class="form-control form-control-sm" type="number" id="no_selang" name="no_selang"  value="<?php echo $no_selang;?>" required="">
+          <label>Nama Driver</label>
+       
+
+            <select id="nama_driver" name="nama_driver" class="form-control form-control-sm ">
+            <?php
+            $dataSelect = $data['nama_driver']; 
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM driver");      
+
+            while ($data2 = mysqli_fetch_array($result)){
+            $nama_driver = $data2['nama_driver'];
+
+            echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>" ;
+
+            }
+            ?>
+            </select>
           </div>
           <div class="col-md-4">
-          <label>No Nota</label>
-          <input class="form-control form-control-sm" type="number" id="no_nota" name="no_nota"  value="<?php echo $no_nota;?>" required="">
+          <label>No Polisi</label>
+          <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi"  value="<?php echo $no_polisi;?>" required="">
           </div>
         </div>
 
 
         <div class="row">
+        <div class="col-md-4">
+          <label>Tujuan</label>
+       
+
+            <select id="tujuan" name="tujuan" class="form-control form-control-sm ">
+            <?php
+            $dataSelect = $data['tujuan']; 
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM rute_driver");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+            $posisi_bongkar = $data2['posisi_bongkar'];
+
+            echo "<option" ?> <?php echo ($dataSelect == $posisi_bongkar) ? "selected" : "" ?>> <?php echo $posisi_bongkar; ?> <?php echo "</option>" ;
+
+            }
+            ?>
+            </select>
+          </div>
+        
         <div class="col-md-6">
 
           <label>Jenis BBM</label>
@@ -453,49 +479,14 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
         </div>            
         
         <div class="col-md-6">
-          <label>Harga / Liter</label>
-          <input class="form-control form-control-sm" type="float" id="harga" name="harga"  value="<?php echo $harga;?>"  onkeyup="sum();"  required="">
+        <label>Jumlah Liter</label>
+          <input class="form-control form-control-sm" type="float" id="qty" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
         </div>  
       </div>
 
       <br>
 
      
-
-      <div class="row">
-        <div class="col-md-6">
-          <label>Jumlah Liter</label>
-          <input class="form-control form-control-sm" type="float" id="qty" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
-        </div>    
-        <div class="col-md-6">
-          <label>Total</label>
-          <input class="form-control form-control-sm" type="float" id="jumlah" name="total"  value="<?php echo $total;?>"  required="">
-  
-        </div>         
-      </div>
-      <br>
-
-      <div class="row">
-        <div class="col-md-6">
-
-          <label>Asal</label>
-          <select id="asal" name="asal" class="form-control">
-            <?php $dataSelect = $data['jenis_bbm']; ?>
-            <option <?php echo ($dataSelect == '2P.323.206 - Nusa Bakti') ? "selected": "" ?> >2P.323.206 - Nusa Bakti</option>
-          </select>
-
-        </div>     
-      </div>
-
-              
-  
-    <br>
-
-  <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-                 
 
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-primary"> Ubah </button>
@@ -508,8 +499,8 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
         </div>
 
 
-        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_pembelian']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_pembelian']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_penggunaan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
+      <div class="modal fade" id="PopUpHapus<?php echo $data['no_penggunaan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
        <div class="modal-dialog" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
@@ -523,7 +514,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
           <div class="modal-body">
             <form action="../proses/hapus_pembelian_bbm" method="POST">
-              <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian; ?>">
+              <input type="hidden" name="no_penggunaan" value="<?php echo $no_penggunaan; ?>">
               <input type="hidden" name="jumlah" value="<?php echo $jumlah; ?>">
               <input type="hidden" name="jenis_bbm" value="<?php echo $jenis_bbm;?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
@@ -633,6 +624,7 @@ aria-hidden="true">
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- Core plugin JavaScript-->
 <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
