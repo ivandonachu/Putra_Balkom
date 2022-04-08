@@ -40,11 +40,11 @@ else{
 
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM pembelian_bbm WHERE tanggal = '$tanggal_awal' ");
+  $table = mysqli_query($koneksi, "SELECT * FROM penggunaan_bbm WHERE tanggal = '$tanggal_awal' ");
 $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 }
 else{
-$table = mysqli_query($koneksi, "SELECT * FROM pembelian_bbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
+$table = mysqli_query($koneksi, "SELECT * FROM penggunaan_bbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
 $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
 }
@@ -239,7 +239,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
    <div class="col-md-2">
     <!-- Button Pindah Baja -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pembelian BBM </button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Penggunaan BBM </button> <br> <br>
     </div>
     <!-- Form Modal  -->
     <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -254,7 +254,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_pemggunaan_bbm?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_penggunaan_bbm?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-4">
@@ -287,7 +287,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
             <br>
         <div class="row">
            
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label>Tujuan</label>
           <select class=" form-control form-control-sm" id="tujuan" name="tujuan" >
             <?php
@@ -304,9 +304,9 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
             ?>
           </select>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
            <label>Jenis BBM</label>
-          <select id="jenis_bbm" name="jenis_bbm" class="form-control">
+          <select id="jenis_bbm" name="jenis_bbm" class="form-control form-control-sm">
             <option>Dexlite</option>
             <option>Pertamax</option>
             <option>Pertalite</option>
@@ -314,11 +314,18 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
           </select>
           <small></small>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label>Jumlah Liter</label>
           <input class="form-control form-control-sm" type="float" id="qty" name="jumlah" onkeyup="sum();" required="">
         </div>     
-
+        <div class="col-md-3">
+           <label>Jenis Penggunaan</label>
+          <select id="jenis_penggunaan" name="jenis_penggunaan" class="form-control form-control-sm">
+            <option>Non Pribadi</option>
+            <option>Pribadi</option>
+          </select>
+          <small></small>
+        </div>
      
       </div>
 
@@ -347,6 +354,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
     <tr>
       <th>No</th>
       <th>Tanggal</th>
+      <th>Jenis Penggunaan</th>
       <th>Nama Driver</th>
       <th>No Polisi</th>
       <th>Tujuan</th>
@@ -369,6 +377,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
     <?php while($data = mysqli_fetch_array($table)){
       $no_penggunaan = $data['no_penggunaan'];
       $tanggal =$data['tanggal'];
+      $jenis_penggunaan =$data['jenis_penggunaan'];
       $nama_driver = $data['nama_driver'];
       $no_polisi = $data['no_polisi'];
       $jenis_bbm = $data['jenis_bbm'];
@@ -381,6 +390,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$jenis_penggunaan</td>
       <td style='font-size: 14px'>$nama_driver</td>
       <td style='font-size: 14px'>$no_polisi</td>
       <td style='font-size: 14px'>$tujuan</td>
@@ -395,7 +405,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
         <div class="modal fade" id="formedit<?php echo $data['no_penggunaan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
             <div class="modal-content"> 
-              <div class="modal-header">Form Edit Pembelian BBM </h5>
+              <div class="modal-header">Form Edit Penggunaan BBM </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                   <span aria-hidden="true"> &times; </span>
                 </button>
@@ -404,12 +414,12 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
               <!-- Form Edit Data -->
               <div class="modal-body">
-                <form action="../proses/edit_pembelian_bbm" enctype="multipart/form-data" method="POST">
+                <form action="../proses/edit_penggunaan_bbm" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-                <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian;?>">
+                <input type="hidden" name="no_penggunaan" value="<?php echo $no_penggunaan;?>">
                   <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
 
               <label>Tanggal</label>
               <div class="col-sm-10">
@@ -445,7 +455,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
 
         <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <label>Tujuan</label>
        
 
@@ -468,7 +478,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
         <div class="col-md-6">
 
           <label>Jenis BBM</label>
-          <select id="jenis_bbm" name="jenis_bbm" class="form-control">
+          <select id="jenis_bbm" name="jenis_bbm" class="form-control form-control-sm">
             <?php $dataSelect = $data['jenis_bbm']; ?>
             <option <?php echo ($dataSelect == 'Dexlite') ? "selected": "" ?> >Dexlite</option>
             <option <?php echo ($dataSelect == 'Pertamax') ? "selected": "" ?> >Pertamax</option>
@@ -482,8 +492,18 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
         <label>Jumlah Liter</label>
           <input class="form-control form-control-sm" type="float" id="qty" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
         </div>  
-      </div>
+      
+      <div class="col-md-6">
 
+          <label>Jenis Penggunaan</label>
+          <select id="jenis_penggunaan" name="jenis_penggunaan" class="form-control form-control-sm">
+            <?php $dataSelect = $data['jenis_penggunaan']; ?>
+            <option <?php echo ($dataSelect == 'Non Pribadi') ? "selected": "" ?> >Non Pribadi</option>
+            <option <?php echo ($dataSelect == 'Pribadi') ? "selected": "" ?> >Pribadi</option>
+          </select>
+
+        </div>    
+        </div>
       <br>
 
      
@@ -513,7 +533,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
 
 
           <div class="modal-body">
-            <form action="../proses/hapus_pembelian_bbm" method="POST">
+            <form action="../proses/hapus_penggunaan_bbm" method="POST">
               <input type="hidden" name="no_penggunaan" value="<?php echo $no_penggunaan; ?>">
               <input type="hidden" name="jumlah" value="<?php echo $jumlah; ?>">
               <input type="hidden" name="jenis_bbm" value="<?php echo $jenis_bbm;?>">
