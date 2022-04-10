@@ -312,7 +312,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
     <div class="col-md-6">
           <label>Asal</label>
           <select id="asal" name="asal" class="form-control">
-            <option>2P.323.206 - Nusa Bakti</option>
+            <option>2P.323.208 - Nusa Bakti</option>
           </select>
         </div>            
 
@@ -481,7 +481,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
           <label>Asal</label>
           <select id="asal" name="asal" class="form-control">
             <?php $dataSelect = $data['jenis_bbm']; ?>
-            <option <?php echo ($dataSelect == '2P.323.206 - Nusa Bakti') ? "selected": "" ?> >2P.323.206 - Nusa Bakti</option>
+            <option <?php echo ($dataSelect == '2P.323.208 - Nusa Bakti') ? "selected": "" ?> >2P.323.208 - Nusa Bakti</option>
           </select>
 
         </div>     
