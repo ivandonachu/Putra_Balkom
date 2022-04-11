@@ -973,6 +973,8 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan CBM</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Lap Pembelian BBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Lap Penggunaan BBM</a>
                     </div>
                 </div>
             </li>
@@ -1145,11 +1147,17 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 <br>
 <br>
 
-   
-      <div align="left" style="margin-left: 20px;">
+   <div class="row">
+   <div align="left" style="margin-left: 50px;">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input5"> Konfirmasi Laporan </button> <br> <br>
       </div>
-        <!-- Form Modal  -->
+      <div align="left" style="margin-left: 20px;">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input6"> Cetak Laporan </button> <br> <br>
+      </div>
+
+   </div>
+
+        <!-- Form Modal konfirmasi -->
     <div class="modal fade bd-example-modal-lg" id="input5" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
@@ -1166,30 +1174,12 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 
           <div class="row">
 
-
+          <div class="col-sm-12">
              <label>Tanggal</label>
-              <div class="col-sm-10">
+              
                <input type="date" id="tanggal" name="tanggal" required="">
              </div>
-             <script>
-               $(document) .ready(function(){
-
-                var dtToday = new Date();
-
-                var month = dtToday.getMonth() +1;
-                var day = dtToday.getDate();
-                var year = dtToday.getFullYear();
-                if (month < 10)
-                  month = '0' + month.toString();
-                if (day < 10)
-                  day = '0' + day.toString();
-
-                var maxDate = year + '-' + month + '-' +day;
-
-                $('#tanggal').attr('min',maxDate);
-
-              })
-            </script>        
+      
 
           </div>
 
@@ -1202,7 +1192,46 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 </div>
 </div>
 </div>
+    <!-- Form Modal cetak -->
+    <div class="modal fade bd-example-modal-lg" id="input6" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role ="document">
+       <div class="modal-content"> 
+        <div class="modal-header">
+          <h5 class="modal-title"> Cetak Laporan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
 
+        <!-- Form Input Data -->
+        <div class="modal-body" align="left">
+          <?php  echo "<form action='VCetakLaporan.php' method='POST' target='blank   '>";  ?>
+
+          <div class="row">
+
+          <div class="col-sm-6">
+             <label>Tanggal Awal</label>
+              
+               <input type="date" id="tanggal1" name="tanggal1" required="">
+             </div>
+             <div class="col-sm-6">
+             <label>Tanggal Akhir</label>
+              
+               <input type="date" id="tanggal2" name="tanggal2" required="">
+             </div>
+      
+
+          </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Cetak</button>
+  </div>
+</form>
+</div>
+
+</div>
+</div>
+</div>
 
 <br>
 
