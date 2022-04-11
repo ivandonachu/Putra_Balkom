@@ -303,13 +303,16 @@ else{
  </div>
  <br>
 
-
+<?php
+ $no_urut =0;
+?>
 <h5 align="center" >Ritease Kendaraan</h5>
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>No Kendaraan</th>
+      <th>No </th>
+      <th>No Polisi</th>
       <th>Total Rit</th>
       <th>Total GPS</th>
       <th>Total ODO</th>
@@ -328,7 +331,9 @@ else{
       $total_jt_gps =$data['total_jt_gps'];
       $total_jt_odo =$data['total_jt_odo'];
       $tgl_perbaikan = $data['tgl_perbaikan'];
+       $no_urut = $no_urut + 1 ;
       echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$no_urut</td>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
       <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
@@ -340,14 +345,15 @@ else{
         echo "<td style='font-size: 14px; color: green;' align = 'center'>Kendaraan Aman</td>";
       } ?> <?php echo "
       <td style='font-size: 14px' align = 'center'>$tgl_perbaikan</td>
+     
       <td align = 'center'><a href='VRincianRitKenP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
       <?php echo "<td style='font-size: 12px'>"; ?>
 
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php $no_polisi ?>">Konfirmasi Perbaikan</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php $no_urut ?>">Konfirmasi Perbaikan</button>
 
       <!-- Form EDIT DATA -->
 
-      <div class="modal fade" id="formedit<?php $no_polisi ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+      <div class="modal fade" id="formedit<?php $no_urut ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role ="document">
           <div class="modal-content"> 
             <div class="modal-header">Konfirmasi Perbaikan</h5>
