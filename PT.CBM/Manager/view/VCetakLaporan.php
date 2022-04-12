@@ -2196,7 +2196,7 @@ else{
                     
                     $kasir =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                      echo "<td align='center'> <img src='../gambar/TTDKasir.png' style='height: 55px; width: 190px;'' > </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -2219,7 +2219,7 @@ else{
 
                     }
                     if ( $y == $x ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                      echo "<td align='center'> <img  src='../gambar/TTDKasir.png' style='height: 55px; width: 190px;'> </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -2230,7 +2230,7 @@ else{
           
         </tr>
         <tr>
-          <td align="center" style="font-weight: bold; text-decoration: underline;">Miftakhul Janah</td>
+          <td align="center" style="font-weight: bold; text-decoration: underline;">Lilis Magdalena</td>
         </tr>
         <tr>
           <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
@@ -2251,7 +2251,7 @@ else{
                     
                     $kasir =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                      echo "<td align='center'> <img src='../gambar/TTDManager.png' style='height: 55px; width: 190px;' > </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -2274,7 +2274,7 @@ else{
 
                     }
                     if ( $y == $x ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                      echo "<td align='center'> <img src='../gambar/TTDKasir.png'  style='height: 55px; width: 190px;' > </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -2282,7 +2282,7 @@ else{
                 }
                 
             ?>
-        </tr>
+        </tr> 
         <tr>
           <td align="center" style="font-weight: bold; text-decoration: underline;"> Made Suarte</td>
         </tr>

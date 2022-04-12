@@ -2348,173 +2348,173 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 <br>
 
 <!-- Tanda Konfirmasi  -->
-  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
  
-<div class="row" align="center">
-  <div class="col-md-4">
-    <table>
-      <thead>
-        <tr>
-          <td align="center">Dibuat,</td>
-        </tr>
-        <tr>
-            <?php 
-                if ($tanggal_awal == $tanggal_akhir) {
+ <div class="row" align="center">
+   <div class="col-md-4">
+     <table>
+       <thead>
+         <tr>
+           <td align="center">Dibuat,</td>
+         </tr>
+         <tr>
+             <?php 
+                 if ($tanggal_awal == $tanggal_akhir) {
+                     
+                     $kasir =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
+                 if ( mysqli_num_rows($kasir) === 1 ) {
+                       echo "<td align='center'> <img src='../gambar/TTDKasir.png' style='height: 55px; width: 190px;'' > </td>";
+                          }
+                          else{
+                     echo "<td align='center'>  </td>";
+                         }
                     
-                    $kasir =  mysqli_query($koneksicbm, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
-                if ( mysqli_num_rows($kasir) === 1 ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
-                         }
-                         else{
-                    echo "<td align='center'>  </td>";
-                        }
-                   
-                }
-                else{
-                   
-                    $kasir3  =  mysqli_query($koneksicbm, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-                    $x=0;
-                    $y=0;
-                    $z=0;
-                    while ($data4 = mysqli_fetch_array($kasir3)) {
-                        $kasir11 = $data4['kasir'];
-                     $x = $x+1;
-
-                     if ($kasir11 == 1) {
-                            $y = $y+1;
-                        }   
-
-                    }
-                    if ( $y == $x ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
-                         }
-                         else{
-                    echo "<td align='center'>  </td>";
-                        }
-                }
-                
-            ?>
-          
-        </tr>
-        <tr>
-          <td align="center" style="font-weight: bold; text-decoration: underline;">Miftakhul Janah</td>
-        </tr>
-        <tr>
-          <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
-        </tr>
-      </thead>
-    </table>
-  </div>
-
-  <div class="col-md-4">
-    <table>
-      <thead>
-        <tr>
-          <td align="center">Diperiksa,</td>
-        </tr>
-        <tr>
-          <?php 
-                if ($tanggal_awal == $tanggal_akhir) {
+                 }
+                 else{
                     
-                    $kasir =  mysqli_query($koneksicbm, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
-                if ( mysqli_num_rows($kasir) === 1 ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                     $kasir3  =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                     $x=0;
+                     $y=0;
+                     $z=0;
+                     while ($data4 = mysqli_fetch_array($kasir3)) {
+                         $kasir11 = $data4['kasir'];
+                      $x = $x+1;
+ 
+                      if ($kasir11 == 1) {
+                             $y = $y+1;
+                         }   
+ 
+                     }
+                     if ( $y == $x ) {
+                       echo "<td align='center'> <img  src='../gambar/TTDKasir.png' style='height: 55px; width: 190px;'> </td>";
+                          }
+                          else{
+                     echo "<td align='center'>  </td>";
                          }
-                         else{
-                    echo "<td align='center'>  </td>";
-                        }
-                   
-                }
-                else{
-                   
-                    $kasir3  =  mysqli_query($koneksicbm, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-                    $x=0;
-                    $y=0;
-                    $z=0;
-                    while ($data4 = mysqli_fetch_array($kasir3)) {
-                        $kasir11 = $data4['manager'];
-                     $x = $x+1;
-
-                     if ($kasir11 == 1) {
-                            $y = $y+1;
-                        }   
-
-                    }
-                    if ( $y == $x ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                 }
+                 
+             ?>
+           
+         </tr>
+         <tr>
+           <td align="center" style="font-weight: bold; text-decoration: underline;">Lilis Magdalena</td>
+         </tr>
+         <tr>
+           <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
+         </tr>
+       </thead>
+     </table>
+   </div>
+ 
+   <div class="col-md-4">
+     <table>
+       <thead>
+         <tr>
+           <td align="center">Diperiksa,</td>
+         </tr>
+         <tr>
+           <?php 
+                 if ($tanggal_awal == $tanggal_akhir) {
+                     
+                     $kasir =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
+                 if ( mysqli_num_rows($kasir) === 1 ) {
+                       echo "<td align='center'> <img src='../gambar/TTDManager.png' style='height: 55px; width: 190px;' > </td>";
+                          }
+                          else{
+                     echo "<td align='center'>  </td>";
                          }
-                         else{
-                    echo "<td align='center'>  </td>";
-                        }
-                }
-                
-            ?>
-        </tr>
-        <tr>
-          <td align="center" style="font-weight: bold; text-decoration: underline;"> Made Suarte</td>
-        </tr>
-        <tr>
-          <td align="center" style="font-weight: bold; font-style: italic;"> Manager</td>
-        </tr>
-      </thead>
-    </table>
-  </div>
-
-  <div class="col-md-4">
-    <table>
-      <thead>
-        <tr>
-          <td align="center">Disetujui,</td>
-        </tr>
-        <tr>
-          <?php 
-                if ($tanggal_awal == $tanggal_akhir) {
                     
-                    $kasir =  mysqli_query($koneksicbm, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
-                if ( mysqli_num_rows($kasir) === 1 ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                 }
+                 else{
+                    
+                     $kasir3  =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                     $x=0;
+                     $y=0;
+                     $z=0;
+                     while ($data4 = mysqli_fetch_array($kasir3)) {
+                         $kasir11 = $data4['manager'];
+                      $x = $x+1;
+ 
+                      if ($kasir11 == 1) {
+                             $y = $y+1;
+                         }   
+ 
+                     }
+                     if ( $y == $x ) {
+                       echo "<td align='center'> <img src='../gambar/TTDKasir.png'  style='height: 55px; width: 190px;' > </td>";
+                          }
+                          else{
+                     echo "<td align='center'>  </td>";
                          }
-                         else{
-                    echo "<td align='center'>  </td>";
-                        }
-                   
-                }
-                else{
-                   
-                    $kasir3  =  mysqli_query($koneksicbm, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-                    $x=0;
-                    $y=0;
-                    $z=0;
-                    while ($data4 = mysqli_fetch_array($kasir3)) {
-                        $kasir11 = $data4['direktur'];
-                     $x = $x+1;
-
-                     if ($kasir11 == 1) {
-                            $y = $y+1;
-                        }   
-
-                    }
-                    if ( $y == $x ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                 }
+                 
+             ?>
+         </tr> 
+         <tr>
+           <td align="center" style="font-weight: bold; text-decoration: underline;"> Made Suarte</td>
+         </tr>
+         <tr>
+           <td align="center" style="font-weight: bold; font-style: italic;"> Manager</td>
+         </tr>
+       </thead>
+     </table>
+   </div>
+ 
+   <div class="col-md-4">
+     <table>
+       <thead>
+         <tr>
+           <td align="center">Disetujui,</td>
+         </tr>
+         <tr>
+           <?php 
+                 if ($tanggal_awal == $tanggal_akhir) {
+                     
+                     $kasir =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
+                 if ( mysqli_num_rows($kasir) === 1 ) {
+                       echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                          }
+                          else{
+                     echo "<td align='center'>  </td>";
                          }
-                         else{
-                    echo "<td align='center'>  </td>";
-                        }
-                }
-                
-            ?>
-        </tr>
-        <tr>
-          <td align="center" style="font-weight: bold; text-decoration: underline;">Merry Yolanda D</td>
-        </tr>
-        <tr>
-          <td align="center" style="font-weight: bold; font-style: italic;"> Komisaris</td>
-        </tr>
-      </thead>
-    </table>
-  </div>  
-</div>
-</div>
+                    
+                 }
+                 else{
+                    
+                     $kasir3  =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                     $x=0;
+                     $y=0;
+                     $z=0;
+                     while ($data4 = mysqli_fetch_array($kasir3)) {
+                         $kasir11 = $data4['direktur'];
+                      $x = $x+1;
+ 
+                      if ($kasir11 == 1) {
+                             $y = $y+1;
+                         }   
+ 
+                     }
+                     if ( $y == $x ) {
+                       echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                          }
+                          else{
+                     echo "<td align='center'>  </td>";
+                         }
+                 }
+                 
+             ?>
+         </tr>
+         <tr>
+           <td align="center" style="font-weight: bold; text-decoration: underline;">Merry Yolanda D</td>
+         </tr>
+         <tr>
+           <td align="center" style="font-weight: bold; font-style: italic;"> Komisaris</td>
+         </tr>
+       </thead>
+     </table>
+   </div>  
+ </div>
+ </div>
 </div>
 <!-- End of Main Content -->
 
