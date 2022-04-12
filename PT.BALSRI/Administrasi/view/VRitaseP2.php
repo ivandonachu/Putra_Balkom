@@ -37,12 +37,12 @@ elseif (isset($_POST['tanggal1'])) {
 //ritase
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan , a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_p b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan  ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_p b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan , a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_p b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan  ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_p b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
 
 }
 
@@ -349,11 +349,11 @@ else{
       <td align = 'center'><a href='VRincianRitKenP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
       <?php echo "<td style='font-size: 12px'>"; ?>
 
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php $no_urut ?>">Konfirmasi Perbaikan</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php  echo $data['no']; ?>">Konfirmasi Perbaikan</button>
 
       <!-- Form EDIT DATA -->
 
-      <div class="modal fade" id="formedit<?php $no_urut ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+      <div class="modal fade" id="formedit<?php  echo $data['no']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role ="document">
           <div class="modal-content"> 
             <div class="modal-header">Konfirmasi Perbaikan</h5>
@@ -367,7 +367,7 @@ else{
             <div class="modal-body">
               <form action="../proses/konfirmasi_perbaikan"  method="POST">
 
-
+              <input type="hidden" name="lokasi" value="Palembang">
                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
                <input type="hidden" name="no_polisi" value="<?php echo $no_polisi;?>">

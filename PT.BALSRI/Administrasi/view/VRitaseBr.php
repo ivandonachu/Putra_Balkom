@@ -40,12 +40,12 @@ elseif (isset($_POST['tanggal1'])) {
 //ritase
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan , a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan , a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
 
 }
 
@@ -306,13 +306,18 @@ else{
  </div>
  <br>
 
+ <?php 
+$urut = 0;
+
+?>
 
 <h5 align="center" >Ritease Kendaraan</h5>
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>No Kendaraan</th>
+    <th>No</th>
+      <th>No Polisi</th>
       <th>Total Rit</th>
       <th>Total GPS</th>
       <th>Total ODO</th>
@@ -326,12 +331,14 @@ else{
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_polisi = $data['no_polisi'];
+       $no_polisi = $data['no_polisi'];
+       $urut = $urut + 1;
       $total_rit =$data['total_rit'];
       $total_jt_gps =$data['total_jt_gps'];
       $total_jt_odo =$data['total_jt_odo'];
       $tgl_perbaikan = $data['tgl_perbaikan'];
       echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$urut</td>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
       <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
@@ -346,11 +353,11 @@ else{
       <td align = 'center'><a href='VRincianRitKenBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
       <?php echo "<td style='font-size: 12px'>"; ?>
 
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php $no_polisi ?>">Konfirmasi Perbaikan</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no']; ?>">Konfirmasi Perbaikan</button>
 
       <!-- Form EDIT DATA -->
 
-      <div class="modal fade" id="formedit<?php $no_polisi ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+      <div class="modal fade" id="formedit<?php echo $data['no']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role ="document">
           <div class="modal-content"> 
             <div class="modal-header">Konfirmasi Perbaikan</h5>
@@ -364,7 +371,7 @@ else{
             <div class="modal-body">
               <form action="../proses/konfirmasi_perbaikan"  method="POST">
 
-
+              <input type="hidden" name="lokasi" value="Baturaja">
                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
                <input type="hidden" name="no_polisi" value="<?php echo $no_polisi;?>">
