@@ -18,7 +18,7 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$no = $_POST['no'];
+
 $supply_point = $_POST['supply_point'];
 $delivery_point = $_POST['delivery_point'];
 $cluster = $_POST['cluster'];
@@ -36,7 +36,7 @@ $kl5 = $_POST['kl5'];
 
 	
 
-		$query = mysqli_query($koneksi,"UPDATE master_tarif SET supply_point = '$supply_point' , delivery_point = '$delivery_point' , cluster = '$cluster' , alamat = '$alamat' , jt = '$jt' , hrg_bbm = '$hrg_bbm' , kl1 = '$kl1' , kl2 = '$kl2' , kl3 = '$kl3' , kl4 = '$kl4' , kl5 = '$kl5'  WHERE no = '$no'");
+		$query = mysqli_query($koneksi,"UPDATE master_tarif SET supply_point = '$supply_point' , cluster = '$cluster' , alamat = '$alamat' , jt = '$jt' , hrg_bbm = '$hrg_bbm' , kl1 = '$kl1' , kl2 = '$kl2' , kl3 = '$kl3' , kl4 = '$kl4' , kl5 = '$kl5'  WHERE delivery_point = '$delivery_point'");
 	
 	
 			echo "<script>alert('Update Data Berhasil :)'); window.location='../view/VMasterTarif';</script>";exit;

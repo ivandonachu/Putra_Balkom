@@ -34,9 +34,9 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM tagihan a INNER JOIN master_tarif b ON a.no=b.no WHERE tanggal = '$tanggal_awal' AND mt = '$no_polisilr'" );
+  $table = mysqli_query($koneksi, "SELECT * FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point WHERE tanggal = '$tanggal_awal' AND mt = '$no_polisilr'" );
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.no=b.no  WHERE tanggal = '$tanggal_awal' AND mt = '$no_polisilr'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point  WHERE tanggal = '$tanggal_awal' AND mt = '$no_polisilr'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan= $data2['total_tagihan'];
   $total_jt= $data2['total_jt'];
@@ -45,8 +45,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM tagihan a INNER JOIN master_tarif b ON a.no=b.no WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr' ORDER BY a.tanggal");
-  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr'");
+  $table = mysqli_query($koneksi, "SELECT * FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr' ORDER BY a.tanggal");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan= $data2['total_tagihan'];
   $total_jt= $data2['total_jt'];

@@ -367,7 +367,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>No</th>
+   
       <th>Supply Point</th>
       <th>Delivery Point</th>   
       <th>Cluster</th>
@@ -385,7 +385,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no = $data['no'];
+
       $supply_point =$data['supply_point'];
       $delivery_point =$data['delivery_point'];
       $cluster = $data['cluster'];
@@ -399,7 +399,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
       $kl5 = $data['kl5'];
 
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no</td>
+  
       <td style='font-size: 14px' align = 'center'>$supply_point</td>
       <td style='font-size: 14px' align = 'center'>$delivery_point</td>
       <td style='font-size: 14px' align = 'center'>$cluster</td>
@@ -413,11 +413,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
       <td style='font-size: 14px' align = 'center'>$kl5/L</td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no']; ?>">Edit</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['delivery_point']; ?>">Edit</button>
 
       <!-- Form EDIT DATA -->
 
-      <div class="modal fade" id="formedit<?php echo $data['no']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+      <div class="modal fade" id="formedit<?php echo $data['delivery_point']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role ="document">
           <div class="modal-content"> 
             <div class="modal-header">
@@ -431,7 +431,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
             <div class="modal-body">
               <form action="../proses/edit_master_tarif" enctype="multipart/form-data" method="POST">
 
-                <input type="hidden" name="no" value="<?php echo $no;?>"> 
+                <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>"> 
                 
 
                 <div class="row">
@@ -441,7 +441,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
              </div>
              <div class="col-md-6">
                <label>Delivey Point</label>
-               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" value="<?php echo $delivery_point;?>" >
+               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" disabled value="<?php echo $delivery_point;?>" >
              </div>
            </div>
 
@@ -515,8 +515,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 </div>
 
 <!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $data['no']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['delivery_point']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $data['delivery_point']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
@@ -528,7 +528,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 
     <div class="modal-body">
       <form action="../proses/hapus_master_tarif" method="POST">
-        <input type="hidden" name="no" value="<?php echo $no;?>">
+        <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>">
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             
         </div>
