@@ -1152,7 +1152,10 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input5"> Konfirmasi Laporan </button> <br> <br>
       </div>
       <div align="left" style="margin-left: 20px;">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input6"> Cetak Laporan </button> <br> <br>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input6"> Cetak Lap Penjualan </button> <br> <br>
+      </div>
+      <div align="left" style="margin-left: 20px;">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input7"> Cetak Lap Keuangan </button> <br> <br>
       </div>
 
    </div>
@@ -1192,12 +1195,13 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 </div>
 </div>
 </div>
-    <!-- Form Modal cetak -->
+
+    <!-- Form Modal cetak laporan penjualan -->
     <div class="modal fade bd-example-modal-lg" id="input6" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Cetak Laporan</h5>
+          <h5 class="modal-title"> Cetak Laporan Penjualan</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -1206,6 +1210,46 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
           <?php  echo "<form action='VCetakLaporan.php' method='POST' target='blank   '>";  ?>
+
+          <div class="row">
+
+          <div class="col-sm-6">
+             <label>Tanggal Awal</label>
+              
+               <input type="date" id="tanggal1" name="tanggal1" required="">
+             </div>
+             <div class="col-sm-6">
+             <label>Tanggal Akhir</label>
+              
+               <input type="date" id="tanggal2" name="tanggal2" required="">
+             </div>
+      
+
+          </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Cetak</button>
+  </div>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+   <!-- Form Modal cetak laporan Keuangan -->
+   <div class="modal fade bd-example-modal-lg" id="input7" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role ="document">
+       <div class="modal-content"> 
+        <div class="modal-header">
+          <h5 class="modal-title"> Cetak Laporan Keuangan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <!-- Form Input Data -->
+        <div class="modal-body" align="left">
+          <?php  echo "<form action='VCetakLaporanUang.php' method='POST' target='blank   '>";  ?>
 
           <div class="row">
 

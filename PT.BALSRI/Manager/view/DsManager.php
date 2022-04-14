@@ -106,7 +106,7 @@ $nama = $data['nama_karyawan'];
                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                15  aria-expanded="true" aria-controls="collapseOne">
                  <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                 <span style="font-size: 15px; color:white;" >Tagihan</span>
+                 <span style="font-size: 15px; color:white;" >Tagihan Balsri</span>
              </a>
              <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                  <div class="bg-white py-2 collapse-inner rounded">

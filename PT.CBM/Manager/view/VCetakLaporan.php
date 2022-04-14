@@ -1712,7 +1712,7 @@ $nama = $data['nama_karyawan'];
     
     }
 
-
+    setlocale(LC_ALL, 'id_ID');
 
  ?>
  <!DOCTYPE html>
@@ -1747,18 +1747,22 @@ $nama = $data['nama_karyawan'];
 
 
 <!-- Tabel -->    
-<?php 
-if($tanggal_awal == $tanggal_akhir){
-  echo"<h3 align='center'>Laporan Penjualan Tanggal $tanggal_awal</h3>";
-}
-else{
-    echo"<h3 align='center'>Laporan Penjualan PT Cahaya Bumi Musi </h3>";
-    echo"<h4 align='center'>Priode $tanggal_awal Sampai $tanggal_akhir </h4>";
-}
-?>
+
+<div class="row">
+    <div  align='left' class="col-md-6">
+            <img src="../gambar/KopSurat.png" style="height: 90px; width: 230px;">
+    </div>
+    <div align='right' class="col-md-6">
+        <h9 style='font-size: 12px' >Alamat : Dsn. 01 RT/RW 03/01 Desa Suka Maju</h9><br>
+        <h9 style='font-size: 12px' > Kec. Buay Madang Timur Kab. OKU Timur 32361 Sum-Sel </h9><br>
+        <h9 style='font-size: 12px' > Email : ptcahayabumimusi@gmail.com | Telp/Hp. 0812 2160 0689</h9>
+
+    </div>
+
+</div>
 
 
-<br>
+
 <style>       
     hr{
         height: 2px;
@@ -1767,13 +1771,24 @@ else{
     }
 </style>
 <hr>
+<h5 align='center'>PENJUALAN HARIAN</h5>
+<?php 
+if($tanggal_awal == $tanggal_akhir){
+  echo"<h6 align='center'> "?> <?= formattanggal($tanggal_awal); echo"</h6>";
+}
+else{
+   
+    echo"<h6 align='center'>Priode"?> <?= formattanggal($tanggal_awal); echo" Sampai";  formattanggal($tanggal_akhir); echo"  </h6>";
+}
+?>
+<br>
 <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width: 100%; ">
   <thead align = 'center' >  
     <tr>
       <th>No</th>
-      <th>Tanggal Penjualan</th>
+    
       <th>REF</th>
-      <th>Akun</th>
+  
       <th>Barang</th>
       <th>Penyaluran</th>
       <th>Nama</th>
@@ -1801,18 +1816,30 @@ else{
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
+    
     function formattanggal($date){
+        
 
-        $datetime = DateTime::createFromFormat('Y-m-d', $date);
-        return $datetime->format('d F Y');
+        $tgl_skrg = date("d F Y");
+        switch(date("l"))
+    {
+        case 'Monday':$nmh="Senin";break; 
+        case 'Tuesday':$nmh="Selasa";break; 
+        case 'Wednesday':$nmh="Rabu";break; 
+        case 'Thursday':$nmh="Kamis";break; 
+        case 'Friday':$nmh="Jum'at";break; 
+        case 'Saturday':$nmh="Sabtu";break; 
+        case 'Sunday':$nmh="minggu";break; 
+    }
+    echo $nmh.","."$tgl_skrg";
        }
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
       $no_transaksi = $data['no_transaksi'];
-      $tanggal =$data['tanggal'];
+
       $referensi = $data['referensi'];
-      $nama_akun = $data['nama_akun'];
+ 
       $nama_baja = $data['nama_baja'];
       $penyaluran = $data['penyaluran'];
       $nama = $data['nama'];
@@ -1858,9 +1885,7 @@ else{
 
       echo "<tr align = 'center'>
       <td style='font-size: 14px'>$urut</td>
-      <td style='font-size: 14px' >"; ?> <?= formattanggal($tanggal); ?> <?php echo" </td>
       <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$nama_baja</td>
       <td style='font-size: 14px'>$penyaluran</td>
       <td style='font-size: 14px'>$nama</td>
@@ -1919,7 +1944,8 @@ else{
 <br>
 <br>
 <br>
-
+<?php
+/*
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
 <h5 align="center" >Inventory</h3>
 <!-- Tabel -->    
@@ -2176,7 +2202,7 @@ else{
     </div>
 </div>
 
-</div>
+</div>*/ ?>
 <br>
 <br>
 

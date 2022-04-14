@@ -496,6 +496,29 @@ else{
                     </div>
                 </div>
             </li>
+              <!-- Nav Item - Pages Collapse Menu -->
+              <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOnex"
+                  15  aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Data Backup</span>
+                </a>
+                <div id="collapseOnex" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanx">Tagihan Lampung</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanPx">Tagihan Pelmbang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBrx">Tagihan Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLrGlobalx">Laba Rugi Global</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugix">Laba Rugi Lampung</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiPx">Laba Rugi Palembang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBrx">Laba Rugi Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifx">Master Tarif LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPx">Master Tarif PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBrx">Master Tarif BTA</a>
+                    </div>
+                </div>
+            </li>
 
 
 <!-- Divider -->

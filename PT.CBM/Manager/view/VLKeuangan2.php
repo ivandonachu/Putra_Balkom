@@ -325,7 +325,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
 </nav>
 <!-- End of Topbar -->
 <div class="container" style="color : black;">
-     <?php  echo "<form  method='POST' action='VLPenjualan2' style='margin-bottom: 15px;'>" ?>
+     <?php  echo "<form  method='POST' action='VLKeuangan2' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -399,6 +399,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
     <br>
     <br>
     <!-- Tanda Konfirmasi  -->
+  <!-- Tanda Konfirmasi  -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
  
 <div class="row" align="center">
@@ -414,7 +415,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
                     
                     $kasir =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                      echo "<td align='center'> <img src='../gambar/TTDKasir.png' style='height: 55px; width: 190px;'' > </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -437,7 +438,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
 
                     }
                     if ( $y == $x ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                      echo "<td align='center'> <img  src='../gambar/TTDKasir.png' style='height: 55px; width: 190px;'> </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -448,7 +449,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
           
         </tr>
         <tr>
-          <td align="center" style="font-weight: bold; text-decoration: underline;">Miftakhul Janah</td>
+          <td align="center" style="font-weight: bold; text-decoration: underline;">Lilis Magdalena</td>
         </tr>
         <tr>
           <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
@@ -469,7 +470,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
                     
                     $kasir =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                      echo "<td align='center'> <img src='../gambar/TTDManager.png' style='height: 55px; width: 190px;' > </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -492,7 +493,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
 
                     }
                     if ( $y == $x ) {
-                      echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
+                      echo "<td align='center'> <img src='../gambar/TTDKasir.png'  style='height: 55px; width: 190px;' > </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -500,7 +501,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
                 }
                 
             ?>
-        </tr>
+        </tr> 
         <tr>
           <td align="center" style="font-weight: bold; text-decoration: underline;"> Made Suarte</td>
         </tr>
