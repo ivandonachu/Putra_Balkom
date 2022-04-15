@@ -1820,7 +1820,7 @@ else{
     function formattanggal($date){
         
 
-        $tgl_skrg = date("d F Y");
+        $newDate = date(" d F Y", strtotime($date));
         switch(date("l"))
     {
         case 'Monday':$nmh="Senin";break; 
@@ -1831,7 +1831,7 @@ else{
         case 'Saturday':$nmh="Sabtu";break; 
         case 'Sunday':$nmh="minggu";break; 
     }
-    echo $nmh.","."$tgl_skrg";
+    echo $nmh.","."$newDate";
        }
     ?>
 
