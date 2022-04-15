@@ -49,7 +49,7 @@ else if ( $nama_file != "" ) {
 		$nama_file_baru .= ".";
 		$nama_file_baru .= $ekstensi_file;
 
-		move_uploaded_file($tmp_name, '../file_administrasi/' . $nama_file_baru   );
+		move_uploaded_file($tmp_name, '../file_kasir_pbj/' . $nama_file_baru   );
 
 		return $nama_file_baru; 
 

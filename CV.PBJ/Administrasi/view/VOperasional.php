@@ -304,95 +304,7 @@ else{
     <div class="col-md-6">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-   <div class="col-md-6">
-    <!-- Button Input Data Bayar -->
-
-    
-     <!-- Form Modal  -->
-    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-       <div class="modal-content"> 
-        <div class="modal-header">
-          <h5 class="modal-title"> Form Pengeluaran </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> 
-
-        <!-- Form Input Data -->
-        <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_oprasional?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-          <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
    
-
-          </div>
-          <div class="col-md-6">
-          </div>
-        </div>
-
-
-        <div class="row">
-          
-
-        <div class="col-md-6">
-          <label>Akun</label>
-          <select id="akun" name="akun" class="form-control">
-            <option>Biaya Kantor</option>
-            <option>Listrik & Telepon</option>>
-            <option>Alat Tulis Kantor</option>
-            <option>Biaya Sewa</option>
-          </select>
-        </div>            
-
-      </div>
-
-      <br>
-
-     
-
-      <div class="row">
-        <div class="col-md-6">
-          <label>Jumlah</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
-        </div>    
-        <div class="col-md-6">
-        </div>         
-      </div>
-
-  
-  
-    <br>
-
-    <div>
-     <label>Keterangan</label>
-     <div class="form-group">
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
-     </div>
-   </div>
-
-  <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-
-
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"> BAYAR</button>
-        <button type="reset" class="btn btn-danger"> RESET</button>
-      </div>
-    </form>
-  </div>
-</div>
-</div>
-</div>
-</div>
 </div>
 
 
@@ -401,7 +313,8 @@ else{
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto">
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -455,6 +368,7 @@ else{
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
 <br>

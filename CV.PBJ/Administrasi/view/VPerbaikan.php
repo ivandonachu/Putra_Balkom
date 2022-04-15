@@ -312,129 +312,13 @@ else{
   <div class="col-md-6">
    <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
  </div>
- <div class="col-md-6">
-  <!-- Button Input Data Bayar -->
-
-  <!-- Form Modal  -->
-  <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-lg" role ="document">
-     <div class="modal-content"> 
-      <div class="modal-header">
-        <h5 class="modal-title"> Form Pengeluaran Kendaraan </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div> 
-
-      <!-- Form Input Data -->
-      <div class="modal-body" align="left">
-        <?php  echo "<form action='../proses/proses_perbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-        <div class="row">
-          <div class="col-md-6">
-
-            <label>Tanggal</label>
-            <div class="col-sm-10">
-             <input type="date" id="tanggal" name="tanggal" required="">
-           </div>
-
-         </div>
-         <div class="col-md-6">
-          <label>Akun</label>
-          <select id="akun" name="akun" class="form-control">
-            <option>Pembelian Sparepart</option>
-            <option>Biaya Perbaikan Kendaraan</option>
-          </select>
-        </div>     
-       </div>
-
-
-       <br>
-
-       <div class="row">
-
-        <div class="col-md-6">
-         <label>AMT</label>
-         <select id="amt" name="amt" class="form-control ">
-          <?php
-          include 'koneksi.php';
-          $result = mysqli_query($koneksi, "SELECT * FROM driver");   
-
-          while ($data2 = mysqli_fetch_array($result)){
-            $nama_driver = $data2['nama_driver'];
-
-
-            echo "<option> $nama_driver </option> ";
-
-          }
-          ?>
-        </select>
-      </div>
-
-      <div class="col-md-6">
-        <label>MT</label>
-        <select id="mt" name="mt" class="form-control">
-          <?php
-          include 'koneksi.php';
-          $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
-
-          while ($data2 = mysqli_fetch_array($result)){
-            $no_polisi = $data2['no_polisi'];
-
-
-            echo "<option> $no_polisi </option> ";
-
-          }
-          ?>
-        </select>
-      </div>            
-
-    </div>
-    <br>
-
-    <div class="row">
-      <div class="col-md-6">
-        <label>Jumlah Pengeluaran</label>
-        <input class="form-control form-control-sm" type="float" id="jml_pengeluaran" name="jml_pengeluaran" required="">
-      </div>      
-      <div class="col-md-6">
-       <label>Keterangan Kerusakan / Maintenance</label>
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
-     </div>  
-   </div>
-
-
-   <br>
-     <div>
-        <label>Status Pembayaran</label>
-        <select id="status" name="status" class="form-control">
-            <option>Lunas</option>
-            <option>Bon</option>
-        </select>
-      </div>      
-   <br>
-
-   <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> BAYAR</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
+ 
 </div>
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto">
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -494,6 +378,7 @@ else{
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
 <br>
