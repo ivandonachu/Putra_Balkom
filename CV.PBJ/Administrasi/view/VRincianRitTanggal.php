@@ -22,7 +22,6 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -33,17 +32,12 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
 }  
 
-$nama_driver = $_GET['nama_driver'];
+$tanggal = $_GET['tanggal'];
+$no_lokasi = $_GET['no_lokasi'];
 
-if ($tanggal_awal == $tanggal_akhir) {
 
-    $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal = '$tanggal_awal' AND  nama_driver = '$nama_driver' ");
-}
-else{
+    $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal_keluar = '$tanggal' AND d.no_lokasi = $no_lokasi ");
 
-   $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  nama_driver = '$nama_driver'");
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +50,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Ritase Driver</title>
+  <title>Rincian Rit Per Tanggal</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -238,7 +232,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRincianRitDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Ritase Driver</h5></a>"; ?>
+      <?php echo "<a href='VRincianRitDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Ritase Per Tanggal</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -305,7 +299,7 @@ else{
 
 
   <div class="col-md-8">
-   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal </a>" ?>
  </div>
  <br>
 

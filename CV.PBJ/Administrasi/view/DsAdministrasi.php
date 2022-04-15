@@ -105,15 +105,15 @@ $nama = $data['nama_karyawan'];
 
                <!-- Nav Item - Pages Collapse Menu -->
                <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
                 15  aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
                 <span style="font-size: 15px; color:white;" >CV PBJ</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header" style="font-size: 15px;">Riwayat</h6>
-                    <a class="collapse-item" style="font-size: 15px;" href="VLR">Laba Rugi</a>
+                   
                         <a class="collapse-item" style="font-size: 15px;" href="VLSaldo">Laporan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Riwayat Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>

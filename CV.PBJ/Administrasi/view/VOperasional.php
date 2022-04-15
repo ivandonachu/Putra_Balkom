@@ -21,8 +21,6 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -32,19 +30,16 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
-
-$nama_driver = $_GET['nama_driver'];
-
 if ($tanggal_awal == $tanggal_akhir) {
-
-    $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal = '$tanggal_awal' AND  nama_driver = '$nama_driver' ");
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_oprasional a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal'");
 }
 else{
-
-   $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no_kendaraan=a.no_kendaraan INNER JOIN lokasi_kirim d ON d.no_lokasi=a.no_lokasi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  nama_driver = '$nama_driver'");
-
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_oprasional a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 }
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,8 +51,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Ritase Driver</title>
-
+  <title>Pengeluaran Operasional</title>
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -79,11 +73,12 @@ else{
 
 <body id="page-top">
 
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -113,8 +108,8 @@ else{
        Menu Administrasi
    </div>
 
-     <!-- Nav Item - Pages Collapse Menu -->
-     <li class="nav-item">
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
                 15  aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -214,16 +209,17 @@ else{
 </div>
 </div>
 </li>
-  <!-- Divider -->
-  <hr class="sidebar-divider">
+
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
 
 
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
 
 
@@ -238,7 +234,8 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRincianRitDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Ritase Driver</h5></a>"; ?>
+      <?php echo "<a href='VPengeluaranPul2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pengeluaran Operasional</h5></a>"; ?>
+
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -248,7 +245,6 @@ else{
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
-
 
 
 
@@ -292,192 +288,178 @@ else{
 <div>   
 
 
-
-
-
-
-   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <div align="left">
-      <?php echo "<a href='VCatatPengiriman2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+  <!-- Name Page -->
+  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+    <?php  echo "<form  method='POST' action='VOperasional' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
     </div>
+  </form>
+  <div class="row">
+    <div class="col-md-6">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   <div class="col-md-6">
+    <!-- Button Input Data Bayar -->
+
+    
+     <!-- Form Modal  -->
+    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role ="document">
+       <div class="modal-content"> 
+        <div class="modal-header">
+          <h5 class="modal-title"> Form Pengeluaran </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <!-- Form Input Data -->
+        <div class="modal-body" align="left">
+          <?php  echo "<form action='../proses/proses_oprasional?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+
+          <div class="row">
+            <div class="col-md-6">
+
+              <label>Tanggal</label>
+              <div class="col-sm-10">
+               <input type="date" id="tanggal" name="tanggal" required="">
+             </div>
+   
+
+          </div>
+          <div class="col-md-6">
+          </div>
+        </div>
+
+
+        <div class="row">
+          
+
+        <div class="col-md-6">
+          <label>Akun</label>
+          <select id="akun" name="akun" class="form-control">
+            <option>Biaya Kantor</option>
+            <option>Listrik & Telepon</option>>
+            <option>Alat Tulis Kantor</option>
+            <option>Biaya Sewa</option>
+          </select>
+        </div>            
+
+      </div>
+
+      <br>
+
+     
+
+      <div class="row">
+        <div class="col-md-6">
+          <label>Jumlah</label>
+          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
+        </div>    
+        <div class="col-md-6">
+        </div>         
+      </div>
+
+  
+  
     <br>
-    <br>
+
+    <div>
+     <label>Keterangan</label>
+     <div class="form-group">
+       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
+     </div>
+   </div>
+
+  <div>
+    <label>Upload File</label> 
+    <input type="file" name="file"> 
+  </div> 
 
 
-  <div class="col-md-8">
-   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
- </div>
- <br>
-
- <div class="row">
-  <div class="col-md-10">
-
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"> BAYAR</button>
+        <button type="reset" class="btn btn-danger"> RESET</button>
+      </div>
+    </form>
   </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%;  ">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
-      <th>No SJB</th>
-      <th>Date In</th>
-      <th>Date Out</th>   
-      <th>Barang</th>
-      <th>Rute</th>
-      <th>Muatan</th>
-      <th>Jasa Transport</th>
-      <th>No Polisi</th>
-      <th>Driver</th>
-      <th>Uang Jalan</th>
-      <th>Gaji</th>
-      <th>KET</th>
-      <th>File</th>
-
+      <th>Tanggal</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Pengeluaran</th>
+      <th>Total</th>
+      <th>file</th>
     </tr>
   </thead>
   <tbody>
     <?php
+    $total = 0;
     $urut = 0;
-    $total_muatan = 0;
-    $total_tagihan =  0;
-    $total_uj = 0;
-    $total_gaji = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
+
     <?php while($data = mysqli_fetch_array($table)){
-      $no_pengiriman = $data['no_pengiriman'];
-      $no_sjb = $data['no_sjb'];
-      $tanggal =$data['tanggal'];
-      $tanggal_keluar =$data['tanggal_keluar'];
-      $nm_perusahaan = $data['nm_perusahaan'];
-      $nm_lokasi = $data['nm_lokasi'];
-      $muatan = $data['muatan'];
-      $harga = $data['harga'];
-      $no_polisi = $data['no_polisi'];
-      $nama_driver = $data['nama_driver'];
-      $uj = $data['uj'];
-      $gaji = $data['gaji'];
-      $keterangan = $data['keterangan'];
-      $file_bukti = $data['file_bukti'];
-      $jasa_transport = $muatan * $harga;
+     $no_laporan = $data['no_laporan'];
+     $tanggal =$data['tanggal'];
+     $nama_akun = $data['nama_akun'];
+     $jumlah = $data['jumlah'];
+     $keterangan = $data['keterangan'];
+     $file_bukti = $data['file_bukti'];
 
-      $total_tagihan = $total_tagihan + $jasa_transport;
-      $total_muatan = $total_muatan + $muatan;
-      $total_uj = $total_uj + $uj;
-      $total_gaji = $total_gaji + $gaji;
+     $total = $total + $jumlah;
+     $urut = $urut + 1;
 
-      $urut = $urut + 1;
 
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$urut</td>
-       <td style='font-size: 14px' align = 'center'>$no_sjb</td>
-      <td style='font-size: 14px' align = 'center'>$tanggal</td>
-      <td style='font-size: 14px' align = 'center'>$tanggal_keluar</td>
-      <td style='font-size: 14px' align = 'center'>$nm_perusahaan</td>
-      <td style='font-size: 14px' align = 'center'>$nm_lokasi</td>
-      <td style='font-size: 14px' align = 'center'>$muatan</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jasa_transport); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($gaji); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>$keterangan</td>
-      "; ?>
-      <?php echo "
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>" href="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
+     echo "<tr>
+     <td style='font-size: 14px'>$urut</td>
+     <td style='font-size: 14px'>$tanggal</td>
+     <td style='font-size: 14px'>$nama_akun</td>
+     <td style='font-size: 14px'>$keterangan</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>" href="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     "; ?>
    
 
-<?php echo  " </tr>";
-}
+    <?php echo  "  </tr>";
+  }
+
 ?>
 
 </tbody>
 </table>
-
-<br>
-<br>
-
-<br>
-<br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Tagihan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_tagihan)  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Muatan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $total_muatan;echo " Ton"; ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang Jalan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uj)  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Gaji</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_gaji)  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-truck-moving fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
 <br>
 <br>
 <br>
 
 
-</div>
 </div>
 
 </div>
@@ -561,8 +543,6 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
-
-
 
 </body>
 

@@ -17,7 +17,7 @@ if ($jabatan_valid == 'Administrasi') {
 else{  header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1 '");
+$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
@@ -52,7 +52,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Saldo</title>
+  <title>Laporan Saldo</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,87 +78,138 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px;" src="../gambar/Logo PBJ.PNG" ></div>
-            </a>
-            <br>
-            
-            <br>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px;" src="../gambar/Logo PBJ.PNG" ></div>
+</a>
+<br>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<br>
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsAdministrasi">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsAdministrasi">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+       Menu Administrasi
+   </div>
 
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                   Menu Administrasi
-               </div>
-
-               <!-- Nav Item - Pages Collapse Menu -->
-               <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
                 15  aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
                 <span style="font-size: 15px; color:white;" >CV PBJ</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header" style="font-size: 15px;">Riwayat</h6>
-                    <a class="collapse-item" style="font-size: 15px;" href="VPencatatanSaldo">Catatan Saldo</a>
+                   
+                        <a class="collapse-item" style="font-size: 15px;" href="VLSaldo">Laporan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Riwayat Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
                 </div>
             </div>
         </li>
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-            15  aria-expanded="true" aria-controls="collapseTwo2">
-            <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-            <span style="font-size: 15px; color:white;" >Laporan BALSRI</span>
-        </a>
-        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header" style="font-size: 15px;">Laporan Pengiriman</h6>
-              <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
-              <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase</a>
-              <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh</a>
-              <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji</a>
-          </div>
-      </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-      15  aria-expanded="true" aria-controls="collapseTwo3">
-      <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-      <span style="font-size: 15px; color:white;" >SDM BALSRI</span>
-  </a>
-  <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-        <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
-    </div>
-</div>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+   15  aria-expanded="true" aria-controls="collapseTwo">
+     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+     <span style="font-size: 15px; color:white;" >Kirim Balsri</span>
+ </a>
+ <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+     <div class="bg-white py-2 collapse-inner rounded">
+         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
+         <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Rekap Gaji</a>
+     </div>
+ </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+   15  aria-expanded="true" aria-controls="collapseOne">
+     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+     <span style="font-size: 15px; color:white;" >Tagihan Balsri</span>
+ </a>
+ <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+     <div class="bg-white py-2 collapse-inner rounded">
+         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+         <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Palembang</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi LMG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi PLG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi BTA</a>
+     </div>
+ </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
+   15  aria-expanded="true" aria-controls="collapseTwo22">
+     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+     <span style="font-size: 15px; color:white;" >Penglrn Balsri</span>
+ </a>
+ <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+     <div class="bg-white py-2 collapse-inner rounded">
+         <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
+         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Lap Perbaikan LMG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Lap Perbaikan PLG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Lap Perbaikan BTA</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
+         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
+     </div>
+ </div>
 </li>
 
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+15  aria-expanded="true" aria-controls="collapseTwo3">
+<i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+<span style="font-size: 15px; color:white;" >SDM BALSRI</span>
+</a>
+<div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+<div class="bg-white py-2 collapse-inner rounded">
+<h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+<a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
+<a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+</div>
+</div>
+</li>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -183,7 +234,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Saldo</h5></a>"; ?>
+      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Laporan Saldo</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -240,7 +291,7 @@ else{
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
     
-    <?php  echo "<form  method='POST' action='VPencatatanSaldo' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VLSaldo' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -257,122 +308,8 @@ else{
    </div>
    </div>
 
-  <div class="row">
-    <div class="col-md-10">
-     
-   </div>
-   <div class="col-md-2">
-    <!-- Button Pindah Baja -->
-    <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Pencatatan Saldo </button> <br> <br>
-    </div>
-    <!-- Form Modal  -->
-    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-       <div class="modal-content"> 
-        <div class="modal-header">
-          <h5 class="modal-title"> Form Pencatatan Saldo </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> 
 
-        <!-- Form Input Data -->
-        <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_pencatatan_saldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-          <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
-   
-
-          </div>
-          <div class="col-md-6">
-          </div>
-        </div>
-<br>
-
-        <div class="row">
-           <div class="col-md-6">
-          <label>Rekening</label>
-          <input class="form-control form-control-sm" type="text" id="rekening" name="rekening"  >
-        </div>  
-
-        <div class="col-md-6">
-          <label>Bank</label>
-          <select id="bank" name="bank" class="form-control">
-             <option></option>
-            <option>BRI</option>
-            <option>Mandiri</option>
-            <option>Bank Lampung</option>
-             <option>BCA</option>
-             <option>BNI</option>
-             <option>Bank Sumsel</option>
-          </select>
-        </div>            
-
-      </div>
-
-      <br>
-
-
-     
-
-      <div class="row">
-         <div class="col-md-4">
-          <label>Jenis Transaksi</label>
-          <select id="jenis_transaksi" name="jenis_transaksi" class="form-control">
-             <option></option>
-            <option>Penambahan Saldo</option>
-            <option>Pengeluaran Saldo</option>
-             <option>Sisa Saldo Bulan Lalu</option>
-          </select>
-        </div>    
-        <div class="col-md-4">
-          <label>Pengeluaran/Penambahan</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"value='0'  required="">
-        </div>    
-              <div class="col-md-4">
-          <label>Biaya Transfer</label>
-          <input class="form-control form-control-sm" type="number" id="biaya_transfer" name="biaya_transfer" value='0' required="">
-        </div>    
-      </div>
-
-  
-  
-    <br>
-
-    <div>
-     <label>Keterangan</label>
-     <div class="form-group">
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
-     </div>
-   </div>
-
-  <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">CATAT</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-
+ 
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
@@ -389,8 +326,7 @@ else{
       <th>Biaya Transfer</th>
       <th>Saldo</th>
       <th>file</th>
-      <th>Edit</th>
-       <th>Hapus</th>
+      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
@@ -452,119 +388,11 @@ else{
       <?php echo "
           <td style='font-size: 14px'>"?> <?= formatuang($biaya_transfer); ?> <?php echo "</td>
           <td style='font-size: 14px'>"?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
-         <td style='font-size: 14px'>"; ?> <a download="../file_kasir_pbj/<?= $file_bukti ?>" href="../file_kasir_pbj/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+         <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>" href="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
 
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Edit</button>
-
-        <!-- Form EDIT DATA -->
-
-        <div class="modal fade" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role ="document">
-            <div class="modal-content"> 
-              <div class="modal-header">
-                <h5 class="modal-title"> Form Edit Dokumen </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
-
-
-              <!-- Form Edit Data -->
-              <div class="modal-body">
-                <form action="../proses/proses_edit_catsal.php" method="POST">
-
-
-                      <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="" value="<?php echo $tanggal;?>">
-             </div>
-   
-
-          </div>
-          <div class="col-md-6">
-          </div>
-        </div>
-<br>
-
-        <div class="row">
-           <div class="col-md-6">
-          <label>Rekening</label>
-          <input class="form-control form-control-sm" type="text" id="rekening" name="rekening" value="<?php echo $rekening;?>" >
-        </div>  
-
-        <div class="col-md-6">
-          <label>Bank</label>
-          <select id="bank" name="bank" class="form-control">
-             <option></option>
-            <option>BRI</option>
-            <option>Mandiri</option>
-            <option>Bank Lampung</option>
-             <option>BCA</option>
-             <option>BNI</option>
-             <option>Bank Sumsel</option>
-          </select>
-        </div>            
-
-      </div>
-
-      <br>
-
-
-     
-
-      <div class="row">
-         <div class="col-md-4">
-          <label>Jenis Transaksi</label>
-          <select id="jenis_transaksi" name="jenis_transaksi" class="form-control">
-             <option></option>
-            <option>Penambahan Saldo</option>
-            <option>Pengeluaran Saldo</option>
-             <option>Sisa Saldo Bulan Lalu</option>
-          </select>
-        </div>    
-        <div class="col-md-4">
-          <label>Pengeluaran/Penambahan</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" value='<?php echo $jumlah;?>'  required="">
-        </div>    
-              <div class="col-md-4">
-          <label>Biaya Transfer</label>
-          <input class="form-control form-control-sm" type="number" id="biaya_transfer"  name="biaya_transfer" value='<?php echo $biaya_transfer;?>' required="">
-        </div>    
-      </div>
-
-  
-    <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-    <input type="hidden" name="no_transaksi" value="<?php echo $no_laporan; ?>">
-    <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-
-    <br>
-
-    <div>
-     <label>Keterangan</label>
-     <div class="form-group">
-       <textarea id = "keterangan" name="keterangan" value='<?php echo $keterangan;?>' style="width: 300px;"></textarea>
-     </div>
-   </div>
-
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"> Ubah </button>
-                    <button type="reset" class="btn btn-danger"> RESET</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-    <?php echo  " </td>"; ?>
-     <?php echo "<td style='font-size: 12px'>"; ?>
-
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_transaksi']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'>Hapus</button>
+      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_transaksi']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'></button>
 
       <div class="modal fade" id="PopUpHapus<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
        <div class="modal-dialog" role ="document">
