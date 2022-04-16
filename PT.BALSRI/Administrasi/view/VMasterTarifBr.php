@@ -365,7 +365,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_br ");
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>No</th>
+    <th>No</th>
       <th>Supply Point</th>
       <th>Delivery Point</th> 
       <th>Alamat</th>   
@@ -389,7 +389,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_br ");
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no =$data['no'];
       $delivery_point =$data['delivery_point'];
       $alamat = $data['alamat'];
       $supply_point = $data['supply_point'];
@@ -433,7 +432,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_br ");
             <div class="modal-body">
               <form action="../proses/edit_master_tarifBr" enctype="multipart/form-data" method="POST">
                 
-                   <input type="hidden" name="no" value="<?php echo $no;?>"> 
+              <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>"> 
                 <div class="row">
               <div class="col-md-6">
              <label>Supply Point</label>
@@ -441,7 +440,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_br ");
            </div> 
           <div class="col-md-6">
                <label>Delivey Point</label>
-               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" value="<?php echo $delivery_point;?>" >
+               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" disabled required="" value="<?php echo $delivery_point;?>" >
              </div>
            </div>
             
@@ -529,7 +528,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_br ");
 
     <div class="modal-body">
       <form action="../proses/hapus_master_tarifBr" method="POST">
-        <input type="hidden" name="no" value="<?php echo $no;?>">
+      <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>"> 
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             
         </div>

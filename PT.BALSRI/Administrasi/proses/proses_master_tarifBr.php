@@ -33,7 +33,7 @@ $kl5 = $_POST['kl5'];
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_br VALUES('','$supply_point','$delivery_point','$alamat','$jt','$hrg_bbm','$kl1','$kl2','$kl3','$kl4','$kl5')");
+	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_br VALUES('$supply_point','$delivery_point','$alamat','$jt','$hrg_bbm','$kl1','$kl2','$kl3','$kl4','$kl5')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMasterTarifBr';</script>";exit;

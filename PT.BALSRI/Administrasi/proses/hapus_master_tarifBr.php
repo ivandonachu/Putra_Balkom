@@ -19,7 +19,7 @@ exit;
 }
 
 
-$no = $_POST['no'];
+$delivery_point = $_POST['delivery_point'];
 
 
 
@@ -27,7 +27,7 @@ $no = $_POST['no'];
         
 
         //Hapusriwayat keberangkatan
-        $query = mysqli_query($koneksi,"DELETE FROM master_tarif_br WHERE no = '$no'");
+        $query = mysqli_query($koneksi,"DELETE FROM master_tarif_br WHERE delivery_point = '$delivery_point'");
 
 
 

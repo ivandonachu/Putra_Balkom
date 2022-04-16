@@ -57,7 +57,6 @@ else if ($jumlah_pesanan == '5000 L') {
 $result3 = mysqli_query($koneksi, "SELECT * FROM master_tarif_br WHERE delivery_point = '$delivery_point' ");
 $data_tarif = mysqli_fetch_array($result3);
 $harga = $data_tarif[$kode_pesanan];
-$no = $data_tarif['no'];
 
 
 if ($jumlah_pesanan == '1000 L') {
@@ -117,7 +116,7 @@ else if ( $nama_file != "" ) {
 
 
 
-$query = mysqli_query($koneksi,"INSERT INTO tagihan_br VALUES('','$tanggal','$no','$so','$lo','$amt','$mt','$kode_pesanan','$total',1,'$file')");
+$query = mysqli_query($koneksi,"INSERT INTO tagihan_br VALUES('','$tanggal','$delivery_point','$so','$lo','$amt','$mt','$kode_pesanan','$total',1,'$file')");
 
 if ($query != "") {
 echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VTagihanBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
