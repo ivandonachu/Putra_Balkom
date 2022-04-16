@@ -105,8 +105,6 @@ else if ( $nama_file != "" ) {
 
 }
 
-var_dump($harga);
-
 
 
 	if ($file == '') {
@@ -117,6 +115,6 @@ var_dump($harga);
 	}
 
 
-	//echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VTagihanBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VTagihanBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 ?>
