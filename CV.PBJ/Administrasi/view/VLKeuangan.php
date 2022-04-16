@@ -21,6 +21,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -29,22 +30,26 @@ if (isset($_GET['tanggal1'])) {
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
-}  
+} 
+else{
+  $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+}
 
 if ($tanggal_awal == $tanggal_akhir) {
- $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pencatatan_saldo WHERE tanggal = '$tanggal_awal'");
+ $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal'");
 
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pencatatan_saldo WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
 }
 
 
- ?>
- <!DOCTYPE html>
- <html lang="en">
+?>
+<!DOCTYPE html>
+<html lang="en">
 
- <head>
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,7 +57,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Laporan Saldo</title>
+  <title>Keuangan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -109,41 +114,42 @@ else{
        Menu Administrasi
    </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
-                15  aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                <span style="font-size: 15px; color:white;" >CV PBJ</span>
-            </a>
-            <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header" style="font-size: 15px;">Riwayat</h6>
-                   
-                        <a class="collapse-item" style="font-size: 15px;" href="VLSaldo">Laporan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Riwayat Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
-                </div>
-            </div>
-        </li>
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Kasir Etty</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
-                    </div>
-                </div>
-            </li>
+   <!-- Nav Item - Pages Collapse Menu -->
+   <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
+    15  aria-expanded="true" aria-controls="collapseTwo">
+    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+    <span style="font-size: 15px; color:white;" >CV PBJ</span>
+</a>
+<div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header" style="font-size: 15px;">Riwayat</h6>
+       
+            <a class="collapse-item" style="font-size: 15px;" href="VLSaldo">Laporan Saldo</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Riwayat Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
+    </div>
+</div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Kasir Etty</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+        </div>
+    </div>
+</li>
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -168,7 +174,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Laporan Saldo</h5></a>"; ?>
+      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -179,8 +185,8 @@ else{
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-          
-        
+
+
 
 
 
@@ -224,8 +230,8 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-    
-    <?php  echo "<form  method='POST' action='VLSaldo' style='margin-bottom: 15px;'>" ?>
+
+    <?php  echo "<form  method='POST' action='VLKeuangan' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -240,33 +246,31 @@ else{
     <div class="col-md-8">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-   </div>
+ </div>
 
 
- 
+
 
 <!-- Tabel -->    
-<div style="overflow-x: auto">
-              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Jenis Transaksi</th>
-      <th>Rekening</th>
-      <th>Bank</th>
+      <th>Akun</th>
       <th>Keterangan</th>
-      <th>Debit</th>
-      <th>Kredit</th>
-      <th>Biaya Transfer</th>
+      <th>Masuk</th>
+      <th>Keluar</th>
       <th>Saldo</th>
       <th>file</th>
-      <th>Aksi</th>
+      
     </tr>
   </thead>
   <tbody>
     <?php
     $total_kredit = 0;
+    $no_urut = 0;
     $total_debit = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
@@ -277,32 +281,26 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_transaksi'];
       $tanggal =$data['tanggal'];
-      $rekening = $data['rekening'];
-      $bank = $data['bank'];
+      $nama_akun =$data['nama_akun'];
+      $status_saldo = $data['status_saldo'];
       $jumlah = $data['jumlah'];
       $keterangan = $data['keterangan'];
-      $biaya_transfer = $data['biaya_transfer'];
-      $jenis_transaksi = $data['jenis_transaksi'];
-      $status_saldo = $data['status_saldo'];
-       $file_bukti = $data['file_bukti'];
       if ($status_saldo == 'Masuk') {
-        $total_debit = $total_debit + $jumlah - $biaya_transfer;
+        $total_debit = $total_debit + $jumlah;
       }
       elseif($status_saldo == 'Keluar'){
-        $total_kredit = $total_kredit + $jumlah + $biaya_transfer;
+        $total_kredit = $total_kredit + $jumlah;
       }
-
-
+      $no_urut = $no_urut + 1;
+      $file_bukti = $data['file_bukti'];
       echo "<tr>
-      <td style='font-size: 14px'>$no_laporan</td>
+      <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-       <td style='font-size: 14px'>$jenis_transaksi</td>
-      <td style='font-size: 14px'>$rekening</td>
-      <td style='font-size: 14px'>$bank</td>
+      <td style='font-size: 14px'>$nama_akun</td>"; ?> <?php echo "
       <td style='font-size: 14px'>$keterangan</td>";
 
 
-      if ($jenis_transaksi == 'Sisa Saldo Bulan Lalu' OR $jenis_transaksi == 'Penambahan Saldo') {
+      if ($status_saldo == 'Masuk') {
         echo "
         <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
@@ -311,7 +309,7 @@ else{
         <td style='font-size: 14px'>"?>  <?php echo "</td>";
       }
 
-      if ($jenis_transaksi == 'Pengeluaran Saldo') {
+      if ($status_saldo == 'Keluar') {
         echo "
         <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
@@ -321,86 +319,49 @@ else{
       }
       ?>
       <?php echo "
-          <td style='font-size: 14px'>"?> <?= formatuang($biaya_transfer); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
-         <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>" href="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
+      <td style='font-size: 14px'>"?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+    "?>
+<?php echo  "</tr>";
+}
 
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_transaksi']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'></button>
-
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-       <div class="modal-dialog" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-
-          <div class="modal-body">
-            <form action="../proses/hapus_pencatatan_saldo" method="POST">
-              <input type="hidden" name="no_transaksi" value="<?php echo $no_laporan; ?>">
-              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-
-
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
-              </div>
-
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <?php echo  " </td> </tr>";
-  }
-
-  ?>
+?>
 
 </tbody>
 </table>
 </div>
-  </div>
 <br>
 <br>
 <br>
 <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-<!-- Tabel -->    
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Total Debit</th>
-      <th>Total Kredit</th>
-    </tr>
-  </thead>
-  <tbody>
+  <!-- Tabel -->    
+  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <thead>
+      <tr>
+        <th>Total Debit</th>
+        <th>Total Kredit</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <?php 
+      <?php 
       echo "<tr>
       <td style='font-size: 14px'>";?> <?= formatuang($total_debit); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($total_kredit); ?> <?php echo "</td>
-        </tr>";
-  
-  ?>
+      </tr>";
 
-</tbody>
-</table>
+      ?>
+
+    </tbody>
+  </table>
 </div>
 <br>
 <br>
 
 
 </div>
-
+</div>
 </div>
 <!-- End of Main Content -->
 
@@ -444,7 +405,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
-
+</div>
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
