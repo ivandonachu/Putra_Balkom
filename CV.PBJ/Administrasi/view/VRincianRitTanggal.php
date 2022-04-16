@@ -125,6 +125,7 @@ $no_lokasi = $_GET['no_lokasi'];
                 </div>
             </div>
         </li>
+        
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

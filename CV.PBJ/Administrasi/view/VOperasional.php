@@ -125,7 +125,8 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
                 </div>
             </div>
-        </li>
+        </li> 
+         
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
