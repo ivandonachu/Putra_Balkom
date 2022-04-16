@@ -27,7 +27,11 @@ $nama = $data['nama_karyawan'];
 
 
  if ($tanggal_awal == $tanggal_akhir) {
-    
+  $table999 =  mysqli_query($koneksi, "SELECT jam_manager, jam_kasir FROM konfirmasi_laporan WHERE tanggal =  '$tanggal_awal'");
+  $data999 = mysqli_fetch_array($table999);
+  $jam_kasir = $data999['jam_kasir'];
+  $jam_manager = $data999['jam_manager'];
+
     // TOTAL P[ENDAPATAN
     $table = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND pembayaran = 'Cash' OR tanggal = '$tanggal_awal' AND pembayaran ='Deposit' ");
     $data_pendapatan = mysqli_fetch_array($table);
@@ -121,7 +125,10 @@ $nama = $data['nama_karyawan'];
     
     }
     else{
-    
+      $table999 =  mysqli_query($koneksi, "SELECT jam_manager, jam_kasir FROM konfirmasi_laporan WHERE tanggal =  '$tanggal_akhir'");
+      $data999 = mysqli_fetch_array($table999);
+      $jam_kasir = $data999['jam_kasir'];
+      $jam_manager = $data999['jam_manager'];
     // TOTAL P[ENDAPATAN
     $table = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran = 'Cash' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran ='Deposit' ");
     $data_pendapatan = mysqli_fetch_array($table);
@@ -492,6 +499,9 @@ else{
         <tr>
           <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
         </tr>
+        <tr>
+          <td align="center" style="font-weight: bold; font-style: italic;"><?=$jam_kasir;?></td>
+        </tr>
       </thead>
     </table>
   </div>
@@ -531,7 +541,7 @@ else{
 
                     }
                     if ( $y == $x ) {
-                      echo "<td align='center'> <img src='../gambar/TTDKasir.png'  style='height: 55px; width: 190px;' > </td>";
+                      echo "<td align='center'> <img src='../gambar/TTDManager.png'  style='height: 55px; width: 190px;' > </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -545,6 +555,9 @@ else{
         </tr>
         <tr>
           <td align="center" style="font-weight: bold; font-style: italic;"> Manager</td>
+        </tr>
+        <tr>
+          <td align="center" style="font-weight: bold; font-style: italic;"><?=$jam_manager;?></td>
         </tr>
       </thead>
     </table>

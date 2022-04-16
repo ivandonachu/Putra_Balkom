@@ -26,6 +26,12 @@ $nama = $data['nama_karyawan'];
  $tanggal_akhir = $_POST['tanggal2'];
 
  if ($tanggal_awal == $tanggal_akhir) {
+    $table999 =  mysqli_query($koneksi, "SELECT jam_manager, jam_kasir FROM konfirmasi_laporan WHERE tanggal =  '$tanggal_awal'");
+    $data999 = mysqli_fetch_array($table999);
+    $jam_kasir = $data999['jam_kasir'];
+    $jam_manager = $data999['jam_manager'];
+    
+
     $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
      WHERE tanggal = '$tanggal_awal' ORDER BY no_transaksi DESC ");
     $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
@@ -873,6 +879,12 @@ $nama = $data['nama_karyawan'];
     
     //elseeeeeeee
     else{
+
+        $table999 =  mysqli_query($koneksi, "SELECT jam_manager, jam_kasir FROM konfirmasi_laporan WHERE tanggal =  '$tanggal_akhir'");
+        $data999 = mysqli_fetch_array($table999);
+        $jam_kasir = $data999['jam_kasir'];
+        $jam_manager = $data999['jam_manager'];
+
     $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
      WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
     $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
@@ -1883,16 +1895,16 @@ else{
 
 
 
-      echo "<tr align = 'center'>
-      <td style='font-size: 14px'>$urut</td>
-      <td style='font-size: 14px'>$referensi</td>
+      echo "<tr>
+      <td  align = 'center' style='font-size: 14px'>$urut</td>
+      <td  align = 'center' style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_baja</td>
       <td style='font-size: 14px'>$penyaluran</td>
       <td style='font-size: 14px'>$nama</td>
-      <td style='font-size: 14px'>$pembayaran</td>
-      <td style='font-size: 14px'>$qty</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td  align = 'center' style='font-size: 14px'>$pembayaran</td>
+      <td  align = 'center'style='font-size: 14px'>$qty</td>
+      <td  align = 'center' style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
+      <td  align = 'center'style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>$keterangan</td>
     
       </tr>";
@@ -2237,6 +2249,7 @@ else{
                     $z=0;
                     while ($data4 = mysqli_fetch_array($kasir3)) {
                         $kasir11 = $data4['kasir'];
+                        
                      $x = $x+1;
 
                      if ($kasir11 == 1) {
@@ -2246,6 +2259,7 @@ else{
                     }
                     if ( $y == $x ) {
                       echo "<td align='center'> <img  src='../gambar/TTDKasir.png' style='height: 55px; width: 190px;'> </td>";
+                      
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -2260,6 +2274,9 @@ else{
         </tr>
         <tr>
           <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
+        </tr>
+        <tr>
+          <td align="center" style="font-weight: bold; font-style: italic;"><?=$jam_kasir;?></td>
         </tr>
       </thead>
     </table>
@@ -2300,7 +2317,7 @@ else{
 
                     }
                     if ( $y == $x ) {
-                      echo "<td align='center'> <img src='../gambar/TTDKasir.png'  style='height: 55px; width: 190px;' > </td>";
+                      echo "<td align='center'> <img src='../gambar/TTDManager.png'  style='height: 55px; width: 190px;' > </td>";
                          }
                          else{
                     echo "<td align='center'>  </td>";
@@ -2314,6 +2331,9 @@ else{
         </tr>
         <tr>
           <td align="center" style="font-weight: bold; font-style: italic;"> Manager</td>
+        </tr>
+        <tr>
+          <td align="center" style="font-weight: bold; font-style: italic;"><?=$jam_manager;?></td>
         </tr>
       </thead>
     </table>

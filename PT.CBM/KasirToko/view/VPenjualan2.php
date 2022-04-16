@@ -33,12 +33,17 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
+  $table999 =  mysqli_query($koneksi, "SELECT jam_manager, jam_kasir FROM konfirmasi_laporan WHERE tanggal =  '$tanggal_awal'");
+      $data999 = mysqli_fetch_array($table999);
+      $jam_kasir = $data999['jam_kasir'];
+      $jam_manager = $data999['jam_manager'];
+
 $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
  WHERE tanggal = '$tanggal_awal'");
 $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
 
     $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
-        WHERE no_transaksi = $no_transaksi AND status_piutang = 'Sudah di Bayar' AND tanggal = '$tanggal_awal' ");
+        WHERE AND status_piutang = 'Sudah di Bayar' AND tanggal = '$tanggal_awal' ");
 
 
 //patokan stok awal
@@ -882,13 +887,17 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 
 //elseeeeeeee
 else{
+  $table999 =  mysqli_query($koneksi, "SELECT jam_manager, jam_kasir FROM konfirmasi_laporan WHERE tanggal =  '$tanggal_akhir'");
+      $data999 = mysqli_fetch_array($table999);
+      $jam_kasir = $data999['jam_kasir'];
+      $jam_manager = $data999['jam_manager'];
 $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
 
 
     $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
-        WHERE no_transaksi = $no_transaksi AND status_piutang = 'Sudah di Bayar' AND tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+        WHERE  status_piutang = 'Sudah di Bayar' AND tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 //patokan stok awal
 $table3 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE referensi = 'TK' AND tanggal = '$tanggal_awal' ");
@@ -3048,6 +3057,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
                      $z=0;
                      while ($data4 = mysqli_fetch_array($kasir3)) {
                          $kasir11 = $data4['kasir'];
+                        
                       $x = $x+1;
  
                       if ($kasir11 == 1) {
@@ -3072,6 +3082,9 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
          <tr>
            <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
          </tr>
+         <tr>
+          <td align="center" style="font-weight: bold; font-style: italic;"><?=$jam_kasir;?></td>
+        </tr>
        </thead>
      </table>
    </div>
@@ -3126,6 +3139,9 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
          <tr>
            <td align="center" style="font-weight: bold; font-style: italic;"> Manager</td>
          </tr>
+         <tr>
+          <td align="center" style="font-weight: bold; font-style: italic;"><?=$jam_manager;?></td>
+        </tr>
        </thead>
      </table>
    </div>
