@@ -2039,11 +2039,11 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       "; ?>
       <?php echo "<td style='font-size: 11px'>"; ?>
 
-        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Lihat</button>
+        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Lihat</button>
 
         <!--  tampil file -->
 
-        <div class="modal fade" id="formedit<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
             <div class="modal-content"> 
               <div class="modal-header">
