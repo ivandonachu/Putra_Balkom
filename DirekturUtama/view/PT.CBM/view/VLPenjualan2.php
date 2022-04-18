@@ -2056,11 +2056,11 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 
               <!--  tampil file -->
               <div class="modal-body">
-                       <img  style="height: 100%; width: 100%;" s src="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" >
+                       <img  style="height: 100%; width: 100%;" s src="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" >
                 </div>
 
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" href="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>">Download</a>  </button>
+                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>">Download</a>  </button>
               
                   </div>
                 </form>
