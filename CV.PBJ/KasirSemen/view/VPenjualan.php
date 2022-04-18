@@ -596,7 +596,7 @@ else{
           <div class="row">
             <div class="col-md-6">
               <label>QTY</label>
-              <input class="form-control form-control-sm" type="number" id="qty2" name="qty" onkeyup="sum2();" required="" >
+              <input class="form-control form-control-sm" type="number" id="qty2" name="qty" onkeyup="sum2();" required=""  value="<?php echo $qty;?>">
               
             </div>    
             <div class="col-md-6">
@@ -617,11 +617,11 @@ else{
          <div class="row">
           <div class="col-md-6">
             <label>Harga</label>
-            <input class="form-control form-control-sm" type="number" id="harga2" name="harga" onkeyup="sum2();" required="" >
+            <input class="form-control form-control-sm" type="number" id="harga2" name="harga" onkeyup="sum2();" required=""value="<?php echo $harga;?>" >
           </div>    
           <div class="col-md-6">
            <label>Jumlah</label>
-           <input class="form-control form-control-sm" type="number" id="jumlah2" name="jumlah" required="" > 
+           <input class="form-control form-control-sm" type="number" id="jumlah2" name="jumlah" required="" value="<?php echo $jumlah;?>" > 
          </div>                
        </div>
 
