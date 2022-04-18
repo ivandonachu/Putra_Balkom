@@ -368,8 +368,43 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
+      <?php echo "<td style='font-size: 11px'>"; ?>
+
+        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Lihat</button>
+
+        <!--  tampil file -->
+
+        <div class="modal fade" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role ="document">
+            <div class="modal-content"> 
+              <div class="modal-header">
+                <h5 class="modal-title"> Foto Penjualan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+
+              <!--  tampil file -->
+              <div class="modal-body">
+                       <img  style="height: 100%; width: 100%;" s src="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" >
+                </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>">Download</a>  </button>
+              
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <?php echo "</td> "; ?>
      
     <?php echo  "</tr>";
   }
