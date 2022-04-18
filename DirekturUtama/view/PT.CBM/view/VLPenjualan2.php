@@ -932,6 +932,7 @@ if (!isset($data_perpindahan_3_tkx['perpindahan_3_tkx'])) {
 $table4 = mysqli_query($koneksicbm, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_tk'");
 $data4 = mysqli_fetch_array($table4);
 $stok_awal_3kg_isi_tk = $data4['L03K11'];
+
 //stok akhir 3kg isi
 $table5 = mysqli_query($koneksicbm, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
 $data5 = mysqli_fetch_array($table5);
@@ -2035,8 +2036,43 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
+      <?php echo "<td style='font-size: 11px'>"; ?>
+
+        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Lihat</button>
+
+        <!--  tampil file -->
+
+        <div class="modal fade" id="formedit<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role ="document">
+            <div class="modal-content"> 
+              <div class="modal-header">
+                <h5 class="modal-title"> Foto Penjualan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+
+              <!--  tampil file -->
+              <div class="modal-body">
+                       <img  style="height: 100%; width: 100%;" s src="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" >
+                </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" href="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>">Download</a>  </button>
+              
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <?php echo "</td> "; ?>
      
     <?php echo  "</tr>";
   }

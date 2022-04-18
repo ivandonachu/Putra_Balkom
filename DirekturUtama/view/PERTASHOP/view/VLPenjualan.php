@@ -361,7 +361,7 @@ $kode_perta = $data_perta['kode_perta'];
 
         <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Lihat</button>
 
-        <!-- Form EDIT DATA -->
+        <!--  tampil file -->
 
         <div class="modal fade" id="formedit<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
@@ -374,7 +374,7 @@ $kode_perta = $data_perta['kode_perta'];
               </div>
 
 
-              <!-- Form Edit Data -->
+              <!--  tampil file -->
               <div class="modal-body">
                        <img  style="height: 100%; width: 100%;" s src="/PERTASHOP/Karyawan/file_karyawan/<?= $file_bukti ?>" >
                 </div>
