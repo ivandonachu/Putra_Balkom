@@ -596,7 +596,8 @@ else{
           <div class="row">
             <div class="col-md-6">
               <label>QTY</label>
-              <input class="form-control form-control-sm" type="number" id="qty" name="qty" onkeyup="sum();" required="" value="<?php echo $qty;?>">
+              <input class="form-control form-control-sm" type="number" id="qty2" name="qty" onkeyup="sum2();" required="" >
+              
             </div>    
             <div class="col-md-6">
               <label>Satuan</label>
@@ -616,11 +617,11 @@ else{
          <div class="row">
           <div class="col-md-6">
             <label>Harga</label>
-            <input class="form-control form-control-sm" type="number" id="harga" name="harga" onkeyup="sum();" required="" value="<?php echo $harga;?>">
+            <input class="form-control form-control-sm" type="number" id="harga2" name="harga" onkeyup="sum2();" required="" >
           </div>    
           <div class="col-md-6">
            <label>Jumlah</label>
-           <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="" value="<?php echo $jumlah;?>"> 
+           <input class="form-control form-control-sm" type="number" id="jumlah2" name="jumlah" required="" > 
          </div>                
        </div>
 
@@ -1171,6 +1172,18 @@ aria-hidden="true">
              }
            }
          </script>
+         <script>
+
+function sum2() {
+  var banyak_barang2 = document.getElementById('qty2').value;
+  var harga2 = document.getElementById('harga2').value;
+  var result2 = parseInt(banyak_barang2) * parseInt(harga2);
+  if (!isNaN(result2)) {
+   document.getElementById('jumlah2').value = result2;
+ }
+}
+</script>
+         
 </body>
 
 </html>
