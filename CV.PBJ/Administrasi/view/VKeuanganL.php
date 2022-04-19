@@ -6,20 +6,19 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 $id=$_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
+$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$id1 = $data1['id_karyawan'];
+$nama = $data1['nama_pemilik'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Administrasi') {
+if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{  header("Location: logout.php");
+else{ header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
-$data = mysqli_fetch_array($result);
-$nama = $data['nama_karyawan'];
+
+
 
 
 if (isset($_GET['tanggal1'])) {
@@ -37,11 +36,11 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
- $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal'");
+ $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal = '$tanggal_awal'");
 
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
 }
 
 
@@ -83,8 +82,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -194,7 +193,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan</h5></a>"; ?>
+      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan Kadek</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -251,7 +250,7 @@ else{
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-    <?php  echo "<form  method='POST' action='VLKeuangan' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VKeuanganL' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -270,7 +269,6 @@ else{
 
 
 
-
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
   <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -279,6 +277,7 @@ else{
       <th>No</th>
       <th>Tanggal</th>
       <th>Akun</th>
+      <th></th>
       <th>Keterangan</th>
       <th>Masuk</th>
       <th>Keluar</th>
@@ -316,7 +315,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>"; ?> <?php echo "
+      <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
 
 
@@ -340,7 +339,7 @@ else{
       ?>
       <?php echo "
       <td style='font-size: 14px'>"?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
     "?>
 <?php echo  "</tr>";
 }

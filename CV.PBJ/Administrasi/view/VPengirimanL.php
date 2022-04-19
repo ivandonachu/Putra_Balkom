@@ -6,20 +6,17 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 $id=$_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
+$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$id1 = $data1['id_karyawan'];
+$nama = $data1['nama_pemilik'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Administrasi') {
+if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{  header("Location: logout.php");
+else{ header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
-$data = mysqli_fetch_array($result);
-$nama = $data['nama_karyawan'];
 
 
 if (isset($_GET['tanggal1'])) {
@@ -37,13 +34,16 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
- $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal'");
+
+  $table = mysqli_query($koneksipbj, "SELECT * FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal'");
 
 }
+
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
-}
 
+  $table = mysqli_query($koneksipbj, "SELECT * FROM pengiriman_sl WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_antar ASC");
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +57,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Keuangan</title>
+  <title>Pengiriman Semen</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -73,6 +73,8 @@ else{
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
 
   <!-- Link datepicker -->
 
@@ -194,7 +196,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan</h5></a>"; ?>
+      <?php echo "<a href='VPengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pengiriman Semen Kadek</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -248,10 +250,11 @@ else{
 <div>   
 
 
-  <!-- Name Page -->
+
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-    <?php  echo "<form  method='POST' action='VLKeuangan' style='margin-bottom: 15px;'>" ?>
+
+    <?php  echo "<form  method='POST' action='VPengirimanL' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -262,36 +265,38 @@ else{
     </div>
   </form>
 
-  <div class="row">
-    <div class="col-md-8">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-   </div>
+
+  <div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
  </div>
+ <br>
 
-
-
-
+ <
 <!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<div style="overflow-x: auto">
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
-      <th>Tanggal</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Masuk</th>
-      <th>Keluar</th>
-      <th>Saldo</th>
-      <th>file</th>
-      
+      <th>Tgl Antar</th>
+      <th>No Do</th>   
+      <th>Driver</th>
+      <th>No Polisi</th>
+      <th>Tujuan Pengiriman</th>
+      <th>Nama Toko di DO</th>
+      <th>Uang Jalan</th>
+      <th>Uang Gaji</th>
+      <th>Ongkos Mobil</th>
+      <th>Tgl Ambil Gaji</th>
+      <th>Tgl Nota Tarikan</th>
+      <th>KET</th>
+      <th>File</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <?php
-    $total_kredit = 0;
-    $no_urut = 0;
-    $total_debit = 0;
+    $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -299,89 +304,196 @@ else{
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no_laporan = $data['no_transaksi'];
-      $tanggal =$data['tanggal'];
-      $nama_akun =$data['nama_akun'];
-      $status_saldo = $data['status_saldo'];
-      $jumlah = $data['jumlah'];
+      $no_pengiriman = $data['no_pengiriman'];
+     $no_penjualan = $data['no_penjualan'];
+      $tanggal_antar =$data['tanggal_antar'];
+      $driver =$data['driver'];
+      $no_polisi = $data['no_polisi'];
+      $toko_do = $data['toko_do'];
+      $no_do = $data['no_do'];
+      $uj = $data['uj'];
+      $ug = $data['ug'];
+      $om = $data['om'];
+      $tanggal_gaji = $data['tanggal_gaji'];
+      $tanggal_nota = $data['tanggal_nota'];
       $keterangan = $data['keterangan'];
-      if ($status_saldo == 'Masuk') {
-        $total_debit = $total_debit + $jumlah;
-      }
-      elseif($status_saldo == 'Keluar'){
-        $total_kredit = $total_kredit + $jumlah;
-      }
-      $no_urut = $no_urut + 1;
       $file_bukti = $data['file_bukti'];
+        $result2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman FROM penjualan_sl WHERE no_penjualan = '$no_penjualan'");
+        $data2 = mysqli_fetch_array($result2);
+        $tujuan_pengiriman = $data2['tujuan_pengiriman'];
+      $urut = $urut + 1;
+
       echo "<tr>
-      <td style='font-size: 14px'>$no_urut</td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>"; ?> <?php echo "
-      <td style='font-size: 14px'>$keterangan</td>";
-
-
-      if ($status_saldo == 'Masuk') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-
-      if ($status_saldo == 'Keluar') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-      ?>
+      <td style='font-size: 14px' align = 'center'>$urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal_antar</td>
+      <td style='font-size: 14px' align = 'center'>$no_do</td>
+      <td style='font-size: 14px' align = 'center'>$driver</td>
+      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+      <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
+      <td style='font-size: 14px' align = 'center'>$toko_do</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($om); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal_gaji</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal_nota</td>
+      <td style='font-size: 14px' align = 'center'>$keterangan</td>
+      "; ?>
       <?php echo "
-      <td style='font-size: 14px'>"?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-    "?>
-<?php echo  "</tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+       </tr>";
 }
-
 ?>
 
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
-<br>
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-  <!-- Tabel -->    
-  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-    <thead>
-      <tr>
-        <th>Total Debit</th>
-        <th>Total Kredit</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      <?php 
-      echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($total_debit); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($total_kredit); ?> <?php echo "</td>
-      </tr>";
-
-      ?>
-
-    </tbody>
-  </table>
+<!--
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total JT ODO</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_jt_odo  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-road fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total JT GPS</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_jt_gps  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-road fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total LOST</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_lost  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Surplus</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_surplus  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <br>
 <br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Jalan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uj)  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Gaji</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_ug)  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Makan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_um)  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total DEX</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_dex  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-moving fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+-->
 
 
 </div>
-</div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -425,10 +537,10 @@ aria-hidden="true">
   </div>
 </div>
 </div>
-</div>
+
 <!-- Bootstrap core JavaScript-->
-<script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
-<script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -436,7 +548,7 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-
+<script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
 <!-- Tabel -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -463,8 +575,43 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+<script>
+  function createOptions(number) {
+    var options = [], _options;
 
+    for (var i = 0; i < number; i++) {
+      var option = '<option value="' + i + '">Option ' + i + '</option>';
+      options.push(option);
+    }
 
+    _options = options.join('');
+
+    $('#number')[0].innerHTML = _options;
+    $('#number-multiple')[0].innerHTML = _options;
+
+    $('#number2')[0].innerHTML = _options;
+    $('#number2-multiple')[0].innerHTML = _options;
+  }
+
+  var mySelect = $('#first-disabled2');
+
+  createOptions(4000);
+
+  $('#special').on('click', function () {
+    mySelect.find('option:selected').prop('disabled', true);
+    mySelect.selectpicker('refresh');
+  });
+
+  $('#special2').on('click', function () {
+    mySelect.find('option:disabled').prop('disabled', false);
+    mySelect.selectpicker('refresh');
+  });
+
+  $('#basic2').selectpicker({
+    liveSearch: true,
+    maxOptions: 1
+  });
+</script>
 
 </body>
 

@@ -107,42 +107,61 @@ $no_lokasi = $_GET['no_lokasi'];
        Menu Administrasi
    </div>
 
-     <!-- Nav Item - Pages Collapse Menu -->
-     <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
-                15  aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                <span style="font-size: 15px; color:white;" >CV PBJ</span>
-            </a>
-            <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header" style="font-size: 15px;">Riwayat</h6>
-                   
-                        <a class="collapse-item" style="font-size: 15px;" href="VLSaldo">Laporan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Riwayat Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
-                </div>
-            </div>
-        </li>
-        
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Kasir Etty</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
-                    </div>
-                </div>
-            </li>
+   <!-- Nav Item - Pages Collapse Menu -->
+   <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
+    15  aria-expanded="true" aria-controls="collapseTwo">
+    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+    <span style="font-size: 15px; color:white;" >Batu Bara</span>
+</a>
+<div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header" style="font-size: 15px;">Riwayat</h6>
+       
+            <a class="collapse-item" style="font-size: 15px;" href="VLSaldo">Laporan Saldo</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Riwayat Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
+    </div>
+</div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Kasir Etty</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+        </div>
+    </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+15  aria-expanded="true" aria-controls="collapseTwo3">
+<i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+<span style="font-size: 15px; color:white;" >Laporan Kadek</span>
+</a>
+<div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+<div class="bg-white py-2 collapse-inner rounded">
+<h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+<a class="collapse-item" style="font-size: 15px;" href="VLR2L">Laba Rugi</a>
+<a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
+<a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
+<a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
+<a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
+<a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
+
+</div>
+</div>
+</li>
   <!-- Divider -->
   <hr class="sidebar-divider">
 

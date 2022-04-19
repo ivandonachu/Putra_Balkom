@@ -6,20 +6,18 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 $id=$_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
+$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$id1 = $data1['id_karyawan'];
+$nama = $data1['nama_pemilik'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Administrasi') {
+if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{  header("Location: logout.php");
+else{ header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
-$data = mysqli_fetch_array($result);
-$nama = $data['nama_karyawan'];
+
 
 
 if (isset($_GET['tanggal1'])) {
@@ -37,15 +35,19 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
- $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal'");
-
+  $table = mysqli_query($koneksipbj, "SELECT * FROM pengeluaran_sl WHERE tanggal = '$tanggal_awal'");
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM pengeluaran_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM pengeluaran_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $data2 = mysqli_fetch_array($table2);
+  $total_pengeluaran = $data2['total_pengeluaran'];
+
 }
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,8 +59,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Keuangan</title>
-
+  <title>Pengeluaran</title>
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -80,11 +81,13 @@ else{
 
 <body id="page-top">
 
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -170,6 +173,8 @@ else{
 </div>
 </li>
 
+
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -194,7 +199,8 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan</h5></a>"; ?>
+      <?php echo "<a href='VPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Pengeluaran</h5></a>"; ?>
+
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -204,7 +210,6 @@ else{
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
-
 
 
 
@@ -250,8 +255,7 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-    <?php  echo "<form  method='POST' action='VLKeuangan' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VPengeluaranL' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -261,89 +265,62 @@ else{
       </div>
     </div>
   </form>
-
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
- </div>
+  </div>
 
 
 
 
 <!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
       <th>Akun</th>
       <th>Keterangan</th>
-      <th>Masuk</th>
-      <th>Keluar</th>
-      <th>Saldo</th>
+      <th>Pengeluaran</th>
+      <th>Total</th>
       <th>file</th>
-      
+      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
     <?php
-    $total_kredit = 0;
-    $no_urut = 0;
-    $total_debit = 0;
+    $total = 0;
+    $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
+
     <?php while($data = mysqli_fetch_array($table)){
-      $no_laporan = $data['no_transaksi'];
-      $tanggal =$data['tanggal'];
-      $nama_akun =$data['nama_akun'];
-      $status_saldo = $data['status_saldo'];
-      $jumlah = $data['jumlah'];
-      $keterangan = $data['keterangan'];
-      if ($status_saldo == 'Masuk') {
-        $total_debit = $total_debit + $jumlah;
-      }
-      elseif($status_saldo == 'Keluar'){
-        $total_kredit = $total_kredit + $jumlah;
-      }
-      $no_urut = $no_urut + 1;
-      $file_bukti = $data['file_bukti'];
-      echo "<tr>
-      <td style='font-size: 14px'>$no_urut</td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>"; ?> <?php echo "
-      <td style='font-size: 14px'>$keterangan</td>";
+     $no_laporan = $data['no_transaksi'];
+     $tanggal =$data['tanggal'];
+     $nama_akun = $data['nama_akun'];
+     $jumlah = $data['jumlah'];
+     $keterangan = $data['keterangan'];
+     $file_bukti = $data['file_bukti'];
+
+     $total = $total + $jumlah;
+     $urut = $urut + 1;
 
 
-      if ($status_saldo == 'Masuk') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-
-      if ($status_saldo == 'Keluar') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-      ?>
-      <?php echo "
-      <td style='font-size: 14px'>"?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-    "?>
-<?php echo  "</tr>";
-}
+     echo "<tr>
+     <td style='font-size: 14px'>$urut</td>
+     <td style='font-size: 14px'>$tanggal</td>
+     <td style='font-size: 14px'>$nama_akun</td>
+     <td style='font-size: 14px'>$keterangan</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+  </tr>";
+  }
 
 ?>
 
@@ -351,37 +328,29 @@ else{
 </table>
 </div>
 <br>
-<br>
-<br>
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-  <!-- Tabel -->    
-  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-    <thead>
-      <tr>
-        <th>Total Debit</th>
-        <th>Total Kredit</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      <?php 
-      echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($total_debit); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($total_kredit); ?> <?php echo "</td>
-      </tr>";
-
-      ?>
-
-    </tbody>
-  </table>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Pengeluaran</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<br>
 <br>
 
 
 </div>
-</div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -425,7 +394,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
-</div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -463,8 +432,6 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
-
-
 
 </body>
 
