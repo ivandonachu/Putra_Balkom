@@ -31,9 +31,9 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT *, SUM(rit) AS jumlah_absensi, SUM(potongan_bon) AS total_potongan FROM absensi_lengkiti WHERE tanggal = '$tanggal_akhir' GROUP BY nama_karyawan ");
+    $table = mysqli_query($koneksikebun, "SELECT *, SUM(rit) AS jumlah_absensi, SUM(potongan_bon) AS total_potongan FROM absensi_lengkiti WHERE tanggal = '$tanggal_akhir' GROUP BY nama_karyawan ");
 } else {
-    $table = mysqli_query($koneksi, "SELECT *, SUM(rit) AS jumlah_absensi, SUM(potongan_bon) AS total_potongan FROM absensi_lengkiti WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_karyawan");
+    $table = mysqli_query($koneksikebun, "SELECT *, SUM(rit) AS jumlah_absensi, SUM(potongan_bon) AS total_potongan FROM absensi_lengkiti WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_karyawan");
 }
 
 

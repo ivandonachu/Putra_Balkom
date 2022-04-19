@@ -30,9 +30,9 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM absensi_lengkiti WHERE tanggal = '$tanggal_akhir' ");
+    $table = mysqli_query($koneksikebun, "SELECT * FROM absensi_lengkiti WHERE tanggal = '$tanggal_akhir' ");
 } else {
-    $table = mysqli_query($koneksi, "SELECT * FROM absensi_lengkiti WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
+    $table = mysqli_query($koneksikebun, "SELECT * FROM absensi_lengkiti WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
 }
 
 
@@ -238,129 +238,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <div class="col-md-6">
                                 <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
                             </div>
-                            <div class="col-md-6">
-                                <!-- Button Input Data Bayar -->
-                                <div align="right">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input1"> <i class="fas fa-plus-square mr-2"></i> Catat Absensi Perorang</button> <br> <br>
-                                </div>
-
-                                <!-- Form Modal  -->
-                                <div class="modal fade bd-example-modal-lg" id="input1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"> Form Laporan Absensi Perorang </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-
-                                            <!-- Form Input Data -->
-                                            <div class="modal-body" align="left">
-                                       
-    
- 
-                                                <?php echo "<form action='../proses/proses_absensi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Tanggal</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="date" name="tanggal">
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <div class="row">
-                                                <div class="col-md-6">
-                                                        <label>Nama Karywawan</label>
-                                                        <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
-                                                        <option></option>
-                                                        <?php
-                                                        include 'koneksi.php';
-                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti");   
-
-                                                        while ($data2 = mysqli_fetch_array($result2)){
-                                                        $data_pangakalan = $data2['nama_karyawan'];
-
-                                                       
-                                                            echo "<option> $data_pangakalan </option> ";
-                                                        
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                    <label>Potongan Bon</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="number" name="potongan_bon" value="0" >
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary"> Catat</button>
-                                                    <button type="reset" class="btn btn-danger"> RESET</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                              
-                            </div>
-                            <div class="col-md-6">
-                                <!-- Button Input Data Bayar -->
-                                <div align="right">
-                                <?php echo "<a href='VRAbsensi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Laporan Absensi</button></a>"; ?>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Absensi Seluruh</button> <br> <br>
-                                </div>
-
-                                <!-- Form Modal  -->
-                                <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"> Form Laporan Absensi Seluruh</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-
-                                            <!-- Form Input Data -->
-                                            <div class="modal-body" align="left">
-                                       
-    
- 
-                                                <?php echo "<form action='../proses/proses_absensi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Tanggal</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="date" name="tanggal">
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                             
-                                            
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary"> Catat</button>
-                                                    <button type="reset" class="btn btn-danger"> RESET</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
+                        </div>  
 
 
 
@@ -373,7 +251,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <th>Nama Karyawan</th>
                                 <th>Upah Kerja</th>
                                 <th>Potongan Bon</th>
-                                <th></th>
+                          
 
                             </tr>
                         </thead>
@@ -402,100 +280,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <td style='font-size: 14px'>$nama_karyawan</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($upah_kerja); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($potongan_bon); ?> <?php echo "</td>
-                                "; ?>
-                                <?php echo "<td style='font-size: 12px'>"; ?>
-                                <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Input Potongan Bon</button>
-
-                                <!-- Form EDIT DATA -->
-
-                                <div class="modal fade bd-example-modal-lg " id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role ="document">
-                                    <div class="modal-content"> 
-                                    <div class="modal-header">
-                                        <h5 class="modal-title"> Form Edit Laporan </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                        <span aria-hidden="true"> &times; </span>
-                                        </button>
-                                    </div>
-
-                                    <!-- Form Edit Data -->
-                                    <div class="modal-body">
-                                        <form action="../proses/edit_absensi" enctype="multipart/form-data" method="POST">
-
-                                        <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>"> 
-                                        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-                                        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">    
-
-                                        <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Tanggal</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="date" name="tanggal" value="<?php echo $tanggal;?>" disabled>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-
-                                                <br>
-
-                                                <div class="row">
-                                                <div class="col-md-6">
-                                                <label>Nama Karyawan</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="date" name="tanggal" value="<?php echo $nama_karyawan;?>" disabled>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                    <label>Potongan Bon</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="number" name="potongan_bon"  value="<?php echo $potongan_bon;?>">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                    
-
-
-                                <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary"> Ubah </button>
-                                <button type="reset" class="btn btn-danger"> RESET</button>
-                                </div>
-                                </form>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-
-                                <!-- Button Hapus -->
-                                <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-                                <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role ="document">
-                                <div class="modal-content"> 
-                                <div class="modal-header">
-                                <h4 class="modal-title"> <b> Hapus Data Laporan </b> </h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                <span aria-hidden="true"> &times; </span>
-                                </button>
-                                </div>
-
-                                <div class="modal-body">
-                                <form action="../proses/hapus_absensi" method="POST">
-                                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-                                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-                                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">   
-                                <div class="form-group">
-                                    <h6> Yakin Ingin Hapus Data? </h6>             
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary"> Hapus </button>
-                                </div>
-                                </form>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-                                <?php echo  " </td> </tr>";
+                              </tr>";
                                                     }
                                 ?>
 

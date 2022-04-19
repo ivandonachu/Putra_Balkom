@@ -32,7 +32,7 @@ elseif (isset($_POST['tanggal1'])) {
 
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
+$table = mysqli_query($koneksikebun, "SELECT * FROM driver_sawit");
 
 ?>
 <!DOCTYPE html>
@@ -218,65 +218,14 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
 
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-   <div class="row">
-    <div class="col-md-10">
-
-    </div>
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Driver</button> <br> <br>
-      </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form Pencatatan Driver</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_driver_s' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
-
-            <div class="row">
-              <div class="col-md-6">
-                <label>Nama Driver</label>
-                <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="">
-              </div>    
-
-
-          
-            </div>
-           
-
-
-           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary"> CATAT</button>
-            <button type="reset" class="btn btn-danger"> RESET</button>
-          </div>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-</div>
-</div>
-
+  
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
       <th>Nama Driver</th>
-      <th></th>
+   
     </tr>
   </thead>
   <tbody>
@@ -288,77 +237,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_sawit");
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$no_driver</td>
       <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      "; ?>
-      <?php echo "<td style='font-size: 12px' align = 'center'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_driver']; ?>">Edit</button>
-
-      <!-- Form EDIT DATA -->
-
-      <div class="modal fade" id="formedit<?php echo $data['no_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role ="document">
-          <div class="modal-content"> 
-            <div class="modal-header">
-              <h5 class="modal-title"> Form Edit Driver </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                <span aria-hidden="true"> &times; </span>
-              </button>
-            </div>
-
-            <!-- Form Edit Data -->
-            <div class="modal-body">
-              <form action="../proses/edit_driver_s" enctype="multipart/form-data" method="POST">
-
-                <input type="hidden" name="no_driver" value="<?php echo $no_driver;?>"> 
-
-                 <div class="row">
-              <div class="col-md-6">
-                <label>Nama Driver</label>
-                <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="" value="<?php echo $nama_driver;?>">
-              </div>    
-
-            </div>
-           
-
-
-    <div class="modal-footer">
-      <button type="submit" class="btn btn-primary"> Ubah </button>
-      <button type="reset" class="btn btn-danger"> RESET</button>
-    </div>
-  </form>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_driver']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $data['no_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
- <div class="modal-dialog" role ="document">
-   <div class="modal-content"> 
-    <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Driver </b> </h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-        <span aria-hidden="true"> &times; </span>
-      </button>
-    </div>
-
-    <div class="modal-body">
-      <form action="../proses/hapus_driver_s" method="POST">
-        <input type="hidden" name="no_driver" value="<?php echo $no_driver;?>">
-        <div class="form-group">
-          <h6> Yakin Ingin Hapus Data? </h6>             
-        </div>
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Hapus </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
-
-<?php echo  " </td> </tr>";
+  </tr>";
 }
 ?>
 

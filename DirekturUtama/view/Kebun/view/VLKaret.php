@@ -30,14 +30,35 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM laporan_karet WHERE tanggal = '$tanggal_akhir' ");
+    $table = mysqli_query($koneksikebun, "SELECT * FROM laporan_karet WHERE tanggal = '$tanggal_akhir' ");
 } else {
-    $table = mysqli_query($koneksi, "SELECT * FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
-    $table2 = mysqli_query($koneksi, "SELECT SUM(box_karet) AS total_box, SUM(berat) AS total_berat, SUM(upah_bersih) AS total_upah_bersih  FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table = mysqli_query($koneksikebun, "SELECT * FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
+    $table2 = mysqli_query($koneksikebun, "SELECT SUM(box_karet) AS total_box, SUM(berat) AS total_berat, SUM(upah_bersih) AS total_upah_bersih  FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data2 = mysqli_fetch_array($table2);
     $total_box = $data2['total_box'];
     $total_berat = $data2['total_berat'];
     $total_upah_bersih = $data2['total_upah_bersih'];
+
+    //data tanggal grafik
+$tablex= mysqli_query($koneksikebun, "SELECT tanggal FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  GROUP BY tanggal ");
+
+
+while($datax = mysqli_fetch_assoc($tablex)){
+$tanggal = $datax['tanggal'];
+
+$data_tanggal[] = "$tanggal";
+}
+
+//data pendapatan karet
+$tablex2 = mysqli_query($koneksikebun, "SELECT sum(total_pendapatan) as total_pendapatan FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  GROUP BY tanggal  ");
+
+while($datax2 = mysqli_fetch_array($tablex2)){
+    $total_pendapatan = $datax2['total_pendapatan'];
+
+
+    $data_pendapatan[] = "$total_pendapatan";
+}
+
 
 }
 
@@ -244,145 +265,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <div class="col-md-6">
                                 <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
                             </div>
-                            <div class="col-md-6">
-                                <!-- Button Input Data Bayar -->
-                                <div align="right">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Laporan </button> <br> <br>
-                                </div>
-
-                                <!-- Form Modal  -->
-                                <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"> Form Laporan Karet </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-
-                                            <!-- Form Input Data -->
-                                            <div class="modal-body" align="left">
-                                                <?php echo "<form action='../proses/proses_karet?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Tanggal</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="date" name="tanggal">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Nama Karywawan</label>
-                                                        <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
-                                                        <option></option>
-                                                        <?php
-                                                        include 'koneksi.php';
-                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM karyawan_karet");   
-
-                                                        while ($data2 = mysqli_fetch_array($result2)){
-                                                        $data_pangakalan = $data2['nama_karyawan'];
-
-                                                       
-                                                            echo "<option> $data_pangakalan </option> ";
-                                                        
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Box</label>
-                                                        <input class="form-control form-control-sm" type="number" id="box" name="box" required="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Berat</label>
-                                                        <input class="form-control form-control-sm" type="number" id="berat" name="berat" onkeyup="sum();" required="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Harga Karet</label>
-                                                        <input class="form-control form-control-sm" type="number" id="harga" name="harga" onkeyup="sum();" required="">
-                                                    </div>
-                                                </div>
-
-                                                <br>
-                                                <script>
-
-                                                function sum() {
-                                                var berat = document.getElementById('berat').value;
-                                                var harga = document.getElementById('harga').value;
-                                                var pembagi = document.getElementById('pembagi').value;
-                                                var oa = document.getElementById('oa').value;
-                                                var b_kompor = document.getElementById('b_kompor').value;
-                                                var result = (parseInt(berat) * parseInt(harga))/parseFloat(pembagi);
-                                                if (!isNaN(result)) {
-                                                document.getElementById('upah_kotor').value = result;
-                                                }
-                                                var result2 = parseFloat(result) - (parseInt(oa) + parseInt(b_kompor));
-                                                if (!isNaN(result2)) {
-                                                document.getElementById('upah_bersih').value = result2;
-                                                }
-                                                }
-                                                </script>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Pembagi</label>
-                                                        <input class="form-control form-control-sm" type="float" id="pembagi" name="pembagi" onkeyup="sum();" required="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Upah Kotor</label>
-                                                        <input class="form-control form-control-sm" type="float" id="upah_kotor" name="upah_kotor" required=""> 
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Ongkos Angkut</label>
-                                                        <input class="form-control form-control-sm" type="number" id="oa" name="oa" onkeyup="sum();" required="">
-                                                    </div>
-                                                </div>
-
-                                                <br>
-                                                
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Bayar Kompor</label>
-                                                        <input class="form-control form-control-sm" type="number" id="b_kompor" name="b_kompor" onkeyup="sum();" required="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Upah Bersih</label>
-                                                        <input class="form-control form-control-sm" type="float" id="upah_bersih" name="upah_bersih" required=""> 
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div class="form-group">
-                                                    <label>Keterangan</label>
-                                                    <div>
-                                                    <textarea id="keterangan" name="keterangan" style="width: 300px;"></textarea>
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div>
-                                                    <label>Upload File</label>
-                                                    <input type="file" name="file">
-                                                </div>
-
-
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary"> Catat</button>
-                                                    <button type="reset" class="btn btn-danger"> RESET</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                          
                         </div>
                     
 
@@ -405,7 +288,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <th>Upah Bersih</th>
                                 <th>Ket</th>
                                 <th>File</th>
-                                <th></th>
+                           
 
                             </tr>
                         </thead>
@@ -450,163 +333,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($bayar_kompor); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($upah_bersih); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>$keterangan</td>
-                                <td style='font-size: 14px'>"; ?> <a download="../file_kebun/<?= $file_bukti ?>" href="../file_kebun/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-                                "; ?>
-                                <?php echo "<td style='font-size: 12px'>"; ?>
-                                <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
-
-                                <!-- Form EDIT DATA -->
-
-                                <div class="modal fade bd-example-modal-lg " id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role ="document">
-                                    <div class="modal-content"> 
-                                    <div class="modal-header">
-                                        <h5 class="modal-title"> Form Edit Laporan </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                        <span aria-hidden="true"> &times; </span>
-                                        </button>
-                                    </div>
-
-                                    <!-- Form Edit Data -->
-                                    <div class="modal-body">
-                                        <form action="../proses/edit_lap_karet" enctype="multipart/form-data" method="POST">
-
-                                        <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>"> 
-                                        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-                                        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">    
-
-                                        <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Tanggal</label>
-                                                        <div class="col-sm-10">
-                                                        <input type="date"  name="tanggal" value="<?php echo $tanggal;?>" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Nama Karywawan</label>
-                                                        <div>
-                                                        <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
-                                                        <option></option>
-                                                        <?php
-                                                        include 'koneksi.php';
-                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM karyawan_karet");   
-                                                        $dataSelect = $data['nama_karyawan'];
-                                                        while ($data2 = mysqli_fetch_array($result2)){
-                                                        $data_pangakalan = $data2['nama_karyawan'];
-
-                                                       
-                                                            echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-                                                        
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    </div>
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Box</label>
-                                                        <input class="form-control form-control-sm" type="number" id="box" name="box" value="<?php echo $box;?>"  required="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Berat</label>
-                                                        <input class="form-control form-control-sm" type="number" id="berat" name="berat"  onkeyup="sum();" value="<?php echo $berat;?>" required="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Harga Karet</label>
-                                                        <input class="form-control form-control-sm" type="number" id="harga" name="harga"   onkeyup="sum();" value="<?php echo $harga_karet?>"  required="">
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Pembagi</label>
-                                                        <input class="form-control form-control-sm" type="float" id="pembagi" name="pembagi"  onkeyup="sum();" value="<?php echo $pembagi;?>"  required="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Upah Kotor</label>
-                                                        <input class="form-control form-control-sm" type="float" id="upah_kotor" name="upah_kotor" value="<?php echo $upah_kotor;?>"  required=""> 
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Ongkos Angkut</label>
-                                                        <input class="form-control form-control-sm" type="number" id="oa" name="oa"  onkeyup="sum();" value="<?php echo $ongkos_angkut;?>"  required="">
-                                                    </div>
-                                                </div>
-
-                                                <br>
-                                                
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Bayar Kompor</label>
-                                                        <input class="form-control form-control-sm" type="number" id="b_kompor" name="b_kompor"   onkeyup="sum();" value="<?php echo $bayar_kompor;?>"  required="">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Upah Bersih</label>
-                                                        <input class="form-control form-control-sm" type="float" id="upah_bersih" name="upah_bersih" value="<?php echo $upah_bersih;?>"  required=""> 
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div class="form-group">
-                                                    <label>Keterangan</label>
-                                                    <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
-                                                </div>
-
-                                                <br>
-
-                                                <div>
-                                                    <label>Upload File</label>
-                                                    <input type="file" name="file">
-                                                </div>
-                                    
-
-
-                                <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary"> Ubah </button>
-                                <button type="reset" class="btn btn-danger"> RESET</button>
-                                </div>
-                                </form>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-
-                                <!-- Button Hapus -->
-                                <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-                                <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role ="document">
-                                <div class="modal-content"> 
-                                <div class="modal-header">
-                                <h4 class="modal-title"> <b> Hapus Data Laporan </b> </h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                                <span aria-hidden="true"> &times; </span>
-                                </button>
-                                </div>
-
-                                <div class="modal-body">
-                                <form action="../proses/hapus_lap_karet" method="POST">
-                                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-                                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-                                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">   
-                                <div class="form-group">
-                                    <h6> Yakin Ingin Hapus Data? </h6>             
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary"> Hapus </button>
-                                </div>
-                                </form>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-                                <?php echo  " </td> </tr>";
+                                <td style='font-size: 14px'>"; ?> <a download="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>" href="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                                </tr>";
                                                     }
                                 ?>
 
@@ -668,6 +396,12 @@ if ($tanggal_awal == $tanggal_akhir) {
   </div>
 
 </div>
+<br>
+<br>
+<div id="chart_pendapatan_karet" >
+
+    </div>
+
     </div>
     </div>
     <!-- End of Main Content -->
@@ -719,6 +453,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     <!-- Core plugin JavaScript-->
     <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="/sbadmin/js/sb-admin-2.min.js"></script>
@@ -787,6 +522,66 @@ if ($tanggal_awal == $tanggal_akhir) {
             maxOptions: 1
         });
     </script>
+
+    <script>  
+Highcharts.chart('chart_pendapatan_karet', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Grafik Pendapatan Karet'
+    },
+  
+    xAxis: {
+        categories: [
+             <?php 
+                
+                foreach($data_tanggal as $a){
+                 ?> ' <?php print_r($a);
+             
+                ?> ' <?php echo",";
+                } ?> 
+                     
+                 
+                 
+                 
+    
+           
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Pendapatan (Rp)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>Rp{point.y:,0f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Karet',
+        data: [<?php foreach($data_pendapatan as $x){
+            print_r($x);
+            echo",";
+       } ?>]
+
+    }]
+});
+</script>
+
+
 </body>
 
 </html>

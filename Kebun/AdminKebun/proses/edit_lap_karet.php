@@ -26,6 +26,7 @@ $nama_karyawan = $_POST['nama_karyawan'];
 $box = $_POST['box'];
 $berat = $_POST['berat'];
 $harga = $_POST['harga'];
+$total_pendapatan = $berat * $harga;
 $pembagi = $_POST['pembagi'];
 $upah_kotor = $_POST['upah_kotor'];
 $oa = $_POST['oa'];
@@ -73,12 +74,12 @@ else if ( $nama_file != "" ) {
 
 	if ($file == '') {
 			$query3 = mysqli_query($koneksi,"UPDATE laporan_karet SET tanggal = '$tanggal' , nama_karyawan = '$nama_karyawan' , box_karet = '$box' , berat = '$berat' , 
-            harga_karet = '$harga' , pembagi = '$pembagi' , upah_kotor = '$upah_kotor' , ongkos_angkut = '$oa' , bayar_kompor = '$b_kompor' , upah_bersih = '$upah_bersih' , keterangan = '$keterangan' 
+            harga_karet = '$harga' ,total_pendapatan = '$total_pendapatan' , pembagi = '$pembagi' , upah_kotor = '$upah_kotor' , ongkos_angkut = '$oa' , bayar_kompor = '$b_kompor' , upah_bersih = '$upah_bersih' , keterangan = '$keterangan' 
             WHERE no_laporan = '$no_laporan'");
 	}
 	else{
 			$query3 = mysqli_query($koneksi,"UPDATE laporan_karet SET tanggal = '$tanggal' , nama_karyawan = '$nama_karyawan' , box_karet = '$box' , berat = '$berat' , 
-            harga_karet = '$harga' , pembagi = '$pembagi' , upah_kotor = '$upah_kotor' , ongkos_angkut = '$oa' , bayar_kompor = '$b_kompor' , upah_bersih = '$upah_bersih' , keterangan = '$keterangan' 
+            harga_karet = '$harga' ,total_pendapatan = '$total_pendapatan' , pembagi = '$pembagi' , upah_kotor = '$upah_kotor' , ongkos_angkut = '$oa' , bayar_kompor = '$b_kompor' , upah_bersih = '$upah_bersih' , keterangan = '$keterangan' 
              , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
 	}
 
