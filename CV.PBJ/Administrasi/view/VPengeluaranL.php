@@ -38,11 +38,11 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj, "SELECT * FROM pengeluaran_sl WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_sl WHERE tanggal = '$tanggal_awal'");
 }
 else{
-  $table = mysqli_query($koneksipbj, "SELECT * FROM pengeluaran_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM pengeluaran_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran  FROM pengeluaran_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
   $data2 = mysqli_fetch_array($table2);
   $total_pengeluaran = $data2['total_pengeluaran'];
 

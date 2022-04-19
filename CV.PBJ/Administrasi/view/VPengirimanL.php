@@ -37,13 +37,13 @@ else{
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal'");
 
 }
 
 else{
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM pengiriman_sl WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_antar ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_sl WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_antar ASC");
 
 }
 
