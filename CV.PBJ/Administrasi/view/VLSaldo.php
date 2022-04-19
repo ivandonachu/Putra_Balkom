@@ -154,7 +154,7 @@ else{
 <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 <div class="bg-white py-2 collapse-inner rounded">
 <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-<a class="collapse-item" style="font-size: 15px;" href="VLR2L">Laba Rugi</a>
+
 <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
 <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
 <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>

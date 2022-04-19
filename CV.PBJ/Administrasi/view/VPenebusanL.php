@@ -6,18 +6,20 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 $id=$_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
+$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$nama = $data1['nama_pemilik'];
+$id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Direktur Utama') {
+if ($jabatan_valid == 'Administrasi') {
 
 }
 
-else{ header("Location: logout.php");
+else{  header("Location: logout.php");
 exit;
 }
-
+$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
+$data = mysqli_fetch_array($result);
+$nama = $data['nama_karyawan'];
 
 
 
@@ -273,7 +275,7 @@ else{
 <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 <div class="bg-white py-2 collapse-inner rounded">
 <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-<a class="collapse-item" style="font-size: 15px;" href="VLR2L">Laba Rugi</a>
+
 <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
 <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
 <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
