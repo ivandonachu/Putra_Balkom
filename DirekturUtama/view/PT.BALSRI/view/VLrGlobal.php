@@ -44,12 +44,12 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
     //TAGIHAN
     // Tagihan baturaja
-  $table_br = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_br a INNER JOIN master_tarif_br b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table_br = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_br a INNER JOIN master_tarif_br b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data_br = mysqli_fetch_array($table_br);
   $total_tagihan_br = $data_br['total_tagihan'];
 
   // Tagihan lampung
-  $table_lmg = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table_lmg = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data_lmg = mysqli_fetch_array($table_lmg);
   $total_tagihan_lmg = $data_lmg['total_tagihan'];
 
@@ -669,7 +669,7 @@ else{
                 </tr>
                 <tr>
                  <td>4-100</td>
-                 <td class="text-left">Tagihan Elnusa</td>
+                 <td class="text-left">Tagihan Global</td>
                  <td class="text-left"><?= formatuang($total_tagihan_global); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
