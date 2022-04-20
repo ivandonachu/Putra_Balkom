@@ -31,17 +31,17 @@ else{
   }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_br a INNER JOIN master_tarif_br b ON a.no=b.no WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_br a INNER JOIN master_tarif_br b ON a.delivery_point=b.delivery_point WHERE tanggal = '$tanggal_awal'");
 
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_br a INNER JOIN master_tarif_br b ON a.no=b.no  WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_br a INNER JOIN master_tarif_br b ON a.delivery_point=b.delivery_point  WHERE tanggal = '$tanggal_awal'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan = $data2['total_tagihan'];
   $total_jt = $data2['total_jt'];
   $total_rit = $data2['total_rit'];
 } else {
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_br a INNER JOIN master_tarif_br b ON a.no=b.no WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_br a INNER JOIN master_tarif_br b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
 
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_br a INNER JOIN master_tarif_br b ON a.no=b.no WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_br a INNER JOIN master_tarif_br b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan = $data2['total_tagihan'];
   $total_jt = $data2['total_jt'];
