@@ -288,7 +288,7 @@ else{
       <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
       <td style='font-size: 14px'>$status</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>" href="/CV.PBJ/Kasir/file_kasir_pbj/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>" href="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
     
 
