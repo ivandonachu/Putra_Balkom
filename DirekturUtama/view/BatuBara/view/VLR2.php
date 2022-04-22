@@ -187,14 +187,14 @@ else{
     }
 
     //pengeluran perbaikan
-   $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pembelian_sparepart FROM riwayat_perbaikan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.kode_akun = '5-595' ");
+   $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pembelian_sparepart FROM riwayat_perbaikan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.kode_akun = '5-596' ");
    $data7 = mysqli_fetch_array($table7);
    $jml_pembelian = $data7['total_pembelian_sparepart'];
     if (!isset($data7['total_pembelian_sparepart'])) {
     $jml_pembelian = 0;
     }
 
-    $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan FROM riwayat_perbaikan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.kode_akun = '5-596' ");
+    $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan FROM riwayat_perbaikan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.kode_akun = '5-595' ");
    $data8 = mysqli_fetch_array($table8);
    $jml_perbaikan = $data8['jumlah_perbaikan'];
     if (!isset($data8['jumlah_perbaikan'])) {
