@@ -207,8 +207,8 @@ else{
 
 }
 
-    $laba_bersih_sebelum_pajak = $total_tagihan - ($total_uj + $total_gaji + $gaji_karyawan + $jml_akomodasi + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $jml_pembelian + $jml_biaya_kantor + $jml_pemasaran + $jml_lain);
-    $total_biaya_usaha_final =  $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_akomodasi + $jml_atk + $jml_perbaikan + $jml_pembelian + $total_uj + $total_gaji + $gaji_karyawan + $jml_pemasaran + $jml_lain;
+    $laba_bersih_sebelum_pajak = $total_tagihan - ( $total_gaji + $gaji_karyawan + $jml_akomodasi + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $jml_pembelian + $jml_biaya_kantor + $jml_pemasaran + $jml_lain);
+    $total_biaya_usaha_final =  $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_akomodasi + $jml_atk + $jml_perbaikan + $jml_pembelian  + $total_gaji + $gaji_karyawan + $jml_pemasaran + $jml_lain;
 ?>
 
 
