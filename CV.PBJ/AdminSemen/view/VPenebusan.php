@@ -1060,7 +1060,7 @@ function sum() {
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Penebusan Curah OPC Type 1 Debit</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $penjualan_copct1_debit ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   round($penjualan_copct1_debit ,3) ?></div>
           </div>
           <div class="col-auto">
            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
