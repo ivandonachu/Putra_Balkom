@@ -265,7 +265,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
               <div class="col-md-6">
                 <label>Jenis Kendaraan</label>
                 <select id="jenis_kendaraan" name="jenis_kendaraan" class="form-control">
-                 <option>Pribadi</option>
+                <option>Angkutan</option> 
+                <option>Pribadi</option>
                  <option>Non Pribadi </option>
                </select>
              </div>
