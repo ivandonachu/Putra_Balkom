@@ -58,7 +58,12 @@ else{
   $data_plg = mysqli_fetch_array($table_plg);
   $total_tagihan_plg = $data_plg['total_tagihan'];
 
-  $total_tagihan_global = $total_tagihan_br + $total_tagihan_lmg + $total_tagihan_plg;
+  // Tagihan Belitung
+  $table_bb = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_bl a INNER JOIN master_tarif_bl b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $data_bb = mysqli_fetch_array($table_bb);
+  $total_tagihan_bb = $data_bb['total_tagihan'];
+
+  $total_tagihan_global = $total_tagihan_br + $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bb;
 
   // Potongan global 10%
   $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
@@ -86,9 +91,16 @@ else{
    $jml_dex_plg = $data2_plg['total_dex'];
    $total_um_plg = $data2_plg['uang_makan'];
    $total_dexlite_plg = $jml_dex_plg * 13250;
+
+   //pengiriman belitung
+   $table2_bb = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $data2_bb = mysqli_fetch_array($table2_plg);
+   $jml_dex_bb = $data2_bb['total_dex'];
+   $total_um_bb = $data2_bb['uang_makan'];
+   $total_dexlite_bb = $jml_dex_bb * 13250;
     
-   $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg + $total_dexlite_lmg;
-    $total_um_global = $total_um_br + $total_um_lmg + $total_um_plg;
+   $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg  + $total_dexlite_bb;
+    $total_um_global = $total_um_br + $total_um_lmg + $total_um_plg + $total_um_bb;
 
     //BIAYA KANTOR
   //pengeluran Pul Biaya Kantor baturaja
@@ -112,8 +124,15 @@ else{
      if (!isset($data3_plg['jumlah_biaya_kantor'])) {
      $jml_biaya_kantor_plg = 0;
      }
+     //pengeluran Pul Biaya Kantor belitung
+    $table3_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+    $data3_bb = mysqli_fetch_array($table3_bb);
+    $jml_biaya_kantor_bb = $data3_bb['jumlah_biaya_kantor'];
+     if (!isset($data3_bb['jumlah_biaya_kantor'])) {
+     $jml_biaya_kantor_bb = 0;
+     }
 
-     $biaya_kantor_global = $jml_biaya_kantor_br + $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg;
+     $biaya_kantor_global = $jml_biaya_kantor_br + $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg + $jml_biaya_kantor_bb;
 
     // LISTRIK & TELEPON
    //pengeluran Pul Listrik & Telepon baturaja
@@ -138,7 +157,15 @@ else{
      $jml_listrik_plg = 0;
      }
 
-     $listrik_global = $jml_listrik_br + $jml_listrik_lmg + $jml_listrik_plg;
+     //pengeluran Pul Listrik & Telepon belitung
+    $table4_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
+    $data4_bb = mysqli_fetch_array($table4_bb);
+    $jml_listrik_bb = $data4_bb['jumlah_listrik'];
+     if (!isset($data4_bb['jumlah_listrik'])) {
+     $jml_listrik_bb = 0;
+     }
+
+     $listrik_global = $jml_listrik_br + $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bb;
 
     // BIAYA SEWA
    //pengeluran Biaya Sewa baturaja
@@ -155,15 +182,22 @@ else{
     if (!isset($data5_lmg['jumlah_sewa'])) {
     $jml_sewa_lmg = 0;
     }
-    //pengeluran Biaya Sewa
+    //pengeluran Biaya Sewa Palembang
     $table5_plg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
     $data5_plg = mysqli_fetch_array($table5_plg);
     $jml_sewa_plg = $data5_plg['jumlah_sewa'];
      if (!isset($data5_plg['jumlah_sewa'])) {
      $jml_sewa_plg = 0;
      }
+     //pengeluran Biaya Sewa Belitung
+    $table5_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
+    $data5_bb = mysqli_fetch_array($table5_bb);
+    $jml_sewa_bb = $data5_bb['jumlah_sewa'];
+     if (!isset($data5_bb['jumlah_sewa'])) {
+     $jml_sewa_bb = 0;
+     }
 
-     $biaya_sewa_global = $jml_sewa_br + $jml_sewa_lmg + $jml_sewa_plg;
+     $biaya_sewa_global = $jml_sewa_br + $jml_sewa_lmg + $jml_sewa_plg + $jml_sewa_bb;
 
     // ATK
    //pengeluran Alat Tulis Kantor baturaja
@@ -187,7 +221,14 @@ else{
     if (!isset($data6_plg['jumlah_atk'])) {
     $jml_atk_plg = 0;
     }
-    $atk_global = $jml_atk_br + $jml_atk_lmg + $jml_atk_plg;
+    //pengeluran Alat Tulis Kantor belitung
+   $table6_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+   $data6_bb = mysqli_fetch_array($table6_bb);
+   $jml_atk_bb = $data6_bb['jumlah_atk'];
+    if (!isset($data6_bb['jumlah_atk'])) {
+    $jml_atk_bb = 0;
+    }
+    $atk_global = $jml_atk_br + $jml_atk_lmg + $jml_atk_plg + $jml_atk_bb;
 
     //TRANSPORT DAN PERJALANAN DINAS
     //pengeluran Transnport / Perjalanan Dinas baturaja
@@ -211,8 +252,15 @@ else{
     if (!isset($data61_plg['jumlah_transport'])) {
     $jml_transport_plg = 0;
     }
+     //pengeluran Transnport / Perjalanan Dinas belitung
+   $table61_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $data61_bb = mysqli_fetch_array($table61_bb);
+   $jml_transport_bb = $data61_bb['jumlah_transport'];
+    if (!isset($data61_bb['jumlah_transport'])) {
+    $jml_transport_bb = 0;
+    }
 
-    $transport_global = $jml_transport_br + $jml_transport_lmg + $jml_transport_plg;
+    $transport_global = $jml_transport_br + $jml_transport_lmg + $jml_transport_plg + $jml_transport_bb;
     
     // BIAYA KONSUMSI
     //pengeluran Biaya Konsumsi baturaja
@@ -236,8 +284,15 @@ else{
     if (!isset($data62_plg['jumlah_konsumsi'])) {
     $jml_konsumsi_plg = 0;
     }
+    //pengeluran Biaya Konsumsi belitung
+   $table62_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $data62_bb = mysqli_fetch_array($table62_bb);
+   $jml_konsumsi_bb = $data62_bb['jumlah_konsumsi'];
+    if (!isset($data62_bb['jumlah_konsumsi'])) {
+    $jml_konsumsi_bb = 0;
+    }
 
-     $konsumsi_global = $jml_konsumsi_br + $jml_konsumsi_lmg + $jml_konsumsi_plg;
+     $konsumsi_global = $jml_konsumsi_br + $jml_konsumsi_lmg + $jml_konsumsi_plg + $jml_konsumsi_bb;
 
     //PERBAIKAN
     //pengeluran perbaikan baturaja
@@ -261,8 +316,15 @@ else{
     if (!isset($data7_plg['jumlah_perbaikan'])) {
     $jml_perbaikan_plg = 0;
     }
+    //pengeluran perbaikan belitung
+   $table7_bb = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $data7_bb = mysqli_fetch_array($table7_bb);
+   $jml_perbaikan_bb = $data7_bb['jumlah_perbaikan'];
+    if (!isset($data7_bb['jumlah_perbaikan'])) {
+    $jml_perbaikan_bb = 0;
+    }
     
-    $perbaikan_global = $jml_perbaikan_br + $jml_perbaikan_lmg + $jml_perbaikan_plg;
+    $perbaikan_global = $jml_perbaikan_br + $jml_perbaikan_lmg + $jml_perbaikan_plg + $jml_perbaikan_bb;
     
     // GAJI KARYAWAN
      //Gaji karyawan baturaja
@@ -286,8 +348,15 @@ else{
     if (!isset($data8_plg['jumlah_gaji'])) {
     $gaji_karyawan_plg = 0;
     }
+     //Gaji karyawan belitung
+   $table8_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BB' ");
+   $data8_bb = mysqli_fetch_array($table8_bb);
+   $gaji_karyawan_bb = $data8_bb['jumlah_gaji'];
+    if (!isset($data8_bb['jumlah_gaji'])) {
+    $gaji_karyawan_bb = 0;
+    }
 
-    $gaji_karyawan_global = $gaji_karyawan_br + $gaji_karyawan_lmg + $gaji_karyawan_plg;
+    $gaji_karyawan_global = $gaji_karyawan_br + $gaji_karyawan_lmg + $gaji_karyawan_plg + $gaji_karyawan_bb;
 
     // GAJI DRIVER
     //Gaji dRIVER baturaja
@@ -311,10 +380,17 @@ else{
     if (!isset($data9_plg['jumlah_gaji'])) {
     $gaji_driver_plg = 0;
     }
+     //Gaji dRIVER belitung
+   $table9_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BB' ");
+   $data9_bb = mysqli_fetch_array($table9_bb);
+   $gaji_driver_bb = $data9_bb['jumlah_gaji'];
+    if (!isset($data9_bb['jumlah_gaji'])) {
+    $gaji_driver_bb = 0;
+    }
     
-    $gaji_driver_global = $gaji_driver_br + $gaji_driver_lmg + $gaji_driver_plg;
+    $gaji_driver_global = $gaji_driver_br + $gaji_driver_lmg + $gaji_driver_plg + $gaji_driver_bb;
     
-    $total_gaji_karaywan_global = $gaji_karyawan_global + $gaji_driver_global;
+    $total_gaji_karaywan_global = $gaji_karyawan_global + $gaji_driver_global + $gaji_driver_bb;
 
 
     //totalkreditGLOBAL
@@ -373,152 +449,163 @@ else{
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-         <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+      <!-- Sidebar -->
+      <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-           <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-            </a>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu PT BALSRI
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="DsPTBALSRI">PT.BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                    </div>
-                </div>
-            </li>
-           <!-- Nav Item - Pages Collapse Menu -->
-           <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                  15  aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Tagihan</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLuangOP">Lap uang Oprasional</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLrGlobal">Laba Rugi Global</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi Palembang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi Baturaja</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
-                    </div>
-                </div>
-            </li>
+<!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu PT BALSRI
+    </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="DsPTBALSRI">PT.BALSRI</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+        </div>
+    </div>
+</li>
+ <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+      15  aria-expanded="true" aria-controls="collapseOne">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Tagihan</span>
+    </a>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VLuangOP">Lap uang Oprasional</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBl">Tagihan Babel</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLrGlobal">Laba Rugi Global</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Lampung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi Palembang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi Baturaja</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBl">Laba Rugi Babel</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBl">Master Tarif BB</a>
+        </div>
+    </div>
+</li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Pengiriman</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBl">Pengiriman BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBl">Ritase BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBl">Jarak Tempuh BB</a> 
             
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengiriman</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
-                        
-                    </div>
-                </div>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
-                  15  aria-expanded="true" aria-controls="collapseTwo22">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengeluaran</span>
-                </a>
-                <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
-                    </div>
-                </div>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo13"
-                  15  aria-expanded="true" aria-controls="collapseTwo1">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >SDM</span>
-                </a>
-                <div id="collapseTwo13" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
-                    </div>
-                </div>
-            </li>
-              <!-- Nav Item - Pages Collapse Menu -->
-              <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOnex"
-                  15  aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Data Backup</span>
-                </a>
-                <div id="collapseOnex" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanx">Tagihan Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanPx">Tagihan Pelmbang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBrx">Tagihan Baturaja</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLrGlobalx">Laba Rugi Global</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugix">Laba Rugi Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiPx">Laba Rugi Palembang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBrx">Laba Rugi Baturaja</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifx">Master Tarif LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPx">Master Tarif PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBrx">Master Tarif BTA</a>
-                    </div>
-                </div>
-            </li>
+        </div>
+    </div>
+</li>
+ <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
+      15  aria-expanded="true" aria-controls="collapseTwo22">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Pengeluaran</span>
+    </a>
+    <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBl">Catat Perbaikan BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBl">Pengeluaran Pul BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiBl">Gaji BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+        </div>
+    </div>
+</li>
+ <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo13"
+      15  aria-expanded="true" aria-controls="collapseTwo1">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >SDM</span>
+    </a>
+    <div id="collapseTwo13" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
+        </div>
+    </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOnex"
+      15  aria-expanded="true" aria-controls="collapseOne">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Data Backup</span>
+    </a>
+    <div id="collapseOnex" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VLuangOPx">Lap uang Oprasional</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanx">Tagihan Lampung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanPx">Tagihan Pelmbang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBrx">Tagihan Baturaja</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLrGlobalx">Laba Rugi Global</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugix">Laba Rugi Lampung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiPx">Laba Rugi Palembang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBrx">Laba Rugi Baturaja</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifx">Master Tarif LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPx">Master Tarif PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBrx">Master Tarif BTA</a>
+        </div>
+    </div>
+</li>
 
 
 <!-- Divider -->
@@ -817,7 +904,7 @@ else{
                     <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?></td>
 
                 <?php }
-                else if ($total_tagihan == 0) { ?>
+                else if ($total_tagihan_global == 0) { ?>
 
                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                     <td class="no-line text-left"><?= formatuang(0); ?></td>

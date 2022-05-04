@@ -246,10 +246,10 @@ else{
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-         <!-- Sidebar -->
+        <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-           <!-- Sidebar - Brand -->
+            <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
                 <div class="sidebar-brand-icon rotate-n-15">
 
@@ -283,8 +283,8 @@ else{
                     </div>
                 </div>
             </li>
-           <!-- Nav Item - Pages Collapse Menu -->
-           <li class="nav-item">
+             <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                   15  aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -297,13 +297,16 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBl">Tagihan Babel</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLrGlobal">Laba Rugi Global</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Lampung</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiP">Laba Rugi Palembang</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBr">Laba Rugi Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiBl">Laba Rugi Babel</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBl">Master Tarif BB</a>
                     </div>
                 </div>
             </li>
@@ -321,12 +324,15 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBl">Pengiriman BB</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBl">Ritase BB</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
+                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBl">Jarak Tempuh BB</a> 
                         
                     </div>
                 </div>
@@ -344,12 +350,15 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBl">Catat Perbaikan BB</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBl">Pengeluaran Pul BB</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBl">Gaji BB</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                     </div>
                 </div>
@@ -366,11 +375,12 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
                     </div>
                 </div>
             </li>
-              <!-- Nav Item - Pages Collapse Menu -->
-              <li class="nav-item">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOnex"
                   15  aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -379,6 +389,7 @@ else{
                 <div id="collapseOnex" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLuangOPx">Lap uang Oprasional</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanx">Tagihan Lampung</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanPx">Tagihan Pelmbang</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihanBrx">Tagihan Baturaja</a>

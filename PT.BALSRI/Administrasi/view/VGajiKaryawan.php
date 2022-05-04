@@ -308,9 +308,13 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
             <option>BALSRI LMG</option>
             <option>BALSRI PLG</option>
             <option>BALSRI BTA</option>
+            <option>BALSRI BB</option>
+            <option>BALSRI JMI</option>
             <option>Driver LMG</option>
             <option>Driver PLG</option>
             <option>Driver BTA</option>
+            <option>Driver BB</option>
+            <option>Driver JMI</option>
           </select>
         </div>  
         
