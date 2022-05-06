@@ -497,8 +497,8 @@ else{
 
             <!-- Form Edit Data -->
             <div class="modal-body">
-              <form action="../proses/edit_pengiriman.php" enctype="multipart/form-data" method="POST">
-
+              
+              <?php  echo "<form action='../proses/edit_pengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
                 <input type="hidden" name="no_pengiriman" value="<?php echo $no_pengiriman;?>"> 
                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
@@ -527,13 +527,13 @@ else{
           <label>Driver</label>
           <input class="form-control form-control-sm" type="text" id="driver" name="driver" required="" value="<?php echo $driver;?>">
           </div>
-        </div>
+       
 
         <div class="col-md-6">
         <label>No Polisi</label>
           <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required="" value="<?php echo $no_polisi;?>">
           </div>
-        </div>            
+          </div>  
 
       
 
@@ -574,7 +574,7 @@ else{
             ?>
           </select>
           </div>
-        </div>          
+        </div>        
 
       </div>
 

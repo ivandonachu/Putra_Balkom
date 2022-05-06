@@ -90,6 +90,6 @@ else if ( $nama_file != "" ) {
 	}
 
 
-	//echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VPengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VPengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 ?>
