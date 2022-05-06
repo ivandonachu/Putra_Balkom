@@ -296,39 +296,17 @@ else{
          <div class="row">
 
           <div class="col-md-6">
-           <label>Driver</label>
-          <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
-            <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM driver_sl");   
-
-            while ($data2 = mysqli_fetch_array($result)){
-              $nama_driver = $data2['nama_driver'];
-
-
-              echo "<option> $nama_driver </option> ";
-              
-            }
-            ?>
-          </select>
+          <label>Driver</label>
+      <div class="col-sm-12">
+        <input class="form-control form-control-sm" type="text" id="driver" name="driver"  required="">
+      </div>
         </div>
 
         <div class="col-md-6">
-          <label>Kendaraan</label>
-           <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
-            <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");   
-
-            while ($data2 = mysqli_fetch_array($result)){
-              $no_polisi = $data2['no_polisi'];
-
-
-              echo "<option> $no_polisi </option> ";
-              
-            }
-            ?>
-          </select>
+            <label>No Polisi</label>
+      <div class="col-sm-10">
+            <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi"  required="">
+          </div>
         </div>            
 
       </div>
@@ -546,48 +524,18 @@ else{
          <div class="row">
 
           <div class="col-md-6">
-           <label>Driver</label>
-           <div>
-          <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
-            <?php
-            include 'koneksi.php';
-            $dataSelect = $data['driver'];
-            $result = mysqli_query($koneksi, "SELECT * FROM driver_sl");   
-
-            while ($data2 = mysqli_fetch_array($result)){
-              $nama_driver = $data2['nama_driver'];
-
-
-              echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>" ;
-              
-            }
-            ?>
-          </select>
+          <label>Driver</label>
+          <input class="form-control form-control-sm" type="text" id="driver" name="driver" required="" value="<?php echo $driver;?>">
           </div>
         </div>
 
         <div class="col-md-6">
-          <label>Kendaraan</label>
-          <div>
-           <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
-            <?php
-            include 'koneksi.php';
-             $dataSelect = $data['no_polisi'];
-            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");   
-
-            while ($data2 = mysqli_fetch_array($result)){
-              $no_polisi = $data2['no_polisi'];
-
-
-              echo "<option" ?> <?php echo ($dataSelect == $no_polisi) ? "selected" : "" ?>> <?php echo $no_polisi; ?> <?php echo "</option>" ;
-              
-            }
-            ?>
-          </select>
+        <label>No Polisi</label>
+          <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required="" value="<?php echo $no_polisi;?>">
           </div>
         </div>            
 
-      </div>
+      
 
       <br>
     <div class="row">
@@ -614,14 +562,13 @@ else{
             <option></option>
             <?php
             include 'koneksi.php';
-            $dataSelect = $data['toko_do'];
             $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");   
-
+            $dataSelect = $data['toko_do'];
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nm_lokasi'];
 
-            
-                 echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
+           
+                echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
               
             }
             ?>

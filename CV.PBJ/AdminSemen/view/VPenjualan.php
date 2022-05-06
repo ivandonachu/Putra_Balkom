@@ -695,7 +695,7 @@ else{
 
        <br>
 
-       <div class="row">
+       <div class="row">  
         <div class="col-md-6">
           <label>Nama Toko di DO</label>
           <div>
