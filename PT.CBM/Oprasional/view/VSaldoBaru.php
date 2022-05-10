@@ -114,6 +114,13 @@ $jumlah_kel_pri = $data101['jumlah_kel_pri_pri'];
  if (!isset($data101['jumlah_kel_pri_pri'])) {
  $jumlah_kel_pri_pri = 0;
  }
+//keluar PBJ untuk kebun MBAH
+$table1011 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pbj_kebunmbah FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBJ' AND referensi = 'Kebun Mbah' AND status_saldo = 'Keluar' ");
+$data1011 = mysqli_fetch_array($table1011);
+$jumlah_kel_pbj_kebunmbah = $data1011['jumlah_kel_pbj_kebunmbah'];
+ if (!isset($data1011['jumlah_kel_pbj_kebunmbah'])) {
+ $jumlah_kel_pbj_kebunmbah = 0;
+ }
 
 // MASUKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
 
@@ -827,6 +834,13 @@ $mbah = 'Kebun Mbah';
       <td style='font-size: 11px' align = 'center'>PBJ</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbj); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBJ&rekening=$PBJ&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbj_kebunmbah); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$PBJ&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
   <tr>
