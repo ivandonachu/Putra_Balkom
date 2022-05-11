@@ -20,10 +20,13 @@ exit;
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_pembelian = $_POST['no_pembelian'];
-$losis = $_POST['losis'];
-$nama_barang = $_POST['nama_barang'];
 $tanggal = $_POST['tanggal'];
+$tanggal_bongkar = $_POST['tanggal_bongkar'];
 $lokasi = $_POST['lokasi'];
+$volume_tangki = $_POST['volume_tangki'];
+$sonding_awal = $_POST['sonding_awal'];
+$sonding_akhir = $_POST['sonding_akhir'];
+$nama_barang = $_POST['nama_barang'];
 $qty = $_POST['qty'];
 $harga = $_POST['harga'];
 $keterangan = $_POST['keterangan'];
@@ -65,18 +68,91 @@ else if ( $nama_file != "" ) {
 $result = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
-    
-    
+
+if($kode_perta == '2P.323.208' && $nama_barang == 'Pertamax'){
+            
+	
+	
+	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
+	$data_stok = mysqli_fetch_array($result2);
+	$stok_awal = $data_stok['stok'];
+
+	$result3 = mysqli_query($koneksi, "SELECT qty FROM pembelian WHERE no_pembelian = '$no_pembelian' ");
+	$data_pembelian = mysqli_fetch_array($result3);
+	$qty_pembelian = $data_pembelian['qty'];
+	
+	$stok_baru = (($stok_awal - $qty_pembelian) + $qty);
+	
+	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
+
+}
+else if($kode_perta == '2P.323.208' && $nama_barang == 'Dexlite'){
+	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
+	$data_stok = mysqli_fetch_array($result2);
+	$stok_awal = $data_stok['stok'];
+
+	$result3 = mysqli_query($koneksi, "SELECT qty FROM pembelian WHERE no_pembelian = '$no_pembelian' ");
+	$data_pembelian = mysqli_fetch_array($result3);
+	$qty_pembelian = $data_pembelian['qty'];
+	
+	$stok_baru = (($stok_awal - $qty_pembelian) + $qty);
+	
+	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
+
+}
+else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
+	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
+	$data_stok = mysqli_fetch_array($result2);
+	$stok_awal = $data_stok['stok'];
+
+	$result3 = mysqli_query($koneksi, "SELECT qty FROM pembelian WHERE no_pembelian = '$no_pembelian' ");
+	$data_pembelian = mysqli_fetch_array($result3);
+	$qty_pembelian = $data_pembelian['qty'];
+	
+	$stok_baru = (($stok_awal - $qty_pembelian) + $qty);
+	
+	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
+
+}
+else if($kode_perta == 'sumberjaya' && $nama_barang == 'Pertamax'){
+	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
+	$data_stok = mysqli_fetch_array($result2);
+	$stok_awal = $data_stok['stok'];
+
+	$result3 = mysqli_query($koneksi, "SELECT qty FROM pembelian WHERE no_pembelian = '$no_pembelian' ");
+	$data_pembelian = mysqli_fetch_array($result3);
+	$qty_pembelian = $data_pembelian['qty'];
+	
+	$stok_baru = (($stok_awal - $qty_pembelian) + $qty);
+	
+	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
+
+}
+else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
+	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
+	$data_stok = mysqli_fetch_array($result2);
+	$stok_awal = $data_stok['stok'];
+
+	$result3 = mysqli_query($koneksi, "SELECT qty FROM pembelian WHERE no_pembelian = '$no_pembelian' ");
+	$data_pembelian = mysqli_fetch_array($result3);
+	$qty_pembelian = $data_pembelian['qty'];
+	
+	$stok_baru = (($stok_awal - $qty_pembelian) + $qty);
+	
+	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
+
+}
     
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE pembelian SET tanggal = '$tanggal' , kode_perta = '$kode_perta' , nama_barang = '$nama_barang', qty = '$qty' , harga = '$harga', losis = '$losis' ,keterangan = '$keterangan'  WHERE no_pembelian = 
-		'$no_pembelian'");
+		$query3 = mysqli_query($koneksi,"UPDATE pembelian SET tanggal = '$tanggal',tanggal_bongkar = '$tanggal_bongkar' , kode_perta = '$kode_perta' , nama_barang = '$nama_barang', qty = '$qty' , harga = '$harga', volume_tangki = '$volume_tangki'
+		 ,sonding_awal = '$sonding_awal',sonding_akhir = '$sonding_akhir',keterangan = '$keterangan'  WHERE no_pembelian = '$no_pembelian'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE pembelian SET tanggal = '$tanggal' , kode_perta = '$kode_perta' , nama_barang = '$nama_barang' , qty = '$qty' , harga = '$harga', losis = '$losis' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_pembelian = 
+		$query3 = mysqli_query($koneksi,"UPDATE pembelian SET tanggal = '$tanggal' , kode_perta = '$kode_perta' , nama_barang = '$nama_barang' , qty = '$qty' , volume_tangki = '$volume_tangki'
+		,sonding_awal = '$sonding_awal',sonding_akhir = '$sonding_akhir' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_pembelian = 
 		'$no_pembelian'");
 	}
 	
 
 
-			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

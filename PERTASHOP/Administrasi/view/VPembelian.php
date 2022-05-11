@@ -378,11 +378,13 @@ else{
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th style="font-size: 11px" >No</th>
-      <th style="font-size: 11px" >Tanggal</th>
+      <th style="font-size: 11px" >Tanggal Pembelian</th>
+      <th style="font-size: 11px" >Tanggal Bongkar</th>
       <th style="font-size: 11px" >Kode Pertashop</th>   
       <th style="font-size: 11px" >Lokasi</th>
       <th style="font-size: 11px" >Nama Barang</th>
@@ -420,6 +422,7 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_pembelian = $data['no_pembelian'];
       $tanggal =$data['tanggal'];
+      $tanggal_bongkar =$data['tanggal_bongkar'];
       $kode_perta =$data['kode_perta'];
       $nama_barang =$data['nama_barang'];
       $lokasi = $data['lokasi'];
@@ -467,6 +470,7 @@ else{
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
       <td style='font-size: 11px' align = 'center'>$tanggal</td>
+      <td style='font-size: 11px' align = 'center'>$tanggal_bongkar</td>
       <td style='font-size: 11px' align = 'center'>$kode_perta</td>
       <td style='font-size: 11px' align = 'center'>$lokasi</td>
       <td style='font-size: 11px' align = 'center'>$nama_barang</td>
@@ -485,6 +489,174 @@ else{
       "; ?>
       <?php echo "<td style='font-size: 11px'>"; ?>
     
+
+
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_pembelian']; ?>">Edit</button>
+
+<!-- Form EDIT DATA -->
+
+<div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_pembelian']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> Form Edit Pembelian </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+
+      <!-- Form Edit Data -->
+      <div class="modal-body" align="left">
+        <form action="../proses/edit_pembelian" enctype="multipart/form-data" method="POST">
+
+          <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian; ?>">
+          <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+          <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+  
+
+          <div class="row">
+            <div class="col-md-6">
+
+              <label>Tanggal</label>
+              <div class="col-sm-10">
+                <input type="date" id="tanggal" name="tanggal" required="" value="<?php echo $tanggal; ?>">
+              </div>
+
+            </div>
+            <div class="col-md-6">
+
+              <label>Tanggal</label>
+              <div class="col-sm-10">
+                <input type="date" id="tanggal_bongkar" name="tanggal_bongkar" required="" value="<?php echo $tanggal_bongkar; ?>">
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+
+          <div class="col-md-6">
+          <label>Lokasi</label>
+          <select id="lokasi" name="lokasi" class="form-control ">
+            <?php
+            include 'koneksi.php';
+            $dataSelect = $data['lokasi'];
+            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
+
+
+              echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
+              
+            }
+            ?>
+          </select>
+          </div>
+
+   
+
+        
+
+
+            <div class="col-md-6">
+              <label>QTY</label>
+              <select id="qty" name="qty" class="form-control">
+                <?php
+                $dataSelect = $data['qty']; ?>
+                <option <?php echo ($dataSelect == '1000') ? "selected" : "" ?>>1000</option>
+                <option <?php echo ($dataSelect == '2000') ? "selected" : "" ?>>2000</option>
+                <option <?php echo ($dataSelect == '3000') ? "selected" : "" ?>>3000</option>
+                <option <?php echo ($dataSelect == '4000') ? "selected" : "" ?>>4000</option>
+                <option <?php echo ($dataSelect == '5000') ? "selected" : "" ?>>5000</option>
+              </select>
+            </div>
+            </div>
+     
+
+          <br>
+
+          <div class="row">
+
+            <div class="col-md-6">
+            <label>Nama Barang</label>
+              <select id="nama_barang" name="nama_barang" class="form-control">
+                <?php
+                $dataSelect = $data['nama_barang']; ?>
+                <option <?php echo ($dataSelect == 'Pertamax') ? "selected" : "" ?>>Pertamax</option>
+                <option <?php echo ($dataSelect == 'Dexlite') ? "selected" : "" ?>>Dexlite</option>
+
+              </select>
+            </div>
+          </div>
+
+          <br>
+          
+          <div class="row">
+            <div class="col-md-6">
+
+              <label>Harga</label>
+              <div class="col-sm-10">
+                <input type="float" id="harga" name="harga" required="" value="<?php echo $harga; ?>">
+              </div>
+
+            </div>
+            <div class="col-md-6">
+
+              <label>Volume Tanki</label>
+              <div class="col-sm-10">
+                <input type="float" id="volume_tangki" name="volume_tangki" required="" value="<?php echo $volume_tangki; ?>">
+              </div>
+
+            </div>
+
+          </div>
+          <br>
+          
+          <div class="row">
+            <div class="col-md-6">
+
+              <label>Sonding Sebelum Isi</label>
+              <div class="col-sm-10">
+                <input type="float" id="sonding_awal" name="sonding_awal" required="" value="<?php echo $sonding_awal; ?>">
+              </div>
+
+            </div>
+            <div class="col-md-6">
+
+              <label>Sonding Setelah Isi</label>
+              <div class="col-sm-10">
+                <input type="float" id="sonding_akhir" name="sonding_akhir" required="" value="<?php echo $sonding_akhir; ?>">
+              </div>
+
+            </div>
+
+          </div>
+          <br>
+          <div>
+       <label>Keterangan</label>
+       <div class="form-group">
+         <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+       </div>
+     </div>
+     <br>
+
+          <div>
+            <label>Upload File</label>
+            <input type="file" name="file">
+          </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"> Ubah </button>
+        <button type="reset" class="btn btn-danger"> RESET</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <!-- Button Hapus -->
 <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_pembelian']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
@@ -558,6 +730,8 @@ else{
 </tbody>
 </table>
 </div>
+</div>
+
 <br>
 <hr>
 <div style="margin-right: 100px; margin-left: 100px;">
