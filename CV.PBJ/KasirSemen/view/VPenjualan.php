@@ -698,7 +698,6 @@ else{
 </div>
 </div>
 </div>
-</div>
 
 <?php echo "</td>"; ?>
 <?php echo "<td style='font-size: 12px'>"; ?>
@@ -839,8 +838,7 @@ else{
 </div>
 </div>
 </div>
-</div>
-</div>
+
 
 <?php echo "</td>"; ?>
 <?php echo "<td style='font-size: 12px'>"; ?>
