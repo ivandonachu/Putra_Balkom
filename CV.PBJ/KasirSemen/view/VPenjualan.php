@@ -535,7 +535,17 @@ else{
             <!-- Form Edit Data -->
             <div class="modal-body" align="left">
              <form action="../proses/edit_penjualan" enctype="multipart/form-data" method="POST">
+         <script>
 
+function sum2() {
+  var banyak_barang2 = document.getElementById('qty2').value;
+  var harga2 = document.getElementById('harga2').value;
+  var result2 = parseInt(banyak_barang2) * parseInt(harga2);
+  if (!isNaN(result2)) {
+   document.getElementById('jumlah2').value = result2;
+ }
+}
+</script>
               <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan;?>"> 
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
@@ -620,8 +630,7 @@ else{
             <input class="form-control form-control-sm" type="number" id="harga2" name="harga" onkeyup="sum2();" required=""value="<?php echo $harga;?>" >
           </div>    
           <div class="col-md-6">
-           <label>Jumlah</label>
-           <input class="form-control form-control-sm" type="number" id="jumlah2" name="jumlah" required="" value="<?php echo $jumlah;?>" > 
+          
          </div>                
        </div>
 
@@ -1036,9 +1045,11 @@ else{
     </div>
   </div>
 </div>
+
 <br>
 <br>
 
+</div>
 </div>
 </div>
 <!-- End of Main Content -->
@@ -1170,17 +1181,7 @@ aria-hidden="true">
              }
            }
          </script>
-         <script>
 
-function sum2() {
-  var banyak_barang2 = document.getElementById('qty2').value;
-  var harga2 = document.getElementById('harga2').value;
-  var result2 = parseInt(banyak_barang2) * parseInt(harga2);
-  if (!isNaN(result2)) {
-   document.getElementById('jumlah2').value = result2;
- }
-}
-</script>
          
 </body>
 
