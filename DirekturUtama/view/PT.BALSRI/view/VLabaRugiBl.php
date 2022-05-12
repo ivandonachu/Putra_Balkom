@@ -184,9 +184,9 @@ else{
     $total_gaji_karaywan = $gaji_karyawan + $gaji_driver;
 
     //list supir
-    $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_bL WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
 
-    $table101 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_bL WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    $table101 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
     //totalkredit
     $total_kredit = 0;
     while($data = mysqli_fetch_array($table101)){
