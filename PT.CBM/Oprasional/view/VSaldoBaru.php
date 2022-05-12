@@ -208,6 +208,27 @@ $jumlah_kel_pri_mbah = $data21['jumlah_kel_pri_mbah'];
 if (!isset($data21['jumlah_kel_pri_mbah'])) {
 $jumlah_kel_pri_mbah = 0;
 }
+//Keluar pribadi untuk CBM 
+$table22 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pri_cbm FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'CBM' AND status_saldo = 'Keluar' ");
+$data22 = mysqli_fetch_array($table22);
+$jumlah_kel_pri_cbm = $data22['jumlah_kel_pri_cbm'];
+if (!isset($data22['jumlah_kel_pri_cbm'])) {
+$jumlah_kel_pri_cbm = 0;
+}
+//Keluar pribadi untuk MES 
+$table23 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pri_mes FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'MES' AND status_saldo = 'Keluar' ");
+$data23 = mysqli_fetch_array($table23);
+$jumlah_kel_pri_mes = $data23['jumlah_kel_pri_mes'];
+if (!isset($data23['jumlah_kel_pri_mes'])) {
+$jumlah_kel_pri_mes = 0;
+}
+//Keluar pribadi untuk PBR 
+$table24 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pri_pbr FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'PBR' AND status_saldo = 'Keluar' ");
+$data24 = mysqli_fetch_array($table24);
+$jumlah_kel_pri_pbr = $data24['jumlah_kel_pri_pbr'];
+if (!isset($data24['jumlah_kel_pri_pbr'])) {
+$jumlah_kel_pri_pbr = 0;
+}
 
 // kode salado
 
@@ -883,6 +904,27 @@ $mbah = 'Kebun Mbah';
       <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_mbah); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_cbm); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$CBM&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_mes); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MES&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_pbr); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBR&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
 

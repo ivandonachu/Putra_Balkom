@@ -40,6 +40,15 @@ else if($rekening == 'CBM' && $referensi == 'Kebun Lengkiti' ){
 else if($rekening == 'PRIBADI' && $referensi == 'Kebun Mbah' ){
 
 }
+else if($rekening == 'PRIBADI' && $referensi == 'CBM' ){
+
+}
+else if($rekening == 'PRIBADI' && $referensi == 'MES' ){
+
+}
+else if($rekening == 'PRIBADI' && $referensi == 'PBR' ){
+
+}
 else if($rekening == 'CBM' && $referensi == 'Melodi Tani' ){
 
 }
