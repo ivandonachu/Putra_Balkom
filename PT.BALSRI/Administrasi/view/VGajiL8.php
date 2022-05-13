@@ -40,12 +40,12 @@ else{
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT a.nama_driver , SUM(ug) AS total_gaji FROM driver a INNER JOIN pengiriman_bl b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
+  $table = mysqli_query($koneksi, "SELECT a.nama_driver , SUM(ug) AS total_gaji FROM driver a INNER JOIN pengiriman_spbu b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT a.nama_driver , SUM(ug) AS total_gaji FROM driver a INNER JOIN pengiriman_bl b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
+  $table = mysqli_query($koneksi, "SELECT a.nama_driver , SUM(ug) AS total_gaji FROM driver a INNER JOIN pengiriman_spbu b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
 
 }
 ?>
@@ -232,7 +232,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VGajiBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Gaji BB</h5></a>"; ?>
+      <?php echo "<a href='VGajiBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Gaji Lampung (SPBU)</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -290,7 +290,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VGajiBl' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VGajiL8' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 

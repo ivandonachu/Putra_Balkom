@@ -24,30 +24,9 @@ $nama = $data['nama_karyawan'];
 
 
 
-if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
+$table = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu ");
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-else{
-    $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-  }
 
-if ($tanggal_awal == $tanggal_akhir) {
-
-  $table = mysqli_query($koneksi, "SELECT a.nama_driver , SUM(ug) AS total_gaji FROM driver a INNER JOIN pengiriman_bl b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
-
-}
-else{
-
-  $table = mysqli_query($koneksi, "SELECT a.nama_driver , SUM(ug) AS total_gaji FROM driver a INNER JOIN pengiriman_bl b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +39,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Riwayat Gaji</title>
+  <title>Master Tarif </title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -86,7 +65,7 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
+     <!-- Sidebar -->
   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
@@ -207,17 +186,16 @@ else{
         </div>
     </div>
 </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
 
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
+
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
 
 
@@ -232,7 +210,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VGajiBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Gaji BB</h5></a>"; ?>
+      <?php echo "<a href='VMasterTarifBl'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif SPBU Lampung</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -290,54 +268,237 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VGajiBl' style='margin-bottom: 15px;'>" ?>
-    <div>
-      <div align="left" style="margin-left: 20px;"> 
-        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-        <span>-</span>
-        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
-      </div>
+   <div class="row">
+    <div class="col-md-10">
+
     </div>
-  </form>
+    <div class="col-md-2">
+      <!-- Button Input Data Bayar -->
+      <div align="right">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Master Tarif</button> <br> <br>
+      </div>
+      <!-- Form Modal  -->
+      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-lg" role ="document">
+         <div class="modal-content"> 
+          <div class="modal-header">
+            <h5 class="modal-title"> Form Pencatatan Master Tarif</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+
+          <!-- Form Input Data -->
+          <div class="modal-body" align="left">
+            <?php  echo "<form action='../proses/proses_master_tarif_L8' enctype='multipart/form-data' method='POST'>";  ?>
+
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+               <label>Depot Supply</label>
+               <input class="form-control form-control-sm" type="text" id="depot_supply" name="depot_supply" required="">
+             </div>
+             <div class="col-md-6">
+               <label>No Spbu</label>
+               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="">
+             </div>
+           </div>
+
+           <br>
+
+           <div class="row">
+            <div class="col-md-6">
+             <label>Type</label>
+             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik" required="">
+           </div>
+
+           <div class="col-md-6">
+             <label>Kabupaten</label>
+             <textarea id = "alamat" name="alamat" style="width: 300px;"></textarea>
+           </div>            
+         </div>
+
+         <br>
+
+         <div class="row">
+          <div class="col-md-4">
+            <label>Jarak Tempuh</label>
+            <input class="form-control form-control-sm" type="number" id="jt" name="jt" required="">
+          </div>    
+          <div class="col-md-4">
+            <label>Jarak Tempuh PP</label>
+            <input class="form-control form-control-sm" type="number" id="jt_pp" name="jt_pp" required="">
+          </div>
+          <div class="col-md-4">
+            <label>KL 8</label>
+            <input class="form-control form-control-sm" type="float" id="kl8" name="kl8" required="">
+          </div>                
+
+        </div>
+
+        <br>
 
 
-  <div class="col-md-8">
-   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
- </div>
- <br>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"> CATAT</button>
+        <button type="reset" class="btn btn-danger"> RESET</button>
+      </div>
+    </form>
+  </div>
 
- <div class="row">
-  
+</div>
+</div>
+</div>
+
+</div>
 </div>
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>AMT</th>   
-      <th>Total Gaji</th>
-      <th>Rincian</th>
+   
+      <th>Depot Supply</th>
+      <th>No SPBU</th>   
+      <th>Type</th>
+      <th>Kabupaten</th>
+      <th>JT</th>
+      <th>JT PP</th>
+      <th>KL 8</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <?php
 
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $amt =$data['nama_driver'];
-      $mt = $data['total_gaji'];
+
+      $depot_supply =$data['depot_supply'];
+      $delivery_point =$data['delivery_point'];
+      $type = $data['type'];
+      $alamat = $data['alamat'];
+      $jt = $data['jt'];
+      $jt_pp = $data['jt_pp'];
+      $kl8 = $data['kl8'];
+
 
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$amt</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($mt); ?> <?php echo "</td>
-      <td align = 'center'><a href='VRincianGajiBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$amt'>Rincian</a></td>
-      </tr>";
+  
+      <td style='font-size: 14px' align = 'center'>$depot_supply</td>
+      <td style='font-size: 14px' align = 'center'>$delivery_point</td>
+      <td style='font-size: 14px' align = 'center'>$type</td>
+      <td style='font-size: 14px' align = 'center'>$alamat</td>
+      <td style='font-size: 14px' align = 'center'>$jt/KM</td>
+      <td style='font-size: 14px' align = 'center'>$jt_pp</td>
+      <td style='font-size: 14px' align = 'center'>$kl8/L</td>
+
+      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit1<?php echo $data['delivery_point']; ?>">Edit</button>
+
+      <!-- Form EDIT DATA -->
+
+      <div class="modal fade" id="formedit1<?php echo $data['delivery_point']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role ="document">
+          <div class="modal-content"> 
+            <div class="modal-header">
+              <h5 class="modal-title"> Form Edit Master Tarif </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true"> &times; </span>
+              </button>
+            </div>
+
+            <!-- Form Edit Data -->
+            <div class="modal-body">
+              <form action="../proses/edit_master_tarif_L8" enctype="multipart/form-data" method="POST">
+
+                <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>"> 
+                
+
+                <div class="row">
+              <div class="col-md-6">
+               <label>Depot Supply</label>
+               <input class="form-control form-control-sm" type="text" id="depot_supply" name="depot_supply" required=""  value="<?php echo $depot_supply;?>" >
+             </div>
+             <div class="col-md-6">
+               <label>No SPBU</label>
+               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" disabled value="<?php echo $delivery_point;?>" >
+             </div>
+           </div>
+
+           <br>
+
+           <div class="row">
+            <div class="col-md-6">
+             <label>Type</label>
+             <input class="form-control form-control-sm" type="text" id="type" name="type" required=""  value="<?php echo $type;?>" >
+           </div>
+
+           <div class="col-md-6">
+             <label>Kabupaten</label>
+             <textarea id = "alamat" name="alamat" style="width: 300px;"> <?php echo $alamat;?></textarea>
+           </div>            
+         </div>
+
+         <br>
+
+         <div class="row">
+          <div class="col-md-4">
+            <label>Jarak Tempuh</label>
+            <input class="form-control form-control-sm" type="number" id="jt" name="jt" required=""  value="<?php echo $jt;?>">
+          </div>    
+          <div class="col-md-4">
+            <label>Jarak Tempuh PP</label>
+            <input class="form-control form-control-sm" type="number" id="jt_pp" name="jt_pp" required=""  value="<?php echo $jt_pp;?>">
+          </div>
+          <div class="col-md-4">
+            <label>KL 8</label>
+            <input class="form-control form-control-sm" type="float" id="kl8" name="kl8" required=""  value="<?php echo $kl8;?>">
+          </div>                
+
+        </div>
+
+        <br>
+
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Ubah </button>
+          <button type="reset" class="btn btn-danger"> RESET</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Button Hapus -->
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['delivery_point']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $data['delivery_point']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+ <div class="modal-dialog" role ="document">
+   <div class="modal-content"> 
+    <div class="modal-header">
+      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form action="../proses/hapus_master_tarif_L8" method="POST">
+        <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>">
+        <div class="form-group">
+          <h6> Yakin Ingin Hapus Data? </h6>             
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Hapus </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<?php echo  " </td> </tr>";
 }
 ?>
 
