@@ -86,26 +86,47 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;"></div>
+                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;"  ></div>
             </a>
 
+            <br>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="DsKebun">
+            <li class="nav-item active" >
+                <a class="nav-link" href="DsCVPBJ">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;">Dashboard</span></a>
-            </li>
+                    <span style="font-size: 16px;" >Dashboard</span></a>
+                </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-             <!-- Heading -->
-             <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Admin Kebun
+                 <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                     Menu Kebun
                 </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+                </a>
+                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsPBJ">CV.PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="DsKebun">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+                    </div>
+                </div>
+            </li>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

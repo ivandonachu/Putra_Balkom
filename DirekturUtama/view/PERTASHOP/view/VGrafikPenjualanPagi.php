@@ -183,6 +183,7 @@ while($data21 = mysqli_fetch_array($table21)){
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
                         <a class="collapse-item" style="font-size: 15px;" href="DsPertashop">Pertashop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
                     </div>
                 </div>
             </li>
