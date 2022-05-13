@@ -111,6 +111,7 @@ exit;
                         <a class="collapse-item" style="font-size: 15px;" href="BatuBara/view/DsCVPBJ">Transport BB</a>
                          <a class="collapse-item" style="font-size: 15px;" href="Kebun/view/DsKebun">Kebun</a>
                          <a class="collapse-item" style="font-size: 15px;" href="PERTASHOP/view/DsPertashop">Pertasop</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
                     </div>
                 </div>
             </li>
