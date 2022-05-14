@@ -366,7 +366,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <th>Harga</th>
                   <th>Total</th>
                   <th>File</th>
-                  <th>Aksi</th>
+
                 </tr>
               </thead>
               <tbody>
