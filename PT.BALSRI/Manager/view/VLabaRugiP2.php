@@ -20,6 +20,7 @@ exit;
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
+
 if (isset($_GET['tanggal1'])) {
    $tanggal_awal = $_GET['tanggal1'];
    $tanggal_akhir = $_GET['tanggal2'];
@@ -47,7 +48,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $jml_dex= $data2['total_dex'];
   $total_um= $data2['uang_makan'];
   $total_ug= $data2['uang_gaji'];
-  $total_dexlite = $jml_dex * 9700;
+  $total_dexlite = $jml_dex * 13250;
 
   //pengeluran Pul Biaya Kantor
    $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pu_pl WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Kantor' ");
@@ -96,12 +97,16 @@ else{
   $table = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
+
+    // Potongan 10%
+    $jumlah_potongan = (($total_tagihan * 10) / 100);
+
   //pengiriman
   $table2 = mysqli_query($koneksi, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $jml_dex= $data2['total_dex'];
   $total_um= $data2['uang_makan'];
-  $total_dexlite = $jml_dex * 9700;
+  $total_dexlite = $jml_dex * 13250;
   
 
   //pengeluran Pul Biaya Kantor
@@ -190,7 +195,7 @@ else{
         
     }
 }
-
+    $total_laba_kotor = $total_tagihan - $jumlah_potongan;
     $laba_bersih_sebelum_pajak = $total_tagihan - ($total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $total_gaji_karaywan + $total_um + $jml_transport +  $jml_konsumsi + $total_kredit);
     $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $total_um + $total_gaji_karaywan+ $jml_transport +  $jml_konsumsi + $total_kredit;
 ?>
@@ -232,8 +237,8 @@ else{
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-           <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
@@ -399,8 +404,6 @@ else{
 
  <?php } ?>
 
-
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -553,11 +556,17 @@ else{
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <?php echo "<td class='text-right'><a href='VRincianLRPLG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+             </tr> <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"></td>
              </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
-                <td class="no-line text-left"><?= formatuang($total_tagihan); ?> </td>
+                <td class="no-line text-left"><?= formatuang($total_laba_kotor); ?> </td>
                 <td class="no-line text-left"><?= formatuang(0); ?> </td>
                 <td class="thick-line"></td>
             </tr>
@@ -707,7 +716,37 @@ else{
 
 </div>
 <br>
+<br>
+<h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Palembang </h3>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<thead>
+    <tr>
+      <th class="text-center" >No Polisi</th>
+      <th class="text-center" >Jenis Kendaraan</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
 
+    <?php while($data = mysqli_fetch_array($table10)){
+     $mt = $data['mt'];
+     
+     $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE no_polisi = '$mt' ");
+    $data_ken = mysqli_fetch_array($result);
+    $jenis_ken = $data_ken['jenis_kendaraan']; 
+
+     echo "<tr>
+     <td style='font-size: 14px' align = 'center'>$mt</td>
+     <td style='font-size: 14px' align = 'center'>$jenis_ken</td>"?>
+     <?php echo "<td class='text-center'><a href='VLRKendaraanP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$mt'>LR Kendaraan</a></td>"; ?>
+     
+    
+  <?php echo  " </tr>";
+}
+?>
+
+</tbody>
+</table>
 <br>
 </div>
 
