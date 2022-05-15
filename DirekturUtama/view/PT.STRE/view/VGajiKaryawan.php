@@ -86,7 +86,7 @@ $table = mysqli_query($koneksistre, "SELECT * FROM riwayat_penggajian");
 
     <!-- Heading -->
     <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Administrasi
+         Menu PT.STRE
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -258,84 +258,6 @@ $table = mysqli_query($koneksistre, "SELECT * FROM riwayat_penggajian");
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-  <div class="row">
-    <div class="col-md-10">
- 
-   </div>
-   <div class="col-md-2">
-    <!-- Button Input Data Bayar -->
-    <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Penggajian Karyawan</button> <br> <br>
-    </div>
-    <!-- Form Modal  -->
-    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-       <div class="modal-content"> 
-        <div class="modal-header">
-          <h5 class="modal-title"> Form Pencatatan Gaji</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> 
-
-        <!-- Form Input Data -->
-        <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_catat_gaji' enctype='multipart/form-data' method='POST'>";  ?>
-
-          <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
-               
-
-          </div>
-        </div>
-
-      <br>
-      <div class="row">
-          
-           <div class="col-md-6">
-          <label>REF</label>
-          <select id="referensi" name="referensi" class="form-control">
-            <option>BALSRI BKU</option>
-            <option>Driver BKU</option>
-
-          </select>
-        </div>  
-        
-        <div class="col-md-6">
-          <label>Jumlah Gaji</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="">
-        </div>
-
-                    
-      </div>
-    
-<br>
-
-   <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> BAYAR</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -344,7 +266,7 @@ $table = mysqli_query($koneksistre, "SELECT * FROM riwayat_penggajian");
       <th>Referensi</th>
       <th>Jumlah</th>
       <th>File</th>
-      <th>Aksi</th>
+
     </tr>
   </thead>
   <tbody>
@@ -370,39 +292,8 @@ $table = mysqli_query($koneksistre, "SELECT * FROM riwayat_penggajian");
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-
-       <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Gaji'></button>
-
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-       <div class="modal-dialog" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus Data Gaji </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <form action="../proses/hapus_catat_gaji" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
-              </div>
-
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <?php echo  " </td> </tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/PT.STRE/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PT.STRE/Administrasi//file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     </tr>";
   }
   ?>
 

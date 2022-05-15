@@ -95,7 +95,7 @@ exit;
 
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Administrasi
+                     Menu PT.STRE
                 </div>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
