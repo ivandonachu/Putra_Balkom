@@ -6,21 +6,17 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 $id=$_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
+$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$id1 = $data1['id_karyawan'];
+$nama = $data1['nama_pemilik'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Administrasi') {
+if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{  header("Location: logout.php");
+else{ header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
-$data = mysqli_fetch_array($result);
-$nama = $data['nama_karyawan'];
-
 
 
 
@@ -40,9 +36,9 @@ if (isset($_GET['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal = '$tanggal_awal' ORDER BY a.tanggal");
+  $table = mysqli_query($koneksistre, "SELECT * FROM pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal = '$tanggal_awal' ORDER BY a.tanggal");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan FROM pengiriman WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksistre, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan FROM pengiriman WHERE tanggal = '$tanggal_awal'");
   $data2 = mysqli_fetch_array($table2);
   $jml_jt_gps= $data2['total_jt_gps'];
   $jml_jt_odo= $data2['total_jt_odo'];
@@ -51,14 +47,14 @@ if ($tanggal_awal == $tanggal_akhir) {
   $total_ug= $data2['uang_gaji'];
   $total_uj= $data2['uang_jalan'];
 
-  $table3 = mysqli_query($koneksi,"SELECT * FROM pengiriman WHERE tanggal = '$tanggal_awal' AND jns_trans = 'Lost' ");
+  $table3 = mysqli_query($koneksistre,"SELECT * FROM pengiriman WHERE tanggal = '$tanggal_awal' AND jns_trans = 'Lost' ");
   $data3 = mysqli_fetch_array($table3);
   $total_lost = $data3['jml_trans'];
   if (!isset($data3['jml_trans'])) {
     $total_lost = 0;
 }
 
-  $table4 = mysqli_query($koneksi,"SELECT * FROM pengiriman WHERE tanggal = '$tanggal_awal' AND jns_trans = 'Surplus' ");
+  $table4 = mysqli_query($koneksistre,"SELECT * FROM pengiriman WHERE tanggal = '$tanggal_awal' AND jns_trans = 'Surplus' ");
   $data4 = mysqli_fetch_array($table4);
   $total_surplus = $data4['jml_trans'];
   if (!isset($data4['jml_trans'])) {
@@ -68,9 +64,9 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY a.tanggal");
+  $table = mysqli_query($koneksistre, "SELECT * FROM pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY a.tanggal");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksistre, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $jml_jt_gps= $data2['total_jt_gps'];
   $jml_jt_odo= $data2['total_jt_odo'];
@@ -79,13 +75,13 @@ else{
   $total_ug= $data2['uang_gaji'];
   $total_uj= $data2['uang_jalan'];
 
-  $table3 = mysqli_query($koneksi,"SELECT SUM(jml_trans) AS lost FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jns_trans = 'Lost' ");
+  $table3 = mysqli_query($koneksistre,"SELECT SUM(jml_trans) AS lost FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jns_trans = 'Lost' ");
   $data3 = mysqli_fetch_array($table3);
   $total_lost = $data3['lost'];
   if (!isset($data3['lost'])) {
     $total_lost = 0;
 }
-  $table4 = mysqli_query($koneksi,"SELECT SUM(jml_trans) AS surplus FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jns_trans = 'Surplus' ");
+  $table4 = mysqli_query($koneksistre,"SELECT SUM(jml_trans) AS surplus FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jns_trans = 'Surplus' ");
   $data4 = mysqli_fetch_array($table4);
   $total_surplus = $data4['surplus'];
   if (!isset($data4['surplus'])) {
@@ -130,11 +126,11 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTSTRE">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
@@ -146,7 +142,7 @@ else{
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
-    <a class="nav-link" href="DsAdministrasi">
+    <a class="nav-link" href="DsPTSTRE">
         <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
@@ -158,6 +154,27 @@ else{
     <div class="sidebar-heading" style="font-size: 15px; color:white;">
          Menu Administrasi
     </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo13"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+    </a>
+    <div id="collapseTwo13" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT. CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+            <a class="collapse-item" style="font-size: 15px;" href="DsPTSTRE">PT.Sri Trans Energi</a>
+        </div>
+    </div>
+</li>
      <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
@@ -169,6 +186,7 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Bangkulu</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Bangkulu</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif BKU</a>
         </div>
     </div>
@@ -367,8 +385,8 @@ else{
            <label>AMT</label>
            <select id="amt" name="amt" class="form-control ">
             <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Bengkulu'");   
+            include 'koneksistre.php';
+            $result = mysqli_query($koneksistre, "SELECT * FROM driver WHERE alamat = 'Bengkulu'");   
 
             while ($data2 = mysqli_fetch_array($result)){
               $nama_driver = $data2['nama_driver'];
@@ -385,8 +403,8 @@ else{
           <label>MT</label>
           <select id="mt" name="mt" class="form-control">
             <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Bengkulu'");   
+            include 'koneksistre.php';
+            $result = mysqli_query($koneksistre, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Bengkulu'");   
 
             while ($data2 = mysqli_fetch_array($result)){
               $no_polisi = $data2['no_polisi'];
@@ -594,8 +612,8 @@ else{
                  <select id="amt" name="amt" class="form-control ">
                    <?php
                    $dataSelect = $data['amt']; 
-                   include 'koneksi.php';
-                   $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Bengkulu'");   
+                   include 'koneksistre.php';
+                   $result = mysqli_query($koneksistre, "SELECT * FROM driver WHERE alamat = 'Bengkulu'");   
 
                    while ($data2 = mysqli_fetch_array($result)){
                     $nama_driver = $data2['nama_driver'];
@@ -614,8 +632,8 @@ else{
                 <select id="mt" name="mt" class="form-control">
                   <?php
                   $dataSelect = $data['mt']; 
-                  include 'koneksi.php';
-                  $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Bengkulu'");   
+                  include 'koneksistre.php';
+                  $result = mysqli_query($koneksistre, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Bengkulu'");   
 
                   while ($data2 = mysqli_fetch_array($result)){
                     $no_polisi = $data2['no_polisi'];

@@ -84,7 +84,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 65px; width: 220px;" src="../gambar/Logo CBM.jpg" ></div>
 </a>
 
 <!-- Divider -->

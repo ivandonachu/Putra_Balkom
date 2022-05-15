@@ -6,50 +6,34 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 $id=$_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
+$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$id1 = $data1['id_karyawan'];
+$nama = $data1['nama_pemilik'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Administrasi') {
+if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{  header("Location: logout.php");
+else{ header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
-$data = mysqli_fetch_array($result);
-$nama = $data['nama_karyawan'];
-
 
 
 
 if (isset($_GET['tanggal1'])) {
-  $tanggal_awal = $_GET['tanggal1'];
-  $tanggal_akhir = $_GET['tanggal2'];
- } 
- 
- elseif (isset($_POST['tanggal1'])) {
-  $tanggal_awal = $_POST['tanggal1'];
-  $tanggal_akhir = $_POST['tanggal2'];
- }  
- else{
-   $tanggal_awal = date('Y-m-1');
- $tanggal_akhir = date('Y-m-31');
- }
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
 
-$nama_driver = $_GET['nama_driver'];
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+}  
 
-if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal = '$tanggal_awal' AND nama_driver = '$nama_driver' " );
 
-}
-else{
+$table = mysqli_query($koneksistre, "SELECT * FROM driver");
 
-  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_driver = '$nama_driver' ");
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +46,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Gaji</title>
+  <title>Pencatatan Driver</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -92,7 +76,7 @@ else{
   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTSTRE">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
@@ -104,7 +88,7 @@ else{
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
-    <a class="nav-link" href="DsAdministrasi">
+    <a class="nav-link" href="DsPTSTRE">
         <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
@@ -116,6 +100,27 @@ else{
     <div class="sidebar-heading" style="font-size: 15px; color:white;">
          Menu Administrasi
     </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo13"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+    </a>
+    <div id="collapseTwo13" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT. CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+            <a class="collapse-item" style="font-size: 15px;" href="DsPTSTRE">PT.Sri Trans Energi</a>
+        </div>
+    </div>
+</li>
      <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
@@ -127,6 +132,7 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Bangkulu</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Bangkulu</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif BKU</a>
         </div>
     </div>
@@ -204,7 +210,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRincianGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Gaji BKU</h5></a>"; ?>
+      <?php echo "<a href='VAMT'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Driver</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -261,24 +267,64 @@ else{
 
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
+   <div class="row">
+    <div class="col-md-10">
 
-   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <div align="left">
-      <?php echo "<a href='VGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
-    <br>
-    <br>
+    <div class="col-md-2">
+      <!-- Button Input Data Bayar -->
+      <div align="right">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Driver</button> <br> <br>
+      </div>
+      <!-- Form Modal  -->
+      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-lg" role ="document">
+         <div class="modal-content"> 
+          <div class="modal-header">
+            <h5 class="modal-title"> Form Pencatatan Driver</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+
+          <!-- Form Input Data -->
+          <div class="modal-body" align="left">
+            <?php  echo "<form action='../proses/proses_driver' enctype='multipart/form-data' method='POST'>";  ?>
+
+            <br>
+
+            <div class="row">
+              <div class="col-md-6">
+                <label>Nama Driver</label>
+                <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="">
+              </div>    
 
 
-  <div class="col-md-8">
-   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
- </div>
- <br>
+              <div class="col-md-6">
+                <label>No Hp</label>
+                <input class="form-control form-control-sm" type="text" id="no_hp" name="no_hp" >
+              </div>
+            </div>
+            <div>
+             <label>Wilayah Operasi</label>
+             <div class="form-group">
+               <textarea id = "alamat" name="alamat" style="width: 300px;"></textarea>
+             </div>
+           </div>
 
- <div class="row">
-  <div class="col-md-10">
 
+           <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> CATAT</button>
+            <button type="reset" class="btn btn-danger"> RESET</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
   </div>
+</div>
+
+</div>
 </div>
 
 <!-- Tabel -->    
@@ -286,73 +332,104 @@ else{
   <thead>
     <tr>
       <th>No</th>
-      <th>Tanggal</th>
-      <th>AMT</th>   
-      <th>MT</th>
-      <th>Muat</th>
-      <th>JT GPS</th>
-      <th>JT ODO</th>
-      <th>DEX</th>
-      <th>Uang Makan</th>
-      <th>Gaji</th>
-      <th>Uang Jalan</th>
-      <th>Jns Trans</th>
-      <th>Jml Trans</th>
-      <th>KET</th>
-      <th>File</th>
+      <th>Nama Driver</th>
+      <th>No Hp</th>   
+      <th>Wilayah Operasi</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <?php
-    $total_lost = 0;
-    $toal_ug = 0;
-    $total_gaji_bersih = 0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
+    
     <?php while($data = mysqli_fetch_array($table)){
-      $no_laporan = $data['no_laporan'];
-      $tanggal =$data['tanggal'];
-      $amt =$data['nama_driver'];
-      $mt = $data['no_polisi'];
-      $muatan = $data['muatan'];
-      $jt_gps = $data['jt_gps'];
-      $jt_odo = $data['jt_odo'];
-      $dexlite = $data['dexlite'];
-      $um = $data['um'];
-      $ug = $data['ug'];
-      $uj = $data['uj'];
-      $jns_trans = $data['jns_trans'];
-      $jml_trans = $data['jml_trans'];
-      $keterangan = $data['keterangan'];
-      $file_bukti = $data['file_bukti'];
-        if($jns_trans == 'Lost'){
-        $total_lost = $total_lost + $jml_trans; 
-        }
-    $total_gaji_bersih = $total_gaji_bersih + $ug; 
+      $no_driver = $data['no_driver'];
+      $nama_driver =$data['nama_driver'];
+      $no_hp =$data['no_hp'];
+      $alamat = $data['alamat'];
 
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no_laporan</td>
-      <td style='font-size: 14px' align = 'center'>$tanggal</td>
-      <td style='font-size: 14px' align = 'center'>$amt</td>
-      <td style='font-size: 14px' align = 'center'>$mt</td>
-      <td style='font-size: 14px' align = 'center'>$muatan</td>
-      <td style='font-size: 14px' align = 'center'>$jt_gps/Km</td>
-      <td style='font-size: 14px' align = 'center'>$jt_odo/km</td>
-      <td style='font-size: 14px' align = 'center'>$dexlite/L</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($um); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>$jns_trans</td>
-      <td style='font-size: 14px' align = 'center'>$jml_trans/L</td>
-      <td style='font-size: 14px' align = 'center'>$keterangan</td>
+      <td style='font-size: 14px' align = 'center'>$no_driver</td>
+      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
+      <td style='font-size: 14px' align = 'center'>$no_hp</td>
+      <td style='font-size: 14px' align = 'center'>$alamat</td>
       "; ?>
-      <?php echo "
-      <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_driver']; ?>">Edit</button>
+
+      <!-- Form EDIT DATA -->
+
+      <div class="modal fade" id="formedit<?php echo $data['no_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role ="document">
+          <div class="modal-content"> 
+            <div class="modal-header">
+              <h5 class="modal-title"> Form Edit Driver </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true"> &times; </span>
+              </button>
+            </div>
+
+            <!-- Form Edit Data -->
+            <div class="modal-body">
+              <form action="../proses/edit_driver.php" enctype="multipart/form-data" method="POST">
+
+                <input type="hidden" name="no_driver" value="<?php echo $no_driver;?>"> 
+
+                 <div class="row">
+              <div class="col-md-6">
+                <label>Nama Driver</label>
+                <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="" value="<?php echo $nama_driver;?>">
+              </div>    
+
+
+              <div class="col-md-6">
+                <label>No Hp</label>
+                <input class="form-control form-control-sm" type="text" id="no_hp" name="no_hp" value="<?php echo $no_hp;?>">
+              </div>
+            </div>
+            <div>
+             <label>Wilayah Oprasi</label>
+             <div class="form-group">
+               <textarea id = "alamat" name="alamat" style="width: 300px;"><?php echo $alamat;?></textarea>
+             </div>
+           </div>
+
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary"> Ubah </button>
+      <button type="reset" class="btn btn-danger"> RESET</button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Button Hapus -->
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_driver']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $data['no_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+ <div class="modal-dialog" role ="document">
+   <div class="modal-content"> 
+    <div class="modal-header">
+      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form action="../proses/hapus_driver" method="POST">
+        <input type="hidden" name="no_driver" value="<?php echo $no_driver;?>">
+        <div class="form-group">
+          <h6> Yakin Ingin Hapus Data? </h6>             
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Hapus </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
 
 <?php echo  " </td> </tr>";
 }
@@ -361,77 +438,10 @@ else{
 </tbody>
 </table>
 </div>
-</div>
 <br>
 <br>
 <br>
 
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Lost</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_lost?>/L</div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-road fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang Lost</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_lost * 8350);   ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-road fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Gaji Kotor</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_gaji_bersih + ($total_lost * 8350));  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Gaji Bersih</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_gaji_bersih);  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 </div>
 

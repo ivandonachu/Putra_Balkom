@@ -46,6 +46,9 @@
 /DirekturUtama/view/PT.MESPBR/view/VRincianLRMES/koneksi.php
 /DirekturUtama/view/Kebun/view/koneksi.php
 
+/DirekturUtama/view/PT.STRE/view/koneksi.php
+/DirekturUtama/view/PT.STRE/view/logout.php
+
 /PERTASHOP/Administrasi/file_administrasi
 /PERTASHOP/Administrasi/proses/koneksi.php
 /PERTASHOP/Administrasi/view/koneksi.php

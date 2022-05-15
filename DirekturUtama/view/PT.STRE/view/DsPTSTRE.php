@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include'koneksi.php';
@@ -7,20 +6,17 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 $id=$_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
+$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$id1 = $data1['id_karyawan'];
+$nama = $data1['nama_pemilik'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Administrasi') {
+if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{  header("Location: logout.php");
+else{ header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
-$data = mysqli_fetch_array($result);
-$nama = $data['nama_karyawan'];
 
 
 ?>
@@ -77,7 +73,7 @@ $nama = $data['nama_karyawan'];
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTSTRE">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -89,7 +85,7 @@ $nama = $data['nama_karyawan'];
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsAdministrasi">
+                <a class="nav-link" href="DsPTSTRE">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
@@ -101,6 +97,27 @@ $nama = $data['nama_karyawan'];
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
                      Menu Administrasi
                 </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo13"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+                </a>
+                <div id="collapseTwo13" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT. CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="DsPTSTRE">PT.Sri Trans Energi</a>
+                    </div>
+                </div>
+            </li>
                  <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
@@ -112,6 +129,7 @@ $nama = $data['nama_karyawan'];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Bangkulu</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Bangkulu</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif BKU</a>
                     </div>
                 </div>
