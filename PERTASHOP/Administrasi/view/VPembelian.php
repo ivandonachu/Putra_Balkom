@@ -546,7 +546,7 @@ else{
 
               <label>Tanggal Bongkar</label>
               <div class="col-sm-10">
-                <input  class="form-control form-control-sm" type="date" id="tanggal_bongkar" name="tanggal_bongkar" required="" value="<?php echo $tanggal_bongkar; ?>">
+                <input  class="form-control form-control-sm" type="date" id="tanggal_bongkar" name="tanggal_bongkar" value="<?php echo $tanggal_bongkar; ?>">
               </div>
 
             </div>
