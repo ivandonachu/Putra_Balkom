@@ -354,6 +354,7 @@ else{
   <thead>
     <tr>
       <th style="font-size: 11px" >No</th>
+      <th style="font-size: 11px" >No SO</th>
       <th style="font-size: 11px" >Tanggal</th>
       <th style="font-size: 11px" >Kode Pertashop</th>   
       <th style="font-size: 11px" >Lokasi</th>
@@ -391,6 +392,7 @@ else{
     ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no_pembelian = $data['no_pembelian'];
+      $no_so = $data['no_so'];
       $tanggal =$data['tanggal'];
       $kode_perta =$data['kode_perta'];
       $nama_barang =$data['nama_barang'];
@@ -438,6 +440,7 @@ else{
 
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
+      <td style='font-size: 11px' align = 'center'>$no_so</td>
       <td style='font-size: 11px' align = 'center'>$tanggal</td>
       <td style='font-size: 11px' align = 'center'>$kode_perta</td>
       <td style='font-size: 11px' align = 'center'>$lokasi</td>

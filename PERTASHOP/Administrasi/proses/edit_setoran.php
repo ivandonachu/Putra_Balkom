@@ -22,6 +22,7 @@ $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $penyetor = $_POST['penyetor'];
+$nama_barang = $_POST['nama_barang'];
 $no_rekening = $_POST['no_rekening'];
 $jumlah = $_POST['jumlah'];
 $no_setoran = $_POST['no_setoran'];
@@ -65,17 +66,17 @@ $result = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE lokasi = '$lokas
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE setoran SET tanggal = '$tanggal' , kode_perta = '$kode_perta' , penyetor = '$penyetor' , no_rekening = '$no_rekening' ,jumlah = '$jumlah'  WHERE no_setoran = 
+		$query3 = mysqli_query($koneksi,"UPDATE setoran SET tanggal = '$tanggal' , kode_perta = '$kode_perta' , penyetor = '$penyetor' ,nama_barang = '$nama_barang', no_rekening = '$no_rekening' ,jumlah = '$jumlah'  WHERE no_setoran = 
 		'$no_setoran'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE setoran SET tanggal = '$tanggal' , kode_perta = '$kode_perta', penyetor = '$penyetor' , no_rekening = '$no_rekening' ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_setoran = 
+		$query3 = mysqli_query($koneksi,"UPDATE setoran SET tanggal = '$tanggal' , kode_perta = '$kode_perta', penyetor = '$penyetor'  ,nama_barang = '$nama_barang' , no_rekening = '$no_rekening' ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_setoran = 
 		'$no_setoran'");
 	}
 	
 
 
-			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VSetoran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VSetoran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 
 
 

@@ -23,6 +23,7 @@ $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $penyetor = $_POST['penyetor'];
 $jumlah = $_POST['jumlah'];
+$nama_barang = $_POST['nama_barang'];
 $lokasi = $_POST['lokasi'];
 $no_rekening = $_POST['no_rekening'];
 $nama_file = $_FILES['file']['name'];
@@ -65,9 +66,9 @@ $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO setoran VALUES ('','$kode_perta','$tanggal','$penyetor','$jumlah','$no_rekening','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO setoran VALUES ('','$kode_perta','$tanggal','$penyetor','$nama_barang','$jumlah','$no_rekening','$file')");
 
 
 			if ($query != "") {
-				echo "<script> window.location='../view/VSetoran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VSetoran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 			}

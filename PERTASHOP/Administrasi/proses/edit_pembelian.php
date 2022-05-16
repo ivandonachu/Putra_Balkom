@@ -23,6 +23,7 @@ $no_pembelian = $_POST['no_pembelian'];
 $tanggal = $_POST['tanggal'];
 $tanggal_bongkar = $_POST['tanggal_bongkar'];
 $lokasi = $_POST['lokasi'];
+$no_so = $_POST['no_so'];
 $volume_tangki = $_POST['volume_tangki'];
 $sonding_awal = $_POST['sonding_awal'];
 $sonding_akhir = $_POST['sonding_akhir'];
@@ -144,11 +145,11 @@ else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
 }
     
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE pembelian SET tanggal = '$tanggal',tanggal_bongkar = '$tanggal_bongkar' , kode_perta = '$kode_perta' , nama_barang = '$nama_barang', qty = '$qty' , harga = '$harga', volume_tangki = '$volume_tangki'
+		$query3 = mysqli_query($koneksi,"UPDATE pembelian SET no_so = '$no_so', tanggal = '$tanggal',tanggal_bongkar = '$tanggal_bongkar' , kode_perta = '$kode_perta' , nama_barang = '$nama_barang', qty = '$qty' , harga = '$harga', volume_tangki = '$volume_tangki'
 		 ,sonding_awal = '$sonding_awal',sonding_akhir = '$sonding_akhir',keterangan = '$keterangan'  WHERE no_pembelian = '$no_pembelian'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE pembelian SET tanggal = '$tanggal' , kode_perta = '$kode_perta' , nama_barang = '$nama_barang' , qty = '$qty' , volume_tangki = '$volume_tangki'
+		$query3 = mysqli_query($koneksi,"UPDATE pembelian SET no_so = '$no_so', tanggal = '$tanggal' , kode_perta = '$kode_perta' , nama_barang = '$nama_barang' , qty = '$qty' , volume_tangki = '$volume_tangki'
 		,sonding_awal = '$sonding_awal',sonding_akhir = '$sonding_akhir' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_pembelian = 
 		'$no_pembelian'");
 	}

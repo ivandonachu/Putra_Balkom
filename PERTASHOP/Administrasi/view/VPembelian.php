@@ -265,10 +265,7 @@ else{
              </div>      
 
            </div>
-           <div class="col-md-6">
-
-
-           </div>
+           
          </div>
          <br>
 
@@ -291,7 +288,10 @@ else{
             ?>
           </select>
         </div>
-
+        <div class="col-md-6">
+          <label>No SO</label>
+          <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" required="">
+        </div> 
       </div>
 
       <br>
@@ -383,6 +383,7 @@ else{
   <thead>
     <tr>
       <th style="font-size: 11px" >No</th>
+      <th style="font-size: 11px" >No SO</th>
       <th style="font-size: 11px" >Tanggal Pembelian</th>
       <th style="font-size: 11px" >Tanggal Bongkar</th>
       <th style="font-size: 11px" >Kode Pertashop</th>   
@@ -421,6 +422,7 @@ else{
     ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no_pembelian = $data['no_pembelian'];
+      $no_so =$data['no_so'];
       $tanggal =$data['tanggal'];
       $tanggal_bongkar =$data['tanggal_bongkar'];
       $kode_perta =$data['kode_perta'];
@@ -469,6 +471,7 @@ else{
 
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
+      <td style='font-size: 11px' align = 'center'>$no_so</td>
       <td style='font-size: 11px' align = 'center'>$tanggal</td>
       <td style='font-size: 11px' align = 'center'>$tanggal_bongkar</td>
       <td style='font-size: 11px' align = 'center'>$kode_perta</td>
@@ -512,27 +515,46 @@ else{
           <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian; ?>">
           <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
           <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
-  
+
+          <div class="row">
+            <div class="col-md-6">
+
+              <label>No SO</label>
+              <div class="col-sm-10">
+                <input  class="form-control form-control-sm" type="text" id="no_so" name="no_so" required="" value="<?php echo $no_so;  ?>">
+              </div>
+
+            </div>
+            <div class="col-md-6">
+
+            </div>
+
+          </div>
+
+          <br>
 
           <div class="row">
             <div class="col-md-6">
 
               <label>Tanggal</label>
               <div class="col-sm-10">
-                <input type="date" id="tanggal" name="tanggal" required="" value="<?php echo $tanggal; ?>">
+                <input  class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="" value="<?php echo $tanggal; ?>">
               </div>
 
             </div>
             <div class="col-md-6">
 
-              <label>Tanggal</label>
+              <label>Tanggal Bongkar</label>
               <div class="col-sm-10">
-                <input type="date" id="tanggal_bongkar" name="tanggal_bongkar" required="" value="<?php echo $tanggal_bongkar; ?>">
+                <input  class="form-control form-control-sm" type="date" id="tanggal_bongkar" name="tanggal_bongkar" required="" value="<?php echo $tanggal_bongkar; ?>">
               </div>
 
             </div>
 
           </div>
+
+
+          <br>
 
           <div class="row">
 
@@ -554,11 +576,6 @@ else{
             ?>
           </select>
           </div>
-
-   
-
-        
-
 
             <div class="col-md-6">
               <label>QTY</label>
@@ -598,7 +615,7 @@ else{
 
               <label>Harga</label>
               <div class="col-sm-10">
-                <input type="float" id="harga" name="harga" required="" value="<?php echo $harga; ?>">
+                <input  class="form-control form-control-sm" type="float" id="harga" name="harga" required="" value="<?php echo $harga; ?>">
               </div>
 
             </div>
@@ -606,7 +623,7 @@ else{
 
               <label>Volume Tanki</label>
               <div class="col-sm-10">
-                <input type="float" id="volume_tangki" name="volume_tangki" required="" value="<?php echo $volume_tangki; ?>">
+                <input  class="form-control form-control-sm" type="float" id="volume_tangki" name="volume_tangki" required="" value="<?php echo $volume_tangki; ?>">
               </div>
 
             </div>
@@ -619,7 +636,7 @@ else{
 
               <label>Sonding Sebelum Isi</label>
               <div class="col-sm-10">
-                <input type="float" id="sonding_awal" name="sonding_awal" required="" value="<?php echo $sonding_awal; ?>">
+                <input  class="form-control form-control-sm" type="float" id="sonding_awal" name="sonding_awal" required="" value="<?php echo $sonding_awal; ?>">
               </div>
 
             </div>
@@ -627,7 +644,7 @@ else{
 
               <label>Sonding Setelah Isi</label>
               <div class="col-sm-10">
-                <input type="float" id="sonding_akhir" name="sonding_akhir" required="" value="<?php echo $sonding_akhir; ?>">
+                <input  class="form-control form-control-sm" type="float" id="sonding_akhir" name="sonding_akhir" required="" value="<?php echo $sonding_akhir; ?>">
               </div>
 
             </div>

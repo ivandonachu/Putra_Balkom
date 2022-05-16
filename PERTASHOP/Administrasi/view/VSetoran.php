@@ -318,11 +318,18 @@ else{
      
 
       <div class="row">
-        <div class="col-md-6">
+      <div class="col-md-4">
+        <label>Nama Barang</label>
+          <select id="nama_barang" name="nama_barang" class="form-control">
+            <option>Pertamax</option>
+            <option>Dexlite</option>
+          </select>
+          </div> 
+        <div class="col-md-4">
           <label>No Rekening</label>
           <input class="form-control form-control-sm" type="text" id="no_rekening" name="no_rekening"  required="">
         </div>    
-        <div class="col-md-6">
+        <div class="col-md-4">
         <label>Jumlah</label>
           <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
         </div>         
@@ -372,6 +379,7 @@ else{
       <th>Pertashop</th>
       <th>Penyetor</th>
       <th>No Rek</th>
+      <th>Nama Barang</th>
       <th>Jumlah</th>
       <th>file</th>
       <th>Aksi</th>
@@ -394,6 +402,7 @@ else{
      $kode_perta =$data['kode_perta'];
      $lokasi =$data['lokasi'];
      $penyetor = $data['penyetor'];
+     $nama_barang = $data['nama_barang'];
      $jumlah = $data['jumlah'];
      $no_rekening = $data['no_rekening'];
      $file_bukti = $data['file_bukti'];
@@ -409,6 +418,7 @@ else{
      <td style='font-size: 14px'>$lokasi</td>
      <td style='font-size: 14px'>$penyetor</td>
      <td style='font-size: 14px'>$no_rekening</td>
+     <td style='font-size: 14px'>$nama_barang</td>
      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
      <td style='font-size: 14px'>"; ?> <a download="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
      "; ?>
@@ -485,11 +495,21 @@ else{
      
 
       <div class="row">
-        <div class="col-md-6">
+      <div class="col-md-4">
+            <label>Nama Barang</label>
+              <select id="nama_barang" name="nama_barang" class="form-control">
+                <?php
+                $dataSelect = $data['nama_barang']; ?>
+                <option <?php echo ($dataSelect == 'Pertamax') ? "selected" : "" ?>>Pertamax</option>
+                <option <?php echo ($dataSelect == 'Dexlite') ? "selected" : "" ?>>Dexlite</option>
+
+              </select>
+            </div>
+        <div class="col-md-4">
           <label>No Rekening</label>
           <input class="form-control form-control-sm" type="text" id="no_rekening" name="no_rekening"  value="<?php echo $no_rekening;?>"  required="">
         </div>    
-        <div class="col-md-6">
+        <div class="col-md-4">
         <label>Jumlah</label>
           <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
         </div>         
@@ -498,6 +518,7 @@ else{
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
                <input type="hidden" name="no_setoran" value="<?php echo $no_setoran;?>">
+               
   
     <br>
 
@@ -540,6 +561,7 @@ else{
               <input type="hidden" name="no_setoran" value="<?php echo $no_setoran; ?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+              <input type="hidden" name="lokasi" value="<?php echo $lokasi;?>">
 
 
               <div class="form-group">

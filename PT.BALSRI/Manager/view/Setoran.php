@@ -376,6 +376,7 @@ else{
       <th>Kode Perta</th>
       <th>Pertashop</th>
       <th>Penyetor</th>
+      <th>Nama Barang</th>
       <th>No Rek</th>
       <th>Jumlah</th>
       <th>file</th>
@@ -399,6 +400,7 @@ else{
      $kode_perta =$data['kode_perta'];
      $lokasi =$data['lokasi'];
      $penyetor = $data['penyetor'];
+     $nama_barang = $data['nama_barang'];
      $jumlah = $data['jumlah'];
      $no_rekening = $data['no_rekening'];
      $file_bukti = $data['file_bukti'];

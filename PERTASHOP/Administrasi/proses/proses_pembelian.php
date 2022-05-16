@@ -21,6 +21,7 @@ $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $lokasi = $_POST['lokasi'];
+$no_so = $_POST['no_so'];
 $volume_tangki = $_POST['volume_tangki'];
 $sonding_awal = $_POST['sonding_awal'];
 $sonding_akhir = $_POST['sonding_akhir'];
@@ -28,6 +29,13 @@ $nama_barang = $_POST['nama_barang'];
 $qty = $_POST['qty'];
 $harga = $_POST['harga'];
 $keterangan = $_POST['keterangan'];
+
+$result = mysqli_query($koneksi, "SELECT * FROM pembelian WHERE no_so = '$no_so' AND tanggal = '$tanggal' ");
+ if(mysqli_num_rows($result) == 1 ){
+  	echo "<script>alert('SO sudah tercatat :)'); window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
+      }
+
+
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -72,7 +80,7 @@ $kode_perta = $data_perta['kode_perta'];
 
         if($kode_perta == '2P.323.208' && $nama_barang == 'Pertamax'){
             
-            	$query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+            	$query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -86,7 +94,7 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == '2P.323.208' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -100,7 +108,7 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -114,7 +122,7 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'sumberjaya' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -128,7 +136,7 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
                 $data_stok = mysqli_fetch_array($result2);
