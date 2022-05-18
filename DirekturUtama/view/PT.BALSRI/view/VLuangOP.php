@@ -365,16 +365,129 @@ function formatuang($angka){
 
      $total_oprasional_plg =   $jml_biaya_kantor_plg + $jml_listrik_plg + $jml_sewa_plg + $jml_atk_plg + $total_gaji_karaywan_plg + $jml_transport_plg +  $jml_konsumsi_plg;
 
-     $total_tagihan_global = $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bta;
+     
+    // BELITUNG
+
+       // Tagihan
+  $table_bb = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_bl a INNER JOIN master_tarif_bl b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $data_bb = mysqli_fetch_array($table_bb);
+  $total_tagihan_bb = $data_bb['total_tagihan'];
+
+  // Potongan 10%
+  $jumlah_potongan_bb = (($total_tagihan_bb * 10) / 100);
+
+  //pengiriman
+  $table2_bb = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $data2_bb = mysqli_fetch_array($table2_bb);
+  $jml_dex_bb = $data2_bb['total_dex'];
+  $total_um_bb = $data2_bb['uang_makan'];
+ 
+  $total_dexlite_bb = $jml_dex_bb * 9700;
+    
+
+    
+  //pengeluran Pul Biaya Kantor
+   $table3_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+   $data3_bb = mysqli_fetch_array($table3_bb);
+   $jml_biaya_kantor_bb = $data3_bb['jumlah_biaya_kantor'];
+    if (!isset($data3_bb['jumlah_biaya_kantor'])) {
+    $jml_biaya_kantor_bb = 0;
+    }
+
+   //pengeluran Pul Listrik & Telepon
+   $table4_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
+   $data4_bb = mysqli_fetch_array($table4_bb);
+   $jml_listrik_bb = $data4_bb['jumlah_listrik'];
+    if (!isset($data4_bb['jumlah_listrik'])) {
+    $jml_listrik_bb = 0;
+    }
+
+   //pengeluran Biaya Sewa
+   $table5_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
+   $data5_bb = mysqli_fetch_array($table5_bb);
+   $jml_sewa_bb = $data5_bb['jumlah_sewa'];
+    if (!isset($data5_bb['jumlah_sewa'])) {
+    $jml_sewa_bb = 0;
+    }
+
+   //pengeluran Alat Tulis Kantor
+   $table6_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+   $data6_bB = mysqli_fetch_array($table6_bb);
+   $jml_atk_bb = $data6_bB['jumlah_atk'];
+    if (!isset($data6_bB['jumlah_atk'])) {
+    $jml_atk_bb = 0;
+    }
+
+    //pengeluran Transnport / Perjalanan Dinas
+   $table61_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $data61_bb = mysqli_fetch_array($table61_bb);
+   $jml_transport_bb = $data61_bb['jumlah_transport'];
+    if (!isset($data61_bb['jumlah_transport'])) {
+    $jml_transport_bb = 0;
+    }
+    //pengeluran Biaya Konsumsi
+   $table62_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $data62_bb = mysqli_fetch_array($table62_bb);
+   $jml_konsumsi_bb = $data62_bb['jumlah_konsumsi'];
+    if (!isset($data62_bb['jumlah_konsumsi'])) {
+    $jml_konsumsi_bb = 0;
+    }
+
+    //pengeluran perbaikan
+   $table7_bb = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $data7_bb = mysqli_fetch_array($table7_bb);
+   $jml_perbaikan_bb = $data7_bb['jumlah_perbaikan'];
+    if (!isset($data7_bb['jumlah_perbaikan'])) {
+    $jml_perbaikan_bb = 0;
+    }
+    
+    
+     //Gaji karyawan
+   $table8_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BB' ");
+   $data8_bb = mysqli_fetch_array($table8_bb);
+   $gaji_karyawan_bb = $data8_bb['jumlah_gaji'];
+    if (!isset($data8_bb['jumlah_gaji'])) {
+    $gaji_karyawan_bb = 0;
+    }
+    //Gaji dRIVER
+   $table9_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BB' ");
+   $data9_bb = mysqli_fetch_array($table9_bb);
+   $gaji_driver_bb = $data9_bb['jumlah_gaji'];
+    if (!isset($data9_bb['jumlah_gaji'])) {
+    $gaji_driver_bb = 0;
+    }
+    
+    $total_gaji_karaywan_bta = $gaji_karyawan_bta;
+
+   
+
+    $table101_bb =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    //totalkredit
+    $total_kredit_bb = 0;
+    while($data_bb = mysqli_fetch_array($table101_bb)){
+        $mt_bb = $data_bb['mt'];
+        $tablee_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_bb'");
+        $dataa_bb = mysqli_fetch_array($tablee_bb);
+        $jml_kredit_bb = $dataa_bb['total_kredit'];
+        if(isset($total_kredit_bb)){
+            $total_kredit_bb += $jml_kredit_bb;
+        }
+        
+    }
+
+    $total_oprasional_bb =   $jml_biaya_kantor_bb + $jml_listrik_bb + $jml_sewa_bb + $jml_atk_bb + $total_gaji_karaywan_bb + $jml_transport_bb +  $jml_konsumsi_bb;
+  
+
+     $total_tagihan_global = $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bta + $total_tagihan_bb;
      $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
-     $biaya_kantor_global = $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg + $jml_biaya_kantor_bta;
-     $listrik_global = $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bta;
-     $sewa_global = $jml_sewa_lmg + $jml_sewa_plg + $jml_sewa_bta;
-     $atk_global = $jml_atk_lmg + $jml_atk_plg + $jml_atk_bta;
-     $gaji_karyawan_global = $total_gaji_karaywan_lmg + $total_gaji_karaywan_plg + $total_gaji_karaywan_bta; 
-     $transport_global = $jml_transport_lmg + $jml_transport_plg + $jml_transport_bta;
-     $konsumsi_global = $jml_konsumsi_lmg + $jml_konsumsi_plg + $jml_konsumsi_bta; 
-     $total_oprasional_global = $total_oprasional_bta + $total_oprasional_lmg + $total_oprasional_plg;
+     $biaya_kantor_global = $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg + $jml_biaya_kantor_bta + $jml_biaya_kantor_bb;
+     $listrik_global = $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bta + $jml_listrik_bb;
+     $sewa_global = $jml_sewa_lmg + $jml_sewa_plg + $jml_sewa_bta + $jml_sewa_bb;
+     $atk_global = $jml_atk_lmg + $jml_atk_plg + $jml_atk_bta + $jml_atk_bb;
+     $gaji_karyawan_global = $total_gaji_karaywan_lmg + $total_gaji_karaywan_plg + $total_gaji_karaywan_bta + $total_gaji_karaywan_bb; 
+     $transport_global = $jml_transport_lmg + $jml_transport_plg + $jml_transport_bta + $jml_transport_bb;
+     $konsumsi_global = $jml_konsumsi_lmg + $jml_konsumsi_plg + $jml_konsumsi_bta + $jml_konsumsi_bb; 
+     $total_oprasional_global = $total_oprasional_bta + $total_oprasional_lmg + $total_oprasional_plg + $total_oprasional_bb;
 ?>
 
 
