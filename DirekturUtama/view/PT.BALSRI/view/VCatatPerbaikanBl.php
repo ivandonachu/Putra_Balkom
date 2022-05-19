@@ -458,6 +458,7 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
+      <th>Akun</th>
       <th>Nama Driver</th>
       <th>No Polisi</th>
       <th>Jumlah Pengeluaran</th>
@@ -481,6 +482,7 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
+      $akun =$data['akun'];
       $nama_driver =$data['nama_driver'];
       $no_polisi =$data['no_polisi'];
       $jml_pengeluaran = $data['jml_pengeluaran'];
@@ -492,6 +494,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$akun</td>
       <td style='font-size: 14px'>$nama_driver</td>
       <td style='font-size: 14px'>$no_polisi</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jml_pengeluaran); ?> <?php echo "</td>
