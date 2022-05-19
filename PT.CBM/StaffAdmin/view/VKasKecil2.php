@@ -273,7 +273,10 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
           <select id="akun" name="akun" class="form-control">
             <option>Alat Tulis Kantor</option>
             <option>Biaya Kantor</option>
+            <option>Biaya Konsumsi</option>
             <option>Listrik & Telepon</option>
+            <option>Biaya Usaha Lainnya</option>
+            <option>Biaya Umum</option>
              <option>Saldo Awal</option>
           </select>
         </div>            
@@ -441,6 +444,9 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
             <?php $dataSelect = $data['nama_akun']; ?>
             <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
             <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
+            <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+            <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
+            <option <?php echo ($dataSelect == 'Biaya Umum') ? "selected": "" ?> >Biaya Umum</option>
             <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
              <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected": "" ?> >Saldo Awal</option>
           </select>
