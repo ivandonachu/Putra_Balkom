@@ -508,16 +508,16 @@ else{
                   <label>Akun</label>
                   <select id="akun" name="akun" class="form-control">
                     <?php $dataSelect = $data['akun']; ?>
-                    <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
-                    <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
-                    <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
-                    <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
-                    <option <?php echo ($dataSelect == 'Biaya Umum') ? "selected": "" ?> >Biaya Umum</option>
-                    <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
-                    <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected": "" ?> >Saldo Awal</option>
+                    <option <?php echo ($dataSelect == 'Perbaikan Sparepart') ? "selected": "" ?>>Perbaikan Sparepart</option>
+                    <option <?php echo ($dataSelect == 'Perbaikan Mesin') ? "selected": "" ?>>Perbaikan Mesin</option>
+                    <option <?php echo ($dataSelect == 'Ganti Oli') ? "selected": "" ?>>Ganti Oli</option>
+                    <option <?php echo ($dataSelect == 'Cuci Mobil') ? "selected": "" ?>>Cuci Mobil</option>
+                    <option <?php echo ($dataSelect == 'Tambal Ban/Cek Ban') ? "selected": "" ?>>Tambal Ban/Cek Ban</option>
+                    <option <?php echo ($dataSelect == 'Ganti Ban') ? "selected": "" ?>>Ganti Ban</option>
+                    <option <?php echo ($dataSelect == 'Biaya Lainnya') ? "selected": "" ?>>Biaya Lainnya</option>
                   </select>
 
-                  </div>      
+                  </div>         
                 </div>
 
                <br>
