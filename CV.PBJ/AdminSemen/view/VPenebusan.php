@@ -391,6 +391,13 @@ else{
                <input type="date"  name="tanggal" required>
              </div>
            </div>
+           <div class="col-md-6">
+          <label>Tipe Semen</label>
+          <select id="tipe_semen" name="tipe_semen" class="form-control">
+            <option>Pranko</option>
+            <option>As</option>
+          </select>
+        </div>  
            
        </div>
 <br>
@@ -559,6 +566,7 @@ function sum() {
       <th>Delete</th>
       <th>Tanggal</th>
       <th>NO DO</th>
+      <th>Tipe Semen</th>
       <th>Tujuan</th>
       <th>Kota</th>
       <th>Material</th>
@@ -588,6 +596,7 @@ function sum() {
       $no_pembelian = $data['no_pembelian'];
       $tanggal =$data['tanggal'];
       $no_do =$data['no_do'];
+      $tipe_semen =$data['tipe_semen'];
       $tujuan = $data['tujuan'];
       $kota = $data['kota'];
       $material = $data['material'];
@@ -637,7 +646,15 @@ function sum() {
                <input type="date"  name="tanggal" value="<?php echo $tanggal;?>">
              </div>
            </div>
-           
+           <div class="col-md-6">
+   <label>Tipe Semen</label>
+        <select id="tipe_semen" name="tipe_semen" class="form-control">
+         <?php
+         $dataSelect = $data['tipe_semen']; ?>  
+         <option <?php echo ($dataSelect == 'Pranko') ? "selected": "" ?> >Pranko</option>
+         <option <?php echo ($dataSelect == 'As') ? "selected": "" ?> >As</option>
+       </select>
+  </div>
        </div>
 <br>
        <div class="row">    
@@ -824,6 +841,7 @@ function sum() {
 <?php echo " </td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$no_do</td>
+      <td style='font-size: 14px'>$tipe_semen</td>
       <td style='font-size: 14px'>$tujuan</td>
       <td style='font-size: 14px'>$kota</td>
       <td style='font-size: 14px'>$material</td>

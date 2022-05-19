@@ -34,6 +34,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM pembelian_sl WHERE no_do = '$no_
 $no_polisi = $_POST['no_polisi'];
 $driver = $_POST['driver'];
 $tujuan = $_POST['tujuan'];
+$tipe_semen = $_POST['tipe_semen'];
 $qty = $_POST['qty'];
 $material = $_POST['material'];
 $harga = $_POST['harga'];
@@ -78,7 +79,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$no_do','$tujuan','$nama_kota','$material','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar', '$tempo','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$no_do','$tipe_semen','$tujuan','$nama_kota','$material','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar', '$tempo','$keterangan','$file')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPenebusan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
