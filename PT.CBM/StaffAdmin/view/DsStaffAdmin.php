@@ -113,8 +113,10 @@ $nama = $data['nama_karyawan'];
                         <h6 class="collapse-header" style="font-size: 15px;">Gaji & Kas</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Penggajian dan Rekap</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Pencatatan Kas Kecil</a>
+                        <?php if($nama == 'Risa Septiana') { ?> 
                         <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
+                        <?php } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
                     </div>

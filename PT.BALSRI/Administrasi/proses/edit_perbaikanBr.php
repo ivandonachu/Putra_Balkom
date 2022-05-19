@@ -19,6 +19,8 @@ exit;
 }
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
+$tanggal = $_POST['tanggal'];
+$akun = $_POST['akun'];
 $no_laporan = $_POST['no_laporan'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
@@ -61,12 +63,12 @@ else if ( $nama_file != "" ) {
 }
 
 
-	if ($file == '') {
-			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_br SET  nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
-	}
-	else{
-			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_br SET  nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
-	}
+if ($file == '') {
+	$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_br SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
+}
+else{
+	$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_br SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
+}
 
 if ($query != "") {
 	echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VCatatPerbaikanBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

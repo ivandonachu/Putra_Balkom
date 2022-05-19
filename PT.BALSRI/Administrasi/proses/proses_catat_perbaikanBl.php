@@ -20,6 +20,7 @@ exit;
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
+$akun = $_POST['akun'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
 $jml_pengeluaran = $_POST['jml_pengeluaran'];
@@ -61,7 +62,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-$query = mysqli_query($koneksi,"INSERT INTO riwayat_perbaikan_bl VALUES('','$tanggal','$amt','$mt','$jml_pengeluaran','$keterangan','$file')");
+$query = mysqli_query($koneksi,"INSERT INTO riwayat_perbaikan_bl VALUES('','$tanggal','$akun','$amt','$mt','$jml_pengeluaran','$keterangan','$file')");
 
 if ($query != "") {
 	echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VCatatPerbaikanBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

@@ -55,7 +55,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Perbaikan Kendaraan</title>
+  <title>Perbaikan Kendaraan Palembang</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -333,6 +333,18 @@ else{
            </div>
 
          </div>
+         <div class="col-md-6">
+          <label>Akun</label>
+          <select id="akun" name="akun" class="form-control">
+            <option>Perbaikan Sparepart</option>
+            <option>Perbaikan Mesin</option>
+            <option>Ganti Oli</option>
+            <option>Cuci Mobil</option>
+            <option>Tambal Ban/Cek Ban</option>
+            <option>Ganti Ban</option>
+            <option>Biaya Lainnya</option>
+          </select>
+        </div>  
        </div>
 
 
@@ -418,6 +430,7 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
+      <th>Akun</th>
       <th>Nama Driver</th>
       <th>No Polisi</th>
       <th>Jumlah Pengeluaran</th>
@@ -441,6 +454,7 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
+      $akun =$data['akun'];
       $nama_driver =$data['nama_driver'];
       $no_polisi =$data['no_polisi'];
       $jml_pengeluaran = $data['jml_pengeluaran'];
@@ -452,6 +466,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$akun</td>
       <td style='font-size: 14px'>$nama_driver</td>
       <td style='font-size: 14px'>$no_polisi</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jml_pengeluaran); ?> <?php echo "</td>
@@ -482,10 +497,28 @@ else{
                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
 
+                <div class="row">
+                <div class="col-md-6">
                 <label>Tanggal</label>
-                <div class="col-sm-10">
-                 <input type="date" id="tanggal" name="tanggal" disabled="" value="<?php echo $tanggal;?>">
+                
+                 <input  class="form-control" type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>">
                </div>
+               <div class="col-md-6">
+
+                  <label>Akun</label>
+                  <select id="akun" name="akun" class="form-control">
+                    <?php $dataSelect = $data['akun']; ?>
+                    <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
+                    <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
+                    <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+                    <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
+                    <option <?php echo ($dataSelect == 'Biaya Umum') ? "selected": "" ?> >Biaya Umum</option>
+                    <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
+                    <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected": "" ?> >Saldo Awal</option>
+                  </select>
+
+                  </div>      
+                </div>
 
                <br>
 

@@ -19,8 +19,10 @@ exit;
 }
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
+$tanggal = $_POST['tanggal'];
 $no_laporan = $_POST['no_laporan'];
 $amt = $_POST['amt'];
+$akun = $_POST['akun'];
 $mt = $_POST['mt'];
 $jml_pengeluaran = $_POST['jml_pengeluaran'];
 $keterangan = $_POST['keterangan'];
@@ -62,10 +64,10 @@ else if ( $nama_file != "" ) {
 
 
 	if ($file == '') {
-			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan SET  nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
+			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
 	}
 	else{
-			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan SET  nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
+			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
 	}
 
 if ($query != "") {
