@@ -379,7 +379,7 @@ else{
       <th>Status Maintenance</th>
       <th>Terakhir Maintenance</th>
       <th></th>
-      <th></th>
+
 
     </tr>
   </thead>

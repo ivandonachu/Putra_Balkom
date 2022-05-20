@@ -364,13 +364,18 @@ else{
 
 <h5 align="center" >Ritease Kendaraan</h5>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
-      <th>No Kendaraan</th>
+    <th>No</th>
+      <th>No Polisi</th>
       <th>Total Rit</th>
       <th>Total GPS</th>
       <th>Total ODO</th>
+      <th>Total Rit Setelah Perbaikan</th>
+      <th>Total GPS Setelah Perbaikan</th>
+      <th>Total ODO Setelah Perbaikan</th>
       <th>Status Maintenance</th>
       <th>Terakhir Maintenance</th>
       <th></th>
@@ -382,32 +387,54 @@ else{
 
     <?php while($data = mysqli_fetch_array($table)){
       $no_polisi = $data['no_polisi'];
-      $total_rit =$data['total_rit'];
-      $total_jt_gps =$data['total_jt_gps'];
-      $total_jt_odo =$data['total_jt_odo'];
+      $urut = $urut + 1;
       $tgl_perbaikan = $data['tgl_perbaikan'];
+  
+        $total_rit =$data['total_rit'];
+        $total_jt_gps =$data['total_jt_gps'];
+        $total_jt_odo =$data['total_jt_odo'];
+   
+       $table4 = mysqli_query($koneksi, "SELECT  SUM(rit) AS total_rit2 , SUM(jt_gps) AS total_jt_gps2 , SUM(jt_odo) AS total_jt_odo2 FROM kendaraan a 
+       INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal BETWEEN '$tgl_perbaikan' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
+       $data4 = mysqli_fetch_array($table4);
+
+      $total_rit2 =$data4['total_rit2'];
+      $total_jt_gps2 =$data4['total_jt_gps2'];
+      $total_jt_odo2 =$data4['total_jt_odo2'];
+
+      
+      
+      
       echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$urut</td>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
       <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>"?>
-      <?php  if ($total_jt_odo > 5000) {
-        echo "<td style='font-size: 14px; color: red;' align = 'center'>Butuh Maintenance</td>";
-      } 
-      else{
-        echo "<td style='font-size: 14px; color: green;' align = 'center'>Kendaraan Aman</td>";
-      } ?> <?php echo "
-      <td style='font-size: 14px' align = 'center'>$tgl_perbaikan</td>
-      <td align = 'center'><a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
-    
+      <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>
+      <td style='font-size: 14px' align = 'center'>$total_rit2</td>
+      <td style='font-size: 14px' align = 'center'>$total_jt_gps2</td>
+      <td style='font-size: 14px' align = 'center'>$total_jt_odo2</td>"?>
+      <?php 
 
-  <?php echo  " </tr>";
+        if ($total_jt_odo2 > 5000) {
+          echo "<td style='font-size: 14px; color: red;' align = 'center'>Butuh Maintenance</td>";
+        } 
+        else{
+          echo "<td style='font-size: 14px; color: green;' align = 'center'>Kendaraan Aman</td>";
+        }
+      
+     ?>
+      <?php echo "
+      <td style='font-size: 14px' align = 'center'>$tgl_perbaikan</td>
+      <td align = 'center'><a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>
+      </tr>";
 }
 
 ?>
 
 </tbody>
 </table>
+</div>
 
 <br>
 <br>
