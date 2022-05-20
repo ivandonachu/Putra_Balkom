@@ -344,11 +344,19 @@ $urut = 0;
       $no_polisi = $data['no_polisi'];
       $urut = $urut + 1;
       $tgl_perbaikan = $data['tgl_perbaikan'];
-      $table3 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit_2 , SUM(jt_gps) AS total_jt_gps_2 , SUM(jt_odo) AS total_jt_odo_2 FROM driver a 
+      if($tanggal_perbaikan == '000-00-00'){
+        $total_rit =$data['total_rit'];
+        $total_jt_gps =$data['total_jt_gps'];
+        $total_jt_odo =$data['total_jt_odo'];
+      }
+      else{
+        $table3 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit_2 , SUM(jt_gps) AS total_jt_gps_2 , SUM(jt_odo) AS total_jt_odo_2 FROM driver a 
       INNER JOIN pengiriman b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tgl_perbaikan' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
       $total_rit =$data['total_rit_2'];
       $total_jt_gps =$data['total_jt_gps_2'];
       $total_jt_odo =$data['total_jt_odo_2'];
+      }
+      
       
       
       echo "<tr>
