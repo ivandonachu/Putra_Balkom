@@ -362,7 +362,7 @@ $urut = 0;
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$urut</td>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>"?>
-      <?php if ($tgl_perbaikan == '0000-00-00') {
+      <?php if ($tgl_perbaikan == 0000-00-00) {
         echo" <td style='font-size: 14px' align = 'center'>$total_rit</td>
         <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
         <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>";
