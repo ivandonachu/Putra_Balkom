@@ -323,7 +323,8 @@ $urut = 0;
 
 <h5 align="center" >Ritease Kendaraan</h5>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
     <th>No</th>
@@ -446,6 +447,7 @@ $urut = 0;
 
 </tbody>
 </table>
+</div>
 
 <br>
 <br>
@@ -483,7 +485,8 @@ $urut = 0;
 </tbody>
 </table>
 
-</div>
+
+  </div>
 <br>
 <br>
 <br>
