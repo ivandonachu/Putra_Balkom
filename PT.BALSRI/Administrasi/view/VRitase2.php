@@ -373,7 +373,7 @@ $urut = 0;
       <td style='font-size: 14px' align = 'center'>$total_rit2</td>
       <td style='font-size: 14px' align = 'center'>$total_jt_gps2</td>
       <td style='font-size: 14px' align = 'center'>$total_jt_odo2</td>"?>
-      <?php if ($tgl_perbaikan == 0000-00-00) {
+      <?php if ($tgl_perbaikan == '0000-00-00') {
        
         if ($total_jt_odo > 5000) {
           echo "<td style='font-size: 14px; color: red;' align = 'center'>Butuh Maintenance</td>";
