@@ -40,7 +40,7 @@ $lokasi = $_POST['lokasi'];
 		elseif($lokasi == 'Baturaja'){
 			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitaseBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		}
-		elseif($lokasi == 'Belitung'){
+		elseif($lokasi == 'Bengkulu'){
 			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitaseBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		}
 			
