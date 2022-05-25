@@ -41,7 +41,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-  $table = mysqli_query($koneksibkoneksistrealsri, "SELECT * FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
+  $table = mysqli_query($koneksistre, "SELECT * FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
 
     $table2 = mysqli_query($koneksistre, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
