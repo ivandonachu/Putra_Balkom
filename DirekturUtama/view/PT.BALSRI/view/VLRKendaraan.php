@@ -79,9 +79,22 @@ else{
   $jml_dex= $data2['total_dex'];
   $total_um= $data2['uang_makan'];
  
-  $total_dexlite = $jml_dex * 9700;
+  $total_dexlite = $jml_dex * 13250;
+
+   // Tagihan spbu
+   $table_spbu = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr'");
+   $data_spbu = mysqli_fetch_array($table_spbu);
+   $total_tagihan_spbu = $data_spbu['total_tagihan'];
+   //pengiriman spbu
+   $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(a.dexlite) AS total_dex, SUM(a.um) AS uang_makan FROM pengiriman_spbu a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+   $data2_spbu = mysqli_fetch_array($table2_spbu);
+   $jml_dex_spbu = $data2_spbu['total_dex'];
+   $total_um_spbu = $data2_spbu['uang_makan'];
+  
+   $total_dexlite_spbu = $jml_dex_spbu * 13250;
       // Potongan 10%
-  $jumlah_potongan = (($total_tagihan * 10) / 100);
+
+  $jumlah_potongan = ((($total_tagihan + $total_tagihan_spbu) * 10) / 100);
 
   // Kredit Mobil 
   $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
@@ -475,6 +488,13 @@ else{
                  <?php echo "<td class='text-right'><a href='VRDriverLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
              </tr>
              <tr>
+                 <td>4-201</td>
+                 <td class="text-left">Tagihan SPBU</td>
+                 <td class="text-left"><?= formatuang($total_tagihan_spbu); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRTagihanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+             </tr>
+             <tr>
                  <td>4-101</td>
                  <td class="text-left">Potongan Biaya Oprasional 10%</td>
                  <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
@@ -524,11 +544,25 @@ else{
                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
+                <td>5-580</td>
+                <td class="text-left">Uang Makan SPBU</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_um_spbu); ?></td>
+                <?php echo "<td class='text-right'><a href='VRDriverLMG/VRMakanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
                 <td>5-597</td>
                 <td class="text-left">Uang Dexlite</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite); ?></td>
                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-581</td>
+                <td class="text-left">Uang Dexlite SPBU</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_dexlite_spbu); ?></td>
+                <?php echo "<td class='text-right'><a href='VRDriverLMG/VRDexliteSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-598</td>

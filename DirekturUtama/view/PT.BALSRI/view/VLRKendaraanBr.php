@@ -79,7 +79,7 @@ else{
   $jml_dex= $data2['total_dex'];
   $total_um= $data2['uang_makan'];
  
-  $total_dexlite = $jml_dex * 9700;
+  $total_dexlite = $jml_dex * 13250;
       // Potongan 10%
   $jumlah_potongan = (($total_tagihan * 10) / 100);
 

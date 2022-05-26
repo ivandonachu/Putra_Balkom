@@ -94,9 +94,14 @@ else{
   $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
+
+  // Tagihan spbu
+  $table_spbu = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $data_spbu = mysqli_fetch_array($table_spbu);
+  $total_tagihan_spbu = $data_spbu['total_tagihan'];
   
   // Potongan 10%
-  $jumlah_potongan = (($total_tagihan * 10) / 100);
+  $jumlah_potongan = ((($total_tagihan + $total_tagihan_spbu) * 10) / 100);
 
   //pengiriman
   $table2 = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
@@ -105,7 +110,14 @@ else{
   $total_um= $data2['uang_makan'];
  
   $total_dexlite = $jml_dex * 13250;
-    
+  
+  //pengiriman Spbus
+  $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $data2_spbu = mysqli_fetch_array($table2_spbu);
+  $jml_dex_spbu= $data2_spbu['total_dex'];
+  $total_um_spbu= $data2_spbu['uang_makan'];
+ 
+  $total_dexlite_spbu = $jml_dex_spbu * 13250;
 
     
   //pengeluran Pul Biaya Kantor
@@ -563,6 +575,13 @@ else{
                  <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
              </tr>
              <tr>
+                 <td>4-201</td>
+                 <td class="text-left">Tagihan SPBU</td>
+                 <td class="text-left"><?= formatuang($total_tagihan_spbu); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRTagihanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+             </tr>
+             <tr>
                  <td>4-101</td>
                  <td class="text-left">Potongan Biaya Oprasional 10%</td>
                  <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
@@ -655,6 +674,13 @@ else{
                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
+                <td>5-580</td>
+                <td class="text-left">Uang Makan SPBU</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_um_spbu); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRMakanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
                 <td>5-597</td>
                 <td class="text-left">Uang Dexlite</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
@@ -662,8 +688,15 @@ else{
                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
+                <td>5-581</td>
+                <td class="text-left">Uang Dexlite SPBU</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_dexlite_spbu); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRDexliteSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
                 <td>5-598</td>
-                <td class="text-left">Bayar Kredit</td>
+                <td class="text-left">Bayar Kredit </td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>

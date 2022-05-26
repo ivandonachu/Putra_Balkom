@@ -55,7 +55,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $jml_dex= $data2['total_dex'];
   $total_um= $data2['uang_makan'];
   $total_ug= $data2['uang_gaji'];
-  $total_dexlite = $jml_dex * 9700;
+  $total_dexlite = $jml_dex * 13250;
 
 
     //pengeluran perbaikan
