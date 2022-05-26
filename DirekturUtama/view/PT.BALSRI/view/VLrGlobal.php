@@ -52,6 +52,10 @@ else{
   $table_lmg = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data_lmg = mysqli_fetch_array($table_lmg);
   $total_tagihan_lmg = $data_lmg['total_tagihan'];
+   // Tagihan spbu
+   $table_spbu = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $data_spbu = mysqli_fetch_array($table_spbu);
+   $total_tagihan_spbu = $data_spbu['total_tagihan'];
 
   // Tagihan palembang
   $table_plg = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
@@ -63,7 +67,7 @@ else{
   $data_bb = mysqli_fetch_array($table_bb);
   $total_tagihan_bb = $data_bb['total_tagihan'];
 
-  $total_tagihan_global = $total_tagihan_br + $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bb;
+  $total_tagihan_global = $total_tagihan_br + $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bb + $total_tagihan_spbu;
 
   // Potongan global 10%
   $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
@@ -85,6 +89,14 @@ else{
  
   $total_dexlite_lmg = $jml_dex_lmg * 13250;
 
+  //pengiriman spbu
+  $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $data2_spbu = mysqli_fetch_array($table2_spbu);
+  $jml_dex_spbu = $data2_spbu['total_dex'];
+  $total_um_spbu = $data2_spbu['uang_makan'];
+ 
+  $total_dexlite_spbu = $jml_dex_spbu * 13250;
+
    //pengiriman palembang
    $table2_plg = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
    $data2_plg = mysqli_fetch_array($table2_plg);
@@ -99,8 +111,8 @@ else{
    $total_um_bb = $data2_bb['uang_makan'];
    $total_dexlite_bb = $jml_dex_bb * 13250;
     
-   $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg  + $total_dexlite_bb;
-    $total_um_global = $total_um_br + $total_um_lmg + $total_um_plg + $total_um_bb;
+   $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg  + $total_dexlite_bb + $total_dexlite_spbu;
+    $total_um_global = $total_um_br + $total_um_lmg + $total_um_plg + $total_um_bb + $total_um_spbu;
 
     //BIAYA KANTOR
   //pengeluran Pul Biaya Kantor baturaja
