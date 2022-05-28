@@ -25,40 +25,38 @@ $nama = $data['nama_karyawan'];
 
 
 if (isset($_GET['tanggal1'])) {
-    $tanggal_awal = $_GET['tanggal1'];
-    $tanggal_akhir = $_GET['tanggal2'];
-   } 
-   
-   elseif (isset($_POST['tanggal1'])) {
-    $tanggal_awal = $_POST['tanggal1'];
-    $tanggal_akhir = $_POST['tanggal2'];
-   }  
-   else{
-     $tanggal_awal = date('Y-m-1');
-   $tanggal_akhir = date('Y-m-31');
-   }
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
 
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+}  else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
 
 //ritase
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no , a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
 
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table2 = mysqli_query($koneksi, "SELECT  a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
+  $table2 = mysqli_query($koneksi, "SELECT  a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_br b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
 
 }
 else{
 
-  $table2 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
+  $table2 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_br b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
 
 }
 
@@ -75,7 +73,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Riwayat Ritase</title>
+  <title>Riwayat Ritase BKU</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -101,7 +99,7 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
+    <!-- Sidebar -->
   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
@@ -109,7 +107,7 @@ else{
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 65px; width: 220px;" src="../gambar/Logo CBM.jpg" ></div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
 </a>
 
 <!-- Divider -->
@@ -139,8 +137,16 @@ else{
     <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Bangkulu</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif BKU</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanL8">Tagihan Lampung 8KL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBl">Tagihan Babel</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifL8">Master Tarif LMG 8KL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBl">Master Tarif BB</a>
         </div>
     </div>
 </li>
@@ -154,10 +160,26 @@ else{
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman BKU</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase BKU</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh BKU</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji BKU</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL8">Pengiriman LMG 8KL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBl">Pengiriman BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseL8">Ritase LMG 8KL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBl">Ritase BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhL8">Jarak Tempuh LMG 8KL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBl">Jarak Tempuh BB</a> 
+            <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiL8">Gaji LMG 8KL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiBl">Gaji BB</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
@@ -172,8 +194,14 @@ else{
     <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan BKU</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul BKU</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBl">Catat Perbaikan BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBl">Pengeluaran Pul BB</a>
         </div>
     </div>
 </li>
@@ -217,7 +245,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRitase2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Ritase BKU</h5></a>"; ?>
+      <?php echo "<a href='VRitase?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Ritase BKU</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -291,14 +319,16 @@ else{
    <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
  </div>
  <br>
-<?php 
+
+ <?php 
 $urut = 0;
 
 ?>
 
 <h5 align="center" >Ritease Kendaraan</h5>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
     <th>No</th>
@@ -306,6 +336,9 @@ $urut = 0;
       <th>Total Rit</th>
       <th>Total GPS</th>
       <th>Total ODO</th>
+      <th>Total Rit Setelah Perbaikan</th>
+      <th>Total GPS Setelah Perbaikan</th>
+      <th>Total ODO Setelah Perbaikan</th>
       <th>Status Maintenance</th>
       <th>Terakhir Maintenance</th>
       <th></th>
@@ -318,23 +351,43 @@ $urut = 0;
     <?php while($data = mysqli_fetch_array($table)){
       $no_polisi = $data['no_polisi'];
       $urut = $urut + 1;
-    
-      $total_rit =$data['total_rit'];
-      $total_jt_gps =$data['total_jt_gps'];
-      $total_jt_odo =$data['total_jt_odo'];
       $tgl_perbaikan = $data['tgl_perbaikan'];
+  
+        $total_rit =$data['total_rit'];
+        $total_jt_gps =$data['total_jt_gps'];
+        $total_jt_odo =$data['total_jt_odo'];
+   
+       $table4 = mysqli_query($koneksi, "SELECT  SUM(rit) AS total_rit2 , SUM(jt_gps) AS total_jt_gps2 , SUM(jt_odo) AS total_jt_odo2 FROM kendaraan a 
+       INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal BETWEEN '$tgl_perbaikan' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
+       $data4 = mysqli_fetch_array($table4);
+
+      $total_rit2 =$data4['total_rit2'];
+      $total_jt_gps2 =$data4['total_jt_gps2'];
+      $total_jt_odo2 =$data4['total_jt_odo2'];
+
+      
+      
+      
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$urut</td>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
       <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>"?>
-      <?php  if ($total_jt_odo > 5000) {
-        echo "<td style='font-size: 14px; color: red;' align = 'center'>Butuh Maintenance</td>";
-      } 
-      else{
-        echo "<td style='font-size: 14px; color: green;' align = 'center'>Kendaraan Aman</td>";
-      } ?> <?php echo "
+      <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>
+      <td style='font-size: 14px' align = 'center'>$total_rit2</td>
+      <td style='font-size: 14px' align = 'center'>$total_jt_gps2</td>
+      <td style='font-size: 14px' align = 'center'>$total_jt_odo2</td>"?>
+      <?php 
+
+        if ($total_jt_odo2 > 5000) {
+          echo "<td style='font-size: 14px; color: red;' align = 'center'>Butuh Maintenance</td>";
+        } 
+        else{
+          echo "<td style='font-size: 14px; color: green;' align = 'center'>Kendaraan Aman</td>";
+        }
+      
+     ?>
+      <?php echo "
       <td style='font-size: 14px' align = 'center'>$tgl_perbaikan</td>
       <td align = 'center'><a href='VRincianRitKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
       <?php echo "<td style='font-size: 12px'>"; ?>
@@ -389,6 +442,7 @@ $urut = 0;
 
 </tbody>
 </table>
+</div>
 
 <br>
 <br>
@@ -418,7 +472,7 @@ $urut = 0;
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
        <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
       <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>
-      <td  align = 'center'><a href='VRincianRitDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianRitDriverBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
       </tr>";
 }
 ?>
