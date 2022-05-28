@@ -40,23 +40,23 @@ elseif (isset($_POST['tanggal1'])) {
 //ritase
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
 
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table2 = mysqli_query($koneksi, "SELECT  a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_br b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
+  $table2 = mysqli_query($koneksi, "SELECT  a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
 
 }
 else{
 
-  $table2 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_br b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
+  $table2 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
 
 }
 
