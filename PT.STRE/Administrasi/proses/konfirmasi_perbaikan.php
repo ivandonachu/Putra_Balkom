@@ -30,20 +30,9 @@ $lokasi = $_POST['lokasi'];
 		$query = mysqli_query($koneksi,"UPDATE kendaraan SET tgl_perbaikan = '$tanggal' WHERE no_polisi = '$no_polisi'");
 		$query2 = mysqli_query($koneksi,"UPDATE kendaraan SET tgl_perbaikan = '$tanggal' WHERE no_polisi = '$no_polisi'");
 
-		if($lokasi == 'Lampung'){
-			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitase2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-			
-		}
-		elseif($lokasi == 'Palembang'){
-			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitaseP2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-		}
-		elseif($lokasi == 'Baturaja'){
-			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitaseBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-		}
-		elseif($lokasi == 'Bengkulu'){
+
 			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitase?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-		}
-			
+
 			
 
 
