@@ -338,7 +338,7 @@ else{
            <select id="no_polisi" name="no_polisi" class="form-control ">
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksibalsri, "SELECT * FROM kendaraan");   
+            $result = mysqli_query($koneksistre, "SELECT * FROM kendaraan");   
 
             while ($data2 = mysqli_fetch_array($result)){
               $nama_driver = $data2['no_polisi'];

@@ -27,7 +27,7 @@ $no_laporan = $_POST['no_laporan'];
 		
 
 		//Hapusriwayat keberangkatan
-		$query = mysqli_query($koneksibalsri,"DELETE FROM kredit_kendaraan WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksistre,"DELETE FROM kredit_kendaraan WHERE no_laporan = '$no_laporan'");
 
 
 
