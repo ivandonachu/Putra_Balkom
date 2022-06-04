@@ -21,7 +21,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-$table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
+$table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian ");
 
 ?>
 
