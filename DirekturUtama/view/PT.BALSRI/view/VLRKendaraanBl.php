@@ -73,13 +73,24 @@ else{
   $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_bl a INNER JOIN master_tarif_bl b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
+
+
   //pengiriman
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(a.dexlite) AS total_dex, SUM(a.um) AS uang_makan FROM pengiriman_bl a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan FROM pengiriman_bl a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
   $data2 = mysqli_fetch_array($table2);
-  $jml_dex= $data2['total_dex'];
+
   $total_um= $data2['uang_makan'];
- 
-  $total_dexlite = $jml_dex * 13250;
+
+  $total_dexlite = 0;
+  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_bl a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+  while($data = mysqli_fetch_array($table222)){
+    $uang_jalan = $data['uj'];
+    $jt_gps = $data['jt_gps'];
+    $total_dexlite = $total_dexlite + ($uang_jalan - ($jt_gps*625));
+
+    
+}
+
       // Potongan 10%
   $jumlah_potongan = (($total_tagihan * 10) / 100);
 
@@ -116,9 +127,9 @@ else{
     $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
 }
 
-    $total_laba_kotor = $total_tagihan - $jumlah_potongan;
-    $laba_bersih_sebelum_pajak = $total_laba_kotor - ($total_dexlite  + $jml_perbaikan + $total_gaji_karaywan + $total_um + $total_kredit);
-    $total_biaya_usaha_final = $total_dexlite  + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit;
+        $total_laba_kotor = $total_tagihan - $jumlah_potongan;
+        $total_biaya_usaha_final = $total_dexlite  + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit;
+        $laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
 ?>
 
 
@@ -472,7 +483,7 @@ else{
                  <td class="text-left">Tagihan Patra</td>
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
-                 <?php echo "<td class='text-right'><a href='VRDriverBB/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+                 <?php echo "<td class='text-right'><a href='VRDriverBL/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
              </tr>
              <tr>
                  <td>4-101</td>
@@ -507,28 +518,28 @@ else{
                 <td class="text-left">Gaji Driver</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_gaji_karaywan); ?></td>
-                <?php echo "<td class='text-right'><a href='VRDriverBB/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRDriverBL/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-595</td>
                 <td class="text-left">Biaya Perbaikan Kendaraan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_perbaikan); ?></td>
-               <?php echo "<td class='text-right'><a href='VRDriverBB/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+               <?php echo "<td class='text-right'><a href='VRDriverBL/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-596</td>
                 <td class="text-left">Uang Makan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_um); ?></td>
-                <?php echo "<td class='text-right'><a href='VRDriverBB/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRDriverBL/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-597</td>
                 <td class="text-left">Uang Dexlite</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite); ?></td>
-                <?php echo "<td class='text-right'><a href='VRDriverBB/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRDriverBL/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-598</td>

@@ -47,13 +47,31 @@ function formatuang($angka){
   // Potongan 10%
   $jumlah_potongan_lmg = (($total_tagihan_lmg * 10) / 100);
 
-  //pengiriman
-  $table2_lmg = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $data2_lmg = mysqli_fetch_array($table2_lmg);
-  $jml_dex_lmg = $data2_lmg['total_dex'];
-  $total_um_lmg = $data2_lmg['uang_makan'];
- 
-  $total_dexlite_lmg = $jml_dex_lmg * 9700;
+  // Tagihan spbu
+  $table_spbu = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $data_spbu = mysqli_fetch_array($table_spbu);
+  $total_tagihan_spbu= $data_spbu['total_tagihan'];
+
+  // Potongan 10%
+  $jumlah_potongan_lmg = (($total_tagihan_lmg * 10) / 100);
+
+   //pengiriman lampung
+   $table2_lmg = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $total_dexlite_lmg =0;
+   $data2_lmg = mysqli_fetch_array($table2_lmg);
+   $total_uj_lmg = $data2_lmg['total_uj'];
+   $total_jt_gps_lmg = $data2_lmg['total_jt_gps'];
+   $total_um_lmg = $data2_lmg['uang_makan'];
+   $total_dexlite_lmg = $total_uj_lmg - ($total_jt_gps_lmg*625);
+
+   //pengiriman spbu
+   $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $total_dexlite_spbu =0;
+   $data2_spbu = mysqli_fetch_array($table2_spbu);
+   $total_uj_spbu = $data2_spbu['total_uj'];
+   $total_jt_gps_spbu = $data2_spbu['total_jt_gps'];
+   $total_um_spbu= $data2_spbu['uang_makan'];
+   $total_dexlite_spbu = $total_uj_spbu - ($total_jt_gps_spbu*625);
     
 
     
@@ -128,7 +146,7 @@ function formatuang($angka){
     $gaji_driver_lmg = 0;
     }
     
-    $total_gaji_karaywan_lmg = $gaji_karyawan_lmg;
+    $total_gaji_karyawan_lmg = $gaji_karyawan_lmg;
 
 
     $table101_lmg =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
@@ -145,7 +163,7 @@ function formatuang($angka){
         
     }
   
-    $total_oprasional_lmg =   $jml_biaya_kantor_lmg + $jml_listrik_lmg + $jml_sewa_lmg + $jml_atk_lmg + $total_gaji_karaywan_lmg + $jml_transport_lmg +  $jml_konsumsi_lmg;
+    $total_oprasional_lmg =   $jml_biaya_kantor_lmg + $jml_listrik_lmg + $jml_sewa_lmg + $jml_atk_lmg + $total_gaji_karyawan_lmg + $jml_transport_lmg +  $jml_konsumsi_lmg;
 
 
     // BATURAJA
@@ -239,7 +257,7 @@ function formatuang($angka){
     $gaji_driver_bta = 0;
     }
     
-    $total_gaji_karaywan_bta = $gaji_karyawan_bta;
+    $total_gaji_karyawan_bta = $gaji_karyawan_bta;
 
    
 
@@ -257,7 +275,7 @@ function formatuang($angka){
         
     }
 
-    $total_oprasional_bta =   $jml_biaya_kantor_bta + $jml_listrik_bta + $jml_sewa_bta + $jml_atk_bta + $total_gaji_karaywan_bta + $jml_transport_bta +  $jml_konsumsi_bta;
+    $total_oprasional_bta =   $jml_biaya_kantor_bta + $jml_listrik_bta + $jml_sewa_bta + $jml_atk_bta + $total_gaji_karyawan_bta + $jml_transport_bta +  $jml_konsumsi_bta;
   
 
 
@@ -347,7 +365,7 @@ function formatuang($angka){
     $gaji_driver_plg = 0;
     }
     
-    $total_gaji_karaywan_plg = $gaji_karyawan_plg;
+    $total_gaji_karyawan_plg = $gaji_karyawan_plg;
         
          //totalkredit
          $table101_plg =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
@@ -363,7 +381,7 @@ function formatuang($angka){
         
     }
 
-     $total_oprasional_plg =   $jml_biaya_kantor_plg + $jml_listrik_plg + $jml_sewa_plg + $jml_atk_plg + $total_gaji_karaywan_plg + $jml_transport_plg +  $jml_konsumsi_plg;
+     $total_oprasional_plg =   $jml_biaya_kantor_plg + $jml_listrik_plg + $jml_sewa_plg + $jml_atk_plg + $total_gaji_karyawan_plg + $jml_transport_plg +  $jml_konsumsi_plg;
 
      
     // BELITUNG
@@ -434,7 +452,7 @@ function formatuang($angka){
     }
 
     //pengeluran perbaikan
-   $table7_bb = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $table7_bb = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
    $data7_bb = mysqli_fetch_array($table7_bb);
    $jml_perbaikan_bb = $data7_bb['jumlah_perbaikan'];
     if (!isset($data7_bb['jumlah_perbaikan'])) {
@@ -457,7 +475,7 @@ function formatuang($angka){
     $gaji_driver_bb = 0;
     }
     
-    $total_gaji_karaywan_bta = $gaji_karyawan_bta;
+    $total_gaji_karyawan_bb = $gaji_karyawan_bta;
 
    
 
@@ -475,16 +493,16 @@ function formatuang($angka){
         
     }
 
-    $total_oprasional_bb =   $jml_biaya_kantor_bb + $jml_listrik_bb + $jml_sewa_bb + $jml_atk_bb + $total_gaji_karaywan_bb + $jml_transport_bb +  $jml_konsumsi_bb;
+    $total_oprasional_bb =   $jml_biaya_kantor_bb + $jml_listrik_bb + $jml_sewa_bb + $jml_atk_bb + $total_gaji_karyawan_bb + $jml_transport_bb +  $jml_konsumsi_bb;
   
 
-     $total_tagihan_global = $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bta + $total_tagihan_bb;
+     $total_tagihan_global = $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bta + $total_tagihan_bb + $total_tagihan_spbu;
      $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
      $biaya_kantor_global = $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg + $jml_biaya_kantor_bta + $jml_biaya_kantor_bb;
      $listrik_global = $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bta + $jml_listrik_bb;
      $sewa_global = $jml_sewa_lmg + $jml_sewa_plg + $jml_sewa_bta + $jml_sewa_bb;
      $atk_global = $jml_atk_lmg + $jml_atk_plg + $jml_atk_bta + $jml_atk_bb;
-     $gaji_karyawan_global = $total_gaji_karaywan_lmg + $total_gaji_karaywan_plg + $total_gaji_karaywan_bta + $total_gaji_karaywan_bb; 
+     $gaji_karyawan_global = $total_gaji_karyawan_lmg + $total_gaji_karyawan_plg + $total_gaji_karyawan_bta + $total_gaji_karyawan_bb; 
      $transport_global = $jml_transport_lmg + $jml_transport_plg + $jml_transport_bta + $jml_transport_bb;
      $konsumsi_global = $jml_konsumsi_lmg + $jml_konsumsi_plg + $jml_konsumsi_bta + $jml_konsumsi_bb; 
      $total_oprasional_global = $total_oprasional_bta + $total_oprasional_lmg + $total_oprasional_plg + $total_oprasional_bb;
@@ -954,7 +972,7 @@ function formatuang($angka){
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
-    								<td class="text-center"><?php echo formatuang($total_gaji_karaywan_lmg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_lmg);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
@@ -1047,7 +1065,7 @@ function formatuang($angka){
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
-    								<td class="text-center"><?php echo formatuang($total_gaji_karaywan_plg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_plg);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
@@ -1140,7 +1158,7 @@ function formatuang($angka){
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
-    								<td class="text-center"><?php echo formatuang($total_gaji_karaywan_bta);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_bta);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
@@ -1233,7 +1251,7 @@ function formatuang($angka){
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
-    								<td class="text-center"><?php echo formatuang($total_gaji_karaywan_bb);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_bb);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>

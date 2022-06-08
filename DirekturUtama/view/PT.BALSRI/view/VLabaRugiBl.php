@@ -99,7 +99,7 @@ else{
 
   // Potongan 10%
   $jumlah_potongan = (($total_tagihan * 10) / 100);
-
+   //pengiriman
   $table2 = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan FROM pengiriman_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
 
@@ -569,13 +569,6 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <?php echo "<td class='text-right'><a href='VRincianLRBL/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-             </tr>
-             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-                 <td class="text-left"></td>
              </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>

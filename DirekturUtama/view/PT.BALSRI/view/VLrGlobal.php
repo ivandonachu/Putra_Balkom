@@ -74,44 +74,53 @@ else{
 
   //PENGIRIMAN
   //pengiriman baturaja
-  $table2_br = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $data2_br = mysqli_fetch_array($table2_br);
-  $jml_dex_br = $data2_br['total_dex'];
-  $total_um_br = $data2_br['uang_makan'];
- 
-  $total_dexlite_br = $jml_dex_br * 13250;
+   $table2_br = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj FROM pengiriman_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $total_dexlite_br =0;
+   $data2_br = mysqli_fetch_array($table2_br);
+   $total_uj_br = $data2_br['total_uj'];
+   $total_jt_gps_br = $data2_br['total_jt_gps'];
+   $total_um_br= $data2_br['uang_makan'];
+   $total_dexlite_br = $total_uj_br - ($total_jt_gps_br*625);
+   
 
   //pengiriman lampung
-  $table2_lmg = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $data2_lmg = mysqli_fetch_array($table2_lmg);
-  $jml_dex_lmg = $data2_lmg['total_dex'];
-  $total_um_lmg = $data2_lmg['uang_makan'];
- 
-  $total_dexlite_lmg = $jml_dex_lmg * 13250;
+   $table2_lmg = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $total_dexlite_lmg =0;
+   $data2_lmg = mysqli_fetch_array($table2_lmg);
+   $total_uj_lmg = $data2_lmg['total_uj'];
+   $total_jt_gps_lmg = $data2_lmg['total_jt_gps'];
+   $total_um_lmg = $data2_lmg['uang_makan'];
+   $total_dexlite_lmg = $total_uj_lmg - ($total_jt_gps_lmg*625);
 
-  //pengiriman spbu
-  $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $data2_spbu = mysqli_fetch_array($table2_spbu);
-  $jml_dex_spbu = $data2_spbu['total_dex'];
-  $total_um_spbu = $data2_spbu['uang_makan'];
- 
-  $total_dexlite_spbu = $jml_dex_spbu * 13250;
+   //pengiriman spbu
+   $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $total_dexlite_spbu =0;
+   $data2_spbu = mysqli_fetch_array($table2_spbu);
+   $total_uj_spbu = $data2_spbu['total_uj'];
+   $total_jt_gps_spbu = $data2_spbu['total_jt_gps'];
+   $total_um_spbu= $data2_spbu['uang_makan'];
+   $total_dexlite_spbu = $total_uj_spbu - ($total_jt_gps_spbu*625);
 
    //pengiriman palembang
-   $table2_plg = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-   $data2_plg = mysqli_fetch_array($table2_plg);
-   $jml_dex_plg = $data2_plg['total_dex'];
-   $total_um_plg = $data2_plg['uang_makan'];
-   $total_dexlite_plg = $jml_dex_plg * 13250;
+   $table2_plg = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $total_dexlite_plg =0;
+    $data2_plg = mysqli_fetch_array($table2_plg);
+   $total_uj_plg = $data2_plg['total_uj'];
+   $total_jt_gps_plg = $data2_plg['total_jt_gps'];
+   $total_um_plg= $data2_plg['uang_makan'];
+   $total_dexlite_plg = $total_uj_plg - ($total_jt_gps_plg*625);
 
    //pengiriman belitung
-   $table2_bb = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-   $data2_bb = mysqli_fetch_array($table2_plg);
-   $jml_dex_bb = $data2_bb['total_dex'];
-   $total_um_bb = $data2_bb['uang_makan'];
-   $total_dexlite_bb = $jml_dex_bb * 13250;
+   $table2_bb = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $total_dexlite_bb =0;
+   $data2_bb = mysqli_fetch_array($table2_bb);
+   $total_uj_bb = $data2_bb['total_uj'];
+   $total_jt_gps_bb = $data2_bb['total_jt_gps'];
+   $total_um_bb= $data2_bb['uang_makan'];
+   $total_dexlite_bb = $total_uj_bb - ($total_jt_gps_bb*625);
+
     
-   $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg  + $total_dexlite_bb + $total_dexlite_spbu;
+   $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg  + $total_dexlite_bb + $total_dexlite_spbu + $total_dexlite_lmg;
     $total_um_global = $total_um_br + $total_um_lmg + $total_um_plg + $total_um_bb + $total_um_spbu;
 
     //BIAYA KANTOR
@@ -743,7 +752,7 @@ else{
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laba Rugi Balsri Gloabal</strong></h3>
+            <h3 class="panel-title" align="Center"><strong>Laba Rugi Balsri Global</strong></h3>
         </div>
 
         <div>

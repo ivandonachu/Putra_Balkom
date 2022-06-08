@@ -574,13 +574,6 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
              </tr>
-             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-                 <td class="text-left"></td>
-             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>

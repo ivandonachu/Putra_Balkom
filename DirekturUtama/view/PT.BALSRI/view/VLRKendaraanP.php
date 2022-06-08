@@ -43,12 +43,20 @@ else{
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
   //pengiriman
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(a.dexlite) AS total_dex, SUM(a.um) AS uang_makan FROM pengiriman_p a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan FROM pengiriman_p a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
   $data2 = mysqli_fetch_array($table2);
-  $jml_dex= $data2['total_dex'];
+
   $total_um= $data2['uang_makan'];
- 
-  $total_dexlite = $jml_dex * 13250;
+
+  $total_dexlite = 0;
+  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_p a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+  while($data = mysqli_fetch_array($table222)){
+    $uang_jalan = $data['uj'];
+    $jt_gps = $data['jt_gps'];
+    $total_dexlite = $total_dexlite + ($uang_jalan - ($jt_gps*625));
+
+    
+}
           // Potongan 10%
   $jumlah_potongan = (($total_tagihan * 10) / 100);
 

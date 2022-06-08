@@ -36,7 +36,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-    $table = mysqli_query($koneksibalsri, "SELECT SUM(a.dexlite) AS total_dexlite , b.no_polisi FROM pengiriman a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  b.no_polisi = '$no_polisilr' ");
+  $table = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_p a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
 
 }
 
@@ -360,23 +360,25 @@ else{
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
+    $total_dexlite = 0;
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $dexlite = $data['total_dexlite'];
-      $uang_dexlite = $dexlite * 9700;
-      $no_polisi =$data['no_polisi'];
-      $total = $total + $uang_dexlite;
-
-      echo "<tr>
-     
-      <td style='font-size: 14px'>$no_polisi</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($uang_dexlite); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      $uang_jalan = $data['uj'];
+      $jt_gps = $data['jt_gps'];
+      $total_dexlite = $total_dexlite + ($uang_jalan - ($jt_gps*625));
       
- </tr>";
+
+    
 }
+$total = $total + $total_dexlite;
+echo "<tr>
+     
+<td style='font-size: 14px'>$no_polisilr</td>
+<td style='font-size: 14px'>"?>  <?= formatuang($total_dexlite); ?> <?php echo "</td>
+<td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+
+</tr>";
 ?>
 
 </tbody>
