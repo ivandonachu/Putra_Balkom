@@ -230,7 +230,7 @@ else{
 }
     $total_laba_kotor = $total_tagihan + $total_tagihan_spbu - $jumlah_potongan;
     $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $total_um + $total_gaji_karaywan + $jml_transport +  $jml_konsumsi+ $total_kredit;
-    $laba_bersih_sebelum_pajak = (($total_tagihan + $total_tagihan_spbu) - $total_biaya_usaha_final );
+    $laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
    
 ?>
 
