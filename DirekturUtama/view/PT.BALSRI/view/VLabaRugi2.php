@@ -104,20 +104,35 @@ else{
   $jumlah_potongan = ((($total_tagihan + $total_tagihan_spbu) * 10) / 100);
 
   //pengiriman
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
-  $jml_dex= $data2['total_dex'];
+
   $total_um= $data2['uang_makan'];
- 
-  $total_dexlite = $jml_dex * 13250;
+
+  $total_dexlite = 0;
+  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  while($data = mysqli_fetch_array($table222)){
+    $uang_jalan = $data['uj'];
+    $jt_gps = $data['jt_gps'];
+    $total_dexlite = ($uang_jalan - ($jt_gps*625));
+
+    
+}
   
   //pengiriman Spbus
   $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2_spbu = mysqli_fetch_array($table2_spbu);
-  $jml_dex_spbu= $data2_spbu['total_dex'];
+
   $total_um_spbu= $data2_spbu['uang_makan'];
- 
-  $total_dexlite_spbu = $jml_dex_spbu * 13250;
+  $total_dexlite_spbu = 0;
+  $table222_spbu = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  while($data = mysqli_fetch_array($table222_spbu)){
+    $uang_jalan = $data['uj'];
+    $jt_gps = $data['jt_gps'];
+    $total_dexlite_spbu = ($uang_jalan - ($jt_gps*625));
+
+    
+}
 
     
   //pengeluran Pul Biaya Kantor
