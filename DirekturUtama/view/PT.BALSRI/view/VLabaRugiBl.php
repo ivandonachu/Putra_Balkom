@@ -110,7 +110,7 @@ else{
   while($data = mysqli_fetch_array($table222)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
-    $total_dexlite = ($uang_jalan - ($jt_gps*625));
+    $total_dexlite = $total_dexlite + ($uang_jalan - ($jt_gps*625));
 
     
 }
