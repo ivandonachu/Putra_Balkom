@@ -209,9 +209,10 @@ else{
 
 
 }
-    $total_laba_kotor = $total_tagihan - $jumlah_potongan;  
-    $laba_bersih_sebelum_pajak = $total_tagihan - ($total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $total_gaji_karaywan + $total_um + $jml_transport +  $jml_konsumsi + $total_kredit);
-    $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa + $jml_atk + $jml_perbaikan + $total_um + $total_gaji_karaywan + $jml_transport +  $jml_konsumsi+ $total_kredit;
+$total_laba_kotor = $total_tagihan;
+$sisa_oprasional = $jumlah_potongan - ($jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport );
+$total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit;
+$laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya_usaha_final;
 ?>
 
 
@@ -591,17 +592,18 @@ else{
                 <td class="thick-line"></td>
             </tr>
             <tr>
-                <td><strong>5-500</strong></td>
-                <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                <td><strong>4-101</strong></td>
+                <td class="text-left"><strong>PEMOTONGAN BIAYA OPRASIONAL</strong></td>
                 <td class="text-left"></td>
                 <td class="text-left"></td>
                 <?php echo "<td class='text-right'></td>"; ?>
             </tr>
+            
             <tr>
                 <td>5-510</td>
-                <td class="text-left">GAJI</td>
+                <td class="text-left">Gaji Karyawan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($total_gaji_karaywan); ?></td>
+                <td class="text-left"><?= formatuang($gaji_karyawan); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRBL/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
@@ -612,11 +614,53 @@ else{
                 <?php echo "<td class='text-right'><a href='VRincianLRBL/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRBL/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRBL/VRPerjalanan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Biaya Oprasional 10%</td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"></td>
+             </tr>
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>Sisa Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($sisa_oprasional); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                <td class="thick-line"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+                <td class="thick-line"></td>
+            </tr>
+            <tr>
+                <td><strong>5-500</strong></td>
+                <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <?php echo "<td class='text-right'></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Driver</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_driver); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRBL/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-540</td>
@@ -639,14 +683,6 @@ else{
                 <td class="text-left"><?= formatuang($jml_konsumsi); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRBL/VRKonsumsi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
-            <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRBL/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-            </tr>
-            
             <tr>
                 <td>5-595</td>
                 <td class="text-left">Biaya Perbaikan Kendaraan</td>

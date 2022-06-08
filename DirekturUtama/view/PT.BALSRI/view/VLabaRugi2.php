@@ -614,7 +614,7 @@ else{
                 <td class="thick-line"></td>
             </tr>
             <tr>
-                <td><strong>5-500</strong></td>
+                <td><strong>4-101</strong></td>
                 <td class="text-left"><strong>PEMOTONGAN BIAYA OPRASIONAL</strong></td>
                 <td class="text-left"></td>
                 <td class="text-left"></td>
@@ -623,7 +623,7 @@ else{
             
             <tr>
                 <td>5-510</td>
-                <td class="text-left">GAJI Karyawan</td>
+                <td class="text-left">Gaji Karyawan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_karyawan); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
@@ -679,7 +679,7 @@ else{
             </tr>
             <tr>
                 <td>5-510</td>
-                <td class="text-left">GAJI Driver</td>
+                <td class="text-left">Gaji Driver</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
