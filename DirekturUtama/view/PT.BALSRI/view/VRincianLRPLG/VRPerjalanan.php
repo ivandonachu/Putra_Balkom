@@ -357,7 +357,6 @@ else{
     }
 
     ?>
-
     <?php while($data = mysqli_fetch_array($table)){
      $no_laporan = $data['no_transaksi'];
      $tanggal =$data['tanggal'];
