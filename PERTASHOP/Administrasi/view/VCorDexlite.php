@@ -24,24 +24,23 @@ $nama = $data['nama_karyawan'];
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
+ $lokasi = $_GET['lokasi'];
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
+ $lokasi = $_POST['lokasi'];
 } 
-else{
-  $tanggal_awal = date('Y-m-1');
-$tanggal_akhir = date('Y-m-31');
-}
+
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi,"SELECT * FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' ");
-   $table2 = mysqli_query($koneksi,"SELECT * FROM barang ");
+  $table = mysqli_query($koneksi,"SELECT * FROM ngecor WHERE tanggal ='$tanggal_awal' AND nama_barang = 'Dexlite' AND lokasi_cor = '$lokasi' ");
+  $table2 = mysqli_query($koneksi,"SELECT * FROM barang ");
 }
 
 else{
-  $table = mysqli_query($koneksi,"SELECT * FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi,"SELECT * FROM ngecor WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND lokasi_cor = '$lokasi' ");
   $table2 = mysqli_query($koneksi,"SELECT * FROM barang ");
 }
 
@@ -58,10 +57,11 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pembelian</title>
+  <title>Pencatatan Cor</title>
 
-  <!-- Custom fonts for this template-->
-  <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom fonts for this template-->
+    <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
   href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
   rel="stylesheet">
@@ -74,6 +74,10 @@ else{
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
+
+
 
   <!-- Link datepicker -->
 
@@ -126,15 +130,15 @@ else{
         <a class="collapse-item" style="font-size: 15px;" href="VAkunKaryawan">Akun Karyawan</a>
         <a class="collapse-item" style="font-size: 15px;" href="VPertashop">Pertashop</a>
         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Pertamax</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VPenjualanDex">Penjualan Dexlite</a>
+        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanDex">Penjualan Dexlite</a>
         <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
         <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
         <a class="collapse-item" style="font-size: 15px;" href="VSetoran">Setoran</a>
         <a class="collapse-item" style="font-size: 15px;" href="VCorPertamax">Cor Pertamax</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Cor Dexlite</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
+        <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Cor Dexlite</a>
+        <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
+        <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
       </div>
     </div>
   </li>
@@ -163,7 +167,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPembelian'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pembelian Pertashop</h5></a>"; ?>
+      <?php echo "<a href='VPembelian'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Ngecor Dexlite Ps $lokasi</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -219,15 +223,29 @@ else{
 
  <div style="margin-right: 20px; margin-left: 20px;">
 
-  <?php  echo "<form  method='POST' action='VPembelian'>" ?>
+ <?php  echo "<form  method='POST' action='VCorDexlite'>" ?>
   <div>
-    <div align="left" style="margin-left: 20px;"> 
-      <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-      <span>-</span>
-      <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-      <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <select id="lokasi" name="lokasi"s>
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
+
+
+              echo "<option> $nama_driver </option> ";
+              
+            }
+            ?>
+          </select>
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
     </div>
-  </div>
 </form>
 
 <div class="col-md-8">
@@ -242,14 +260,14 @@ else{
   <div class="col-md-2">
     <!-- Button Input Data Bayar -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pembelian</button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Ngecor</button> <br> <br>
     </div>
     <!-- Form Modal  -->
     <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Pencatatan Pembelian</h5>
+          <h5 class="modal-title"> Form Pencatatan Ngecor</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -257,7 +275,7 @@ else{
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_pembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_cor?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <br>
           <div class="row">
@@ -275,27 +293,56 @@ else{
 
          <div class="row">
 
-          <div class="col-md-6">
-           <label>Lokasi</label>
-           <select id="lokasi" name="lokasi" class="form-control ">
+         <div class="col-md-4">
+        <label>Lokasi Cor</label>
+          <select id="lokasi_cor" name="lokasi_cor" class="form-control">
+            <option>BK 3</option>
+            <option>PS Nusa Bakti</option>
+            <option>PS Bedilan</option>
+            <option>PS Sumber Jaya</option>
+            <option>Pul Baturaja</option>
+          </select>
+          </div> 
+          
+          <div class="col-md-4">
+          <label>No Polisi</label>
+          <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
+            <option></option>
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
 
             while ($data2 = mysqli_fetch_array($result)){
-              $nama_driver = $data2['lokasi'];
+              $no_polisi = $data2['no_polisi'];
 
-
-              echo "<option> $nama_driver </option> ";
+             
+                echo "<option> $no_polisi </option> ";
               
             }
             ?>
           </select>
         </div>
-        <div class="col-md-6">
-          <label>No SO</label>
-          <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" required="">
-        </div> 
+
+        <div class="col-md-4">
+          <label>Nama Driver</label>
+          <select id="tokens" class="selectpicker form-control" name="nama_driver" multiple data-live-search="true">
+            <option></option>
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM driver");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['nama_driver'];
+
+             
+                echo "<option> $nama_driver </option> ";
+              
+            }
+            ?>
+          </select>
+        </div>
+
+
       </div>
 
       <br>
@@ -303,26 +350,19 @@ else{
       <div class="row">
 
         <div class="col-md-6">
-          <label>QTY</label>
-          <select id="qty" name="qty" class="form-control">
-            <option>1000</option>
-            <option>2000</option>
-            <option>3000</option>
-            <option>4000</option>
-            <option>5000</option>
-            <option>6000</option>
-            <option>7000</option>
-            <option>8000</option>
+          <label>Nama Perusahaan</label>
+          <select id="nm_pt" name="nm_pt" class="form-control">
+            <option>PT CBM</option>
+            <option>BALSRI</option>
           </select>
         </div>       
-        
         <div class="col-md-6">
         <label>Nama Barang</label>
           <select id="nama_barang" name="nama_barang" class="form-control">
-            <option>Pertamax</option>
             <option>Dexlite</option>
           </select>
-          </div> 
+          </div>
+        
         </div>   
 
 
@@ -331,28 +371,17 @@ else{
 
                 
         <div class="col-md-6">
-          <label>Harga</label>
-          <input class="form-control form-control-sm" type="float" id="harga" name="harga" required="">
+          <label>Jumlah</label>
+          <input class="form-control form-control-sm" type="float" id="jumlah" name="jumlah" required="">
         </div>   
         <div class="col-md-6">
-          <label>Volume Tangki</label>
-          <input class="form-control form-control-sm" type="float" id="volume_tangki" name="volume_tangki" required="">
+          <label>Harga</label>
+          <input class="form-control form-control-sm" type="float" id="harga" name="harga" required="">
         </div> 
         
       </div>
 
-      <div class="row">
 
-                
-<div class="col-md-6">
-  <label>Soding Sebelum Isi</label>
-  <input class="form-control form-control-sm" type="float" id="sonding_awal" name="sonding_awal" required="">
-</div>   
-<div class="col-md-6">
-  <label>Soding Setelah Isi</label>
-  <input class="form-control form-control-sm" type="float" id="sonding_akhir" name="sonding_akhir" required="">
-</div> 
-</div>
 
       <div>
        <label>Keterangan</label>
@@ -387,37 +416,32 @@ else{
   <thead>
     <tr>
       <th style="font-size: 11px" >No</th>
-      <th style="font-size: 11px" >No SO</th>
-      <th style="font-size: 11px" >Tanggal Pembelian</th>
-      <th style="font-size: 11px" >Tanggal Bongkar</th>
-      <th style="font-size: 11px" >Kode Pertashop</th>   
-      <th style="font-size: 11px" >Lokasi</th>
-      <th style="font-size: 11px" >Nama Barang</th>
-      <th style="font-size: 11px" >QTY</th>
+      <th style="font-size: 11px" >Tanggal</th>
+      <th style="font-size: 11px" >Lokasi Cor</th>
+      <th style="font-size: 11px" >No Polisi</th>
+      <th style="font-size: 11px" >Nama Driver</th>   
+      <th style="font-size: 11px" >Perusahaan</th>
+      <th style="font-size: 11px" >Nama Barang </th>
+      <th style="font-size: 11px" >Jumlah Cor</th>
       <th style="font-size: 11px" >Harga</th>
-      <th style="font-size: 11px" >Jumlah</th>
-      <th style="font-size: 11px" >Volume Tanki</th>
-      <th style="font-size: 11px" >Sonding Sebelum Isi</th>
-      <th style="font-size: 11px" >Sonding Setelah Isi</th>
-      <th style="font-size: 11px" >Selisih S1 & S2</th>
-      <th style="font-size: 11px" >Losis</th>
+      <th style="font-size: 11px" >Total</th>
       <th style="font-size: 11px" >Keterangan</th>
       <th style="font-size: 11px" >File</th>
+      
       <th></th>
     </tr>
   </thead>
   <tbody>
     <?php
     $urut = 0;
-    $selisih = 0;
-    $losis = 0;
- 
 
-    $losis_nb_dex = 0;
-    $losis_nb_max = 0;
-    $losis_sj = 0 ;
-    $losis_md =0;
-    $losis_be = 0;
+    $cor_nb_max = 0;
+    $cor_nb_dex = 0;
+    $cor_be =0;
+    $cor_md = 0;
+    $cor_sj = 0;
+
+
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -425,70 +449,59 @@ else{
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no_pembelian = $data['no_pembelian'];
-      $no_so =$data['no_so'];
+      $no_cor = $data['no_cor'];
       $tanggal =$data['tanggal'];
-      $tanggal_bongkar =$data['tanggal_bongkar'];
-      $kode_perta =$data['kode_perta'];
-      $nama_barang =$data['nama_barang'];
-      $lokasi = $data['lokasi'];
-      $volume_tangki = $data['volume_tangki'];
-      $sonding_awal = $data['sonding_awal'];
-      $sonding_akhir = $data['sonding_akhir'];
-      $qty = $data['qty'];
+      $lokasi_cor =$data['lokasi_cor'];
+      $no_polisi =$data['no_polisi'];
+      $nama_driver =$data['nama_driver'];
+      $nama_perusahaan =$data['nama_perusahaan'];
+      $nama_barang = $data['nama_barang'];
+      $jumlah = $data['jumlah'];
       $harga = $data['harga'];
-      $jumlah = $qty * $harga;
+      $total = $data['total'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
-      $selisih = $sonding_akhir - $sonding_awal;
-      $losis = $selisih - $qty; 
+
       
       $urut = $urut + 1;
 
-
-      if($losis < 0){
-        if($kode_perta == '2P.323.208'){
-          if($nama_barang == 'Pertamax'){
-            $losis_nb_dex = $losis_nb_dex + $losis;
-          }
-          else{
-            $losis_nb_max = $losis_nb_max + $losis; 
-           
-          }
-          
+      if($kode_perta == '2P.323.208'){
+        if($nama_barang == 'Pertamax'){
+       
+          $cor_nb_max = $cor_nb_max + $jumlah;
         }
-        else if($kode_perta == 'bedilan'){
-          $losis_be = $losis_be + $losis; 
-         
+        else{
+     
+          $cor_nb_dex = $cor_nb_dex + $jumlah;
         }
-        else if($kode_perta == 'muaradua'){
-          $losis_md = $losis_md + $losis; 
-         
-        }
-        else if($kode_perta == 'sumberjaya'){
-          $losis_sj = $losis_sj + $losis; 
-          
-        }
+        
+      }
+      else if($kode_perta == 'bedilan'){
+     
+        $cor_be = $cor_be + $jumlah;
+      }
+      else if($kode_perta == 'muaradua'){
+      
+        $cor_md = $cor_md + $jumlah;
+      }
+      else if($kode_perta == 'sumberjaya'){
+     
+        $cor_sj = $cor_sj + $jumlah;
       }
 
      
 
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
-      <td style='font-size: 11px' align = 'center'>$no_so</td>
       <td style='font-size: 11px' align = 'center'>$tanggal</td>
-      <td style='font-size: 11px' align = 'center'>$tanggal_bongkar</td>
-      <td style='font-size: 11px' align = 'center'>$kode_perta</td>
-      <td style='font-size: 11px' align = 'center'>$lokasi</td>
+      <td style='font-size: 11px' align = 'center'>$lokasi_cor</td>
+      <td style='font-size: 11px' align = 'center'>$no_polisi</td>
+      <td style='font-size: 11px' align = 'center'>$nama_driver</td>
+      <td style='font-size: 11px' align = 'center'>$nama_perusahaan</td>
       <td style='font-size: 11px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 11px' align = 'center'>$qty/L</td>
+      <td style='font-size: 11px' align = 'center'>$jumlah/L</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 11px' align = 'center'>$volume_tangki/L</td>
-      <td style='font-size: 11px' align = 'center'>$sonding_awal/L</td>
-      <td style='font-size: 11px' align = 'center'>$sonding_akhir/L</td>
-      <td style='font-size: 11px' align = 'center'>$selisih/L</td>
-      <td style='font-size: 11px' align = 'center'>"?> <?= round($losis,2); ?> <?php echo" /L</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($total); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "
@@ -498,15 +511,15 @@ else{
     
 
 
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_pembelian']; ?>">Edit</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_cor']; ?>">Edit</button>
 
 <!-- Form EDIT DATA -->
 
-<div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_pembelian']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_cor']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"> Form Edit Pembelian </h5>
+        <h5 class="modal-title"> Form Edit Ngecor </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="close">
           <span aria-hidden="true"> &times; </span>
         </button>
@@ -514,29 +527,13 @@ else{
 
       <!-- Form Edit Data -->
       <div class="modal-body" align="left">
-        <form action="../proses/edit_pembelian" enctype="multipart/form-data" method="POST">
+        <form action="../proses/edit_cor" enctype="multipart/form-data" method="POST">
 
-          <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian; ?>">
+          <input type="hidden" name="no_cor" value="<?php echo $no_cor; ?>">
+          <input type="hidden" name="lokasi_cor" value="<?php echo $lokasi_cor; ?>">
           <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
           <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
-
-          <div class="row">
-            <div class="col-md-6">
-
-              <label>No SO</label>
-              <div class="col-sm-10">
-                <input  class="form-control form-control-sm" type="text" id="no_so" name="no_so" required="" value="<?php echo $no_so;  ?>">
-              </div>
-
-            </div>
-            <div class="col-md-6">
-
-            </div>
-
-          </div>
-
-          <br>
-
+        
           <div class="row">
             <div class="col-md-6">
 
@@ -546,15 +543,6 @@ else{
               </div>
 
             </div>
-            <div class="col-md-6">
-
-              <label>Tanggal Bongkar</label>
-              <div class="col-sm-10">
-                <input  class="form-control form-control-sm" type="date" id="tanggal_bongkar" name="tanggal_bongkar" value="<?php echo $tanggal_bongkar; ?>">
-              </div>
-
-            </div>
-
           </div>
 
 
@@ -562,37 +550,53 @@ else{
 
           <div class="row">
 
-          <div class="col-md-6">
-          <label>Lokasi</label>
-          <select id="lokasi" name="lokasi" class="form-control ">
+          <div class="col-md-4">
+        <label>Lokasi Cor</label>
+        <input class="form-control form-control-sm" type="float" id="lokasi_cor" name="lokasi_cor" required="" value="<?php echo $lokasi_cor; ?>" disabled>
+          </div> 
+
+          <div class="col-md-4">
+           <label>No Polisi</label>
+           <div>
+          <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
             <?php
             include 'koneksi.php';
-            $dataSelect = $data['lokasi'];
-            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+            $dataSelect = $data['no_polisi'];
+            $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
 
             while ($data2 = mysqli_fetch_array($result)){
-              $nama_driver = $data2['lokasi'];
+              $no_polisi = $data2['no_polisi'];
 
 
-              echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
+              echo "<option" ?> <?php echo ($dataSelect == $no_polisi) ? "selected" : "" ?>> <?php echo $no_polisi; ?> <?php echo "</option>" ;
               
             }
             ?>
           </select>
           </div>
+        </div>
 
-            <div class="col-md-6">
-              <label>QTY</label>
-              <select id="qty" name="qty" class="form-control">
-                <?php
-                $dataSelect = $data['qty']; ?>
-                <option <?php echo ($dataSelect == '1000') ? "selected" : "" ?>>1000</option>
-                <option <?php echo ($dataSelect == '2000') ? "selected" : "" ?>>2000</option>
-                <option <?php echo ($dataSelect == '3000') ? "selected" : "" ?>>3000</option>
-                <option <?php echo ($dataSelect == '4000') ? "selected" : "" ?>>4000</option>
-                <option <?php echo ($dataSelect == '5000') ? "selected" : "" ?>>5000</option>
-              </select>
-            </div>
+        <div class="col-md-4">
+           <label>Nama Driver</label>
+           <div>
+          <select id="tokens" class="selectpicker form-control" name="nama_driver" multiple data-live-search="true">
+            <?php
+            include 'koneksi.php';
+            $dataSelect = $data['nama_driver'];
+            $result = mysqli_query($koneksi, "SELECT * FROM driver");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['nama_driver'];
+
+
+              echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>" ;
+              
+            }
+            ?>
+          </select>
+          </div>
+        </div>
+
             </div>
      
 
@@ -601,20 +605,39 @@ else{
           <div class="row">
 
             <div class="col-md-6">
-            <label>Nama Barang</label>
+          <label>Nama Perusahaan</label>
+          <select id="nm_pt" name="nm_pt" class="form-control">
+                <?php
+                $dataSelect = $data['nama_perusahaan']; ?>
+                
+                <option <?php echo ($dataSelect == 'PT CBM') ? "selected" : "" ?>>PT CBM</option>
+                <option <?php echo ($dataSelect == 'BALSRI') ? "selected" : "" ?>>BALSRI</option>
+
+              </select>
+        </div>       
+        <div class="col-md-6">
+           <label>Nama Barang</label>
               <select id="nama_barang" name="nama_barang" class="form-control">
                 <?php
                 $dataSelect = $data['nama_barang']; ?>
-                <option <?php echo ($dataSelect == 'Pertamax') ? "selected" : "" ?>>Pertamax</option>
+                
                 <option <?php echo ($dataSelect == 'Dexlite') ? "selected" : "" ?>>Dexlite</option>
 
               </select>
-            </div>
+          </div>
           </div>
 
           <br>
           
           <div class="row">
+            <div class="col-md-6">
+
+              <label>Jumlah</label>
+              <div class="col-sm-10">
+                <input  class="form-control form-control-sm" type="float" id="jumlah" name="jumlah" required="" value="<?php echo $jumlah; ?>">
+              </div>
+
+            </div>
             <div class="col-md-6">
 
               <label>Harga</label>
@@ -623,38 +646,11 @@ else{
               </div>
 
             </div>
-            <div class="col-md-6">
-
-              <label>Volume Tanki</label>
-              <div class="col-sm-10">
-                <input  class="form-control form-control-sm" type="float" id="volume_tangki" name="volume_tangki" required="" value="<?php echo $volume_tangki; ?>">
-              </div>
-
-            </div>
 
           </div>
           <br>
           
-          <div class="row">
-            <div class="col-md-6">
-
-              <label>Sonding Sebelum Isi</label>
-              <div class="col-sm-10">
-                <input  class="form-control form-control-sm" type="float" id="sonding_awal" name="sonding_awal" required="" value="<?php echo $sonding_awal; ?>">
-              </div>
-
-            </div>
-            <div class="col-md-6">
-
-              <label>Sonding Setelah Isi</label>
-              <div class="col-sm-10">
-                <input  class="form-control form-control-sm" type="float" id="sonding_akhir" name="sonding_akhir" required="" value="<?php echo $sonding_akhir; ?>">
-              </div>
-
-            </div>
-
-          </div>
-          <br>
+         
           <div>
        <label>Keterangan</label>
        <div class="form-group">
@@ -680,20 +676,20 @@ else{
 </div>
 
 <!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_pembelian']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $data['no_pembelian']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_cor']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $data['no_cor']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+      <h4 class="modal-title"> <b> Hapus Data Ngecor </b> </h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="close">
         <span aria-hidden="true"> &times; </span>
       </button>
     </div>
 
     <div class="modal-body">
-      <form action="../proses/hapus_pembelian" method="POST">
-        <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian;?>">
+      <form action="../proses/hapus_cor" method="POST">
+        <input type="hidden" name="no_cor" value="<?php echo $no_cor;?>">
         <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
         <div class="form-group">
@@ -724,7 +720,7 @@ else{
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th  style='font-size: 12px' >Kode Barang</th>
+      <th  style='font-size: 12px' >No</th>
       <th  style='font-size: 12px'>Kode Perta</th>
       <th  style='font-size: 12px'>Nama Barang</th>
       <th  style='font-size: 12px'>STOK</th>
@@ -736,10 +732,10 @@ else{
       $kode_perta =$data['kode_perta'];
       $nama_barang =$data['nama_barang'];
       $stok = $data['stok'];
-
+      $no_urut =+1 ;
 
       echo "<tr>
-      <td style='font-size: 12px' align = 'center'>$kode_barang</td>
+      <td style='font-size: 12px' align = 'center'>$no_urut</td>
       <td style='font-size: 12px' align = 'center'>$kode_perta</td>
       <td style='font-size: 12px' align = 'center'>$nama_barang</td>
       <td style='font-size: 12px' align = 'center'>$stok</td>
@@ -751,17 +747,15 @@ else{
 </tbody>
 </table>
 </div>
-</div>
 
-<br>
-<hr>
 <div style="margin-right: 100px; margin-left: 100px;">
-<h6 align="Center">Laporan Losis</h6>
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<h6 align="Center">Laporan Barang Di Cor</h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
       <th style='font-size: 11px'>Pertashop</th>
       <th style='font-size: 11px'>Nama Barang</th>
-      <th style='font-size: 11px'>Total Losis</th>
+      <th style='font-size: 11px'>Total Terjual</th>
     </tr>
   </thead>
   <tbody>
@@ -770,31 +764,31 @@ else{
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_dex); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_nb_max); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_max); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_sj); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sj); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Bedilan</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_be); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_be); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_md); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_md); ?></td>
      
   </tr>
 
@@ -802,7 +796,11 @@ else{
 </tbody>
 </table>
 </div>
+</div>
+</div>
+
 <br>
+
 </div>
 </div>
 <!-- End of Main Content -->
@@ -849,8 +847,8 @@ aria-hidden="true">
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
-<script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -858,7 +856,7 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-
+<script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
 <!-- Tabel -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -885,7 +883,43 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+<script>
+  function createOptions(number) {
+    var options = [], _options;
 
+    for (var i = 0; i < number; i++) {
+      var option = '<option value="' + i + '">Option ' + i + '</option>';
+      options.push(option);
+    }
+
+    _options = options.join('');
+
+    $('#number')[0].innerHTML = _options;
+    $('#number-multiple')[0].innerHTML = _options;
+
+    $('#number2')[0].innerHTML = _options;
+    $('#number2-multiple')[0].innerHTML = _options;
+  }
+
+  var mySelect = $('#first-disabled2');
+
+  createOptions(4000);
+
+  $('#special').on('click', function () {
+    mySelect.find('option:selected').prop('disabled', true);
+    mySelect.selectpicker('refresh');
+  });
+
+  $('#special2').on('click', function () {
+    mySelect.find('option:disabled').prop('disabled', false);
+    mySelect.selectpicker('refresh');
+  });
+
+  $('#basic2').selectpicker({
+    liveSearch: true,
+    maxOptions: 1
+  });
+</script>
 
 
 </body>

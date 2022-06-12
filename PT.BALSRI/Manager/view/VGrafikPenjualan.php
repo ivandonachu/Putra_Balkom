@@ -318,6 +318,8 @@ while($data21 = mysqli_fetch_array($table21)){
                      <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
                      <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Penjualan Pertamax</a>
                      <a class="collapse-item" style="font-size: 15px;" href="VLPenjualanDex">Penjualan Dex</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VCorPertamax">Cor Pertamax</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Cor Dexlite</a>
                      <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiPs">Laba Rugi</a>
                      <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
                      <a class="collapse-item" style="font-size: 15px;" href="Setoran">Setoran</a>

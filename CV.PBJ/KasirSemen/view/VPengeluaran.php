@@ -295,6 +295,7 @@ else{
             <option>Listrik & Telepon</option>>
             <option>Alat Tulis Kantor</option>
              <option>Biaya Sewa</option>
+             <option>Gaji Karyawan</option>
           </select>
         </div>            
 
@@ -440,6 +441,7 @@ else{
             <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
             <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
              <option <?php echo ($dataSelect == 'Biaya Sewa') ? "selected": "" ?> >Biaya Sewa</option>
+             <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected": "" ?> >Gaji Karyawan</option>
           </select>
 
         </div>            

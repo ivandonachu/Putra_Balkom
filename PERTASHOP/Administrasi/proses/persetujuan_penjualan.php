@@ -22,6 +22,7 @@ exit;
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_penjualan = $_POST['no_penjualan'];
+$lokasi = $_POST['lokasi'];
 
 
 
@@ -30,4 +31,4 @@ $no_penjualan = $_POST['no_penjualan'];
 
 
 
-			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;

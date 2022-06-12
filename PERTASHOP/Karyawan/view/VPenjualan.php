@@ -237,14 +237,14 @@ $kode_perta = $data_perta['kode_perta'];
   <div class="col-md-12">
     <!-- Button Input Data Bayar -->
     <div>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pembelian</button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Penjualan</button> <br> <br>
     </div>
     <!-- Form Modal  -->
     <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Pencatatan Penjualan Dexlite</h5>
+          <h5 class="modal-title"> Form Pencatatan Penjualan Pertamax</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -310,8 +310,7 @@ $kode_perta = $data_perta['kode_perta'];
 
 
         <div class="col-md-4">
-          <label>Ngecor</label>
-          <input class="form-control form-control-sm" type="float" id="ngecor" name="ngecor" required="">
+          
 
         </div>    
              
@@ -373,11 +372,9 @@ $kode_perta = $data_perta['kode_perta'];
       <th  style="font-size: 11px">Lokasi</th>
       <th  style="font-size: 11px">Penjual</th>
       <th  style="font-size: 11px">Barang</th>
-      <th  style="font-size: 11px">Total Keluar</th>
-      <th  style="font-size: 11px">Ngecor</th>
-      <th  style="font-size: 11px">Jual</th>
+      <th  style="font-size: 11px">Terjual</th>
       <th  style="font-size: 11px">Harga</th>
-      <th  style="font-size: 11px">Jumlah</th>
+      <th  style="font-size: 11px">Total</th>
       <th  style="font-size: 11px">Stok awal</th>
       <th  style="font-size: 11px">Stok Akhir</th>
       <th  style="font-size: 11px">KET</th>
@@ -393,7 +390,8 @@ $kode_perta = $data_perta['kode_perta'];
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
+    $uang_nb_max = 0;
+    $terjual_nb_max = 0 ;
     ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no_penjualan = $data['no_penjualan'];
@@ -403,8 +401,6 @@ $kode_perta = $data_perta['kode_perta'];
       $nama_barang = $data['nama_barang'];
       $nama_karyawan = $data['nama_karyawan'];
       $qty = $data['qty'];
-      $ngecor = $data['ngecor'];
-      $total_qty = $qty + $ngecor;
       $stok_awal = $data['stok_awal'];
       $stok_akhir = $data['stok_akhir'];
       $harga = $data['harga'];
@@ -413,33 +409,34 @@ $kode_perta = $data_perta['kode_perta'];
       $file_bukti = $data['file_bukti'];
       $status = $data['persetujuan'];
       $urut = $urut + 1;
-      if($kode_perta == '2P.323.208'){
+    
+      if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
-          $uang_nb_max = $uang_nb_max + $jumlah; 
-          $terjual_nb_max = $terjual_nb_max + $qty;
-          $cor_nb_max = $cor_nb_max + $ngecor;
+          $uang_nb_max = $uang_nb_max + ($jumlah * $qty); 
+          $terjual_nb_max =  $terjual_nb_max + $qty;
+         
         }
         else{
-          $uang_nb_dex = $uang_nb_dex + $jumlah; 
-          $terjual_nb_dex = $terjual_nb_dex + $qty;
-          $cor_nb_dex = $cor_nb_dex + $ngecor;
+          $uang_nb_dex =+ $jumlah; 
+          $terjual_nb_dex =+ $qty;
+       
         }
         
       }
       else if($kode_perta == 'bedilan'){
         $uang_be = $uang_be + $jumlah; 
         $terjual_be = $terjual_be + $qty;
-        $cor_be = $cor_be + $ngecor;
+    
       }
       else if($kode_perta == 'muaradua'){
         $uang_md = $uang_md + $jumlah; 
         $terjual_md = $terjual_md + $qty;
-        $cor_md = $cor_md + $ngecor;
+       
       }
       else if($kode_perta == 'sumberjaya'){
         $uang_sj = $uang_sj + $jumlah; 
         $terjual_sj = $terjual_sj + $qty;
-        $cor_sj = $cor_sj + $ngecor;
+     
       }
 
       echo "<tr>
@@ -449,8 +446,6 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>$lokasi</td>
       <td style='font-size: 11px' align = 'center'>$nama_karyawan</td>
       <td style='font-size: 11px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 11px' align = 'center'>$total_qty/L</td>
-      <td style='font-size: 11px' align = 'center'>$ngecor/L</td>
       <td style='font-size: 11px' align = 'center'>$qty/L</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
@@ -546,7 +541,9 @@ $kode_perta = $data_perta['kode_perta'];
  </div>
 <br>
 <div style="margin-right: 100px; margin-left: 100px;">
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<h6 align="Center">Stok Barang</h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
       <th>Nama Barang</th>
       <th>STOK</th>
@@ -568,6 +565,7 @@ $kode_perta = $data_perta['kode_perta'];
 
 </tbody>
 </table>
+</div>
 </div>
 
 <br>
@@ -625,7 +623,7 @@ $kode_perta = $data_perta['kode_perta'];
 
 <br>
 <hr>
-
+<?php /*
 <div style="margin-right: 100px; margin-left: 100px;">
 <h6 align="Center">Laporan Barang Di Cor</h6>
 <div style="overflow-x: auto" align = 'center'>
@@ -674,11 +672,12 @@ $kode_perta = $data_perta['kode_perta'];
 </tbody>
 </table>
 </div>
-</div>
+</div> */
+?>
 <br>
 <hr>
 <div style="margin-right: 100px; margin-left: 100px;">
-<h6 align="Center"  >Laporan Keuangan</h6>
+<h6 align="Center"  >Laporan Uang Penjualan </h6>
 <div style="overflow-x: auto" align = 'center'>
 <table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>

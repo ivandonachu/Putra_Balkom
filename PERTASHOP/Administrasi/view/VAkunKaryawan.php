@@ -104,11 +104,15 @@ $table = mysqli_query($koneksi, "SELECT * FROM akun_perta a INNER JOIN pertashop
           <a class="collapse-item" style="font-size: 15px;" href="VAkunKaryawan">Akun Karyawan</a>
           <a class="collapse-item" style="font-size: 15px;" href="VPertashop">Pertashop</a>
           <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Pertamax</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VPenjualanDex">Penjualan Dexlite</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VPenjualanDex">Penjualan Dexlite</a>
           <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
           <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
           <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
           <a class="collapse-item" style="font-size: 15px;" href="VSetoran">Setoran</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VCorPertamax">Cor Pertamax</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Cor Dexlite</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
         </div>
       </div>
     </li>

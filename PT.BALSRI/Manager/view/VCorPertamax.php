@@ -21,7 +21,29 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-$table = mysqli_query($koneksi,"SELECT * FROM pengiriman ")
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+ $lokasi = $_GET['lokasi'];
+} 
+
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+ $lokasi = $_POST['lokasi'];
+} 
+
+
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksiperta,"SELECT * FROM ngecor WHERE tanggal ='$tanggal_awal' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi'");
+  $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
+}
+
+else{
+  $table = mysqli_query($koneksiperta,"SELECT * FROM ngecor WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi'");
+  $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -35,10 +57,11 @@ $table = mysqli_query($koneksi,"SELECT * FROM pengiriman ")
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Perbaikan Kendaraan</title>
+  <title>Pencatatan Cor</title>
 
-  <!-- Custom fonts for this template-->
-  <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom fonts for this template-->
+    <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
   href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
   rel="stylesheet">
@@ -51,6 +74,10 @@ $table = mysqli_query($koneksi,"SELECT * FROM pengiriman ")
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
+
+
 
   <!-- Link datepicker -->
 
@@ -60,9 +87,8 @@ $table = mysqli_query($koneksi,"SELECT * FROM pengiriman ")
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
@@ -229,7 +255,6 @@ $table = mysqli_query($koneksi,"SELECT * FROM pengiriman ")
    
 
  <?php } ?>
-
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -254,7 +279,7 @@ $table = mysqli_query($koneksi,"SELECT * FROM pengiriman ")
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VCatatPerbaikan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pencatatan Perbaikan Kendaraan LMG</h5></a>"; ?>
+      <?php echo "<a href='VPembelian'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Ngecor Pertamax Ps $lokasi</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -308,23 +333,227 @@ $table = mysqli_query($koneksi,"SELECT * FROM pengiriman ")
 <div>   
 
 
- <div style="margin-right: 100px; margin-left: 100px;">
+ <div style="margin-right: 20px; margin-left: 20px;">
 
-      <?php  echo "<form  method='POST' action='VCatatPerbaikan2.php'>" ?>
-      <div>
-        <div align="left" style="margin-left: 20px;"> 
-          <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-          <span>-</span>
-          <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-          <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+ <?php  echo "<form  method='POST' action='VcorPertamax'>" ?>
+  <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <select id="lokasi" name="lokasi"s>
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
+
+
+              echo "<option> $nama_driver </option> ";
+              
+            }
+            ?>
+          </select>
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
       </div>
-  </div>
+    </div>
 </form>
+
+<div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+ </div>
+ <br>
+
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th style="font-size: 11px" >No</th>
+      <th style="font-size: 11px" >Tanggal</th>
+      <th style="font-size: 11px" >Lokasi Cor</th>
+      <th style="font-size: 11px" >No Polisi</th>
+      <th style="font-size: 11px" >Nama Driver</th>   
+      <th style="font-size: 11px" >Perusahaan</th>
+      <th style="font-size: 11px" >Nama Barang </th>
+      <th style="font-size: 11px" >Jumlah Cor</th>
+      <th style="font-size: 11px" >Harga</th>
+      <th style="font-size: 11px" >Total</th>
+      <th style="font-size: 11px" >Keterangan</th>
+      <th style="font-size: 11px" >File</th>
+      
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $urut = 0;
+    $cor_nb_max = 0;
+    $cor_nb_dex = 0;
+    $cor_be =0;
+    $cor_md = 0;
+    $cor_sj = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
+    ?>
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_cor = $data['no_cor'];
+      $tanggal =$data['tanggal'];
+      $lokasi_cor =$data['lokasi_cor'];
+      $no_polisi =$data['no_polisi'];
+      $nama_driver =$data['nama_driver'];
+      $nama_perusahaan =$data['nama_perusahaan'];
+      $nama_barang = $data['nama_barang'];
+      $jumlah = $data['jumlah'];
+      $harga = $data['harga'];
+      $total = $data['total'];
+      $keterangan = $data['keterangan'];
+      $file_bukti = $data['file_bukti'];
+
+      
+      $urut = $urut + 1;
+
+      if($kode_perta == '2P.323.208'){
+        if($nama_barang == 'Pertamax'){
+       
+          $cor_nb_max = $cor_nb_max + $jumlah;
+        }
+        else{
+     
+          $cor_nb_dex = $cor_nb_dex + $jumlah;
+        }
+        
+      }
+      else if($kode_perta == 'bedilan'){
+     
+        $cor_be = $cor_be + $jumlah;
+      }
+      else if($kode_perta == 'muaradua'){
+      
+        $cor_md = $cor_md + $jumlah;
+      }
+      else if($kode_perta == 'sumberjaya'){
+     
+        $cor_sj = $cor_sj + $jumlah;
+      }
+
+
+      echo "<tr>
+      <td style='font-size: 11px' align = 'center'>$urut</td>
+      <td style='font-size: 11px' align = 'center'>$tanggal</td>
+      <td style='font-size: 11px' align = 'center'>$lokasi_cor</td>
+      <td style='font-size: 11px' align = 'center'>$no_polisi</td>
+      <td style='font-size: 11px' align = 'center'>$nama_driver</td>
+      <td style='font-size: 11px' align = 'center'>$nama_perusahaan</td>
+      <td style='font-size: 11px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 11px' align = 'center'>$jumlah/L</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>$keterangan</td>
+      "; ?>
+      <?php echo "
+      <td style='font-size: 11px'>"; ?> <a download="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+    </tr>";
+}
+?>
+
+</tbody>
+</table>
 </div>
 
+<br>
+<br>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Stok</h6>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th  style='font-size: 12px' >No</th>
+      <th  style='font-size: 12px'>Kode Perta</th>
+      <th  style='font-size: 12px'>Nama Barang</th>
+      <th  style='font-size: 12px'>STOK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $kode_barang = $data['kode_barang'];
+      $kode_perta =$data['kode_perta'];
+      $nama_barang =$data['nama_barang'];
+      $stok = $data['stok'];
+      $no_urut =+1 ;
 
+      echo "<tr>
+      <td style='font-size: 12px' align = 'center'>$no_urut</td>
+      <td style='font-size: 12px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 12px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 12px' align = 'center'>$stok</td>
+     
+  </tr>";
+}
+?>
+
+</tbody>
+</table>
 </div>
 
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Barang Di Cor</h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Terjual</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_md); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<br>
+
+</div>
 </div>
 <!-- End of Main Content -->
 
@@ -370,8 +599,8 @@ aria-hidden="true">
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
-<script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -379,7 +608,7 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-
+<script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
 <!-- Tabel -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -406,7 +635,43 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+<script>
+  function createOptions(number) {
+    var options = [], _options;
 
+    for (var i = 0; i < number; i++) {
+      var option = '<option value="' + i + '">Option ' + i + '</option>';
+      options.push(option);
+    }
+
+    _options = options.join('');
+
+    $('#number')[0].innerHTML = _options;
+    $('#number-multiple')[0].innerHTML = _options;
+
+    $('#number2')[0].innerHTML = _options;
+    $('#number2-multiple')[0].innerHTML = _options;
+  }
+
+  var mySelect = $('#first-disabled2');
+
+  createOptions(4000);
+
+  $('#special').on('click', function () {
+    mySelect.find('option:selected').prop('disabled', true);
+    mySelect.selectpicker('refresh');
+  });
+
+  $('#special2').on('click', function () {
+    mySelect.find('option:disabled').prop('disabled', false);
+    mySelect.selectpicker('refresh');
+  });
+
+  $('#basic2').selectpicker({
+    liveSearch: true,
+    maxOptions: 1
+  });
+</script>
 
 
 </body>

@@ -23,7 +23,6 @@ $no_penjualan = $_POST['no_penjualan'];
         $kode_perta = $data_penjualan['kode_perta'];
         $nama_barang = $data_penjualan['nama_barang'];
         $qty = $data_penjualan['qty'];
-        $ngecor = $data_penjualan['ngecor'];
    
 
 		//Hapusriwayat keberangkatan
@@ -34,7 +33,7 @@ $no_penjualan = $_POST['no_penjualan'];
 				
 	    
 			
-        if($kode_perta == '2P.323.208' && $nama_barang == 'Pertamax'){
+        if($kode_perta == 'nusabakti' && $nama_barang == 'Pertamax'){
             
             	
 
@@ -43,7 +42,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + ($qty + $ngecor);
+                $stok_baru = $stok_awal + ($qty);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
 
@@ -52,7 +51,7 @@ $no_penjualan = $_POST['no_penjualan'];
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
-        else if($kode_perta == '2P.323.208' && $nama_barang == 'Dexlite'){
+        else if($kode_perta == 'nusabakti' && $nama_barang == 'Dexlite'){
                 	
 
                 
@@ -60,7 +59,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + ($qty + $ngecor);
+                $stok_baru = $stok_awal + ($qty);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
@@ -76,7 +75,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + ($qty + $ngecor);
+                $stok_baru = $stok_awal + ($qty );
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
                 $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
@@ -92,7 +91,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + ($qty + $ngecor);
+                $stok_baru = $stok_awal + ($qty );
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
                 $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
@@ -108,7 +107,7 @@ $no_penjualan = $_POST['no_penjualan'];
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
-                $stok_baru = $stok_awal + ($qty + $ngecor);
+                $stok_baru = $stok_awal + ($qty);
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");

@@ -119,6 +119,10 @@ $nama = $data['nama_karyawan'];
                     <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
                     <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
                     <a class="collapse-item" style="font-size: 15px;" href="VSetoran">Setoran</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="VCorPertamax">Cor Pertamax</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Cor Dexlite</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
                 </div>
             </div>
         </li>

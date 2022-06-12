@@ -127,6 +127,10 @@ else{
         <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
         <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+        <a class="collapse-item" style="font-size: 15px;" href="VCorPertamax">Cor Pertamax</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Cor Dexlite</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
+          <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
       </div>
     </div>
   </li>
@@ -261,20 +265,22 @@ else{
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
           <?php  echo "<form action='../proses/proses_setoran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
           <div class="row">
-            <div class="col-md-4">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
-   
-
+              <div class="col-md-4">
+                <label>Tanggal</label>
+                <input class="form-control " type="date" id="tanggal" name="tanggal" required="">
+              </div>
+              <div class="col-md-4">
+                <label>Tanggal Mulai Penjualan</label>
+                <input class="form-control " type="date" id="tanggal_awal_jual" name="tanggal_awal_jual" required="">
+              </div>
+              <div class="col-md-4">
+                <label>Tanggal Akhir Penjualan</label>
+                <input class="form-control " type="date" id="tanggal_akhir_jual" name="tanggal_akhir_jual" required="">
+              </div>
           </div>
-
-
-          <div class="col-md-4">
+          <div class="row">
+          <div class="col-md-6">
            <label>Lokasi</label>
            <select id="lokasi" name="lokasi" class="form-control ">
             <?php
@@ -292,7 +298,7 @@ else{
           </select>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
            <label>Penyetor</label>
            <select id="penyetor" name="penyetor" class="form-control ">
             <?php
@@ -375,6 +381,8 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
+      <th>Tgl Mulai Penjualan</th>
+      <th>Tgl Akhir Penjualan</th>
       <th>Kode Perta</th>
       <th>Pertashop</th>
       <th>Penyetor</th>
@@ -399,6 +407,8 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
      $no_setoran = $data['no_setoran'];
      $tanggal =$data['tanggal'];
+     $tanggal_awal_jual =$data['tanggal_awal_jual'];
+     $tanggal_akhir_jual =$data['tanggal_akhir_jual'];
      $kode_perta =$data['kode_perta'];
      $lokasi =$data['lokasi'];
      $penyetor = $data['penyetor'];
@@ -414,6 +424,8 @@ else{
      echo "<tr>
      <td style='font-size: 14px'>$urut</td>
      <td style='font-size: 14px'>$tanggal</td>
+     <td style='font-size: 14px'>$tanggal_awal_jual</td>
+     <td style='font-size: 14px'>$tanggal_akhir_jual</td>
      <td style='font-size: 14px'>$kode_perta</td>
      <td style='font-size: 14px'>$lokasi</td>
      <td style='font-size: 14px'>$penyetor</td>
@@ -441,17 +453,21 @@ else{
               <!-- Form Edit Data -->
               <div class="modal-body">
                 <form action="../proses/edit_setoran.php" enctype="multipart/form-data" method="POST">
-
-                  <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
-             </div>
-   
-
+                <div class="row">
+              <div class="col-md-4">
+                <label>Tanggal</label>
+                <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
+              </div>
+              <div class="col-md-4">
+                <label>Tanggal Mulai Penjualan</label>
+                <input class="form-control " type="date" id="tanggal_awal_jual" name="tanggal_awal_jual" value="<?php echo $tanggal_awal_jual;?>" required="">
+              </div>
+              <div class="col-md-4">
+                <label>Tanggal Akhir Penjualan</label>
+                <input class="form-control " type="date" id="tanggal_akhir_jual" name="tanggal_akhir_jual" value="<?php echo $tanggal_akhir_jual;?>" required="">
+              </div>
           </div>
+                  <div class="row">
           <div class="col-md-6">
            <label>Lokasi</label>
 
