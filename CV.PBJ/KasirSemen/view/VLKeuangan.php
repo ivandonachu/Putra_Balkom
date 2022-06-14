@@ -125,9 +125,8 @@ else{
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
       </div>
     </div>
   </li>
@@ -301,7 +300,7 @@ else{
             <option>Listrik & Telepon</option>
             <option>Alat Tulis Kantor</option>
             <option>Perbaikan Kendaraan</option>
-            
+            <option>Gaji Karyawan</option>
 
             </select>
           </div>    
@@ -451,6 +450,7 @@ else{
                     <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
                     <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                     <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?> >Perbaikan Kendaraan</option>
+                    <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected": "" ?> >Gaji Karyawan</option>
                   </select>
                 </div>    
                 <div class="col-md-6">
