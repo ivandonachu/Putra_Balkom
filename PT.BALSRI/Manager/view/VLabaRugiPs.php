@@ -75,28 +75,17 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   //ngecor Pertamax
 
-  $tablex1 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $tablex1 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
   
-  $total_cor_pertamax=0;
-  while($datax1 = mysqli_fetch_array($tablex1)){
-    $ngecor = $datax1['ngecor'];
-    $harga = $datax1['harga'];
+  $datax1 = mysqli_fetch_array($tablex1);
+  $total_ngecor_max = $datax1['total_cor'];
 
-    $total_cor_pertamax = $total_cor_pertamax + ($ngecor * $harga);
-
-  }
 
   //ngecor Dexlite
-  $tablex2 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
-  
-  $total_cor_dexlite=0;
-  while($datax2 = mysqli_fetch_array($tablex2)){
-    $ngecor = $datax2['ngecor'];
-    $harga = $datax2['harga'];
+  $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
 
-    $total_cor_dexlite = $total_cor_dexlite + ($ngecor * $harga);
-
-  }
+  $datax2 = mysqli_fetch_array($tablex2);
+  $total_ngecor_dex = $datax1['total_cor'];
 
 
 
@@ -229,32 +218,45 @@ else{
     $dexlite_terjual = $dexlite_terjual + $qty;
     $total_dexlite = $total_dexlite + ($qty * $harga);
     
-    //ngecor Pertamax
-
-  $tablex1 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+   //ngecor Pertamax
+   $tablex1 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor, SUM(jumlah) AS qty_cor FROM ngecor  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi' ");
   
-  $total_cor_pertamax=0;
-  $pertamax_cor = 0;
-  while($datax1 = mysqli_fetch_array($tablex1)){
-    $ngecor = $datax1['ngecor'];
-    $harga = $datax1['harga'];
-    $pertamax_cor = $pertamax_cor + $ngecor;
-    $total_cor_pertamax = $total_cor_pertamax + ($ngecor * $harga);
+   $datax1 = mysqli_fetch_array($tablex1);
+   $total_ngecor_max = $datax1['total_cor'];
+   $qty_ngecor_max = $datax1['qty_cor'];
+ 
+   //ngecor Dexlite
+   $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor , SUM(jumlah) AS qty_cor FROM ngecor  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND lokasi_cor = '$lokasi' ");
+ 
+   $datax2 = mysqli_fetch_array($tablex2);
+   $total_ngecor_dex = $datax2['total_cor'];
+   $qty_ngecor_dex = $datax2['qty_cor'];
 
-  }
 
-  //ngecor Dexlite
-  $tablex2 = mysqli_query($koneksiperta, "SELECT ngecor , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
-  
-  $total_cor_dexlite=0;
-  $dexlite_cor=0;
-  while($datax2 = mysqli_fetch_array($tablex2)){
-    $ngecor = $datax2['ngecor'];
-    $harga = $datax2['harga'];
-    $dexlite_cor = $dexlite_cor + $ngecor;
-    $total_cor_dexlite = $total_cor_dexlite + ($ngecor * $harga);
+   //Sisa stok pertamax
 
-  }
+   $tabley1 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+
+   $datay1 = mysqli_fetch_array($tabley1);
+   $no_penjualan_akhir_max = $datay1['penjualan_akhir'];
+
+   $tabley12 = mysqli_query($koneksiperta, "SELECT stok_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_max' ");
+   $datay12 = mysqli_fetch_array($tabley12);
+   $stok_akhir_max = $datay12['stok_akhir'];
+   $harga_stok_akhir_max = $datay12['harga'];
+   $total_uang_stok_max = $stok_akhir_max * $harga_stok_akhir_max;
+
+   //Sisa stok Dexlite
+   $tabley2 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+
+   $datay2 = mysqli_fetch_array($tabley2);
+   $no_penjualan_akhir_dex = $datay2['penjualan_akhir'];
+
+   $tabley22 = mysqli_query($koneksiperta, "SELECT stok_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_dex' ");
+   $datay22 = mysqli_fetch_array($tabley22);
+   $stok_akhir_dex = $datay22['stok_akhir'];
+   $harga_stok_akhir_dex = $datay22['harga'];
+   $total_uang_stok_dex = $stok_akhir_dex * $harga_stok_akhir_dex;
 
   // setoran
   $tablex32= mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_setoran FROM setoran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'  ");
@@ -295,7 +297,8 @@ else{
   }
 
 
-  $total_pendapatan = $total_pertamax + $total_dexlite + $total_cor_dexlite + $total_cor_pertamax;
+  $total_pendapatan_max = $total_pertamax  + $total_ngecor_max + $total_uang_stok_max;
+  $total_pendapatan_dex = $total_dexlite + $total_ngecor_dex  + $total_uang_stok_dex;
 
 
     // Pembelian Pertamax
@@ -324,9 +327,9 @@ else{
 
   }
 
-  $total_harga_pokok_penjualan = $total_pertamax_b + $total_dexlite_b;
-  $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
 
+  $laba_kotor_dex = $total_pendapatan_dex - $total_dexlite_b;
+  $laba_kotor_max = $total_pendapatan_max - $total_pertamax_b;
   //pengeluran Biaya Kantor
    $table32= mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' AND b.lokasi = '$lokasi'  ");
    $data32 = mysqli_fetch_array($table32);
@@ -360,10 +363,11 @@ else{
     }
 
     $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa ;
-    $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
+
+    $laba_bersih_sebelum_pajak = $laba_kotor_dex + $laba_kotor_max - $total_biaya_usaha_final;
+    
 }
-
 
 
 ?>
@@ -705,7 +709,7 @@ else{
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title" align="Center"><strong>Laporan Penjualan <?php echo $lokasi ?></strong></h3>
+                    <h3 class="panel-title" align="Center"><strong>Laba Rugi Kotor Pertamax <?php echo $lokasi ?></strong></h3>
                 </div>
 
                 <div>
@@ -746,68 +750,35 @@ else{
                                   
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPenPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
-                                <tr>
-                                    <td>4-101</td>
-                                    <td class="text-left">Ngecor Pertamax</td>
-                                    <td class="text-left"><?=formatjumlah($pertamax_cor)?> Liter</td>
-                                    <td class="text-left"><?= formatuang($total_cor_pertamax); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                 
-                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
-                                </tr>
                                 
                                 <tr>
                                     <td>4-110</td>
-                                    <td class="text-left">Penjualan Dexlite</td>
-                                    <td class="text-left"><?=formatjumlah($dexlite_terjual) ?> Liter</td>
-                                    <td class="text-left"><?= formatuang($total_dexlite); ?></td>
+                                    <td class="text-left">Sisa Stok Pertamax</td>
+                                    <td class="text-left"><?=formatjumlah($stok_akhir_max) ?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_max); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                   
-                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPenDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
-                                </tr>
-                                
-                                <tr>
-                                    <td>4-111</td>
-                                    <td class="text-left">Ngecor Dexlite</td>
-                                    <td class="text-left"><?=formatjumlah($dexlite_cor)?> Liter</td>
-                                    <td class="text-left"><?= formatuang($total_cor_dexlite); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    
-                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='thick-line'></td>"; ?>
                                 </tr>
 
-                            
+
+                                <tr>
+                                    <td>4-112</td>
+                                    <td class="text-left">Total Ngecor Pertamax</td>
+                                    <td class="text-left"><?=formatjumlah($qty_ngecor_max)?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_ngecor_max); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    
+                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+ 
                                 <tr style="background-color:     #F0F8FF; ">
-                                    <td><strong>Total Pendapatan</strong></td>
+                                    <td><strong>Total Pendapatan + Cor + Stok</strong></td>
                                     <td class="text-left"></td>
-                                    <td class="no-line text-left"><?= formatjumlah($pertamax_terjual + $dexlite_terjual); ?> Liter</td>
-                                    <td class="no-line text-left"><?= formatuang($total_pertamax + $total_dexlite); ?></td>
+                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_max + $pertamax_terjual + $stok_akhir_max ); ?> Liter</td>
+                                    <td class="no-line text-left"><?= formatuang($total_pendapatan_max); ?></td>
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
-                                </tr>
-                                <tr style="background-color:     #F0F8FF; ">
-                                    <td><strong>Total Cor </strong></td>
-                                    <td class="text-left"></td>
-                                    <td class="no-line text-left"><?= formatjumlah($pertamax_cor + $dexlite_cor); ?> Liter</td>
-                                    <td class="no-line text-left"><?= formatuang($total_cor_dexlite + $total_cor_pertamax); ?></td>
-                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
-                                     <?php echo "<td class='text-right'></td>"; ?>
-                                </tr>
-                                <tr style="background-color:     #F0F8FF; ">
-                                    <td><strong>Total Pendapatan + Cor</strong></td>
-                                    <td class="text-left"></td>
-                                    <td class="no-line text-left"><?= formatjumlah($pertamax_cor + $dexlite_cor + $pertamax_terjual + $dexlite_terjual ); ?> Liter</td>
-                                    <td class="no-line text-left"><?= formatuang($total_pendapatan); ?></td>
-                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
-                                     <?php echo "<td class='text-right'></td>"; ?>
-                                </tr>
-                                <tr style="background-color:     #F0F8FF; ">
-                                    <td><strong>Total Setoran</strong></td>
-                                    <td class="text-left"></td>
-                                    <td class="thick-line"></td>
-                                    <td class="no-line text-left"><?= formatuang($jumlah_setoran); ?></td>
-                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRSetoran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -833,22 +804,13 @@ else{
                                     <td class="text-left"><?= formatuang($total_pertamax_b); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPembPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
-                                <tr>
-                                    <td>5-110</td>
-                                    <td class="text-left">Pembelian Dexlite</td>
-                                    <td class="text-left"><?=formatjumlah($pembelian_dexlite)?> Liter</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_dexlite_b); ?></td>
-                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPembDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
-                                   
-                                </tr>
                             
                                 <tr style="background-color:    #F0F8FF;  ">
                                     <td><strong>Total Harga Pokok Penjualan</strong></td>
                                     <td class="text-left"></td>
                                     <td class="thick-line"></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_harga_pokok_penjualan); ?></td>
+                                    <td class="text-left"><?= formatuang($total_pertamax_b); ?></td>
                                     <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
                                 <tr>
@@ -865,17 +827,296 @@ else{
                                     <td class="thick-line"></td>
                                     <?php
                                    
-                                    if ($laba_kotor > 0) { ?>
+                                    if ($laba_kotor_max > 0) { ?>
                                     
-                                    <td class="no-line text-left"><?= formatuang($laba_kotor); ?> </td>
+                                    <td class="no-line text-left"><?= formatuang($laba_kotor_max); ?> </td>
                                     <td class="no-line text-left"><?= formatuang(0); ?> </td>
                                     <?php }
-                                    else if ($laba_kotor < 0) { ?>
+                                    else if ($laba_kotor_max < 0) { ?>
 
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
-                                    <td class="no-line text-left"><?= formatuang($laba_kotor); ?></td>
+                                    <td class="no-line text-left"><?= formatuang($laba_kotor_max); ?></td>
                                     <?php }
-                                    else if ($laba_kotor == 0) { ?>
+                                    else if ($laba_kotor_max == 0) { ?>
+
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <?php }
+                                    ?>
+
+
+                                    <td class="thick-line"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" align="Center"><strong>Laba Rugi Kotor Dexlite <?php echo $lokasi ?></strong></h3>
+                </div>
+
+                <div>
+                    
+                </div>
+
+
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed"  style="color : black;">
+                            <thead>
+                                <tr>
+                                    <td><strong>Akun</strong></td>
+                                    <td class="text-left"><strong>Nama Akun</strong></td>
+                                    <td class="text-left"><strong>Jumlah</strong></td>
+                                    <td class="text-left"><strong>Debit</strong></td>
+                                    <td class="text-left"><strong>Kredit</strong></td>
+                                    <td class="text-right"><strong>Aksi</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                <tr>
+                                    <td><strong>4-000</strong></td>
+                                    <td class="text-left"><strong>PENDAPATAN</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-101</td>
+                                    <td class="text-left">Penjualan Dexlite</td>
+                                    <td class="text-left"><?=formatjumlah($dexlite_terjual)?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_dexlite); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                 
+                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPenDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+                                
+                                <tr>
+                                    <td>4-111</td>
+                                    <td class="text-left">Sisa Stok Dexlite</td>
+                                    <td class="text-left"><?=formatjumlah($stok_akhir_dex)?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_dex); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    
+                                    <?php echo "<td class='thick-line'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-112</td>
+                                    <td class="text-left">Total Ngecor Dexlite</td>
+                                    <td class="text-left"><?=formatjumlah($qty_ngecor_dex)?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_ngecor_dex); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    
+                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+
+                            
+                           
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Total Pendapatan + Cor + Sisa Stok</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_dex + $dexlite_terjual + $stok_akhir_dex ); ?> Liter</td>
+                                    <td class="no-line text-left"><?= formatuang($total_pendapatan_dex); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                     <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="thick-line"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5-000</strong></td>
+                                    <td class="text-left"><strong>HARGA POKOK PENJUALAN</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-110</td>
+                                    <td class="text-left">Pembelian Dexlite</td>
+                                    <td class="text-left"><?=formatjumlah($pembelian_dexlite)?> Liter</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_dexlite_b); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPembDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                   
+                                </tr>
+                            
+                                <tr style="background-color:    #F0F8FF;  ">
+                                    <td><strong>Total Harga Pokok Penjualan Dex</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_dexlite_b); ?></td>
+                                    <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="thick-line"></td>
+                                </tr>
+                                <tr style="background-color: navy;  color:white;">
+                                    <td><strong>LABA KOTOR</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="thick-line"></td>
+                                    <?php
+                                   
+                                    if ($laba_kotor_dex > 0) { ?>
+                                    
+                                    <td class="no-line text-left"><?= formatuang($laba_kotor_dex); ?> </td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                                    <?php }
+                                    else if ($laba_kotor_dex < 0) { ?>
+
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <td class="no-line text-left"><?= formatuang($laba_kotor_dex); ?></td>
+                                    <?php }
+                                    else if ($laba_kotor_dex == 0) { ?>
+
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <?php }
+                                    ?>
+
+
+                                    <td class="thick-line"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" align="Center"><strong>Laba Rugi <?php echo $lokasi ?></strong></h3>
+                </div>
+
+                <div>
+                    
+                </div>
+
+
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed"  style="color : black;">
+                            <thead>
+                                <tr>
+                                    <td><strong>Akun</strong></td>
+                                    <td class="text-left"><strong>Nama Akun</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><strong>Debit</strong></td>
+                                    <td class="text-left"><strong>Kredit</strong></td>
+                                    
+                                    <td class="text-right"><strong>Aksi</strong></td>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                <tr>
+                                    <td><strong>4-000</strong></td>
+                                    <td class="text-left"><strong>PENDAPATAN</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-101</td>
+                                    <td class="text-left">Laba Kotor Pertamax</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang($laba_kotor_max); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='thick-line'></td>"; ?>
+                                </tr>   
+                                <tr>
+                                    <td>4-101</td>
+                                    <td class="text-left">Laba Kotor Dexlite</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang($laba_kotor_dex); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='thick-line'></td>"; ?>
+                                </tr>                            
+                           
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Total Laba Kotor</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"><?= formatuang($laba_kotor_max + $laba_kotor_dex); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                     <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Total Setoran</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="thick-line"></td>
+                                    <td class="no-line text-left"><?= formatuang($jumlah_setoran); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRSetoran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="thick-line"></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="thick-line"></td>
+                                </tr>
+                               
+                                <tr style="background-color: navy;  color:white;">
+                                    <td><strong>LABA KOTOR</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="thick-line"></td>
+                                    <?php
+                                   
+                                    if ($laba_kotor_max + $laba_kotor_dex > 0) { ?>
+                                    
+                                    <td class="no-line text-left"><?= formatuang($laba_kotor_max + $laba_kotor_dex); ?> </td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                                    <?php }
+                                    else if ($laba_kotor_max + $laba_kotor_dex < 0) { ?>
+
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <td class="no-line text-left"><?= formatuang($laba_kotor_max + $laba_kotor_dex); ?></td>
+                                    <?php }
+                                    else if ($laba_kotor_max + $laba_kotor_dex == 0) { ?>
 
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
@@ -970,7 +1211,7 @@ else{
                                    
                                     if ($laba_bersih_sebelum_pajak > 0) { ?>
                                     
-                                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?> </td>
+                                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak )?> </td>
                                     <td class="no-line text-left"><?= formatuang(0); ?> </td>
                                     <?php }
                                     else if ($laba_bersih_sebelum_pajak < 0) { ?>
@@ -979,7 +1220,7 @@ else{
                                     <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?></td>
 
                                     <?php }
-                                    else if ($laba_kotor == 0) { ?>
+                                    else if ($laba_bersih_sebelum_pajak == 0) { ?>
 
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>

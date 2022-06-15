@@ -97,8 +97,8 @@ $kode_perta = $data_perta['kode_perta'];
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../DsManager">
@@ -253,6 +253,8 @@ $kode_perta = $data_perta['kode_perta'];
                      <a class="collapse-item" style="font-size: 15px;" href="../VPembelian">Pembelian</a>
                      <a class="collapse-item" style="font-size: 15px;" href="../VLPenjualan">Penjualan Pertamax</a>
                      <a class="collapse-item" style="font-size: 15px;" href="../VLPenjualanDex">Penjualan Dex</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="../VCorPertamax">Cor Pertamax</a>
+                     <a class="collapse-item" style="font-size: 15px;" href="../VCorDexlite">Cor Dexlite</a>
                      <a class="collapse-item" style="font-size: 15px;" href="../VLabaRugiPs">Laba Rugi</a>
                      <a class="collapse-item" style="font-size: 15px;" href="../VGrafikPenjualan">Grafik Penjualan</a>
                      <a class="collapse-item" style="font-size: 15px;" href="../Setoran">Setoran</a>
