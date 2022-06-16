@@ -346,7 +346,7 @@ else{
         <select id="lokasi" name="lokasi"s>
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+            $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop");   
 
             while ($data2 = mysqli_fetch_array($result)){
               $nama_driver = $data2['lokasi'];
