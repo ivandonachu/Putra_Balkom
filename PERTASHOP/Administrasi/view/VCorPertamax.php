@@ -238,7 +238,7 @@ else{
             $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
             while ($data2 = mysqli_fetch_array($result)){
-              $nama_driver = $data2['lokasi_cor'];
+              $nama_driver = $data2['lokasi'];
 
 
               echo "<option> $nama_driver </option> ";
@@ -300,9 +300,9 @@ else{
         <label>Lokasi Cor</label>
           <select id="lokasi_cor" name="lokasi_cor" class="form-control">
             <option>BK 3</option>
-            <option>PS Nusa Bakti</option>
-            <option>PS Bedilan</option>
-            <option>PS Sumber Jaya</option>
+            <option>Nusa Bakti</option>
+            <option>Bedilan</option>
+            <option>Sumber Jaya</option>
             <option>Pul Baturaja</option>
           </select>
           </div> 
