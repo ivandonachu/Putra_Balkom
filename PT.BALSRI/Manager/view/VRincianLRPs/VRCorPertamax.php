@@ -34,7 +34,7 @@ elseif (isset($_POST['tanggal1'])) {
 } 
 
 
-if($lokasi == 'BK 3' || $lokasi == 'Pul Baturaja'){
+
   if ($tanggal_awal == $tanggal_akhir) {
     $table = mysqli_query($koneksiperta,"SELECT * FROM ngecor WHERE tanggal ='$tanggal_awal' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi' ");
     $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
@@ -44,28 +44,7 @@ if($lokasi == 'BK 3' || $lokasi == 'Pul Baturaja'){
     $table = mysqli_query($koneksiperta,"SELECT * FROM ngecor WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax'  AND lokasi_cor = '$lokasi' ");
     $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
   }
- }
- else{
-      if($lokasi == 'Bedilan'){
-        $lokasi2 = 'PS Bedilan';
-      }
-      else if($lokasi == 'Nusa Bakti'){
-        $lokasi2 = 'PS Nusa Bakti';
-      }
-      else if($lokasi == 'Sumber Jaya'){
-        $lokasi2 = 'PS Sumber Jaya';
-      }
-  if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksiperta,"SELECT * FROM ngecor WHERE tanggal ='$tanggal_awal' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi2' ");
-    $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
-  }
-  
-  else{
-    $table = mysqli_query($koneksiperta,"SELECT * FROM ngecor WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax'  AND lokasi_cor = '$lokasi2' ");
-    $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
-  }
-
- }
+ 
 
 ?>
 <!DOCTYPE html>
