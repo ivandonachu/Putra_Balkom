@@ -235,7 +235,7 @@ else{
             $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
             while ($data2 = mysqli_fetch_array($result)){
-              $nama_driver = $data2['lokasi'];
+              $nama_driver = $data2['lokasi_cor'];
 
 
               echo "<option> $nama_driver </option> ";
