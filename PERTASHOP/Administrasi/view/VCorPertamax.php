@@ -226,7 +226,7 @@ else{
 
  <div style="margin-right: 20px; margin-left: 20px;">
 
- <?php  echo "<form  method='POST' action='VcorPertamax'>" ?>
+ <?php  echo "<form  method='POST' action='VCorPertamax'>" ?>
   <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
