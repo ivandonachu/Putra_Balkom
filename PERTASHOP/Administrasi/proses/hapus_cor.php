@@ -35,7 +35,7 @@ $no_cor = $_POST['no_cor'];
 
 	    
 			
-        if($lokasi_cor == 'PS Nusa Bakti' && $nama_barang == 'Pertamax'){
+        if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Pertamax'){
             
             	
 
@@ -52,7 +52,7 @@ $no_cor = $_POST['no_cor'];
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
-        else if($lokasi_cor == 'PS Nusa Bakti' && $nama_barang == 'Dexlite'){
+        else if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Dexlite'){
                 	
 
                 
@@ -68,7 +68,7 @@ $no_cor = $_POST['no_cor'];
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
-        else if($lokasi_cor == 'PS Bedilan' && $nama_barang == 'Pertamax'){
+        else if($lokasi_cor == 'Bedilan' && $nama_barang == 'Pertamax'){
                 	
 
                 
@@ -84,7 +84,7 @@ $no_cor = $_POST['no_cor'];
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
-        else if($lokasi_cor == 'PS Sumber Jaya' && $nama_barang == 'Pertamax'){
+        else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
                 	
 
                 

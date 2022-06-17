@@ -69,7 +69,7 @@ else if ( $nama_file != "" ) {
 
 
 
-if($lokasi_cor == 'PS Nusa Bakti' && $nama_barang == 'Pertamax'){
+if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Pertamax'){
             
 	
 	
@@ -99,7 +99,7 @@ if($lokasi_cor == 'PS Nusa Bakti' && $nama_barang == 'Pertamax'){
 		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 }
-else if($lokasi_cor == 'PS Nusa Bakti' && $nama_barang == 'Dexlite'){
+else if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Dexlite'){
 	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
 	$data_stok = mysqli_fetch_array($result2);
 	$stok_awal = $data_stok['stok'];
@@ -126,7 +126,7 @@ else if($lokasi_cor == 'PS Nusa Bakti' && $nama_barang == 'Dexlite'){
 		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorDexlitetanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 }
-else if($lokasi_cor == 'PS Bedilan' && $nama_barang == 'Pertamax'){
+else if($lokasi_cor == 'Bedilan' && $nama_barang == 'Pertamax'){
 	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
 	$data_stok = mysqli_fetch_array($result2);
 	$stok_awal = $data_stok['stok'];
@@ -153,7 +153,7 @@ else if($lokasi_cor == 'PS Bedilan' && $nama_barang == 'Pertamax'){
 		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 }
-else if($lokasi_cor == 'PS Sumber Jaya' && $nama_barang == 'Pertamax'){
+else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
 	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
 	$data_stok = mysqli_fetch_array($result2);
 	$stok_awal = $data_stok['stok'];

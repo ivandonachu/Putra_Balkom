@@ -69,7 +69,7 @@ else if ( $nama_file != "" ) {
         
 
 
-        if($lokasi_cor == 'PS Nusa Bakti' && $nama_barang == 'Pertamax'){
+        if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Pertamax'){
             
             	$query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
                 
@@ -84,7 +84,7 @@ else if ( $nama_file != "" ) {
 				//echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		       	}
         }
-        else if($lokasi_cor == 'PS Nusa Bakti' && $nama_barang == 'Dexlite'){
+        else if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Dexlite'){
                 $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
@@ -98,7 +98,7 @@ else if ( $nama_file != "" ) {
 				echo "<script> window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		       	}
         }
-        else if($lokasi_cor == 'PS Bedilan' && $nama_barang == 'Pertamax'){
+        else if($lokasi_cor == 'Bedilan' && $nama_barang == 'Pertamax'){
                 $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
@@ -112,7 +112,7 @@ else if ( $nama_file != "" ) {
 				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		       	}
         }
-        else if($lokasi_cor == 'PS Sumber Jaya' && $nama_barang == 'Pertamax'){
+        else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
                 $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
