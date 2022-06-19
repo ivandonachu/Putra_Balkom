@@ -21,6 +21,8 @@ exit;
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
+$tanggal_awal_jual = $_POST['tanggal_awal_jual'];
+$tanggal_akhir_jual = $_POST['tanggal_akhir_jual'];
 $penyetor = $_POST['penyetor'];
 $jumlah = $_POST['jumlah'];
 $nama_barang = $_POST['nama_barang'];
@@ -66,7 +68,7 @@ $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO setoran VALUES ('','$kode_perta','$tanggal','$penyetor','$nama_barang','$jumlah','$no_rekening','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO setoran VALUES ('','$kode_perta','$tanggal','$tanggal_awal_jual','$tanggal_akhir_jual','$penyetor','$nama_barang','$jumlah','$no_rekening','$file')");
 
 
 			if ($query != "") {

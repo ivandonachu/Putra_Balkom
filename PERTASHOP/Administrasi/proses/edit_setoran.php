@@ -21,6 +21,8 @@ exit;
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $tanggal = $_POST['tanggal'];
+$tanggal_awal_jual = $_POST['tanggal_awal_jual'];
+$tanggal_akhir_jual = $_POST['tanggal_akhir_jual'];
 $penyetor = $_POST['penyetor'];
 $nama_barang = $_POST['nama_barang'];
 $no_rekening = $_POST['no_rekening'];
@@ -66,11 +68,11 @@ $result = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE lokasi = '$lokas
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE setoran SET tanggal = '$tanggal' , kode_perta = '$kode_perta' , penyetor = '$penyetor' ,nama_barang = '$nama_barang', no_rekening = '$no_rekening' ,jumlah = '$jumlah'  WHERE no_setoran = 
+		$query3 = mysqli_query($koneksi,"UPDATE setoran SET tanggal = '$tanggal', tanggal_awal_jual = '$tanggal_awal_jual', tanggal_akhir_jual = '$tanggal_akhir_jual' , kode_perta = '$kode_perta' , penyetor = '$penyetor' ,nama_barang = '$nama_barang', no_rekening = '$no_rekening' ,jumlah = '$jumlah'  WHERE no_setoran = 
 		'$no_setoran'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE setoran SET tanggal = '$tanggal' , kode_perta = '$kode_perta', penyetor = '$penyetor'  ,nama_barang = '$nama_barang' , no_rekening = '$no_rekening' ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_setoran = 
+		$query3 = mysqli_query($koneksi,"UPDATE setoran SET tanggal = '$tanggal', tanggal_awal_jual = '$tanggal_awal_jual', tanggal_akhir_jual = '$tanggal_akhir_jual'  , kode_perta = '$kode_perta', penyetor = '$penyetor'  ,nama_barang = '$nama_barang' , no_rekening = '$no_rekening' ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_setoran = 
 		'$no_setoran'");
 	}
 	
