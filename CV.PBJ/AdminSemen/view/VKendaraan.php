@@ -246,8 +246,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
               <div class="col-md-6">
                 <label>Jenis Kendaraan</label>
                 <select id="jenis_kendaraan" name="jenis_kendaraan" class="form-control">
-                 <option>Pribadi</option>
-                 <option>Non Pribadi </option>
+                 <option>Bapak Nyoman Edi</option>
+                 <option>Bapak Rama</option>
+                 <option>Bapak Aril</option>
+                 <option>Mbak Reni</option>
                </select>
              </div>
            </div>
@@ -317,8 +319,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
                 <div class="col-md-6">
                   <label>Jenis Kendaraan</label>
                   <select id="jenis_kendaraan" name="jenis_kendaraan" class="form-control">
-                   <option>Pribadi</option>
-                   <option>Non Pribadi </option>
+                  <option>Bapak Nyoman Edi</option>
+                 <option>Bapak Rama</option>
+                 <option>Bapak Aril</option>
+                 <option>Mbak Reni</option>
                  </select>
                </div>
              </div>
