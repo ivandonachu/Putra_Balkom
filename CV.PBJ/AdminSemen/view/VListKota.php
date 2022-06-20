@@ -241,6 +241,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
                <label>Nama Kota</label>
                <input class="form-control form-control-sm" type="text" id="nama_kota" name="nama_kota" required="">
              </div>
+             <div class="col-md-6">
+               <label>Tarif Pranko</label>
+               <input class="form-control form-control-sm" type="text" id="tarif_pranko" name="tarif_pranko" required="">
+             </div>
            </div>
 
            <br>
@@ -266,7 +270,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
   <thead>
     <tr>
       <th>No</th>
-      <th>Nama Lokasi</th>   
+      <th>Nama Lokasi</th>  
+      <th>Tarif Pranko</th>   
       <th></th>
     </tr>
   </thead>
@@ -280,10 +285,12 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
     <?php while($data = mysqli_fetch_array($table)){
       $no = $data['no_kota'];
       $nama_kota =$data['nama_kota'];
+      $tarif_pranko =$data['tarif_pranko'];
      
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$no</td>
       <td style='font-size: 14px' align = 'center'>$nama_kota</td>
+      <td style='font-size: 14px' align = 'center'>$tarif_pranko</td>
       
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
@@ -312,6 +319,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
              <div class="col-md-6">
                <label>Nama Kota</label>
                <input class="form-control form-control-sm" type="text" id="nama_kota" name="nama_kota" required="" value="<?php echo $nama_kota;?>" >
+             </div>
+             <div class="col-md-6">
+               <label>Tarif Pranko</label>
+               <input class="form-control form-control-sm" type="text" id="tarif_pranko" name="tarif_pranko" required="" value="<?php echo $tarif_pranko;?>">
              </div>
            </div>
 

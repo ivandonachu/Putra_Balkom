@@ -18,11 +18,12 @@ else{  header("Location: logout.php");
 exit;
 }
 $nama_kota = $_POST['nama_kota'];
+$tarif_pranko = $_POST['tarif_pranko'];
 
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO list_kota_l VALUES('','$nama_kota')");
+	$query = mysqli_query($koneksi,"INSERT INTO list_kota_l VALUES('','$nama_kota','$tarif_pranko')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VListKota';</script>";exit;

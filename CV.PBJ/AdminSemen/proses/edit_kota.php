@@ -19,7 +19,7 @@ exit;
 }
 $no = $_POST['no'];
 $nama_kota = $_POST['nama_kota'];
-
+$tarif_pranko = $_POST['tarif_pranko'];
 
 
 
@@ -27,7 +27,7 @@ $nama_kota = $_POST['nama_kota'];
 
 	
 
-		$query = mysqli_query($koneksi,"UPDATE list_kota_l SET  nama_kota = '$nama_kota'   WHERE no_kota = '$no'");
+		$query = mysqli_query($koneksi,"UPDATE list_kota_l SET  nama_kota = '$nama_kota'   WHERE no_kota = '$no', tarif_pranko = '$tarif_pranko' ");
 	
 	
 			echo "<script>alert('Update Data Berhasil :)'); window.location='../view/VListKota';</script>";exit;
