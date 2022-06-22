@@ -129,7 +129,7 @@ else if($kode_perta == 'sumberjaya' && $nama_barang == 'Pertamax'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
 
 }
-else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
+else if($kode_perta == 'muaradua' && $nama_barang == 'Dexlite'){
 	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
 	$data_stok = mysqli_fetch_array($result2);
 	$stok_awal = $data_stok['stok'];

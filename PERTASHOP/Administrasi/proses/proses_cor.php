@@ -81,7 +81,7 @@ else if ( $nama_file != "" ) {
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
                 	if ($query != "") {
-				//echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 		       	}
         }
         else if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Dexlite'){
@@ -95,7 +95,7 @@ else if ( $nama_file != "" ) {
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 		       	}
         }
         else if($lokasi_cor == 'Bedilan' && $nama_barang == 'Pertamax'){
@@ -109,7 +109,7 @@ else if ( $nama_file != "" ) {
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 		       	}
         }
         else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
@@ -123,10 +123,10 @@ else if ( $nama_file != "" ) {
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 		       	}
         }
-        else if($lokasi_cor == 'muaradua' && $nama_barang == 'Pertamax'){
+        else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Dexlite'){
                 $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
@@ -137,7 +137,7 @@ else if ( $nama_file != "" ) {
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 		       	}
         }
         else if($lokasi_cor == 'BK 3' && $nama_barang == 'Pertamax'){
@@ -151,7 +151,7 @@ else if ( $nama_file != "" ) {
             
             $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '11'");
                 if ($query != "") {
-            echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+            echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
                }
         }
 
@@ -166,7 +166,7 @@ else if ( $nama_file != "" ) {
             
             $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '12'");
                 if ($query != "") {
-            echo "<script> window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+            echo "<script> window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
             }
         }
 
@@ -181,10 +181,10 @@ else if ( $nama_file != "" ) {
             
             $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '13'");
                 if ($query != "") {
-            echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+            echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
             }
         }    
-        else if($lokasi_cors == 'Pul Baturaja' && $nama_barang == 'Dexlite'){
+        else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Dexlite'){
             $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
 
             $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '14' ");
@@ -195,7 +195,7 @@ else if ( $nama_file != "" ) {
             
             $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '14'");
                 if ($query != "") {
-            echo "<script> window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+            echo "<script> window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
             }
         }           
 

@@ -466,7 +466,7 @@ else{
       
       $urut = $urut + 1;
 
-      if($kode_perta == '2P.323.208'){
+      if($lokasi_cor == 'Nusa Bakti'){
         if($nama_barang == 'Pertamax'){
        
           $cor_nb_max = $cor_nb_max + $jumlah;
@@ -477,15 +477,15 @@ else{
         }
         
       }
-      else if($kode_perta == 'bedilan'){
+      else if($lokasi_cor == 'Bedilan'){
      
         $cor_be = $cor_be + $jumlah;
       }
-      else if($kode_perta == 'muaradua'){
+      else if($lokasi_cor == 'Muara Dua'){
       
         $cor_md = $cor_md + $jumlah;
       }
-      else if($kode_perta == 'sumberjaya'){
+      else if($lokasi_cor == 'Sumber Jaya'){
      
         $cor_sj = $cor_sj + $jumlah;
       }
@@ -787,7 +787,7 @@ else{
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
       <td style='font-size: 11px' align = 'center'><?=  ($cor_md); ?></td>
      
   </tr>
