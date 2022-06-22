@@ -304,6 +304,7 @@ else{
             <option>Bedilan</option>
             <option>Sumber Jaya</option>
             <option>Pul Baturaja</option>
+            <option>Muara Dua</option>
           </select>
           </div> 
           
