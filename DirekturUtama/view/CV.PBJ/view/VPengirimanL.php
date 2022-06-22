@@ -145,7 +145,6 @@ else{
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLR2">Laba Rugi</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
@@ -274,7 +273,7 @@ else{
  </div>
  <br>
 
- <
+ 
 <!-- Tabel -->    
 <div style="overflow-x: auto">
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -294,7 +293,7 @@ else{
       <th>Tgl Nota Tarikan</th>
       <th>KET</th>
       <th>File</th>
-      <th></th>
+
     </tr>
   </thead>
   <tbody>
@@ -321,7 +320,7 @@ else{
       $tanggal_nota = $data['tanggal_nota'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
-        $result2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman FROM penjualan_sl WHERE no_penjualan = '$no_penjualan'");
+        $result2 = mysqli_query($koneksipbj, "SELECT tujuan_pengiriman FROM penjualan_sl WHERE no_penjualan = '$no_penjualan'");
         $data2 = mysqli_fetch_array($result2);
         $tujuan_pengiriman = $data2['tujuan_pengiriman'];
       $urut = $urut + 1;

@@ -392,8 +392,6 @@ else{
   <thead>
     <tr>
       <th>No</th>
-      <th>Edit</th>
-      <th>Delete</th>
       <th>Tanggal</th>
       <th>NO DO</th>
       <th>Tujuan</th>

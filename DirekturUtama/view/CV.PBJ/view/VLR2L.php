@@ -108,12 +108,12 @@ if ($tanggal_awal == $tanggal_akhir) {
     while($data = mysqli_fetch_array($table)){
         $no_do_pembelian = $data['no_do'];
         $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar != 'Bon' ");
-        $datax = mysqli_fetch_array($tablex);
-        if(isset($datax['jumlah'])){
-            $jumlah = $datax['jumlah'];
-            $pendapatan_penjualan_kadek = $pendapatan_penjualan_kadek + $jumlah;
-        }
 
+        if(mysqli_num_rows($tablex) === 1 ){
+            $datax = mysqli_fetch_array($tablex);
+               $jumlah = $datax['jumlah'];
+               $pendapatan_penjualan_kadek = $pendapatan_penjualan_kadek + $jumlah;
+              }
        
     }
     
@@ -123,14 +123,17 @@ if ($tanggal_awal == $tanggal_akhir) {
     while($datae = mysqli_fetch_array($tablee)){
         $no_do_pembelian = $datae['no_do'];
         $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  != 'Bon' ");
-        $datax2 = mysqli_fetch_array($tablex2);
-        if(isset($datax2['jumlah'])){
+
+        if(mysqli_num_rows($tablex2) === 1 ){
+            $datax2 = mysqli_fetch_array($tablex2);
             $jumlahx = $datax2['jumlah'];
             $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
-        }
+              }
+       
+    }
 
         
-    }
+    
 
 
 
@@ -184,7 +187,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $pemilik = $data2p['status_kendaraan'];
             }
             
-            if($pemilik == 'Bapak Nyoman Edy' ){
+            if($pemilik == 'Bapak Nyoman Edi' ){
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             }
         }
@@ -199,7 +202,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $pemilik = $data2p['status_kendaraan'];
             }
 
-            if($pemilik == 'Bapak Nyoman Edy' ){
+            if($pemilik == 'Bapak Nyoman Edi' ){
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             }
         }
@@ -214,7 +217,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $pemilik = $data2p['status_kendaraan'];
             }
             
-            if($pemilik == 'Bapak Nyoman Edy' ){
+            if($pemilik == 'Bapak Nyoman Edi' ){
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             }
         }
@@ -634,7 +637,7 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi CV PBJ (Kadek)</strong></h3>
+                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi CV PBJ</strong></h3>
                                 </div>
 
                                 <div>
@@ -795,7 +798,7 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                     <td class="text-left">Gaji Karyawan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($gaji_karyawan); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-512</td>

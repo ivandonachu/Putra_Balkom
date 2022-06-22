@@ -30,18 +30,17 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table4 = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal' GROUP BY driver "); 
+  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s WHERE tanggal = '$tanggal_awal' ");
 
 }
 else{
 
- 
-   $table4 = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
-   $table4x = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
-
+  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +52,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Gaji</title>
+  <title>Rincian Pembelian Sparepart Kendaraan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -76,10 +75,12 @@ else{
 
 <body id="page-top">
 
+
   <!-- Page Wrapper -->
   <div id="wrapper">
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
@@ -166,17 +167,16 @@ else{
         </div>
     </div>
 </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
 
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
+
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
 
 
@@ -191,7 +191,8 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Uang Jalan</h5></a>"; ?>
+      <?php echo "<a href='VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Pembelian Sparepart Kendaraan</h5></a>"; ?>
+
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -201,7 +202,6 @@ else{
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
-
 
 
 
@@ -245,93 +245,76 @@ else{
 <div>   
 
 
-
+  <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php echo "<a href='../VLR2L?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
-
-  <div class="col-md-8">
+  <div align="left">
+      <?php echo "<a href='../VLR2L?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    </div>
+<div class="row">
+  <div class="col-md-6">
    <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
  </div>
+</div>
 
 
-
-<h5 align="center" >Gaji Driver Etty</h5>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th align="center">Nama Driver</th>
-      <th align="center">Uang Jalan</th>
-      <th align="center">Total Uang Jalan</th>
-
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Jumlah Pembelian</th>
+      <th>Total</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
-  <?php
-    $uj_etty = 0;
+    <?php
+    $total = 0;
+    $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
-    <?php while($data = mysqli_fetch_array($table4)){
-      $nama_driver = $data['driver'];
-      $total_gaji =$data['total_gaji'];
-      $uj_etty = $uj_etty + $total_gaji ;
+
+    <?php while($data = mysqli_fetch_array($table)){
+      $tanggal =$data['tanggal'];
+      $nama_driver =$data['nama_driver'];
+      $no_polisi =$data['no_polisi'];
+      $jml_pengeluaran = $data['jumlah_sparepart'];
+      $file_bukti = $data['file_bukti'];
+      $total = $total + $jml_pengeluaran;
+      $urut = $urut + 1;
+
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($uj_etty); ?> <?php echo" </td>
-      </tr>";
+      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jml_pengeluaran); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>" href="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+    
+
+<?php echo  " </tr>";
 }
 ?>
 
 </tbody>
 </table>
-
-<br>
-<br>
-<br>
-
-
-<h5 align="center" >Gaji Driver Kadek</h5>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th align="center">Nama Driver</th>
-      <th align="center">Uang Jalan</th>
-      <th align="center">Total Uang Jalan</th>
-
-    </tr>
-  </thead>
-  <tbody>
-  <?php
-    $uj_kadek = 0;
-
-
-    ?>
-    <?php while($data = mysqli_fetch_array($table4)){
-      $nama_driver = $data['driver'];
-      $total_gaji =$data['total_gaji'];
-      $uj_kadek = $uj_kadek + $total_gaji ;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($uj_kadek); ?> <?php echo" </td>
-      </tr>";
-}
-?>
-
-</tbody>
-</table>
-
-<br>
-<br>
-<br>
 </div>
+<br>
+<br>
+<br>
+
+
 </div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -413,8 +396,6 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
-
-
 
 </body>
 
