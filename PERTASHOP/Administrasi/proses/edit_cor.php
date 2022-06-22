@@ -321,6 +321,6 @@ else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Dexlite'){
 	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorDexlitetanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }

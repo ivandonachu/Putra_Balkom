@@ -137,7 +137,7 @@ else if ( $nama_file != "" ) {
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
+				echo "<script> window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 		       	}
         }
         else if($lokasi_cor == 'BK 3' && $nama_barang == 'Pertamax'){
