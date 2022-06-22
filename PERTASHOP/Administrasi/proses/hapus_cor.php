@@ -49,7 +49,7 @@ $no_cor = $_POST['no_cor'];
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
                 $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
                 	if ($query != "") {
-				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 			}
         }
         else if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Dexlite'){
@@ -65,7 +65,7 @@ $no_cor = $_POST['no_cor'];
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
                 	if ($query != "") {
-				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 			}
         }
         else if($lokasi_cor == 'Bedilan' && $nama_barang == 'Pertamax'){
@@ -81,7 +81,7 @@ $no_cor = $_POST['no_cor'];
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
                 $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
                 	if ($query != "") {
-				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 			}
         }
         else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
@@ -97,10 +97,10 @@ $no_cor = $_POST['no_cor'];
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
                 $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
                 	if ($query != "") {
-				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 			}
         }
-        else if($lokasi_cor == 'muaradua' && $nama_barang == 'Pertamax'){
+        else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Dexlite'){
            
 
                 
@@ -113,7 +113,7 @@ $no_cor = $_POST['no_cor'];
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
                 	if ($query != "") {
-				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 			}
         }
         else if($lokasi_cor == 'BK 3' && $nama_barang == 'Pertamax'){
@@ -130,7 +130,7 @@ $no_cor = $_POST['no_cor'];
             $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '11'");
             $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
                 if ($query != "") {
-            echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+            echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
         }
     }
     else if($lokasi_cor == 'BK 3' && $nama_barang == 'Dexlite'){
@@ -146,7 +146,7 @@ $no_cor = $_POST['no_cor'];
             $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '12'");
             $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
                 if ($query != "") {
-            echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+            echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
         }
     }
     else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Pertamax'){
@@ -163,7 +163,7 @@ $no_cor = $_POST['no_cor'];
         $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '13'");
         $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
             if ($query != "") {
-        echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+        echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
     }
 }
 else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Dexlite'){
@@ -179,6 +179,6 @@ else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Dexlite'){
         $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '14'");
         $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
             if ($query != "") {
-        echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+        echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
     }
 } 
