@@ -107,7 +107,8 @@ exit;
                 </div>
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+            <li class="nav-item">
+                
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                   15  aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
