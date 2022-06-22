@@ -756,7 +756,7 @@ else{
   <thead>
       <th style='font-size: 11px'>Pertashop</th>
       <th style='font-size: 11px'>Nama Barang</th>
-      <th style='font-size: 11px'>Total Terjual</th>
+      <th style='font-size: 11px'>Total Di Cor</th>
     </tr>
   </thead>
   <tbody>
