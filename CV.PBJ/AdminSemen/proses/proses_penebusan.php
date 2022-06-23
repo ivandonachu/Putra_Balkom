@@ -78,8 +78,12 @@ else if ( $nama_file != "" ) {
 
 }
 
+	$resultx = mysqli_query($koneksi, "SELECT * FROM list_kota_l WHERE nama_kota = '$nama_kota' ");
+	$data_kota = mysqli_fetch_array($resultx);
+	$tarif_pranko = $data_kota['tarif_pranko'];
 
-	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$no_do','$tipe_semen','$tujuan','$nama_kota','$material','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar', '$tempo','$keterangan','$file')");
+
+	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$no_do','$tipe_semen','$tujuan','$nama_kota','$tarif_pranko','$material','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar', '$tempo','$keterangan','$file')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPenebusan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

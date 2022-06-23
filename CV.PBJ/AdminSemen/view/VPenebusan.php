@@ -569,6 +569,7 @@ function sum() {
       <th>Tipe Semen</th>
       <th>Tujuan</th>
       <th>Kota</th>
+      <th>Tarif Pranko</th>
       <th>Material</th>
       <th>QTY</th>
       <th>Harga</th>
@@ -599,6 +600,7 @@ function sum() {
       $tipe_semen =$data['tipe_semen'];
       $tujuan = $data['tujuan'];
       $kota = $data['kota'];
+      $tarif_pranko = $data['tarif_pranko'];
       $material = $data['material'];
       $qty = $data['qty'];
       $harga = $data['harga'];
@@ -844,6 +846,7 @@ function sum() {
       <td style='font-size: 14px'>$tipe_semen</td>
       <td style='font-size: 14px'>$tujuan</td>
       <td style='font-size: 14px'>$kota</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($tarif_pranko); ?> <?php echo "</td>
       <td style='font-size: 14px'>$material</td>
       <td style='font-size: 14px'>$qty</td>
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
@@ -1371,6 +1374,109 @@ function sum() {
   </div>
 </div>
 
+<br>
+<hr>
+<br>
+<?php 
+
+$tablej2 = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+
+?>
+
+<h3 class="text-center" >Do Pembelian belum Tercatat tetapi DO Penjualan Etty sudah Tercatat</h3>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Do belum tercatat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total = 0;
+    $urut = 0;
+
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($tablej2)){
+    $no_do_pembelian = $data['no_do'];
+    $tablexj = mysqli_query($koneksi, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
+
+
+    if(mysqli_num_rows($tablexj) === 0 ){
+
+         $urut = $urut +1;
+
+
+         echo "<tr>
+         <td style='font-size: 14px'>$urut</td>
+         <td style='font-size: 14px'>$no_do_pembelian</td>
+       </tr>";
+        }
+        
+
+  }
+
+?>
+
+</tbody>
+</table>
+
+<?php 
+
+$tablej2x = mysqli_query($koneksi, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+
+?>
+
+
+<br>
+<hr>
+<br>
+<h3 class="text-center" >Do Pembelian belum Tercatat tetapi DO Penjualan Kadek sudah Tercatat</h3>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Do belum tercatat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total = 0;
+    $urut = 0;
+
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($tablej2x)){
+    $no_do_pembelian = $data['no_do'];
+    $tablexjx = mysqli_query($koneksi, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
+
+
+    if(mysqli_num_rows($tablexjx) === 0 ){
+
+         $urut = $urut +1;
+
+
+         echo "<tr>
+         <td style='font-size: 14px'>$urut</td>
+         <td style='font-size: 14px'>$no_do_pembelian</td>
+       </tr>";
+        }
+        
+
+  }
+
+?>
+
+</tbody>
+</table>
+
+
+<br>
 <br>
 <br>
 </div>
