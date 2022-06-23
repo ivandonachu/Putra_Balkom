@@ -1059,7 +1059,7 @@ $tablej2 = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE tanggal_k
 
   <thead>
     <tr>
-       <th>No</th>
+      <th>No</th>
       <th>Do belum tercatat</th>
     </tr>
   </thead>

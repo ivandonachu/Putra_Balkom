@@ -78,7 +78,7 @@ else if ( $nama_file != "" ) {
 
 }
 
-	  $resultx = mysqli_query($koneksi, "SELECT * FROM list_kota_l WHERE nama_kota = '$nama_kota' ");
+	$resultx = mysqli_query($koneksi, "SELECT * FROM list_kota_l WHERE nama_kota = '$nama_kota' ");
 	$data_kota = mysqli_fetch_array($resultx);
 	$tarif_pranko = $data_kota['tarif_pranko'];
 
