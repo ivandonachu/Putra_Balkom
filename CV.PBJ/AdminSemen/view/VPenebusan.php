@@ -869,7 +869,7 @@ function sum() {
 </tbody>
 </table>
 </div>
-<br>
+ <br>
 
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-2 col-md-6 mb-4">
