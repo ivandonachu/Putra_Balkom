@@ -569,7 +569,6 @@ function sum() {
       <th>Tipe Semen</th>
       <th>Tujuan</th>
       <th>Kota</th>
-      <th>Tarif Pranko</th>
       <th>Material</th>
       <th>QTY</th>
       <th>Harga</th>
@@ -600,7 +599,6 @@ function sum() {
       $tipe_semen =$data['tipe_semen'];
       $tujuan = $data['tujuan'];
       $kota = $data['kota'];
-      $tarif_pranko = $data['tarif_pranko'];
       $material = $data['material'];
       $qty = $data['qty'];
       $harga = $data['harga'];
@@ -846,7 +844,6 @@ function sum() {
       <td style='font-size: 14px'>$tipe_semen</td>
       <td style='font-size: 14px'>$tujuan</td>
       <td style='font-size: 14px'>$kota</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($tarif_pranko); ?> <?php echo "</td>
       <td style='font-size: 14px'>$material</td>
       <td style='font-size: 14px'>$qty</td>
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
