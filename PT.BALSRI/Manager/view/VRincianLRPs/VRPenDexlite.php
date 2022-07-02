@@ -426,16 +426,16 @@ $kode_perta = $data_perta['kode_perta'];
       $urut = $urut + 1;
 
 
-      if($kode_perta == '2P.323.208'){
+      if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
-          $uang_nb_max = $uang_nb_max + $jumlah; 
-          $terjual_nb_max = $terjual_nb_max + $qty;
-          $cor_nb_max = $cor_nb_max + $ngecor;
+          $uang_nb_max = $uang_nb_max + $jumlah;
+          $terjual_nb_max =  $terjual_nb_max + $qty;
+         
         }
         else{
           $uang_nb_dex = $uang_nb_dex + $jumlah; 
-          $terjual_nb_dex = $terjual_nb_dex + $qty;
-          $cor_nb_dex = $cor_nb_dex + $ngecor;
+          $terjual_nb_dex = $terjual_nb_dex+ $qty;
+       
         }
         
       }

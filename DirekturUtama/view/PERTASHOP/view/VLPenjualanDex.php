@@ -322,15 +322,16 @@ else{
     
       if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
-          $uang_nb_max = $uang_nb_max + ($jumlah * $qty); 
+          $uang_nb_max = $uang_nb_max + $jumlah;
           $terjual_nb_max =  $terjual_nb_max + $qty;
          
         }
         else{
-          $uang_nb_dex =+ $jumlah; 
-          $terjual_nb_dex =+ $qty;
+          $uang_nb_dex = $uang_nb_dex + $jumlah; 
+          $terjual_nb_dex = $terjual_nb_dex+ $qty;
        
         }
+        
         
       }
       else if($kode_perta == 'bedilan'){

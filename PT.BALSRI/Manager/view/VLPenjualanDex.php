@@ -386,7 +386,6 @@ else{
       <th  style="font-size: 11px">KET</th>
       <th  style="font-size: 11px">File</th>
       <th  style="font-size: 11px">Status</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -430,13 +429,13 @@ else{
     
       if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
-          $uang_nb_max = $uang_nb_max + ($jumlah * $qty); 
+          $uang_nb_max = $uang_nb_max + $jumlah;
           $terjual_nb_max =  $terjual_nb_max + $qty;
          
         }
         else{
-          $uang_nb_dex =+ $jumlah; 
-          $terjual_nb_dex =+ $qty;
+          $uang_nb_dex = $uang_nb_dex + $jumlah; 
+          $terjual_nb_dex = $terjual_nb_dex+ $qty;
        
         }
         
@@ -517,41 +516,8 @@ else{
       ?>
 
 
-      <?php echo "<td style='font-size: 12px'>"; ?>
-    
-
-<!-- Button Persetujuan -->
-<button href="#" type="submit" class=" bg-success mr-2 rounded" data-toggle="modal" data-target="#PopUpsetuju<?php echo $data['no_penjualan']; ?>" data-toggle='tooltip' title='Persetujuan Dokumen'>Setuju</button>
-<div class="modal fade" id="PopUpsetuju<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
- <div class="modal-dialog" role ="document">
-   <div class="modal-content"> 
-    <div class="modal-header">
-      <h4 class="modal-title"> <b> Persetujuan Pennjualan </b> </h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-        <span aria-hidden="true"> &times; </span>
-      </button>
-    </div>
-
-    <div class="modal-body">
-      <form action="../proses/persetujuan_penjualan" method="POST">
-        <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan;?>">
-        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-        <input type="hidden" name="lokasi" value="<?php echo $lokasi;?>">
-        <div class="form-group">
-          <h6> Setujui Penjualan? </h6>             
-        </div>
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Setujui </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
-
-<?php echo  " </td> </tr>";
+      
+<?php echo  "</tr>";
 }
 ?>
 
