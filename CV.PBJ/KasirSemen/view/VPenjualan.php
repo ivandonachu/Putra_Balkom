@@ -311,7 +311,7 @@ else{
            <div class="col-md-6">
             <label>Tanggal Kirim</label>
             <div class="col-sm-10">
-             <input type="date"  name="tanggal_kirim" >
+             <input type="date"  name="tanggal_kirim" required>
            </div>
          </div>
        </div>
