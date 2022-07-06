@@ -37,7 +37,7 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
- $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal'");
+ $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal' ORDER BY no_transaksi ASC");
 
 }
 else{
