@@ -31,8 +31,11 @@ $kl3 = $_POST['kl3'];
 $kl4 = $_POST['kl4'];
 
 
-
-
+$result = mysqli_query($koneksi, "SELECT * FROM master_tarif_p WHERE delivery_point = '$delivery_point'");
+if(mysqli_num_rows($result) == 1 ){
+	 echo "<script>alert('Master Tasrif sudah tercatat :)'); window.location='../view/VMasterTarifP';</script>"; exit;
+	 }
+	
 
 	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_p VALUES('','$delivery_point','$pemilik','$jt','$hrg_bbm','$sk_pola','$koe_factor','$tarif_pertashop','$kl1','$kl2','$kl3','$kl4')");
 
