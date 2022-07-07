@@ -251,7 +251,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_bl ");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VMasterTarifBl'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif Bangka Belitung</h5></a>"; ?>
+      <?php echo "<a href='VMasterTarifBl'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif Belitung</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
