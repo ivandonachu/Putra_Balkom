@@ -224,7 +224,10 @@ else{
    $qty_ngecor_max = $datax1['qty_cor'];
  
    //ngecor Dexlite
-   $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor , SUM(jumlah) AS qty_cor FROM ngecor  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND lokasi_cor = '$lokasi' ");
+   $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor , SUM(jumlah) AS qty_cor FROM ngecor  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND lokasi_cor = '$lokasi' 
+                                                                                                                    OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND lokasi_cor = 'Pul Basturaja'
+                                                                                                                    OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND lokasi_cor = 'BK 3' ");
+                                                                                                                    
  
    $datax2 = mysqli_fetch_array($tablex2);
    $total_ngecor_dex = $datax2['total_cor'];
