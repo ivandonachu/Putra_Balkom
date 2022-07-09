@@ -378,7 +378,7 @@ else{
                  <td class="text-left">Tagihan</td>
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
-                 <?php echo "<td class='text-right'><a href='VRincianLR/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                 <?php echo "<td class='text-right'><a href='VRincianLRKen/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'></a></td>"; ?>
              </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
@@ -406,28 +406,28 @@ else{
                 <td class="text-left">Uang Gaji</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_gaji); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLR/VRUangJalan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRKen/VRincianUJ?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-595</td>
                 <td class="text-left">Biaya Perbaikan Kendaraan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_perbaikan); ?></td>
-               <?php echo "<td class='text-right'><a href='VRincianLR/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+               <?php echo "<td class='text-right'><a href='VRincianLRKen/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-596</td>
                 <td class="text-left">Pemeblian Sparepart</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_pembelian); ?></td>
-               <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+               <?php echo "<td class='text-right'><a href='VRincianLRKen/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-597</td>
                 <td class="text-left">Uang Jalan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_uj); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLR/VRUangJalan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRKen/VRincianUJ?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>"; ?>
             </tr>
 
             <tr style="background-color:    #F0F8FF; ">
