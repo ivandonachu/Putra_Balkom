@@ -359,6 +359,13 @@ else{
     if (!isset($data6['jumlah_atk'])) {
     $jml_atk = 0;
     }
+    //pengeluran Alat Tulis Kantor
+   $table6 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor'  ");
+   $data6 = mysqli_fetch_array($table6);
+   $jml_atk = $data6['jumlah_atk'];
+    if (!isset($data6['jumlah_atk'])) {
+    $jml_atk = 0;
+    }
 
     $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa ;
 
