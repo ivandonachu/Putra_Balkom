@@ -120,7 +120,7 @@ else{
     
 
 }
-    $total_biaya_usaha_final =  $jml_perbaikan + $jml_pembelian ;
+    $total_biaya_usaha_final =  $jml_perbaikan + $jml_pembelian + $total_uj + $total_gaji ;
     $laba_bersih_sebelum_pajak = $total_tagihan - $total_biaya_usaha_final ;
     
 ?>
