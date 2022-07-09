@@ -351,23 +351,23 @@ else{
     if (!isset($data5['jumlah_sewa'])) {
     $jml_sewa = 0;
     }
-    $jml_sewa = $jml_sewa + $dividen_pertamax + $dividen_Dexlite;
+
    //pengeluran Alat Tulis Kantor
-   $table6 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor'  ");
+   $table6 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' AND b.lokasi = '$lokasi'   ");
    $data6 = mysqli_fetch_array($table6);
    $jml_atk = $data6['jumlah_atk'];
     if (!isset($data6['jumlah_atk'])) {
     $jml_atk = 0;
     }
-    //pengeluran Alat Tulis Kantor
-   $table6 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor'  ");
-   $data6 = mysqli_fetch_array($table6);
-   $jml_atk = $data6['jumlah_atk'];
-    if (!isset($data6['jumlah_atk'])) {
-    $jml_atk = 0;
+    //pengeluran Gaji
+   $table7 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_gaji FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Gaji Karyawan'  AND b.lokasi = '$lokasi'  ");
+   $data7 = mysqli_fetch_array($table7);
+   $jumlah_gaji = $data7['jumlah_gaji'];
+    if (!isset($data7['jumlah_gaji'])) {
+    $jumlah_gaji = 0;
     }
 
-    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa ;
+    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa + $jumlah_gaji ;
 
 
     $laba_bersih_sebelum_pajak = $laba_kotor_dex + $laba_kotor_max - $total_biaya_usaha_final;
@@ -1047,7 +1047,7 @@ else{
                                     <td class="text-left">GAJI</td>
                                     <td class="text-left"></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?=  formatuang(0); ?></td>
+                                    <td class="text-left"><?=  formatuang($jumlah_gaji); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                     
                                 </tr>
