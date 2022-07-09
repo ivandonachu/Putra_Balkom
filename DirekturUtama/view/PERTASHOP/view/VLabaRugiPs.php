@@ -224,10 +224,7 @@ else{
    $qty_ngecor_max = $datax1['qty_cor'];
  
    //ngecor Dexlite
-   $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor , SUM(jumlah) AS qty_cor FROM ngecor  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND lokasi_cor = '$lokasi' 
-                                                                                                                    OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND lokasi_cor = 'Pul Basturaja'
-                                                                                                                    OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND lokasi_cor = 'BK 3' ");
-                                                                                                                    
+   $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor , SUM(jumlah) AS qty_cor FROM ngecor  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND lokasi_cor = '$lokasi' ");
  
    $datax2 = mysqli_fetch_array($tablex2);
    $total_ngecor_dex = $datax2['total_cor'];
@@ -303,7 +300,7 @@ else{
 
 
     // Pembelian Pertamax
-  $table3 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $table3 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' AND a.lokasi_bongkar = '' ");
   
   $total_pertamax_b=0;
   $pembelian_pertamax =0;
@@ -316,7 +313,7 @@ else{
   }
 
    // Pembelian Dexlite
-  $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi' ");
+  $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi'  AND a.lokasi_bongkar = ''  ");
   
   $total_dexlite_b=0;
   $pembelian_dexlite =0;

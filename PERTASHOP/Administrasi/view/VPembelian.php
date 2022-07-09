@@ -292,7 +292,7 @@ else{
 
          <div class="row">
 
-          <div class="col-md-6">
+          <div class="col-md-4">
            <label>Lokasi</label>
            <select id="lokasi" name="lokasi" class="form-control ">
             <?php
@@ -309,7 +309,26 @@ else{
             ?>
           </select>
         </div>
-        <div class="col-md-6">
+ 
+
+          <div class="col-md-4">
+           <label>Lokasi Bongkar</label>
+           <select id="lokasi_bongkar" name="lokasi_bongkar" class="form-control ">
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
+
+
+              echo "<option> $nama_driver </option> ";
+              
+            }
+            ?>
+          </select>
+        </div>
+        <div class="col-md-4">
           <label>No SO</label>
           <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" required="">
         </div> 
@@ -409,6 +428,7 @@ else{
       <th style="font-size: 11px" >Tanggal Bongkar</th>
       <th style="font-size: 11px" >Kode Pertashop</th>   
       <th style="font-size: 11px" >Lokasi</th>
+      <th style="font-size: 11px" >Lokasi Bongkar</th>
       <th style="font-size: 11px" >Nama Barang</th>
       <th style="font-size: 11px" >QTY</th>
       <th style="font-size: 11px" >Harga</th>
@@ -446,6 +466,7 @@ else{
       $no_so =$data['no_so'];
       $tanggal =$data['tanggal'];
       $tanggal_bongkar =$data['tanggal_bongkar'];
+      $lokasi_bongkar =$data['lokasi_bongkar'];
       $kode_perta =$data['kode_perta'];
       $nama_barang =$data['nama_barang'];
       $lokasi = $data['lokasi'];
@@ -497,6 +518,7 @@ else{
       <td style='font-size: 11px' align = 'center'>$tanggal_bongkar</td>
       <td style='font-size: 11px' align = 'center'>$kode_perta</td>
       <td style='font-size: 11px' align = 'center'>$lokasi</td>
+      <td style='font-size: 11px' align = 'center'>$lokasi_bongkar</td>
       <td style='font-size: 11px' align = 'center'>$nama_barang</td>
       <td style='font-size: 11px' align = 'center'>$qty/L</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
@@ -579,7 +601,7 @@ else{
 
           <div class="row">
 
-          <div class="col-md-6">
+          <div class="col-md-4">
           <label>Lokasi</label>
           <select id="lokasi" name="lokasi" class="form-control ">
             <?php
@@ -598,7 +620,26 @@ else{
           </select>
           </div>
 
-            <div class="col-md-6">
+          <div class="col-md-4">
+          <label>Lokasi Bongkar</label>
+          <select id="lokasi_bongkar" name="lokasi_bongkar" class="form-control ">
+            <?php
+            include 'koneksi.php';
+            $dataSelect = $data['lokasi'];
+            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
+
+
+              echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
+              
+            }
+            ?>
+          </select>
+          </div>
+
+            <div class="col-md-4">
               <label>QTY</label>
               <select id="qty" name="qty" class="form-control">
                 <?php

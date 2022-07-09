@@ -51,7 +51,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 		       	}
         }
         else if($kode_perta == 'nusabakti' && $nama_barang == 'Dexlite'){
@@ -65,7 +65,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 		       	}
         }
         else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
@@ -79,7 +79,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 		       	}
         }
         else if($kode_perta == 'sumberjaya' && $nama_barang == 'Pertamax'){
@@ -93,7 +93,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 		       	}
         }
         else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
@@ -107,7 +107,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 	if ($query != "") {
-				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 		       	}
         }
         else if($kode_perta == 'bk3' && $nama_barang == 'Pertamax'){
@@ -122,7 +122,7 @@ $no_pembelian = $_POST['no_pembelian'];
             
             $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '11'");
                     if ($query != "") {
-                            echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+                            echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
                            }
         }
         else if($kode_perta == 'bk3' && $nama_barang == 'Dexlite'){
@@ -136,7 +136,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '12'");
                         if ($query != "") {
-                                echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+                                echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
                                 }
         }
         else if($kode_perta == 'pul_bta' && $nama_barang == 'Pertamax'){
@@ -151,7 +151,7 @@ $no_pembelian = $_POST['no_pembelian'];
             
             $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '13'");
                     if ($query != "") {
-                            echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+                            echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
                            }
         }
         else if($kode_perta == 'pul_bta' && $nama_barang == 'Dexlite'){
@@ -165,7 +165,7 @@ $no_pembelian = $_POST['no_pembelian'];
                 
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '14'");
                         if ($query != "") {
-                                echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+                                echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
                                 }
         }
 	
