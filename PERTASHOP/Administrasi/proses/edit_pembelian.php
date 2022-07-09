@@ -23,7 +23,6 @@ $no_pembelian = $_POST['no_pembelian'];
 $tanggal = $_POST['tanggal'];
 $tanggal_bongkar = $_POST['tanggal_bongkar'];
 $lokasi = $_POST['lokasi'];
-$lokasi_bongkar = $_POST['lokasi_bongkar'];
 $no_so = $_POST['no_so'];
 $volume_tangki = $_POST['volume_tangki'];
 $sonding_awal = $_POST['sonding_awal'];
