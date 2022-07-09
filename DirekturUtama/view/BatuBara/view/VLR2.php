@@ -542,7 +542,7 @@ else{
             </tr>
             <tr>
                 <td>5-580</td>
-                <td class="text-left">Biaya Penjualan & Pemasaran</td>
+                <td class="text-left">Biaya Penjualan & Pemasaran (Hitungan Uang Jalan)</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_pemasaran); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLR/VRBiayaPen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
@@ -571,7 +571,7 @@ else{
             </tr>
             <tr>
                 <td>5-597</td>
-                <td class="text-left">Uang Jalan</td>
+                <td class="text-left">Uang Jalan (Tidak Masuk Hitungan)</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_uj); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLR/VRUangJalan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
