@@ -21,7 +21,6 @@ $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $lokasi = $_POST['lokasi'];
-$lokasi_bongkar = $_POST['lokasi_bongkar'];
 $no_so = $_POST['no_so'];
 $volume_tangki = $_POST['volume_tangki'];
 $sonding_awal = $_POST['sonding_awal'];
@@ -81,7 +80,7 @@ $kode_perta = $data_perta['kode_perta'];
 
         if($kode_perta == 'nusabakti' && $nama_barang == 'Pertamax'){
             
-            	$query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$lokasi_bongkar','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+            	$query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -95,7 +94,7 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'nusabakti' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$lokasi_bongkar','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -109,7 +108,7 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$lokasi_bongkar','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -123,7 +122,7 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'sumberjaya' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$lokasi_bongkar','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -137,7 +136,7 @@ $kode_perta = $data_perta['kode_perta'];
 		       	}
         }
         else if($kode_perta == 'muaradua' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$lokasi_bongkar','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -152,7 +151,7 @@ $kode_perta = $data_perta['kode_perta'];
         }
         else if($kode_perta == 'bk3' && $nama_barang == 'Pertamax'){
             
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$lokasi_bongkar','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
             
             $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '11' ");
             $data_stok = mysqli_fetch_array($result2);
@@ -166,7 +165,7 @@ $kode_perta = $data_perta['kode_perta'];
                            }
         }
         else if($kode_perta == 'bk3' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$lokasi_bongkar','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '12' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -181,7 +180,7 @@ $kode_perta = $data_perta['kode_perta'];
         }
         else if($kode_perta == 'pul_bta' && $nama_barang == 'Pertamax'){
             
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$lokasi_bongkar','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
             
             $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '13' ");
             $data_stok = mysqli_fetch_array($result2);
@@ -195,7 +194,7 @@ $kode_perta = $data_perta['kode_perta'];
                            }
         }
         else if($kode_perta == 'pul_bta' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$lokasi_bongkar','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '14' ");
                 $data_stok = mysqli_fetch_array($result2);
