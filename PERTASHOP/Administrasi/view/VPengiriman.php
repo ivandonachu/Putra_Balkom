@@ -22,29 +22,33 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-} 
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+  $lokasi = $_GET['lokasi'];
+ } 
+ 
+ else if (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $lokasi = $_POST['lokasi'];
+ } 
 else{
   $tanggal_awal = date('Y-m-1');
 $tanggal_akhir = date('Y-m-31');
+$lokasi = 'Nusa Bakti';
+}
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksi,"SELECT * FROM pengiriman a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal_kirim ='$tanggal_awal' AND b.lokasi = '$lokasi' ");
+   $table2 = mysqli_query($koneksi,"SELECT * FROM barang ");
 }
 
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal'");
-}
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi,"SELECT * FROM pengiriman a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'");
+  $table2 = mysqli_query($koneksi,"SELECT * FROM barang ");
 }
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +60,8 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran</title>
+  <title>Pengiriman</title>
+
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -78,14 +83,13 @@ else{
 
 <body id="page-top">
 
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
    <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-           <!-- Sidebar - Brand -->
+    <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
       <div class="sidebar-brand-icon rotate-n-15">
 
@@ -138,18 +142,16 @@ else{
     </div>
   </li>
 
-
-
-<!-- Divider -->
-<hr class="sidebar-divider">
+  <!-- Divider -->
+  <hr class="sidebar-divider">
 
 
 
 
-<!-- Sidebar Toggler (Sidebar) -->
-<div class="text-center d-none d-md-inline">
-  <button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
 
 
 
@@ -164,8 +166,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengeluaranPul2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pengeluaran</h5></a>"; ?>
-
+      <?php echo "<a href='VPembelian'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pengiriman Ps $lokasi</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -175,6 +176,7 @@ else{
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
+
 
 
 
@@ -218,34 +220,54 @@ else{
 <div>   
 
 
-  <!-- Name Page -->
-  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-    <?php  echo "<form  method='POST' action='VPengeluaran' style='margin-bottom: 15px;'>" ?>
-    <div>
+ <div style="margin-right: 20px; margin-left: 20px;">
+
+
+ <?php  echo "<form  method='POST' action='VPengiriman'>" ?>
+  <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
         <span>-</span>
         <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <select id="lokasi" name="lokasi"s>
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
+
+
+              echo "<option> $nama_driver </option> ";
+              
+            }
+            ?>
+          </select>
         <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
       </div>
     </div>
-  </form>
-  <div class="row">
-    <div class="col-md-6">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-   </div>
-   <div class="col-md-6">
+</form>
+
+<div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+ </div>
+ <br>
+
+ <div class="row">
+  <div class="col-md-10">
+
+  </div>
+  <div class="col-md-2">
     <!-- Button Input Data Bayar -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Tagihan </button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pengiriman</button> <br> <br>
     </div>
-    
-     <!-- Form Modal  -->
+    <!-- Form Modal  -->
     <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Penggunaan Kas Kecil </h5>
+          <h5 class="modal-title"> Form Pencatatan Pengiriman</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -253,22 +275,26 @@ else{
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_pengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_pengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
+          <br>
           <div class="row">
             <div class="col-md-6">
 
               <label>Tanggal</label>
               <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
-   
+               <input type="date" id="tanggal_kirim" name="tanggal_kirim" required="">
+             </div>      
 
-          </div>
+           </div>
+           
+         </div>
+         <br>
 
+         <div class="row">
 
-          <div class="col-md-6">
-           <label>Lokasi</label>
+          <div class="col-md-4">
+           <label>Pembelian</label>
            <select id="lokasi" name="lokasi" class="form-control ">
             <?php
             include 'koneksi.php';
@@ -284,292 +310,332 @@ else{
             ?>
           </select>
         </div>
+        <div class="col-md-4">
+           <label>Lokasi Kirim</label>
+           <select id="lokasi_kirim" name="lokasi_kirim" class="form-control ">
+            <?php
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
-      </div>
-       
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
 
 
-        <div class="row">
-          
-
-        <div class="col-md-6">
-          <label>Akun</label>
-          <select id="akun" name="akun" class="form-control">
-            <option>Biaya Kantor</option>
-            <option>Listrik & Telepon</option>>
-            <option>Alat Tulis Kantor</option>
-             <option>Biaya Sewa</option>
-             <option>Gaji Karyawan</option>
+              echo "<option> $nama_driver </option> ";
+              
+            }
+            ?>
           </select>
-        </div>            
+        </div>
+ 
 
+        <div class="col-md-4">
+          <label>No SO</label>
+          <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" required="">
+        </div> 
       </div>
 
       <br>
 
-     
-
       <div class="row">
-        <div class="col-md-6">
-          <label>Jumlah</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
-        </div>    
-        <div class="col-md-6">
-        </div>         
-      </div>
 
-  
-  
-    <br>
-
-    <div>
-     <label>Keterangan</label>
-     <div class="form-group">
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
+        <div class="col-md-6">
+          <label>QTY</label>
+          <input class="form-control form-control-sm" type="float" id="qty" name="qty" required="">
+        </div>       
+        
+        <div class="col-md-6">
+        <label>Nama Barang</label>
+          <select id="nama_barang" name="nama_barang" class="form-control">
+            <option>Pertamax</option>
+            <option>Dexlite</option>
+          </select>
+          </div> 
+        </div>   
+        <div>
+       <label>Keterangan</label>
+       <div class="form-group">
+         <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
+       </div>
      </div>
-   </div>
 
-  <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
+      
 
 
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"> BAYAR</button>
-        <button type="reset" class="btn btn-danger"> RESET</button>
-      </div>
-    </form>
-  </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary"> CATAT</button>
+      <button type="reset" class="btn btn-danger"> RESET</button>
+    </div>
+  </form>
 </div>
 </div>
 </div>
 </div>
 </div>
-
-
-
+</div>
 
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>Kode Perta</th>
-      <th>Lokasi</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Pengeluaran</th>
-      <th>Total</th>
-      <th>file</th>
-      <th>Aksi</th>
+      <th style="font-size: 11px" >No</th>
+      <th style="font-size: 11px" >No SO</th>
+      <th style="font-size: 11px" >Tanggal Kirim</th>
+      <th style="font-size: 11px" >Pembelian</th>   
+      <th style="font-size: 11px" >Lokasi Kirim</th>
+      <th style="font-size: 11px" >Nama Barang</th>
+      <th style="font-size: 11px" >QTY</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <?php
-    $total = 0;
     $urut = 0;
+
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
-
     <?php while($data = mysqli_fetch_array($table)){
-     $no_laporan = $data['no_transaksi'];
-     $tanggal =$data['tanggal'];
-     $kode_perta =$data['kode_perta'];
-     $lokasi =$data['lokasi'];
-     $nama_akun = $data['nama_akun'];
-     $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
-     $file_bukti = $data['file_bukti'];
+      $no_pengiriman = $data['no_pengiriman'];
+      $no_so =$data['no_so'];
+      $tanggal_kirim =$data['tanggal_kirim'];
+      $nama_barang =$data['nama_barang'];
+      $lokasi = $data['lokasi'];
+      $qty = $data['qty'];
 
-     $total = $total + $jumlah;
-     $urut = $urut + 1;
+      $keterangan = $data['keterangan'];
 
 
-     echo "<tr>
-     <td style='font-size: 14px'>$urut</td>
-     <td style='font-size: 14px'>$tanggal</td>
-     <td style='font-size: 14px'>$kode_perta</td>
-     <td style='font-size: 14px'>$lokasi</td>
-     <td style='font-size: 14px'>$nama_akun</td>
-     <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     <?php echo "<td style='font-size: 12px'>"; ?>
-
-       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Edit</button>
-
-        <!-- Form EDIT DATA -->
-
-        <div class="modal fade" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role ="document">
-            <div class="modal-content"> 
-              <div class="modal-header">Form Edit Kas Kecil </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
+      $urut = $urut + 1;
 
 
-              <!-- Form Edit Data -->
-              <div class="modal-body">
-                <form action="../proses/edit_pengeluaran.php" enctype="multipart/form-data" method="POST">
-
-                  <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
-             </div>
-   
-
-          </div>
-          <div class="col-md-6">
-          <label>Akun</label>
-           <label>Lokasi</label>
-
-                 <select id="lokasi" name="lokasi" class="form-control ">
-                   <?php
-                   $dataSelect = $data['lokasi']; 
-                   include 'koneksi.php';
-                   $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
-
-                   while ($data2 = mysqli_fetch_array($result)){
-                    $nama_driver = $data2['lokasi'];
-
-                    echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>" ;
-
-                  }
-                  ?>
-                </select>   
-          </div>
-        </div>
-
-
-        <div class="row">
-          
-
-        <div class="col-md-6">
-
-          <label>Akun</label>
-          <select id="akun" name="akun" class="form-control">
-            <?php $dataSelect = $data['nama_akun']; ?>
-            <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
-            <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
-            <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
-             <option <?php echo ($dataSelect == 'Biaya Sewa') ? "selected": "" ?> >Biaya Sewa</option>
-             <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected": "" ?> >Gaji Karyawan</option>
-          </select>
-
-        </div>            
-
-      </div>
-
-      <br>
 
      
 
-      <div class="row">
-        <div class="col-md-6">
-          <label>Jumlah</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
-        </div>    
-        <div class="col-md-6">
-        </div>         
+      echo "<tr>
+      <td style='font-size: 11px' align = 'center'>$urut</td>
+      <td style='font-size: 11px' align = 'center'>$no_so</td>
+      <td style='font-size: 11px' align = 'center'>$tanggal_kirim</td>
+      <td style='font-size: 11px' align = 'center'>$lokasi</td>
+      <td style='font-size: 11px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 11px' align = 'center'>$qty/L</td>
+      <td style='font-size: 11px' align = 'center'>$keterangan/L</td>
+      "; ?>
+      <?php echo "<td style='font-size: 11px'>"; ?>
+    
+
+
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_pengiriman']; ?>">Edit</button>
+
+<!-- Form EDIT DATA -->
+
+<div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_pengiriman']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> Form Edit Pengiriman </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
       </div>
 
-      <div>
-     <label>Keterangan</label>
-     <div class="form-group">
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
-     </div>
-   </div>
+      <!-- Form Edit Data -->
+      <div class="modal-body" align="left">
+        <form action="../proses/edit_pengiriman" enctype="multipart/form-data" method="POST">
 
-              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-               <input type="hidden" name="no_transaksi" value="<?php echo $no_laporan;?>">
-  
-    <br>
+          <input type="hidden" name="no_pengiriman" value="<?php echo $no_pengiriman; ?>">
+          <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+          <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
 
+          <div class="row">
+            <div class="col-md-6">
 
-
-  <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-                 
-
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"> Ubah </button>
-                    <button type="reset" class="btn btn-danger"> RESET</button>
-                  </div>
-                </form>
+              <label>No SO</label>
+              <div class="col-sm-10">
+                <input  class="form-control form-control-sm" type="text" id="no_so" name="no_so" required="" value="<?php echo $no_so;  ?>">
               </div>
+
             </div>
-          </div>
-        </div>
-
-
-
-
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_transaksi']; ?>" data-toggle='tooltip' title='Hapus Transaksi'>Hapus</button>
-
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-       <div class="modal-dialog" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-
-          <div class="modal-body">
-            <form action="../proses/hapus_pengeluaran" method="POST">
-              <input type="hidden" name="no_transaksi" value="<?php echo $no_laporan; ?>">
-              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-
-
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
+            <div class="col-md-6">
+            <label>Tanggal</label>
+              <div class="col-sm-10">
+                <input  class="form-control form-control-sm" type="date" id="tanggal_kirim" name="tanggal_kirim" required="" value="<?php echo $tanggal_kirim; ?>">
               </div>
 
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
+
+            </div>
+
           </div>
-        </div>
+
+
+          <br>
+
+          <div class="row">
+
+          <div class="col-md-6">
+          <label>Pembelian</label>
+          <select id="lokasi" name="lokasi" class="form-control ">
+            <?php
+            include 'koneksi.php';
+            $dataSelect = $data['lokasi'];
+            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
+
+
+              echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
+              
+            }
+            ?>
+          </select>
+          </div>
+
+          <div class="col-md-6">
+          <label>Lokasi Kirim</label>
+          <select id="lokasi_kirim" name="lokasi_kirim" class="form-control ">
+            <?php
+            include 'koneksi.php';
+            $dataSelect = $data['lokasi'];
+            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+              $nama_driver = $data2['lokasi'];
+
+
+              echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
+              
+            }
+            ?>
+          </select>
+          </div>   
+            </div>
+        
+     
+
+          <br>
+
+          <div class="row">
+
+            <div class="col-md-6">
+            <label>Nama Barang</label>
+              <select id="nama_barang" name="nama_barang" class="form-control">
+                <?php
+                $dataSelect = $data['nama_barang']; ?>
+                <option <?php echo ($dataSelect == 'Pertamax') ? "selected" : "" ?>>Pertamax</option>
+                <option <?php echo ($dataSelect == 'Dexlite') ? "selected" : "" ?>>Dexlite</option>
+
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>QTY</label>
+              <input  class="form-control form-control-sm" type="float" id="qty" name="qty" required="" value="<?php echo $qty; ?>">
+              </div>
+          </div>
+
+          <br>
+          <div>
+       <label>Keterangan</label>
+       <div class="form-group">
+         <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+       </div>
+     </div>
+
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"> Ubah </button>
+        <button type="reset" class="btn btn-danger"> RESET</button>
       </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Button Hapus -->
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_pengiriman']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $data['no_pengiriman']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+ <div class="modal-dialog" role ="document">
+   <div class="modal-content"> 
+    <div class="modal-header">
+      <h4 class="modal-title"> <b> Hapus Data pengiriman </b> </h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
     </div>
 
-    <?php echo  " </td> </tr>";
-  }
+    <div class="modal-body">
+      <form action="../proses/hapus_pengiriman" method="POST">
+        <input type="hidden" name="no_pengiriman" value="<?php echo $no_pengiriman;?>">
+        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+        <div class="form-group">
+          <h6> Yakin Ingin Hapus Data? </h6>             
+        </div>
 
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Hapus </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<?php echo  " </td> </tr>";
+}
 ?>
 
 </tbody>
 </table>
 </div>
+
 <br>
 <br>
-<br>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Stok</h6>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th  style='font-size: 12px' >Kode Barang</th>
+      <th  style='font-size: 12px'>Kode Perta</th>
+      <th  style='font-size: 12px'>Nama Barang</th>
+      <th  style='font-size: 12px'>STOK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $kode_barang = $data['kode_barang'];
+      $kode_perta =$data['kode_perta'];
+      $nama_barang =$data['nama_barang'];
+      $stok = $data['stok'];
 
 
+      echo "<tr>
+      <td style='font-size: 12px' align = 'center'>$kode_barang</td>
+      <td style='font-size: 12px' align = 'center'>$kode_perta</td>
+      <td style='font-size: 12px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 12px' align = 'center'>$stok</td>
+     
+  </tr>";
+}
+?>
+
+</tbody>
+</table>
+</div>
 </div>
 
+
+<br>
+</div>
 </div>
 <!-- End of Main Content -->
 
@@ -651,6 +717,8 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+
+
 
 </body>
 
