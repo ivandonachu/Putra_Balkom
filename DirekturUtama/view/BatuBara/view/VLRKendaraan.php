@@ -120,9 +120,9 @@ else{
     
 
 }
-
-    $laba_bersih_sebelum_pajak = $total_tagihan - ($jml_perbaikan + $jml_pembelian );
     $total_biaya_usaha_final =  $jml_perbaikan + $jml_pembelian ;
+    $laba_bersih_sebelum_pajak = $total_tagihan - $total_biaya_usaha_final ;
+    
 ?>
 
 
@@ -401,7 +401,13 @@ else{
                 <td class="text-left"></td>
                 <?php echo "<td class='text-right'></td>"; ?>
             </tr>
-
+            <tr>
+                <td>5-594</td>
+                <td class="text-left">Uang Gaji</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_gaji); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLR/VRUangJalan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
             <tr>
                 <td>5-595</td>
                 <td class="text-left">Biaya Perbaikan Kendaraan</td>
