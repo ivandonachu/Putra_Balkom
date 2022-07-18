@@ -44,7 +44,7 @@
 
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="assets/img/melodi.png" alt="">
-                <span>Melody Group</span>
+                <span>Melody</span>
             </a>
 
             <nav id="navbar" class="navbar">
@@ -62,8 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up"> <b> WEB APP LAPORAN KEUANGAN </b></h1>
-                    <h2 data-aos="fade-up" data-aos-delay="400">By PT Sriwijaya Teknik Energi </h2>
+                   
                 </div>
                 <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
                     <img src="assets/img/finance.svg" class="img-fluid" alt="">
@@ -79,7 +78,7 @@
 
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>PT Sriwijaya Teknik Energi </span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span> </span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
