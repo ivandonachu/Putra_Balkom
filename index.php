@@ -44,7 +44,7 @@
 
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="assets/img/melodi.png" alt="">
-                <span>Melody</span>
+                <span>Melody Group</span>
             </a>
 
             <nav id="navbar" class="navbar">
@@ -78,7 +78,7 @@
 
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span> </span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>PT. Sriwijaya Teknik Energi</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
