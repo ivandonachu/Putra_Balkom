@@ -336,8 +336,8 @@ else{
          <div class="col-md-6">
           <label>Akun</label>
           <select id="akun" name="akun" class="form-control">
-            <option>Perbaikan Sparepart</option>
-            <option>Perbaikan Mesin</option>
+            <option>Perbaikan Kendaraan</option>
+            <option>Pembelian Sparepart</option>
             <option>Ganti Oli</option>
             <option>Cuci Mobil</option>
             <option>Tambal Ban/Cek Ban</option>
@@ -508,8 +508,8 @@ else{
                       <label>Akun</label>
                       <select id="akun" name="akun" class="form-control">
                         <?php $dataSelect = $data['akun']; ?>
-                        <option <?php echo ($dataSelect == 'Perbaikan Sparepart') ? "selected": "" ?>>Perbaikan Sparepart</option>
-                        <option <?php echo ($dataSelect == 'Perbaikan Mesin') ? "selected": "" ?>>Perbaikan Mesin</option>
+                        <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?>>Perbaikan Kendaraan</option>
+                        <option <?php echo ($dataSelect == 'Pembelian Sparepart') ? "selected": "" ?>>Pembelian Sparepart</option>
                         <option <?php echo ($dataSelect == 'Ganti Oli') ? "selected": "" ?>>Ganti Oli</option>
                         <option <?php echo ($dataSelect == 'Cuci Mobil') ? "selected": "" ?>>Cuci Mobil</option>
                         <option <?php echo ($dataSelect == 'Tambal Ban/Cek Ban') ? "selected": "" ?>>Tambal Ban/Cek Ban</option>
