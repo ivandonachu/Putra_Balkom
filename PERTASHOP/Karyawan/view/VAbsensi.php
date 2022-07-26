@@ -254,7 +254,7 @@ else{
         </div>  
         <br>
       <label>Upload File</label> 
-      <input type="file" name="file"> 
+      <input type="file" name="file" required> 
     </div> 
                 
               
