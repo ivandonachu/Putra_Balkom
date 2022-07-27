@@ -190,6 +190,8 @@ $nama = $data['nama_karyawan'];
                         <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
                     </div>
                 </div>
             </li>
