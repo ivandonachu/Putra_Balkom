@@ -556,6 +556,7 @@ else{
                 <input type="hidden" name="no_pengiriman" value="<?php echo $no_pengiriman;?>"> 
                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+                <input type="hidden" name="tanggal" value="<?php echo $tanggal; ?>">
 
                 <div class="row">
              <div class="col-md-6">
@@ -563,6 +564,7 @@ else{
               <label>Tanggal</label>
               <div class="col-sm-10">
                <input type="date" id="tanggal" name="tanggal" required="" disabled="" value="<?php echo $tanggal;?>">
+               
              </div>      
 
            </div>
@@ -582,7 +584,7 @@ else{
 
               <label>No SJB</label>
               <div class="col-sm-10">
-               <input type="text" id="no_sjb" name="no_sjb" required="" disabled="" value="<?php echo $no_sjb;?>" >
+               <input type="text" id="no_sjb" name="no_sjb" required=""  value="<?php echo $no_sjb;?>" >
              </div>      
 
            </div>

@@ -89,10 +89,10 @@ $no_kendaraan = $data_ken['no_kendaraan'];
 
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE riwayat_pengiriman SET tanggal_keluar = '$tanggal_keluar' , muatan = '$muatan', no_lokasi = '$no_lokasi' , no_driver = '$no_driver' , no_kendaraan = '$no_kendaraan' , harga_tagihan = '$harga_tagihan', uj_tagihan = '$uj_tagihan', gaji_tagihan = '$gaji_tagihan' , keterangan = '$keterangan'  WHERE no_pengiriman = '$no_pengiriman'");
+			$query3 = mysqli_query($koneksi,"UPDATE riwayat_pengiriman SET tanggal_keluar = '$tanggal_keluar', no_sjb = '$no_sjb' , muatan = '$muatan', no_lokasi = '$no_lokasi' , no_driver = '$no_driver' , no_kendaraan = '$no_kendaraan' , harga_tagihan = '$harga_tagihan', uj_tagihan = '$uj_tagihan', gaji_tagihan = '$gaji_tagihan' , keterangan = '$keterangan'  WHERE no_pengiriman = '$no_pengiriman'");
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE riwayat_pengiriman SET tanggal_keluar = '$tanggal_keluar' , muatan = '$muatan', no_lokasi = '$no_lokasi' , no_driver = '$no_driver' , no_kendaraan = '$no_kendaraan' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_pengiriman = '$no_pengiriman'");
+			$query3 = mysqli_query($koneksi,"UPDATE riwayat_pengiriman SET tanggal_keluar = '$tanggal_keluar', no_sjb = '$no_sjb' , muatan = '$muatan', no_lokasi = '$no_lokasi' , no_driver = '$no_driver' , no_kendaraan = '$no_kendaraan' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_pengiriman = '$no_pengiriman'");
 	}
 
 
