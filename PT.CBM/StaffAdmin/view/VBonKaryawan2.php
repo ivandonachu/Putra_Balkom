@@ -261,9 +261,9 @@ else{
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nama_karyawan'];
 
-              if (mysqli_num_rows($result2) == 0) {
+           
                 echo "<option> $data_pangakalan </option> ";
-              }
+        
             }
             ?>
              <?php
@@ -273,9 +273,9 @@ else{
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nama_driver'];
 
-              if (mysqli_num_rows($result2) == 0) {
+          
                 echo "<option> $data_pangakalan </option> ";
-              }
+           
             }
             ?>
           </select>
