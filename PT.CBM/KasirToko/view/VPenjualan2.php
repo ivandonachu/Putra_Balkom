@@ -42,8 +42,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN ko
  WHERE tanggal = '$tanggal_awal'");
 $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
 
-    $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
-        WHERE AND status_piutang = 'Sudah di Bayar' AND tanggal = '$tanggal_awal' ");
+    $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
+        WHERE  status_piutang = 'Sudah di Bayar' AND tanggal = '$tanggal_awal' ");
 
 
 //patokan stok awal
@@ -896,8 +896,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN ko
 $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
 
 
-    $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
-        WHERE  status_piutang = 'Sudah di Bayar' AND tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
+        WHERE  b.status_piutang = 'Sudah di Bayar' AND a.tanggal  = '$tanggal_awal' AND '$tanggal_akhir' ");
 
 //patokan stok awal
 $table3 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE referensi = 'TK' AND tanggal = '$tanggal_awal' ");
@@ -2123,9 +2123,9 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['sub_penyalur'];
 
-              if (mysqli_num_rows($result2) == 0) {
+       
                 echo "<option> $data_pangakalan </option> ";
-              }
+              
             }
             ?>
           </select>
@@ -2312,9 +2312,8 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
           while ($data2 = mysqli_fetch_array($result)){
             $data_pangakalan = $data2['sub_penyalur'];
 
-            if (mysqli_num_rows($result2) == 0) {
               echo "<option> $data_pangakalan </option> ";
-            }
+          
           }
           ?>
         </select>
@@ -2464,9 +2463,9 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['sub_penyalur'];
 
-          if (mysqli_num_rows($result2) == 0) {
+         
             echo "<option> $data_pangakalan </option> ";
-          }
+          
         }
         ?>
       </select>
