@@ -748,16 +748,21 @@ function sum2() {
 
          <div class="row">
 
-          <div class="col-md-6">
+          <div class="col-md-4">
            <label>Driver</label>
           <input class="form-control form-control-sm" type="text" id="driver" name="driver" disabled="" value="<?php echo $driver;?>" >
           <input type="hidden" name="driver" value="<?php echo $driver;?>"> 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label>Kendaraan</label>
           <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" disabled="" value="<?php echo $no_polisi;?>" >
           <input type="hidden" name="no_polisi" value="<?php echo $no_polisi;?>"> 
+        </div>  
+        <div class="col-md-4">
+          <label>Tujuan Pengiriman</label>
+          <input class="form-control form-control-sm" type="text"  disabled="" value="<?php echo $tujuan_pengiriman;?>" >
+ 
         </div>            
 
       </div>
