@@ -539,9 +539,9 @@ $table3 = mysqli_query($koneksi, "SELECT * FROM rute_driver");
             while ($data4 = mysqli_fetch_array($result4)){
               $posisi_bongkar = $data4['posisi_bongkar'];
 
-              if (mysqli_num_rows($result2) == 0) {
+             
                 echo "<option> $posisi_bongkar </option> ";
-              }
+              
             }
             ?>
           </select>
@@ -672,9 +672,9 @@ $table3 = mysqli_query($koneksi, "SELECT * FROM rute_driver");
             while ($data4 = mysqli_fetch_array($result4)){
               $posisi_bongkar = $data4['posisi_bongkar'];
 
-              if (mysqli_num_rows($result2) == 0) {
+           
                 echo "<option> $posisi_bongkar </option> ";
-              }
+              
             }
             ?>
           </select>

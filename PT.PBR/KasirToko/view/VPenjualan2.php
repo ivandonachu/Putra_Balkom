@@ -36,8 +36,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
      WHERE tanggal = '$tanggal_awal'");
     $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
-    $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
-        WHERE no_transaksi = $no_transaksi AND status_piutang = 'Sudah di Bayar' AND tanggal = '$tanggal_awal' ");
+    $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
+        WHERE status_piutang = 'Sudah di Bayar' AND tanggal = '$tanggal_awal' ");
 
 
 //GUDANG GUDANG GUDANG GUDANG GUDANGGUDANG
@@ -429,8 +429,9 @@ else{
     $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
      WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
-     $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
-        WHERE no_transaksi = $no_transaksi AND status_piutang = 'Sudah di Bayar' AND tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+     $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
+        WHERE  status_piutang = 'Sudah di Bayar' AND tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 
 
@@ -1163,9 +1164,9 @@ data-parent="#accordionSidebar">
         while ($data2 = mysqli_fetch_array($result)){
           $data_pangakalan = $data2['sub_penyalur'];
 
-          if (mysqli_num_rows($result2) == 0) {
+         
             echo "<option> $data_pangakalan </option> ";
-        }
+        
     }
     ?>
 </select>
@@ -1333,9 +1334,9 @@ data-parent="#accordionSidebar">
       while ($data2 = mysqli_fetch_array($result)){
         $data_pangakalan = $data2['sub_penyalur'];
 
-        if (mysqli_num_rows($result2) == 0) {
+      
           echo "<option> $data_pangakalan </option> ";
-      }
+      
   }
   ?>
 </select>
@@ -1485,9 +1486,9 @@ data-parent="#accordionSidebar">
     while ($data2 = mysqli_fetch_array($result)){
       $data_pangakalan = $data2['sub_penyalur'];
 
-      if (mysqli_num_rows($result2) == 0) {
+   
         echo "<option> $data_pangakalan </option> ";
-    }
+    
 }
 ?>
 </select>
