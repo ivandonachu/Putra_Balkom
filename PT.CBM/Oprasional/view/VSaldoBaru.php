@@ -122,6 +122,14 @@ $jumlah_kel_pbj_kebunmbah = $data1011['jumlah_kel_pbj_kebunmbah'];
  $jumlah_kel_pbj_kebunmbah = 0;
  }
 
+ //keluar CBM untuk kebun KELING
+$table1011x = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_cbm_keling FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Kebun Lengkiti' AND status_saldo = 'Keluar' ");
+$data1011x = mysqli_fetch_array($table1011x);
+$jumlah_kel_cbm_keling = $data1011x['jumlah_kel_cbm_keling'];
+ if (!isset($data1011x['jumlah_kel_cbm_keling'])) {
+ $jumlah_kel_cbm_keling = 0;
+ }
+
 // MASUKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
 
  //MASUK cbm untuk cbm
@@ -425,7 +433,7 @@ $mbah = 'Kebun Mbah';
 
   <div class="row">
     <div class="col-md-8">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir </a>" ?>
    </div>
    </div>
   <div class="row">
@@ -888,7 +896,7 @@ $mbah = 'Kebun Mbah';
   <tr>
       <td style='font-size: 11px' align = 'center'>CBM</td>
       <td style='font-size: 11px' align = 'center'>Kebun Lengkiti</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm_keling); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>

@@ -17,6 +17,9 @@ if ($jabatan_valid == 'Direktur Utama') {
 else{  header("Location: logout.php");
 exit;
 }
+
+
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -26,13 +29,227 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 } 
+
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
+
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' ");
 $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
 }
 else{
-$table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
+$table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
+
+// KELUARRRRRR
+//keluar cbm untuk cbm
+$table3 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_cbm FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'CBM' AND status_saldo = 'Keluar' ");
+   $data3 = mysqli_fetch_array($table3);
+   $jumlah_kel_cbm = $data3['jumlah_kel_cbm'];
+    if (!isset($data3['jumlah_kel_cbm'])) {
+    $jumlah_kel_cbm = 0;
+    }
+
+//keluar mes untuk mes
+$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_mes FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'MES' AND referensi = 'MES' AND status_saldo = 'Keluar' ");
+   $data4 = mysqli_fetch_array($table4);
+   $jumlah_kel_mes = $data4['jumlah_kel_mes'];
+    if (!isset($data4['jumlah_kel_mes'])) {
+    $jumlah_kel_mes = 0;
+    }
+
+//keluar pbr untuk pbr
+$table5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pbr FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBR' AND referensi = 'PBR' AND status_saldo = 'Keluar' ");
+   $data5 = mysqli_fetch_array($table5);
+   $jumlah_kel_pbr = $data5['jumlah_kel_pbr'];
+    if (!isset($data5['jumlah_kel_pbr'])) {
+    $jumlah_kel_pbr = 0;
+    }
+
+//keluar pbj untuk pbj
+$table6 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pbj FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBJ' AND referensi = 'PBJ' AND status_saldo = 'Keluar' ");
+   $data6 = mysqli_fetch_array($table6);
+   $jumlah_kel_pbj = $data6['jumlah_kel_pbj'];
+    if (!isset($data6['jumlah_kel_pbj'])) {
+    $jumlah_kel_pbj = 0;
+    }
+
+  //keluar mt untuk mt
+$table7 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_mt FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Melodi Tani' AND status_saldo = 'Keluar' ");
+$data7 = mysqli_fetch_array($table7);
+$jumlah_kel_mt = $data7['jumlah_kel_mt'];
+ if (!isset($data7['jumlah_kel_mt'])) {
+ $jumlah_kel_mt = 0;
+
+ }//keluar balsri untuk balsri
+$table8 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_balsri_balsri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'BALSRI' AND referensi = 'BALSRI' AND status_saldo = 'Keluar' ");
+$data8 = mysqli_fetch_array($table8);
+$jumlah_kel_balsri_balsri = $data8['jumlah_kel_balsri_balsri'];
+ if (!isset($data8['jumlah_kel_balsri_balsri'])) {
+ $jumlah_kel_balsri_balsri = 0;
+
+ }//keluar balsri untuk ste
+$table9 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_balsri_ste FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'BALSRI' AND referensi = 'STE' AND status_saldo = 'Keluar' ");
+$data9 = mysqli_fetch_array($table9);
+$jumlah_kel_balsri_ste = $data9['jumlah_kel_balsri_ste'];
+ if (!isset($data9['jumlah_kel_balsri_ste'])) {
+ $jumlah_kel_balsri_ste = 0;
+
+ }//keluar pribadi untuk kebun 
+$table10 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'Kebun Lenkiti' AND status_saldo = 'Keluar' ");
+$data10 = mysqli_fetch_array($table10);
+$jumlah_kel_pri = $data10['jumlah_kel_pri'];
+ if (!isset($data10['jumlah_kel_pri'])) {
+ $jumlah_kel_pri = 0;
+ }
+
+  //keluar pribadi untuk kebun 
+$table101 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pri_pri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'PRIBADI' AND status_saldo = 'Keluar' ");
+$data101 = mysqli_fetch_array($table101);
+$jumlah_kel_pri = $data101['jumlah_kel_pri_pri'];
+ if (!isset($data101['jumlah_kel_pri_pri'])) {
+ $jumlah_kel_pri_pri = 0;
+ }
+//keluar PBJ untuk kebun MBAH
+$table1011 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pbj_kebunmbah FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBJ' AND referensi = 'Kebun Mbah' AND status_saldo = 'Keluar' ");
+$data1011 = mysqli_fetch_array($table1011);
+$jumlah_kel_pbj_kebunmbah = $data1011['jumlah_kel_pbj_kebunmbah'];
+ if (!isset($data1011['jumlah_kel_pbj_kebunmbah'])) {
+ $jumlah_kel_pbj_kebunmbah = 0;
+ }
+
+ //keluar CBM untuk kebun KELING
+$table1011x = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_cbm_keling FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Kebun Lengkiti' AND status_saldo = 'Keluar' ");
+$data1011x = mysqli_fetch_array($table1011x);
+$jumlah_kel_cbm_keling = $data1011x['jumlah_kel_cbm_keling'];
+ if (!isset($data1011x['jumlah_kel_cbm_keling'])) {
+ $jumlah_kel_cbm_keling = 0;
+ }
+
+// MASUKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+
+ //MASUK cbm untuk cbm
+$table11 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_cbm FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'CBM' AND status_saldo = 'Masuk' ");
+$data11 = mysqli_fetch_array($table11);
+$jumlah_mas_cbm = $data11['jumlah_mas_cbm'];
+ if (!isset($data11['jumlah_mas_cbm'])) {
+ $jumlah_mas_cbm = 0;
+ }
+
+//MASUK mes untuk mes
+$table12 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_mes FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'MES' AND referensi = 'MES' AND status_saldo = 'Masuk' ");
+$data12 = mysqli_fetch_array($table12);
+$jumlah_mas_mes = $data12['jumlah_mas_mes'];
+ if (!isset($data12['jumlah_mas_mes'])) {
+ $jumlah_mas_mes = 0;
+ }
+
+//MASUK pbr untuk pbr
+$table13 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_pbr FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBR' AND referensi = 'PBR' AND status_saldo = 'Masuk' ");
+$data13 = mysqli_fetch_array($table13);
+$jumlah_mas_pbr = $data13['jumlah_mas_pbr'];
+ if (!isset($data13['jumlah_mas_pbr'])) {
+ $jumlah_mas_pbr = 0;
+ }
+
+//MASUK pbj untuk pbj
+$table14 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_pbj FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBJ' AND referensi = 'PBJ' AND status_saldo = 'Masuk' ");
+$data14 = mysqli_fetch_array($table14);
+$jumlah_mas_pbj = $data14['jumlah_mas_pbj'];
+ if (!isset($data14['jumlah_mas_pbj'])) {
+ $jumlah_mas_pbj = 0;
+ }
+
+//MASUK mt untuk mt
+$table15 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_mt FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Melodi Tani' AND status_saldo = 'Masuk' ");
+$data15 = mysqli_fetch_array($table15);
+$jumlah_mas_mt = $data15['jumlah_mas_mt'];
+if (!isset($data15['jumlah_mas_mt'])) {
+$jumlah_mas_mt = 0;
+
+}//MASUK balsri untuk balsri
+$table16 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_balsri_balsri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'BALSRI' AND referensi = 'BALSRI' AND status_saldo = 'Masuk' ");
+$data16 = mysqli_fetch_array($table16);
+$jumlah_mas_balsri_balsri = $data16['jumlah_mas_balsri_balsri'];
+if (!isset($data16['jumlah_mas_balsri_balsri'])) {
+$jumlah_mas_balsri_balsri = 0;
+
+}//MASUK balsri untuk ste
+$table17 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_balsri_ste FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'BALSRI' AND referensi = 'STE' AND status_saldo = 'Masuk' ");
+$data17 = mysqli_fetch_array($table17);
+$jumlah_mas_balsri_ste = $data17['jumlah_mas_balsri_ste'];
+if (!isset($data17['jumlah_mas_balsri_ste'])) {
+$jumlah_mas_balsri_ste = 0;
+
+}//MASUK pribadi untuk kebun 
+$table18 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_pri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'Kebun Lenkiti' AND status_saldo = 'Masuk' ");
+$data18 = mysqli_fetch_array($table18);
+$jumlah_mas_pri = $data18['jumlah_mas_pri'];
+if (!isset($data18['jumlah_mas_pri'])) {
+$jumlah_mas_pri = 0;
+}
+
+//MASUK pribadi untuk kebun 
+$table19 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_pri_pri FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'PRIBADI' AND status_saldo = 'Masuk' ");
+$data19 = mysqli_fetch_array($table19);
+$jumlah_mas_pri_pri = $data19['jumlah_mas_pri_pri'];
+if (!isset($data19['jumlah_mas_pri_pri'])) {
+$jumlah_mas_pri_pri = 0;
+}
+
+//MASUK pribadi untuk kebun 
+$table20 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mas_pri_mbah FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'Kebun Mbah' AND status_saldo = 'Masuk' ");
+$data20 = mysqli_fetch_array($table20);
+$jumlah_mas_pri_mbah = $data20['jumlah_mas_pri_mbah'];
+if (!isset($data20['jumlah_mas_pri_mbah'])) {
+$jumlah_mas_pri_mbah = 0;
+}
+
+//Keluar pribadi untuk kebun 
+$table21 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pri_mbah FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'Kebun Mbah' AND status_saldo = 'Keluar' ");
+$data21 = mysqli_fetch_array($table21);
+$jumlah_kel_pri_mbah = $data21['jumlah_kel_pri_mbah'];
+if (!isset($data21['jumlah_kel_pri_mbah'])) {
+$jumlah_kel_pri_mbah = 0;
+}
+//Keluar pribadi untuk CBM 
+$table22 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pri_cbm FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'CBM' AND status_saldo = 'Keluar' ");
+$data22 = mysqli_fetch_array($table22);
+$jumlah_kel_pri_cbm = $data22['jumlah_kel_pri_cbm'];
+if (!isset($data22['jumlah_kel_pri_cbm'])) {
+$jumlah_kel_pri_cbm = 0;
+}
+//Keluar pribadi untuk MES 
+$table23 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pri_mes FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'MES' AND status_saldo = 'Keluar' ");
+$data23 = mysqli_fetch_array($table23);
+$jumlah_kel_pri_mes = $data23['jumlah_kel_pri_mes'];
+if (!isset($data23['jumlah_kel_pri_mes'])) {
+$jumlah_kel_pri_mes = 0;
+}
+//Keluar pribadi untuk PBR 
+$table24 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pri_pbr FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PRIBADI' AND referensi = 'PBR' AND status_saldo = 'Keluar' ");
+$data24 = mysqli_fetch_array($table24);
+$jumlah_kel_pri_pbr = $data24['jumlah_kel_pri_pbr'];
+if (!isset($data24['jumlah_kel_pri_pbr'])) {
+$jumlah_kel_pri_pbr = 0;
+}
+
+// kode salado
+
+$CBM = 'CBM';
+$MES = 'MES';
+$PBR = 'PBR';
+$PBJ = 'PBJ';
+$MT = 'Melodi Tani';
+$BALSRI = 'BALSRI';
+$STE = 'STE';
+$PRIBADI = 'PRIBADI';
+$Kebun = 'Kebun Lengkiti';
+$Keluar = 'Keluar';
+$Masuk = 'Masuk';
+$mbah = 'Kebun Mbah';
 
 }
  ?>
@@ -73,87 +290,51 @@ $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-               <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
+       <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKepalaOprasional">
                 <div class="sidebar-brand-icon rotate-n-15">
 
-                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
+                </div>
+                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-             <!-- Nav Item - Dashboard -->
+            <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsPTCBM">
+                <a class="nav-link" href="DsKepalaOprasional">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu PTCBM
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-                    </div>
-                </div>
-            </li>
-                <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu Kepala Oprasional
+       </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
+                    <span style="font-size: 15px; color:white;" >Oprasional</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
-                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
-                    </div>
-                </div>
-            </li>
-            
-            <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-                  15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Daftar SDM</span>
-                </a>
-                <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Daftar Aset</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Daftar Dokumen</a>
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Oprasional</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListDriver">List Driver</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListRute">List Rute</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Penggunaan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo Baru</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Pembelian BBM</a>
                     </div>
                 </div>
             </li>
@@ -250,225 +431,28 @@ $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
 
   <div class="row">
     <div class="col-md-8">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir </a>" ?>
    </div>
    </div>
-  <div class="row">
-    <div class="col-md-10">
-     
-   </div>
-   <div class="col-md-2">
-    <!-- Button Pindah Baja -->
-    <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Penggunaan Saldo </button> <br> <br>
-    </div>
-    <!-- Form Modal  -->
-    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-       <div class="modal-content"> 
-        <div class="modal-header">
-          <h5 class="modal-title"> Form Penggunaan Saldo </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> 
-
-        <!-- Form Input Data -->
-        <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_penggunaan_saldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-          <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
-    
-          </div>
-          <div class="col-md-6">
-          </div>
-        </div>
-
-
-        <div class="row">
-           
-          <div class="col-md-6">
-           <label>REF Pengeluaran/Pemasukan</label>
-          <select id="referensi" name="referensi" class="form-control">
-            <option>CBM</option>
-            <option>Melodi Tani</option>
-            <option>PBJ</option>
-            <option>BALSRI</option>
-            <option>Kebun Lengkiti</option>
-            <option>MES/PBR</option>
-          </select>
-          <small></small>
-        </div>
-
-        <div class="col-md-6">
-          <label>Akun</label>
-          <select id="akun" name="akun" class="form-control">
-            <option>Setor ke Bank</option>
-            <option>Dana Masuk</option>
-            <option>Biaya Usaha Lainnya</option>
-            <option>Biaya Perbaikan Kendaraan</option>
-            <option>Biaya Penjualan & Pemasaran</option>
-          </select>
-        </div>            
-
-      </div>
-
-      <br>
-
-     
-
-      <div class="row">
-        <div class="col-md-6">
-          <label>Jumlah</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
-        </div>    
-        <div class="col-md-6">
-        </div>         
-      </div>
-
-      <br>
-
-    <div>
-       <label>Saldo</label>
-          <select id="rekening" name="rekening" class="form-control">
-            <option>CBM</option>
-            <option>Melodi Tani</option>
-            <option>PBJ</option>
-          </select>
-    </div>
-    <br>
-
-    <div>
-     <label>Keterangan</label>
-     <div class="form-group">
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
-     </div>
-   </div>
-
-   <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">Pindahkan</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Akun</th>
-      <th>REF</th>
       <th>Rekening</th>
+      <th>REF/Digunakan</th>
+      <th>Akun</th>
       <th>Debit</th>
       <th>Kredit</th>
       <th>Keterangan</th>
       <th>File</th>
-      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
     <?php
-    //Masuk CBM Keluar CBM
-    $masuk_cbm_cbm = 0;
-    //Masuk CBM Keluar PBJ
-    $masuk_cbm_pbj = 0;
-    //mASUK cbm kELUAR MT
-    $masuk_cbm_mt = 0;
-    //masuk mt keluar cbm
-    $masuk_mt_cbm = 0;
-    //masuk mt keluar pbj
-    $masuk_mt_pbj = 0;
-    //masuk mt keluar mt
-    $masuk_mt_mt = 0;
-    //masuk pbj keluar cbm
-    $masuk_pbj_cbm = 0;
-    //masuk pbj keluar pbj
-    $masuk_pbj_pbj = 0;
-    //masuk pbj keluar mt
-    $masuk_pbj_mt = 0;
-    
-    
-    //keluar cbm masuk cbm
-    $keluar_cbm_cbm = 0;
-    //keluar cbm masuk pbj
-    $keluar_cbm_pbj = 0;
-    //keluar cbm masuk mt
-    $keluar_cbm_mt = 0;
-    //keluar mt masuk cbm
-    $keluar_mt_cbm = 0;
-    //keluar mt masuk pbj
-    $keluar_mt_pbj = 0;
-    //keluar mt masuk mt
-    $keluar_mt_mt = 0;
-    //keluar pbj masuk cbm
-    $keluar_pbj_cbm = 0;
-    //keluar pbj masuk pbj
-    $keluar_pbj_pbj = 0;
-    //keluar pbj masuk mt
-    $keluar_pbj_mt = 0;
-
-    //setor dana cbm ke cbm
-    $setor_cbm_cbm = 0;
-    //setor dana cbm ke pbj
-    $setor_cbm_pbj = 0;
-    //setor dana cbm ke mt
-    $setor_cbm_mt = 0;
-    //setor dana mt ke cbm
-    $setor_mt_cbm = 0;
-    //setor dana mt ke pbj
-    $setor_mt_pbj = 0;
-    //setor dana mt ke mt
-    $setor_mt_mt = 0;
-    //setor dana pbj ke cbm
-    $setor_pbj_cbm = 0;
-    //setor dana pbj ke pbj
-    $setor_pbj_pbj = 0;
-    //setor dana pbj ke mt
-    $setor_pbj_mt = 0;
-
-    //khusus
-    //keluar cbm ke balsri
-    $keluar_cbm_balsri = 0 ;
-    //keluar pbj ke balsri
-    $keluar_pbj_balsri = 0 ;
-    //keluar mt ke balsri
-    $keluar_mt_balsri = 0 ;
-    //keluar cbm ke kebun lengkiti
-    $keluar_cbm_keling = 0 ;
-    //keluar pbj ke kebun lengkiti
-    $keluar_pbj_keling = 0 ;
-    //keluar mt ke kebun lengkiti
-    $keluar_mt_keling = 0 ;
-    //keluar cbm ke pbr
-    $keluar_cbm_pbr = 0 ;
-    //keluar pbj ke pbr
-    $keluar_pbj_pbr = 0 ;
-    //keluar mt ke pbr
-    $keluar_mt_pbr = 0 ;
-
     
     $urut = 0;
     function formatuang($angka){
@@ -480,169 +464,22 @@ $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
+      $nama_rekening = $data['nama_rekening'];
       $referensi = $data['referensi'];
       $nama_akun = $data['nama_akun'];
-      $nama_rekening = $data['nama_rekening'];
       $jumlah = $data['jumlah'];
       $file_bukti = $data['file_bukti'];
       $keterangan = $data['keterangan'];
       $status_saldo = $data['status_saldo'];
-    
-    //Masuk CBM Keluar CBM
-    if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'CBM') {
-        $masuk_cbm_cbm = $masuk_cbm_cbm + $jumlah;
-      }
-    //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'PBJ') {
-        $masuk_cbm_pbj = $masuk_cbm_pbj + $jumlah;
-      }
-    //mASUK cbm kELUAR MT
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'Melodi Tani') {
-        $masuk_cbm_mt = $masuk_cbm_mt + $jumlah;
-      }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'Melodi Tani' && $referensi == 'CBM') {
-        $masuk_mt_cbm = $masuk_mt_cbm + $jumlah;
-      }
-    //masuk mt keluar pbj
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'Melodi Tani' && $referensi == 'PBJ') {
-        $masuk_mt_pbj = $masuk_mt_pbj + $jumlah;
-      }
-    //masuk mt keluar mt
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'Melodi Tani' && $referensi == 'Melodi Tani') {
-        $masuk_mt_mt = $masuk_mt_mt + $jumlah;
-      }
-    //masuk pbj keluar cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBJ' && $referensi == 'CBM') {
-        $masuk_pbj_cbm = $masuk_pbj_cbm + $jumlah;
-      }
-    //masuk pbj keluar pbj
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBJ' && $referensi == 'PBJ') {
-        $masuk_pbj_pbj = $masuk_pbj_pbj + $jumlah;
-      }
-    //masuk pbj keluar mt
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBJ' && $referensi == 'Melodi Tani') {
-        $masuk_pbj_mt = $masuk_pbj_mt + $jumlah;
-      }
-    
-    
-    //keluar cbm masuk cbm
-    if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'CBM' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_cbm = $keluar_cbm_cbm + $jumlah;
-      }
-    //keluar cbm masuk pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'PBJ' && $nama_akun != 'Setor ke Bank'  ) {
-        $keluar_cbm_pbj = $keluar_cbm_pbj + $jumlah;
-      }
-    //keluar cbm masuk mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'Melodi Tani' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_pbj = $keluar_cbm_pbj + $jumlah;
-      }
-    //keluar mt masuk cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'CBM' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_pbj = $keluar_cbm_pbj + $jumlah;
-      }
-    //keluar mt masuk pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'PBJ' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_pbj = $keluar_cbm_pbj + $jumlah;
-      }
-    //keluar mt masuk mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'Melodi Tani' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_pbj = $keluar_cbm_pbj + $jumlah;
-      }
-    //keluar pbj masuk cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'CBM' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_pbj = $keluar_cbm_pbj + $jumlah;
-      }
-    //keluar pbj masuk pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'PBJ' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_pbj = $keluar_cbm_pbj + $jumlah;
-      }
-    //keluar pbj masuk mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'Melodi Tani' && $nama_akun != 'Setor ke Bank' ) {
-        $keluar_cbm_pbj = $keluar_cbm_pbj + $jumlah;
-      }
-    //keluar cbm masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'BALSRI') {
-        $keluar_cbm_balsri = $keluar_cbm_balsri + $jumlah;
-      }
-    //keluar pbj masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'BALSRI') {
-        $keluar_pbj_balsri = $keluar_pbj_balsri + $jumlah;
-      }
-    //keluar mt masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'BALSRI') {
-        $keluar_mt_balsri = $keluar_mt_balsri + $jumlah;
-      }
-    //keluar cbm masuk kebun lengkiti
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'Kebun Lengkiti') {
-        $keluar_cbm_keling = $keluar_cbm_keling + $jumlah;
-      }
-    //keluar pbj masuk  kebun lengkiti
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'Kebun Lengkiti') {
-        $keluar_pbj_keling = $keluar_pbj_keling + $jumlah;
-      }
-    //keluar mt masuk  kebun lengkiti
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'Kebun Lengkiti') {
-        $keluar_mt_keling = $keluar_mt_keling + $jumlah;
-      }
-    //keluar cbm masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'MES/PBR') {
-        $keluar_cbm_pbr = $keluar_cbm_pbr + $jumlah;
-      }
-    //keluar pbj masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'MES/PBR') {
-        $keluar_pbj_pbr = $keluar_pbj_pbr + $jumlah;
-      }
-    //keluar mt masuk balsri
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'MES/PBR') {
-        $keluar_mt_pbr = $keluar_mt_pbr + $jumlah;
-      }
-    
-    //setor dana cbm ke cbm
-    if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'CBM' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_cbm_cbm = $setor_cbm_cbm + $jumlah;
-      }
-    //setor dana cbm ke pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'PBJ' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_cbm_pbj = $setor_cbm_pbj + $jumlah;
-      }
-    //setor dana cbm ke mt
-   else if ($status_saldo == 'Keluar' && $nama_rekening == 'CBM' && $referensi == 'Melodi Tani' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_cbm_mt = $setor_cbm_mt + $jumlah;
-      }
-    //setor dana mt ke cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'CBM' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_mt_cbm = $setor_mt_cbm + $jumlah;
-      }
-    //setor dana mt ke pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'PBJ' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_mt_pbj = $setor_mt_pbj + $jumlah;
-      }
-    //setor dana mt ke mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'Melodi Tani' && $referensi == 'Melodi Tani' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_mt_mt = $setor_mt_mt + $jumlah;
-      }
-    //setor dana pbj ke cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'CBM' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_pbj_cbm = $setor_pbj_cbm + $jumlah;
-      }
-    //setor dana pbj ke pbj
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'PBJ' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_pbj_pbj = $setor_pbj_pbj + $jumlah;
-      }
-    //setor dana pbj ke mt
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBJ' && $referensi == 'Melodi Tani' && $nama_akun == 'Setor ke Bank' ) {
-        $setor_pbj_mt = $setor_pbj_mt + $jumlah;
-      }
-
         $urut = $urut + 1;
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$nama_rekening</td>
       <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_rekening</td>";
+      <td style='font-size: 14px'>$nama_akun</td>
+      
+     ";
 
 
       if ($status_saldo == 'Masuk') {
@@ -665,177 +502,234 @@ $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
         
       echo "
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Operasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Operasional//file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Operasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Operasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
 
-        <!-- Form EDIT DATA -->
-
-        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role ="document">
-            <div class="modal-content"> 
-              <div class="modal-header">Form Edit Kas Kecil </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
-
-
-              <!-- Form Edit Data -->
-              <div class="modal-body">
-                <form action="../proses/edit_penggunaan_saldo.php" enctype="multipart/form-data" method="POST">
-
-                  <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
-             </div>
-   
-
-          </div>
-          <div class="col-md-6">
-          </div>
-        </div>
-
-
-        <div class="row">
-          
-
-        <div class="col-md-6">
-
-          <label><label>REF Pengeluaran/Pemasukan</label></label>
-          <select id="referensi" name="referensi" class="form-control">
-            <?php $dataSelect = $data['referensi']; ?>
-            <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
-            <option <?php echo ($dataSelect == 'Melodi Tani') ? "selected": "" ?> >Melodi Tani</option>
-            <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
-            <option <?php echo ($dataSelect == 'BALSRI') ? "selected": "" ?> >BALSRI</option>
-            <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
-            <option <?php echo ($dataSelect == 'MES/PBR') ? "selected": "" ?> >MES/PBR</option>
-          </select>
-
-        </div>            
-         <div class="col-md-6">
-
-          <label><label>Akun</label></label>
-          <select id="akun" name="akun" class="form-control">
-            <?php $dataSelect = $data['nama_akun']; ?>
-            <option <?php echo ($dataSelect == 'Setor ke Bank') ? "selected": "" ?> >Setor ke Bank</option>
-            <option <?php echo ($dataSelect == 'Dana Masuk') ? "selected": "" ?> >Dana Masuk</option>
-            <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
-            <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
-            <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
-          </select>
-
-        </div>
-      </div>
-
-      <br>
-
-     
-
-      <div class="row">
-        <div class="col-md-6">
-          <label>Jumlah</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
-        </div>    
-        <div class="col-md-6">
-       
-
-          <label><label>Saldo</label></label>
-          <select id="rekening" name="rekening" class="form-control">
-            <?php $dataSelect = $data['nama_rekening']; ?>
-            <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
-            <option <?php echo ($dataSelect == 'Melodi Tani') ? "selected": "" ?> >Melodi Tani</option>
-            <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
-          </select>
-
-  
-        </div>         
-      </div>
-
-      <div>
-     <label>Keterangan</label>
-     <div class="form-group">
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
-     </div>
-   </div>
-
-              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-               <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-  
-    <br>
-
-
-
-  <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-                 
-
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"> Ubah </button>
-                    <button type="reset" class="btn btn-danger"> RESET</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
-
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-       <div class="modal-dialog" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-
-
-          <div class="modal-body">
-            <form action="../proses/hapus_penggunaan_saldo" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
-              <input type="hidden" name="status_saldo" value="<?php echo $status_saldo; ?>">
-              <input type="hidden" name="nama_rekening" value="<?php echo $nama_rekening;?>">
-              <input type="hidden" name="jumlah" value="<?php echo $jumlah;?>">
-              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-
-
-
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
-              </div>
-
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <?php echo  " </td> </tr>";
+   </tr>";
   }
   ?>
 
 </tbody>
 </table>
 </div>
+  </div>
 <br>
+<br>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Pengeluaran</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'align = 'center'>Rekening</th>
+      <th style='font-size: 11px'align = 'center'>Referensi</th>
+      <th style='font-size: 11px'align = 'center'>Total Keluar</th>
+      <th style='font-size: 11px'align = 'center'></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$CBM&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_mes); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MES&rekening=$MES&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbr); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBR&rekening=$PBR&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbj); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBJ&rekening=$PBJ&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbj_kebunmbah); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$PBJ&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_mt); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MT&rekening=$MT&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_balsri_balsri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$BALSRI&rekening=$BALSRI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'>STE</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_balsri_ste); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$STE&rekening=$BALSRI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Lengkiti</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm_keling); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_pri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PRIBADI&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_mbah); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_cbm); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$CBM&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_mes); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MES&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_pbr); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBR&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
 <br>
 <br>
 
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Laporan Pemasukan</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px' align = 'center'>Rekening</th>
+      <th style='font-size: 11px' align = 'center'>Referensi</th>
+      <th style='font-size: 11px' align = 'center'>Total Masuk</th>
+      <th style='font-size: 11px'align = 'center'></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_cbm); ?></td>
+     
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$CBM&rekening=$CBM&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'>MES</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_mes); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MES&rekening=$MES&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pbr); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBR&rekening=$PBR&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'>PBJ</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pbj); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBJ&rekening=$PBJ&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_mt); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MT&rekening=$MT&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_balsri_balsri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$BALSRI&rekening=$BALSRI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>BALSRI</td>
+      <td style='font-size: 11px' align = 'center'>STE</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_balsri_ste); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$STE&rekening=$BALSRI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Lengkiti</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$CBM&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri_pri); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PRIBADI&rekening=$PRIBADI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+  tr>
+      <td style='font-size: 11px' align = 'center'>PRIBADI</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri_mbah); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$PRIBADI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
+     
+  </tr>
+
+</tbody>
+</table>
+</div>
+<br>
+<br>
+
+
+
+
+
+<?php /*
 <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 <h6 align="center">UANG CBM</h6>
 <!-- Tabel -->    
@@ -851,12 +745,13 @@ $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
   </thead>
   <tbody>
 
-    <?php 
+    <?php
       echo "<tr>
+
       <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_cbm + $masuk_cbm_mt + $masuk_cbm_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbj_cbm + $masuk_mt_cbm + $keluar_cbm_balsri + $keluar_cbm_keling + $keluar_cbm_cbm + $keluar_cbm_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbj_cbm + $masuk_mt_cbm + $keluar_cbm_balsri + $keluar_cbm_keling + $keluar_cbm_cbm + $keluar_cbm_pbr + $keluar_cbm_mt + $keluar_cbm_pbj + $keluar_cbm_ste); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($setor_cbm_cbm + $setor_cbm_mt + $setor_cbm_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_cbm_cbm + $masuk_cbm_mt + $masuk_cbm_pbj) - ($masuk_pbj_cbm + $masuk_mt_cbm + $keluar_cbm_balsri + $setor_cbm_cbm + $setor_cbm_mt + $setor_cbm_pbj + $keluar_cbm_keling + $keluar_cbm_cbm + $keluar_cbm_pbr)); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_cbm_cbm + $masuk_cbm_mt + $masuk_cbm_pbj + 15000000) - ($masuk_pbj_cbm + $masuk_mt_cbm + $keluar_cbm_balsri + $keluar_cbm_ste  + $setor_cbm_cbm + $setor_cbm_mt + $setor_cbm_pbj + $keluar_cbm_keling + $keluar_cbm_cbm + $keluar_cbm_pbr + $keluar_cbm_mt + $keluar_cbm_pbj)); ?> <?php echo "</td>
       <td class='text-center'><a href='VRincianCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
         </tr>";
   
@@ -886,9 +781,9 @@ $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
     <?php 
       echo "<tr>
       <td style='font-size: 14px'>";?> <?= formatuang($masuk_mt_mt + $masuk_mt_cbm + $masuk_mt_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_mt + $masuk_pbj_mt + $keluar_mt_balsri + $keluar_mt_keling + $keluar_mt_mt + $keluar_mt_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_mt + $masuk_pbj_mt + $keluar_mt_balsri + $keluar_mt_keling + $keluar_mt_mt + $keluar_mt_pbr + $keluar_mt_cbm + $keluar_mt_pbj + $keluar_mt_ste); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($setor_mt_mt + $setor_mt_cbm + $setor_mt_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_mt_mt + $masuk_mt_cbm + $masuk_mt_pbj)-($masuk_cbm_mt + $masuk_pbj_mt + $keluar_mt_balsri + $setor_mt_mt + $setor_mt_cbm + $setor_mt_pbj + $keluar_mt_keling + $keluar_mt_mt + $keluar_mt_pbr)); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_mt_mt + $masuk_mt_cbm + $masuk_mt_pbj)-($masuk_cbm_mt + $masuk_pbj_mt + $keluar_mt_balsri + $keluar_mt_ste + $setor_mt_mt + $setor_mt_cbm + $setor_mt_pbj + $keluar_mt_keling + $keluar_mt_mt + $keluar_mt_pbr + $keluar_mt_cbm + $keluar_mt_pbj)); ?> <?php echo "</td>
       <td class='text-center'><a href='VRincianMT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
         </tr>";
   
@@ -918,9 +813,9 @@ $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
     <?php 
       echo "<tr>
       <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbj_mt + $masuk_pbj_cbm + $masuk_pbj_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_pbj + $masuk_mt_pbj + $keluar_pbj_balsri + $keluar_pbj_keling + $keluar_pbj_pbj + $keluar_pbj_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_pbj + $masuk_mt_pbj + $keluar_pbj_balsri + $keluar_pbj_keling + $keluar_pbj_pbj + $keluar_pbj_pbr + $keluar_pbj_cbm + $keluar_pbj_mt + $keluar_pbj_ste ); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($setor_pbj_mt + $setor_pbj_cbm + $setor_pbj_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_pbj_mt + $masuk_pbj_cbm + $masuk_pbj_pbj)-($setor_pbj_mt + $setor_pbj_cbm + $setor_pbj_pbj + $masuk_cbm_pbj + $masuk_mt_pbj + $keluar_pbj_balsri + $keluar_pbj_keling + $keluar_pbj_pbj + $keluar_pbj_pbr )); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang(($masuk_pbj_mt + $masuk_pbj_cbm + $masuk_pbj_pbj)-($setor_pbj_mt + $setor_pbj_cbm + $setor_pbj_pbj + $masuk_cbm_pbj + $masuk_mt_pbj + $keluar_pbj_balsri + $keluar_pbj_ste + $keluar_pbj_keling + $keluar_pbj_pbj + $keluar_pbj_pbr + $keluar_pbj_cbm + $keluar_pbj_mt )); ?> <?php echo "</td>
       <td class='text-center'><a href='VRincianPBJ?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
         </tr>";
   
@@ -930,8 +825,70 @@ $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekening ");
 </table>
 </div>
 <br>
+
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+<h6 align="center">Pengeluaran Untuk Balsri</h6>
+<!-- Tabel -->    
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Total Uang CBM dipakai BALSRI</th>
+      <th>Total Uang PBJ dipakai BALSRI</th>
+      <th>Total Uang MT dipakai BALSRI</th>
+    
+      <th>Rincian</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_cbm_balsri); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbj_balsri); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mt_balsri); ?> <?php echo "</td>
+      <td class='text-center'><a href='VRincianBALSRI?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
+        </tr>";
+  
+  ?>
+
+</tbody>
+</table>
+</div>
 <br>
+
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+<h6 align="center">Pengeluaran Untuk STE</h6>
+<!-- Tabel -->    
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Total Uang CBM dipakai STE</th>
+      <th>Total Uang PBJ dipakai STE</th>
+      <th>Total Uang MT dipakai STE</th>
+    
+      <th>Rincian</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_cbm_ste); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbj_ste); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mt_ste); ?> <?php echo "</td>
+      <td class='text-center'><a href='VRincianSTE?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
+        </tr>";
+  
+  ?>
+
+</tbody>
+</table>
+</div>
 <br>
+*/ ?>
+
+
+
 
 
 </div>

@@ -30,12 +30,18 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
 }  
 
-
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
- WHERE tanggal = '$tanggal_awal' ");
-$table2 = mysqli_query($koneksicbm, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+  $table999 =  mysqli_query($koneksicbm, "SELECT jam_manager, jam_kasir FROM konfirmasi_laporan WHERE tanggal =  '$tanggal_awal'");
+      $data999 = mysqli_fetch_array($table999);
+      $jam_kasir = $data999['jam_kasir'];
+      $jam_manager = $data999['jam_manager'];
 
+$table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
+ WHERE tanggal = '$tanggal_awal'");
+$table2 = mysqli_query($koneksicbm, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
+
+    $sql_bon = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
+        WHERE  status_piutang = 'Sudah di Bayar' AND tanggal = '$tanggal_awal' ");
 
 
 //patokan stok awal
@@ -879,11 +885,17 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 
 //elseeeeeeee
 else{
+  $table999 =  mysqli_query($koneksicbm, "SELECT jam_manager, jam_kasir FROM konfirmasi_laporan WHERE tanggal =  '$tanggal_akhir'");
+      $data999 = mysqli_fetch_array($table999);
+      $jam_kasir = $data999['jam_kasir'];
+      $jam_manager = $data999['jam_manager'];
 $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-$table2 = mysqli_query($koneksicbm, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+$table2 = mysqli_query($koneksicbm, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
 
 
+    $sql_bon = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
+        WHERE  b.status_piutang = 'Sudah di Bayar' AND a.tanggal  = '$tanggal_awal' AND '$tanggal_akhir' ");
 
 //patokan stok awal
 $table3 = mysqli_query($koneksicbm, "SELECT * FROM laporan_inventory WHERE referensi = 'TK' AND tanggal = '$tanggal_awal' ");
@@ -932,7 +944,6 @@ if (!isset($data_perpindahan_3_tkx['perpindahan_3_tkx'])) {
 $table4 = mysqli_query($koneksicbm, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_tk'");
 $data4 = mysqli_fetch_array($table4);
 $stok_awal_3kg_isi_tk = $data4['L03K11'];
-
 //stok akhir 3kg isi
 $table5 = mysqli_query($koneksicbm, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
 $data5 = mysqli_fetch_array($table5);
@@ -1349,6 +1360,8 @@ $table35 = mysqli_query($koneksicbm, "SELECT no_laporan FROM laporan_inventory W
 $data35 = mysqli_fetch_array($table35);
 $no_laporan_gd = $data35['no_laporan'];
 
+
+
 //3KG ISI TK
 //3KG isi keluar
 //baja isi LPG 3kg
@@ -1719,11 +1732,11 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 
 }
 
- ?>
- <!DOCTYPE html>
- <html lang="en">
+?>
+<!DOCTYPE html>
+<html lang="en">
 
- <head>
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -1731,7 +1744,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Laporan Penjualan CBM</title>
+  <title>Penjualan Kasir Toko</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -1747,8 +1760,8 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
 
   <!-- Link datepicker -->
 
@@ -1759,90 +1772,89 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
-            </a>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-
-                <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsPTCBM">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu PTCBM
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-                       <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-                    </div>
-                </div>
-            </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
-                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
-                    </div>
-                </div>
-            </li>
+ <!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsPTCBM">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu PTCBM
+    </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+        </div>
+    </div>
+</li>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
+             <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+        </div>
+    </div>
+</li>
 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-                  15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Daftar SDM</span>
-                </a>
-                <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Daftar Aset</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Daftar Dokumen</a>
-                    </div>
-                </div>
-            </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+      15  aria-expanded="true" aria-controls="collapseTwo2">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Daftar SDM</span>
+    </a>
+    <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VAset">Daftar Aset</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Daftar Dokumen</a>
+        </div>
+    </div>
+</li>
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -1867,7 +1879,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VLPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Laporan Penjualan CBM</h5></a>"; ?>
+      <?php echo "<a href='VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Penjualan Kasir Toko</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -1879,8 +1891,8 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-          
-      
+
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -1935,9 +1947,6 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       </div>
     </div>
   </form>
-
- 
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
   
 
 
@@ -1958,7 +1967,6 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       <th>Jumlah</th>    
       <th>Keterangan</th>
       <th>File</th>
-
     </tr>
   </thead>
   <tbody>
@@ -2007,6 +2015,23 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
           $B12_cash = $B12_cash + $jumlah;
         }
       }
+       else if ($pembayaran == 'Bon') {
+            $sql_bon = mysqli_query($koneksicbm, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
+            $data_bon = mysqli_fetch_array($sql_bon);
+            $jumlah_bon = $data_bon['jumlah_bayar'];
+        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+          $L03_cash = $L03_cash + $jumlah_bon;
+        }
+        elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+          $L12_cash = $L12_cash + $jumlah_bon;
+        }
+        elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+          $B05_cash = $B05_cash + $jumlah_bon;
+        }
+        elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+          $B12_cash = $B12_cash + $jumlah_bon;
+        }
+      }
       else{
         if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
           $L03 = $L03 + $jumlah;
@@ -2022,7 +2047,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
         }
       }
 
-
+      $nama_baja1 = "Pembayaran Selain Penjualan";
 
 
       echo "<tr>
@@ -2030,7 +2055,12 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$nama_baja</td>
+      ";
+      if ($nama_akun == "Pendapatan Lain-lain Diluar Usaha") { 
+        echo "<td style='font-size: 14px'>$nama_baja1</td>";  
+      }
+      else { echo " <td style='font-size: 14px'>$nama_baja</td>";}
+      echo "
       <td style='font-size: 14px'>$penyaluran</td>
       <td style='font-size: 14px'>$nama</td>
       <td style='font-size: 14px'>$pembayaran</td>
@@ -2038,45 +2068,8 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>$keterangan</td>
-      "; ?>
-      <?php echo "<td style='font-size: 11px'>"; ?>
-
-        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Lihat</button>
-
-        <!--  tampil file -->
-
-        <div class="modal fade" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role ="document">
-            <div class="modal-content"> 
-              <div class="modal-header">
-                <h5 class="modal-title"> Foto Penjualan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
-
-
-              <!--  tampil file -->
-              <div class="modal-body">
-                       <img  style="height: 100%; width: 100%;" s src="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" >
-                </div>
-
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>">Download</a>  </button>
-              
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-        <?php echo "</td> "; ?>
-     
-    <?php echo  "</tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      </tr>";
   }
   ?>
 
@@ -2088,23 +2081,23 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 <br>
 <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-<!-- Tabel -->    
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Elpiji 3 KG</th>
-      <th>Bright Gas 5,5 KG</th>
-      <th>Bright Gas 12 KG</th>
-      <th>Elpiji 12 KG</th>
-      <th>Cash Elpiji 3 KG</th>
-      <th>Cash Bright Gas 5,5 KG</th>
-      <th>Cash Bright Gas 12 KG</th>
-      <th>Cash Elpiji 12 KG</th>
-    </tr>
-  </thead>
-  <tbody>
+  <!-- Tabel -->    
+  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <thead>
+      <tr>
+        <th>Elpiji 3 KG</th>
+        <th>Bright Gas 5,5 KG</th>
+        <th>Bright Gas 12 KG</th>
+        <th>Elpiji 12 KG</th>
+        <th>Cash Elpiji 3 KG</th>
+        <th>Cash Bright Gas 5,5 KG</th>
+        <th>Cash Bright Gas 12 KG</th>
+        <th>Cash Elpiji 12 KG</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <?php 
+      <?php 
       echo "<tr>
       <td style='font-size: 14px'>";?> <?= formatuang($L03); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($B05); ?> <?php echo "</td>
@@ -2115,12 +2108,12 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       <td style='font-size: 14px'>";?> <?= formatuang($B12_cash); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($L12_cash); ?> <?php echo "</td>
 
-        </tr>";
-  
-  ?>
+      </tr>";
 
-</tbody>
-</table>
+      ?>
+
+    </tbody>
+  </table>
 </div>
 <br>
 <br>
@@ -2167,8 +2160,9 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 </table>
 </div>
 <br>
-    <br>
+<br>
 </div>
+  
  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
 
 <div class="row">
@@ -2192,84 +2186,82 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
         <td><?= $stok_awal_3kg_isi_tk ?></td>
         <td><?= $total_penjualan_3_tk + $total_perpindahan_3_tkx + $total_retur_3_tk ?></td>
         <td><?= $total_pembelian_3_tk + $total_perpindahan_3_tk  ?></td>
-        <td><?= $stok_akhir_3kg_isi_tk ?></td>
-    </tr>
+        <td><?= $stok_awal_3kg_isi_tk - ($total_penjualan_3_tk + $total_perpindahan_3_tkx + $total_retur_3_tk) + ($total_pembelian_3_tk + $total_perpindahan_3_tk) ?></td> 
     <tr>
         <td>Elpiji 3 Kg Kosong</td>
         <td><?= $stok_awal_3kg_ksg_tk ?></td>
         <td><?= $total_penjualan_3ksg_tk + $total_pembelian_3_tk + $total_perpindahan_3ksg_tkx + $total_retur_3ksg_tk ?></td>
         <td><?= $total_pembelian_3ksg_tk + $total_penjualan_3_tk + $total_perpindahan_3ksg_tk ?></td>
-        <td><?= $stok_akhir_3kg_ksg_tk ?></td>
+        <td><?= $stok_awal_3kg_ksg_tk - ($total_penjualan_3ksg_tk + $total_pembelian_3_tk + $total_perpindahan_3ksg_tkx + $total_retur_3ksg_tk) + ($total_pembelian_3ksg_tk + $total_penjualan_3_tk + $total_perpindahan_3ksg_tk) ?></td>
     </tr>
-    <tr>
         <td>Elpiji 3 Kg Retur</td>
         <td><?= $stok_awal_3kg_rt_tk ?></td>
         <td><?= $total_perpindahan_3rt_tkx ?></td>
         <td><?= $total_retur_3ksg_tk + $total_retur_3_tk + $total_perpindahan_3rt_tk  ?></td>
-        <td><?= $stok_akhir_3kg_rt_tk ?></td>
+        <td><?= $stok_awal_3kg_rt_tk - ($total_perpindahan_3rt_tkx) + ($total_retur_3ksg_tk + $total_retur_3_tk + $total_perpindahan_3rt_tk)?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg baja + Isi</td>
         <td><?= $stok_awal_12kg_isi_tk ?></td>
         <td><?= $total_penjualan_12_tk + $total_perpindahan_12_tkx + $total_retur_12_tk ?></td>
         <td><?= $total_pembelian_12_tk + $total_perpindahan_12_tk ?></td>
-        <td><?= $stok_akhir_12kg_isi_tk ?></td>
+        <td><?= $stok_awal_12kg_isi_tk - ($total_penjualan_12_tk + $total_perpindahan_12_tkx + $total_retur_12_tk) + ($total_pembelian_12_tk + $total_perpindahan_12_tk) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Kosong</td>
         <td><?= $stok_awal_12kg_ksg_tk ?></td>
         <td><?= $total_penjualan_12ksg_tk + $total_pembelian_12_tk + $total_perpindahan_12ksg_tkx + $total_retur_12ksg_tk ?></td>
         <td><?= $total_pembelian_12ksg_tk + $total_penjualan_12_tk + $total_perpindahan_12ksg_tk ?></td>
-        <td><?= $stok_akhir_12kg_ksg_tk ?></td>
+        <td><?= $stok_awal_12kg_ksg_tk - ($total_penjualan_12ksg_tk + $total_pembelian_12_tk + $total_perpindahan_12ksg_tkx + $total_retur_12ksg_tk) + ($total_pembelian_12ksg_tk + $total_penjualan_12_tk + $total_perpindahan_12ksg_tk) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Retur</td>
         <td><?= $stok_awal_12kg_rt_tk ?></td>
         <td><?= $total_perpindahan_12rt_tkx ?></td>
         <td><?= $total_retur_12ksg_tk + $total_retur_12_tk + $total_perpindahan_12rt_tk ?></td>
-        <td><?= $stok_akhir_12kg_rt_tk ?></td>
+        <td><?= $stok_awal_12kg_rt_tk - ($total_perpindahan_12rt_tkx) + ($total_retur_12ksg_tk + $total_retur_12_tk + $total_perpindahan_12rt_tk)?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg baja + Isi</td>
         <td><?= $stok_awal_55_isi_tk ?></td>
         <td><?= $total_penjualan_b05_tk + $total_perpindahan_b05_tkx + $total_retur_b05_tk ?></td>
         <td><?= $total_pembelian_b05_tk + $total_perpindahan_b05_tk ?></td>
-        <td><?= $stok_akhir_55_isi_tk ?></td>
+        <td><?= $stok_awal_55_isi_tk - ($total_penjualan_b05_tk + $total_perpindahan_b05_tkx + $total_retur_b05_tk) + ($total_pembelian_b05_tk + $total_perpindahan_b05_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Kosong</td>
         <td><?= $stok_awal_55_ksg_tk ?></td>
         <td><?= $total_penjualan_b05ksg_tk + $total_pembelian_b05_tk + $total_perpindahan_b05ksg_tkx + $total_retur_b05ksg_tk ?></td>
         <td><?= $total_pembelian_b05ksg_tk + $total_penjualan_b05_tk + $total_perpindahan_b05ksg_tk ?></td>
-        <td><?= $stok_akhir_55_ksg_tk ?></td>
+        <td><?= $stok_awal_55_ksg_tk - ($total_penjualan_b05ksg_tk + $total_pembelian_b05_tk + $total_perpindahan_b05ksg_tkx + $total_retur_b05ksg_tk) + ($total_pembelian_b05ksg_tk + $total_penjualan_b05_tk + $total_perpindahan_b05ksg_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Retur</td>
         <td><?= $stok_awal_b05_rt_tk ?></td>
         <td><?= $total_perpindahan_b05rt_tkx ?></td>
         <td><?= $total_retur_b05ksg_tk + $total_retur_b05_tk + $total_perpindahan_b05rt_tk ?></td>
-        <td><?= $stok_akhir_b05_rt_tk ?></td>
+        <td><?= $stok_awal_b05_rt_tk - ($total_perpindahan_b05rt_tkx) + ($total_retur_b05ksg_tk + $total_retur_b05_tk + $total_perpindahan_b05rt_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg baja + Isi</td>
         <td><?= $stok_awal_b12_isi_tk ?></td>
         <td><?= $total_penjualan_b12_tk + $total_perpindahan_b12_tkx + $total_retur_b12_tk?></td>
         <td><?= $total_pembelian_b12_tk + $total_perpindahan_b05_tk ?></td>
-        <td><?= $stok_akhir_b12_isi_tk ?></td>
+        <td><?= $stok_awal_b12_isi_tk - ($total_penjualan_b12_tk + $total_perpindahan_b12_tkx + $total_retur_b12_tk) + ($total_pembelian_b12_tk + $total_perpindahan_b05_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kosong</td>
         <td><?= $stok_awal_b12_ksg_tk ?></td>
         <td><?= $total_penjualan_b12ksg_tk + $total_pembelian_b12_tk + $total_perpindahan_b12ksg_tkx + $total_retur_b12ksg_tk ?></td>
         <td><?= $total_pembelian_b12ksg_tk + $total_pembelian_b12_tk + $total_perpindahan_b05ksg_tk ?></td>
-        <td><?= $stok_akhir_b12_ksg_tk ?></td>
+        <td><?= $stok_awal_b12_ksg_tk - ($total_penjualan_b12ksg_tk + $total_pembelian_b12_tk + $total_perpindahan_b12ksg_tkx + $total_retur_b12ksg_tk) + ($total_pembelian_b12ksg_tk + $total_pembelian_b12_tk + $total_perpindahan_b05ksg_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg Retur</td>
         <td><?= $stok_awal_b12_rt_tk ?></td>
         <td><?= $total_perpindahan_b12rt_tkx ?></td>
         <td><?= $total_retur_b12ksg_tk + $total_retur_b12_tk + $total_perpindahan_b12rt_tk ?></td>
-        <td><?= $stok_akhir_b12_rt_tk ?></td>
+        <td><?= $stok_awal_b12_rt_tk - ($total_perpindahan_b12rt_tkx) + ($total_retur_b12ksg_tk + $total_retur_b12_tk + $total_perpindahan_b12rt_tk) ?></td>
     </tr>
 
 </tbody>
@@ -2297,90 +2289,133 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
         <td><?= $stok_awal_3kg_isi_gd ?></td>
         <td><?= $total_penjualan_3_gd + $total_perpindahan_3_tk + $total_retur_3_gd ?></td>
         <td><?= $total_pembelian_3_gd + $total_perpindahan_3_tkx + $total_brangkat_3 + $total_brangkat_3_rtr ?></td>
-        <td><?= $stok_akhir_3kg_isi_gd ?></td>
+        <td><?= $stok_awal_3kg_isi_gd - ($total_penjualan_3_gd + $total_perpindahan_3_tk + $total_retur_3_gd) + ($total_pembelian_3_gd + $total_perpindahan_3_tkx + $total_brangkat_3 + $total_brangkat_3_rtr) ?></td>
     </tr>
     <tr>
         <td>Elpiji 3 Kg Kosong</td>
         <td><?= $stok_awal_3kg_ksg_gd ?></td>
         <td><?= $total_penjualan_3ksg_gd + $total_pembelian_3_gd + $total_perpindahan_3ksg_tk + $total_retur_3ksg_gd + $total_brangkat_3 ?></td>
         <td><?= $total_pembelian_3ksg_gd + $total_penjualan_3_gd + $total_perpindahan_3ksg_tkx ?></td>
-        <td><?= $stok_akhir_3kg_ksg_gd ?></td>
+        <td><?= $stok_awal_3kg_ksg_gd - ($total_penjualan_3ksg_gd + $total_pembelian_3_gd + $total_perpindahan_3ksg_tk + $total_retur_3ksg_gd + $total_brangkat_3) + ($total_pembelian_3ksg_gd + $total_penjualan_3_gd + $total_perpindahan_3ksg_tkx) ?></td>
     </tr>
     <tr>
         <td>Elpiji 3 Kg Retur</td>
         <td><?= $stok_awal_3_rt_gd ?></td>
         <td><?= $total_perpindahan_3rt_tk + $total_brangkat_3_rtr ?></td>
         <td><?= $total_retur_3_gd + $total_retur_3ksg_gd + $total_perpindahan_3rt_tkx ?></td>
-        <td><?= $stok_akhir_3kg_rt_gd ?></td>
+        <td><?= $stok_awal_3_rt_gd - ($total_perpindahan_3rt_tk + $total_brangkat_3_rtr) + ($total_retur_3_gd + $total_retur_3ksg_gd + $total_perpindahan_3rt_tkx) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg baja + Isi</td>
         <td><?= $stok_awal_12kg_isi_gd ?></td>
         <td><?= $total_penjualan_12_gd + $total_perpindahan_12_tk + $total_retur_12_gd ?></td>
         <td><?= $total_pembelian_12_gd + $total_perpindahan_12_tkx + $total_brangkat_12 + $total_brangkat_12_rtr ?></td>
-        <td><?= $stok_akhir_12kg_isi_gd ?></td>
+        <td><?= $stok_awal_12kg_isi_gd - ($total_penjualan_12_gd + $total_perpindahan_12_tk + $total_retur_12_gd) + ($total_pembelian_12_gd + $total_perpindahan_12_tkx + $total_brangkat_12 + $total_brangkat_12_rtr) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Kosong</td>
         <td><?= $stok_awal_12kg_ksg_gd ?></td>
         <td><?= $total_penjualan_12ksg_gd + $total_pembelian_12_gd + $total_perpindahan_12ksg_tk + $total_retur_12ksg_gd + $total_brangkat_12 ?></td>
         <td><?= $total_pembelian_12ksg_gd + $total_penjualan_12_gd + $total_perpindahan_12ksg_tkx ?></td>
-        <td><?= $stok_akhir_12kg_ksg_gd ?></td>
+        <td><?= $stok_awal_12kg_ksg_gd - ($total_penjualan_12ksg_gd + $total_pembelian_12_gd + $total_perpindahan_12ksg_tk + $total_retur_12ksg_gd + $total_brangkat_12) + ($total_pembelian_12ksg_gd + $total_penjualan_12_gd + $total_perpindahan_12ksg_tkx) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Retur</td>
         <td><?= $stok_awal_12_rt_gd ?></td>
         <td><?= $total_perpindahan_12rt_tk + $total_brangkat_12_rtr ?></td>
         <td><?= $total_retur_12_gd + $total_retur_12ksg_gd + $total_perpindahan_12rt_tkx ?></td>
-        <td><?= $stok_akhir_12_rt_gd ?></td>
+        <td><?= $stok_awal_12_rt_gd - ($total_perpindahan_12rt_tk + $total_brangkat_12_rtr) + ($total_retur_12_gd + $total_retur_12ksg_gd + $total_perpindahan_12rt_tkx) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg baja + Isi</td>
         <td><?= $stok_awal_b05_isi_gd ?></td>
         <td><?= $total_penjualan_b05_gd + $total_perpindahan_b05_tk + $total_retur_b05_gd ?></td>
         <td><?= $total_pembelian_b05_gd + $total_perpindahan_b05_tkx + $total_brangkat_b05 + $total_brangkat_b05_rtr ?></td>
-        <td><?= $stok_akhir_b05_isi_gd ?></td>
+        <td><?= $stok_awal_b05_isi_gd - ($total_penjualan_b05_gd + $total_perpindahan_b05_tk + $total_retur_b05_gd) + ($total_pembelian_b05_gd + $total_perpindahan_b05_tkx + $total_brangkat_b05 + $total_brangkat_b05_rtr) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Kosong</td>
         <td><?= $stok_awal_b05_ksg_gd ?></td>
         <td><?= $total_penjualan_b05ksg_gd + $total_pembelian_b05_gd + $total_perpindahan_b05ksg_tk + $total_retur_b05ksg_gd + $total_brangkat_b05 ?></td>
         <td><?= $total_pembelian_b05ksg_gd + $total_penjualan_b05_gd + $total_perpindahan_b05ksg_tkx ?></td>
-        <td><?= $stok_akhir_b05_ksg_gd ?></td>
+        <td><?= $stok_awal_b05_ksg_gd - ($total_penjualan_b05ksg_gd + $total_pembelian_b05_gd + $total_perpindahan_b05ksg_tk + $total_retur_b05ksg_gd + $total_brangkat_b05) + ($total_pembelian_b05ksg_gd + $total_penjualan_b05_gd + $total_perpindahan_b05ksg_tkx) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Retur</td>
         <td><?= $stok_awal_b05_rt_gd ?></td>
         <td><?= $total_perpindahan_b05_tk + $total_brangkat_b05_rtr ?></td>
         <td><?= $total_retur_b05_gd + $total_retur_b05ksg_gd + $total_perpindahan_b05rt_tkx ?></td>
-        <td><?= $stok_akhir_b05_rt_gd ?></td>
+        <td><?= $stok_awal_b05_rt_gd - ($total_perpindahan_b05_tk + $total_brangkat_b05_rtr) + ($total_retur_b05_gd + $total_retur_b05ksg_gd + $total_perpindahan_b05rt_tkx) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg baja + Isi</td>
         <td><?= $stok_awal_b12_isi_gd ?></td>
         <td><?= $total_penjualan_b12_gd + $total_perpindahan_b12_tk + $total_retur_b12_gd  ?></td>
         <td><?= $total_pembelian_b12_gd + $total_perpindahan_b12_tkx + $total_brangkat_b12 + $total_brangkat_b12_rtr ?></td>
-        <td><?= $stok_akhir_b12_isi_gd ?></td>
+        <td><?= $stok_awal_b12_isi_gd - ($total_penjualan_b12_gd + $total_perpindahan_b12_tk + $total_retur_b12_gd) + ($total_pembelian_b12_gd + $total_perpindahan_b12_tkx + $total_brangkat_b12 + $total_brangkat_b12_rtr) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg Kosong</td>
         <td><?= $stok_awal_b12_ksg_gd ?></td>
         <td><?= $total_penjualan_b12ksg_gd + $total_pembelian_b12_gd + $total_perpindahan_b12ksg_tk + $total_retur_b12ksg_gd + $total_brangkat_b12 ?></td>
         <td><?= $total_pembelian_b12ksg_gd + $total_penjualan_b12_gd + $total_perpindahan_b12ksg_tkx ?></td>
-        <td><?= $stok_akhir_b12_ksg_gd ?></td>
+        <td><?= $stok_awal_b12_ksg_gd - ($total_penjualan_b12ksg_gd + $total_pembelian_b12_gd + $total_perpindahan_b12ksg_tk + $total_retur_b12ksg_gd + $total_brangkat_b12) + ($total_pembelian_b12ksg_gd + $total_penjualan_b12_gd + $total_perpindahan_b12ksg_tkx) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg Retur</td>
         <td><?= $stok_awal_b12_rt_gd ?></td>
         <td><?= $total_perpindahan_b12_tk + $total_brangkat_b12_rtr ?></td>
         <td><?= $total_retur_b12_gd + $total_retur_b12ksg_gd + $total_perpindahan_b12rt_tkx ?></td>
-        <td><?= $stok_akhir_b12_rt_gd ?></td>
+        <td><?= $stok_awal_b12_rt_gd - ($total_perpindahan_b12_tk + $total_brangkat_b12_rtr) + ($total_retur_b12_gd + $total_retur_b12ksg_gd + $total_perpindahan_b12rt_tkx) ?></td>
     </tr>
 </tbody>
 </table>
     </div>
 </div>
 
+</div>
+<br>
+<br>
+
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
+<h5 align="center" >Total Seluruh Baja</h5>
+<!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+   <thead>
+    <tr>
+      <th>Nama Baja</th>
+      <th>Jumlah Toko</th>
+      <th>Jumlah Gudang</th>
+      <th>Jumlah Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>Elpiji 3 Kg</td>
+        <td><?= $stok_akhir_3kg_isi_gd + $stok_akhir_3kg_ksg_gd + $stok_akhir_3kg_rt_gd ?></td>
+        <td><?= $stok_akhir_3kg_isi_tk + $stok_akhir_3kg_ksg_tk + $stok_akhir_3kg_rt_tk ?></td>
+        <td><?= $stok_akhir_3kg_isi_gd + $stok_akhir_3kg_ksg_gd + $stok_akhir_3kg_rt_gd + $stok_akhir_3kg_isi_tk + $stok_akhir_3kg_ksg_tk + $stok_akhir_3kg_rt_tk ?></td>
+    </tr>
+    <tr>
+        <td>Elpiji 12 Kg</td>
+        <td><?= $stok_akhir_12kg_isi_gd + $stok_akhir_12kg_ksg_gd + $stok_akhir_12_rt_gd ?></td>
+        <td><?= $stok_akhir_12kg_isi_tk + $stok_akhir_12kg_ksg_tk + $stok_akhir_12kg_rt_tk ?></td>
+        <td><?= $stok_akhir_12kg_isi_gd + $stok_akhir_12kg_ksg_gd + $stok_akhir_12_rt_gd + $stok_akhir_12kg_isi_tk + $stok_akhir_12kg_ksg_tk + $stok_akhir_12kg_rt_tk ?></td>
+    </tr>
+    <tr>
+        <td>Bright Gas 5,5 </td>
+        <td><?= $stok_akhir_b05_isi_gd + $stok_akhir_b05_ksg_gd + $stok_akhir_b05_rt_gd ?></td>
+        <td><?= $stok_akhir_55_isi_tk + $stok_akhir_55_ksg_tk + $stok_akhir_b05_rt_tk ?></td>
+        <td><?= $stok_akhir_b05_isi_gd + $stok_akhir_b05_ksg_gd + $stok_akhir_b05_rt_gd + $stok_akhir_55_isi_tk + $stok_akhir_55_ksg_tk + $stok_akhir_b05_rt_tk ?></td>
+    </tr>
+    <tr>
+        <td>Bright Gas 12 Kg </td>
+        <td><?= $stok_akhir_b12_isi_gd + $stok_akhir_b12_ksg_gd + $stok_akhir_b12_rt_gd  ?></td>
+        <td><?= $stok_akhir_b12_isi_tk + $stok_akhir_b12_ksg_tk + $stok_akhir_b12_rt_tk  ?></td>
+        <td><?= $stok_akhir_b12_isi_gd + $stok_akhir_b12_ksg_gd + $stok_akhir_b12_rt_gd + $stok_akhir_b12_isi_tk + $stok_akhir_b12_ksg_tk + $stok_akhir_b12_rt_tk  ?></td>
+    </tr>
+</tbody>
+</table>
 </div>
 <br>
 <br>
@@ -2399,7 +2434,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
              <?php 
                  if ($tanggal_awal == $tanggal_akhir) {
                      
-                     $kasir =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
+                     $kasir =  mysqli_query($koneksicbm, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
                  if ( mysqli_num_rows($kasir) === 1 ) {
                        echo "<td align='center'> <img src='../gambar/TTDKasir.png' style='height: 55px; width: 190px;'' > </td>";
                           }
@@ -2410,12 +2445,13 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
                  }
                  else{
                     
-                     $kasir3  =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                     $kasir3  =  mysqli_query($koneksicbm, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
                      $x=0;
                      $y=0;
                      $z=0;
                      while ($data4 = mysqli_fetch_array($kasir3)) {
                          $kasir11 = $data4['kasir'];
+                        
                       $x = $x+1;
  
                       if ($kasir11 == 1) {
@@ -2440,6 +2476,9 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
          <tr>
            <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
          </tr>
+         <tr>
+          <td align="center" style="font-weight: bold; font-style: italic;"><?=$jam_kasir;?></td>
+        </tr>
        </thead>
      </table>
    </div>
@@ -2454,7 +2493,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
            <?php 
                  if ($tanggal_awal == $tanggal_akhir) {
                      
-                     $kasir =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
+                     $kasir =  mysqli_query($koneksicbm, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
                  if ( mysqli_num_rows($kasir) === 1 ) {
                        echo "<td align='center'> <img src='../gambar/TTDManager.png' style='height: 55px; width: 190px;' > </td>";
                           }
@@ -2465,7 +2504,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
                  }
                  else{
                     
-                     $kasir3  =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                     $kasir3  =  mysqli_query($koneksicbm, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
                      $x=0;
                      $y=0;
                      $z=0;
@@ -2494,6 +2533,9 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
          <tr>
            <td align="center" style="font-weight: bold; font-style: italic;"> Manager</td>
          </tr>
+         <tr>
+          <td align="center" style="font-weight: bold; font-style: italic;"><?=$jam_manager;?></td>
+        </tr>
        </thead>
      </table>
    </div>
@@ -2508,7 +2550,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
            <?php 
                  if ($tanggal_awal == $tanggal_akhir) {
                      
-                     $kasir =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
+                     $kasir =  mysqli_query($koneksicbm, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
                  if ( mysqli_num_rows($kasir) === 1 ) {
                        echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
                           }
@@ -2519,7 +2561,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
                  }
                  else{
                     
-                     $kasir3  =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                     $kasir3  =  mysqli_query($koneksicbm, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
                      $x=0;
                      $y=0;
                      $z=0;
@@ -2553,6 +2595,8 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
    </div>  
  </div>
  </div>
+
+
 </div>
 <!-- End of Main Content -->
 
@@ -2635,41 +2679,41 @@ aria-hidden="true">
   } );
 </script>
 <script>
-function createOptions(number) {
-  var options = [], _options;
+  function createOptions(number) {
+    var options = [], _options;
 
-  for (var i = 0; i < number; i++) {
-    var option = '<option value="' + i + '">Option ' + i + '</option>';
-    options.push(option);
+    for (var i = 0; i < number; i++) {
+      var option = '<option value="' + i + '">Option ' + i + '</option>';
+      options.push(option);
+    }
+
+    _options = options.join('');
+
+    $('#number')[0].innerHTML = _options;
+    $('#number-multiple')[0].innerHTML = _options;
+
+    $('#number2')[0].innerHTML = _options;
+    $('#number2-multiple')[0].innerHTML = _options;
   }
 
-  _options = options.join('');
-  
-  $('#number')[0].innerHTML = _options;
-  $('#number-multiple')[0].innerHTML = _options;
+  var mySelect = $('#first-disabled2');
 
-  $('#number2')[0].innerHTML = _options;
-  $('#number2-multiple')[0].innerHTML = _options;
-}
+  createOptions(4000);
 
-var mySelect = $('#first-disabled2');
+  $('#special').on('click', function () {
+    mySelect.find('option:selected').prop('disabled', true);
+    mySelect.selectpicker('refresh');
+  });
 
-createOptions(4000);
+  $('#special2').on('click', function () {
+    mySelect.find('option:disabled').prop('disabled', false);
+    mySelect.selectpicker('refresh');
+  });
 
-$('#special').on('click', function () {
-  mySelect.find('option:selected').prop('disabled', true);
-  mySelect.selectpicker('refresh');
-});
-
-$('#special2').on('click', function () {
-  mySelect.find('option:disabled').prop('disabled', false);
-  mySelect.selectpicker('refresh');
-});
-
-$('#basic2').selectpicker({
-  liveSearch: true,
-  maxOptions: 1
-});
+  $('#basic2').selectpicker({
+    liveSearch: true,
+    maxOptions: 1
+  });
 </script>
 </body>
 

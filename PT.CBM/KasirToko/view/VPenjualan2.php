@@ -2789,84 +2789,82 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
         <td><?= $stok_awal_3kg_isi_tk ?></td>
         <td><?= $total_penjualan_3_tk + $total_perpindahan_3_tkx + $total_retur_3_tk ?></td>
         <td><?= $total_pembelian_3_tk + $total_perpindahan_3_tk  ?></td>
-        <td><?= $stok_akhir_3kg_isi_tk ?></td>
-    </tr>
+        <td><?= $stok_awal_3kg_isi_tk - ($total_penjualan_3_tk + $total_perpindahan_3_tkx + $total_retur_3_tk) + ($total_pembelian_3_tk + $total_perpindahan_3_tk) ?></td> 
     <tr>
         <td>Elpiji 3 Kg Kosong</td>
         <td><?= $stok_awal_3kg_ksg_tk ?></td>
         <td><?= $total_penjualan_3ksg_tk + $total_pembelian_3_tk + $total_perpindahan_3ksg_tkx + $total_retur_3ksg_tk ?></td>
         <td><?= $total_pembelian_3ksg_tk + $total_penjualan_3_tk + $total_perpindahan_3ksg_tk ?></td>
-        <td><?= $stok_akhir_3kg_ksg_tk ?></td>
+        <td><?= $stok_awal_3kg_ksg_tk - ($total_penjualan_3ksg_tk + $total_pembelian_3_tk + $total_perpindahan_3ksg_tkx + $total_retur_3ksg_tk) + ($total_pembelian_3ksg_tk + $total_penjualan_3_tk + $total_perpindahan_3ksg_tk) ?></td>
     </tr>
-    <tr>
         <td>Elpiji 3 Kg Retur</td>
         <td><?= $stok_awal_3kg_rt_tk ?></td>
         <td><?= $total_perpindahan_3rt_tkx ?></td>
         <td><?= $total_retur_3ksg_tk + $total_retur_3_tk + $total_perpindahan_3rt_tk  ?></td>
-        <td><?= $stok_akhir_3kg_rt_tk ?></td>
+        <td><?= $stok_awal_3kg_rt_tk - ($total_perpindahan_3rt_tkx) + ($total_retur_3ksg_tk + $total_retur_3_tk + $total_perpindahan_3rt_tk)?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg baja + Isi</td>
         <td><?= $stok_awal_12kg_isi_tk ?></td>
         <td><?= $total_penjualan_12_tk + $total_perpindahan_12_tkx + $total_retur_12_tk ?></td>
         <td><?= $total_pembelian_12_tk + $total_perpindahan_12_tk ?></td>
-        <td><?= $stok_akhir_12kg_isi_tk ?></td>
+        <td><?= $stok_awal_12kg_isi_tk - ($total_penjualan_12_tk + $total_perpindahan_12_tkx + $total_retur_12_tk) + ($total_pembelian_12_tk + $total_perpindahan_12_tk) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Kosong</td>
         <td><?= $stok_awal_12kg_ksg_tk ?></td>
         <td><?= $total_penjualan_12ksg_tk + $total_pembelian_12_tk + $total_perpindahan_12ksg_tkx + $total_retur_12ksg_tk ?></td>
         <td><?= $total_pembelian_12ksg_tk + $total_penjualan_12_tk + $total_perpindahan_12ksg_tk ?></td>
-        <td><?= $stok_akhir_12kg_ksg_tk ?></td>
+        <td><?= $stok_awal_12kg_ksg_tk - ($total_penjualan_12ksg_tk + $total_pembelian_12_tk + $total_perpindahan_12ksg_tkx + $total_retur_12ksg_tk) + ($total_pembelian_12ksg_tk + $total_penjualan_12_tk + $total_perpindahan_12ksg_tk) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Retur</td>
         <td><?= $stok_awal_12kg_rt_tk ?></td>
         <td><?= $total_perpindahan_12rt_tkx ?></td>
         <td><?= $total_retur_12ksg_tk + $total_retur_12_tk + $total_perpindahan_12rt_tk ?></td>
-        <td><?= $stok_akhir_12kg_rt_tk ?></td>
+        <td><?= $stok_awal_12kg_rt_tk - ($total_perpindahan_12rt_tkx) + ($total_retur_12ksg_tk + $total_retur_12_tk + $total_perpindahan_12rt_tk)?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg baja + Isi</td>
         <td><?= $stok_awal_55_isi_tk ?></td>
         <td><?= $total_penjualan_b05_tk + $total_perpindahan_b05_tkx + $total_retur_b05_tk ?></td>
         <td><?= $total_pembelian_b05_tk + $total_perpindahan_b05_tk ?></td>
-        <td><?= $stok_akhir_55_isi_tk ?></td>
+        <td><?= $stok_awal_55_isi_tk - ($total_penjualan_b05_tk + $total_perpindahan_b05_tkx + $total_retur_b05_tk) + ($total_pembelian_b05_tk + $total_perpindahan_b05_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Kosong</td>
         <td><?= $stok_awal_55_ksg_tk ?></td>
         <td><?= $total_penjualan_b05ksg_tk + $total_pembelian_b05_tk + $total_perpindahan_b05ksg_tkx + $total_retur_b05ksg_tk ?></td>
         <td><?= $total_pembelian_b05ksg_tk + $total_penjualan_b05_tk + $total_perpindahan_b05ksg_tk ?></td>
-        <td><?= $stok_akhir_55_ksg_tk ?></td>
+        <td><?= $stok_awal_55_ksg_tk - ($total_penjualan_b05ksg_tk + $total_pembelian_b05_tk + $total_perpindahan_b05ksg_tkx + $total_retur_b05ksg_tk) + ($total_pembelian_b05ksg_tk + $total_penjualan_b05_tk + $total_perpindahan_b05ksg_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Retur</td>
         <td><?= $stok_awal_b05_rt_tk ?></td>
         <td><?= $total_perpindahan_b05rt_tkx ?></td>
         <td><?= $total_retur_b05ksg_tk + $total_retur_b05_tk + $total_perpindahan_b05rt_tk ?></td>
-        <td><?= $stok_akhir_b05_rt_tk ?></td>
+        <td><?= $stok_awal_b05_rt_tk - ($total_perpindahan_b05rt_tkx) + ($total_retur_b05ksg_tk + $total_retur_b05_tk + $total_perpindahan_b05rt_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg baja + Isi</td>
         <td><?= $stok_awal_b12_isi_tk ?></td>
         <td><?= $total_penjualan_b12_tk + $total_perpindahan_b12_tkx + $total_retur_b12_tk?></td>
         <td><?= $total_pembelian_b12_tk + $total_perpindahan_b05_tk ?></td>
-        <td><?= $stok_akhir_b12_isi_tk ?></td>
+        <td><?= $stok_awal_b12_isi_tk - ($total_penjualan_b12_tk + $total_perpindahan_b12_tkx + $total_retur_b12_tk) + ($total_pembelian_b12_tk + $total_perpindahan_b05_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kosong</td>
         <td><?= $stok_awal_b12_ksg_tk ?></td>
         <td><?= $total_penjualan_b12ksg_tk + $total_pembelian_b12_tk + $total_perpindahan_b12ksg_tkx + $total_retur_b12ksg_tk ?></td>
         <td><?= $total_pembelian_b12ksg_tk + $total_pembelian_b12_tk + $total_perpindahan_b05ksg_tk ?></td>
-        <td><?= $stok_akhir_b12_ksg_tk ?></td>
+        <td><?= $stok_awal_b12_ksg_tk - ($total_penjualan_b12ksg_tk + $total_pembelian_b12_tk + $total_perpindahan_b12ksg_tkx + $total_retur_b12ksg_tk) + ($total_pembelian_b12ksg_tk + $total_pembelian_b12_tk + $total_perpindahan_b05ksg_tk) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg Retur</td>
         <td><?= $stok_awal_b12_rt_tk ?></td>
         <td><?= $total_perpindahan_b12rt_tkx ?></td>
         <td><?= $total_retur_b12ksg_tk + $total_retur_b12_tk + $total_perpindahan_b12rt_tk ?></td>
-        <td><?= $stok_akhir_b12_rt_tk ?></td>
+        <td><?= $stok_awal_b12_rt_tk - ($total_perpindahan_b12rt_tkx) + ($total_retur_b12ksg_tk + $total_retur_b12_tk + $total_perpindahan_b12rt_tk) ?></td>
     </tr>
 
 </tbody>
@@ -2894,84 +2892,84 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
         <td><?= $stok_awal_3kg_isi_gd ?></td>
         <td><?= $total_penjualan_3_gd + $total_perpindahan_3_tk + $total_retur_3_gd ?></td>
         <td><?= $total_pembelian_3_gd + $total_perpindahan_3_tkx + $total_brangkat_3 + $total_brangkat_3_rtr ?></td>
-        <td><?= $stok_akhir_3kg_isi_gd ?></td>
+        <td><?= $stok_awal_3kg_isi_gd - ($total_penjualan_3_gd + $total_perpindahan_3_tk + $total_retur_3_gd) + ($total_pembelian_3_gd + $total_perpindahan_3_tkx + $total_brangkat_3 + $total_brangkat_3_rtr) ?></td>
     </tr>
     <tr>
         <td>Elpiji 3 Kg Kosong</td>
         <td><?= $stok_awal_3kg_ksg_gd ?></td>
         <td><?= $total_penjualan_3ksg_gd + $total_pembelian_3_gd + $total_perpindahan_3ksg_tk + $total_retur_3ksg_gd + $total_brangkat_3 ?></td>
         <td><?= $total_pembelian_3ksg_gd + $total_penjualan_3_gd + $total_perpindahan_3ksg_tkx ?></td>
-        <td><?= $stok_akhir_3kg_ksg_gd ?></td>
+        <td><?= $stok_awal_3kg_ksg_gd - ($total_penjualan_3ksg_gd + $total_pembelian_3_gd + $total_perpindahan_3ksg_tk + $total_retur_3ksg_gd + $total_brangkat_3) + ($total_pembelian_3ksg_gd + $total_penjualan_3_gd + $total_perpindahan_3ksg_tkx) ?></td>
     </tr>
     <tr>
         <td>Elpiji 3 Kg Retur</td>
         <td><?= $stok_awal_3_rt_gd ?></td>
         <td><?= $total_perpindahan_3rt_tk + $total_brangkat_3_rtr ?></td>
         <td><?= $total_retur_3_gd + $total_retur_3ksg_gd + $total_perpindahan_3rt_tkx ?></td>
-        <td><?= $stok_akhir_3kg_rt_gd ?></td>
+        <td><?= $stok_awal_3_rt_gd - ($total_perpindahan_3rt_tk + $total_brangkat_3_rtr) + ($total_retur_3_gd + $total_retur_3ksg_gd + $total_perpindahan_3rt_tkx) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg baja + Isi</td>
         <td><?= $stok_awal_12kg_isi_gd ?></td>
         <td><?= $total_penjualan_12_gd + $total_perpindahan_12_tk + $total_retur_12_gd ?></td>
         <td><?= $total_pembelian_12_gd + $total_perpindahan_12_tkx + $total_brangkat_12 + $total_brangkat_12_rtr ?></td>
-        <td><?= $stok_akhir_12kg_isi_gd ?></td>
+        <td><?= $stok_awal_12kg_isi_gd - ($total_penjualan_12_gd + $total_perpindahan_12_tk + $total_retur_12_gd) + ($total_pembelian_12_gd + $total_perpindahan_12_tkx + $total_brangkat_12 + $total_brangkat_12_rtr) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Kosong</td>
         <td><?= $stok_awal_12kg_ksg_gd ?></td>
         <td><?= $total_penjualan_12ksg_gd + $total_pembelian_12_gd + $total_perpindahan_12ksg_tk + $total_retur_12ksg_gd + $total_brangkat_12 ?></td>
         <td><?= $total_pembelian_12ksg_gd + $total_penjualan_12_gd + $total_perpindahan_12ksg_tkx ?></td>
-        <td><?= $stok_akhir_12kg_ksg_gd ?></td>
+        <td><?= $stok_awal_12kg_ksg_gd - ($total_penjualan_12ksg_gd + $total_pembelian_12_gd + $total_perpindahan_12ksg_tk + $total_retur_12ksg_gd + $total_brangkat_12) + ($total_pembelian_12ksg_gd + $total_penjualan_12_gd + $total_perpindahan_12ksg_tkx) ?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Retur</td>
         <td><?= $stok_awal_12_rt_gd ?></td>
         <td><?= $total_perpindahan_12rt_tk + $total_brangkat_12_rtr ?></td>
         <td><?= $total_retur_12_gd + $total_retur_12ksg_gd + $total_perpindahan_12rt_tkx ?></td>
-        <td><?= $stok_akhir_12_rt_gd ?></td>
+        <td><?= $stok_awal_12_rt_gd - ($total_perpindahan_12rt_tk + $total_brangkat_12_rtr) + ($total_retur_12_gd + $total_retur_12ksg_gd + $total_perpindahan_12rt_tkx) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg baja + Isi</td>
         <td><?= $stok_awal_b05_isi_gd ?></td>
         <td><?= $total_penjualan_b05_gd + $total_perpindahan_b05_tk + $total_retur_b05_gd ?></td>
         <td><?= $total_pembelian_b05_gd + $total_perpindahan_b05_tkx + $total_brangkat_b05 + $total_brangkat_b05_rtr ?></td>
-        <td><?= $stok_akhir_b05_isi_gd ?></td>
+        <td><?= $stok_awal_b05_isi_gd - ($total_penjualan_b05_gd + $total_perpindahan_b05_tk + $total_retur_b05_gd) + ($total_pembelian_b05_gd + $total_perpindahan_b05_tkx + $total_brangkat_b05 + $total_brangkat_b05_rtr) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Kosong</td>
         <td><?= $stok_awal_b05_ksg_gd ?></td>
         <td><?= $total_penjualan_b05ksg_gd + $total_pembelian_b05_gd + $total_perpindahan_b05ksg_tk + $total_retur_b05ksg_gd + $total_brangkat_b05 ?></td>
         <td><?= $total_pembelian_b05ksg_gd + $total_penjualan_b05_gd + $total_perpindahan_b05ksg_tkx ?></td>
-        <td><?= $stok_akhir_b05_ksg_gd ?></td>
+        <td><?= $stok_awal_b05_ksg_gd - ($total_penjualan_b05ksg_gd + $total_pembelian_b05_gd + $total_perpindahan_b05ksg_tk + $total_retur_b05ksg_gd + $total_brangkat_b05) + ($total_pembelian_b05ksg_gd + $total_penjualan_b05_gd + $total_perpindahan_b05ksg_tkx) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Retur</td>
         <td><?= $stok_awal_b05_rt_gd ?></td>
         <td><?= $total_perpindahan_b05_tk + $total_brangkat_b05_rtr ?></td>
         <td><?= $total_retur_b05_gd + $total_retur_b05ksg_gd + $total_perpindahan_b05rt_tkx ?></td>
-        <td><?= $stok_akhir_b05_rt_gd ?></td>
+        <td><?= $stok_awal_b05_rt_gd - ($total_perpindahan_b05_tk + $total_brangkat_b05_rtr) + ($total_retur_b05_gd + $total_retur_b05ksg_gd + $total_perpindahan_b05rt_tkx) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg baja + Isi</td>
         <td><?= $stok_awal_b12_isi_gd ?></td>
         <td><?= $total_penjualan_b12_gd + $total_perpindahan_b12_tk + $total_retur_b12_gd  ?></td>
         <td><?= $total_pembelian_b12_gd + $total_perpindahan_b12_tkx + $total_brangkat_b12 + $total_brangkat_b12_rtr ?></td>
-        <td><?= $stok_akhir_b12_isi_gd ?></td>
+        <td><?= $stok_awal_b12_isi_gd - ($total_penjualan_b12_gd + $total_perpindahan_b12_tk + $total_retur_b12_gd) + ($total_pembelian_b12_gd + $total_perpindahan_b12_tkx + $total_brangkat_b12 + $total_brangkat_b12_rtr) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg Kosong</td>
         <td><?= $stok_awal_b12_ksg_gd ?></td>
         <td><?= $total_penjualan_b12ksg_gd + $total_pembelian_b12_gd + $total_perpindahan_b12ksg_tk + $total_retur_b12ksg_gd + $total_brangkat_b12 ?></td>
         <td><?= $total_pembelian_b12ksg_gd + $total_penjualan_b12_gd + $total_perpindahan_b12ksg_tkx ?></td>
-        <td><?= $stok_akhir_b12_ksg_gd ?></td>
+        <td><?= $stok_awal_b12_ksg_gd - ($total_penjualan_b12ksg_gd + $total_pembelian_b12_gd + $total_perpindahan_b12ksg_tk + $total_retur_b12ksg_gd + $total_brangkat_b12) + ($total_pembelian_b12ksg_gd + $total_penjualan_b12_gd + $total_perpindahan_b12ksg_tkx) ?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg Retur</td>
         <td><?= $stok_awal_b12_rt_gd ?></td>
         <td><?= $total_perpindahan_b12_tk + $total_brangkat_b12_rtr ?></td>
         <td><?= $total_retur_b12_gd + $total_retur_b12ksg_gd + $total_perpindahan_b12rt_tkx ?></td>
-        <td><?= $stok_akhir_b12_rt_gd ?></td>
+        <td><?= $stok_awal_b12_rt_gd - ($total_perpindahan_b12_tk + $total_brangkat_b12_rtr) + ($total_retur_b12_gd + $total_retur_b12ksg_gd + $total_perpindahan_b12rt_tkx) ?></td>
     </tr>
 </tbody>
 </table>
