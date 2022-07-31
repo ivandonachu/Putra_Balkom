@@ -502,7 +502,7 @@ $mbah = 'Kebun Mbah';
         
       echo "
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Operasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Operasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
 
    </tr>";
   }
