@@ -392,7 +392,7 @@ else{
       $tanggal =$data['tanggal'];
       $no_polisi =$data['no_polisi'];
       $jumlah =$data['jumlah'];
-      
+      $file_bukti = $data['file_bukti'];
 
       $urut = $urut + 1;
 
