@@ -55,6 +55,9 @@ else if($rekening == 'CBM' && $referensi == 'Melodi Tani' ){
 else if($rekening == 'PBJ' && $referensi == 'Kebun Mbah' ){
 
 }
+else if($rekening == 'PBR' && $referensi == 'Kebun Ranau' ){
+
+}
 else{
 	echo "<script>alert('Saldo dan referensi tidak sama :)');  window.location='../view/VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 

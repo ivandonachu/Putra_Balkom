@@ -238,6 +238,14 @@ if (!isset($data24['jumlah_kel_pri_pbr'])) {
 $jumlah_kel_pri_pbr = 0;
 }
 
+//Keluar pribadi untuk PBR 
+$table25 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_pbr_ranau FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBR' AND referensi = 'Kebun Ranau' AND status_saldo = 'Keluar' ");
+$data25 = mysqli_fetch_array($table25);
+$jumlah_kel_pbr_ranau = $data25['jumlah_kel_pbr_ranau'];
+if (!isset($data25['jumlah_kel_pbr_ranau'])) {
+$jumlah_kel_pbr_ranau = 0;
+}
+
 // kode salado
 
 $CBM = 'CBM';
@@ -252,6 +260,7 @@ $Kebun = 'Kebun Lengkiti';
 $Keluar = 'Keluar';
 $Masuk = 'Masuk';
 $mbah = 'Kebun Mbah';
+$ranau = 'Kebun Ranau';
 
 }
  ?>
@@ -485,6 +494,7 @@ $mbah = 'Kebun Mbah';
             <option>PRIBADI</option>
             <option>BALSRI</option>
             <option>STE</option>
+            
           </select>
     </div>
           <div class="col-md-6">
@@ -500,6 +510,7 @@ $mbah = 'Kebun Mbah';
             <option>MES</option>
             <option>PBR</option>
             <option>STE</option>
+            <option>Kebun Ranau</option>
           </select>
           <small></small>
         </div>
@@ -706,6 +717,7 @@ $mbah = 'Kebun Mbah';
             <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
             <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
             <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
+            
           </select>
 
         </div>            
@@ -735,6 +747,7 @@ $mbah = 'Kebun Mbah';
             <option <?php echo($dataSelect == 'Mocash')?"selected": ""?>>Mocash</option>
             <option <?php echo($dataSelect == 'Pengeluaran Pak Nyoman')?"selected": ""?>>Pengeluaran Pak Nyoman</option>
             <option <?php echo($dataSelect == 'Pengeluaran Buk Mery')?"selected": ""?>>Pengeluaran Buk Mery</option>
+            <option <?php echo ($dataSelect == 'Kebun Ranau') ? "selected": "" ?> >Kebun Ranau</option>
 
           </select>
 
@@ -933,6 +946,13 @@ $mbah = 'Kebun Mbah';
       <td style='font-size: 11px' align = 'center'>PBR</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_pbr); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBR&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Ranau</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbr_ranau); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$ranau&rekening=$PBR&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
 
