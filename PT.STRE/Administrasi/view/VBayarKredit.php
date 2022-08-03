@@ -346,6 +346,10 @@ else{
      
       </div>
 
+      <div>
+    <label>Upload File</label> 
+    <input type="file" name="file"> 
+  </div> 
 
 
     <div class="modal-footer">
@@ -370,6 +374,7 @@ else{
       <th>Tanggal</th>
       <th>No Polisi</th>   
       <th>Jumlah</th>
+      <th>File</th>
       <th></th>
     </tr>
   </thead>
@@ -396,6 +401,7 @@ else{
       <td style='font-size: 14px' align = 'center'>$tanggal</td>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
     
