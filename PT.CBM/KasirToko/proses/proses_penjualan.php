@@ -1216,7 +1216,7 @@ if ($referensi == 'TK') {
 			$query5 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Toko','Masuk','$qty')");
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'','$no_transaksi',0,'$status_piutang')");
 
 
 			if ($query1!= "") {
@@ -2918,31 +2918,10 @@ if ($referensi == "GD") {
 			$akses_riwayat_penjualan = mysqli_query($koneksi, "SELECT MAX(no_transaksi) FROM riwayat_penjualan");
 			$akses_data_penjualan = mysqli_fetch_array($akses_riwayat_penjualan);
 			$no_transaksi = $akses_data_penjualan['MAX(no_transaksi)'];
-		//aktivitas inventory
-		//baja isi
-			$akses_inventory_isi = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = '$kode_baja'");
-			$data_inventory_isi = mysqli_fetch_array($akses_inventory_isi);
-			$jumlah_baja_isi = $data_inventory_isi['gudang'];
-			$jumlah_baja_isi_new = $jumlah_baja_isi - $qty;
-		//baja kosong
-			$akses_inventory_ksg = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K10'");
-			$data_inventory_ksg = mysqli_fetch_array($akses_inventory_ksg);
-			$jumlah_baja_ksg = $data_inventory_ksg['gudang'];
-			$jumlah_baja_ksg_new = $jumlah_baja_ksg + $qty;
-		//baja + isi
-			$akses_inventory_b = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
-			$data_inventory_b = mysqli_fetch_array($akses_inventory_b);
-			$jumlah_baja_b = $data_inventory_b['gudang'];
-			$jumlah_baja_b_new = $jumlah_baja_b - $qty;
 
-			$query11 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_b_new' WHERE kode_baja = 'L03K11' ");
-			$query2 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_isi_new' WHERE kode_baja = '$kode_baja' ");
-			$query3 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Keluar','$qty')");
-			$query4 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_ksg_new' WHERE kode_baja = 'L03K10' ");
-			$query5 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Masuk','$qty')");
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'eblum','$no_transaksi',0,'$status_piutang')");
 
 
 			if ($query1!= "") {

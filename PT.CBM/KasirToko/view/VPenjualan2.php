@@ -31,12 +31,21 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
-
+else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-1');
+}
 if ($tanggal_awal == $tanggal_akhir) {
   $table999 =  mysqli_query($koneksi, "SELECT jam_manager, jam_kasir FROM konfirmasi_laporan WHERE tanggal =  '$tanggal_awal'");
       $data999 = mysqli_fetch_array($table999);
-      $jam_kasir = $data999['jam_kasir'];
-      $jam_manager = $data999['jam_manager'];
+
+      if (!isset($data999['jam_kasir'])) {
+        $jam_kasir = 0;
+    }
+    if (!isset($data999['jam_manager'])) {
+      $jam_manager = 0;
+  }
+     
 
 $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
  WHERE tanggal = '$tanggal_awal'");

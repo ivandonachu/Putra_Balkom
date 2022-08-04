@@ -42,6 +42,13 @@ if (!isset($data_total_pendapatan)) {
     $data_total_pendapatan = 0;
 }
 
+$table4 = mysqli_query($koneksi, "SELECT SUM(jumlah_bayar) AS total_piutang FROM piutang_dagang WHERE tanggal_bayar = '$tanggal_awal' AND pembayaran_piutang = 'Cash'  ");
+$data_piutang = mysqli_fetch_array($table4);
+$data_total_piutang= $data_piutang['total_piutang'];
+if (!isset($data_total_piutang)) {
+    $data_total_piutang = 0;
+}
+
 
 $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
 $data_bon = mysqli_fetch_array($table3);
@@ -56,9 +63,9 @@ if (!isset($data_total_pengeluaran)) {
     $data_total_pengeluaran = 0;
 }
 
-$data_total_pengeluaran = $data_total_pengeluaran;
+$data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
 
-$jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
+$jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_pengeluaran;
 
 }
 
@@ -71,7 +78,12 @@ $data_total_pendapatan = $data_pendapatan['total_pendapatan'];
 if (!isset($data_total_pendapatan)) {
     $data_total_pendapatan = 0;
 }
-
+$table4 = mysqli_query($koneksi, "SELECT SUM(jumlah_bayar) AS total_piutang FROM piutang_dagang WHERE tanggal_bayar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran_piutang = 'Cash'  ");
+$data_piutang = mysqli_fetch_array($table4);
+$data_total_piutang= $data_piutang['total_piutang'];
+if (!isset($data_total_piutang)) {
+    $data_total_piutang = 0;
+}
 
 $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 $data_bon = mysqli_fetch_array($table3);
@@ -89,9 +101,9 @@ if (!isset($data_total_pengeluaran)) {
 
 
 
-$data_total_pengeluaran = $data_total_pengeluaran;
+$data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
 
-$jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
+$jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_pengeluaran;
 }
 
 
@@ -338,12 +350,17 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
     							<tr>
                                     <td>Total Pendapatan</td>
-                                    <td class="text-center"><?php echo formatuang($data_total_pendapatan);  ?></td>
+                                    <td class="text-center"><?php echo formatuang($data_total_pendapatan  );  ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianPendapatan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
+                                    <td>Total Pendapatan Piutang</td>
+                                    <td class="text-center"><?php echo formatuang($data_total_piutang );  ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianPiutang?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
                                     <td>Total Pengeluaran</td>
-                                    <td class="text-center"><?php echo formatuang($data_total_pengeluaran);  ?></td>
+                                    <td class="text-center"><?php echo formatuang($data_total_pengeluaran );  ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                             
