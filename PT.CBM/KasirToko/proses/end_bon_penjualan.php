@@ -48,7 +48,7 @@ elseif ($total_bayarx < $jumlah_bon) {
 	$query1 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_rekening_new' WHERE kode_akun = '1-111' ");
 	$query2 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal_bayar','$no_laporan','1','Masuk','$total_bayar')");
 	//piutang_dagang
-	$query3 = mysqli_query($koneksi,"UPDATE piutang_dagang SET jumlah_bayar = '$total_bayarx' WHERE no_piutang = '$no_piutang' ");
+	$query3 = mysqli_query($koneksi,"UPDATE piutang_dagang SET tanggal_bayar = '$tanggal_bayar' ,jumlah_bayar = '$total_bayarx' WHERE no_piutang = '$no_piutang' ");
 	echo "<script> window.location='../view/VRiwayatBonPembelian1';</script>";exit;
 	}
 	elseif ($pembayaran == 'Transfer') {
@@ -61,7 +61,7 @@ elseif ($total_bayarx < $jumlah_bon) {
 	$query1 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_rekening_new' WHERE kode_akun = '1-114' ");
 	$query2 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal_bayar','$no_laporan','4','Masuk','$total_bayar')");
 	//piutang_dagang
-	$query3 = mysqli_query($koneksi,"UPDATE piutang_dagang SET jumlah_bayar = '$total_bayarx' WHERE no_piutang = '$no_piutang' ");
+	$query3 = mysqli_query($koneksi,"UPDATE piutang_dagang SET tanggal_bayar = '$tanggal_bayar' , jumlah_bayar = '$total_bayarx' WHERE no_piutang = '$no_piutang' ");
 	echo "<script> window.location='../view/VRiwayatBonPembelian1';</script>";exit;
 	}
 	
