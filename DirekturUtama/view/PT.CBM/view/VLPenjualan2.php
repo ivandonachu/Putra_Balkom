@@ -2122,6 +2122,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
     </tbody>
   </table>
 </div>
+<br>
 <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
   <!-- Tabel -->    
