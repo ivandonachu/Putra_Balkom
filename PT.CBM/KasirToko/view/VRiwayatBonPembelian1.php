@@ -23,8 +23,29 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+} elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+}
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
 
-$table = mysqli_query($koneksi, "SELECT * FROM piutang_dagang a INNER JOIN riwayat_penjualan b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON c.kode_baja=b.kode_baja");
+  if ($tanggal_awal == $tanggal_akhir) {
+   
+    $table = mysqli_query($koneksi, "SELECT * FROM piutang_dagang a INNER JOIN riwayat_penjualan b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON c.kode_baja=b.kode_baja WHERE tanggal = '$tanggal_awal'");
+ 
+  } else {
+    $table = mysqli_query($koneksi, "SELECT * FROM piutang_dagang a INNER JOIN riwayat_penjualan b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON c.kode_baja=b.kode_baja WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+ 
+    
+  }
+
+
 
  ?>
  <!DOCTYPE html>
@@ -214,7 +235,22 @@ $table = mysqli_query($koneksi, "SELECT * FROM piutang_dagang a INNER JOIN riway
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+  <?php echo "<form  method='POST' action='VRiwayatBonPembelian1' style='margin-bottom: 15px;'>" ?>
+            <div>
+              <div align="left" style="margin-left: 20px;">
+                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                <span>-</span>
+                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
+              </div>
+            </div>
+            </form>
 
+            <div class="row">
+              <div class="col-md-6">
+                <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+              </div>
+            </div>
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>

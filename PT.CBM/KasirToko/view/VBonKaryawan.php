@@ -23,8 +23,31 @@ $nama = $data['nama_karyawan'];
 
 
 
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+} elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+}
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
 
-$table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun");
+  if ($tanggal_awal == $tanggal_akhir) {
+    $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal = '$tanggal_awal'");
+
+ 
+  } else {
+    $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   
+ 
+    
+  }
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -216,7 +239,22 @@ $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawa
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
+  <?php echo "<form  method='POST' action='VBonKaryawan' style='margin-bottom: 15px;'>" ?>
+            <div>
+              <div align="left" style="margin-left: 20px;">
+                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                <span>-</span>
+                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
+              </div>
+            </div>
+            </form>
 
+            <div class="row">
+              <div class="col-md-6">
+                <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+              </div>
+            </div>
   <div class="row">
    
    <div class="col-md-12">
@@ -268,9 +306,9 @@ $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawa
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nama_karyawan'];
 
-              if (mysqli_num_rows($result2) == 0) {
+       
                 echo "<option> $data_pangakalan </option> ";
-              }
+              
             }
             ?>
              <?php
@@ -280,9 +318,9 @@ $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawa
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nama_driver'];
 
-              if (mysqli_num_rows($result2) == 0) {
+
                 echo "<option> $data_pangakalan </option> ";
-              }
+              
             }
             ?>
           </select>
