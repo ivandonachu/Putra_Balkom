@@ -1971,6 +1971,10 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
   </thead>
   <tbody>
     <?php
+    $total = 0;
+    $total_briva = 0;
+    $total_transfer = 0;
+    $total_cash = 0;
     $L03 = 0;
     $B05 = 0;
     $B12 = 0;
@@ -2000,6 +2004,17 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       $jumlah = $data['jumlah'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
+      $total = $total + $jumlah; 
+
+      if($pembayaran == 'Cash' OR $pembayaran =='Deposit' ){
+        $total_cash = $total_cash + $jumlah;
+      }
+      else if($pembayaran == 'Briva' ){
+        $total_briva = $total_briva + $jumlah;
+      }
+      else if($pembayaran == 'Transfer' ){
+        $total_transfer = $total_transfer + $jumlah;
+      }
 
       if ($pembayaran == 'Cash' OR $pembayaran =='Deposit') {
         if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
@@ -2085,10 +2100,38 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
   <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
     <thead>
       <tr>
-        <th>Elpiji 3 KG</th>
-        <th>Bright Gas 5,5 KG</th>
-        <th>Bright Gas 12 KG</th>
-        <th>Elpiji 12 KG</th>
+        <th>Total Seluruh</th>
+        <th>Total Briva</th>
+        <th>Total Tranfer</th>
+        <th>Total Cash</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_briva); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_transfer); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_cash); ?> <?php echo "</td>
+
+      </tr>";
+
+      ?>
+
+    </tbody>
+  </table>
+</div>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+
+  <!-- Tabel -->    
+  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <thead>
+      <tr>
+        <th>Total Elpiji 3 KG</th>
+        <th>Total Bright Gas 5,5 KG</th>
+        <th>Total Bright Gas 12 KG</th>
+        <th>Total Elpiji 12 KG</th>
         <th>Cash Elpiji 3 KG</th>
         <th>Cash Bright Gas 5,5 KG</th>
         <th>Cash Bright Gas 12 KG</th>
@@ -2099,10 +2142,10 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 
       <?php 
       echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($L03); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($B05); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($B12); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($L12); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L03 + $L03_cash); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B05 + $B05_cash); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B12 + $B12_cash); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L12 + $L12_cash); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($L03_cash); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($B05_cash); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($B12_cash); ?> <?php echo "</td>
@@ -2115,6 +2158,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
     </tbody>
   </table>
 </div>
+
 <br>
 <br>
 <br>
