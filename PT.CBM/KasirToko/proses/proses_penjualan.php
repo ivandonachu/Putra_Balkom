@@ -116,7 +116,7 @@ if ($referensi == 'TK') {
 
 
 			if ($query1!= "") {
-				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				 echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 				}
 			}
 			else{
