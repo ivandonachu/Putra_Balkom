@@ -6,17 +6,20 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 $id=$_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
+$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$nama = $data1['nama_pemilik'];
+$id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Direktur Utama') {
+if ($jabatan_valid == 'Kasir') {
 
 }
 
-else{ header("Location: logout.php");
+else{  header("Location: logout.php");
 exit;
 }
+$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
+$data = mysqli_fetch_array($result);
+$nama = $data['nama_karyawan'];
 
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
@@ -29,24 +32,24 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
+    $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
      WHERE tanggal = '$tanggal_awal'");
-    $table2 = mysqli_query($koneksipbr, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
-    $sql_bon = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
+    $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
+    $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
         WHERE status_piutang = 'Sudah di Bayar' AND tanggal = '$tanggal_awal' ");
 
 
 //GUDANG GUDANG GUDANG GUDANG GUDANGGUDANG
 //GUDANG
 //patokan stok awal
-    $table35 = mysqli_query($koneksipbr, "SELECT MAX(no_laporan) FROM laporan_inventory WHERE referensi = 'GD' ");
+    $table35 = mysqli_query($koneksi, "SELECT MAX(no_laporan) FROM laporan_inventory WHERE referensi = 'GD' ");
     $data35 = mysqli_fetch_array($table35);
     $no_laporan_gd = $data35['MAX(no_laporan)'];
 
 //3KG ISI TK
 //3KG isi keluar
 //baja isi LPG 3kg
-    $table36 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L03K01' ");
+    $table36 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_3_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L03K01' ");
     $data_penjualan_3_gd = mysqli_fetch_array($table36);
     $total_penjualan_3_gd= $data_penjualan_3_gd['penjualan_3_gd'];
     if (!isset($data_penjualan_3_gd['penjualan_3_gd'])) {
@@ -54,65 +57,65 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 //3KG isi Masuk
 //baja isi LPG 3kg
-    $table37 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_3_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L03K01' ");
+    $table37 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_3_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L03K01' ");
     $data_pembelian_3_gd = mysqli_fetch_array($table37);
     $total_pembelian_3_gd = $data_pembelian_3_gd['pembelian_3_gd'];
     if (!isset($data_pembelian_3_gd['pembelian_3_gd'])) {
         $total_pembelian_3_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd1 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_3_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L03K11'  ");
+    $tabelgd1 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_3_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L03K11'  ");
     $data_retur_3_gd = mysqli_fetch_array($tabelgd1);
     $total_retur_3_gd = $data_retur_3_gd['retur_3_gd'];
     if (!isset($data_retur_3_gd['retur_3_gd'])) {
         $total_retur_3_gd = 0;
     }
 //Keberangkatan
-    $tabelgd2 = mysqli_query($koneksipbr, "SELECT SUM(L03K11) AS brangkat_3 FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
+    $tabelgd2 = mysqli_query($koneksi, "SELECT SUM(L03K11) AS brangkat_3 FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
     $data_brangkat_3 = mysqli_fetch_array($tabelgd2);
     $total_brangkat_3 = $data_brangkat_3['brangkat_3'];
     if (!isset($data_brangkat_3['brangkat_3'])) {
         $total_brangkat_3 = 0;
     }
 //stok awal 3kg isi
-    $table38 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table38 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data38 = mysqli_fetch_array($table38);
     $stok_awal_3kg_isi_gd = $data38['L03K11'];
 
 //stok akhir 3kg isi
-    $table39 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
+    $table39 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
     $data39 = mysqli_fetch_array($table39);
     $stok_akhir_3kg_isi_gd = $data39['gudang'];
 
 
 //3KG KOSONG TK
 //baja kosong LPG 3kg Keluar
-    $table40 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3ksg_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L03K10'  ");
+    $table40 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_3ksg_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L03K10'  ");
     $data_penjualan_3ksg_gd = mysqli_fetch_array($table40);
     $total_penjualan_3ksg_gd = $data_penjualan_3ksg_gd['penjualan_3ksg_gd'];
     if (!isset($data_penjualan_3ksg_gd['penjualan_3ksg_gd'])) {
         $total_penjualan_3ksg_gd = 0;
     }
 //baja kosong LPG 3kg Masuk
-    $table41 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_3ksg_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L03K10'  ");
+    $table41 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_3ksg_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L03K10'  ");
     $data_pembelian_3ksg_gd = mysqli_fetch_array($table41);
     $total_pembelian_3ksg_gd = $data_pembelian_3ksg_gd['pembelian_3ksg_gd'];
     if (!isset($data_pembelian_3_gd['pembelian_3ksg_gd'])) {
         $total_pembelian_3ksg_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd3 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_3ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L03K10'");
+    $tabelgd3 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_3ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L03K10'");
     $data_retur_3ksg_gd = mysqli_fetch_array($tabelgd3);
     $total_retur_3ksg_gd = $data_retur_3ksg_gd['retur_3ksg_gd'];
     if (!isset($data_retur_3ksg_gd['retur_3ksg_gd'])) {
         $total_retur_3ksg_gd = 0;
     }
 //stok awal 3kg kosong
-    $table42 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table42 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data42 = mysqli_fetch_array($table42);
     $stok_awal_3kg_ksg_gd = $data42['L03K10'];
 //stok akhir 3kg kosong
-    $table43 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L03K10'");
+    $table43 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K10'");
     $data43 = mysqli_fetch_array($table43);
     $stok_akhir_3kg_ksg_gd = $data43['gudang'];
 
@@ -120,15 +123,15 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 //3kg retur
 //stok awal 3kg retur
-    $tabgd1 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $tabgd1 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $datgd1 = mysqli_fetch_array($tabgd1);
     $stok_awal_3_rt_gd = $datgd1['L03K00'];
 //stok akhir 3kg retur
-    $tabgd2 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L03K00'");
+    $tabgd2 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K00'");
     $datgd2 = mysqli_fetch_array($tabgd2);
     $stok_akhir_3kg_rt_gd = $datgd2['gudang'];
 //KEBERANGKATAN
-    $tabelgd4 = mysqli_query($koneksipbr, "SELECT SUM(L03K00) AS brangkat_3_rtr FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
+    $tabelgd4 = mysqli_query($koneksi, "SELECT SUM(L03K00) AS brangkat_3_rtr FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
     $data_brangkat_3_rtr = mysqli_fetch_array($tabelgd4);
     $total_brangkat_3_rtr = $data_brangkat_3_rtr['brangkat_3_rtr'];
     if (!isset($data_brangkat_3_rtr['brangkat_3_rtr'])) {
@@ -140,71 +143,71 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 //LPG 12KG ISI
 //baja isi LPG 12kg Keluar
-    $table44 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_12_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K01'  ");
+    $table44 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_12_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K01'  ");
     $data_penjualan_12_gd = mysqli_fetch_array($table44);
     $total_penjualan_12_gd = $data_penjualan_12_gd['penjualan_12_gd'];
     if (!isset($data_penjualan_12_gd['penjualan_12_gd'])) {
         $total_penjualan_12_gd = 0;
     }
 //baja isi LPG 12kg Masuk
-    $table45 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_12_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K01' ");
+    $table45 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_12_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K01' ");
     $data_pembelian_12_gd = mysqli_fetch_array($table45);
     $total_pembelian_12_gd = $data_pembelian_12_gd['pembelian_12_gd'];
     if (!isset($data_pembelian_12_gd['pembelian_12_gd'])) {
         $total_pembelian_12_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd5 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_12_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L12K11'  ");
+    $tabelgd5 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_12_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L12K11'  ");
     $data_retur_12_gd = mysqli_fetch_array($tabelgd5);
     $total_retur_12_gd = $data_retur_12_gd['retur_12_gd'];
     if (!isset($data_retur_12_gd['retur_12_gd'])) {
         $total_retur_12_gd = 0;
     }
 //Keberangkatan
-    $tabelgd6 = mysqli_query($koneksipbr, "SELECT SUM(L12K11) AS brangkat_12 FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
+    $tabelgd6 = mysqli_query($koneksi, "SELECT SUM(L12K11) AS brangkat_12 FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
     $data_brangkat_12 = mysqli_fetch_array($tabelgd6);
     $total_brangkat_12 = $data_brangkat_12['brangkat_12'];
     if (!isset($data_brangkat_12['brangkat_12'])) {
         $total_brangkat_12 = 0;
     }
 //stok awal 12kg isi
-    $table46 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table46 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data46 = mysqli_fetch_array($table46);
     $stok_awal_12kg_isi_gd = $data46['L12K11'];
 //stok akhir 12kg isi
-    $table47 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L12K11'");
+    $table47 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L12K11'");
     $data47 = mysqli_fetch_array($table47);
     $stok_akhir_12kg_isi_gd = $data47['gudang'];
 
 
 //LPG 12KG kOSONG
 //baja kosong LPG 12kg Keluar
-    $table48 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_12ksg_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K10' ");
+    $table48 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_12ksg_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K10' ");
     $data_penjualan_12ksg_gd = mysqli_fetch_array($table48);
     $total_penjualan_12ksg_gd= $data_penjualan_12ksg_gd['penjualan_12ksg_gd'];
     if (!isset($data_penjualan_12ksg_gd['penjualan_12ksg_gd'])) {
         $total_penjualan_12ksg_gd = 0;
     }
 //baja kosong LPG 12kg Masuk
-    $table49 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_12ksg_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K10'  ");
+    $table49 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_12ksg_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K10'  ");
     $data_pembelian_12ksg_gd = mysqli_fetch_array($table49);
     $total_pembelian_12ksg_gd = $data_pembelian_12ksg_gd['pembelian_12ksg_gd'];
     if (!isset($data_pembelian_12ksg_gd['pembelian_12ksg_gd'])) {
         $total_pembelian_12ksg_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd7 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_12ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L12K10'  ");
+    $tabelgd7 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_12ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L12K10'  ");
     $data_retur_12ksg_gd = mysqli_fetch_array($tabelgd7);
     $total_retur_12ksg_gd = $data_retur_12ksg_gd['retur_12ksg_gd'];
     if (!isset($data_retur_12ksg_gd['retur_12ksg_gd'])) {
         $total_retur_12ksg_gd = 0;
     }
 //stok awal 12kg kosong
-    $table50 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table50 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data50 = mysqli_fetch_array($table50);
     $stok_awal_12kg_ksg_gd = $data50['L12K10'];
 //stok akhir 12kg kosong
-    $table51 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L12K10'");
+    $table51 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L12K10'");
     $data51 = mysqli_fetch_array($table51);
     $stok_akhir_12kg_ksg_gd  = $data51['gudang'];
 
@@ -212,15 +215,15 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 // LPG12kg retur
 //stok awal 3kg retur
-    $tabgd3 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $tabgd3 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $datgd3 = mysqli_fetch_array($tabgd3);
     $stok_awal_12_rt_gd = $datgd3['L12K00'];
 //stok akhir 3kg retur
-    $tabgd4 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L12K00'");
+    $tabgd4 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L12K00'");
     $datgd4 = mysqli_fetch_array($tabgd4);
     $stok_akhir_12_rt_gd = $datgd4['gudang'];
 //keberangkatan
-    $tabelgd8 = mysqli_query($koneksipbr, "SELECT SUM(L12K00) AS brangkat_12_rtr FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
+    $tabelgd8 = mysqli_query($koneksi, "SELECT SUM(L12K00) AS brangkat_12_rtr FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
     $data_brangkat_12_rtr = mysqli_fetch_array($tabelgd8);
     $total_brangkat_12_rtr = $data_brangkat_12_rtr['brangkat_12_rtr'];
     if (!isset($data_brangkat_12_rtr['brangkat_12_rtr'])) {
@@ -231,39 +234,39 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 //BG 5,5 ISI
 //baja isi BG 5,5kg Keluar
-    $table52 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b05_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K01'  ");
+    $table52 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_b05_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K01'  ");
     $data_penjualan_b05_gd = mysqli_fetch_array($table52);
     $total_penjualan_b05_gd= $data_penjualan_b05_gd['penjualan_b05_gd'];
     if (!isset($data_penjualan_b05_gd['penjualan_b05_gd'])) {
         $total_penjualan_b05_gd = 0;
     }
 //baja isi BG 5,5kg Masuk
-    $table53 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b05_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K01'  ");
+    $table53 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_b05_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K01'  ");
     $data_pembelian_b05_gd = mysqli_fetch_array($table53);
     $total_pembelian_b05_gd = $data_pembelian_b05_gd['pembelian_b05_gd'];
     if (!isset($data_pembelian_b05_gd['pembelian_b05_gd'])) {
         $total_pembelian_b05_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd9 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_b05_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'B05K11'  ");
+    $tabelgd9 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_b05_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'B05K11'  ");
     $data_retur_b05_gd = mysqli_fetch_array($tabelgd9);
     $total_retur_b05_gd = $data_retur_b05_gd['retur_b05_gd'];
     if (!isset($data_retur_b05_gd['retur_b05_gd'])) {
         $total_retur_b05_gd = 0;
     }
 //Keberangkatan
-    $tabelgd10 = mysqli_query($koneksipbr, "SELECT SUM(B05K11) AS brangkat_b05 FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
+    $tabelgd10 = mysqli_query($koneksi, "SELECT SUM(B05K11) AS brangkat_b05 FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
     $data_brangkat_b05 = mysqli_fetch_array($tabelgd10);
     $total_brangkat_b05 = $data_brangkat_b05['brangkat_b05'];
     if (!isset($data_brangkat_b05['brangkat_b05'])) {
         $total_brangkat_b05 = 0;
     }
 //stok awal 5,5kg isi
-    $table54 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table54 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data54 = mysqli_fetch_array($table54);
     $stok_awal_b05_isi_gd = $data54['B05K11'];
 //stok akhir 5,5kg isi
-    $table55 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B05K11'");
+    $table55 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B05K11'");
     $data55 = mysqli_fetch_array($table55);
     $stok_akhir_b05_isi_gd = $data55['gudang'];
 
@@ -271,32 +274,32 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 //BG 5,5 Kosong 
 //baja kosong BG 5,5kg Keluar
-    $table56 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b05ksg_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K10' ");
+    $table56 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_b05ksg_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K10' ");
     $data_penjualan_b05ksg_gd = mysqli_fetch_array($table56);
     $total_penjualan_b05ksg_gd= $data_penjualan_b05ksg_gd['penjualan_b05ksg_gd'];
     if (!isset($data_penjualan_b05ksg_gd['penjualan_b05ksg_gd'])) {
         $total_penjualan_b05ksg_gd = 0;
     }
 //baja kosong BG 5,5 KG Masuk
-    $table57 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b05ksg_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K10'");
+    $table57 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_b05ksg_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K10'");
     $data_pembelian_b05ksg_gd = mysqli_fetch_array($table57);
     $total_pembelian_b05ksg_gd = $data_pembelian_b05ksg_gd['pembelian_b05ksg_gd'];
     if (!isset($data_pembelian_b05ksg_gd['pembelian_b05ksg_gd'])) {
         $total_pembelian_b05ksg_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd11 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_b05ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'B05K10'  ");
+    $tabelgd11 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_b05ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'B05K10'  ");
     $data_retur_b05ksg_gd = mysqli_fetch_array($tabelgd11);
     $total_retur_b05ksg_gd = $data_retur_b05ksg_gd['retur_b05ksg_gd'];
     if (!isset($data_retur_b05ksg_gd['retur_b05ksg_gd'])) {
         $total_retur_b05ksg_gd = 0;
     }
 //stok awal 5,5kg kosong
-    $table58 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table58 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data58 = mysqli_fetch_array($table58);
     $stok_awal_b05_ksg_gd = $data58['B05K10'];
 //stok akhir 5,5kg kosong
-    $table59 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B05K10'");
+    $table59 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B05K10'");
     $data59 = mysqli_fetch_array($table59);
     $stok_akhir_b05_ksg_gd = $data59['gudang'];
 
@@ -304,15 +307,15 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 // BG 55 kg retur
 //stok awal 3kg retur
-    $tabgd5 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $tabgd5 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $datgd5 = mysqli_fetch_array($tabgd5);
     $stok_awal_b05_rt_gd = $datgd5['B05K00'];
 //stok akhir 3kg retur
-    $tabgd6 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B05K00'");
+    $tabgd6 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B05K00'");
     $datgd6 = mysqli_fetch_array($tabgd6);
     $stok_akhir_b05_rt_gd = $datgd6['gudang'];
 //keberangkatan
-    $tabelgd12 = mysqli_query($koneksipbr, "SELECT SUM(B05K00) AS brangkat_b05_rtr FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
+    $tabelgd12 = mysqli_query($koneksi, "SELECT SUM(B05K00) AS brangkat_b05_rtr FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
     $data_brangkat_b05_rtr = mysqli_fetch_array($tabelgd12);
     $total_brangkat_b05_rtr = $data_brangkat_b05_rtr['brangkat_b05_rtr'];
     if (!isset($data_brangkat_b05_rtr['brangkat_b05_rtr'])) {
@@ -323,39 +326,39 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 //BG 12KG ISI
 //baja isi BG 12kg keluar
-    $table60 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b12_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K01' ");
+    $table60 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_b12_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K01' ");
     $data_penjualan_b12_gd = mysqli_fetch_array($table60);
     $total_penjualan_b12_gd= $data_penjualan_b12_gd['penjualan_b12_gd'];
     if (!isset($data_penjualan_b12_gd['penjualan_b12_gd'])) {
         $total_penjualan_b12_gd = 0;
     }
 //baja isi BG 12kg Masuk
-    $table61 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b12_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K01' ");
+    $table61 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_b12_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K01' ");
     $data_pembelian_b12_gd = mysqli_fetch_array($table61);
     $total_pembelian_b12_gd = $data_pembelian_b12_gd['pembelian_b12_gd'];
     if (!isset($data_pembelian_b12_gd['pembelian_b12_gd'])) {
         $total_pembelian_b12_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd13 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_b12_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'B12K11'  ");
+    $tabelgd13 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_b12_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'B12K11'  ");
     $data_retur_b12_gd = mysqli_fetch_array($tabelgd13);
     $total_retur_b12_gd = $data_retur_b12_gd['retur_b12_gd'];
     if (!isset($data_retur_b12_gd['retur_b12_gd'])) {
         $total_retur_b12_gd = 0;
     }
 //Keberangkatan
-    $tabelgd14 = mysqli_query($koneksipbr, "SELECT SUM(B12K11) AS brangkat_b12 FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
+    $tabelgd14 = mysqli_query($koneksi, "SELECT SUM(B12K11) AS brangkat_b12 FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
     $data_brangkat_b12 = mysqli_fetch_array($tabelgd14);
     $total_brangkat_b12 = $data_brangkat_b12['brangkat_b12'];
     if (!isset($data_brangkat_b12['brangkat_b12'])) {
         $total_brangkat_b12 = 0;
     }
 //stok awal 12kg isi
-    $table62 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table62 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data62 = mysqli_fetch_array($table62);
     $stok_awal_b12_isi_gd = $data62['B12K11'];
 //stok akhir 12kg isi
-    $table63 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B12K11'");
+    $table63 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B12K11'");
     $data63 = mysqli_fetch_array($table63);
     $stok_akhir_b12_isi_gd = $data63['gudang'];
 
@@ -363,32 +366,32 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 //BG 12KH KOSONG
 //baja kosong BG 12kg KELUAR
-    $table64 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b12ksg_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K10'  ");
+    $table64 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_b12ksg_gd FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K10'  ");
     $data_penjualan_b12ksg_gd = mysqli_fetch_array($table64);
     $total_penjualan_b12ksg_gd= $data_penjualan_b12ksg_gd['penjualan_b12ksg_gd'];
     if (!isset($data_penjualan_b12ksg_gd['penjualan_b12ksg_gd'])) {
         $total_penjualan_b12ksg_gd = 0;
     }
 //baja kosong BG 12kg Masuk
-    $table65 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b12ksg_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K10' ");
+    $table65 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_b12ksg_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K10' ");
     $data_pembelian_b12ksg_gd = mysqli_fetch_array($table65);
     $total_pembelian_b12ksg_gd = $data_pembelian_b12ksg_gd['pembelian_b12ksg_gd'];
     if (!isset($data_pembelian_b12ksg_gd['pembelian_b12ksg_gd'])) {
         $total_pembelian_b12ksg_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd15 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_b12ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'B12K10'  ");
+    $tabelgd15 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_b12ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal = '$tanggal_awal' AND kode_baja = 'B12K10'  ");
     $data_retur_b12ksg_gd = mysqli_fetch_array($tabelgd15);
     $total_retur_b12ksg_gd = $data_retur_b12ksg_gd['retur_b12ksg_gd'];
     if (!isset($data_retur_b12ksg_gd['retur_b12ksg_gd'])) {
         $total_retur_b12ksg_gd = 0;
     }
 //stok awal 5,5kg kosong
-    $table66 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table66 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data66 = mysqli_fetch_array($table66);
     $stok_awal_b12_ksg_gd = $data66['B12K10'];
 //stok akhir 5,5kg kosong
-    $table67 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B12K10'");
+    $table67 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B12K10'");
     $data67 = mysqli_fetch_array($table67);
     $stok_akhir_b12_ksg_gd = $data67['gudang'];
 
@@ -397,15 +400,15 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 // BG 55 kg retur
 //stok awal 3kg retur
-    $tabgd7 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $tabgd7 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $datgd7 = mysqli_fetch_array($tabgd7);
     $stok_awal_b12_rt_gd = $datgd7['B12K00'];
 //stok akhir 3kg retur
-    $tabgd8 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B12K00'");
+    $tabgd8 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B12K00'");
     $datgd8 = mysqli_fetch_array($tabgd8);
     $stok_akhir_b12_rt_gd = $datgd8['gudang'];
 //keberangkatan
-    $tabelgd16 = mysqli_query($koneksipbr, "SELECT SUM(B12K00) AS brangkat_b12_rtr FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
+    $tabelgd16 = mysqli_query($koneksi, "SELECT SUM(B12K00) AS brangkat_b12_rtr FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' ");
     $data_brangkat_b12_rtr = mysqli_fetch_array($tabelgd16);
     $total_brangkat_b12_rtr = $data_brangkat_b12_rtr['brangkat_b12_rtr'];
     if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
@@ -422,10 +425,10 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 //elseeeeeeee
 else{
-    $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
+    $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
      WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-    $table2 = mysqli_query($koneksipbr, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
-     $sql_bon = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
+    $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
+     $sql_bon = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang_dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
         WHERE  status_piutang = 'Sudah di Bayar' AND tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 
@@ -434,14 +437,14 @@ else{
 //GUDANG GUDANG GUDANG GUDANG GUDANGGUDANG
 //GUDANG
 //patokan stok awal
-    $table35 = mysqli_query($koneksipbr, "SELECT no_laporan FROM laporan_inventory WHERE referensi = 'GD'  AND tanggal = '$tanggal_awal' ");
+    $table35 = mysqli_query($koneksi, "SELECT no_laporan FROM laporan_inventory WHERE referensi = 'GD'  AND tanggal = '$tanggal_awal' ");
     $data35 = mysqli_fetch_array($table35);
     $no_laporan_gd = $data35['no_laporan'];
 
 //3KG ISI TK
 //3KG isi keluar
 //baja isi LPG 3kg
-    $table36 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K01'  ");
+    $table36 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_3_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K01'  ");
     $data_penjualan_3_gd = mysqli_fetch_array($table36);
     $total_penjualan_3_gd= $data_penjualan_3_gd['penjualan_3_gd'];
     if (!isset($data_penjualan_3_gd['penjualan_3_gd'])) {
@@ -449,64 +452,64 @@ else{
     }
 //3KG isi Masuk
 //baja isi LPG 3kg
-    $table37 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_3_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L03K01'  ");
+    $table37 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_3_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L03K01'  ");
     $data_pembelian_3_gd = mysqli_fetch_array($table37);
     $total_pembelian_3_gd = $data_pembelian_3_gd['pembelian_3_gd'];
     if (!isset($data_pembelian_3_gd['pembelian_3_gd'])) {
         $total_pembelian_3_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd1 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_3_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L03K11' ");
+    $tabelgd1 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_3_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L03K11' ");
     $data_retur_3_gd = mysqli_fetch_array($tabelgd1);
     $total_retur_3_gd = $data_retur_3_gd['retur_3_gd'];
     if (!isset($data_retur_3_gd['retur_3_gd'])) {
         $total_retur_3_gd = 0;
     }
 //Keberangkatan
-    $tabelgd2 = mysqli_query($koneksipbr, "SELECT SUM(L03K11) AS brangkat_3 FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabelgd2 = mysqli_query($koneksi, "SELECT SUM(L03K11) AS brangkat_3 FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_brangkat_3 = mysqli_fetch_array($tabelgd2);
     $total_brangkat_3 = $data_brangkat_3['brangkat_3'];
     if (!isset($data_brangkat_3['brangkat_3'])) {
         $total_brangkat_3 = 0;
     }
 //stok awal 3kg isi
-    $table38 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table38 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data38 = mysqli_fetch_array($table38);
     $stok_awal_3kg_isi_gd = $data38['L03K11'];
 //stok akhir 3kg isi
-    $table39 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
+    $table39 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
     $data39 = mysqli_fetch_array($table39);
     $stok_akhir_3kg_isi_gd = $data39['gudang'];
 
 
 //3KG KOSONG TK
 //baja kosong LPG 3kg Keluar
-    $table40 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3ksg_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K10'  ");
+    $table40 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_3ksg_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K10'  ");
     $data_penjualan_3ksg_gd = mysqli_fetch_array($table40);
     $total_penjualan_3ksg_gd = $data_penjualan_3ksg_gd['penjualan_3ksg_gd'];
     if (!isset($data_penjualan_3ksg_gd['penjualan_3ksg_gd'])) {
         $total_penjualan_3ksg_gd = 0;
     }
 //baja kosong LPG 3kg Masuk
-    $table41 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_3ksg_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K10'  ");
+    $table41 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_3ksg_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K10'  ");
     $data_pembelian_3ksg_gd = mysqli_fetch_array($table41);
     $total_pembelian_3ksg_gd = $data_pembelian_3ksg_gd['pembelian_3ksg_gd'];
     if (!isset($data_pembelian_3_gd['pembelian_3ksg_gd'])) {
         $total_pembelian_3ksg_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd3 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_3ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L03K10'  ");
+    $tabelgd3 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_3ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L03K10'  ");
     $data_retur_3ksg_gd = mysqli_fetch_array($tabelgd3);
     $total_retur_3ksg_gd = $data_retur_3ksg_gd['retur_3ksg_gd'];
     if (!isset($data_retur_3ksg_gd['retur_3ksg_gd'])) {
         $total_retur_3ksg_gd = 0;
     }
 //stok awal 3kg kosong
-    $table42 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table42 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data42 = mysqli_fetch_array($table42);
     $stok_awal_3kg_ksg_gd = $data42['L03K10'];
 //stok akhir 3kg kosong
-    $table43 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L03K10'");
+    $table43 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K10'");
     $data43 = mysqli_fetch_array($table43);
     $stok_akhir_3kg_ksg_gd = $data43['gudang'];
 
@@ -514,15 +517,15 @@ else{
 
 //3kg retur
 //stok awal 3kg retur
-    $tabgd1 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $tabgd1 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $datgd1 = mysqli_fetch_array($tabgd1);
     $stok_awal_3_rt_gd = $datgd1['L03K00'];
 //stok akhir 3kg retur
-    $tabgd2 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L03K00'");
+    $tabgd2 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K00'");
     $datgd2 = mysqli_fetch_array($tabgd2);
     $stok_akhir_3kg_rt_gd = $datgd2['gudang'];
 //KEBERANGKATAN
-    $tabelgd4 = mysqli_query($koneksipbr, "SELECT SUM(L03K00) AS brangkat_3_rtr FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabelgd4 = mysqli_query($koneksi, "SELECT SUM(L03K00) AS brangkat_3_rtr FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_brangkat_3_rtr = mysqli_fetch_array($tabelgd4);
     $total_brangkat_3_rtr = $data_brangkat_3_rtr['brangkat_3_rtr'];
     if (!isset($data_brangkat_3_rtr['brangkat_3_rtr'])) {
@@ -534,71 +537,71 @@ else{
 
 //LPG 12KG ISI
 //baja isi LPG 12kg Keluar
-    $table44 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_12_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L12K01'  ");
+    $table44 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_12_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L12K01'  ");
     $data_penjualan_12_gd = mysqli_fetch_array($table44);
     $total_penjualan_12_gd = $data_penjualan_12_gd['penjualan_12_gd'];
     if (!isset($data_penjualan_12_gd['penjualan_12_gd'])) {
         $total_penjualan_12_gd = 0;
     }
 //baja isi LPG 12kg Masuk
-    $table45 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_12_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L12K01' ");
+    $table45 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_12_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L12K01' ");
     $data_pembelian_12_gd = mysqli_fetch_array($table45);
     $total_pembelian_12_gd = $data_pembelian_12_gd['pembelian_12_gd'];
     if (!isset($data_pembelian_12_gd['pembelian_12_gd'])) {
         $total_pembelian_12_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd5 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_12_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L12K11'  ");
+    $tabelgd5 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_12_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L12K11'  ");
     $data_retur_12_gd = mysqli_fetch_array($tabelgd5);
     $total_retur_12_gd = $data_retur_12_gd['retur_12_gd'];
     if (!isset($data_retur_12_gd['retur_12_gd'])) {
         $total_retur_12_gd = 0;
     }
 //Keberangkatan
-    $tabelgd6 = mysqli_query($koneksipbr, "SELECT SUM(L12K11) AS brangkat_12 FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabelgd6 = mysqli_query($koneksi, "SELECT SUM(L12K11) AS brangkat_12 FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_brangkat_12 = mysqli_fetch_array($tabelgd6);
     $total_brangkat_12 = $data_brangkat_12['brangkat_12'];
     if (!isset($data_brangkat_12['brangkat_12'])) {
         $total_brangkat_12 = 0;
     }
 //stok awal 12kg isi
-    $table46 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table46 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data46 = mysqli_fetch_array($table46);
     $stok_awal_12kg_isi_gd = $data46['L12K11'];
 //stok akhir 12kg isi
-    $table47 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L12K11'");
+    $table47 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L12K11'");
     $data47 = mysqli_fetch_array($table47);
     $stok_akhir_12kg_isi_gd = $data47['gudang'];
 
 
 //LPG 12KG kOSONG
 //baja kosong LPG 12kg Keluar
-    $table48 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_12ksg_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L12K10'  ");
+    $table48 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_12ksg_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L12K10'  ");
     $data_penjualan_12ksg_gd = mysqli_fetch_array($table48);
     $total_penjualan_12ksg_gd= $data_penjualan_12ksg_gd['penjualan_12ksg_gd'];
     if (!isset($data_penjualan_12ksg_gd['penjualan_12ksg_gd'])) {
         $total_penjualan_12ksg_gd = 0;
     }
 //baja kosong LPG 12kg Masuk
-    $table49 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_12ksg_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L12K10'  ");
+    $table49 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_12ksg_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L12K10'  ");
     $data_pembelian_12ksg_gd = mysqli_fetch_array($table49);
     $total_pembelian_12ksg_gd = $data_pembelian_12ksg_gd['pembelian_12ksg_gd'];
     if (!isset($data_pembelian_12ksg_gd['pembelian_12ksg_gd'])) {
         $total_pembelian_12ksg_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd7 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_12ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L12K10'  ");
+    $tabelgd7 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_12ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'L12K10'  ");
     $data_retur_12ksg_gd = mysqli_fetch_array($tabelgd7);
     $total_retur_12ksg_gd = $data_retur_12ksg_gd['retur_12ksg_gd'];
     if (!isset($data_retur_12ksg_gd['retur_12ksg_gd'])) {
         $total_retur_12ksg_gd = 0;
     }
 //stok awal 12kg kosong
-    $table50 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table50 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data50 = mysqli_fetch_array($table50);
     $stok_awal_12kg_ksg_gd = $data50['L12K10'];
 //stok akhir 12kg kosong
-    $table51 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L12K10'");
+    $table51 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L12K10'");
     $data51 = mysqli_fetch_array($table51);
     $stok_akhir_12kg_ksg_gd  = $data51['gudang'];
 
@@ -606,15 +609,15 @@ else{
 
 // LPG12kg retur
 //stok awal 3kg retur
-    $tabgd3 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $tabgd3 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $datgd3 = mysqli_fetch_array($tabgd3);
     $stok_awal_12_rt_gd = $datgd3['L12K00'];
 //stok akhir 3kg retur
-    $tabgd4 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'L12K00'");
+    $tabgd4 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L12K00'");
     $datgd4 = mysqli_fetch_array($tabgd4);
     $stok_akhir_12_rt_gd = $datgd4['gudang'];
 //keberangkatan
-    $tabelgd8 = mysqli_query($koneksipbr, "SELECT SUM(L12K00) AS brangkat_12_rtr FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabelgd8 = mysqli_query($koneksi, "SELECT SUM(L12K00) AS brangkat_12_rtr FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_brangkat_12_rtr = mysqli_fetch_array($tabelgd8);
     $total_brangkat_12_rtr = $data_brangkat_12_rtr['brangkat_12_rtr'];
     if (!isset($data_brangkat_12_rtr['brangkat_12_rtr'])) {
@@ -625,39 +628,39 @@ else{
 
 //BG 5,5 ISI
 //baja isi BG 5,5kg Keluar
-    $table52 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b05_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B05K01' ");
+    $table52 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_b05_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B05K01' ");
     $data_penjualan_b05_gd = mysqli_fetch_array($table52);
     $total_penjualan_b05_gd= $data_penjualan_b05_gd['penjualan_b05_gd'];
     if (!isset($data_penjualan_b05_gd['penjualan_b05_gd'])) {
         $total_penjualan_b05_gd = 0;
     }
 //baja isi BG 5,5kg Masuk
-    $table53 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b05_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B05K01'  ");
+    $table53 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_b05_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B05K01'  ");
     $data_pembelian_b05_gd = mysqli_fetch_array($table53);
     $total_pembelian_b05_gd = $data_pembelian_b05_gd['pembelian_b05_gd'];
     if (!isset($data_pembelian_b05_gd['pembelian_b05_gd'])) {
         $total_pembelian_b05_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd9 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_b05_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B05K11'  ");
+    $tabelgd9 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_b05_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B05K11'  ");
     $data_retur_b05_gd = mysqli_fetch_array($tabelgd9);
     $total_retur_b05_gd = $data_retur_b05_gd['retur_b05_gd'];
     if (!isset($data_retur_b05_gd['retur_b05_gd'])) {
         $total_retur_b05_gd = 0;
     }
 //Keberangkatan
-    $tabelgd10 = mysqli_query($koneksipbr, "SELECT SUM(B05K11) AS brangkat_b05 FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabelgd10 = mysqli_query($koneksi, "SELECT SUM(B05K11) AS brangkat_b05 FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_brangkat_b05 = mysqli_fetch_array($tabelgd10);
     $total_brangkat_b05 = $data_brangkat_b05['brangkat_b05'];
     if (!isset($data_brangkat_b05['brangkat_b05'])) {
         $total_brangkat_b05 = 0;
     }
 //stok awal 5,5kg isi
-    $table54 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table54 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data54 = mysqli_fetch_array($table54);
     $stok_awal_b05_isi_gd = $data54['B05K11'];
 //stok akhir 5,5kg isi
-    $table55 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B05K11'");
+    $table55 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B05K11'");
     $data55 = mysqli_fetch_array($table55);
     $stok_akhir_b05_isi_gd = $data55['gudang'];
 
@@ -665,32 +668,32 @@ else{
 
 //BG 5,5 Kosong 
 //baja kosong BG 5,5kg Keluar
-    $table56 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b05ksg_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B05K10'  ");
+    $table56 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_b05ksg_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B05K10'  ");
     $data_penjualan_b05ksg_gd = mysqli_fetch_array($table56);
     $total_penjualan_b05ksg_gd= $data_penjualan_b05ksg_gd['penjualan_b05ksg_gd'];
     if (!isset($data_penjualan_b05ksg_gd['penjualan_b05ksg_gd'])) {
         $total_penjualan_b05ksg_gd = 0;
     }
 //baja kosong BG 5,5 KG Masuk
-    $table57 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b05ksg_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B05K10' ");
+    $table57 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_b05ksg_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B05K10' ");
     $data_pembelian_b05ksg_gd = mysqli_fetch_array($table57);
     $total_pembelian_b05ksg_gd = $data_pembelian_b05ksg_gd['pembelian_b05ksg_gd'];
     if (!isset($data_pembelian_b05ksg_gd['pembelian_b05ksg_gd'])) {
         $total_pembelian_b05ksg_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd11 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_b05ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B05K10' ");
+    $tabelgd11 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_b05ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B05K10' ");
     $data_retur_b05ksg_gd = mysqli_fetch_array($tabelgd11);
     $total_retur_b05ksg_gd = $data_retur_b05ksg_gd['retur_b05ksg_gd'];
     if (!isset($data_retur_b05ksg_gd['retur_b05ksg_gd'])) {
         $total_retur_b05ksg_gd = 0;
     }
 //stok awal 5,5kg kosong
-    $table58 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table58 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data58 = mysqli_fetch_array($table58);
     $stok_awal_b05_ksg_gd = $data58['B05K10'];
 //stok akhir 5,5kg kosong
-    $table59 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B05K10'");
+    $table59 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B05K10'");
     $data59 = mysqli_fetch_array($table59);
     $stok_akhir_b05_ksg_gd = $data59['gudang'];
 
@@ -698,15 +701,15 @@ else{
 
 // BG 55 kg retur
 //stok awal 3kg retur
-    $tabgd5 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $tabgd5 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $datgd5 = mysqli_fetch_array($tabgd5);
     $stok_awal_b05_rt_gd = $datgd5['B05K00'];
 //stok akhir 3kg retur
-    $tabgd6 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B05K00'");
+    $tabgd6 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B05K00'");
     $datgd6 = mysqli_fetch_array($tabgd6);
     $stok_akhir_b05_rt_gd = $datgd6['gudang'];
 //keberangkatan
-    $tabelgd12 = mysqli_query($koneksipbr, "SELECT SUM(B05K00) AS brangkat_b05_rtr FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabelgd12 = mysqli_query($koneksi, "SELECT SUM(B05K00) AS brangkat_b05_rtr FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_brangkat_b05_rtr = mysqli_fetch_array($tabelgd12);
     $total_brangkat_b05_rtr = $data_brangkat_b05_rtr['brangkat_b05_rtr'];
     if (!isset($data_brangkat_b05_rtr['brangkat_b05_rtr'])) {
@@ -717,39 +720,39 @@ else{
 
 //BG 12KG ISI
 //baja isi BG 12kg keluar
-    $table60 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b12_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B12K01' ");
+    $table60 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_b12_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B12K01' ");
     $data_penjualan_b12_gd = mysqli_fetch_array($table60);
     $total_penjualan_b12_gd= $data_penjualan_b12_gd['penjualan_b12_gd'];
     if (!isset($data_penjualan_b12_gd['penjualan_b12_gd'])) {
         $total_penjualan_b12_gd = 0;
     }
 //baja isi BG 12kg Masuk
-    $table61 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b12_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B12K01'  ");
+    $table61 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_b12_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B12K01'  ");
     $data_pembelian_b12_gd = mysqli_fetch_array($table61);
     $total_pembelian_b12_gd = $data_pembelian_b12_gd['pembelian_b12_gd'];
     if (!isset($data_pembelian_b12_gd['pembelian_b12_gd'])) {
         $total_pembelian_b12_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd13 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_b12_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B12K11'  ");
+    $tabelgd13 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_b12_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B12K11'  ");
     $data_retur_b12_gd = mysqli_fetch_array($tabelgd13);
     $total_retur_b12_gd = $data_retur_b12_gd['retur_b12_gd'];
     if (!isset($data_retur_b12_gd['retur_b12_gd'])) {
         $total_retur_b12_gd = 0;
     }
 //Keberangkatan
-    $tabelgd14 = mysqli_query($koneksipbr, "SELECT SUM(B12K11) AS brangkat_b12 FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabelgd14 = mysqli_query($koneksi, "SELECT SUM(B12K11) AS brangkat_b12 FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_brangkat_b12 = mysqli_fetch_array($tabelgd14);
     $total_brangkat_b12 = $data_brangkat_b12['brangkat_b12'];
     if (!isset($data_brangkat_b12['brangkat_b12'])) {
         $total_brangkat_b12 = 0;
     }
 //stok awal 12kg isi
-    $table62 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table62 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data62 = mysqli_fetch_array($table62);
     $stok_awal_b12_isi_gd = $data62['B12K11'];
 //stok akhir 12kg isi
-    $table63 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B12K11'");
+    $table63 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B12K11'");
     $data63 = mysqli_fetch_array($table63);
     $stok_akhir_b12_isi_gd = $data63['gudang'];
 
@@ -757,32 +760,32 @@ else{
 
 //BG 12KH KOSONG
 //baja kosong BG 12kg KELUAR
-    $table64 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b12ksg_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B12K10'  ");
+    $table64 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_b12ksg_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B12K10'  ");
     $data_penjualan_b12ksg_gd = mysqli_fetch_array($table64);
     $total_penjualan_b12ksg_gd= $data_penjualan_b12ksg_gd['penjualan_b12ksg_gd'];
     if (!isset($data_penjualan_b12ksg_gd['penjualan_b12ksg_gd'])) {
         $total_penjualan_b12ksg_gd = 0;
     }
 //baja kosong BG 12kg Masuk
-    $table65 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b12ksg_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B12K10'  ");
+    $table65 = mysqli_query($koneksi, "SELECT SUM(qty) AS pembelian_b12ksg_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B12K10'  ");
     $data_pembelian_b12ksg_gd = mysqli_fetch_array($table65);
     $total_pembelian_b12ksg_gd = $data_pembelian_b12ksg_gd['pembelian_b12ksg_gd'];
     if (!isset($data_pembelian_b12ksg_gd['pembelian_b12ksg_gd'])) {
         $total_pembelian_b12ksg_gd = 0;
     }
 //konfirmasi retur
-    $tabelgd15 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS retur_b12ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B12K10'  ");
+    $tabelgd15 = mysqli_query($koneksi, "SELECT SUM(qty) AS retur_b12ksg_gd FROM riwayat_konfirmasi_retur WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B12K10'  ");
     $data_retur_b12ksg_gd = mysqli_fetch_array($tabelgd15);
     $total_retur_b12ksg_gd = $data_retur_b12ksg_gd['retur_b12ksg_gd'];
     if (!isset($data_retur_b12ksg_gd['retur_b12ksg_gd'])) {
         $total_retur_b12ksg_gd = 0;
     }
 //stok awal 5,5kg kosong
-    $table66 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $table66 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $data66 = mysqli_fetch_array($table66);
     $stok_awal_b12_ksg_gd = $data66['B12K10'];
 //stok akhir 5,5kg kosong
-    $table67 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B12K10'");
+    $table67 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B12K10'");
     $data67 = mysqli_fetch_array($table67);
     $stok_akhir_b12_ksg_gd = $data67['gudang'];
 
@@ -791,15 +794,15 @@ else{
 
 // BG 55 kg retur
 //stok awal 3kg retur
-    $tabgd7 = mysqli_query($koneksipbr, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
+    $tabgd7 = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE no_laporan = '$no_laporan_gd'");
     $datgd7 = mysqli_fetch_array($tabgd7);
     $stok_awal_b12_rt_gd = $datgd7['B12K00'];
 //stok akhir 3kg retur
-    $tabgd8 = mysqli_query($koneksipbr, "SELECT * FROM inventory WHERE kode_baja = 'B12K00'");
+    $tabgd8 = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'B12K00'");
     $datgd8 = mysqli_fetch_array($tabgd8);
     $stok_akhir_b12_rt_gd = $datgd8['gudang'];
 //keberangkatan
-    $tabelgd16 = mysqli_query($koneksipbr, "SELECT SUM(B12K00) AS brangkat_b12_rtr FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabelgd16 = mysqli_query($koneksi, "SELECT SUM(B12K00) AS brangkat_b12_rtr FROM riwayat_keberangkatan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_brangkat_b12_rtr = mysqli_fetch_array($tabelgd16);
     $total_brangkat_b12_rtr = $data_brangkat_b12_rtr['brangkat_b12_rtr'];
     if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
@@ -848,76 +851,80 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+<!-- Sidebar -->
+<ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-           <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTPBRMES">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
-            </a>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            
-              <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsPTPBRMES">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsKasirToko.php">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu PBRMES
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT. CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-                    </div>
-                </div>
-            </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiMes">Laba Rugi MES</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSAMES">Rincian SA MES</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSAPBR">Rincian SA PBR</a>
-                    </div>
-                </div>
-            </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu Kasir Toko
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Transaksi</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon Pembelian</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keauangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+        </div>
+    </div>
+</li>
+
+<!-- Nav Item - Utilities Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+    aria-expanded="true" aria-controls="collapseUtilities">
+    <i class="far fa-calendar-alt" style="font-size: 15px; color:white;"></i>
+    <span style="font-size: 15px; color:white;">Pencatatan Inventory</span>
+</a>
+<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+data-parent="#accordionSidebar">
+<div class="bg-white py-2 collapse-inner rounded">
+    <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
+    <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+    <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
+    <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
+    <a class="collapse-item" href="VPenggunaanSaldo" style="font-size: 15px;">Transfer Saldo</a>
+    <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
+    <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
+    <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
+    
+</div>
+</div>
+</li>
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -1179,7 +1186,7 @@ else{
         }
             }
         else if ($pembayaran == 'Bon') {
-            $sql_bon = mysqli_query($koneksipbr, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
+            $sql_bon = mysqli_query($koneksi, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
             $data_bon = mysqli_fetch_array($sql_bon);
             $jumlah_bon = $data_bon['jumlah_bayar'];
             if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
@@ -1238,7 +1245,7 @@ else{
   }
       }
   else if ($pembayaran == 'Bon') {
-      $sql_bon = mysqli_query($koneksipbr, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
+      $sql_bon = mysqli_query($koneksi, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
       $data_bon = mysqli_fetch_array($sql_bon);
       $jumlah_bon = $data_bon['jumlah_bayar'];
       if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
@@ -1500,7 +1507,7 @@ echo "
       </tr>
   </thead>
   <tbody>
-  <tr>
+    <tr>
         <td>Elpiji 3 Kg baja + Isi</td>
         <td><?= $stok_awal_3kg_isi_gd ?></td>
         <td><?= $total_penjualan_3_gd  + $total_retur_3_gd ?></td>
@@ -1640,7 +1647,7 @@ echo "
             <?php 
             if ($tanggal_awal == $tanggal_akhir) {
                 
-                $kasir =  mysqli_query($koneksipbr, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
+                $kasir =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
                   echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
               }
@@ -1651,7 +1658,7 @@ echo "
         }
         else{
            
-            $kasir3  =  mysqli_query($koneksipbr, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+            $kasir3  =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
             $x=0;
             $y=0;
             $z=0;
@@ -1695,7 +1702,7 @@ echo "
           <?php 
           if ($tanggal_awal == $tanggal_akhir) {
             
-            $kasir =  mysqli_query($koneksipbr, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
+            $kasir =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
             if ( mysqli_num_rows($kasir) === 1 ) {
               echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
           }
@@ -1706,7 +1713,7 @@ echo "
     }
     else{
        
-        $kasir3  =  mysqli_query($koneksipbr, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+        $kasir3  =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
         $x=0;
         $y=0;
         $z=0;
@@ -1749,7 +1756,7 @@ echo "
           <?php 
           if ($tanggal_awal == $tanggal_akhir) {
             
-            $kasir =  mysqli_query($koneksipbr, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
+            $kasir =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
             if ( mysqli_num_rows($kasir) === 1 ) {
               echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
           }
@@ -1760,7 +1767,7 @@ echo "
     }
     else{
        
-        $kasir3  =  mysqli_query($koneksipbr, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+        $kasir3  =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
         $x=0;
         $y=0;
         $z=0;

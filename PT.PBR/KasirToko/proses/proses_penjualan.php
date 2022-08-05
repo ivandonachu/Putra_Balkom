@@ -86,31 +86,6 @@ else if ( $nama_file != "" ) {
 			$jumlah_uang = $data_rekening['jumlah'];
 			$jumlah_uang_new = $jumlah_uang + $jumlah;
 
-			//aktivitas inventory
-		//baja isi
-			$akses_inventory_isi = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = '$kode_baja'");
-			$data_inventory_isi = mysqli_fetch_array($akses_inventory_isi);
-			$jumlah_baja_isi = $data_inventory_isi['gudang'];
-			$jumlah_baja_isi_new = $jumlah_baja_isi - $qty;
-		//baja kosong
-			$akses_inventory_ksg = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K10'");
-			$data_inventory_ksg = mysqli_fetch_array($akses_inventory_ksg);
-			$jumlah_baja_ksg = $data_inventory_ksg['gudang'];
-			$jumlah_baja_ksg_new = $jumlah_baja_ksg + $qty;
-		//baja + isi
-			$akses_inventory_b = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
-			$data_inventory_b = mysqli_fetch_array($akses_inventory_b);
-			$jumlah_baja_b = $data_inventory_b['gudang'];
-			$jumlah_baja_b_new = $jumlah_baja_b - $qty;
-
-			$query11 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_b_new' WHERE kode_baja = 'L03K11' ");
-			$query2 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_isi_new' WHERE kode_baja = '$kode_baja' ");
-			$query3 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Keluar','$qty')");
-			$query4 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_ksg_new' WHERE kode_baja = 'L03K10' ");
-			$query5 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Masuk','$qty')");
-			
-			$query6 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_uang_new' WHERE kode_akun = '1-111' ");
-			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 
 
 			if ($query1!= "") {
@@ -600,37 +575,7 @@ else if ( $nama_file != "" ) {
 			$no_transaksi = $akses_data_penjualan['MAX(no_transaksi)'];
 
 
-			$query3 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','$nama','Keluar','$qty')");
-			//aktivitas inventory
-		//baja isi
-			$akses_inventory_isi = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = '$kode_baja'");
-			$data_inventory_isi = mysqli_fetch_array($akses_inventory_isi);
-			$jumlah_baja_isi = $data_inventory_isi['gudang'];
-			$jumlah_baja_isi_new = $jumlah_baja_isi - $qty;
-		//baja kosong
-			$akses_inventory_ksg = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K10'");
-			$data_inventory_ksg = mysqli_fetch_array($akses_inventory_ksg);
-			$jumlah_baja_ksg = $data_inventory_ksg['gudang'];
-			$jumlah_baja_ksg_new = $jumlah_baja_ksg + $qty;
-		//baja + isi
-			$akses_inventory_b = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
-			$data_inventory_b = mysqli_fetch_array($akses_inventory_b);
-			$jumlah_baja_b = $data_inventory_b['gudang'];
-			$jumlah_baja_b_new = $jumlah_baja_b - $qty;
 
-			$query11 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_b_new' WHERE kode_baja = 'L03K11' ");
-			$query2 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_isi_new' WHERE kode_baja = '$kode_baja' ");
-			$query3 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Keluar','$qty')");
-			$query4 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_ksg_new' WHERE kode_baja = 'L03K10' ");
-			$query5 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Masuk','$qty')");
-		//aktivitas rekening
-			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-114'");
-			$data_rekening = mysqli_fetch_array($akses_rekening);
-			$jumlah_uang = $data_rekening['jumlah'];
-			$jumlah_uang_new = $jumlah_uang + $jumlah;
-
-			$query4 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_uang_new' WHERE kode_akun = '1-114' ");
-			$query5 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','4','Masuk','$jumlah')");
 
 
 			if ($query1!= "") {
@@ -658,37 +603,7 @@ else if ( $nama_file != "" ) {
 			$no_transaksi = $akses_data_penjualan['MAX(no_transaksi)'];
 
 
-			$query3 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','$nama','Keluar','$qty')");
-			//aktivitas inventory
-		//baja isi
-			$akses_inventory_isi = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = '$kode_baja'");
-			$data_inventory_isi = mysqli_fetch_array($akses_inventory_isi);
-			$jumlah_baja_isi = $data_inventory_isi['gudang'];
-			$jumlah_baja_isi_new = $jumlah_baja_isi - $qty;
-		//baja kosong
-			$akses_inventory_ksg = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K10'");
-			$data_inventory_ksg = mysqli_fetch_array($akses_inventory_ksg);
-			$jumlah_baja_ksg = $data_inventory_ksg['gudang'];
-			$jumlah_baja_ksg_new = $jumlah_baja_ksg + $qty;
-		//baja + isi
-			$akses_inventory_b = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K11'");
-			$data_inventory_b = mysqli_fetch_array($akses_inventory_b);
-			$jumlah_baja_b = $data_inventory_b['gudang'];
-			$jumlah_baja_b_new = $jumlah_baja_b - $qty;
-
-			$query11 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_b_new' WHERE kode_baja = 'L03K11' ");
-			$query2 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_isi_new' WHERE kode_baja = '$kode_baja' ");
-			$query3 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Keluar','$qty')");
-			$query4 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_ksg_new' WHERE kode_baja = 'L03K10' ");
-			$query5 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Masuk','$qty')");
-		//aktivitas rekening
-			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-114'");
-			$data_rekening = mysqli_fetch_array($akses_rekening);
-			$jumlah_uang = $data_rekening['jumlah'];
-			$jumlah_uang_new = $jumlah_uang + $jumlah;
-
-			$query4 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_uang_new' WHERE kode_akun = '1-114' ");
-			$query5 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','4','Masuk','$jumlah')");
+		
 
 
 			if ($query1!= "") {

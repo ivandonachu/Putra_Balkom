@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include'koneksi.php';
@@ -22,15 +21,33 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
+
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+}  
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE a.kode_baja != 'L03K01' AND a.kode_baja != 'L12K01' AND a.kode_baja != 'B05K01' AND a.kode_baja != 'B12K01' ");
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' AND b.kode_akun != '5-580' OR tanggal = '$tanggal_awal' AND referensi = 'ME' AND b.kode_akun != '5-580' ");
 
- ?>
- <!DOCTYPE html>
- <html lang="en">
+}
+else{
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES' AND b.kode_akun != '5-580' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'ME' AND b.kode_akun != '5-580'");
 
- <head>
+}
+
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,7 +55,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON 
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Inventory Perusahaan</title>
+  <title>Rincian Pengeluaran MES</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -64,79 +81,75 @@ $table = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
-    <div class="sidebar-brand-icon rotate-n-15">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTPBRMES">
+   <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+   </div>
+   <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
 </a>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
+
+ <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
-    <a class="nav-link" href="DsKasirToko.php">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-    </li>
+   <a class="nav-link" href="DsPTPBRMES">
+       <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+       <span style="font-size: 16px;" >Dashboard</span></a>
+   </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Kasir Toko
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Transaksi</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon Pembelian</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keauangan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
-        </div>
-    </div>
+   <!-- Divider -->
+   <hr class="sidebar-divider">
+   <!-- Heading -->
+   <div class="sidebar-heading" style="font-size: 15px; color:white;">
+        Menu PBRMES
+   </div>
+   <!-- Nav Item - Pages Collapse Menu -->
+   <li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+     15  aria-expanded="true" aria-controls="collapseTwo">
+       <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+       <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+   </a>
+   <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT. CBM</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+       </div>
+   </div>
 </li>
-
-<!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-    aria-expanded="true" aria-controls="collapseUtilities">
-    <i class="far fa-calendar-alt" style="font-size: 15px; color:white;"></i>
-    <span style="font-size: 15px; color:white;">Pencatatan Inventory</span>
-</a>
-<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-data-parent="#accordionSidebar">
-<div class="bg-white py-2 collapse-inner rounded">
-    <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
-    <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-    <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
-    <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
-    <a class="collapse-item" href="VPenggunaanSaldo" style="font-size: 15px;">Transfer Saldo</a>
-    <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
-    <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
-    <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
-    
-</div>
-</div>
+   <!-- Nav Item - Pages Collapse Menu -->
+   <li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+     15  aria-expanded="true" aria-controls="collapseTwo">
+       <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+       <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
+   </a>
+   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi PBR</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiMes">Laba Rugi MES</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VRincianSAMES">Rincian SA MES</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VRincianSAPBR">Rincian SA PBR</a>
+       </div>
+   </div>
 </li>
 
 <!-- Divider -->
@@ -163,7 +176,7 @@ data-parent="#accordionSidebar">
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <a href="VInventoryPerusahaan"><h5 class="text-center sm" style="color:white; margin-top: 8px; ">Inventory Perusahaan</h5></a>
+        <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Pengeluaran MES</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -174,8 +187,9 @@ data-parent="#accordionSidebar">
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-        
-        
+
+      
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -216,45 +230,65 @@ data-parent="#accordionSidebar">
 <div>   
 
 
-   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
-<h5 align="center" >Inventory</h3>
+    <!-- Name Page -->
+  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+ <div align="left">
+      <?php echo "<a href='VLKeuangan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    </div>
+    <br>
+    <br>
+
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-   <thead>
+  <thead>
     <tr>
-      <th>Baja</th>
-      <th>Toko</th>
-      <th>Gudang</th>
-      <th>Global</th>
-      <th>Di Pinjam</th>
-      <th>Pasiv</th>
-      <th>Total</th>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>REF</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Jumlah Pengeluaran</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
+    <?php
+    $urut = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
 
-    <?php while($data2 = mysqli_fetch_array($table)){
-      $nama_baja = $data2['nama_baja'];
-      $toko =$data2['toko'];
-      $gudang = $data2['gudang'];
-      $dipinjam = $data2['dipinjam'];
-      $passive = $data2['passive'];
-      $global = $toko + $gudang;
-      $total = $toko + $gudang + $dipinjam + $passive;
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_transaksi = $data['no_pengeluaran'];
+      $tanggal =$data['tanggal'];
+      $referensi = $data['referensi'];
+      $nama_akun = $data['nama_akun'];
+      $keterangan = $data['keterangan'];
+      $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
+      $file_bukti = $data['file_bukti'];
+        $urut = $urut +1;
+
       echo "<tr>
-      <td style='font-size: 14px'>$nama_baja</td>
-      <td style='font-size: 14px'>$toko</td>
-      <td style='font-size: 14px'>$gudang</td>
-      <td style='font-size: 14px'>$global</td>
-      <td style='font-size: 14px'>$dipinjam</td> 
-      <td style='font-size: 14px'>$passive</td> 
-      <td style='font-size: 14px'>$total</td> 
-        </tr>";
+      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_pengeluaran); ?> <?php echo "</td>
+        <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+    
+   </tr>";
   }
   ?>
 
 </tbody>
 </table>
+
+
+
 </div>
 
 </div>

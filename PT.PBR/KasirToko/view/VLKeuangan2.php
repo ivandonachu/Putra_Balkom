@@ -34,64 +34,110 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
     
-// TOTAL P[ENDAPATAN
-$table = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND pembayaran = 'Cash' OR tanggal = '$tanggal_awal' AND pembayaran ='Deposit' ");
-$data_pendapatan = mysqli_fetch_array($table);
-$data_total_pendapatan = $data_pendapatan['total_pendapatan'];
-if (!isset($data_total_pendapatan)) {
-    $data_total_pendapatan = 0;
+// MES
+$table_mes = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND pembayaran = 'Cash' AND referensi = 'MES'  OR tanggal = '$tanggal_awal' AND pembayaran ='Deposit' AND referensi = 'MES' ");
+$data_pendapatan_mes = mysqli_fetch_array($table_mes);
+$data_total_pendapatan_mes = $data_pendapatan_mes['total_pendapatan'];
+if (!isset($data_total_pendapatan_mes)) {
+    $data_total_pendapatan_mes = 0;
 }
 
 
-$table3 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
-$data_bon = mysqli_fetch_array($table3);
-$data_total_bon = $data_bon['total_bon'];
-if (!isset($data_total_bon)) {
-    $data_total_bon = 0;
+$table3_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
+$data_bon_mes = mysqli_fetch_array($table3_mes);
+$data_total_bon_mes = $data_bon_mes['total_bon'];
+if (!isset($data_total_bon_mes)) {
+    $data_total_bon_mes = 0;
 }
-$table2 = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun != '5-580' ");
-$data_pengeluaran = mysqli_fetch_array($table2);
-$data_total_pengeluaran = $data_pengeluaran['total_pengeluaran'];
-if (!isset($data_total_pengeluaran)) {
-    $data_total_pengeluaran = 0;
-}
-
-$data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
-
-$jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
-
+$table2_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'ME' ");
+$data_pengeluaran_mes = mysqli_fetch_array($table2_mes);
+$data_total_pengeluaran_mes = $data_pengeluaran_mes['total_pengeluaran'];
+if (!isset($data_total_pengeluaran_mes)) {
+    $data_total_pengeluaran_mes = 0;
 }
 
+$data_total_pengeluaran_mes = $data_total_pengeluaran_mes + $data_total_bon_mes;
+$jumlah_bersih_mes = $data_total_pendapatan_mes - $data_total_pengeluaran_mes;
+
+// PBR
+$table_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND pembayaran = 'Cash' AND referensi = 'PBR'  OR tanggal = '$tanggal_awal' AND pembayaran ='Deposit' AND referensi = 'PBR' ");
+$data_pendapatan_pbr = mysqli_fetch_array($table_pbr);
+$data_total_pendapatan_pbr = $data_pendapatan_pbr['total_pendapatan'];
+if (!isset($data_total_pendapatan_pbr)) {
+    $data_total_pendapatan_pbr = 0;
+}
+
+
+$table3_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
+$data_bon_pbr = mysqli_fetch_array($table3_pbr);
+$data_total_bon_pbr = $data_bon_pbr['total_bon'];
+if (!isset($data_total_bon_pbr)) {
+    $data_total_bon_pbr = 0;
+}
+$table2_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'PBR' OR tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'PB' ");
+$data_pengeluaran_pbr = mysqli_fetch_array($table2_pbr);
+$data_total_pengeluaran_pbr = $data_pengeluaran_pbr['total_pengeluaran'];
+if (!isset($data_total_pengeluaran_pbr)) {
+    $data_total_pengeluaran_pbr = 0;
+}
+
+$data_total_pengeluaran_pbr = $data_total_pengeluaran_pbr + $data_total_bon_pbr;
+$jumlah_bersih_pbr = $data_total_pendapatan_pbr - $data_total_pengeluaran_pbr;
+
+}
 else{
 
-// TOTAL P[ENDAPATAN
-$table = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran = 'Cash' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran ='Deposit' ");
-$data_pendapatan = mysqli_fetch_array($table);
-$data_total_pendapatan = $data_pendapatan['total_pendapatan'];
-if (!isset($data_total_pendapatan)) {
-    $data_total_pendapatan = 0;
+
+// MES
+$table_mes = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran = 'Cash' AND referensi = 'MES'  OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran ='Deposit' AND referensi = 'MES' ");
+$data_pendapatan_mes = mysqli_fetch_array($table_mes);
+$data_total_pendapatan_mes = $data_pendapatan_mes['total_pendapatan'];
+if (!isset($data_total_pendapatan_mes)) {
+    $data_total_pendapatan_mes = 0;
 }
 
 
-$table3 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-$data_bon = mysqli_fetch_array($table3);
-$data_total_bon = $data_bon['total_bon'];
-if (!isset($data_total_bon)) {
-    $data_total_bon = 0;
+$table3_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$data_bon_mes = mysqli_fetch_array($table3_mes);
+$data_total_bon_mes = $data_bon_mes['total_bon'];
+if (!isset($data_total_bon_mes)) {
+    $data_total_bon_mes = 0;
 }
-$table2 = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' ");
-$data_pengeluaran = mysqli_fetch_array($table2);
-$data_total_pengeluaran = $data_pengeluaran['total_pengeluaran'];
-if (!isset($data_total_pengeluaran)) {
-    $data_total_pengeluaran = 0;
+$table2_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun != '5-580' AND referensi = 'ME' ");
+$data_pengeluaran_mes = mysqli_fetch_array($table2_mes);
+$data_total_pengeluaran_mes = $data_pengeluaran_mes['total_pengeluaran'];
+if (!isset($data_total_pengeluaran_mes)) {
+    $data_total_pengeluaran_mes = 0;
+}
+
+$data_total_pengeluaran_mes = $data_total_pengeluaran_mes + $data_total_bon_mes;
+$jumlah_bersih_mes = $data_total_pendapatan_mes - $data_total_pengeluaran_mes;
+
+// PBR
+$table_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran = 'Cash' AND referensi = 'PBR'  OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran ='Deposit' AND referensi = 'PBR' ");
+$data_pendapatan_pbr = mysqli_fetch_array($table_pbr);
+$data_total_pendapatan_pbr = $data_pendapatan_pbr['total_pendapatan'];
+if (!isset($data_total_pendapatan_pbr)) {
+    $data_total_pendapatan_pbr = 0;
 }
 
 
+$table3_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$data_bon_pbr = mysqli_fetch_array($table3_pbr);
+$data_total_bon_pbr = $data_bon_pbr['total_bon'];
+if (!isset($data_total_bon_pbr)) {
+    $data_total_bon_pbr = 0;
+}
+$table2_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' AND referensi = 'PB' ");
+$data_pengeluaran_pbr = mysqli_fetch_array($table2_pbr);
+$data_total_pengeluaran_pbr = $data_pengeluaran_pbr['total_pengeluaran'];
+if (!isset($data_total_pengeluaran_pbr)) {
+    $data_total_pengeluaran_pbr = 0;
+}
 
+$data_total_pengeluaran_pbr = $data_total_pengeluaran_pbr + $data_total_bon_pbr;
+$jumlah_bersih_pbr = $data_total_pendapatan_pbr - $data_total_pengeluaran_pbr;
 
-$data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
-
-$jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
 }
 
 
@@ -109,7 +155,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Kasir Toko</title>
+  <title>Laporan Keuangan MES/PBR</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -132,79 +178,80 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-            </a>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsKasirToko.php">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Kasir Toko
-                </div>
-
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Transaksi</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon Pembelian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keauangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="far fa-calendar-alt" style="font-size: 15px; color:white;"></i>
-                <span style="font-size: 15px; color:white;">Pencatatan Inventory</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
-                <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
-                <a class="collapse-item" href="VPenggunaanSaldo" style="font-size: 15px;">Transfer Saldo</a>
-                <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
-                <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
-                <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
-                
-            </div>
-        </div>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsKasirToko.php">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu Kasir Toko
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Transaksi</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon Pembelian</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keauangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+        </div>
+    </div>
+</li>
+
+<!-- Nav Item - Utilities Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+    aria-expanded="true" aria-controls="collapseUtilities">
+    <i class="far fa-calendar-alt" style="font-size: 15px; color:white;"></i>
+    <span style="font-size: 15px; color:white;">Pencatatan Inventory</span>
+</a>
+<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+data-parent="#accordionSidebar">
+<div class="bg-white py-2 collapse-inner rounded">
+    <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
+    <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+    <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
+    <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
+    <a class="collapse-item" href="VPenggunaanSaldo" style="font-size: 15px;">Transfer Saldo</a>
+    <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
+    <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
+    <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
+    
+</div>
+</div>
+</li>
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -300,71 +347,131 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
 </nav>
 <!-- End of Topbar -->
 <div class="container" style="color : black;">
-    <div class="row">
-      
+     <?php  echo "<form  method='POST' action='VLKeuangan2' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
     </div>
-    <div class="row">
-    	  <?php echo "<a href='VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
-    </div>
-    <div class="row">
-    	<div class="col-md-12">
-    		<div class="panel panel-default">
-    			<div class="panel-heading">
-    				<h3 class="panel-title" align="Center"><strong>Laporan Keuangan</strong></h3>
-    			</div>
+  </form>
 
-    			<div>
-    				
-    			</div>
+ <br>
+ <br>
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+     <br>
+     <br>
+     <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" align="Center"><strong>Laporan Keuangan PBR</strong></h3>
+                </div>
 
-                  <?php
-                function formatuang($angka){
+                <div>
+                    
+                </div>
+                <?php
+                 function formatuang($angka){
                  $uang = "Rp " . number_format($angka,2,',','.');
                  return $uang;
                  }
-
                 ?>
 
-    			<div class="panel-body">
-    				<div class="table-responsive">
-    					<table class="table table-condensed"  style="color : black;">
-    						<thead>
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed"  style="color : black;">
+                            <thead>
                                 <tr>
-        							<td><strong>Akun</strong></td>
-        							<td class="text-center"><strong>Jumlah</strong></td>
-        							<td class="text-right"><strong>Aksi</strong></td>
+                                    <td><strong>Akun</strong></td>
+                                    <td class="text-center"><strong>Jumlah</strong></td>
+                                    <td class="text-right"><strong>Aksi</strong></td>
                                 </tr>
-    						</thead>
-    						<tbody>
-    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-    							<tr>
+                            </thead>
+                            <tbody>
+                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                <tr>
                                     <td>Total Pendapatan</td>
-                                    <td class="text-center"><?php echo formatuang($data_total_pendapatan);  ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianPendapatan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <td class="text-center"><?php echo formatuang($data_total_pendapatan_pbr);  ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianPendapatanpbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>Total Pengeluaran</td>
-                                    <td class="text-center"><?php echo formatuang($data_total_pengeluaran);  ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <td class="text-center"><?php echo formatuang($data_total_pengeluaran_pbr);  ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianPengeluaranpbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                             
                                 <tr>
                                     <td><strong>Total</strong></td>
-                                    <td class="no-line text-center"><?php echo formatuang($jumlah_bersih); ?></td>
+                                    <td class="no-line text-center"><?php echo formatuang($jumlah_bersih_pbr); ?></td>
                                     <td class="thick-line"></td>
                                 </tr>
-    						</tbody>
-    					</table>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<br>
-<br>
-<br>
-<!-- Tanda Konfirmasi  -->
+    <br>
+     <br>
+     <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" align="Center"><strong>Laporan Keuangan MES</strong></h3>
+                </div>
+
+                <div>
+                    
+                </div>
+
+
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed"  style="color : black;">
+                            <thead>
+                                <tr>
+                                    <td><strong>Akun</strong></td>
+                                    <td class="text-center"><strong>Jumlah</strong></td>
+                                    <td class="text-right"><strong>Aksi</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                <tr>
+                                    <td>Total Pendapatan</td>
+                                    <td class="text-center"><?php echo formatuang($data_total_pendapatan_mes);  ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianPendapatanmes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>Total Pengeluaran</td>
+                                    <td class="text-center"><?php echo formatuang($data_total_pengeluaran_mes);  ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianPengeluaranmes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                            
+                                <tr>
+                                    <td><strong>Total</strong></td>
+                                    <td class="no-line text-center"><?php echo formatuang($jumlah_bersih_mes); ?></td>
+                                    <td class="thick-line"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!-- Tanda Konfirmasi  -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
  
 <div class="row" align="center">
@@ -378,7 +485,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
             <?php 
                 if ($tanggal_awal == $tanggal_akhir) {
                     
-                    $kasir =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
+                    $kasir =  mysqli_query($koneksicbm, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
                       echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
                          }
@@ -389,7 +496,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
                 }
                 else{
                    
-                    $kasir3  =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                    $kasir3  =  mysqli_query($koneksicbm, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
                     $x=0;
                     $y=0;
                     $z=0;
@@ -414,7 +521,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
           
         </tr>
         <tr>
-          <td align="center" style="font-weight: bold; text-decoration: underline;">Miftakhul Janah</td>
+          <td align="center" style="font-weight: bold; text-decoration: underline;">Okta</td>
         </tr>
         <tr>
           <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
@@ -433,7 +540,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
           <?php 
                 if ($tanggal_awal == $tanggal_akhir) {
                     
-                    $kasir =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
+                    $kasir =  mysqli_query($koneksicbm, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
                       echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
                          }
@@ -444,7 +551,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
                 }
                 else{
                    
-                    $kasir3  =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                    $kasir3  =  mysqli_query($koneksicbm, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
                     $x=0;
                     $y=0;
                     $z=0;
@@ -487,7 +594,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
           <?php 
                 if ($tanggal_awal == $tanggal_akhir) {
                     
-                    $kasir =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
+                    $kasir =  mysqli_query($koneksicbm, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
                       echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
                          }
@@ -498,7 +605,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
                 }
                 else{
                    
-                    $kasir3  =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                    $kasir3  =  mysqli_query($koneksicbm, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
                     $x=0;
                     $y=0;
                     $z=0;
@@ -532,6 +639,8 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
   </div>  
 </div>
 </div>
+</div>
+
 </div>
 <!-- End of Main Content -->
 

@@ -135,6 +135,8 @@ $nama = $data['nama_karyawan'];
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
+                <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+                <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
                 <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
                 <a class="collapse-item" href="VPenggunaanSaldo" style="font-size: 15px;">Transfer Saldo</a>
                 <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
@@ -243,20 +245,7 @@ $nama = $data['nama_karyawan'];
         <div class="col-sm-9">
         </div>
         <div class="col-sm-3" style="color: black; font-size: 18px;">
-        <script type='text/javascript'>
-            <!--
-            var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-            var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
-            var date = new Date();
-            var day = date.getDate();
-            var month = date.getMonth();
-            var thisDay = date.getDay(),
-                thisDay = myDays[thisDay];
-            var yy = date.getYear();
-            var year = (yy < 1000) ? yy + 1900 : yy;
-            document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
-            //-->
-        </script>
+
     </div>
 </div> 
 

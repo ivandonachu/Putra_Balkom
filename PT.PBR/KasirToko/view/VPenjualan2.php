@@ -916,6 +916,8 @@ else{
 data-parent="#accordionSidebar">
 <div class="bg-white py-2 collapse-inner rounded">
     <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
+    <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+    <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
     <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
     <a class="collapse-item" href="VPenggunaanSaldo" style="font-size: 15px;">Transfer Saldo</a>
     <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
@@ -1556,14 +1558,31 @@ data-parent="#accordionSidebar">
 </thead>
 <tbody>
     <?php
-    $L03 = 0;
-    $B05 = 0;
-    $B12 = 0;
-    $L12 = 0;
-    $L03_cash = 0;
-    $B05_cash = 0;
-    $B12_cash = 0;
-    $L12_cash = 0;
+    $total_mes = 0;
+    $total_briva_mes = 0;
+    $total_transfer_mes = 0;
+    $total_cash_mes = 0;
+    $L03_mes = 0;
+    $B05_mes = 0;
+    $B12_mes = 0;
+    $L12_mes = 0;
+    $L03_cash_mes = 0;
+    $B05_cash_mes = 0;
+    $B12_cash_mes = 0;
+    $L12_cash_mes = 0;
+
+    $total_pbr = 0;
+    $total_briva_pbr = 0;
+    $total_transfer_pbr = 0;
+    $total_cash_pbr = 0;
+    $L03_pbr = 0;
+    $B05_pbr = 0;
+    $B12_pbr = 0;
+    $L12_pbr = 0;
+    $L03_cash_pbr = 0;
+    $B05_cash_pbr = 0;
+    $B12_cash_pbr = 0;
+    $L12_cash_pbr = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -1585,53 +1604,125 @@ data-parent="#accordionSidebar">
       $jumlah = $data['jumlah'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
+    
+      if($referensi == 'MES' ){
+        $total_mes = $total_mes + $jumlah;
 
-      if ($pembayaran == 'Cash' OR $pembayaran =='Deposit') {
+    if($pembayaran == 'Cash' OR $pembayaran =='Deposit' ){
+        $total_cash_mes = $total_cash_mes + $jumlah;
+      }
+      else if($pembayaran == 'Briva' ){
+        $total_briva_mes = $total_briva_mes + $jumlah;
+      }
+      else if($pembayaran == 'Transfer' ){
+        $total_transfer_mes = $total_transfer_mes + $jumlah;
+      }
+
+    if ($pembayaran == 'Cash' OR $pembayaran =='Deposit') {
         if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
-          $L03_cash = $L03_cash + $jumlah;
-      }
-      elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
-          $L12_cash = $L12_cash + $jumlah;
-      }
-      elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
-          $B05_cash = $B05_cash + $jumlah;
-      }
-      elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
-          $B12_cash = $B12_cash + $jumlah;
-      }
+        $L03_cash_mes = $L03_cash_mes + $jumlah;
+    }
+    elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+        $L12_cash_mes = $L12_cash_mes + $jumlah;
+    }
+    elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+        $B05_cash_mes = $B05_cash_mes + $jumlah;
+    }
+    elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+        $B12_cash_mes = $B12_cash_mes + $jumlah;
+    }
+        }
+    else if ($pembayaran == 'Bon') {
+        $sql_bon = mysqli_query($koneksipbr, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
+        $data_bon = mysqli_fetch_array($sql_bon);
+        $jumlah_bon = $data_bon['jumlah_bayar'];
+        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+        $L03_cash_mes = $L03_cash_mes + $jumlah_bon;
+    }
+    elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+        $L12_cash_mes = $L12_cash_mes + $jumlah_bon;
+    }
+    elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+        $B05_cash_mes = $B05_cash_mes + $jumlah_bon;
+    }
+    elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+        $B12_cash_mes = $B12_cash_mes + $jumlah_bon;
+    }
+    }
+    else{
+        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+        $L03_mes = $L03_mes + $jumlah;
+    }
+    elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+        $L12_mes = $L12_mes + $jumlah;
+    }
+    elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+        $B05_mes = $B05_mes + $jumlah;
+    }
+    elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+        $B12_mes = $B12_mes + $jumlah;
+    }
+    }
   }
-  else if ($pembayaran == 'Bon') {
-    $sql_bon = mysqli_query($koneksi, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
-    $data_bon = mysqli_fetch_array($sql_bon);
-    $jumlah_bon = $data_bon['jumlah_bayar'];
-    if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
-      $L03_cash = $L03_cash + $jumlah_bon;
-  }
-  elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
-      $L12_cash = $L12_cash + $jumlah_bon;
-  }
-  elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
-      $B05_cash = $B05_cash + $jumlah_bon;
-  }
-  elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
-      $B12_cash = $B12_cash + $jumlah_bon;
-  }
-}
-else{
-    if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
-      $L03 = $L03 + $jumlah;
-  }
-  elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
-      $L12 = $L12 + $jumlah;
-  }
-  elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
-      $B05 = $B05 + $jumlah;
-  }
-  elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
-      $B12 = $B12 + $jumlah;
-  }
-}
+  else{
+    $total_pbr = $total_pbr + $jumlah;
 
+    if($pembayaran == 'Cash' OR $pembayaran =='Deposit' ){
+        $total_cash_pbr = $total_cash_pbr + $jumlah;
+      }
+      else if($pembayaran == 'Briva' ){
+        $total_briva_pbr = $total_briva_pbr + $jumlah;
+      }
+      else if($pembayaran == 'Transfer' ){
+        $total_transfer_pbr = $total_transfer_pbr + $jumlah;
+      }
+  
+    if ($pembayaran == 'Cash' OR $pembayaran =='Deposit') {
+        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+        $L03_cash_pbr = $L03_cash_pbr + $jumlah;
+    }
+    elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+        $L12_cash_pbr = $L12_cash_pbr + $jumlah;
+    }
+    elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+        $B05_cash_pbr = $B05_cash_pbr + $jumlah;
+    }
+    elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+        $B12_cash_pbr = $B12_cash_pbr + $jumlah;
+    }
+        }
+    else if ($pembayaran == 'Bon') {
+        $sql_bon = mysqli_query($koneksipbr, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
+        $data_bon = mysqli_fetch_array($sql_bon);
+        $jumlah_bon = $data_bon['jumlah_bayar'];
+        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+        $L03_cash_pbr = $L03_cash_pbr + $jumlah_bon;
+    }
+    elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+        $L12_cash_pbr = $L12_cash_pbr + $jumlah_bon;
+    }
+    elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+        $B05_cash_pbr = $B05_cash_pbr + $jumlah_bon;
+    }
+    elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+        $B12_cash_pbr = $B12_cash_pbr + $jumlah_bon;
+    }
+    }
+    else{
+        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+        $L03_pbr = $L03_pbr + $jumlah;
+    }
+    elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+        $L12_pbr = $L12_pbr + $jumlah;
+    }
+    elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+        $B05_pbr = $B05_pbr + $jumlah;
+    }
+    elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+        $B12_pbr = $B12_pbr + $jumlah;
+    }
+    }
+  }
 $nama_baja1 = "Pembayaran Selain Penjualan";
 
 
@@ -1745,42 +1836,139 @@ echo "
 <br>
 <br>
 
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
-    <h5 align="center" >Inventory</h3>
-        <!-- Tabel -->    
-        <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-           <thead>
-            <tr>
-              <th>Baja</th>
-              <th>Gudang</th>
-              <th>Global</th>
-              <th>Di Pinjam</th>
-              <th>Pasiv</th>
-              <th>Total</th>
-          </tr>
-      </thead>
-      <tbody>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+<h3 align = 'center'>Pendapatan PBR</h3>
+  <!-- Tabel -->    
+  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <thead>
+      <tr>
+        <th>Total Seluruh</th>
+        <th>Total Briva</th>
+        <th>Total Tranfer</th>
+        <th>Total Cash</th>
+      </tr>
+    </thead>
+    <tbody>
 
-        <?php while($data2 = mysqli_fetch_array($table2)){
-          $nama_baja = $data2['nama_baja'];
-          $gudang = $data2['gudang'];
-          $dipinjam = $data2['dipinjam'];
-          $passive = $data2['passive'];
-          $global = $gudang;
-          $total =  $gudang + $dipinjam + $passive;
-          echo "<tr>
-          <td style='font-size: 14px'>$nama_baja</td>
-          <td style='font-size: 14px'>$gudang</td>
-          <td style='font-size: 14px'>$global</td>
-          <td style='font-size: 14px'>$dipinjam</td> 
-          <td style='font-size: 14px'>$passive</td> 
-          <td style='font-size: 14px'>$total</td> 
-          </tr>";
-      }
+      <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_briva_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_transfer_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_cash_pbr); ?> <?php echo "</td>
+
+      </tr>";
+
       ?>
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
+<br>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+
+  <!-- Tabel -->    
+  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <thead>
+      <tr>
+        <th>Total Elpiji 3 KG</th>
+        <th>Total Bright Gas 5,5 KG</th>
+        <th>Total Bright Gas 12 KG</th>
+        <th>Total Elpiji 12 KG</th>
+        <th>Cash Elpiji 3 KG</th>
+        <th>Cash Bright Gas 5,5 KG</th>
+        <th>Cash Bright Gas 12 KG</th>
+        <th>Cash Elpiji 12 KG</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($L03_pbr + $L03_cash_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B05_pbr + $B05_cash_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B12_pbr + $B12_cash_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L12_pbr + $L12_cash_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L03_cash_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B05_cash_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B12_cash_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L12_cash_pbr); ?> <?php echo "</td>
+
+      </tr>";
+
+      ?>
+
+    </tbody>
+  </table>
+</div>
+<br>
+<br>
+<br>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+<h3 align = 'center'>Pendapatan MES</h3>
+  <!-- Tabel -->    
+  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <thead>
+      <tr>
+        <th>Total Seluruh</th>
+        <th>Total Briva</th>
+        <th>Total Tranfer</th>
+        <th>Total Cash</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_briva_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_transfer_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_cash_mes); ?> <?php echo "</td>
+
+      </tr>";
+
+      ?>
+
+    </tbody>
+  </table>
+</div>
+<br>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+
+  <!-- Tabel -->    
+  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <thead>
+      <tr>
+        <th>Total Elpiji 3 KG</th>
+        <th>Total Bright Gas 5,5 KG</th>
+        <th>Total Bright Gas 12 KG</th>
+        <th>Total Elpiji 12 KG</th>
+        <th>Cash Elpiji 3 KG</th>
+        <th>Cash Bright Gas 5,5 KG</th>
+        <th>Cash Bright Gas 12 KG</th>
+        <th>Cash Elpiji 12 KG</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($L03_mes + $L03_cash_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B05_mes + $B05_cash_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B12_mes + $B12_cash_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L12_mes + $L12_cash_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L03_cash_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B05_cash_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B12_cash_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L12_cash_mes); ?> <?php echo "</td>
+
+      </tr>";
+
+      ?>
+
+    </tbody>
+  </table>
+</div>
 </div>
 <br>
 <br>
@@ -1802,89 +1990,89 @@ echo "
       </tr>
   </thead>
   <tbody>
-    <tr>
+  <tr>
         <td>Elpiji 3 Kg baja + Isi</td>
         <td><?= $stok_awal_3kg_isi_gd ?></td>
         <td><?= $total_penjualan_3_gd  + $total_retur_3_gd ?></td>
         <td><?= $total_pembelian_3_gd + $total_brangkat_3 + $total_brangkat_3_rtr ?></td>
-        <td><?= $stok_akhir_3kg_isi_gd ?></td>
+        <td><?= $stok_awal_3kg_isi_gd - ($total_penjualan_3_gd  + $total_retur_3_gd) + ($total_pembelian_3_gd + $total_brangkat_3 + $total_brangkat_3_rtr) ?></td>
     </tr>
     <tr>
         <td>Elpiji 3 Kg Kosong</td>
         <td><?= $stok_awal_3kg_ksg_gd ?></td>
         <td><?= $total_penjualan_3ksg_gd + $total_pembelian_3_gd + $total_retur_3ksg_gd + $total_brangkat_3 ?></td>
         <td><?= $total_pembelian_3ksg_gd + $total_penjualan_3_gd ?></td>
-        <td><?= $stok_akhir_3kg_ksg_gd ?></td>
+        <td><?= $stok_awal_3kg_ksg_gd - ($total_penjualan_3ksg_gd + $total_pembelian_3_gd + $total_retur_3ksg_gd + $total_brangkat_3) + ($total_pembelian_3ksg_gd + $total_penjualan_3_gd) ?></td>
     </tr>
     <tr>
         <td>Elpiji 3 Kg Retur</td>
         <td><?= $stok_awal_3_rt_gd ?></td>
         <td><?=  $total_brangkat_3_rtr ?></td>
         <td><?= $total_retur_3_gd + $total_retur_3ksg_gd ?></td>
-        <td><?= $stok_akhir_3kg_rt_gd ?></td>
+        <td><?= $stok_awal_3_rt_gd - ($total_brangkat_3_rtr) + ($total_retur_3_gd + $total_retur_3ksg_gd)?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg baja + Isi</td>
         <td><?= $stok_awal_12kg_isi_gd ?></td>
         <td><?= $total_penjualan_12_gd  + $total_retur_12_gd ?></td>
         <td><?= $total_pembelian_12_gd  + $total_brangkat_12 + $total_brangkat_12_rtr ?></td>
-        <td><?= $stok_akhir_12kg_isi_gd ?></td>
+        <td><?= $stok_awal_12kg_isi_gd - ($total_penjualan_12_gd  + $total_retur_12_gd) + ($total_pembelian_12_gd  + $total_brangkat_12 + $total_brangkat_12_rtr)?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Kosong</td>
         <td><?= $stok_awal_12kg_ksg_gd ?></td>
         <td><?= $total_penjualan_12ksg_gd + $total_pembelian_12_gd + $total_retur_12ksg_gd + $total_brangkat_12 ?></td>
         <td><?= $total_pembelian_12ksg_gd + $total_penjualan_12_gd  ?></td>
-        <td><?= $stok_akhir_12kg_ksg_gd ?></td>
+        <td><?= $stok_awal_12kg_ksg_gd - ($total_penjualan_12ksg_gd + $total_pembelian_12_gd + $total_retur_12ksg_gd + $total_brangkat_12) + ($total_pembelian_12ksg_gd + $total_penjualan_12_gd)?></td>
     </tr>
     <tr>
         <td>Elpiji 12 Kg Retur</td>
         <td><?= $stok_awal_12_rt_gd ?></td>
         <td><?= $total_brangkat_12_rtr ?></td>
         <td><?= $total_retur_12_gd + $total_retur_12ksg_gd ?></td>
-        <td><?= $stok_akhir_12_rt_gd ?></td>
+        <td><?= $stok_awal_12_rt_gd - ($total_brangkat_12_rtr) + ($total_retur_12_gd + $total_retur_12ksg_gd)?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg baja + Isi</td>
         <td><?= $stok_awal_b05_isi_gd ?></td>
         <td><?= $total_penjualan_b05_gd + $total_retur_b05_gd ?></td>
         <td><?= $total_pembelian_b05_gd + $total_brangkat_b05 + $total_brangkat_b05_rtr ?></td>
-        <td><?= $stok_akhir_b05_isi_gd ?></td>
+        <td><?= $stok_awal_b05_isi_gd - ($total_penjualan_b05_gd + $total_retur_b05_gd) + ($total_pembelian_b05_gd + $total_brangkat_b05 + $total_brangkat_b05_rtr)?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Kosong</td>
         <td><?= $stok_awal_b05_ksg_gd ?></td>
         <td><?= $total_penjualan_b05ksg_gd + $total_pembelian_b05_gd + $total_retur_b05ksg_gd + $total_brangkat_b05 ?></td>
         <td><?= $total_pembelian_b05ksg_gd + $total_penjualan_b05_gd  ?></td>
-        <td><?= $stok_akhir_b05_ksg_gd ?></td>
+        <td><?= $stok_awal_b05_ksg_gd - ($total_penjualan_b05ksg_gd + $total_pembelian_b05_gd + $total_retur_b05ksg_gd + $total_brangkat_b05) + ($total_pembelian_b05ksg_gd + $total_penjualan_b05_gd)?></td>
     </tr>
     <tr>
         <td>Bright Gas 5,5 Kg Retur</td>
         <td><?= $stok_awal_b05_rt_gd ?></td>
         <td><?=  $total_brangkat_b05_rtr ?></td>
         <td><?= $total_retur_b05_gd + $total_retur_b05ksg_gd  ?></td>
-        <td><?= $stok_akhir_b05_rt_gd ?></td>
+        <td><?= $stok_awal_b05_rt_gd - ($total_brangkat_b05_rtr) + ($total_retur_b05_gd + $total_retur_b05ksg_gd)?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg baja + Isi</td>
         <td><?= $stok_awal_b12_isi_gd ?></td>
         <td><?= $total_penjualan_b12_gd  + $total_retur_b12_gd  ?></td>
         <td><?= $total_pembelian_b12_gd  + $total_brangkat_b12 + $total_brangkat_b12_rtr ?></td>
-        <td><?= $stok_akhir_b12_isi_gd ?></td>
+        <td><?= $stok_awal_b12_isi_gd - ($total_penjualan_b12_gd  + $total_retur_b12_gd) + ($total_pembelian_b12_gd  + $total_brangkat_b12 + $total_brangkat_b12_rtr)?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg Kosong</td>
         <td><?= $stok_awal_b12_ksg_gd ?></td>
         <td><?= $total_penjualan_b12ksg_gd + $total_pembelian_b12_gd + $total_retur_b12ksg_gd + $total_brangkat_b12 ?></td>
         <td><?= $total_pembelian_b12ksg_gd + $total_penjualan_b12_gd  ?></td>
-        <td><?= $stok_akhir_b12_ksg_gd ?></td>
+        <td><?= $stok_awal_b12_ksg_gd - ($total_penjualan_b12ksg_gd + $total_pembelian_b12_gd + $total_retur_b12ksg_gd + $total_brangkat_b12) + ($total_pembelian_b12ksg_gd + $total_penjualan_b12_gd)?></td>
     </tr>
     <tr>
         <td>Bright Gas 12 Kg Retur</td>
         <td><?= $stok_awal_b12_rt_gd ?></td>
-        <td><?=  + $total_brangkat_b12_rtr ?></td>
+        <td><?=  $total_brangkat_b12_rtr ?></td>
         <td><?= $total_retur_b12_gd + $total_retur_b12ksg_gd  ?></td>
-        <td><?= $stok_akhir_b12_rt_gd ?></td>
+        <td><?= $stok_awal_b12_rt_gd - ($total_brangkat_b12_rtr) + ($total_retur_b12_gd + $total_retur_b12ksg_gd )?></td>
     </tr>
 </tbody>
 </table>

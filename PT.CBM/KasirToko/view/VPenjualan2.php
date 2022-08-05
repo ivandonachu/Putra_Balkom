@@ -2633,7 +2633,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
 
       $nama_baja1 = "Pembayaran Selain Penjualan";
 
-
+      $total = $$total + $jumlah;
       echo "<tr>
       <td style='font-size: 14px'>$no_transaksi</td>
       <td style='font-size: 14px'>$tanggal</td>

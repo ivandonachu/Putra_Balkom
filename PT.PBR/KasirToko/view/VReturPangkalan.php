@@ -126,6 +126,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_retur_pangkalan a INNER J
   data-parent="#accordionSidebar">
   <div class="bg-white py-2 collapse-inner rounded">
     <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
+    <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+    <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
     <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
     <a class="collapse-item" href="VPenggunaanSaldo" style="font-size: 15px;">Transfer Saldo</a>
     <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>

@@ -21,7 +21,6 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +33,7 @@ $nama = $data['nama_karyawan'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Penjualan Kasir Toko</title>
+    <title>Laporan Keuangan MES/PBR</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -52,8 +51,8 @@ $nama = $data['nama_karyawan'];
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <!-- Sidebar -->
-       <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+     <!-- Sidebar -->
+     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
@@ -127,6 +126,7 @@ data-parent="#accordionSidebar">
 </div>
 </li>
 
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -151,7 +151,7 @@ data-parent="#accordionSidebar">
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-               <a href="VPenjualan1"><h5 class="text-center sm" style="color:white; margin-top: 8px;  ">Penjualan Kasir Toko</h5></a>
+               <a href="VLKeuanganpbr1"><h5 class="text-center sm" style="color:white; margin-top: 8px;  ">Laporan Keuangan MES/PBR</h5></a>
 
 
             <!-- Sidebar Toggle (Topbar) -->
@@ -208,7 +208,7 @@ data-parent="#accordionSidebar">
   <!-- Name Page -->
   <div style="margin-right: 100px; margin-left: 100px;">
 
-      <?php  echo "<form  method='POST' action='VPenjualan2.php'>" ?>
+      <?php  echo "<form  method='POST' action='VLKeuangan2'>" ?>
       <div>
         <div align="left" style="margin-left: 20px;"> 
           <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
