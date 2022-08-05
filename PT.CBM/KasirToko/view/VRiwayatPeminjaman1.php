@@ -340,25 +340,7 @@ else{
                <input type="date" id="tanggal1" name="tanggal_kembali" required="">
              </div>
            </div>
-             <script>
-               $(document) .ready(function(){
-
-                var dtToday = new Date();
-
-                var month = dtToday.getMonth() +1;
-                var day = dtToday.getDate();
-                var year = dtToday.getFullYear();
-                if (month < 10)
-                  month = '0' + month.toString();
-                if (day < 10)
-                  day = '0' + day.toString();
-
-                var maxDate = year + '-' + month + '-' +day;
-
-                $('#tanggal1').attr('min',maxDate);
-
-              })
-            </script>       
+                 
             <div class="col-md-6">
             <label>QTY Kembali</label>
             <input type="number" name="qty_kembali">
