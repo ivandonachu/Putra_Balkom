@@ -222,7 +222,7 @@ if (!isset($data_perbaikan_ken2['total_perbaikan_ken2'])) {
     $total_perbaikan_ken2 = 0;
 }
 //biaya pernbaikan toko
-$table1777 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_perbaikan_ken3 FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' ");
+$table1777 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_perbaikan_ken3 FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-595'");
 $data_perbaikan_ken3 = mysqli_fetch_array($table1777);
 $total_perbaikan_ken3 = $data_perbaikan_ken3['total_perbaikan_ken3'];
 if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
@@ -426,7 +426,7 @@ if (!isset($data_perbaikan_ken2['total_perbaikan_ken2'])) {
     $total_perbaikan_ken2 = 0;
 }
 //biaya pernbaikan toko
-$table1777 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_perbaikan_ken3 FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+$table1777 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_perbaikan_ken3 FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-595'");
 $data_perbaikan_ken3 = mysqli_fetch_array($table1777);
 $total_perbaikan_ken3 = $data_perbaikan_ken3['total_perbaikan_ken3'];
 if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
