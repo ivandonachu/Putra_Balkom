@@ -35,7 +35,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-550' AND referensi = 'PBR' OR  tanggal = '$tanggal_awal' AND b.kode_akun = '5-550' AND referensi = 'PB' ");
 }
 else{
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-550' AND referensi = 'PBR' OR  tanggal = '$tanggal_awal' AND b.kode_akun = '5-550' AND referensi = 'PB' ");
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-550' AND referensi = 'PBR' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-550' AND referensi = 'PB' ");
 }
 
  ?>
