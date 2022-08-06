@@ -400,7 +400,7 @@ $total_biaya_pemasaran = $total_biaya_pemasaran_tk;
 
 //BIAYA USAHA LAINNYATK
 //kasir
-$table16 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_usaha_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' AND referensi = 'PB'");
+$table16 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_usaha_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' AND referensi = 'PB' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' AND referensi = 'PBR' ");
 $data_biaya_usaha_tk = mysqli_fetch_array($table16);
 $total_biaya_usaha_tk = $data_biaya_usaha_tk['total_biaya_usaha_tk'];
 if (!isset($data_total_biaya_usaha_tk['total_biaya_usaha_tk'])) {
