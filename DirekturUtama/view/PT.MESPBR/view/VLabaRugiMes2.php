@@ -222,7 +222,7 @@ if (!isset($data_perbaikan_ken2['total_perbaikan_ken2'])) {
     $total_perbaikan_ken2 = 0;
 }
 //biaya pernbaikan toko
-$table1777 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_perbaikan_ken3 FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-595' AND referensi = 'MES'");
+$table1777 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_perbaikan_ken3 FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-595' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND kode_akun = '5-595' AND referensi = 'ME'");
 $data_perbaikan_ken3 = mysqli_fetch_array($table1777);
 $total_perbaikan_ken3 = $data_perbaikan_ken3['total_perbaikan_ken3'];
 if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
@@ -426,7 +426,7 @@ if (!isset($data_perbaikan_ken2['total_perbaikan_ken2'])) {
     $total_perbaikan_ken2 = 0;
 }
 //biaya pernbaikan toko
-$table1777 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_perbaikan_ken3 FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-595' AND referensi = 'MES'");
+$table1777 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_perbaikan_ken3 FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-595' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-595' AND referensi = 'ME'");
 $data_perbaikan_ken3 = mysqli_fetch_array($table1777);
 $total_perbaikan_ken3 = $data_perbaikan_ken3['total_perbaikan_ken3'];
 if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
@@ -878,7 +878,7 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left">Alat Tulis Kantor</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_pengeluaran_atk); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRATKTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-530</td>
@@ -892,14 +892,14 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left">Biaya Kantor</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_pengeluaran_kantor); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRBiayaKantor?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRBiayaKantorTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-550</td>
                                     <td class="text-left">Listrik & Telepon</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_pengeluaran_listrik); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRListrikTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-560</td>
@@ -920,14 +920,14 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left">Biaya Penjualan & Pemasaran</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_biaya_pemasaran); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRPemasaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRPemasaranTF?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-590</td>
                                     <td class="text-left">Biaya Usaha Lainnya</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_biaya_usaha); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRUsahaLainnya?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRUsahaLainnyaTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-595</td>
