@@ -388,8 +388,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
 
 
 
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -490,6 +490,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
 
 
 </div>
+  </div>
 
 </div>
 
