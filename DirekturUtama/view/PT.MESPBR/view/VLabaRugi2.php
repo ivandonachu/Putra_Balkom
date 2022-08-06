@@ -439,6 +439,8 @@ $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $tota
                             $total_perbaikan_kendaraan;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
+
+
 }
 
 
