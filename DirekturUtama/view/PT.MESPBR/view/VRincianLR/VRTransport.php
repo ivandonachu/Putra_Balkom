@@ -31,10 +31,10 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-530' AND referensi = 'PBR' ");
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-530' AND referensi = 'PBR' OR tanggal = '$tanggal_awal' AND b.kode_akun = '5-530' AND referensi = 'PB' ");
 }
 else{
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-530' AND referensi = 'PBR'");
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-530' AND referensi = 'PBR' AND tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-530' AND referensi = 'PB'");
 }
 
  ?>

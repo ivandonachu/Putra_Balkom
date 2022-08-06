@@ -31,10 +31,10 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR'");
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR' OR tanggal = '$tanggal_awal' AND referensi = 'PB'");
 }
 else{
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR'");
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PB'");
 }
 
 
