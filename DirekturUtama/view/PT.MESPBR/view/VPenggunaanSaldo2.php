@@ -353,7 +353,8 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -484,6 +485,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
 <br>
