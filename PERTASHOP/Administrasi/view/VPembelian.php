@@ -324,16 +324,7 @@ else{
 
         <div class="col-md-6">
           <label>QTY</label>
-          <select id="qty" name="qty" class="form-control">
-            <option>1000</option>
-            <option>2000</option>
-            <option>3000</option>
-            <option>4000</option>
-            <option>5000</option>
-            <option>6000</option>
-            <option>7000</option>
-            <option>8000</option>
-          </select>
+          <input class="form-control form-control-sm" type="float" id="qty" name="qty" required="">
         </div>       
         
         <div class="col-md-6">
@@ -605,15 +596,7 @@ else{
 
             <div class="col-md-6">
               <label>QTY</label>
-              <select id="qty" name="qty" class="form-control">
-                <?php
-                $dataSelect = $data['qty']; ?>
-                <option <?php echo ($dataSelect == '1000') ? "selected" : "" ?>>1000</option>
-                <option <?php echo ($dataSelect == '2000') ? "selected" : "" ?>>2000</option>
-                <option <?php echo ($dataSelect == '3000') ? "selected" : "" ?>>3000</option>
-                <option <?php echo ($dataSelect == '4000') ? "selected" : "" ?>>4000</option>
-                <option <?php echo ($dataSelect == '5000') ? "selected" : "" ?>>5000</option>
-              </select>
+              <input  class="form-control form-control-sm" type="float" id="qty" name="qty" value="<?php echo $qty; ?>">
             </div>
             </div>
      
@@ -718,6 +701,7 @@ else{
         <input type="hidden" name="no_pembelian" value="<?php echo $no_pembelian;?>">
         <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+        <input type="hidden" name="lokasi" value="<?php echo $lokasi;?>">
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             
         </div>

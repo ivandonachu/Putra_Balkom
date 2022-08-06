@@ -21,6 +21,7 @@ exit;
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_pembelian = $_POST['no_pembelian'];
+$lokasi = $_POST['lokasi'];
 
 
 
