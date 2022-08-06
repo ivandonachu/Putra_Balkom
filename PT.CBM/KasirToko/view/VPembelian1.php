@@ -21,10 +21,33 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+} elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+}
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
 
-$table = mysqli_query($koneksi, "SELECT * FROM riwayat_pembelian a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
-WHERE referensi = 'TK' ");
-$table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+  if ($tanggal_awal == $tanggal_akhir) {
+    
+    $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pembelian a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
+    WHERE referensi = 'TK' AND tanggal = '$tanggal_awal'");
+    $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+   
+ 
+  } else {
+   
+    $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pembelian a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
+    WHERE referensi = 'TK' AND tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+    
+  }
+
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -158,7 +181,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VPembelianr'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pembelian Kasir Toko</h5></a>"; ?>
+  <?php echo "<a href='VPembelian1'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pembelian Kasir Toko</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -214,7 +237,22 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+  <?php echo "<form  method='POST' action='VPembelian1' style='margin-bottom: 15px;'>" ?>
+            <div>
+              <div align="left" style="margin-left: 20px;">
+                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                <span>-</span>
+                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
+              </div>
+            </div>
+            </form>
 
+            <div class="row">
+              <div class="col-md-6">
+                <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+              </div>
+            </div>
 
   <div class="row">
     <div class="col-md-10">

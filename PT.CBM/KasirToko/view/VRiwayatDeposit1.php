@@ -261,6 +261,7 @@ else{
           <th>REF</th>
           <th>Nama</th>
           <th>Barang</th>
+          <th>QTY Deposit Di Kirim</th>
           <th>QTY Deposit</th>
           <th>Status Deposit</th>
           <th>Keterangan</th>
@@ -278,6 +279,7 @@ else{
           $nama = $data['nama'];
           $nama_baja = $data['nama_baja'];
           $qty = $data['qty'];
+          $qty_deposit_kirim = $data['qty_deposit_dikirim'];
           $status_deposit = $data['status_deposit'];
           $keterangan = $data['keterangan'];
           $file_bukti = $data['file_bukti'];
@@ -289,6 +291,7 @@ else{
           <td style='font-size: 14px'>$referensi</td>
           <td style='font-size: 14px'>$nama</td>
           <td style='font-size: 14px'>$nama_baja</td>
+          <td style='font-size: 14px'>$qty_deposit_kirim</td>
           <td style='font-size: 14px'>$qty</td>
           <td style='font-size: 14px'>$status_deposit</td>
           <td style='font-size: 14px'>$keterangan</td>
@@ -324,17 +327,21 @@ else{
                 <form action="../proses/end_deposit" method="POST">
 
                   <div class="row">
-                  <div class="col-md-12"> 
+                  <div class="col-md-6"> 
 
                       <input type="hidden" name="no_laporan" value="<?php echo $dataE['no_transaksi'];?>">
                       <input type="hidden" name="no_deposit" value="<?php echo $dataH['no_deposit'];?>">
                       <div>
                         <label>Tanggal</label>
-                        <input type="date" id="tanggal" name="tanggal_selesai" required="">
+                        <input type="date" id="tanggal" name="tanggal_selesai" required="" class="form-control">
                       </div>
-                  
+                      </div>  
+                      <div class="col-md-6">
+                        <label> QTY Deposit Dikirim</label>
+                        <input type="number" name="qty_deposit_dikirim" class="form-control">
+                      </div>
                    
-                  </div>     
+                     
                 </div>
 
                 <div class="modal-footer">

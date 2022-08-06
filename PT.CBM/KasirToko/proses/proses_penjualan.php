@@ -1604,7 +1604,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1630,7 +1630,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1656,7 +1656,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Hutang Dagang
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -1680,7 +1680,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1705,7 +1705,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1730,7 +1730,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1755,7 +1755,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1780,7 +1780,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1805,7 +1805,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1830,7 +1830,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1855,7 +1855,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1880,7 +1880,7 @@ if ($referensi == 'TK') {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -2921,7 +2921,7 @@ if ($referensi == "GD") {
 
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'eblum','$no_transaksi',0,'$status_piutang')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'','$no_transaksi',0,'$status_piutang')");
 
 
 			if ($query1!= "") {
@@ -3309,7 +3309,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3335,7 +3335,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3361,7 +3361,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -3385,7 +3385,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3410,7 +3410,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3435,7 +3435,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3460,7 +3460,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3485,8 +3485,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
-
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -3510,7 +3509,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3535,7 +3534,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3560,7 +3559,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3585,7 +3584,7 @@ if ($referensi == "GD") {
 			$query7 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal','$no_transaksi','1','Masuk','$jumlah')");
 		//Deposit
 			$status_deposit = 'Belum Diambil'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi','$status_deposit')");
+			$query6 = mysqli_query($koneksi,"INSERT INTO riwayat_deposit VALUES ('',00-00-0000,'$no_transaksi',0,'$status_deposit')");
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
