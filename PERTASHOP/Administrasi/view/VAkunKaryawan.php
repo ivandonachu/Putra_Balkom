@@ -268,9 +268,9 @@ $table = mysqli_query($koneksi, "SELECT * FROM akun_perta a INNER JOIN pertashop
                     while ($data2 = mysqli_fetch_array($result)){
                       $data_pertashop = $data2['kode_perta'];
 
-                      if (mysqli_num_rows($result2) == 0) {
+     
                         echo "<option> $data_pertashop </option> ";
-                      }
+                      
                     }
                     ?>
                   </select>         
@@ -400,10 +400,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM akun_perta a INNER JOIN pertashop
                     while ($data2 = mysqli_fetch_array($result)){
                       $data_pertashop = $data2['kode_perta'];
 
-                      if (mysqli_num_rows($result2) == 0) {
+            
                         
                         echo "<option" ?> <?php echo ($dataSelect == $data_pertashop) ? "selected" : "" ?>> <?php echo $data_pertashop; ?> <?php echo "</option>" ;
-                      }
+                      
                     }
                     ?>
                   </select>         
@@ -475,10 +475,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM akun_perta a INNER JOIN pertashop
                     while ($data2 = mysqli_fetch_array($result)){
                       $data_pertashop = $data2['kode_perta'];
 
-                      if (mysqli_num_rows($result2) == 0) {
+               
                         
                         echo "<option" ?> <?php echo ($dataSelect == $data_pertashop) ? "selected" : "" ?>> <?php echo $data_pertashop; ?> <?php echo "</option>" ;
-                      }
+                      
                     }
                     ?>
                   </select>         
