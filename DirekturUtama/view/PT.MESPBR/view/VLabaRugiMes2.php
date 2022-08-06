@@ -933,7 +933,7 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td>5-595</td>
                                     <td class="text-left">Biaya Perbaikan Kendaraan</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_perbaikan_kendaraan); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLRMES/VRPerbaikanKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr style="background-color:    #F0F8FF; ">
