@@ -39,7 +39,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
 }
 else{
 
-$table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.nama_akun != 'Biaya Penjualan & Pemasaran'");
+$table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.nama_akun != 'Biaya Penjualan & Pemasaran' ");
 
 }
 

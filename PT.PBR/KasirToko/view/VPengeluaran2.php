@@ -34,12 +34,12 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
   
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.nama_akun != 'Biaya Penjualan & Pemasaran'");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.nama_akun != 'Biaya Penjualan & Pemasaran'");
 
 }
 
