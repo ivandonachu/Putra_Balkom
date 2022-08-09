@@ -288,8 +288,18 @@ data-parent="#accordionSidebar">
 
               <label>Tanggal</label>
               <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
+               <input type="date" id="tanggal" name="tanggal" required="" class="form-control">
              </div>
+               
+
+          </div>
+          <div class="col-md-6">
+
+          <label>Referensi</label>
+          <select id="referensi" name="referensi" class="form-control">
+            <option>PBR</option>
+            <option>MES</option>
+          </select>
                
 
           </div>
@@ -397,6 +407,7 @@ data-parent="#accordionSidebar">
       <th>Tanggal Bayar</th>
       <th>Akun</th>
       <th>Nama Karyawan</th>
+      <th>REF</th>
       <th>Jumlah Bon</th>
       <th>Jumlah Bayar</th>
       <th>Status Hutang</th>
@@ -420,6 +431,7 @@ data-parent="#accordionSidebar">
       $tanggal_bayar = $data['tanggal_bayar'];
       $jumlah_bayar = $data['jumlah_bayar'];
       $nama_akun = $data['nama_akun'];
+      $referensi = $data['referensi'];
       $nama_karyawan = $data['nama_karyawan'];
       $keterangan = $data['keterangan'];
       $jumlah_bon = $data['jumlah_bon'];
@@ -431,6 +443,7 @@ data-parent="#accordionSidebar">
       <td style='font-size: 14px'>$tanggal_bayar</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$nama_karyawan</td>
+      <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bon); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bayar); ?> <?php echo "</td>
       <td style='font-size: 14px'>$status_hutang</td>

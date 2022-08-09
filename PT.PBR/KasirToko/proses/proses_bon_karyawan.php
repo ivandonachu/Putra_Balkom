@@ -23,6 +23,7 @@ $tanggal = $_POST['tanggal'];
 $jumlah = $_POST['jumlah'];
 $keterangan = $_POST['keterangan'];
 $pembayaran = $_POST['pembayaran'];
+$referensi = $_POST['referensi'];
 $nama_file = $_FILES['file']['name'];
 $kode_akun = '5-510';
 $status_bon = 'Belum Bayar';
@@ -66,7 +67,7 @@ else if ( $nama_file != "" ) {
 
 if ($pembayaran == 'Cash') {
 	//riwayat pengeluran
-	$query = mysqli_query($koneksi,"INSERT INTO bon_karyawan VALUES ('','$tanggal',0000-00-00,'$kode_akun','$id_karyawan','$jumlah',0,'$status_bon','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO bon_karyawan VALUES ('','$tanggal',0000-00-00,'$kode_akun','$id_karyawan','$referensi','$jumlah',0,'$status_bon','$keterangan','$file')");
 	//aktivitas rekening
 	$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
 	$data_rekening = mysqli_fetch_array($akses_rekening);
