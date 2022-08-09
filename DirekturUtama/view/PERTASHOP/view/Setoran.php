@@ -224,7 +224,7 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-  <?php  echo "<form  method='POST' action='VSetoran'>" ?>
+  <?php  echo "<form  method='POST' action='Setoran'>" ?>
   <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -233,7 +233,7 @@ else{
         <select id="lokasi" name="lokasi"s>
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
+            $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop");   
 
             while ($data2 = mysqli_fetch_array($result)){
               $nama_driver = $data2['lokasi'];
@@ -272,7 +272,7 @@ else{
       <th>No Rek</th>
       <th>Jumlah</th>
       <th>file</th>
-      <th>Aksi</th>
+
     </tr>
   </thead>
   <tbody>
@@ -307,6 +307,7 @@ else{
      <td style='font-size: 14px'>$kode_perta</td>
      <td style='font-size: 14px'>$lokasi</td>
      <td style='font-size: 14px'>$penyetor</td>
+     <td style='font-size: 14px'>$nama_barang</td>
      <td style='font-size: 14px'>$no_rekening</td>
      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
      <td style='font-size: 14px'>"; ?> <a download="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>

@@ -73,14 +73,14 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   //ngecor Pertamax
 
-  $tablex1 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $tablex1 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi' ");
   
   $datax1 = mysqli_fetch_array($tablex1);
   $total_ngecor_max = $datax1['total_cor'];
 
 
   //ngecor Dexlite
-  $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND lokasi_cor = '$lokasi' ");
 
   $datax2 = mysqli_fetch_array($tablex2);
   $total_ngecor_dex = $datax1['total_cor'];
@@ -215,11 +215,12 @@ else{
     $harga = $data2['harga'];
     $dexlite_terjual = $dexlite_terjual + $qty;
     $total_dexlite = $total_dexlite + ($qty * $harga);
-    
+  }
    //ngecor Pertamax
    $tablex1 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor, SUM(jumlah) AS qty_cor FROM ngecor  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi' ");
   
    $datax1 = mysqli_fetch_array($tablex1);
+   
    $total_ngecor_max = $datax1['total_cor'];
    $qty_ngecor_max = $datax1['qty_cor'];
  
@@ -263,7 +264,7 @@ else{
    if (!isset($datax32['jumlah_setoran'])) {
    $jumlah_setoran = 0;
    }
-  }
+  
   //dividen pertamax
   $table100 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
   $data100 = mysqli_fetch_array($table100);
