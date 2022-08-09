@@ -107,7 +107,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM karyawan");
                         <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
                         <?php } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Bulanan Karyawan</a>
                     </div>
                 </div>
             </li>
