@@ -1,6 +1,6 @@
 <?php
 session_start();
-include'koneksi.php';
+include 'koneksi.php';
 if(!isset($_SESSION["login"])){
   header("Location: logout.php");
   exit;
@@ -32,9 +32,11 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR' OR tanggal = '$tanggal_awal' AND referensi = 'PB'");
+  $table2 = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-580' AND referensi = 'PBR' OR tanggal = '$tanggal_awal' AND b.kode_akun = '5-580' AND referensi = 'PB' ");
 }
 else{
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PB'");
+  $table2 = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-580' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-580' AND referensi = 'PB' ");
 }
 
 
@@ -237,6 +239,7 @@ else{
 <br>
    
 <!-- Tabel -->    
+<h4 align = 'center'>Pengeluaran Pengiriman ke Pangkalan</h4>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
@@ -285,6 +288,52 @@ else{
       "; ?>
 
     <?php echo  " </td>  </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+<br>
+<br>
+<!-- Tabel -->    
+<h4 align = 'center'>Pengeluaran Penunjang Pemasaran ke Pangkalan</h4>
+<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>REF</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Jumlah Pengeluaran</th>
+      <th>File</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+      $no_transaksi = $data['no_pengeluaran'];
+      $tanggal =$data['tanggal'];
+      $referensi = $data['referensi'];
+      $nama_akun = $data['nama_akun'];
+      $keterangan = $data['keterangan'];
+      $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
+      $file_bukti = $data['file_bukti'];
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_transaksi</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_pengeluaran); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+      
+
+    <?php echo  " </td> </tr>";
   }
   ?>
 
@@ -371,6 +420,17 @@ aria-hidden="true">
     var table = $('#example').DataTable( {
       lengthChange: false,
       buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
     } );
 
     table.buttons().container()

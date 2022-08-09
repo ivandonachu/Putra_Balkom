@@ -40,13 +40,13 @@ if (!isset($data_total_pendapatan_mes)) {
 }
 
 
-$table3_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
+$table3_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' ");
 $data_bon_mes = mysqli_fetch_array($table3_mes);
 $data_total_bon_mes = $data_bon_mes['total_bon'];
 if (!isset($data_total_bon_mes)) {
     $data_total_bon_mes = 0;
 }
-$table2_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'ME' ");
+$table2_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal'  AND referensi = 'MES' OR tanggal = '$tanggal_awal'  AND referensi = 'ME' ");
 $data_pengeluaran_mes = mysqli_fetch_array($table2_mes);
 $data_total_pengeluaran_mes = $data_pengeluaran_mes['total_pengeluaran'];
 if (!isset($data_total_pengeluaran_mes)) {
@@ -65,13 +65,13 @@ if (!isset($data_total_pendapatan_pbr)) {
 }
 
 
-$table3_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
+$table3_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal' AND referensi = 'MES'");
 $data_bon_pbr = mysqli_fetch_array($table3_pbr);
 $data_total_bon_pbr = $data_bon_pbr['total_bon'];
 if (!isset($data_total_bon_pbr)) {
     $data_total_bon_pbr = 0;
 }
-$table2_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'PBR' OR tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'PB' ");
+$table2_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal'  AND referensi = 'PBR' OR tanggal = '$tanggal_awal'  AND referensi = 'PB' ");
 $data_pengeluaran_pbr = mysqli_fetch_array($table2_pbr);
 $data_total_pengeluaran_pbr = $data_pengeluaran_pbr['total_pengeluaran'];
 if (!isset($data_total_pengeluaran_pbr)) {
@@ -94,13 +94,13 @@ if (!isset($data_total_pendapatan_mes)) {
 }
 
 
-$table3_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$table3_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'");
 $data_bon_mes = mysqli_fetch_array($table3_mes);
 $data_total_bon_mes = $data_bon_mes['total_bon'];
 if (!isset($data_total_bon_mes)) {
     $data_total_bon_mes = 0;
 }
-$table2_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun != '5-580' AND referensi = 'ME' ");
+$table2_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND referensi = 'ME' ");
 $data_pengeluaran_mes = mysqli_fetch_array($table2_mes);
 $data_total_pengeluaran_mes = $data_pengeluaran_mes['total_pengeluaran'];
 if (!isset($data_total_pengeluaran_mes)) {
@@ -119,13 +119,13 @@ if (!isset($data_total_pendapatan_pbr)) {
 }
 
 
-$table3_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$table3_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'");
 $data_bon_pbr = mysqli_fetch_array($table3_pbr);
 $data_total_bon_pbr = $data_bon_pbr['total_bon'];
 if (!isset($data_total_bon_pbr)) {
     $data_total_bon_pbr = 0;
 }
-$table2_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' AND referensi = 'PB' ");
+$table2_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND referensi = 'PB' ");
 $data_pengeluaran_pbr = mysqli_fetch_array($table2_pbr);
 $data_total_pengeluaran_pbr = $data_pengeluaran_pbr['total_pengeluaran'];
 if (!isset($data_total_pengeluaran_pbr)) {

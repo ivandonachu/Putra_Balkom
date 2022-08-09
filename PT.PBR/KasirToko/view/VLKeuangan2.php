@@ -21,7 +21,6 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -43,13 +42,13 @@ if (!isset($data_total_pendapatan_mes)) {
 }
 
 
-$table3_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
+$table3_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' ");
 $data_bon_mes = mysqli_fetch_array($table3_mes);
 $data_total_bon_mes = $data_bon_mes['total_bon'];
 if (!isset($data_total_bon_mes)) {
     $data_total_bon_mes = 0;
 }
-$table2_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'ME' ");
+$table2_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal'  AND referensi = 'MES' OR tanggal = '$tanggal_awal'  AND referensi = 'ME' ");
 $data_pengeluaran_mes = mysqli_fetch_array($table2_mes);
 $data_total_pengeluaran_mes = $data_pengeluaran_mes['total_pengeluaran'];
 if (!isset($data_total_pengeluaran_mes)) {
@@ -68,13 +67,13 @@ if (!isset($data_total_pendapatan_pbr)) {
 }
 
 
-$table3_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
+$table3_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal' AND referensi = 'MES'");
 $data_bon_pbr = mysqli_fetch_array($table3_pbr);
 $data_total_bon_pbr = $data_bon_pbr['total_bon'];
 if (!isset($data_total_bon_pbr)) {
     $data_total_bon_pbr = 0;
 }
-$table2_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'PBR' OR tanggal = '$tanggal_awal' AND kode_akun != '5-580' AND referensi = 'PB' ");
+$table2_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal'  AND referensi = 'PBR' OR tanggal = '$tanggal_awal'  AND referensi = 'PB' ");
 $data_pengeluaran_pbr = mysqli_fetch_array($table2_pbr);
 $data_total_pengeluaran_pbr = $data_pengeluaran_pbr['total_pengeluaran'];
 if (!isset($data_total_pengeluaran_pbr)) {
@@ -97,13 +96,13 @@ if (!isset($data_total_pendapatan_mes)) {
 }
 
 
-$table3_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$table3_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'");
 $data_bon_mes = mysqli_fetch_array($table3_mes);
 $data_total_bon_mes = $data_bon_mes['total_bon'];
 if (!isset($data_total_bon_mes)) {
     $data_total_bon_mes = 0;
 }
-$table2_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun != '5-580' AND referensi = 'ME' ");
+$table2_mes = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND referensi = 'ME' ");
 $data_pengeluaran_mes = mysqli_fetch_array($table2_mes);
 $data_total_pengeluaran_mes = $data_pengeluaran_mes['total_pengeluaran'];
 if (!isset($data_total_pengeluaran_mes)) {
@@ -122,13 +121,13 @@ if (!isset($data_total_pendapatan_pbr)) {
 }
 
 
-$table3_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$table3_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'");
 $data_bon_pbr = mysqli_fetch_array($table3_pbr);
 $data_total_bon_pbr = $data_bon_pbr['total_bon'];
 if (!isset($data_total_bon_pbr)) {
     $data_total_bon_pbr = 0;
 }
-$table2_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' AND referensi = 'PB' ");
+$table2_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND referensi = 'PB' ");
 $data_pengeluaran_pbr = mysqli_fetch_array($table2_pbr);
 $data_total_pengeluaran_pbr = $data_pengeluaran_pbr['total_pengeluaran'];
 if (!isset($data_total_pengeluaran_pbr)) {
@@ -178,8 +177,8 @@ $jumlah_bersih_pbr = $data_total_pendapatan_pbr - $data_total_pengeluaran_pbr;
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+       <!-- Sidebar -->
+       <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
@@ -485,7 +484,7 @@ data-parent="#accordionSidebar">
             <?php 
                 if ($tanggal_awal == $tanggal_akhir) {
                     
-                    $kasir =  mysqli_query($koneksicbm, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
+                    $kasir =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND kasir = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
                       echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
                          }
@@ -496,7 +495,7 @@ data-parent="#accordionSidebar">
                 }
                 else{
                    
-                    $kasir3  =  mysqli_query($koneksicbm, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                    $kasir3  =  mysqli_query($koneksi, "SELECT kasir FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
                     $x=0;
                     $y=0;
                     $z=0;
@@ -540,7 +539,7 @@ data-parent="#accordionSidebar">
           <?php 
                 if ($tanggal_awal == $tanggal_akhir) {
                     
-                    $kasir =  mysqli_query($koneksicbm, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
+                    $kasir =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND manager = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
                       echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
                          }
@@ -551,7 +550,7 @@ data-parent="#accordionSidebar">
                 }
                 else{
                    
-                    $kasir3  =  mysqli_query($koneksicbm, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                    $kasir3  =  mysqli_query($koneksi, "SELECT manager FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
                     $x=0;
                     $y=0;
                     $z=0;
@@ -594,7 +593,7 @@ data-parent="#accordionSidebar">
           <?php 
                 if ($tanggal_awal == $tanggal_akhir) {
                     
-                    $kasir =  mysqli_query($koneksicbm, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
+                    $kasir =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal = '$tanggal_awal'AND direktur = '1' ");
                 if ( mysqli_num_rows($kasir) === 1 ) {
                       echo "<td align='center'> <img  style='height: 55px; width: 190px;'' src=''> </td>";
                          }
@@ -605,7 +604,7 @@ data-parent="#accordionSidebar">
                 }
                 else{
                    
-                    $kasir3  =  mysqli_query($koneksicbm, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+                    $kasir3  =  mysqli_query($koneksi, "SELECT direktur FROM konfirmasi_laporan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
                     $x=0;
                     $y=0;
                     $z=0;

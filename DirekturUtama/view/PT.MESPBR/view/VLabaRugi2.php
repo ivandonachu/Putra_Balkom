@@ -182,14 +182,24 @@ $total_pengeluaran_listrik =  $total_pengeluaran_listrik_tk;
 
 //Biaya Penjualan dan Pemasaran
 //pemasaran kebnerangkatan
-$table15 = mysqli_query($koneksipbr, "SELECT SUM(uang_jalan) AS total_pemasaran_tk FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal'AND referensi = 'PBR'   ");
+$table15 = mysqli_query($koneksipbr, "SELECT SUM(uang_jalan) AS total_pemasaran_tk FROM riwayat_keberangkatan WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR'");
 $data_pemasaran_tk = mysqli_fetch_array($table15);
 $total_biaya_pemasaran_tk = $data_pemasaran_tk['total_pemasaran_tk'];
 if (!isset($data_pemasaran_tk['total_pemasaran_tk'])) {
     $total_biaya_pemasaran_tk = 0;
 }
 
-$total_biaya_pemasaran =  $total_biaya_pemasaran_tk;
+
+//PEMASARAN PENGELUARAN
+$table15a = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pemasaran_kasir FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-580' AND referensi = 'PBR' OR tanggal = '$tanggal_awal' AND kode_akun = '5-580' AND referensi = 'PB'");
+$data_pemasaran_kasir = mysqli_fetch_array($table15a);
+$total_biaya_pemasaran_kasir = $data_pemasaran_kasir['total_pemasaran_kasir'];
+if (!isset($data_pemasaran_kasir['total_pemasaran_kasir'])) {
+    $total_biaya_pemasaran_kasir = 0;
+}
+
+
+$total_biaya_pemasaran = $total_biaya_pemasaran_tk + $total_biaya_pemasaran_kasir;
 
 
 
@@ -393,7 +403,18 @@ if (!isset($data_pemasaran_tk['total_pemasaran_tk'])) {
     $total_biaya_pemasaran_tk = 0;
 }
 
-$total_biaya_pemasaran = $total_biaya_pemasaran_tk;
+
+//PEMASARAN PENGELUARAN
+$table15a = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pemasaran_kasir FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-580' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-580' AND referensi = 'PB'");
+$data_pemasaran_kasir = mysqli_fetch_array($table15a);
+$total_biaya_pemasaran_kasir = $data_pemasaran_kasir['total_pemasaran_kasir'];
+if (!isset($data_pemasaran_kasir['total_pemasaran_kasir'])) {
+    $total_biaya_pemasaran_kasir = 0;
+}
+
+
+$total_biaya_pemasaran = $total_biaya_pemasaran_tk + $total_biaya_pemasaran_kasir;
+
 
 
 

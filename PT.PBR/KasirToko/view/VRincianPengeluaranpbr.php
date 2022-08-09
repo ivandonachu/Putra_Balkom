@@ -6,17 +6,20 @@ if(!isset($_SESSION["login"])){
   exit;
 }
 $id=$_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
+$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$nama = $data1['nama_pemilik'];
+$id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Direktur Utama') {
+if ($jabatan_valid == 'Kasir') {
 
 }
 
-else{ header("Location: logout.php");
+else{  header("Location: logout.php");
 exit;
 }
+$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
+$data = mysqli_fetch_array($result);
+$nama = $data['nama_karyawan'];
 
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
@@ -30,12 +33,13 @@ elseif (isset($_POST['tanggal1'])) {
 
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR' AND b.kode_akun != '5-580' OR tanggal = '$tanggal_awal' AND referensi = 'PB' AND b.kode_akun != '5-580'");
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR'  OR tanggal = '$tanggal_awal' AND referensi = 'PB' ");
+  $table2 = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun  WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' ");
 
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' AND b.kode_akun != '5-580' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PB' AND b.kode_akun != '5-580'");
-
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PB'");
+  $table2 = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'");
 }
 
 
@@ -240,7 +244,8 @@ data-parent="#accordionSidebar">
     <br>
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -287,7 +292,7 @@ data-parent="#accordionSidebar">
 
 </tbody>
 </table>
-
+</div>
 
 
 </div>

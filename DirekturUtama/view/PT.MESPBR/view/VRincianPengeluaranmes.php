@@ -30,11 +30,13 @@ elseif (isset($_POST['tanggal1'])) {
 
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' AND b.kode_akun != '5-580' OR tanggal = '$tanggal_awal' AND referensi = 'ME' AND b.kode_akun != '5-580' ");
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND referensi = 'ME'");
+  $table2 = mysqli_query($koneksipbr, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun  WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' ");
 
 }
 else{
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES' AND b.kode_akun != '5-580' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'ME' AND b.kode_akun != '5-580'");
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'  OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'ME");
+  $table2 = mysqli_query($koneksipbr, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'");
 
 }
 
@@ -287,6 +289,49 @@ else{
 
 </div>
 
+<div style="overflow-x: auto" align = 'center' >
+  <table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Akun</th>
+      <th>Nama Karyawan</th>
+      <th>Jumlah Bon</th>
+      <th>Keterangan</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+    <?php while($data = mysqli_fetch_array($table2)){
+      $no_bon = $data['no_bon'];
+      $tanggal =$data['tanggal'];
+      $nama_akun = $data['nama_akun'];
+      $nama_karyawan = $data['nama_karyawan'];
+      $keterangan = $data['keterangan'];
+      $jumlah_bon = $data['jumlah_bon'];
+      $file_bukti = $data['file_bukti'];
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_bon </td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$nama_karyawan</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bon); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$keterangan</td>
+        <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     
+
+   </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+</div>
 </div>
 
 </div>

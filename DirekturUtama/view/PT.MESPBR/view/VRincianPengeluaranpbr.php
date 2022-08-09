@@ -30,12 +30,13 @@ elseif (isset($_POST['tanggal1'])) {
 
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR' AND b.kode_akun != '5-580' OR tanggal = '$tanggal_awal' AND referensi = 'PB' AND b.kode_akun != '5-580'");
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR'  OR tanggal = '$tanggal_awal' AND referensi = 'PB' ");
+  $table2 = mysqli_query($koneksipbr, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun  WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' ");
 
 }
 else{
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' AND b.kode_akun != '5-580' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PB' AND b.kode_akun != '5-580'");
-
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PB'");
+  $table2 = mysqli_query($koneksipbr, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'");
 }
 
 
