@@ -13,11 +13,9 @@ $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
 
 }
-
 else{  header("Location: logout.php");
 exit;
 }
-
 
 
 if (isset($_GET['tanggal1'])) {
@@ -40,6 +38,13 @@ if (!isset($data_total_pendapatan)) {
     $data_total_pendapatan = 0;
 }
 
+$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar) AS total_piutang FROM piutang_dagang WHERE tanggal_bayar = '$tanggal_awal' AND pembayaran_piutang = 'Cash'  ");
+$data_piutang = mysqli_fetch_array($table4);
+$data_total_piutang= $data_piutang['total_piutang'];
+if (!isset($data_total_piutang)) {
+    $data_total_piutang = 0;
+}
+
 
 $table3 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
 $data_bon = mysqli_fetch_array($table3);
@@ -56,9 +61,10 @@ if (!isset($data_total_pengeluaran)) {
 
 $data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
 
-$jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
+$jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_pengeluaran;
 
 }
+
 else{
 
 // TOTAL P[ENDAPATAN
@@ -68,7 +74,12 @@ $data_total_pendapatan = $data_pendapatan['total_pendapatan'];
 if (!isset($data_total_pendapatan)) {
     $data_total_pendapatan = 0;
 }
-
+$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar) AS total_piutang FROM piutang_dagang WHERE tanggal_bayar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran_piutang = 'Cash'  ");
+$data_piutang = mysqli_fetch_array($table4);
+$data_total_piutang= $data_piutang['total_piutang'];
+if (!isset($data_total_piutang)) {
+    $data_total_piutang = 0;
+}
 
 $table3 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 $data_bon = mysqli_fetch_array($table3);
@@ -88,9 +99,8 @@ if (!isset($data_total_pengeluaran)) {
 
 $data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
 
-$jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
+$jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_pengeluaran;
 }
-
 
 
 
@@ -107,7 +117,7 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
     <meta name="description" content="">
     <meta name="author" content="">
 
-  <title>Laporan Keuangan CBM</title>
+    <title>Laporan Keuangan CBM</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -130,89 +140,90 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+       <!-- Sidebar -->
+       <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
-            </a>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-           <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsPTCBM">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsPTCBM">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu PTCBM
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-                    </div>
-                </div>
-            </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
-                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
-                    </div>
-                </div>
-            </li>
+   <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu PTCBM
+    </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+        </div>
+    </div>
+</li>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
+             <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+        </div>
+    </div>
+</li>
 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-                  15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Daftar SDM</span>
-                </a>
-                <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Daftar Aset</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Daftar Dokumen</a>
-                    </div>
-                </div>
-            </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+      15  aria-expanded="true" aria-controls="collapseTwo2">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Daftar SDM</span>
+    </a>
+    <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VAset">Daftar Aset</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Daftar Dokumen</a>
+        </div>
+    </div>
+</li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -308,23 +319,24 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
 </nav>
 <!-- End of Topbar -->
 <div class="container" style="color : black;">
-     <?php  echo "<form  method='POST' action='VLPenjualan2' style='margin-bottom: 15px;'>" ?>
-    <div>
-      <div align="left" style="margin-left: 20px;"> 
-        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-        <span>-</span>
-        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+<?php  echo "<form  method='POST' action='VLKeuangan2'>" ?>
+      <div>
+        <div align="left" style="margin-left: 20px;"> 
+          <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+          <span>-</span>
+          <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+          <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
       </div>
+  </div>
+</form>
+<br>
+<br>
+    <div class="row">
+      
     </div>
-  </form>
-
- <br>
- <br>
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-     <br>
-     <br>
-     <br>
+    <div class="row">
+    	  <?php echo "<a href='VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    </div>
     <div class="row">
     	<div class="col-md-12">
     		<div class="panel panel-default">
@@ -335,14 +347,14 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
     			<div>
     				
     			</div>
-                <?php
+
+                  <?php
                 function formatuang($angka){
                  $uang = "Rp " . number_format($angka,2,',','.');
                  return $uang;
                  }
 
                 ?>
-
 
     			<div class="panel-body">
     				<div class="table-responsive">
@@ -357,21 +369,26 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
     						<tbody>
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
     							<tr>
-    								<td>Total Pendapatan</td>
-    								<td class="text-center"><?php echo formatuang($data_total_pendapatan);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPendapatan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-    							</tr>
+                                    <td>Total Pendapatan</td>
+                                    <td class="text-center"><?php echo formatuang($data_total_pendapatan  );  ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianPendapatan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
                                 <tr>
-        							<td>Total Pengeluaran</td>
-    								<td class="text-center"><?php echo formatuang($data_total_pengeluaran);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-    							</tr>
-    						
-    							<tr>
-    								<td><strong>Total</strong></td>
-    								<td class="no-line text-center"><?php echo formatuang($jumlah_bersih); ?></td>
-    								<td class="thick-line"></td>
-    							</tr>
+                                    <td>Total Pendapatan Piutang</td>
+                                    <td class="text-center"><?php echo formatuang($data_total_piutang );  ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianPiutang?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>Total Pengeluaran</td>
+                                    <td class="text-center"><?php echo formatuang($data_total_pengeluaran );  ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                            
+                                <tr>
+                                    <td><strong>Total</strong></td>
+                                    <td class="no-line text-center"><?php echo formatuang($jumlah_bersih); ?></td>
+                                    <td class="thick-line"></td>
+                                </tr>
     						</tbody>
     					</table>
     				</div>
@@ -379,9 +396,10 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
     		</div>
     	</div>
     </div>
-    <br>
+</div>
 <br>
-
+<br>
+<br>
 <!-- Tanda Konfirmasi  -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
  
@@ -550,8 +568,6 @@ $jumlah_bersih = $data_total_pendapatan - $data_total_pengeluaran;
   </div>  
 </div>
 </div>
-</div>
-
 </div>
 <!-- End of Main Content -->
 
