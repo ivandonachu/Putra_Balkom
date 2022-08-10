@@ -122,7 +122,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan a INNER JOIN ko
           <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
           <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon Pembelian</a>
           <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
-          <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keauangan</a>
+        
         </div>
       </div>
     </li>

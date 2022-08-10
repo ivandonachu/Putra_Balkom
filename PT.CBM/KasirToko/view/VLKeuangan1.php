@@ -31,6 +31,11 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
+else{
+    $tanggal_awal = date('Y-m-d');
+  $tanggal_akhir = date('Y-m-d');
+  }
+
 
 if ($tanggal_awal == $tanggal_akhir) {
     
@@ -42,7 +47,7 @@ if (!isset($data_total_pendapatan)) {
     $data_total_pendapatan = 0;
 }
 
-$table4 = mysqli_query($koneksi, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang WHERE tanggal = '$tanggal_awal' AND b.pembayaran_piutang = 'Cash'  ");
+$table4 = mysqli_query($koneksi, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x = '$tanggal_awal' AND b.pembayaran_piutang = 'Cash'  ");
 $data_piutang = mysqli_fetch_array($table4);
 $data_total_piutang= $data_piutang['total_piutang'];
 if (!isset($data_total_piutang)) {
@@ -191,7 +196,7 @@ $jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_peng
                         <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon Pembelian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keauangan</a>
+                        
                     </div>
                 </div>
             </li>
