@@ -36,7 +36,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                                 WHERE a.tanggal_bayar_x = '$tanggal_awal'  AND b.pembayaran_piutang = 'Cash'  ");
 }
 else{
- $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pembayaran_piutang aINNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang 
+ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang 
                                                                                 INNER JOIN riwayat_penjualan c ON c.no_transaksi=b.no_transaksi 
                                                                                 WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.pembayaran_piutang = 'Cash'  ");
 }
