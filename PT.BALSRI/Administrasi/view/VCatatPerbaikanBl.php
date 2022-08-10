@@ -82,8 +82,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -125,11 +125,13 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanBl">Tagihan Belitung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBk">Tagihan Bangka</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifL8">Master Tarif LMG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBl">Master Tarif BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBk">Master Tarif BK</a>
         </div>
     </div>
 </li>
@@ -148,21 +150,25 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBl">Pengiriman BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBk">Pengiriman BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseL8">Ritase LMG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseBl">Ritase BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBk">Ritase BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhL8">Jarak Tempuh LMG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBl">Jarak Tempuh BL</a> 
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBk">Jarak Tempuh BK</a> 
             <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiL8">Gaji LMG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiBl">Gaji BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiBk">Gaji BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
@@ -181,10 +187,12 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBl">Catat Perbaikan BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBk">Catat Perbaikan BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBl">Pengeluaran Pul BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBk">Pengeluaran Pul BK</a>
         </div>
     </div>
 </li>
@@ -200,6 +208,8 @@ else{
             <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
         </div>
     </div>
 </li>
@@ -357,7 +367,7 @@ else{
          <select id="amt" name="amt" class="form-control ">
           <?php
           include 'koneksi.php';
-          $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Bangka Belitung'");   
+          $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Belitung'");   
 
           while ($data2 = mysqli_fetch_array($result)){
             $nama_driver = $data2['nama_driver'];
@@ -375,7 +385,7 @@ else{
         <select id="mt" name="mt" class="form-control">
           <?php
           include 'koneksi.php';
-          $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Bangka Belitung'");   
+          $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Belitung'");   
 
           while ($data2 = mysqli_fetch_array($result)){
             $no_polisi = $data2['no_polisi'];
@@ -531,7 +541,7 @@ else{
                    <?php
                    $dataSelect = $data['amt']; 
                    include 'koneksi.php';
-                   $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Bangka Belitung' ");   
+                   $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Belitung' ");   
 
                    while ($data2 = mysqli_fetch_array($result)){
                     $nama_driver = $data2['nama_driver'];
@@ -551,7 +561,7 @@ else{
                   <?php
                   $dataSelect = $data['mt']; 
                   include 'koneksi.php';
-                  $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Bangka Belitung'");   
+                  $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Belitung'");   
 
                   while ($data2 = mysqli_fetch_array($result)){
                     $no_polisi = $data2['no_polisi'];

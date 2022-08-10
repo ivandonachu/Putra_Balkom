@@ -21,7 +21,32 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-$table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+ }  
+ else{
+     $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+   }
+ 
+ if ($tanggal_awal == $tanggal_akhir) {
+ 
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian WHERE tanggal = '$tanggal_awal'"); 
+ 
+ }
+ else{
+   
+   $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' "); 
+  
+ 
+ }
+
 
 ?>
 
@@ -63,8 +88,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -106,11 +131,13 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanBl">Tagihan Belitung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBk">Tagihan Bangka</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifL8">Master Tarif LMG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBl">Master Tarif BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBk">Master Tarif BK</a>
         </div>
     </div>
 </li>
@@ -129,21 +156,25 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBl">Pengiriman BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBk">Pengiriman BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseL8">Ritase LMG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseBl">Ritase BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBk">Ritase BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhL8">Jarak Tempuh LMG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBl">Jarak Tempuh BL</a> 
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBk">Jarak Tempuh BK</a> 
             <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiL8">Gaji LMG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiBl">Gaji BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiBk">Gaji BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
@@ -162,10 +193,12 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBl">Catat Perbaikan BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBk">Catat Perbaikan BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBl">Pengeluaran Pul BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBk">Pengeluaran Pul BK</a>
         </div>
     </div>
 </li>
@@ -181,6 +214,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
             <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
         </div>
     </div>
 </li>
@@ -267,11 +302,21 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+  <?php  echo "<form  method='POST' action='VGajiKaryawan' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
+    </div>
+  </form>
 
 
   <div class="row">
     <div class="col-md-10">
- 
+    <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
    <div class="col-md-2">
     <!-- Button Input Data Bayar -->
@@ -315,12 +360,12 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
             <option>BALSRI PLG</option>
             <option>BALSRI BTA</option>
             <option>BALSRI BL</option>
-            <option>BALSRI JMI</option>
+            <option>BALSRI BK</option>
             <option>Driver LMG</option>
             <option>Driver PLG</option>
             <option>Driver BTA</option>
             <option>Driver BL</option>
-            <option>Driver JMI</option>
+            <option>Driver BK</option>
           </select>
         </div>  
         
