@@ -38,7 +38,7 @@ if (!isset($data_total_pendapatan)) {
     $data_total_pendapatan = 0;
 }
 
-$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar) AS total_piutang FROM piutang_dagang WHERE tanggal_bayar = '$tanggal_awal' AND pembayaran_piutang = 'Cash'  ");
+$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.pembayaran_piutang = 'Cash'  ");
 $data_piutang = mysqli_fetch_array($table4);
 $data_total_piutang= $data_piutang['total_piutang'];
 if (!isset($data_total_piutang)) {
@@ -74,7 +74,7 @@ $data_total_pendapatan = $data_pendapatan['total_pendapatan'];
 if (!isset($data_total_pendapatan)) {
     $data_total_pendapatan = 0;
 }
-$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar) AS total_piutang FROM piutang_dagang WHERE tanggal_bayar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran_piutang = 'Cash'  ");
+$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.pembayaran_piutang = 'Cash'  ");
 $data_piutang = mysqli_fetch_array($table4);
 $data_total_piutang= $data_piutang['total_piutang'];
 if (!isset($data_total_piutang)) {
@@ -335,7 +335,7 @@ $jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_peng
       
     </div>
     <div class="row">
-    	  <?php echo "<a href='VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    	 
     </div>
     <div class="row">
     	<div class="col-md-12">
