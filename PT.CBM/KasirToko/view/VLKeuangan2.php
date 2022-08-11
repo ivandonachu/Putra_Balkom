@@ -34,78 +34,78 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
     
-// TOTAL P[ENDAPATAN
-$table = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND pembayaran = 'Cash' OR tanggal = '$tanggal_awal' AND pembayaran ='Deposit' ");
-$data_pendapatan = mysqli_fetch_array($table);
-$data_total_pendapatan = $data_pendapatan['total_pendapatan'];
-if (!isset($data_total_pendapatan)) {
-    $data_total_pendapatan = 0;
-}
-
-$table4 = mysqli_query($koneksi, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x = '$tanggal_awal' AND b.pembayaran_piutang = 'Cash'  ");
-$data_piutang = mysqli_fetch_array($table4);
-$data_total_piutang= $data_piutang['total_piutang'];
-if (!isset($data_total_piutang)) {
-    $data_total_piutang = 0;
-}
-
-$table3 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
-$data_bon = mysqli_fetch_array($table3);
-$data_total_bon = $data_bon['total_bon'];
-if (!isset($data_total_bon)) {
-    $data_total_bon = 0;
-}
-
-$table2 = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun != '5-580' ");
-$data_pengeluaran = mysqli_fetch_array($table2);
-$data_total_pengeluaran = $data_pengeluaran['total_pengeluaran'];
-if (!isset($data_total_pengeluaran)) {
-    $data_total_pengeluaran = 0;
-}
-
-$data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
-
-$jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_pengeluaran;
-
-}
-
-else{
-
-// TOTAL P[ENDAPATAN
-$table = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran = 'Cash' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran ='Deposit' ");
-$data_pendapatan = mysqli_fetch_array($table);
-$data_total_pendapatan = $data_pendapatan['total_pendapatan'];
-if (!isset($data_total_pendapatan)) {
-    $data_total_pendapatan = 0;
-}
-
-$table4 = mysqli_query($koneksi, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.pembayaran_piutang = 'Cash'  ");
-$data_piutang = mysqli_fetch_array($table4);
-$data_total_piutang= $data_piutang['total_piutang'];
-if (!isset($data_total_piutang)) {
-    $data_total_piutang = 0;
-}
-
-$table3 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-$data_bon = mysqli_fetch_array($table3);
-$data_total_bon = $data_bon['total_bon'];
-if (!isset($data_total_bon)) {
-    $data_total_bon = 0;
-}
-$table2 = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' ");
-$data_pengeluaran = mysqli_fetch_array($table2);
-$data_total_pengeluaran = $data_pengeluaran['total_pengeluaran'];
-if (!isset($data_total_pengeluaran)) {
-    $data_total_pengeluaran = 0;
-}
-
-
-
-
-$data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
-
-$jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_pengeluaran;
-}
+    // TOTAL P[ENDAPATAN
+    $table = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND pembayaran = 'Cash' OR tanggal = '$tanggal_awal' AND pembayaran ='Deposit' ");
+    $data_pendapatan = mysqli_fetch_array($table);
+    $data_total_pendapatan = $data_pendapatan['total_pendapatan'];
+    if (!isset($data_total_pendapatan)) {
+        $data_total_pendapatan = 0;
+    }
+    
+    $table4 = mysqli_query($koneksi, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.pembayaran_piutang = 'Cash'  ");
+    $data_piutang = mysqli_fetch_array($table4);
+    $data_total_piutang= $data_piutang['total_piutang'];
+    if (!isset($data_total_piutang)) {
+        $data_total_piutang = 0;
+    }
+    
+    
+    $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
+    $data_bon = mysqli_fetch_array($table3);
+    $data_total_bon = $data_bon['total_bon'];
+    if (!isset($data_total_bon)) {
+        $data_total_bon = 0;
+    }
+    $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun != '5-580' ");
+    $data_pengeluaran = mysqli_fetch_array($table2);
+    $data_total_pengeluaran = $data_pengeluaran['total_pengeluaran'];
+    if (!isset($data_total_pengeluaran)) {
+        $data_total_pengeluaran = 0;
+    }
+    
+    $data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
+    
+    $jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_pengeluaran;
+    
+    }
+    
+    else{
+    
+    // TOTAL P[ENDAPATAN
+    $table = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pendapatan FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran = 'Cash' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND pembayaran ='Deposit' ");
+    $data_pendapatan = mysqli_fetch_array($table);
+    $data_total_pendapatan = $data_pendapatan['total_pendapatan'];
+    if (!isset($data_total_pendapatan)) {
+        $data_total_pendapatan = 0;
+    }
+    $table4 = mysqli_query($koneksi, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.pembayaran_piutang = 'Cash'  ");
+    $data_piutang = mysqli_fetch_array($table4);
+    $data_total_piutang= $data_piutang['total_piutang'];
+    if (!isset($data_total_piutang)) {
+        $data_total_piutang = 0;
+    }
+    
+    $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $data_bon = mysqli_fetch_array($table3);
+    $data_total_bon = $data_bon['total_bon'];
+    if (!isset($data_total_bon)) {
+        $data_total_bon = 0;
+    }
+    $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun != '5-580' ");
+    $data_pengeluaran = mysqli_fetch_array($table2);
+    $data_total_pengeluaran = $data_pengeluaran['total_pengeluaran'];
+    if (!isset($data_total_pengeluaran)) {
+        $data_total_pengeluaran = 0;
+    }
+    
+    
+    
+    
+    $data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
+    
+    $jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_pengeluaran;
+    }
+    
 
 
 
