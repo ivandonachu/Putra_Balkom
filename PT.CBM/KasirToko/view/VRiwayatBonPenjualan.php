@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include'koneksi.php';
@@ -22,9 +23,33 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+} elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+}
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
 
-$table = mysqli_query($koneksi, "SELECT * FROM riwayat_konfirmasi_retur a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE referensi = 'TK' ");
-$table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+  if ($tanggal_awal == $tanggal_akhir) {
+   
+    $table = mysqli_query($koneksi, "SELECT * FROM piutang_dagang a INNER JOIN riwayat_penjualan b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON c.kode_baja=b.kode_baja WHERE tanggal = '$tanggal_awal'");
+    $table2 = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan ");
+    $table3 = mysqli_query($koneksi, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE tanggal = '$tanggal_awal' ");
+  } else {
+    $table = mysqli_query($koneksi, "SELECT * FROM piutang_dagang a INNER JOIN riwayat_penjualan b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON c.kode_baja=b.kode_baja WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table2 = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan ");
+    $table3 = mysqli_query($koneksi, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+ 
+    
+  }
+
+
+
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -37,7 +62,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Konfirmasi Retur Baja Toko</title>
+  <title>Riwayat Bon Dagang Toko</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -66,7 +91,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
+     <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
                 <div class="sidebar-brand-icon rotate-n-15">
 
@@ -126,7 +151,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
       <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
       <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
       <a class="collapse-item" href="VPerpindahanBaja1" style="font-size: 15px;">Perpindahan Baja</a>
-      <a class="collapse-item" href="VPerpindahanSaldo" style="font-size: 15px;">Perpindahan Saldo</a>
+       <a class="collapse-item" href="VPerpindahanSaldo" style="font-size: 15px;">Perpindahan Saldo</a>
       <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
       <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
       <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
@@ -158,7 +183,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-       <?php echo "<a href='VPepindahanBaja1'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Konfirmasi Baja Retur Toko</h5></a>"; ?>
+      <a href="VRiwayatBonPembelian1"><h5 class="text-center sm" style="color:white; margin-top: 8px;">Riwayat Bon Dagang Toko</h5></a>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -169,9 +194,8 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-          
-       
-
+        
+        
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -214,144 +238,280 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+  <?php echo "<form  method='POST' action='VRiwayatBonPembelian1' style='margin-bottom: 15px;'>" ?>
+            <div>
+              <div align="left" style="margin-left: 20px;">
+                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                <span>-</span>
+                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
+              </div>
+            </div>
+            </form>
 
-  <div class="row">
-    <div class="col-md-10">
-     
-   </div>
-   <div class="col-md-2">
-    <!-- Button Pindah Baja -->
-    <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Konfirmasi Retur </button> <br> <br>
-    </div>
-    <!-- Form Modal  -->
-    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-       <div class="modal-content"> 
-        <div class="modal-header">
-          <h5 class="modal-title"> Form Konfirmasi Retur </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <div class="row">
+              <div class="col-md-6">
+                <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+              </div>
+            </div>
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center' >
+<h3>Total Bon</h3>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal Terakhir Nyicil</th>
+      <th>Nama</th>
+      <th>Nama Baja</th>
+      <th>Sisa QTY yang belum di bayar</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+    $no_urut = 0;
+         ?>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+      $no_piutang = $data['no_piutang'];
+      $tanggal =$data['tanggal'];
+      $sub_penyalur = $data['sub_penyalur'];
+      $nama_baja = $data['nama_baja'];
+      $total_qty_baja= $data['total_qty_baja'];
+      $total_piutang = $data['total_piutang'];
+      $status_piutang = $data['status_piutang'];
+      $no_urut = $no_urut + 1;
+ 
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$sub_penyalur</td>
+      <td style='font-size: 14px'>$nama_baja</td>
+      <td style='font-size: 14px'>$total_qty_baja</td>  
+      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
+
+      <button href="#" type="submit" class="fas fa-clipboard-check  bg-info mr-2 rounded" data-toggle="modal" data-target="#PopUpBalik<?php echo $data['no_piutang']; ?>" data-toggle='tooltip' title='Balikan Baja'></button>
+
+      <div class="modal fade" id="PopUpBalik<?php echo $data['no_piutang']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+       <div class="modal-dialog" role ="document">
+         <div class="modal-content"> 
+          <div class="modal-header">
+            <h4 class="modal-title"> <b> Pembayaran Bon </b> </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div> 
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_konfirmasi_retur' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/end_bon_penjualan' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
+              
+              <input type="hidden" name="no_piutang" value="<?php echo $data['no_piutang'];?>">
+              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+              <div>
+                <label>Tanggal</label>
+               <input type="date" id="tanggal" name="tanggal_bayar" required="" class="form-control">
              </div>
-                 
-
+           </div>
+           <div class="col-md-6">
+            <label>Pembayaran</label>
+            <select id="pembayaran" name="pembayaran" class="form-control">
+            <option>Cash</option>
+            <option>Transfer</option>
+            </select>
           </div>
-          <div class="col-md-6">
-            <label>Barang</label>
-            <select id="nama_baja" name="nama_baja" class="form-control ">
-            <option>Elpiji 3 Kg Baja + Isi</option>
-            <option>Elpiji 3 Kg Baja Kosong </option>
-            <option>Elpiji 12 Kg Baja + Isi</option>
-            <option>Elpiji 12 Kg Baja Kosong </option>
-            <option>Bright Gas 5,5 Kg Baja + Isi</option>
-            <option>Bright Gas 5,5 Kg Baja Kosong</option>
-            <option>Bright Gas 12 Kg Baja + Isi</option>
-            <option>Bright Gas 12 Kg Baja Kosong</option>
-          </select>
+           </div>  
+
+              
+        <br>
+         <div class="row">
+          
+          <div class="col-md-4">
+            <label>Qty Bayar</label>
+            <input type="number" name="qty_bayar" id="qty_bayar" class="form-control" onkeyup="sum();" >
+          </div>
+          <div class="col-md-4">
+            <label>Harga</label>
+            <input type="number" name="harga" id="harga" class="form-control" onkeyup="sum();" >
+          </div>
+          <div class="col-md-4">
+            <label>Jumlah Bayar</label>
+            <input type="number" name="total_bayar" id="total_bayar" class="form-control">
           </div>
         </div>
 
-      <br>
-
-     
-
-      <div class="row">
-        <div class="col-md-6">
-          <label>QTY</label>
-          <input class="form-control form-control-sm" type="number" id="qty" name="qty"  required="">
-        </div>            
-      </div>
-
-      <br>
-
-    
-    <div>
-     <label>Keterangan</label>
-     <div class="form-group">
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
-     </div>
+        <div>
+   <label>Keterangan</label>
+   <div class="form-group">
+     <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
    </div>
+ </div>
+
+        <script>
+          function sum() {
+            var banyak_barang = document.getElementById('qty_bayar').value;
+            var harga = document.getElementById('harga').value;
+            var result = parseInt(banyak_barang) * parseInt(harga);
+            if (!isNaN(result)) {
+            document.getElementById('total_bayar').value = result;
+          }
+          }
+        </script>
 
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> Pindahkan</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
+    <button type="submit" class="btn btn-primary">Bayar</button>
+    <button type="reset" class="btn btn-danger">RESET</button>
   </div>
 </form>
 </div>
 
 </div>
 </div>
+    </div>
+
+    <?php echo  " </td> </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
 </div>
+<br><br><br>
 
-</div>
-</div>
-
-
-
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<h3>Riwayat Penjualan Bon</h3>
+  <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
-      <th>Tanggal</th>
+      <th>Tanggal Transaksi</th>
       <th>REF</th>
-      <th>Nama Baja</th>
+      <th>Nama</th>
+      <th>Barang</th>
       <th>QTY</th>
+      <th>Total Bon</th>
       <th>Keterangan</th>
-      <th>Aksi</th>
+      <th>File</th>
+     
     </tr>
   </thead>
   <tbody>
+  <?php
+
+    $no_urut = 0;
+         ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_konfirmasi = $data['no_konfirmasi'];
+      $no_transaksi = $data['no_transaksi'];
       $tanggal =$data['tanggal'];
+      $tanggal_bayar = $data['tanggal_bayar'];
       $referensi = $data['referensi'];
+      $nama= $data['nama'];
       $nama_baja = $data['nama_baja'];
       $qty = $data['qty'];
+      $jumlah = $data['jumlah'];
+      $jumlah_bayar = $data['jumlah_bayar'];
+      $status_piutang = $data['status_piutang'];
       $keterangan = $data['keterangan'];
-
+      $file_bukti = $data['file_bukti'];
+      $no_urut = $no_urut + 1;
+ 
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_konfirmasi</td>
+      <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama</td>  
       <td style='font-size: 14px'>$nama_baja</td>
       <td style='font-size: 14px'>$qty</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>$keterangan</td>
-      "; ?> 
+      <td style='font-size: 14px'>"; ?> <a download="../file_toko/<?= $file_bukti ?>" href="../file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+</div>
+<br><br><br>
+
+<div style="overflow-x: auto" align = 'center' >
+<h3>Riwayat Penycilan Bon</h3>
+  <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal Nyicil</th>
+      <th>Nama</th>
+      <th>Barang</th>
+      <th>QTY Cicil</th>
+      <th>Harga</th>
+      <th>Total Cicil Bon</th>
+      <th>Keterangan</th>
+      <th></th>
+     
+    </tr>
+  </thead>
+  <tbody>
+  <?php
+
+    $no_urut = 0;
+         ?>-
+
+    <?php while($data = mysqli_fetch_array($table3)){
+      $no_riwayat = $data['no_riwayat'];
+      $tanggal_bayar_x =$data['tanggal_bayar_x'];
+     
+      $sub_penyalur = $data['sub_penyalur'];
+      $nama_baja = $data['nama_baja'];
+      $qty_bayar_x = $data['qty_bayar_x'];
+      $jumlah_bayar_x = $data['jumlah_bayar_x'];
+      $harga = $data['harga'];
+      $keterangan = $data['keterangan'];
+      $no_urut = $no_urut + 1;
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_urut</td>
+      <td style='font-size: 14px'>$tanggal_bayar_x</td>
+      <td style='font-size: 14px'>$sub_penyalur</td>
+      <td style='font-size: 14px'>$nama_baja</td>
+      <td style='font-size: 14px'>$qty_bayar_x</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($jumlah_bayar_x); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
+      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_riwayat']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
+     
 
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_konfirmasi']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
-
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_konfirmasi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+      <div class="modal fade" id="PopUpHapus<?php echo $data['no_riwayat']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
        <div class="modal-dialog" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus Retur </b> </h4>
+            <h4 class="modal-title"> <b> Hapus </b> </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true"> &times; </span>
             </button>
           </div>
-
           <div class="modal-body">
-            <form action="../proses/hapus_konfirmasi_retur" method="POST">
-              <input type="hidden" name="no_konfirmasi" value="<?php echo $no_konfirmasi;?>">
-              <input type="hidden" name="qty" value="<?php echo $qty; ?>">
-              <input type="hidden" name="nama_baja" value="<?php echo $nama_baja;?>">
+            <form action="../proses/hapus_riwayat_piutang" method="POST">
+              <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat; ?>">
+
+              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+
               <div class="form-group">
                 <h6> Yakin Ingin Hapus Data? </h6>             
               </div>
@@ -365,6 +525,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
       </div>
     </div>
 
+
     <?php echo  " </td> </tr>";
   }
   ?>
@@ -372,49 +533,8 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 </tbody>
 </table>
 </div>
-<br>
-<br>
-<br>
-  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
-<h5 align="center" >Inventory</h3>
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-   <thead>
-    <tr>
-      <th>Baja</th>
-      <th>Toko</th>
-      <th>Gudang</th>
-      <th>Global</th>
-      <th>Di Pinjam</th>
-      <th>Pasiv</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php while($data2 = mysqli_fetch_array($table2)){
-      $nama_baja = $data2['nama_baja'];
-      $toko =$data2['toko'];
-      $gudang = $data2['gudang'];
-      $dipinjam = $data2['dipinjam'];
-      $passive = $data2['passive'];
-      $global = $toko + $gudang;
-      $total = $toko + $gudang + $dipinjam + $passive;
-      echo "<tr>
-      <td style='font-size: 14px'>$nama_baja</td>
-      <td style='font-size: 14px'>$toko</td>
-      <td style='font-size: 14px'>$gudang</td>
-      <td style='font-size: 14px'>$global</td>
-      <td style='font-size: 14px'>$dipinjam</td> 
-      <td style='font-size: 14px'>$passive</td> 
-      <td style='font-size: 14px'>$total</td> 
-        </tr>";
-  }
-  ?>
-
-</tbody>
-</table>
 </div>
+
 </div>
 
 </div>
@@ -491,7 +611,28 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example3').DataTable( {
+      lengthChange: false,
     } );
 
     table.buttons().container()

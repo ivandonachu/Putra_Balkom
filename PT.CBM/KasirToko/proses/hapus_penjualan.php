@@ -23,6 +23,7 @@ $tanggal_awal=$_POST['tanggal1'];
 $tanggal_akhir=$_POST['tanggal2'];
 
 
+
 $result = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan' ");
 $data_transaksi = mysqli_fetch_array($result);
 $referensi = $data_transaksi['referensi'];
@@ -30,6 +31,7 @@ $kode_baja = $data_transaksi['kode_baja'];
 $pembayaran = $data_transaksi['pembayaran'];
 $qty = $data_transaksi['qty'];
 $jumlah = $data_transaksi['jumlah'];
+$nama = $data_transaksi['nama'];
 $penyaluran = $data_transaksi['penyaluran'];
 //Hapus Peminjaman
 $result2 = mysqli_query($koneksi, "SELECT * FROM riwayat_peminjaman WHERE no_transaksi = '$no_laporan' ");
@@ -2719,9 +2721,30 @@ else if ($referensi == 'GD') {
 
 				$query4 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_ksg_new' WHERE kode_baja = 'L03K10' ");
 
-		//hapus piutang penjualan
+				//hapus piutang penjualan
 				$query6 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
 
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja - $qty;
+			$total_piutang_baru = $total_piutang - $jumlah;
+
+			if($total_piutang_baru == 0 || $total_piutang_baru < 0){
+				mysqli_query($koneksi,"DELETE FROM piutang_penjualan WHERE no_piutang = '$no_piutang'");
+			}
+			else{
+
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 			}
@@ -2759,7 +2782,27 @@ else if ($referensi == 'GD') {
 
 		//hapus piutang penjualan
 				$query6 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+				//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
 
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja - $qty;
+			$total_piutang_baru = $total_piutang - $jumlah;
+
+			if($total_piutang_baru == 0 || $total_piutang_baru < 0){
+				mysqli_query($koneksi,"DELETE FROM piutang_penjualan WHERE no_piutang = '$no_piutang'");
+			}
+			else{
+
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 			}
@@ -2788,7 +2831,27 @@ else if ($referensi == 'GD') {
 
 		//hapus piutang penjualan
 				$query6 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+				//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
 
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja - $qty;
+			$total_piutang_baru = $total_piutang - $jumlah;
+
+			if($total_piutang_baru == 0 || $total_piutang_baru < 0){
+				mysqli_query($koneksi,"DELETE FROM piutang_penjualan WHERE no_piutang = '$no_piutang'");
+			}
+			else{
+
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 			}
@@ -2812,7 +2875,27 @@ else if ($referensi == 'GD') {
 				$query6 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
 
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
 
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja - $qty;
+			$total_piutang_baru = $total_piutang - $jumlah;
+
+			if($total_piutang_baru == 0 || $total_piutang_baru < 0){
+				mysqli_query($koneksi,"DELETE FROM piutang_penjualan WHERE no_piutang = '$no_piutang'");
+			}
+			else{
+
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 			}
 			else if ($kode_baja == "L12K10") {
 		//hapus inventory
@@ -2826,7 +2909,27 @@ else if ($referensi == 'GD') {
 
 		//hapus piutang penjualan
 				$query6 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
 
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja - $qty;
+			$total_piutang_baru = $total_piutang - $jumlah;
+
+			if($total_piutang_baru == 0 || $total_piutang_baru < 0){
+				mysqli_query($koneksi,"DELETE FROM piutang_penjualan WHERE no_piutang = '$no_piutang'");
+			}
+			else{
+
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 			}
@@ -2857,7 +2960,27 @@ else if ($referensi == 'GD') {
 				$query6 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
 
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
 
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja - $qty;
+			$total_piutang_baru = $total_piutang - $jumlah;
+
+			if($total_piutang_baru == 0 || $total_piutang_baru < 0){
+				mysqli_query($koneksi,"DELETE FROM piutang_penjualan WHERE no_piutang = '$no_piutang'");
+			}
+			else{
+
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 			}
 			else if ($kode_baja == "B05K11") {
 		//hapus inventory
@@ -2879,7 +3002,27 @@ else if ($referensi == 'GD') {
 				$query6 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
 
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
 
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja - $qty;
+			$total_piutang_baru = $total_piutang - $jumlah;
+
+			if($total_piutang_baru == 0 || $total_piutang_baru < 0){
+				mysqli_query($koneksi,"DELETE FROM piutang_penjualan WHERE no_piutang = '$no_piutang'");
+			}
+			else{
+
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 			}
 			else if ($kode_baja == "B05K10") {
 		//hapus inventory
@@ -2922,7 +3065,27 @@ else if ($referensi == 'GD') {
 
 		//hapus piutang penjualan
 				$query6 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
 
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja - $qty;
+			$total_piutang_baru = $total_piutang - $jumlah;
+
+			if($total_piutang_baru == 0 || $total_piutang_baru < 0){
+				mysqli_query($koneksi,"DELETE FROM piutang_penjualan WHERE no_piutang = '$no_piutang'");
+			}
+			else{
+
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 			}
@@ -2960,7 +3123,27 @@ else if ($referensi == 'GD') {
 
 		//hapus piutang penjualan
 				$query6 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
 
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja - $qty;
+			$total_piutang_baru = $total_piutang - $jumlah;
+
+			if($total_piutang_baru == 0 || $total_piutang_baru < 0){
+				mysqli_query($koneksi,"DELETE FROM piutang_penjualan WHERE no_piutang = '$no_piutang'");
+			}
+			else{
+
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 			}

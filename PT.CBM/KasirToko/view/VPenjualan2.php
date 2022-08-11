@@ -1827,7 +1827,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
         <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
         <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
         <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon Pembelian</a>
+        <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPenjualan">Riwayat Bon Penjualan</a>
         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
       
       </div>
@@ -2681,6 +2681,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
               <input type="hidden" name="no_laporan" value="<?php echo $dataE['no_transaksi'];?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+              
 
               <div class="form-group">
                 <h6> Yakin Ingin Hapus Data? </h6>             

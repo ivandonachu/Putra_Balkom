@@ -2912,17 +2912,52 @@ if ($referensi == "GD") {
 		if ($nama_baja == "Elpiji 3 Kg Isi") {
 			$kode_akun = '4-110';
 			$kode_baja = 'L03K01';
-		//riwayat penjualan
+			//riwayat penjualan
 			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
 				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
 			$akses_riwayat_penjualan = mysqli_query($koneksi, "SELECT MAX(no_transaksi) FROM riwayat_penjualan");
 			$akses_data_penjualan = mysqli_fetch_array($akses_riwayat_penjualan);
 			$no_transaksi = $akses_data_penjualan['MAX(no_transaksi)'];
 
-		//aktivitas piutang penjualan
-			$status_piutang = 'Belum di Bayar'; 
-			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'','$no_transaksi',0,'$status_piutang')");
+			//aktivitas inventory
+			//baja + isi
+			$akses_inventory_isi = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = '$kode_baja'");
+			$data_inventory_isi = mysqli_fetch_array($akses_inventory_isi);
+			$jumlah_baja_isi = $data_inventory_isi['gudang'];
+			$jumlah_baja_isi_new = $jumlah_baja_isi - $qty;
+			//isi
+			$akses_inventory_b = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K01'");
+			$data_inventory_b = mysqli_fetch_array($akses_inventory_b);
+			$jumlah_baja_b = $data_inventory_b['gudang'];
+			$jumlah_baja_b_new = $jumlah_baja_b - $qty;
 
+			$query11 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_b_new' WHERE kode_baja = 'L03K01' ");
+			$query2 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_isi_new' WHERE kode_baja = '$kode_baja' ");
+			$query3 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Keluar','$qty')");
+
+			//aktivitas piutang penjualan
+			$status_piutang = 'Belum Lunas'; 
+			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'','$no_transaksi',0,'$status_piutang')");
+			
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+				
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja + $qty;
+			$total_piutang_baru = $total_piutang + $jumlah;
+	
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -2932,19 +2967,19 @@ if ($referensi == "GD") {
 			$kode_akun = '4-120';
 			$kode_baja = 'L03K11';
 
-		//riwayat penjualan
+			//riwayat penjualan
 			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
 				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
 			$akses_riwayat_penjualan = mysqli_query($koneksi, "SELECT MAX(no_transaksi) FROM riwayat_penjualan");
 			$akses_data_penjualan = mysqli_fetch_array($akses_riwayat_penjualan);
 			$no_transaksi = $akses_data_penjualan['MAX(no_transaksi)'];
-		//aktivitas inventory
-		//baja + isi
+			//aktivitas inventory
+			//baja + isi
 			$akses_inventory_isi = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = '$kode_baja'");
 			$data_inventory_isi = mysqli_fetch_array($akses_inventory_isi);
 			$jumlah_baja_isi = $data_inventory_isi['gudang'];
 			$jumlah_baja_isi_new = $jumlah_baja_isi - $qty;
-		//isi
+			//isi
 			$akses_inventory_b = mysqli_query($koneksi, "SELECT * FROM inventory WHERE kode_baja = 'L03K01'");
 			$data_inventory_b = mysqli_fetch_array($akses_inventory_b);
 			$jumlah_baja_b = $data_inventory_b['gudang'];
@@ -2953,13 +2988,33 @@ if ($referensi == "GD") {
 			$query11 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_b_new' WHERE kode_baja = 'L03K01' ");
 			$query2 = mysqli_query($koneksi,"UPDATE inventory SET gudang = '$jumlah_baja_isi_new' WHERE kode_baja = '$kode_baja' ");
 			$query3 = mysqli_query($koneksi,"INSERT INTO aktivitas_inventory VALUES ('','$tanggal','$no_transaksi','Gudang','Keluar','$qty')");
-		//aktivitas piutang penjualan
+
+			//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
 
+		//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+			}
+			
 
 			if ($query1!= "") {
-				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				//echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
 		}
 		else if ($nama_baja == "Elpiji 3 Kg Baja Kosong") {
@@ -2984,7 +3039,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -3023,7 +3095,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3056,7 +3145,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3083,7 +3189,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -3122,7 +3245,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3155,7 +3295,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3182,7 +3339,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3222,7 +3396,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -3255,7 +3446,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -3281,7 +3489,24 @@ if ($referensi == "GD") {
 		//aktivitas piutang penjualan
 			$status_piutang = 'Belum di Bayar'; 
 			$query6 = mysqli_query($koneksi,"INSERT INTO piutang_dagang VALUES ('',00-00-0000,'$no_transaksi',0,'$status_piutang')");
+			//total bon 
+			//akses databon 
+			$sql_akses_bon = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE sub_penyalur = '$nama'");
+			$data_bon = mysqli_fetch_array($sql_akses_bon);
+			$no_piutang = $data_bon['no_piutang'];
+			if($no_piutang == ""){
+				mysqli_query($koneksi,"INSERT INTO piutang_penjualan VALUES ('',00-00-0000,'$nama','$nama_baja','$qty','$jumlah','$status_piutang')");
+			}
+			else{
+			$total_qty_baja = $data_bon['total_qty_baja'];
+			$total_piutang = $data_bon['total_piutang'];
+			
+			$total_qty_baja_baru = $total_qty_baja_baru + $qty;
+			$total_piutang_baru = $total_piutang_baru + $jumlah;
+			
+			mysqli_query($koneksi,"UPDATE piutang_penjualan SET total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
 
+			}
 
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

@@ -19,91 +19,49 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$no_laporan = $_POST['no_laporan'];
+
 $no_piutang = $_POST['no_piutang'];
+$tanggal_awal = $_POST['tanggal1'];
+$tanggal_akhir = $_POST['tanggal2'];
 $tanggal_bayar = $_POST['tanggal_bayar'];
+$qty_bayar = $_POST['qty_bayar'];
+$harga = $_POST['harga'];
 $total_bayar = $_POST['total_bayar'];
 $pembayaran = $_POST['pembayaran'];
+$keterangan = $_POST['keterangan'];
 
-$table = mysqli_query($koneksi, "SELECT * FROM piutang_dagang a INNER JOIN riwayat_penjualan b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON c.kode_baja=b.kode_baja WHERE a.no_transaksi = '$no_laporan' ");
+$table = mysqli_query($koneksi, "SELECT * FROM piutang_penjualan WHERE no_piutang = '$no_piutang' ");
 $data_piutang = mysqli_fetch_array($table);
 
-$jumlah_bon = $data_piutang['jumlah'];
-$jumlah_bon_2 = $data_piutang['jumlah_bayar'];
+$total_qty_baja = $data_piutang['total_qty_baja'];
+$total_piutang = $data_piutang['total_piutang'];
 
-$total_bayarx = $jumlah_bon_2 + $total_bayar;
+$total_qty_baja_baru = $total_qty_baja - $qty_bayar;
+$total_piutang_baru = $total_piutang - $total_bayar;
 
-if ($total_bayarx > $jumlah_bon ) {
-	echo "<script> alert('Kembalinya Kebanyakan Gaes!'); window.location='../view/VRiwayatBonPembelian1';</script>";exit;
+if ($total_piutang_baru < 0 ) {
+	echo "<script> alert('Kembalinya Kebanyakan Gaes!'); window.location='../view/VRiwayatBonPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 }
 
-elseif ($total_bayarx < $jumlah_bon) {
-	if ($pembayaran == 'Cash') {
-	//aktifitas rekening
-	$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111' ");
-	$data_rekening = mysqli_fetch_array($akses_rekening);
-	$jumlah_rekening = $data_rekening['jumlah'];
-	$jumlah_rekening_new = $jumlah_rekening + $total_bayar;
-
-	$query1 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_rekening_new' WHERE kode_akun = '1-111' ");
-	$query2 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal_bayar','$no_laporan','1','Masuk','$total_bayar')");
-	//riwayat_pembayaranpiutang
-	mysqli_query($koneksi,"INSERT INTO riwayat_pembayaran_piutang VALUES ('','$no_piutang','$tanggal_bayar','$total_bayar')");
-	//piutang_dagang
-	$query3 = mysqli_query($koneksi,"UPDATE piutang_dagang SET tanggal_bayar = '$tanggal_bayar', pembayaran_piutang = '$pembayaran', jumlah_bayar = '$total_bayarx' WHERE no_piutang = '$no_piutang' ");
-	echo "<script> window.location='../view/VRiwayatBonPembelian1';</script>";exit;
-	}
-	elseif ($pembayaran == 'Transfer') {
-	//aktifitas rekening
-	$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-114' ");
-	$data_rekening = mysqli_fetch_array($akses_rekening);
-	$jumlah_rekening = $data_rekening['jumlah'];
-	$jumlah_rekening_new = $jumlah_rekening + $total_bayar;
-
-	$query1 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_rekening_new' WHERE kode_akun = '1-114' ");
-	$query2 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal_bayar','$no_laporan','4','Masuk','$total_bayar')");
+elseif ($total_piutang_baru > 0 ) {
 
 	//riwayat_pembayaranpiutang
-	mysqli_query($koneksi,"INSERT INTO riwayat_pembayaran_piutang VALUES ('','$no_piutang','$tanggal_bayar','$total_bayar')");
-
+	mysqli_query($koneksi,"INSERT INTO riwayat_pembayaran_piutang VALUES ('','$no_piutang','$pembayaran','$tanggal_bayar','$qty_bayar','$harga','$total_bayar','$keterangan')");
 	//piutang_dagang
-	$query3 = mysqli_query($koneksi,"UPDATE piutang_dagang SET tanggal_bayar = '$tanggal_bayar', pembayaran_piutang = '$pembayaran' , jumlah_bayar = '$total_bayarx' WHERE no_piutang = '$no_piutang' ");
-	echo "<script> window.location='../view/VRiwayatBonPembelian1';</script>";exit;
+	mysqli_query($koneksi,"UPDATE piutang_penjualan SET tanggal = '$tanggal_bayar', total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru' WHERE no_piutang = '$no_piutang' ");
+
+	echo "<script> window.location='../view/VRiwayatBonPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+
 	}
 	
-}
-elseif ($total_bayarx == $jumlah_bon) {
+	
+elseif ($total_piutang_baru == 0 ) {
 	$status_piutang = 'Sudah di Bayar';
-	if ($pembayaran == 'Cash') {
-	//aktifitas rekening
-	$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111' ");
-	$data_rekening = mysqli_fetch_array($akses_rekening);
-	$jumlah_rekening = $data_rekening['jumlah'];
-	$jumlah_rekening_new = $jumlah_rekening + $total_bayar;
 
-	$query1 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_rekening_new' WHERE kode_akun = '1-111' ");
-	$query2 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal_bayar','$no_laporan','1','Masuk','$total_bayar')");
-	//riwayat_pembayaranpiutang
-	mysqli_query($koneksi,"INSERT INTO riwayat_pembayaran_piutang VALUES ('','$no_piutang','$tanggal_bayar','$total_bayar')");
-	//piutang_dagang
-	$query3 = mysqli_query($koneksi,"UPDATE piutang_dagang SET tanggal_bayar = '$tanggal_bayar', pembayaran_piutang = '$pembayaran', jumlah_bayar = '$total_bayarx', status_piutang = '$status_piutang' WHERE no_piutang = '$no_piutang' ");
-	echo "<script> window.location='../view/VRiwayatBonPembelian1';</script>";exit;
-	}
-	elseif ($pembayaran == 'Transfer') {
-	//aktifitas rekening
-	$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-114' ");
-	$data_rekening = mysqli_fetch_array($akses_rekening);
-	$jumlah_rekening = $data_rekening['jumlah'];
-	$jumlah_rekening_new = $jumlah_rekening + $total_bayar;
-
-	$query1 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_rekening_new' WHERE kode_akun = '1-114' ");
-	$query2 = mysqli_query($koneksi,"INSERT INTO aktivitas_rekening VALUES ('','$tanggal_bayar','$no_laporan','4','Masuk','$total_bayar')");
-
-	//riwayat_pembayaranpiutang
-	mysqli_query($koneksi,"INSERT INTO riwayat_pembayaran_piutang VALUES ('','$no_piutang','$tanggal_bayar','$total_bayar')");
-
-	//piutang_dagang
-	$query3 = mysqli_query($koneksi,"UPDATE piutang_dagang SET tanggal_bayar = '$tanggal_bayar', pembayaran_piutang = '$pembayaran', jumlah_bayar = '$total_bayarx', status_piutang = '$status_piutang' WHERE no_piutang = '$no_piutang' ");
-	echo "<script> window.location='../view/VRiwayatBonPembelian1';</script>";exit;
-	}
+		//riwayat_pembayaranpiutang
+		mysqli_query($koneksi,"INSERT INTO riwayat_pembayaran_piutang VALUES ('','$no_piutang','$pembayaran','$tanggal_bayar','$qty_bayar','$harga','$total_bayar','$keterangan')");
+		//piutang_dagang
+		mysqli_query($koneksi,"UPDATE piutang_penjualan SET tanggal = '$tanggal_bayar', total_qty_baja = '$total_qty_baja_baru', total_piutang = '$total_piutang_baru', status_piutang = '$status_piutang' WHERE no_piutang = '$no_piutang' ");
+	
+		echo "<script> window.location='../view/VRiwayatBonPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 }
