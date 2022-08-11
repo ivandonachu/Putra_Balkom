@@ -38,7 +38,7 @@ if (!isset($data_total_pendapatan)) {
     $data_total_pendapatan = 0;
 }
 
-$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.pembayaran_piutang = 'Cash'  ");
+$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.pembayaran_piutang = 'Cash'  ");
 $data_piutang = mysqli_fetch_array($table4);
 $data_total_piutang= $data_piutang['total_piutang'];
 if (!isset($data_total_piutang)) {
@@ -74,7 +74,7 @@ $data_total_pendapatan = $data_pendapatan['total_pendapatan'];
 if (!isset($data_total_pendapatan)) {
     $data_total_pendapatan = 0;
 }
-$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.pembayaran_piutang = 'Cash'  ");
+$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_bayar_x) AS total_piutang FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.pembayaran_piutang = 'Cash'  ");
 $data_piutang = mysqli_fetch_array($table4);
 $data_total_piutang= $data_piutang['total_piutang'];
 if (!isset($data_total_piutang)) {
