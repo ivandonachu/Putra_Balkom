@@ -39,7 +39,7 @@ $total_piutang = $data_piutang['total_piutang'];
 $total_qty_baja_baru = $total_qty_baja - $qty_bayar;
 $total_piutang_baru = $total_piutang - $total_bayar;
 
-if ($total_piutang_baru < 0 ) {
+if ($total_qty_baja_baru < 0 ) {
 	echo "<script> alert('Kembalinya Kebanyakan Gaes!'); window.location='../view/VRiwayatBonPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 }
 
