@@ -43,7 +43,7 @@ if ($total_piutang_baru < 0 ) {
 	echo "<script> alert('Kembalinya Kebanyakan Gaes!'); window.location='../view/VRiwayatBonPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 }
 
-elseif ($total_piutang_baru > 0 ) {
+elseif ($total_qty_baja_baru > 0 ) {
 
 	//riwayat_pembayaranpiutang
 	mysqli_query($koneksi,"INSERT INTO riwayat_pembayaran_piutang VALUES ('','$no_piutang','$pembayaran','$tanggal_bayar','$qty_bayar','$harga','$total_bayar','$keterangan')");
@@ -55,7 +55,7 @@ elseif ($total_piutang_baru > 0 ) {
 	}
 	
 	
-elseif ($total_piutang_baru == 0 ) {
+elseif ($total_qty_baja_baru == 0 ) {
 	$status_piutang = 'Sudah di Bayar';
 
 		//riwayat_pembayaranpiutang
