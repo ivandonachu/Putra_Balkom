@@ -501,7 +501,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                 <div class="col-md-6">
                                   <label>No Segel</label>
-                                  <input class="form-control form-control-sm" type="text" id="no_segel" name="no_segel" required="" value="<?php echo $no_segel; ?>">
+                                  <input class="form-control form-control-sm" type="text" id="no_segel" name="no_segel" required="" disabled value="<?php echo $no_segel; ?>">
                                 </div>
 
                               </div>
