@@ -650,7 +650,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <input type="hidden" name="no_tagihan" value="<?php echo $no_tagihan; ?>">
                     <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                     <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>"> 
-                    <input type="hidden" name="tanggal" value="<?php echo $tanggal; ?>">   
+              
                     <input type="hidden" name="no_driver_1" value="<?php echo $no_driver_1; ?>">   
                     <input type="hidden" name="no_driver_2" value="<?php echo $no_driver_2; ?>">   
                     <input type="hidden" name="no_kendaraan" value="<?php echo $no_kendaraan; ?>">   
@@ -662,7 +662,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                       <label>Tanggal</label>
                       <div class="col-sm-10">
-                      <input  class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" disabled required="" value="<?php echo $tanggal; ?>">
+                      <input  class="form-control form-control-sm" type="date" id="tanggal" name="tanggal"  required="" value="<?php echo $tanggal; ?>">
                     </div>      
 
                   </div>

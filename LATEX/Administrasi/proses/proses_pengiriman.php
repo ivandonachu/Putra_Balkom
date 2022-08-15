@@ -83,7 +83,10 @@ else if ( $nama_file != "" ) {
 }
 
 
-
+$result = mysqli_query($koneksi, "SELECT * FROM pengiriman WHERE no_tagihan = '$no_tagihan' AND tanggal = '$tanggal' ");
+ if(mysqli_num_rows($result) > 1 ){
+  	echo "<script>alert('Pengiriman sudah tercatat :)'); window.location='../view/VTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
+      }
 
 	$query = mysqli_query($koneksi,"INSERT INTO pengiriman VALUES('','$tanggal','$no_tagihan','$no_driver_1','AMT 1','$no_kendaraan','$rit','$jt_gps','$jt_odo','$dexlite','$uang_makan','$uang_gaji','$uang_jalan','$keterangan','$file')");
 	$query2 = mysqli_query($koneksi,"INSERT INTO pengiriman VALUES('','$tanggal','$no_tagihan','$no_driver_2','AMT 2','$no_kendaraan','$rit','$jt_gps','$jt_odo','$dexlite','$uang_makan','$uang_gaji','$uang_jalan','$keterangan','$file')");
