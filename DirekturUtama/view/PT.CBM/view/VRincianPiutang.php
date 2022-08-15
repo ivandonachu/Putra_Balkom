@@ -31,16 +31,11 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang 
-                                                                                INNER JOIN riwayat_penjualan c ON c.no_transaksi=b.no_transaksi 
-                                                                                WHERE a.tanggal_bayar_x = '$tanggal_awal'  AND b.pembayaran_piutang = 'Cash'  ");
+  $table3 = mysqli_query($koneksi, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x = '$tanggal_awal' ");
 }
 else{
- $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_dagang b ON b.no_piutang=a.no_piutang 
-                                                                                INNER JOIN riwayat_penjualan c ON c.no_transaksi=b.no_transaksi 
-                                                                                WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.pembayaran_piutang = 'Cash'  ");
+  $table3 = mysqli_query($koneksi, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 }
-
 
  ?>
  <!DOCTYPE html>
@@ -253,52 +248,48 @@ else{
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
-      <th>Tanggal Pembelian Bon</th>
-      <th>Tanggal Bayar</th>
+      <th>Tanggal Nyicil</th>
       <th>Nama</th>
-      <th>Qty</th>
+      <th>Barang</th>
+      <th>QTY Cicil</th>
       <th>Harga</th>
-      <th>Total Bon</th>.
-      <th>Jumlah Bayar</th>
-      <th>Total yang telah dibayar</th>
+      <th>Total Cicil Bon</th>
+      <th>Keterangan</th>
+     
     </tr>
   </thead>
   <tbody>
-    <?php
-  
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-    $no_urut=0;
-    ?>
+  <?php
 
-    <?php while($data = mysqli_fetch_array($table)){
-      $no_transaksi = $data['no_transaksi'];
-      $tanggal =$data['tanggal'];
-      $tanggal_bayar_x = $data['tanggal_bayar_x'];
-      $nama = $data['nama'];
-      $qty = $data['qty'];
-      $harga = $data['harga'];
-      $total_bon = $qty * $harga; 
+    $no_urut = 0;
+         ?>-
+
+    <?php while($data = mysqli_fetch_array($table3)){
+      $no_riwayat = $data['no_riwayat'];
+      $tanggal_bayar_x =$data['tanggal_bayar_x'];
+     
+      $sub_penyalur = $data['sub_penyalur'];
+      $nama_baja = $data['nama_baja'];
+      $qty_bayar_x = $data['qty_bayar_x'];
       $jumlah_bayar_x = $data['jumlah_bayar_x'];
-      $jumlah_bayar = $data['jumlah_bayar'];
+      $harga = $data['harga'];
+      $keterangan = $data['keterangan'];
       $no_urut = $no_urut + 1;
+
       echo "<tr>
       <td style='font-size: 14px'>$no_urut</td>
-      <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$tanggal_bayar_x</td>
-      <td style='font-size: 14px'>$nama</td>
-      <td style='font-size: 14px'>$qty</td>
-      <td style='font-size: 14px'>$harga</td>
-      <td style='font-size: 14px'>$total_bon</td>
-      <td style='font-size: 14px'>$jumlah_bayar_x</td>
-      <td style='font-size: 14px'>$jumlah_bayar</td>
-      </tr>";
+      <td style='font-size: 14px'>$sub_penyalur</td>
+      <td style='font-size: 14px'>$nama_baja</td>
+      <td style='font-size: 14px'>$qty_bayar_x</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($jumlah_bayar_x); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$keterangan</td>
+    </tr>";
   }
   ?>
 
