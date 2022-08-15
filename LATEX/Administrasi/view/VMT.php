@@ -76,8 +76,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -114,8 +114,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
     <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Bangkulu</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif BKU</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Latex</a>
         </div>
     </div>
 </li>
@@ -129,10 +128,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman BKU</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase BKU</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh BKU</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji BKU</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji Driver Latex</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
@@ -147,7 +146,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
     <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan BKU</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan Latex</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
         </div>
     </div>
@@ -167,6 +166,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
         </div>
     </div>
 </li>
+
 
   <!-- Divider -->
   <hr class="sidebar-divider">
