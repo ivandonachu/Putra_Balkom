@@ -31,10 +31,10 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table3 = mysqli_query($koneksi, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x = '$tanggal_awal' ");
+  $table3 = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x = '$tanggal_awal' ");
 }
 else{
-  $table3 = mysqli_query($koneksi, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table3 = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pembayaran_piutang a INNER JOIN piutang_penjualan b ON b.no_piutang=a.no_piutang WHERE a.tanggal_bayar_x BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 }
 
  ?>
