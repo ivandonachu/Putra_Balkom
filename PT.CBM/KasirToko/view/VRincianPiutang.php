@@ -257,8 +257,14 @@ data-parent="#accordionSidebar">
   <tbody>
   <?php
 
+ function formatuang($angka){
+   $uang = "Rp " . number_format($angka,2,',','.');
+   return $uang;
+ }
+
+      
     $no_urut = 0;
-         ?>-
+         ?>
 
     <?php while($data = mysqli_fetch_array($table3)){
       $no_riwayat = $data['no_riwayat'];
