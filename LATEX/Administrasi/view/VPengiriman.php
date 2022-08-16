@@ -42,7 +42,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan INNER JOIN tagihan d ON d.no_tagihan=a.no_tagihan WHERE a.tanggal = '$tanggal_awal' ORDER BY a.tanggal");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan FROM pengiriman WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan, SUM(mel) AS total_nel FROM pengiriman WHERE tanggal = '$tanggal_awal'");
   $data2 = mysqli_fetch_array($table2);
   $jml_jt_gps= $data2['total_jt_gps'];
   $jml_jt_odo= $data2['total_jt_odo'];
@@ -50,13 +50,14 @@ if ($tanggal_awal == $tanggal_akhir) {
   $total_um= $data2['uang_makan'];
   $total_ug= $data2['uang_gaji'];
   $total_uj= $data2['uang_jalan'];
+  $total_mel= $data2['total_mel'];
 
 }
 else{
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan INNER JOIN tagihan d ON d.no_tagihan=a.no_tagihan WHERE a.tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY a.tanggal");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan, SUM(mel) AS total_mel, SUM(uang_dexlite) AS total_uang_dex FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $jml_jt_gps= $data2['total_jt_gps'];
   $jml_jt_odo= $data2['total_jt_odo'];
@@ -64,6 +65,8 @@ else{
   $total_um= $data2['uang_makan'];
   $total_ug= $data2['uang_gaji'];
   $total_uj= $data2['uang_jalan'];
+  $total_mel= $data2['total_mel'];
+  $total_uang_dex= $data2['total_uang_dex'];
 
 
 }
@@ -177,6 +180,7 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Catat Pengluaran Latex</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
         </div>
     </div>
@@ -310,10 +314,12 @@ else{
       <th>Jen Ken</th>
       <th>JT GPS</th>
       <th>JT ODO</th>
-      <th>DEX</th>
+      <th>Solar</th>
+      <th>Uang Solar</th>
       <th>Uang Makan</th>
       <th>Gaji</th>
       <th>Uang Jalan</th>
+      <th>MEL</th>
       <th>KET</th>
       <th>File</th>
       <th></th>
@@ -340,9 +346,11 @@ else{
       $jt_gps = $data['jt_gps'];
       $jt_odo = $data['jt_odo'];
       $dexlite = $data['dexlite'];
+      $uang_dexlite = $data['uang_dexlite'];
       $um = $data['um'];
       $ug = $data['ug'];
       $uj = $data['uj'];
+      $mel = $data['mel'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
 
@@ -359,9 +367,11 @@ else{
       <td style='font-size: 14px' align = 'center'>$jt_gps/Km</td>
       <td style='font-size: 14px' align = 'center'>$jt_odo/km</td>
       <td style='font-size: 14px' align = 'center'>$dexlite/L</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uang_dexlite); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($um); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($mel); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "
@@ -558,7 +568,7 @@ else{
 <br>
 
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-4 col-md-6 mb-4">
+  <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
       <div class="card-body">
         <div class="row no-gutters align-items-center">
@@ -574,7 +584,7 @@ else{
       </div>
     </div>
   </div>
-  <div class="col-xl-4 col-md-6 mb-4">
+  <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
       <div class="card-body">
         <div class="row no-gutters align-items-center">
@@ -590,7 +600,7 @@ else{
       </div>
     </div>
   </div>
-  <div class="col-xl-4 col-md-6 mb-4">
+  <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
       <div class="card-body">
         <div class="row no-gutters align-items-center">
@@ -606,11 +616,27 @@ else{
       </div>
     </div>
   </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Mel Melan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_mel)  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <br>
 <br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-4 col-md-6 mb-4">
+  <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
       <div class="card-body">
         <div class="row no-gutters align-items-center">
@@ -626,7 +652,7 @@ else{
       </div>
     </div>
   </div>
-  <div class="col-xl-4 col-md-6 mb-4">
+  <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
       <div class="card-body">
         <div class="row no-gutters align-items-center">
@@ -642,14 +668,30 @@ else{
       </div>
     </div>
   </div>
-  <div class="col-xl-4 col-md-6 mb-4">
+  <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total DEX</div>
+            Total Solar</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_dex  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-moving fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Solar</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_dex)  ?></div>
           </div>
           <div class="col-auto">
             <i class="fas fa-truck-moving fa-2x text-gray-300"></i>

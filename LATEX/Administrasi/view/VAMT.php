@@ -149,6 +149,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_1");
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Catat Pengluaran Latex</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
         </div>
     </div>

@@ -40,12 +40,12 @@ if (isset($_GET['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan WHERE tanggal = '$tanggal_awal' GROUP BY b.nama_driver_1");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY b.nama_driver_1");
 
 }
 ?>
@@ -157,6 +157,7 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Catat Pengluaran Latex</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
         </div>
     </div>
