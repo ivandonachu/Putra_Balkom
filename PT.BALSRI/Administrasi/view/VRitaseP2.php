@@ -327,7 +327,7 @@ else{
  <br>
 
 <?php
- $no_urut =0;
+ $urut =0;
 ?>
 <h5 align="center" >Ritease Kendaraan</h5>
 <!-- Tabel -->    

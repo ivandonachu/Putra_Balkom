@@ -76,16 +76,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_1");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
-
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
-    <div class="sidebar-brand-icon rotate-n-15">
-
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 65px; width: 220px;" src="../gambar/Logo CBM.jpg" ></div>
-</a>
+  
 
  <!-- Sidebar -->
  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
