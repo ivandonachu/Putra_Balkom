@@ -1058,7 +1058,7 @@ function sum2() {
 <br>
 <?php 
 
-$tablej2 = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$tablej2 = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
 
 ?>
 

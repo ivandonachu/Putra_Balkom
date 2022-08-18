@@ -34,6 +34,8 @@ elseif (isset($_POST['tanggal1'])) {
 else{
   $tanggal_awal = date('Y-m-1');
   $tanggal_akhir = date('Y-m-31');
+  $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+  $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
@@ -1376,7 +1378,7 @@ function sum() {
 <br>
 <?php 
 
-$tablej2 = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$tablej2 = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
 
 ?>
 
@@ -1399,7 +1401,7 @@ $tablej2 = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE tanggal_k
 
     <?php while($data = mysqli_fetch_array($tablej2)){
     $no_do_pembelian = $data['no_do'];
-    $tablexj = mysqli_query($koneksi, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
+    $tablexj = mysqli_query($koneksi, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
 
 
     if(mysqli_num_rows($tablexj) === 0 ){
