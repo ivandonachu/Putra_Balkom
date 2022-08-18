@@ -34,16 +34,77 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' ");
+  //Curah OPC Type 1 bayar
+  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_copct1 ,  SUM(jumlah) AS uang_copct1  FROM penjualan_sl WHERE  tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah OPC Type 1' OR  tanggal_kirim =  
+  '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah OPC Type 1'  ");
+  $data2 = mysqli_fetch_array($table2);
+  $penjualan_copct1 = $data2['penjualan_copct1'];
+  $uang_copct1 = $data2['uang_copct1'];
 
+  //Curah OPC Type 1 Bon
+  $table22 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_copct1_bon ,  SUM(jumlah) AS uang_copct1_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Curah OPC Type 1'");
+  $data22 = mysqli_fetch_array($table22);
+  $penjualan_copct1_bon = $data22['penjualan_copct1_bon'];
+  $uang_copct1_bon= $data22['uang_copct1_bon'];
+
+  //Curah PCC bayar
+  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_cpcc ,  SUM(jumlah) AS uang_cpcc  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah PCC' OR   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah PCC'  ");
+  $data3 = mysqli_fetch_array($table3);
+  $penjualan_cpcc = $data3['penjualan_cpcc'];
+  $uang_cpcc = $data3['uang_cpcc'];
+
+  //Curah PCC Bon
+  $table32 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_cpcc_bon ,  SUM(jumlah) AS uang_cpcc_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Curah PCC'");
+  $data32 = mysqli_fetch_array($table32);
+  $penjualan_cpcc_bon = $data32['penjualan_cpcc_bon'];
+  $uang_cpcc_bon= $data32['uang_cpcc_bon'];
+
+  //Big Bag OPC Type 1 bayar
+  $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bopct1 ,  SUM(jumlah) AS uang_bopct1  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Big Bag OPC Type 1' OR   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Big Bag OPC Type 1'  ");
+  $data4 = mysqli_fetch_array($table4);
+  $penjualan_bopct1 = $data4['penjualan_bopct1'];
+  $uang_bopct1 = $data4['uang_bopct1'];
+
+  //Big Bag OPC Type 1 Bon
+  $table42 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bopct1_bon ,  SUM(jumlah) AS uang_bopct1_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Big Bag OPC Type 1'");
+  $data42 = mysqli_fetch_array($table42);
+  $penjualan_bopct1_bon = $data42['penjualan_bopct1_bon'];
+  $uang_bopct1_bon= $data42['uang_bopct1_bon'];
+
+  //Big Bag PCC bayar
+  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bpcc ,  SUM(jumlah) AS uang_bpcc  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Big Bag PCC' OR   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Big Bag PCC'  ");
+  $data5 = mysqli_fetch_array($table5);
+  $penjualan_bpcc = $data5['penjualan_bpcc'];
+  $uang_bpcc = $data5['uang_bpcc'];
+
+  //Big Bag PCC Bon
+  $table52 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bpcc_bon ,  SUM(jumlah) AS uang_bpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Big Bag PCC'");
+  $data52 = mysqli_fetch_array($table52);
+  $penjualan_bpcc_bon = $data52['penjualan_bpcc_bon'];
+  $uang_bpcc_bon= $data52['uang_bpcc_bon'];
+
+  $data42['uang_bopct1_bon'];
+
+  //Sak PCC 50 Kg bayar
+  $table6 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_sakpcc ,  SUM(jumlah) AS uang_sakpcc  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Sak PCC 50 Kg' OR   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Sak PCC 50 Kg'  ");
+  $data6 = mysqli_fetch_array($table6);
+  $penjualan_sakpcc = $data6['penjualan_sakpcc'];
+  $uang_sakpcc = $data6['uang_sakpcc'];
+
+  //Sak PCC 50 Kg Bon
+  $table62 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_sakpcc_bon ,  SUM(jumlah) AS uang_sakpcc_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Sak PCC 50 Kg'");
+  $data62 = mysqli_fetch_array($table62);
+  $penjualan_sakpcc_bon = $data62['penjualan_sakpcc_bon'];
+  $uang_sakpcc_bon= $data62['uang_sakpcc_bon'];
 
 }
 
 else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
 
   //Curah OPC Type 1 bayar
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1 ,  SUM(jumlah) AS uang_copct1  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_copct1 ,  SUM(jumlah) AS uang_copct1  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah OPC Type 1' OR  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah OPC Type 1'  ");
   $data2 = mysqli_fetch_array($table2);
@@ -51,14 +112,14 @@ else{
   $uang_copct1 = $data2['uang_copct1'];
 
   //Curah OPC Type 1 Bon
-  $table22 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_bon ,  SUM(jumlah) AS uang_copct1_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table22 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_copct1_bon ,  SUM(jumlah) AS uang_copct1_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Curah OPC Type 1'");
   $data22 = mysqli_fetch_array($table22);
   $penjualan_copct1_bon = $data22['penjualan_copct1_bon'];
   $uang_copct1_bon= $data22['uang_copct1_bon'];
 
   //Curah PCC bayar
-  $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc ,  SUM(jumlah) AS uang_cpcc  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_cpcc ,  SUM(jumlah) AS uang_cpcc  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah PCC' OR  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah PCC'  ");
   $data3 = mysqli_fetch_array($table3);
@@ -66,14 +127,14 @@ else{
   $uang_cpcc = $data3['uang_cpcc'];
 
   //Curah PCC Bon
-  $table32 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_bon ,  SUM(jumlah) AS uang_cpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table32 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_cpcc_bon ,  SUM(jumlah) AS uang_cpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Curah PCC'");
   $data32 = mysqli_fetch_array($table32);
   $penjualan_cpcc_bon = $data32['penjualan_cpcc_bon'];
   $uang_cpcc_bon= $data32['uang_cpcc_bon'];
 
   //Big Bag OPC Type 1 bayar
-  $table4 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bopct1 ,  SUM(jumlah) AS uang_bopct1  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bopct1 ,  SUM(jumlah) AS uang_bopct1  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Big Bag OPC Type 1' OR  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Big Bag OPC Type 1'  ");
   $data4 = mysqli_fetch_array($table4);
@@ -81,14 +142,14 @@ else{
   $uang_bopct1 = $data4['uang_bopct1'];
 
   //Big Bag OPC Type 1 Bon
-  $table42 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bopct1_bon ,  SUM(jumlah) AS uang_bopct1_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table42 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bopct1_bon ,  SUM(jumlah) AS uang_bopct1_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Big Bag OPC Type 1'");
   $data42 = mysqli_fetch_array($table42);
   $penjualan_bopct1_bon = $data42['penjualan_bopct1_bon'];
   $uang_bopct1_bon= $data42['uang_bopct1_bon'];
 
   //Big Bag PCC bayar
-  $table5 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bpcc ,  SUM(jumlah) AS uang_bpcc  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bpcc ,  SUM(jumlah) AS uang_bpcc  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Big Bag PCC' OR  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Big Bag PCC'  ");
   $data5 = mysqli_fetch_array($table5);
@@ -96,7 +157,7 @@ else{
   $uang_bpcc = $data5['uang_bpcc'];
 
   //Big Bag PCC Bon
-  $table52 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bpcc_bon ,  SUM(jumlah) AS uang_bpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table52 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bpcc_bon ,  SUM(jumlah) AS uang_bpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Big Bag PCC'");
   $data52 = mysqli_fetch_array($table52);
   $penjualan_bpcc_bon = $data52['penjualan_bpcc_bon'];
@@ -105,7 +166,7 @@ else{
   $data42['uang_bopct1_bon'];
 
   //Sak PCC 50 Kg bayar
-  $table6 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_sakpcc ,  SUM(jumlah) AS uang_sakpcc  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table6 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_sakpcc ,  SUM(jumlah) AS uang_sakpcc  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Sak PCC 50 Kg' OR  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Sak PCC 50 Kg'  ");
   $data6 = mysqli_fetch_array($table6);
@@ -113,7 +174,7 @@ else{
   $uang_sakpcc = $data6['uang_sakpcc'];
 
   //Sak PCC 50 Kg Bon
-  $table62 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_sakpcc_bon ,  SUM(jumlah) AS uang_sakpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
+  $table62 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_sakpcc_bon ,  SUM(jumlah) AS uang_sakpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Sak PCC 50 Kg'");
   $data62 = mysqli_fetch_array($table62);
   $penjualan_sakpcc_bon = $data62['penjualan_sakpcc_bon'];
@@ -139,7 +200,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penjualan Semen Lampung</title>
+  <title>Penjualan Semen</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -167,8 +228,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
@@ -219,43 +280,42 @@ else{
 </li>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan Etty</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
-    
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-                  15  aria-expanded="true" aria-controls="collapseTwo3">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan Kadek</span>
-                </a>
-                <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLR2L">Laba Rugi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
-    
-                    </div>
-                </div>
-            </li>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Laporan Etty</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
 
+        </div>
+    </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+      15  aria-expanded="true" aria-controls="collapseTwo3">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Laporan Kadek</span>
+    </a>
+    <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VLR2L">Laba Rugi</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
+
+        </div>
+    </div>
+</li>
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -281,7 +341,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Penjualan Semen Kadek</h5></a>"; ?>
+      <?php echo "<a href='VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Penjualan Semen</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -339,7 +399,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VPenjualanL' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VPenjualan' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -349,10 +409,15 @@ else{
       </div>
     </div>
   </form>
-  <div class="col-md-8">
-   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
- </div>
- <br>
+
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+</div>
+
 
 
 

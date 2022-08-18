@@ -20,51 +20,75 @@ exit;
 
 
 
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
+ $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+  $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
+ $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+  $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 } 
 else{
   $tanggal_awal = date('Y-m-1');
   $tanggal_akhir = date('Y-m-31');
+
+  $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+  $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ORDER BY no_penjualan ASC");
 
 
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' ");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' ");
   $data2 = mysqli_fetch_array($table2);
   $penjualan_zak = $data2['penjualan_zak'];
   $uang_zak= $data2['uang_zak'];
+
+  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Bon'AND satuan = 'Zak'");
+  $data3 = mysqli_fetch_array($table3);
+  $penjualan_zak_bon = $data3['penjualan_zak_bon'];
+  $uang_zak_bon = $data3['uang_zak_bon'];
+
+  $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
+  $data4 = mysqli_fetch_array($table4);
+  $penjualan_bag = $data4['penjualan_bag'];
+  $uang_bag= $data4['uang_bag'];
+
+  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Bon'AND satuan = 'Bag'");
+  $data5 = mysqli_fetch_array($table5);
+  $penjualan_bag_bon = $data5['penjualan_bag_bon'];
+  $uang_bag_bon = $data5['uang_bag_bon'];
+
 
 
 }
 
 else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
 
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' ");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' ");
   $data2 = mysqli_fetch_array($table2);
   $penjualan_zak = $data2['penjualan_zak'];
   $uang_zak= $data2['uang_zak'];
 
-  $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak'");
+  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak'");
   $data3 = mysqli_fetch_array($table3);
   $penjualan_zak_bon = $data3['penjualan_zak_bon'];
   $uang_zak_bon = $data3['uang_zak_bon'];
 
-  $table4 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
+  $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
   $data4 = mysqli_fetch_array($table4);
   $penjualan_bag = $data4['penjualan_bag'];
   $uang_bag= $data4['uang_bag'];
 
-  $table5 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag'");
+  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag'");
   $data5 = mysqli_fetch_array($table5);
   $penjualan_bag_bon = $data5['penjualan_bag_bon'];
   $uang_bag_bon = $data5['uang_bag_bon'];
@@ -119,7 +143,7 @@ else{
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
      <!-- Sidebar - Brand -->
-     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
+     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -133,73 +157,50 @@ else{
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsCVPBJ">
+                <a class="nav-link" href="DsKasir">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
 
-                 <!-- Divider -->
+                <!-- Divider -->
                 <hr class="sidebar-divider">
+
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu CV.PBJ
+                     Menu Admin Semen
                 </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-                    </div>
-                </div>
-            </li>
+
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan Etty</span>
+                    <span style="font-size: 15px; color:white;" >Kasir</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
-    
+                        <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusan">Penebusan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-                  15  aria-expanded="true" aria-controls="collapseTwo3">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan Kadek</span>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                  15  aria-expanded="true" aria-controls="collapseTwo1">
+                    <i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >SDM</span>
                 </a>
-                <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLR2L">Laba Rugi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
-    
+                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>  
+                        <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
                     </div>
                 </div>
             </li>
@@ -228,7 +229,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Penjualan Semen Etty</h5></a>"; ?>
+      <?php echo "<a href='VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Penjualan Semen</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -296,20 +297,21 @@ else{
       </div>
     </div>
   </form>
+
+  <br>
+  <br>
   <div class="row">
     <div class="col-md-6">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-  </div>
-  <br>
-  <br>
-  
+</div>
 
 
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto">
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -366,7 +368,7 @@ else{
 
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_urut</td> 
+      <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal_do</td>
       <td style='font-size: 14px'>$tanggal_kirim</td>
       <td style='font-size: 14px'>$no_do</td>
@@ -375,14 +377,14 @@ else{
       <td style='font-size: 14px'>$tujuan_pengiriman</td>
       <td style='font-size: 14px'>$qty</td>
       <td style='font-size: 14px'>$satuan</td>
-      <td style='font-size: 14px'>"?> <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>$toko_do</td>
       <td style='font-size: 14px'>$tanggal_bayar</td>
       <td style='font-size: 14px'>$status_bayar</td>
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>$catatan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
    
 
@@ -404,7 +406,7 @@ else{
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Penjualan ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $penjualan_zak ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $penjualan_zak + $penjualan_zak_bon ?></div>
           </div>
           <div class="col-auto">
            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -420,7 +422,7 @@ else{
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Uang ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_zak) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_zak + $uang_zak_bon) ?></div>
           </div>
           <div class="col-auto">
             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -530,9 +532,59 @@ else{
     </div>
   </div>
 </div>
-<br>
-<br>
 
+<br>
+<hr>
+<br>
+<?php 
+
+$tablej2 = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
+
+?>
+
+<h3 class="text-center" >Do Pembelian belum Tercatat tetapi DO Penjualan sudah Tercatat</h3>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Do belum tercatat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total = 0;
+    $urut = 0;
+
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($tablej2)){
+    $no_do_pembelian = $data['no_do'];
+    $tablexj = mysqli_query($koneksi, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
+
+
+    if(mysqli_num_rows($tablexj) === 0 ){
+
+         $urut = $urut +1;
+
+
+         echo "<tr>
+         <td style='font-size: 14px'>$urut</td>
+         <td style='font-size: 14px'>$no_do_pembelian</td>
+       </tr>";
+        }
+        
+
+  }
+
+?>
+
+</tbody>
+</table>
+<br>
+<br>
+</div>
 </div>
 </div>
 <!-- End of Main Content -->
@@ -608,7 +660,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'excel', 'colvis' ]
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
     table.buttons().container()
@@ -652,6 +704,20 @@ aria-hidden="true">
     maxOptions: 1
   });
 </script>
+
+<script>
+
+            function sum() {
+              var banyak_barang = document.getElementById('qty').value;
+              var harga = document.getElementById('harga').value;
+              var result = parseInt(banyak_barang) * parseInt(harga);
+              if (!isNaN(result)) {
+               document.getElementById('jumlah').value = result;
+             }
+           }
+         </script>
+
+         
 </body>
 
 </html>
