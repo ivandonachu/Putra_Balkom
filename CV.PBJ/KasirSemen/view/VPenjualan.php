@@ -25,11 +25,15 @@ $nama = $data['nama_karyawan'];
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
+ $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+  $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
+ $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+  $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 } 
 else{
   $tanggal_awal = date('Y-m-1');
@@ -47,6 +51,22 @@ if ($tanggal_awal == $tanggal_akhir) {
   $data2 = mysqli_fetch_array($table2);
   $penjualan_zak = $data2['penjualan_zak'];
   $uang_zak= $data2['uang_zak'];
+
+  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Bon'AND satuan = 'Zak'");
+  $data3 = mysqli_fetch_array($table3);
+  $penjualan_zak_bon = $data3['penjualan_zak_bon'];
+  $uang_zak_bon = $data3['uang_zak_bon'];
+
+  $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
+  $data4 = mysqli_fetch_array($table4);
+  $penjualan_bag = $data4['penjualan_bag'];
+  $uang_bag= $data4['uang_bag'];
+
+  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Bon'AND satuan = 'Bag'");
+  $data5 = mysqli_fetch_array($table5);
+  $penjualan_bag_bon = $data5['penjualan_bag_bon'];
+  $uang_bag_bon = $data5['uang_bag_bon'];
+
 
 
 }
@@ -926,7 +946,7 @@ function sum2() {
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Penjualan ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $penjualan_zak ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $penjualan_zak + $penjualan_zak_bon ?></div>
           </div>
           <div class="col-auto">
            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -942,7 +962,7 @@ function sum2() {
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Uang ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_zak) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_zak + $uang_zak_bon) ?></div>
           </div>
           <div class="col-auto">
             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
