@@ -299,9 +299,9 @@ if ($tanggal_awal == $tanggal_akhir) {
      $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_sl WHERE 
      tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data2sl = mysqli_fetch_array($table2sl);
-    $total_uj_sl = $data2['total_uj'];
-    $total_gaji_sl = $data2['total_gaji'];
-    $total_om_sl = $data2['total_om'];
+    $total_uj_sl = $data2sl['total_uj'];
+    $total_gaji_sl = $data2sl['total_gaji'];
+    $total_om_sl = $data2sl['total_om'];
 
     //Biaya Kantor etty
     $table3s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");

@@ -37,7 +37,7 @@ else{
 
  
    $table4 = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
-   $table4x = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
+   $table4x = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
 
 
 }
@@ -312,7 +312,7 @@ else{
 
 
     ?>
-    <?php while($data = mysqli_fetch_array($table4)){
+    <?php while($data = mysqli_fetch_array($table4x)){
       $nama_driver = $data['driver'];
       $total_gaji =$data['total_gaji'];
       $uj_kadek = $uj_kadek + $total_gaji ;
