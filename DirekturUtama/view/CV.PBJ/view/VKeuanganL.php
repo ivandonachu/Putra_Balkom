@@ -279,7 +279,6 @@ else{
       <th>No</th>
       <th>Tanggal</th>
       <th>Akun</th>
-      <th></th>
       <th>Keterangan</th>
       <th>Masuk</th>
       <th>Keluar</th>
