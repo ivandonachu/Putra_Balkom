@@ -990,7 +990,7 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td>5-590</td>
                                     <td class="text-left">Biaya Usaha Lainnya</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_biaya_usaha); ?></td>
+                                    <td class="text-left"><?= formatuang($total_perbaikan_kendaraan); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRUsahaLainnya?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
