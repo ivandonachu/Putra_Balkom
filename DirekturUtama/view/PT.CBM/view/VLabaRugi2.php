@@ -207,7 +207,7 @@ if (!isset($data_pemasaran_tk['total_pemasaran_tk'])) {
     $total_biaya_pemasaran_tk = 0;
 }
 //pemasaran oprasional
-$table155 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_pemasaran_op FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Penjualan & Pemasaran' ");
+$table155 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_pemasaran_op FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Penjualan & Pemasaran' AND referensi = 'CBM' ");
 $data_pemasaran_op = mysqli_fetch_array($table155);
 $total_biaya_pemasaran_op = $data_pemasaran_op['total_pemasaran_op'];
 if (!isset($data_pemasaran_op['total_pemasaran_op'])) {
@@ -227,7 +227,7 @@ if (!isset($data_biaya_usaha_tk['total_biaya_usaha_tk'])) {
     $total_biaya_usaha_tk = 0;
 }
 //oprasional
-$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Usaha Lainnya'");
+$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'CBM'");
 $data_biaya_usaha_op = mysqli_fetch_array($table166);
 $total_biaya_usaha_op = $data_biaya_usaha_op['total_biaya_usaha_op'];
 if (!isset($data_biaya_usaha_op['total_biaya_usaha_op'])) {
@@ -441,7 +441,7 @@ if (!isset($data_pemasaran_tk['total_pemasaran_tk'])) {
     $total_biaya_pemasaran_tk = 0;
 }
 //pemasaran oprasional
-$table155 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_pemasaran_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND nama_akun = 'Biaya Penjualan & Pemasaran' ");
+$table155 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_pemasaran_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND nama_akun = 'Biaya Penjualan & Pemasaran' AND referensi = 'CBM'");
 $data_pemasaran_op = mysqli_fetch_array($table155);
 $total_biaya_pemasaran_op = $data_pemasaran_op['total_pemasaran_op'];
 if (!isset($data_pemasaran_op['total_pemasaran_op'])) {
@@ -461,7 +461,7 @@ if (!isset($data_biaya_usaha_tk['total_biaya_usaha_tk'])) {
     $total_biaya_usaha_tk = 0;
 }
 //oprasional
-$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND nama_akun = 'Biaya Usaha Lainnya'");
+$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'CBM'");
 $data_biaya_usaha_op = mysqli_fetch_array($table166);
 $total_biaya_usaha_op = $data_biaya_usaha_op['total_biaya_usaha_op'];
 if (!isset($data_biaya_usaha_op['total_biaya_usaha_op'])) {
