@@ -33,12 +33,12 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
   
-$table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal = '$tanggal_awal' AND nama_akun ='Biaya Usaha Lainnya' ");
+$table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal = '$tanggal_awal' AND nama_akun ='Biaya Usaha Lainnya' AND referensi = 'CBM'");
 }
 else{
 
   $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun ='Biaya Usaha Lainnya' AND referensi = 'CBM'");
-  
+
   $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'CBM'  ");
   $data_cbm = mysqli_fetch_array($table2);
   $total_cbm = $data_cbm['jumlah_cbm'];
