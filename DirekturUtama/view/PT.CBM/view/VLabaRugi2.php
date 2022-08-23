@@ -196,7 +196,40 @@ if (!isset($data_pengeluaran_listrik_ad['total_listrik_ad'])) {
 }
 $total_pengeluaran_listrik = $total_pengeluaran_listrik_ad + $total_pengeluaran_listrik_tk;
 
+//Biaya konsumsi toko
+$table14 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_konsumsi_tk FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-560'");
+$data_pengeluaran_konsumsi_tk = mysqli_fetch_array($table14a);
+$data_pengeluaran_konsumsi_tk = $data_pengeluaran_konsumsi_tk['total_konsumsi_tk'];
+if (!isset($data_pengeluaran_konsumsi_tk['total_konsumsi_tk'])) {
+    $data_pengeluaran_konsumsi_tk = 0;
+}
+//Biaya konsumsi administrasi
+$table144a = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_listrik_ad FROM riwayat_kas_kecil WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Konsumsi' ");
+$data_pengeluaran_konsumsi_ad = mysqli_fetch_array($table144a);
+$data_pengeluaran_konsumsi_ad = $data_pengeluaran_konsumsi_ad['total_listrik_ad'];
+if (!isset($data_pengeluaran_konsumsi_ad['total_listrik_ad'])) {
+    $data_pengeluaran_konsumsi_ad = 0;
+}
+$total_pengeluaran_konsumsi = $data_pengeluaran_konsumsi_ad + $data_pengeluaran_konsumsi_tk;
 
+
+//Biaya prive toko
+$table14b = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_prive_tk FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-570'");
+$data_pengeluaran_prive_tk = mysqli_fetch_array($table14b);
+$data_pengeluaran_prive_tk = $data_pengeluaran_prive_tk['total_prive_tk'];
+if (!isset($data_pengeluaran_prive_tk['total_prive_tk'])) {
+    $data_pengeluaran_prive_tk = 0;
+}
+//Biaya prive oprasional
+$table15b5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_pemasaran_op FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Transfer Ke Bos' AND referensi = 'CBM' OR
+                                                                                                                tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran Pak Nyoman' AND referensi = 'CBM' OR
+                                                                                                                tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran Buk Mery' AND referensi = 'CBM' ");
+$data_pemasaran_prive_op = mysqli_fetch_array($table155b);
+$total_biaya_pemasaran_prive_op = $data_pemasaran_prive_op['total_pemasaran_op'];
+if (!isset($data_pemasaran_prive_op['total_pemasaran_op'])) {
+    $total_biaya_pemasaran_prive_op = 0;
+}
+$total_pengeluaran_prive = $total_biaya_pemasaran_prive_op + $data_pengeluaran_prive_tk;
 
 //Biaya Penjualan dan Pemasaran
 //pemasaran kebnerangkatan
@@ -227,7 +260,9 @@ if (!isset($data_biaya_usaha_tk['total_biaya_usaha_tk'])) {
     $total_biaya_usaha_tk = 0;
 }
 //oprasional
-$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'CBM'");
+$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'CBM' OR
+                                                                                                                  tanggal = '$tanggal_awal' AND nama_akun = 'Bayar Pajak' AND referensi = 'CBM' OR
+                                                                                                                  tanggal = '$tanggal_awal' AND nama_akun = 'Bayar Kir' AND referensi = 'CBM'");
 $data_biaya_usaha_op = mysqli_fetch_array($table166);
 $total_biaya_usaha_op = $data_biaya_usaha_op['total_biaya_usaha_op'];
 if (!isset($data_biaya_usaha_op['total_biaya_usaha_op'])) {
@@ -261,7 +296,7 @@ if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 }
@@ -430,6 +465,40 @@ if (!isset($data_pengeluaran_listrik_ad['total_listrik_ad'])) {
 }
 $total_pengeluaran_listrik = $total_pengeluaran_listrik_ad + $total_pengeluaran_listrik_tk;
 
+//Biaya konsumsi toko
+$table14 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_konsumsi_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-560'");
+$data_pengeluaran_konsumsi_tk = mysqli_fetch_array($table14a);
+$data_pengeluaran_konsumsi_tk = $data_pengeluaran_konsumsi_tk['total_konsumsi_tk'];
+if (!isset($data_pengeluaran_konsumsi_tk['total_konsumsi_tk'])) {
+    $data_pengeluaran_konsumsi_tk = 0;
+}
+//Biaya konsumsi administrasi
+$table144a = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_listrik_ad FROM riwayat_kas_kecil WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+$data_pengeluaran_konsumsi_ad = mysqli_fetch_array($table144a);
+$data_pengeluaran_konsumsi_ad = $data_pengeluaran_konsumsi_ad['total_listrik_ad'];
+if (!isset($data_pengeluaran_konsumsi_ad['total_listrik_ad'])) {
+    $data_pengeluaran_konsumsi_ad = 0;
+}
+$total_pengeluaran_konsumsi = $data_pengeluaran_konsumsi_ad + $data_pengeluaran_konsumsi_tk;
+
+
+//Biaya prive toko
+$table14b = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_prive_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-570'");
+$data_pengeluaran_prive_tk = mysqli_fetch_array($table14b);
+$data_pengeluaran_prive_tk = $data_pengeluaran_prive_tk['total_prive_tk'];
+if (!isset($data_pengeluaran_prive_tk['total_prive_tk'])) {
+    $data_pengeluaran_prive_tk = 0;
+}
+//Biaya prive oprasional
+$table15b5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_pemasaran_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transfer Ke Bos' AND referensi = 'CBM' OR
+                                                                                                                tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Pak Nyoman' AND referensi = 'CBM' OR
+                                                                                                                tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Buk Mery' AND referensi = 'CBM' ");
+$data_pemasaran_prive_op = mysqli_fetch_array($table155b);
+$total_biaya_pemasaran_prive_op = $data_pemasaran_prive_op['total_pemasaran_op'];
+if (!isset($data_pemasaran_prive_op['total_pemasaran_op'])) {
+    $total_biaya_pemasaran_prive_op = 0;
+}
+$total_pengeluaran_prive = $total_biaya_pemasaran_prive_op + $data_pengeluaran_prive_tk;
 
 
 //Biaya Penjualan dan Pemasaran
@@ -461,7 +530,9 @@ if (!isset($data_biaya_usaha_tk['total_biaya_usaha_tk'])) {
     $total_biaya_usaha_tk = 0;
 }
 //oprasional
-$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'CBM'");
+$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'CBM' OR
+                                                                                                                  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Pajak' AND referensi = 'CBM' OR
+                                                                                                                  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'CBM'");
 $data_biaya_usaha_op = mysqli_fetch_array($table166);
 $total_biaya_usaha_op = $data_biaya_usaha_op['total_biaya_usaha_op'];
 if (!isset($data_biaya_usaha_op['total_biaya_usaha_op'])) {
@@ -496,7 +567,7 @@ if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken1;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 }
@@ -967,17 +1038,17 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                 </tr>
                                 <tr>
                                     <td>5-560</td>
-                                    <td class="text-left">Biaya Penyusutan</td>
+                                    <td class="text-left">Biaya Konsumsi</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                   <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
+                                   <td class="text-left"><?= formatuang($total_pengeluaran_konsumsi); ?></td>
+                                   <?php echo "<td class='text-right'><a href='VRincianLR/VRKonsumsi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-570</td>
-                                    <td class="text-left">Biaya Sewa</td>
+                                    <td class="text-left">Biaya Prive</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                   <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
+                                   <td class="text-left"><?= formatuang($total_pengeluaran_prive); ?></td>
+                                   <?php echo "<td class='text-right'><a href='VRincianLR/VRPrive?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-580</td>

@@ -534,12 +534,12 @@ $ranau = 'Kebun Ranau';
             <option>Biaya Penjualan & Pemasaran</option>
             <option>Bon Karyawan</option>
             <option>Transfer Ke Bos</option>
-            <option>Pemakaian Pribadi</option>
             <option>Bayar Pajak</option>
             <option>Bayar Kir</option>
             <option>Mocash</option>
             <option>Pengeluaran Pak Nyoman</option>
             <option>Pengeluaran Buk Mery</option>
+            <option>Kebun Ranau</option>
           </select>
         </div>            
         <div class="col-md-6">

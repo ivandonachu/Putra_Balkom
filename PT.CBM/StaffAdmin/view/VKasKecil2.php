@@ -277,9 +277,8 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
             <option>Biaya Kantor</option>
             <option>Biaya Konsumsi</option>
             <option>Listrik & Telepon</option>
-            <option>Biaya Usaha Lainnya</option>
             <option>Biaya Umum</option>
-             <option>Saldo Awal</option>
+            <option>Saldo Awal</option>
           </select>
         </div>            
 

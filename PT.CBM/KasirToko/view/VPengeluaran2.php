@@ -324,16 +324,13 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
             <option>Kembalikan Saldo Mocash</option>
             <option>Kembalikan Saldo Brankas</option>
             <option>Setor Pendapatan</option></option>
-            <option>Prive</option>
+            <option>Alat Tulis Kantor</option>
+            <option>Biaya Kantor</option>
             <option>Transport / Perjalanan Dinas</option>
-            <option>Biaya Penjualan & Pemasaran</option>
+            <option>Listrik & Telepon</option>
             <option>Biaya Usaha Lainnya</option>
             <option>Biaya Perbaikan Kendaraan</option>
-            <option>Alat Tulis Kantor</option>
-            <option>Listrik & Telepon</option>
-            <option>Biaya Kantor</option>
-            <option>Biaya Penyusutan</option>
-            <option>Biaya Sewa</option>
+            <option>Prive</option>
           </select>
         </div>
       </div>
