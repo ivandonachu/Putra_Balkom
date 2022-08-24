@@ -199,26 +199,26 @@ $total_pengeluaran_listrik = $total_pengeluaran_listrik_ad + $total_pengeluaran_
 //Biaya konsumsi toko
 $table14 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_konsumsi_tk FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-560'");
 $data_pengeluaran_konsumsi_tk = mysqli_fetch_array($table14a);
-$data_pengeluaran_konsumsi_tk = $data_pengeluaran_konsumsi_tk['total_konsumsi_tk'];
+$total_pengeluaran_konsumsi_tk = $data_pengeluaran_konsumsi_tk['total_konsumsi_tk'];
 if (!isset($data_pengeluaran_konsumsi_tk['total_konsumsi_tk'])) {
-    $data_pengeluaran_konsumsi_tk = 0;
+    $total_pengeluaran_konsumsi_tk = 0;
 }
 //Biaya konsumsi administrasi
 $table144a = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_listrik_ad FROM riwayat_kas_kecil WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Konsumsi' ");
 $data_pengeluaran_konsumsi_ad = mysqli_fetch_array($table144a);
-$data_pengeluaran_konsumsi_ad = $data_pengeluaran_konsumsi_ad['total_listrik_ad'];
+$total_pengeluaran_konsumsi_ad = $data_pengeluaran_konsumsi_ad['total_listrik_ad'];
 if (!isset($data_pengeluaran_konsumsi_ad['total_listrik_ad'])) {
-    $data_pengeluaran_konsumsi_ad = 0;
+    $total_pengeluaran_konsumsi_ad = 0;
 }
-$total_pengeluaran_konsumsi = $data_pengeluaran_konsumsi_ad + $data_pengeluaran_konsumsi_tk;
+$total_pengeluaran_konsumsi = $total_pengeluaran_konsumsi_ad + $total_pengeluaran_konsumsi_tk;
 
 
 //Biaya prive toko
 $table14b = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_prive_tk FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-570'");
 $data_pengeluaran_prive_tk = mysqli_fetch_array($table14b);
-$data_pengeluaran_prive_tk = $data_pengeluaran_prive_tk['total_prive_tk'];
+$total_pengeluaran_prive_tk = $data_pengeluaran_prive_tk['total_prive_tk'];
 if (!isset($data_pengeluaran_prive_tk['total_prive_tk'])) {
-    $data_pengeluaran_prive_tk = 0;
+    $total_pengeluaran_prive_tk = 0;
 }
 //Biaya prive oprasional
 $table15b5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_pemasaran_op FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Transfer Ke Bos' AND referensi = 'CBM' OR
@@ -229,7 +229,7 @@ $total_biaya_pemasaran_prive_op = $data_pemasaran_prive_op['total_pemasaran_op']
 if (!isset($data_pemasaran_prive_op['total_pemasaran_op'])) {
     $total_biaya_pemasaran_prive_op = 0;
 }
-$total_pengeluaran_prive = $total_biaya_pemasaran_prive_op + $data_pengeluaran_prive_tk;
+$total_pengeluaran_prive = $total_biaya_pemasaran_prive_op + $total_pengeluaran_prive_tk;
 
 //Biaya Penjualan dan Pemasaran
 //pemasaran kebnerangkatan
@@ -466,31 +466,31 @@ if (!isset($data_pengeluaran_listrik_ad['total_listrik_ad'])) {
 $total_pengeluaran_listrik = $total_pengeluaran_listrik_ad + $total_pengeluaran_listrik_tk;
 
 //Biaya konsumsi toko
-$table14 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_konsumsi_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-560'");
+$table14a = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_konsumsi_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-560'");
 $data_pengeluaran_konsumsi_tk = mysqli_fetch_array($table14a);
-$data_pengeluaran_konsumsi_tk = $data_pengeluaran_konsumsi_tk['total_konsumsi_tk'];
+$total_pengeluaran_konsumsi_tk = $data_pengeluaran_konsumsi_tk['total_konsumsi_tk'];
 if (!isset($data_pengeluaran_konsumsi_tk['total_konsumsi_tk'])) {
-    $data_pengeluaran_konsumsi_tk = 0;
+    $total_pengeluaran_konsumsi_tk = 0;
 }
 //Biaya konsumsi administrasi
 $table144a = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_listrik_ad FROM riwayat_kas_kecil WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
 $data_pengeluaran_konsumsi_ad = mysqli_fetch_array($table144a);
-$data_pengeluaran_konsumsi_ad = $data_pengeluaran_konsumsi_ad['total_listrik_ad'];
+$total_pengeluaran_konsumsi_ad = $data_pengeluaran_konsumsi_ad['total_listrik_ad'];
 if (!isset($data_pengeluaran_konsumsi_ad['total_listrik_ad'])) {
-    $data_pengeluaran_konsumsi_ad = 0;
+    $total_pengeluaran_konsumsi_ad = 0;
 }
-$total_pengeluaran_konsumsi = $data_pengeluaran_konsumsi_ad + $data_pengeluaran_konsumsi_tk;
+$total_pengeluaran_konsumsi = $total_pengeluaran_konsumsi_ad + $total_pengeluaran_konsumsi_tk;
 
 
 //Biaya prive toko
 $table14b = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_prive_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-570'");
 $data_pengeluaran_prive_tk = mysqli_fetch_array($table14b);
-$data_pengeluaran_prive_tk = $data_pengeluaran_prive_tk['total_prive_tk'];
+$total_pengeluaran_prive_tk = $data_pengeluaran_prive_tk['total_prive_tk'];
 if (!isset($data_pengeluaran_prive_tk['total_prive_tk'])) {
-    $data_pengeluaran_prive_tk = 0;
+    $total_pengeluaran_prive_tk = 0;
 }
 //Biaya prive oprasional
-$table15b5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_pemasaran_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transfer Ke Bos' AND referensi = 'CBM' OR
+$table155b = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_pemasaran_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transfer Ke Bos' AND referensi = 'CBM' OR
                                                                                                                 tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Pak Nyoman' AND referensi = 'CBM' OR
                                                                                                                 tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Buk Mery' AND referensi = 'CBM' ");
 $data_pemasaran_prive_op = mysqli_fetch_array($table155b);
@@ -498,7 +498,7 @@ $total_biaya_pemasaran_prive_op = $data_pemasaran_prive_op['total_pemasaran_op']
 if (!isset($data_pemasaran_prive_op['total_pemasaran_op'])) {
     $total_biaya_pemasaran_prive_op = 0;
 }
-$total_pengeluaran_prive = $total_biaya_pemasaran_prive_op + $data_pengeluaran_prive_tk;
+$total_pengeluaran_prive = $total_biaya_pemasaran_prive_op + $total_pengeluaran_prive_tk;
 
 
 //Biaya Penjualan dan Pemasaran

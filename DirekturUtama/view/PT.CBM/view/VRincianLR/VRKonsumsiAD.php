@@ -30,7 +30,12 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
-
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_kas_kecil WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Konsumsi' ");
+}
+else{
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_kas_kecil WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+}
 
 
  ?>
@@ -45,7 +50,7 @@ elseif (isset($_POST['tanggal1'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Biaya Prive</title>
+  <title>Rincian Biaya Konsumsi Kas Kecil</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -76,7 +81,7 @@ elseif (isset($_POST['tanggal1'])) {
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
+       <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
                 <div class="sidebar-brand-icon rotate-n-15">
 
@@ -95,7 +100,7 @@ elseif (isset($_POST['tanggal1'])) {
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
 
-                <!-- Divider -->
+               <!-- Divider -->
                 <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
@@ -183,7 +188,7 @@ elseif (isset($_POST['tanggal1'])) {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Prive</h5></a>"; ?>
+  <?php echo "<a href='VRListrikAD?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Konsumsi Kas Kecil</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -247,15 +252,93 @@ elseif (isset($_POST['tanggal1'])) {
     <br>
     <div class="row" >
       <div class="col-md-11" align="right" >
-         <?php echo "<a href='VRPriveTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kasir Toko</button></a>"; ?>
+         <?php echo "<a href='VRKonsumsiTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kasir Toko</button></a>"; ?>
       </div>
       <div class="col-md-1"  align="right">
-         <?php echo "<a href='VRPriveOP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kas Armada</button></a>"; ?>
+         <?php echo "<a href='VRKonsumsiAD?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kas Kecil</button></a>"; ?>
       </div>
     </div>
 <br>
 <br>
    
+<!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Debit</th>
+      <th>Kredit</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total_kredit = 0;
+    $total_debit = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
+    ?>
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_laporan = $data['no_transaksi'];
+      $tanggal =$data['tanggal'];
+      $nama_akun = $data['nama_akun'];
+      $jumlah = $data['jumlah'];
+      $keterangan = $data['keterangan'];
+      $status_saldo = $data['status_saldo'];
+      $file_bukti = $data['file_bukti'];
+      if ($status_saldo == 'Masuk') {
+        $total_debit = $total_debit + $jumlah;
+      }
+      elseif($status_saldo == 'Keluar'){
+        $total_kredit = $total_kredit + $jumlah;
+      }
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_laporan</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$keterangan</td>";
+
+
+      if ($nama_akun == 'Saldo Awal') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+
+      if ($nama_akun != 'Saldo Awal') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+        ; ?>
+        <?php echo "
+         <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+
+    <?php echo  " </td> </tr>";
+  }
+
+  ?>
+
+</tbody>
+</table>
+
+<br>
+<br>
 
 </div>
 

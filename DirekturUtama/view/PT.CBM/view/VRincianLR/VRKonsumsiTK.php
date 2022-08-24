@@ -31,7 +31,12 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
 }  
 
-
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-560' ");
+}
+else{
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-560' ");
+}
 
  ?>
  <!DOCTYPE html>
@@ -45,7 +50,7 @@ elseif (isset($_POST['tanggal1'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Biaya Prive</title>
+  <title>Rincian Biaya Konsumsi Kasir Toko</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -76,7 +81,7 @@ elseif (isset($_POST['tanggal1'])) {
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
+       <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
                 <div class="sidebar-brand-icon rotate-n-15">
 
@@ -158,7 +163,6 @@ elseif (isset($_POST['tanggal1'])) {
                     </div>
                 </div>
             </li>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -183,7 +187,7 @@ elseif (isset($_POST['tanggal1'])) {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Prive</h5></a>"; ?>
+  <?php echo "<a href='VRListrikTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Konsumsi Kasir Toko</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -247,16 +251,65 @@ elseif (isset($_POST['tanggal1'])) {
     <br>
     <div class="row" >
       <div class="col-md-11" align="right" >
-         <?php echo "<a href='VRPriveTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kasir Toko</button></a>"; ?>
+         <?php echo "<a href='VRKonsumsiTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kasir Toko</button></a>"; ?>
       </div>
       <div class="col-md-1"  align="right">
-         <?php echo "<a href='VRPriveOP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kas Armada</button></a>"; ?>
+         <?php echo "<a href='VRKonsumsiAD?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kas Kecil</button></a>"; ?>
       </div>
     </div>
 <br>
 <br>
    
+<!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>REF</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Jumlah Pengeluaran</th>
+      <th>File</th>
 
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_transaksi = $data['no_pengeluaran'];
+      $tanggal =$data['tanggal'];
+      $referensi = $data['referensi'];
+      $nama_akun = $data['nama_akun'];
+      $keterangan = $data['keterangan'];
+      $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
+      $file_bukti = $data['file_bukti'];
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_transaksi</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_pengeluaran); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+      
+
+    <?php echo  " </td> </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
 </div>
 
 
