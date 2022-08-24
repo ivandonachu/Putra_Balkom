@@ -122,6 +122,14 @@ $jumlah_kel_pbj_kebunmbah = $data1011['jumlah_kel_pbj_kebunmbah'];
  $jumlah_kel_pbj_kebunmbah = 0;
  }
 
+ //keluar CBM untuk kebun MBAH
+$table1011y = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_cbm_kebunmbah FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Kebun Mbah' AND status_saldo = 'Keluar' ");
+$data1011y = mysqli_fetch_array($table1011y);
+$jumlah_kel_cbm_kebunmbah = $data1011y['jumlah_kel_cbm_kebunmbah'];
+ if (!isset($data1011y['jumlah_kel_cbm_kebunmbah'])) {
+ $jumlah_kel_cbm_kebunmbah = 0;
+ }
+
  //keluar CBM untuk kebun KELING
 $table1011x = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_cbm_keling FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Kebun Lengkiti' AND status_saldo = 'Keluar' ");
 $data1011x = mysqli_fetch_array($table1011x);
@@ -883,6 +891,13 @@ $ranau = 'Kebun Ranau';
       <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbj_kebunmbah); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$PBJ&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm_kebunmbah); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
   <tr>
