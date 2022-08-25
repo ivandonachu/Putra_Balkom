@@ -272,6 +272,7 @@ else{
       <th>Rekening</th>
       <th>Debit</th>
       <th>Kredit</th>
+      <th>Total</th>
       <th>Keterangan</th>
       <th>File</th>
     </tr>
@@ -280,6 +281,7 @@ else{
     <?php
     $total_kredit = 0;
     $total_debit = 0;
+    $total_uang = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -302,6 +304,7 @@ else{
       }
       elseif($status_saldo == 'Keluar'){
         $total_kredit = $total_kredit + $jumlah;
+        $total_uang = $total_uang + $jumlah;
       }
 
 
@@ -330,10 +333,12 @@ else{
         echo "
         <td style='font-size: 14px'>"?>  <?php echo "</td>";
       }
-        
-      echo "
+      ; ?>
+      <td style='font-size: 14px'>  <?= formatuang($total_uang); ?> <?php echo "</td>
+    
+      
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Operasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Operasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
 
     <?php echo  " </td> </tr>";
