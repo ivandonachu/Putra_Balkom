@@ -38,7 +38,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawa
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Bon Karyawan</title>
+  <title>Bon Bulanan Karyawan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -111,6 +111,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawa
                         <?php } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Bulanan Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBonPribadi">Bon Pribadi Karyawan</a>
                     </div>
                 </div>
             </li>
@@ -139,7 +140,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawa
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VBonKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Bon Karyawan</h5></a>"; ?>
+      <?php echo "<a href='VBonKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Bon Bulanan Karyawan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>

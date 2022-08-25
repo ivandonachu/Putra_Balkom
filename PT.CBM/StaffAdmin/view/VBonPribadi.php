@@ -31,12 +31,16 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
+else{
+    $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+}
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM bon_pribadi a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal = '$tanggal_awal'");
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM bon_pribadi a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 }
 
 
@@ -52,7 +56,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Bon Bulanan Karyawan</title>
+  <title>Bon Pribadi Karyawan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -154,7 +158,7 @@ else{
 
       <!-- Topbar -->
       <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-        <?php echo "<a href='VBonKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Bon Bulanan Karyawan</h5></a>"; ?>
+        <?php echo "<a href='VBonKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Bon Pribadi Karyawan</h5></a>"; ?>
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
           <i class="fa fa-bars"></i>
@@ -232,7 +236,7 @@ else{
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_bon_karyawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_bon_pribadi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
          <div class="row">
             <div class="col-md-6">
@@ -336,7 +340,7 @@ else{
 </div>
 
       
-     <?php  echo "<form  method='POST' action='VBonKaryawan2' style='margin-bottom: 15px;'>" ?>
+     <?php  echo "<form  method='POST' action='VBonPribadi' style='margin-bottom: 15px;'>" ?>
      <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -421,7 +425,7 @@ else{
 
             <!-- Form Edit Data -->
             <div class="modal-body">
-              <form action="../proses/end_bon_karyawan" enctype="multipart/form-data" method="POST">
+              <form action="../proses/end_bon_pribadi" enctype="multipart/form-data" method="POST">
 
 
                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
@@ -472,16 +476,10 @@ else{
             </button>
           </div>
 
-          <?php
-          include 'koneksi.php';
-          $no_laporan = $data['no_bon'];
-          $queryE = mysqli_query($koneksi, "SELECT * FROM bon_karyawan where no_bon = '$no_laporan'");
-          $dataE = mysqli_fetch_array($queryE);
-          ?> 
 
           <div class="modal-body">
-            <form action="../proses/hapus_bon_karyawan" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $dataE['no_bon'];?>">
+            <form action="../proses/hapus_bon_pribadi" method="POST">
+              <input type="hidden" name="no_laporan" value="<?php echo $no_bon ?>">
                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
               <div class="form-group">
