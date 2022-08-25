@@ -326,6 +326,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
             <option>Setor Pendapatan</option></option>
             <option>Alat Tulis Kantor</option>
             <option>Biaya Kantor</option>
+            <option>Biaya Konsumsi</option>
             <option>Transport / Perjalanan Dinas</option>
             <option>Listrik & Telepon</option>
             <option>Biaya Usaha Lainnya</option>
