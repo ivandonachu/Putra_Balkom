@@ -271,6 +271,7 @@ else{
       <th>Keterangan</th>
       <th>Debit</th>
       <th>Kredit</th>
+      <th>Total</th>
       <th>File</th>
     </tr>
   </thead>
@@ -328,7 +329,7 @@ else{
         <?php echo "
          <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
-
+     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";?>
     <?php echo  " </td> </tr>";
   }
 
