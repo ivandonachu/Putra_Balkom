@@ -270,12 +270,14 @@ else{
       <th>Akun</th>
       <th>Keterangan</th>
       <th>Jumlah Pengeluaran</th>
+      <th>Total</th>
       <th>File</th>
 
     </tr>
   </thead>
   <tbody>
     <?php
+    $total = 0 ;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -291,7 +293,7 @@ else{
       $keterangan = $data['keterangan'];
       $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
       $file_bukti = $data['file_bukti'];
-
+      $total = $total + $jumlah_pengeluaran;
 
       echo "<tr>
       <td style='font-size: 14px'>$no_transaksi</td>
@@ -300,6 +302,7 @@ else{
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_pengeluaran); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       
