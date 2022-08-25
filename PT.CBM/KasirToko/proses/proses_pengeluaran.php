@@ -62,22 +62,7 @@ else if ( $nama_file != "" ) {
 
 }
 
-	if ($akun == 'Prive') {
-		$kode_akun = '3-500';
-		//riwayat pengeluran
-		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
-		//aktivitas rekening
-		$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
-		$data_rekening = mysqli_fetch_array($akses_rekening);
-		$jumlah_uang = $data_rekening['jumlah'];
-		$jumlah_uang_new = $jumlah_uang - $jumlah;
-		$query1 = mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_uang_new' WHERE kode_akun = '1-111' ");
-
-		if ($query != "") {
-				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-			}
-	}
-	elseif ($akun == 'Transport / Perjalanan Dinas') {
+	if ($akun == 'Transport / Perjalanan Dinas') {
 		$kode_akun = '5-530';
 		//riwayat pengeluran
 		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
