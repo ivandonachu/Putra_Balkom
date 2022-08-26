@@ -296,6 +296,7 @@ else{
           <label>Pembayaran</label>
           <select id="pembayaran" name="pembayaran" class="form-control">
             <option>Cash</option>
+            <option>Transfer</option>
           </select>
         </div>                
 
