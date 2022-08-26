@@ -21,7 +21,6 @@ $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_laporan = $_POST['no_laporan'];
 
-var_dump($no_laporan);
 		//hapus
 	   mysqli_query($koneksi,"DELETE FROM bon_pribadi WHERE no_bon = '$no_laporan'");
 
