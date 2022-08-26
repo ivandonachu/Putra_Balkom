@@ -18,17 +18,13 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$tanggal_awal = $_GET['tanggal1'];
-$tanggal_akhir = $_GET['tanggal2'];
-$nama = $_POST['nama'];
-$tanggal_bon = $_POST['tanggal_bon'];
-$tanggal_angsuran = $_POST['tanggal_angsuran'];
-$jumlah = $_POST['jumlah'];
+$tanggal = date('Y-m-d');
+$nama_dokumen = $_POST['nama_dokumen'];
+$no_rak = $_POST['no_rak'];
+$referensi = $_POST['referensi'];
 $keterangan = $_POST['keterangan'];
-$pembayaran = $_POST['pembayaran'];
+$no_dokumen = $_POST['no_dokumen'];
 $nama_file = $_FILES['file']['name'];
-$kode_akun = '5-510';
-$status_bon = 'Belum Bayar';
 if ($nama_file == "") {
 	$file = "";
 }
@@ -50,7 +46,7 @@ else if ( $nama_file != "" ) {
 		$nama_file_baru .= ".";
 		$nama_file_baru .= $ekstensi_file;
 
-		move_uploaded_file($tmp_name, '../file_toko/' . $nama_file_baru   );
+		move_uploaded_file($tmp_name, '../file_staff_admin/' . $nama_file_baru   );
 
 		return $nama_file_baru; 
 
@@ -62,19 +58,19 @@ else if ( $nama_file != "" ) {
 	}
 
 }
-	
-		$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE nama_karyawan = '$nama' ");
-		$data_karyawan = mysqli_fetch_array($result);
-		$id_karyawan = $data_karyawan['id_karyawan'];
+	if ($file == '') {
+			$query3 = mysqli_query($koneksi,"UPDATE dokumen SET tanggal = '$tanggal' , nama_dokumen = '$nama_dokumen' , no_rak = '$no_rak' , referensi = '$referensi' , keterangan = '$keterangan'  WHERE no_dokumen = '$no_dokumen'");;
+	}
+	else{
+			$query3 = mysqli_query($koneksi,"UPDATE dokumen SET tanggal = '$tanggal' , nama_dokumen = '$nama_dokumen' , no_rak = '$no_rak' , referensi = '$referensi' , keterangan = '$keterangan', file_bukti = '$file'  WHERE no_dokumen = '$no_dokumen'");
+	}
 
-if ($pembayaran == 'Cash') {
-	//riwayat pengeluran
-	$query = mysqli_query($koneksi,"INSERT INTO bon_pribadi VALUES ('','$tanggal_bon','$tanggal_angsuran','$kode_akun','$id_karyawan','$jumlah',0,0,'$status_bon','$keterangan','$file')");
 
-	if ($query != "") {
-				echo "<script> window.location='../view/VBonPribadi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-			}
-}
-elseif ($pembayaran == 'Transfer') {
-	
-}
+
+
+
+			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VDokumen';</script>";exit;
+
+
+
+  ?>

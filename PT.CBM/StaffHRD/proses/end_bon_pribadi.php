@@ -22,12 +22,10 @@ $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_bon = $_POST['no_bon'];
 $tanggal = $_POST['tanggal'];
-$jumlah_bayar = $_POST['jumlah_bayar'];
+$jumlah = $_POST['jumlah'];
 $jumlah_bon = $_POST['jumlah_bon'];
-$total_bayar = $_POST['total_bayar'];
-$jumlah_angsuran = $_POST['jumlah_angsuran'];
-$jumlah_angsuran = $jumlah_angsuran +1;
-$total_bayar = $total_bayar + $jumlah_bayar;
+$jumlah_bayar = $_POST['jumlah_bayar'];
+$total_bayar = $jumlah_bayar + $jumlah;
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -62,45 +60,34 @@ else if ( $nama_file != "" ) {
 	}
 
 }
+	
 
-
-
-
-
-if ( $total_bayar > $jumlah_bon) {
+if ($jumlah_bayar + $jumlah > $jumlah_bon) {
 	echo "<script> alert('Kembalinya Kebanyakan Gaes!'); window.location='../view/VBonPribadi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 }
-else if ($total_bayar < $jumlah_bon) {
+else if ($jumlah_bayar + $jumlah < $jumlah_bon) {
 	$status_bayar = 'Belum Lunas';
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET  total_bayar = '$total_bayar', jumlah_angsuran = '$jumlah_angsuran' , status_bayar = '$status_bayar'  WHERE no_bon = 
+		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET tanggal_bayar = '$tanggal' , jumlah_bayar = '$total_bayar' , status_bayar = '$status_bayar'  WHERE no_bon = 
 		'$no_bon'");
-		mysqli_query($koneksi,"INSERT INTO riwayat_bon_pribadi VALUES ('','$no_bon','$tanggal','$jumlah_bayar','$jumlah_angsuran')");
-
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET   total_bayar = '$total_bayar', jumlah_angsuran = '$jumlah_angsuran' , status_bayar = '$status_bayar' , file_bukti = '$file' WHERE no_bon = 
+		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET tanggal_bayar = '$tanggal' , jumlah_bayar = '$total_bayar' , status_bayar = '$status_bayar' , file_bukti = '$file' WHERE no_bon = 
 		'$no_bon'");
-		mysqli_query($koneksi,"INSERT INTO riwayat_bon_pribadi VALUES ('','$no_bon','$tanggal','$jumlah_bayar','$jumlah_angsuran')");
-
 	}
 	echo "<script> alert('Pembayaran Berhasil!'); window.location='../view/VBonPribadi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 }
 
-else if ($total_bayar == $jumlah_bon) {
+else if ($jumlah_bayar + $jumlah == $jumlah_bon) {
 	$status_bayar = 'Lunas';
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET total_bayar = '$total_bayar', jumlah_angsuran = '$jumlah_angsuran' , status_bayar = '$status_bayar'  WHERE no_bon = 
+		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET tanggal_bayar = '$tanggal' , jumlah_bayar = '$total_bayar' , status_bayar = '$status_bayar'  WHERE no_bon = 
 		'$no_bon'");
-		mysqli_query($koneksi,"INSERT INTO riwayat_bon_pribadi VALUES ('','$no_bon','$tanggal','$jumlah_bayar','$jumlah_angsuran')");
-
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET  total_bayar = '$total_bayar', jumlah_angsuran = '$jumlah_angsuran' , status_bayar = '$status_bayar' , file_bukti = '$file' WHERE no_bon = 
+		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET tanggal_bayar = '$tanggal' , jumlah_bayar = '$total_bayar' , status_bayar = '$status_bayar' , file_bukti = '$file' WHERE no_bon = 
 		'$no_bon'");
-		mysqli_query($koneksi,"INSERT INTO riwayat_bon_pribadi VALUES ('','$no_bon','$tanggal','$jumlah_bayar','$jumlah_angsuran')");
-
 	}
 	echo "<script> alert('Pembayaran Berhasil!'); window.location='../view/VBonPribadi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 }

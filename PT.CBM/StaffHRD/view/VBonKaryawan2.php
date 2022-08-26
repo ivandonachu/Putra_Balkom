@@ -31,18 +31,12 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
-else{
-    $tanggal_awal = date('Y-m-1');
-   $tanggal_akhir = date('Y-m-31');
-}
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM bon_pribadi a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal_bon = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksi, "SELECT * FROM riwayat_bon_pribadi a INNER JOIN bon_pribadi b ON b.no_bon=a.no_bon INNER JOIN karyawan c ON c.id_karyawan=b.id_karyawan WHERE tanggal_bon = '$tanggal_awal' ");
+  $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal = '$tanggal_awal'");
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM bon_pribadi a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal_bon BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-  $table2 = mysqli_query($koneksi, "SELECT * FROM riwayat_bon_pribadi a INNER JOIN bon_pribadi b ON b.no_bon=a.no_bon INNER JOIN karyawan c ON c.id_karyawan=b.id_karyawan WHERE tanggal_bon BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 }
 
 
@@ -58,7 +52,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Bon Pribadi Karyawan</title>
+  <title>Bon Bulanan Karyawan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -125,6 +119,11 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Gaji & Kas</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Penggajian dan Rekap</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Pencatatan Kas Kecil</a>
+                        <?php if($nama == 'Risa Septiana') { ?> 
+                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
+                        <?php } ?>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Bulanan Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonPribadi">Bon Pribadi Karyawan</a>
                     </div>
@@ -155,7 +154,7 @@ else{
 
       <!-- Topbar -->
       <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-        <?php echo "<a href='VBonKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Bon Pribadi Karyawan</h5></a>"; ?>
+        <?php echo "<a href='VBonKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Bon Bulanan Karyawan</h5></a>"; ?>
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
           <i class="fa fa-bars"></i>
@@ -233,25 +232,16 @@ else{
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_bon_pribadi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_bon_karyawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
          <div class="row">
             <div class="col-md-6">
 
-              <label>Tanggal Menghutang</label>
+              <label>Tanggal</label>
               <div class="col-sm-10">
-               <input type="date" id="tanggal_bon" name="tanggal_bon" required="">
+               <input type="date" id="tanggal" name="tanggal" required="">
              </div>
                  
-
-          </div>
-          <div class="col-md-6">
-
-          <label>Tanggal Angsuran</label>
-          <div class="col-sm-10">
-          <input type="date" id="tanggal_angsuran" name="tanggal_angsuran" required="">
-          </div>
-            
 
           </div>
          
@@ -316,7 +306,7 @@ else{
      </script>
 
      <div class="form-group">
-      <label>Jumlah BON</label>
+      <label>Jumlah</label>
       <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="">          
     </div>
 
@@ -346,7 +336,7 @@ else{
 </div>
 
       
-     <?php  echo "<form  method='POST' action='VBonPribadi' style='margin-bottom: 15px;'>" ?>
+     <?php  echo "<form  method='POST' action='VBonKaryawan2' style='margin-bottom: 15px;'>" ?>
      <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -365,18 +355,16 @@ else{
 
 
  <!-- Tabel -->    
- <div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+ <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
-      <th>Tanggal Bon</th>
-      <th>Tanggal Angsuran</th>
-      <th>Tanggal Terakhir Mengangsur</th>
+      <th>Tanggal</th>
+      <th>Tanggal Bayar</th>
+      <th>Akun</th>
       <th>Nama Karyawan</th>
-      <th>Total Bon</th>
-      <th>Total Bayar</th>
-      <th>Jumlah Angsuran</th>
+      <th>Jumlah Bon</th>
+      <th>Jumlah Bayar</th>
       <th>Status Hutang</th>
       <th>Keterangan</th>
       <th>File</th>
@@ -394,38 +382,23 @@ else{
 
     <?php while($data = mysqli_fetch_array($table)){
       $no_bon = $data['no_bon'];
-      $tanggal_bon =$data['tanggal_bon'];
-      $tanggal_angsur =$data['tanggal_angsuran'];
-      $total_bayar = $data['total_bayar'];
+      $tanggal =$data['tanggal'];
+      $tanggal_bayar = $data['tanggal_bayar'];
+      $jumlah_bayar = $data['jumlah_bayar'];
       $nama_akun = $data['nama_akun'];
       $nama_karyawan = $data['nama_karyawan'];
       $keterangan = $data['keterangan'];
       $jumlah_bon = $data['jumlah_bon'];
-      $jumlah_angsuran = $data['jumlah_angsuran'];
       $file_bukti = $data['file_bukti'];
       $status_hutang = $data['status_bayar'];
-
-      $sql_riw_bon = mysqli_query($koneksi, "SELECT tanggal_bayar FROM riwayat_bon_pribadi WHERE no_bon = '$no_bon' ORDER BY no_riwayat DESC LIMIT 1");
-      $data_riw_bon = mysqli_fetch_assoc($sql_riw_bon);
-      if( !isset($data_riw_bon['tanggal_bayar'])){
-        $tanggal_bayar = '-';
-      }
-      else{
-        $tanggal_bayar = $data_riw_bon['tanggal_bayar'];
-      }
-     
-      
-
-
       echo "<tr>
       <td style='font-size: 14px'>$no_bon </td>
-      <td style='font-size: 14px'>$tanggal_bon</td>
-      <td style='font-size: 14px'>$tanggal_angsur</td>
+      <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$tanggal_bayar</td>
+      <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$nama_karyawan</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bon); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($total_bayar); ?> <?php echo "</td>
-      <td style='font-size: 14px'>$jumlah_angsuran</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bayar); ?> <?php echo "</td>
       <td style='font-size: 14px'>$status_hutang</td>
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_staf_admin/<?= $file_bukti ?>" href="../file_staf_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
@@ -448,15 +421,14 @@ else{
 
             <!-- Form Edit Data -->
             <div class="modal-body">
-              <form action="../proses/end_bon_pribadi" enctype="multipart/form-data" method="POST">
+              <form action="../proses/end_bon_karyawan" enctype="multipart/form-data" method="POST">
 
 
                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
                <input type="hidden" name="no_bon" value="<?php echo $no_bon;?>">
                <input type="hidden" name="jumlah_bon" value="<?php echo $jumlah_bon;?>">
-               <input type="hidden" name="total_bayar" value="<?php echo $total_bayar;?>">
-               <input type="hidden" name="jumlah_angsuran" value="<?php echo $jumlah_angsuran;?>">
+               <input type="hidden" name="jumlah_bayar" value="<?php echo $jumlah_bayar;?>">
 
                <div class="row">
                 <div class="col-md-6">
@@ -467,7 +439,7 @@ else{
                </div>
                <div class="col-md-6">
                 <label>Jumlah</label>
-                <input class="form-control form-control-sm" type="number" id="jumlah_bayar" name="jumlah_bayar"  value="0"  required="">
+                <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="0"  required="">
                </div>
              </div>
 
@@ -479,7 +451,7 @@ else{
 
 
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary"> Bayar </button>
+              <button type="submit" class="btn btn-primary"> Ubah </button>
               <button type="reset" class="btn btn-danger"> RESET</button>
             </div>
           </form>
@@ -500,10 +472,16 @@ else{
             </button>
           </div>
 
+          <?php
+          include 'koneksi.php';
+          $no_laporan = $data['no_bon'];
+          $queryE = mysqli_query($koneksi, "SELECT * FROM bon_karyawan where no_bon = '$no_laporan'");
+          $dataE = mysqli_fetch_array($queryE);
+          ?> 
 
           <div class="modal-body">
-            <form action="../proses/hapus_bon_pribadi" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_bon ?>">
+            <form action="../proses/hapus_bon_karyawan" method="POST">
+              <input type="hidden" name="no_laporan" value="<?php echo $dataE['no_bon'];?>">
                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
               <div class="form-group">
@@ -527,99 +505,8 @@ else{
 </table>
 </div>
 
-
-<br><br><br>
-
-<div style="overflow-x: auto" align = 'center' >
-<h3>Riwayat Penycilan Bon Pribadi</h3>
-  <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Tanggal Ngansur</th>
-      <th>Nama</th>
-      <th>Jumlah Bayar</th>
-      <th>agsuran ke</th>
-      <th></th>
-     
-    </tr>
-  </thead>
-  <tbody>
-  <?php
-
-    $no_urut = 0;
-         
-  ?>
-
-    <?php while($data = mysqli_fetch_array($table2)){
-      $no_riwayat = $data['no_riwayat'];
-      $tanggal_bayar =$data['tanggal_bayar'];
-      $nama_karyawan = $data['nama_karyawan'];
-      $angsuran_ke = $data['angsuran_ke'];
-      $jumlah_bon = $data['jumlah_bon'];
-      $jumlah_bayar = $data['jumlah_bayar'];
-      $total_bayar = $data['total_bayar'];
-      $no_bon = $data['no_bon'];
-      $jumlah_angsuran = $data['jumlah_angsuran'];
-      $no_urut = $no_urut + 1;
-
-      echo "<tr>
-      <td style='font-size: 14px'>$no_urut</td>
-      <td style='font-size: 14px'>$tanggal_bayar</td>
-      <td style='font-size: 14px'>$nama_karyawan</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($jumlah_bayar); ?> <?php echo "</td>
-      <td style='font-size: 14px'>$angsuran_ke</td>
-      "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_riwayat']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
-     
-
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_riwayat']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-       <div class="modal-dialog" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form action="../proses/hapus_riwayat_bon_pribadi" method="POST">
-              <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat; ?>">
-              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-              <input type="hidden" name="no_bon" value="<?php echo $no_bon;?>">
-               <input type="hidden" name="jumlah_bon" value="<?php echo $jumlah_bon;?>">
-               <input type="hidden" name="jumlah_bayar" value="<?php echo $jumlah_bayar;?>">
-               <input type="hidden" name="total_bayar" value="<?php echo $total_bayar;?>">
-               <input type="hidden" name="jumlah_angsuran" value="<?php echo $jumlah_angsuran;?>">
-
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
-              </div>
-
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <?php echo  " </td> </tr>";
-  }
-  ?>
-
-</tbody>
-</table>
-
-
 </div>
 
-</div>
-  </div>
 </div>
 <!-- End of Main Content -->
 

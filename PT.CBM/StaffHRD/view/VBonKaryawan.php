@@ -21,25 +21,10 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
 
-if ($tanggal_awal == $tanggal_akhir) {
- $table = mysqli_query($koneksi, "SELECT * FROM riwayat_absensi a INNER JOIN karyawan b ON a.id_karyawan=b.id_karyawan WHERE tanggal = '$tanggal_awal' ORDER BY nama_karyawan ASC");
-$table2 = mysqli_query($koneksi, "SELECT * FROM karyawan ORDER BY nama_karyawan ASC");
-}
-else{
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_absensi a INNER JOIN karyawan b ON a.id_karyawan=b.id_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY nama_karyawan ASC");
-$table2 = mysqli_query($koneksi, "SELECT * FROM karyawan ORDER BY nama_karyawan ASC");
-}
 
+$table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun");
 
 ?>
 <!DOCTYPE html>
@@ -53,7 +38,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM karyawan ORDER BY nama_karyawan 
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Absensi Karyawan</title>
+  <title>Bon Bulanan Karyawan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -79,37 +64,37 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM karyawan ORDER BY nama_karyawan 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
+      <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-     <!-- Sidebar - Brand -->
-     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
-      <div class="sidebar-brand-icon rotate-n-15">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
+        <div class="sidebar-brand-icon rotate-n-15">
 
-      </div>
-      <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-    </a>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active" >
-      <a class="nav-link" href="DsStaffAdmin">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-      </li>
+        </div>
+        <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+      </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider my-0">
 
-      <!-- Heading -->
-      <div class="sidebar-heading" style="font-size: 15px; color:white;">
-       Menu Administrasi
-     </div>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active" >
+        <a class="nav-link" href="DsStaffAdmin">
+          <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+          <span style="font-size: 16px;" >Dashboard</span></a>
+        </li>
 
-       <!-- Nav Item - Pages Collapse Menu -->
-       <li class="nav-item">
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu Staff Admin
+       </div>
+
+         <!-- Nav Item - Pages Collapse Menu -->
+         <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -120,21 +105,27 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM karyawan ORDER BY nama_karyawan 
                         <h6 class="collapse-header" style="font-size: 15px;">Gaji & Kas</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Penggajian dan Rekap</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Pencatatan Kas Kecil</a>
+                        <?php if($nama == 'Risa Septiana') { ?> 
+                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
+                        <?php } ?>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Bulanan Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonPribadi">Bon Pribadi Karyawan</a>
                     </div>
                 </div>
             </li>
-  <!-- Divider -->
-  <hr class="sidebar-divider">
+
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
 
 
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
 
 
@@ -149,7 +140,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM karyawan ORDER BY nama_karyawan 
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VAbsensi'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Absensi Karyawan</h5></a>"; ?>
+      <?php echo "<a href='VBonKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Bon Bulanan Karyawan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -161,7 +152,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM karyawan ORDER BY nama_karyawan 
       <ul class="navbar-nav ml-auto">
 
 
-
+        
 
 
 
@@ -206,57 +197,20 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM karyawan ORDER BY nama_karyawan 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-      <?php  echo "<form  method='POST' action='VAbsensi2.php'>" ?>
-      <div>
-        <div align="left" style="margin-left: 20px;"> 
-          <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-          <span>-</span>
-          <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-          <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+
+ <?php  echo "<form  method='POST' action='VBonKaryawan2' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
       </div>
-  </div>
- <div class="row">
-    <div class="col-md-8">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal </a>"?>
-   </div>
-   </div>
-
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>  
-      <th>Tanggal</th>
-      <th>Nama Karyawan</th>
-      <th>Masuk</th>
-      <th>Keluar</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php while($data = mysqli_fetch_array($table)){
-      $id_karyawan = $data['id_karyawan'];
-      $nama_karyawan =$data['nama_karyawan'];
-      $tanggal = $data['tanggal'];
-      $masuk = $data['masuk'];
-       $keluar = $data['keluar'];
-      echo "<tr>
-      <td style='font-size: 12px'>$tanggal</td>
-      <td style='font-size: 12px'>$nama_karyawan</td>
-      <td style='font-size: 12px'>$masuk</td>
-    <td style='font-size: 12px'>$keluar</td>
-    </tr>";
-  }
-
-?>
-
-
-</tbody>
-</table>
+    </div>
+  </form>
 </div>
-<br>
-<br>
-<br>
+
+
 
 </div>
 

@@ -21,8 +21,7 @@ exit;
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $nama = $_POST['nama'];
-$tanggal_bon = $_POST['tanggal_bon'];
-$tanggal_angsuran = $_POST['tanggal_angsuran'];
+$tanggal = $_POST['tanggal'];
 $jumlah = $_POST['jumlah'];
 $keterangan = $_POST['keterangan'];
 $pembayaran = $_POST['pembayaran'];
@@ -69,7 +68,7 @@ else if ( $nama_file != "" ) {
 
 if ($pembayaran == 'Cash') {
 	//riwayat pengeluran
-	$query = mysqli_query($koneksi,"INSERT INTO bon_pribadi VALUES ('','$tanggal_bon','$tanggal_angsuran','$kode_akun','$id_karyawan','$jumlah',0,0,'$status_bon','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO bon_pribadi VALUES ('','$tanggal',0000-00-00,'$kode_akun','$id_karyawan','$jumlah',0,'$status_bon','$keterangan','$file')");
 
 	if ($query != "") {
 				echo "<script> window.location='../view/VBonPribadi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
