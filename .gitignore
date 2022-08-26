@@ -92,6 +92,9 @@
 /PT.CBM/StaffAdmin/file_staff_admin
 /PT.CBM/StaffAdmin/proses/koneksi.php
 /PT.CBM/StaffAdmin/view/koneksi.php
+/PT.CBM/StaffHRD/file_staff_HRD
+/PT.CBM/StaffHRD/proses/koneksi.php
+/PT.CBM/StaffHRD/view/koneksi.php
 /PT.CBM/Workshop/file_workshop
 /PT.CBM/Workshop/proses/koneksi.php
 /PT.CBM/Workshop/view/koneksi.php

@@ -10,7 +10,7 @@ $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$i
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Staff Admin') {
+if ($jabatan_valid == 'Staff HRD') {
 
 }
 
@@ -98,7 +98,7 @@ $nama = $data['nama_karyawan'];
 
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Staff Admin
+                     Menu Staff HRD
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
@@ -106,20 +106,14 @@ $nama = $data['nama_karyawan'];
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Admin Karyawaan</span>
+                    <span style="font-size: 15px; color:white;" >Admin HRD</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Gaji & Kas</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Penggajian dan Rekap</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Pencatatan Kas Kecil</a>
-                        <?php if($nama == 'Risa Septiana') { ?> 
                         <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
-                        <?php } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Bulanan Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBonPribadi">Bon Pribadi Karyawan</a>
                     </div>
                 </div>
             </li>
