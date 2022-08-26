@@ -67,14 +67,10 @@ else if ( $nama_file != "" ) {
 		$data_karyawan = mysqli_fetch_array($result);
 		$id_karyawan = $data_karyawan['id_karyawan'];
 
-if ($pembayaran == 'Cash') {
+
 	//riwayat pengeluran
 	$query = mysqli_query($koneksi,"INSERT INTO bon_pribadi VALUES ('','$tanggal_bon','$tanggal_angsuran','$kode_akun','$id_karyawan','$jumlah',0,0,'$status_bon','$keterangan','$file')");
 
 	if ($query != "") {
 				echo "<script> window.location='../view/VBonPribadi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
-}
-elseif ($pembayaran == 'Transfer') {
-	
-}
