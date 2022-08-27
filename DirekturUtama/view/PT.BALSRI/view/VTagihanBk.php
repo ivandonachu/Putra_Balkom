@@ -18,7 +18,6 @@ else{ header("Location: logout.php");
 exit;
 }
 
-
 if (isset($_GET['tanggal1'])) {
   $tanggal_awal = $_GET['tanggal1'];
   $tanggal_akhir = $_GET['tanggal2'];
@@ -32,17 +31,17 @@ else{
   }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_bk a INNER JOIN master_tarif_bk b ON a.delivery_point=b.delivery_point WHERE tanggal = '$tanggal_awal'");
 
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point  WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_bk a INNER JOIN master_tarif_bk b ON a.delivery_point=b.delivery_point  WHERE tanggal = '$tanggal_awal'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan = $data2['total_tagihan'];
   $total_jt = $data2['total_jt'];
   $total_rit = $data2['total_rit'];
 } else {
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_bk a INNER JOIN master_tarif_bk b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
 
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_bk a INNER JOIN master_tarif_bk b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan = $data2['total_tagihan'];
   $total_jt = $data2['total_jt'];
@@ -61,7 +60,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Tagihan Angkutan SPBU Lampung</title>
+  <title>Tagihan Angkutan Pertashop Bangka</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -87,8 +86,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
@@ -125,8 +124,8 @@ if ($tanggal_awal == $tanggal_akhir) {
         </div>
     </div>
 </li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+ <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
       15  aria-expanded="true" aria-controls="collapseOne">
         <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -158,7 +157,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     </div>
 </li>
 </li>
-  <!-- Nav Item - Pages Collapse Menu -->
+ <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
       15  aria-expanded="true" aria-controls="collapseOne">
@@ -215,7 +214,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         </div>
     </div>
 </li>
-  <!-- Nav Item - Pages Collapse Menu -->
+ <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
       15  aria-expanded="true" aria-controls="collapseTwo22">
@@ -283,7 +282,6 @@ if ($tanggal_awal == $tanggal_akhir) {
         </div>
     </div>
 </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -308,7 +306,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-          <?php echo "<a href='VTagihan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Tagihan Angkutan SPBU Lampung</h5></a>"; ?>
+          <?php echo "<a href='VTagihanBk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Tagihan Angkutan Pertashop Bangka</h5></a>"; ?>
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -363,7 +361,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-            <?php echo "<form  method='POST' action='VTagihanL8' style='margin-bottom: 15px;'>" ?>
+            <?php echo "<form  method='POST' action='VTagihanBk' style='margin-bottom: 15px;'>" ?>
             <div>
               <div align="left" style="margin-left: 20px;">
                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -392,7 +390,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <th>SO</th>
                   <th>LO</th>
                   <th>Delivery Point</th>
-                  <th>Alamat</th>
+                  <th>Pemilik</th>
                   <th>Jumlah Pemesanan</th>
                   <th>Jarak Tempuh</th>
                   <th>AMT</th>
@@ -400,7 +398,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <th>Harga</th>
                   <th>Total</th>
                   <th>File</th>
-
                 </tr>
               </thead>
               <tbody>
@@ -421,17 +418,29 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $so = $data['so'];
                   $lo = $data['lo'];
                   $delivery_point = $data['delivery_point'];
-                  $alamat = $data['alamat'];
+                  $pemilik = $data['pemilik'];
                   $jumlah_pesanan = $data['jumlah_pesanan'];
                   $jt = $data['jt'];
                   $amt = $data['amt'];
                   $mt = $data['mt'];
                   $total = $data['total'];
                   $file_bukti = $data['file_bukti'];
-                  if ($jumlah_pesanan == 'kl8') {
-                    $total_pesanan = 8000;
+                  if ($jumlah_pesanan == 'kl1') {
+                    $total_pesanan = 1000;
                     $total_max_pesanan = $total_max_pesanan + $total_pesanan;
-                  } 
+                  } else if ($jumlah_pesanan == 'kl2') {
+                    $total_pesanan = 2000;
+                    $total_max_pesanan = $total_max_pesanan + $total_pesanan;
+                  } else if ($jumlah_pesanan == 'kl3') {
+                    $total_pesanan = 3000;
+                    $total_max_pesanan = $total_max_pesanan + $total_pesanan;
+                  } else if ($jumlah_pesanan == 'kl4') {
+                    $total_pesanan = 4000;
+                    $total_max_pesanan = $total_max_pesanan + $total_pesanan;
+                  } else if ($jumlah_pesanan == 'kl5') {
+                    $total_pesanan = 5000;
+                    $total_max_pesanan = $total_max_pesanan + $total_pesanan;
+                  }
                   $harga = $data[$jumlah_pesanan];
 
 
@@ -443,7 +452,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$so</td>
       <td style='font-size: 14px'>$lo</td>
       <td style='font-size: 14px'>$delivery_point</td>
-      <td style='font-size: 14px'>$alamat</td>
+      <td style='font-size: 14px'>$pemilik</td>
       <td style='font-size: 14px'>$total_pesanan/L</td>
       <td style='font-size: 14px'>$jt</td>
       <td style='font-size: 14px'>$amt</td>
@@ -451,7 +460,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>"; ?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      </tr>";
+  </tr>";
                 }
         ?>
 

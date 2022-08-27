@@ -20,30 +20,9 @@ exit;
 
 
 
+$table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_bk ");
 
-if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-else{
-    $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-  }
-if ($tanggal_awal == $tanggal_akhir) {
-
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengiriman_spbu a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal = '$tanggal_awal'");
-
-}
-else{
-
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengiriman_spbu a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +35,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Riwayat Jarak Tempuh</title>
+  <title>Master Tarif</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -82,8 +61,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
@@ -121,7 +100,7 @@ else{
     </div>
 </li>
  <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
       15  aria-expanded="true" aria-controls="collapseOne">
         <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -153,7 +132,7 @@ else{
     </div>
 </li>
 </li>
-  <!-- Nav Item - Pages Collapse Menu -->
+ <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
       15  aria-expanded="true" aria-controls="collapseOne">
@@ -164,16 +143,16 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VLRLatex">Laba Rugi Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanLx">Pengiriman Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseLx">Ritase Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhLx">Jarak Tempuh Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiLx">Gaji Driver Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawanLx">Gaji Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanLx">Catat Perbaikan Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranLx">Catat Pengluaran Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBayarKreditLx">Kredit Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAMTLx">AMT</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMTLx">MT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanLx">Pengiriman Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseLx">Ritase Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhLx">Jarak Tempuh Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiLx">Gaji Driver Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawanLx">Gaji Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanLx">Catat Perbaikan Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranLx">Catat Pengluaran Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBayarKreditLx">Kredit Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VAMTLx">AMT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMTLx">MT</a>
         </div>
     </div>
 </li>
@@ -210,7 +189,7 @@ else{
         </div>
     </div>
 </li>
-  <!-- Nav Item - Pages Collapse Menu -->
+ <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
       15  aria-expanded="true" aria-controls="collapseTwo22">
@@ -278,17 +257,16 @@ else{
         </div>
     </div>
 </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
 
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
+
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
 
 
@@ -303,7 +281,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VJarakTempuhBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Jarak Tempuh SPBU Lampung</h5></a>"; ?>
+      <?php echo "<a href='VMasterTarifBk'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif Bangka</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -360,75 +338,47 @@ else{
 
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-
-    <?php  echo "<form  method='POST' action='VJarakTempuhL8' style='margin-bottom: 15px;'>" ?>
-    <div>
-      <div align="left" style="margin-left: 20px;"> 
-        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-        <span>-</span>
-        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
-      </div>
-    </div>
-  </form>
-
-
-  <div class="col-md-8">
-   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
- </div>
- <br>
-
- <div class="row">
-  
-</div>
-
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>AMT</th>   
-      <th>MT</th>
-      <th>JT GPS</th>
-      <th>JT ODO</th>
-      <th>Perbandingan</th>
-      <th>File</th>
+      <th>Delivery Point</th>   
+      <th>Pemilik</th>
+      <th>JT</th>
+      <th>Harga BBM</th>
+      <th>KL 1</th>
+      <th>KL 2</th>
+      <th>KL 3</th>
+      <th>KL 4</th>
+
     </tr>
   </thead>
   <tbody>
-    <?php
 
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no_laporan = $data['no_laporan'];
-      $tanggal =$data['tanggal'];
-      $amt =$data['nama_driver'];
-      $mt = $data['no_polisi'];
-      $jt_gps = $data['jt_gps'];
-      $jt_odo = $data['jt_odo'];
-      $file_bukti = $data['file_bukti'];
 
-      $perbandingan  = $jt_odo - $jt_gps;
+      $delivery_point =$data['delivery_point'];
+      $pemilik = $data['pemilik'];
+      $jt = $data['jt'];
+      $hrg_bbm = $data['hrg_bbm'];
+      $kl1 = $data['kl1'];
+      $kl2 = $data['kl2'];
+      $kl3 = $data['kl3'];
+      $kl4 = $data['kl4'];
+
 
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no_laporan</td>
-      <td style='font-size: 14px' align = 'center'>$tanggal</td>
-      <td style='font-size: 14px' align = 'center'>$amt</td>
-      <td style='font-size: 14px' align = 'center'>$mt</td>
-      <td style='font-size: 14px' align = 'center'>$jt_gps/Km</td>
-      <td style='font-size: 14px' align = 'center'>$jt_odo/km</td>
-      <td style='font-size: 14px' align = 'center'>$perbandingan/Km</td>
-      "; ?>
-      <?php echo "
-      <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-    
- </td> </tr>";
+  
+
+      <td style='font-size: 14px' align = 'center'>$delivery_point</td>
+      <td style='font-size: 14px' align = 'center'>$pemilik</td>
+      <td style='font-size: 14px' align = 'center'>$jt/KM</td>
+      <td style='font-size: 14px' align = 'center'>$hrg_bbm</td>
+      <td style='font-size: 14px' align = 'center'>$kl1/L</td>
+      <td style='font-size: 14px' align = 'center'>$kl2/L</td>
+      <td style='font-size: 14px' align = 'center'>$kl3/L</td>
+      <td style='font-size: 14px' align = 'center'>$kl4/L</td>
+</tr>";
 }
 ?>
 
