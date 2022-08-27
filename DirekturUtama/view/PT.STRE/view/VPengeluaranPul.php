@@ -332,7 +332,6 @@ else{
      $total = $total + $jumlah;
      $urut = $urut + 1;
 
-
      echo "<tr>
      <td style='font-size: 14px'>$urut</td>
      <td style='font-size: 14px'>$tanggal</td>

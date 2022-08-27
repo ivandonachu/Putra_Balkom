@@ -40,9 +40,10 @@ else{
 	$dexlite = $jt_gps/6;
 }
 
-$u_dex = ($dexlite*7500)/2;
+$u_dex = ($dexlite*7000)/2;
 $uang_makan = (625*$jt_gps)/2;
 $uang_gaji = (625 * $jt_gps)/2;
+$ug_dimuka = ($dexlite * 1850)/2;
 $uang_jalan = $u_dex + $uang_makan;
 $mel = 50000;
 
@@ -88,8 +89,8 @@ $result = mysqli_query($koneksi, "SELECT * FROM pengiriman WHERE no_tagihan = '$
   	echo "<script>alert('Pengiriman sudah tercatat :)'); window.location='../view/VTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
       }
 
-	$query = mysqli_query($koneksi,"INSERT INTO pengiriman VALUES('','$tanggal','$no_tagihan','$no_driver_1','AMT 1','$no_kendaraan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$mel','$keterangan','$file')");
-	$query2 = mysqli_query($koneksi,"INSERT INTO pengiriman VALUES('','$tanggal','$no_tagihan','$no_driver_2','AMT 2','$no_kendaraan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$mel','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengiriman VALUES('','$tanggal','$no_tagihan','$no_driver_1','AMT 1','$no_kendaraan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$mel','$ug_dimuka','$keterangan','$file')");
+	$query2 = mysqli_query($koneksi,"INSERT INTO pengiriman VALUES('','$tanggal','$no_tagihan','$no_driver_2','AMT 2','$no_kendaraan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$mel','$ug_dimuka','$keterangan','$file')");
 
 
 if ($query != "") {

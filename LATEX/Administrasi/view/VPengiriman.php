@@ -318,6 +318,7 @@ else{
       <th>Uang Solar</th>
       <th>Uang Makan</th>
       <th>Gaji</th>
+      <th>Gaji di Muka</th>
       <th>Uang Jalan</th>
       <th>MEL</th>
       <th>KET</th>
@@ -349,6 +350,7 @@ else{
       $uang_dexlite = $data['uang_dexlite'];
       $um = $data['um'];
       $ug = $data['ug'];
+      $ug_dimuka = $data['ug_dimuka'];
       $uj = $data['uj'];
       $mel = $data['mel'];
       $keterangan = $data['keterangan'];
@@ -370,6 +372,7 @@ else{
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uang_dexlite); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($um); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug_dimuka); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($mel); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>$keterangan</td>
