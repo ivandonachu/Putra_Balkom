@@ -103,8 +103,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
         <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
         <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
         <a class="collapse-item" style="font-size: 15px;" href="VListRute">Rute</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">Karyawan</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VMoelek">Moelek</a>
       </div>
     </div>
   </li>
@@ -317,7 +315,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
 
 
 <!-- Tabel -->    
-<table id="example"  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto">
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th style="font-size: 11px" scope="col">No Registrasi Agen</th>
@@ -520,6 +519,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
 <br>

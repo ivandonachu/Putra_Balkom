@@ -102,9 +102,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM moelek");
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
         <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VListRute">Rute</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">Karyawan</a>
-        <a class="collapse-item" style="font-size: 15px;" href="VMoelek">Moelek</a>
+        <a class="collapse-item" style="font-size: 15px;" href="VListRute">Rute</a>a>
       </div>
     </div>
   </li>

@@ -103,8 +103,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM rute_driver");
                         <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VListRute">Rute</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">Karyawan</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="VMoelek">Moelek</a>
                     </div>
                 </div>
             </li>
