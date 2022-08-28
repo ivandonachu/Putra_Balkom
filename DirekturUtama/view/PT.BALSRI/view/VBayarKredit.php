@@ -118,8 +118,9 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
         </div>
     </div>
-</li>  <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+</li> 
+   <!-- Nav Item - Pages Collapse Menu -->
+   <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                   15  aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -153,8 +154,8 @@ else{
             </li>
              <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                  15  aria-expanded="true" aria-controls="collapseOne">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapsex" data-target="#collapseOnex"
+                  15  aria-expanded="true" aria-controls="collapseOnex">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
                     <span style="font-size: 15px; color:white;" >Laporan Latex</span>
                 </a>
@@ -179,7 +180,7 @@ else{
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
+                  15  aria-expanded="true" aria-controls="collapseTwox">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
                     <span style="font-size: 15px; color:white;" >Pengiriman</span>
                 </a>
@@ -222,10 +223,12 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBl">Catat Perbaikan BL</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBk">Catat Perbaikan BK</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBl">Pengeluaran Pul BL</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBk">Pengeluaran Pul BK</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiL8">Gaji LMG 8KL</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>

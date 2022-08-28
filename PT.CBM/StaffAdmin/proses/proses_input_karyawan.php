@@ -22,10 +22,10 @@ exit;
 $id= $_POST['id'];
 $nama_karyawan= $_POST['nama_karyawan'];
 $jabatan= $_POST['jabatan'];
+$status_karyawan = 'Masih Bekerja';
 
 
-
-	$query3 = mysqli_query($koneksi,"INSERT INTO karyawan VALUES('$id','$nama_karyawan','$jabatan')");
+	$query3 = mysqli_query($koneksi,"INSERT INTO karyawan VALUES('$id','$nama_karyawan','$jabatan','$status_karyawan')");
 
 		if ($query3!= "") {
 			echo "<script>alert('Tambah Data Berhasil :)'); window.location='../view/VKaryawan.php';</script>";exit;

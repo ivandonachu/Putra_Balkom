@@ -104,7 +104,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM dokumen");
                         <h6 class="collapse-header" style="font-size: 15px;">Gaji & Kas</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSeluruhKaryawan">List Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSuratKeluarMasuk">Surat Keluar Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKontrakKerja">Kontrak Kerja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSuratIzin">Surat Izin</a>
                     </div>
                 </div>
             </li>

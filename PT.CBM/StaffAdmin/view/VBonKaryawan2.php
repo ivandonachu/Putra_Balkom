@@ -121,6 +121,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Pencatatan Kas Kecil</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Bulanan Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonPribadi">Bon Pribadi Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
                     </div>
                 </div>
             </li>

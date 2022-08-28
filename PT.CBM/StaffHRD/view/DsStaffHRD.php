@@ -110,10 +110,13 @@ $nama = $data['nama_karyawan'];
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Gaji & Kas</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSeluruhKaryawan">List Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSuratKeluarMasuk">Surat Keluar Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKontrakKerja">Kontrak Kerja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSuratIzin">Surat Izin</a>
                     </div>
                 </div>
             </li>

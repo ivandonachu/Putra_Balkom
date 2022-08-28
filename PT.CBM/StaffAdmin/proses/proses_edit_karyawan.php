@@ -23,12 +23,12 @@ exit;
 $id_karyawan = $_POST['id_karyawan'];
 $nama_karyawan = $_POST['nama_karyawan'];
 $jabatan= $_POST['jabatan'];
+$status_karyawan = $_POST['status_karyawan'];
 
 
 
 
-
-	$query3 = mysqli_query($koneksi,"UPDATE karyawan SET nama_karyawan = '$nama_karyawan' , jabatan = '$jabatan' WHERE id_karyawan = '$id_karyawan'");
+	$query3 = mysqli_query($koneksi,"UPDATE karyawan SET nama_karyawan = '$nama_karyawan' , jabatan = '$jabatan' , status_karyawan = '$status_karyawan' WHERE id_karyawan = '$id_karyawan'");
 
 		if ($query3!= "") {
 			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VKaryawan.php';</script>";exit;
