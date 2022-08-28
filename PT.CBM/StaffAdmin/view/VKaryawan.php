@@ -311,7 +311,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM karyawan");
 
                   <label>Status Karyawan</label>
                   <select id="status_karyawan" name="status_karyawan" class="form-control">
-                    <?php $dataSelect = $data['status_karyawan']; ?>
+                    <?php $dataSelect = $data2['status_karyawan']; ?>
                     <option <?php echo ($dataSelect == 'Masih Bekerja') ? "selected": "" ?> >Masih Bekerja</option>
                     <option <?php echo ($dataSelect == 'Berhenti') ? "selected": "" ?> >Berhenti</option>
                   </select>
