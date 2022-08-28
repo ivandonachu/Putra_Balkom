@@ -22,9 +22,9 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
-
 $table = mysqli_query($koneksi, "SELECT * FROM karyawan");
- ?>
+
+?>
  <!DOCTYPE html>
  <html lang="en">
 
@@ -62,51 +62,51 @@ $table = mysqli_query($koneksi, "SELECT * FROM karyawan");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-            </a>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsAdministrasi">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsAdministrasi">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-      <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Administrasi
-                </div>
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu Administrasi
+    </div>
 
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >SDM</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VListRute">Rute</a>
-                        
-                    </div>
-                </div>
-            </li>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >SDM</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListRute">Rute</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
+        </div>
+    </div>
+</li>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -246,6 +246,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM karyawan");
           <th style="font-size: 11px" scope="col">ID Karyawan</th>
           <th style="font-size: 11px" scope="col">Nama Karyawan</th>
           <th style="font-size: 11px" scope="col">Jabatan Karywan</th>
+          <th style="font-size: 11px" scope="col">Status Karywan</th>
           <th style="font-size: 11px" scope="col"></th>
         </tr>
       </thead>
@@ -255,11 +256,12 @@ $table = mysqli_query($koneksi, "SELECT * FROM karyawan");
           $id_karyawan = $data2['id_karyawan'];
           $nama_karyawan =$data2['nama_karyawan'];
           $jabatan = $data2['jabatan'];
-
+          $status_karyawan = $data2['status_karyawan'];
           echo "<tr>
           <td style='font-size: 12px'>$id_karyawan</td>
           <td style='font-size: 12px'>$nama_karyawan</td>
           <td style='font-size: 12px'>$jabatan</td>
+          <td style='font-size: 12px'>$status_karyawan</td>
           <td style='font-size: 12px'>"; ?>
 
           <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data2['id_karyawan']; ?>">Edit</button>
@@ -304,6 +306,17 @@ $table = mysqli_query($koneksi, "SELECT * FROM karyawan");
                     <input type="text" name="jabatan" class="form-control" value="<?php echo $dataE['jabatan'] ?>" required=""> 
                   </div>
 
+                  <div class="form-group">
+
+                  <label>Status Karyawan</label>
+                  <select id="status_karyawan" name="status_karyawan" class="form-control">
+                    <?php $dataSelect = $data2['status_karyawan']; ?>
+                    <option <?php echo ($dataSelect == 'Masih Bekerja') ? "selected": "" ?> >Masih Bekerja</option>
+                    <option <?php echo ($dataSelect == 'Berhenti') ? "selected": "" ?> >Berhenti</option>
+                  </select>
+
+                  </div> 
+
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-primary"> Ubah </button>
                     <button type="reset" class="btn btn-danger"> RESET</button>
@@ -314,7 +327,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM karyawan");
           </div>
         </div>
 
-
+     
 
 
       <?php echo "</td> 
