@@ -36,78 +36,13 @@ function formatuang($angka)
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    // Tagihan
-    $table = mysqli_query($koneksipbj, "SELECT muatan , harga_tagihan FROM riwayat_pengiriman WHERE tanggal_keluar = '$tanggal_awal'");
-
-    $total_tagihan = 0;
-    while ($data = mysqli_fetch_array($table)) {
-        $muatan = $data['muatan'];
-        $harga_tagihan = $data['harga_tagihan'];
-
-        $total_tagihan = $total_tagihan + ($muatan * $harga_tagihan);
-    }
-    //pengiriman
-    $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj_tagihan) AS total_uj, SUM(gaji_tagihan) AS total_gaji FROM riwayat_pengiriman WHERE tanggal = '$tanggal_awal'");
-    $data2 = mysqli_fetch_array($table2);
-    $total_uj = $data2['total_uj'];
-    $total_gaji = $data2['total_gaji'];
-
-
-    //pengeluran Pul Biaya Kantor
-    $table3 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM riwayat_oprasional a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND a.kode_akun = '5-540' ");
-    $data3 = mysqli_fetch_array($table3);
-    $jml_biaya_kantor = $data3['jumlah_biaya_kantor'];
-    if (!isset($data3['jumlah_biaya_kantor'])) {
-        $jml_biaya_kantor = 0;
-    }
-
-    //pengeluran Pul Listrik & Telepon
-    $table4 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_listrik FROM riwayat_oprasional a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND a.kode_akun = '5-550' ");
-    $data4 = mysqli_fetch_array($table4);
-    $jml_listrik = $data4['jumlah_listrik'];
-    if (!isset($data4['jumlah_listrikr'])) {
-        $jml_listrik = 0;
-    }
-
-    //pengeluran Biaya Sewa
-    $table5 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_sewa FROM riwayat_oprasional a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND a.kode_akun = '5-570' ");
-    $data5 = mysqli_fetch_array($table5);
-    $jml_sewa = $data5['jumlah_sewa'];
-    if (!isset($data5['jumlah_sewa'])) {
-        $jml_sewa = 0;
-    }
-
-    //pengeluran Alat Tulis Kantor
-    $table6 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_atk FROM riwayat_oprasional a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND a.kode_akun = '5-520' ");
-    $data6 = mysqli_fetch_array($table6);
-    $jml_atk = $data6['jumlah_atk'];
-    if (!isset($data6['jumlah_atk'])) {
-        $jml_atk = 0;
-    }
-
-    //pengeluran perbaikan
-    $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pembelian_sparepart FROM riwayat_oprasional a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND a.kode_akun = '5-595' ");
-    $data7 = mysqli_fetch_array($table7);
-    $jml_pembelian = $data7['total_pembelian_sparepart'];
-    if (!isset($data7['total_pembelian_sparepart'])) {
-        $jml_pembelian = 0;
-    }
-
-    $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan FROM riwayat_oprasional a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND a.kode_akun = '5-596' ");
-    $data8 = mysqli_fetch_array($table8);
-    $jml_perbaikan = $data8['jumlah_perbaikan'];
-    if (!isset($data8['jumlah_perbaikan'])) {
-        $jml_perbaikan = 0;
-    }
-} else {
-
     // Penjualan kadek dan etty
     $table = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $pendapatan_penjualan_kadek =0;
     //kadek
     while($data = mysqli_fetch_array($table)){
         $no_do_pembelian = $data['no_do'];
-        $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar != 'Bon' ");
+        $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar != 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar != 'Nyicil' ");
 
         if(mysqli_num_rows($tablex) === 1 ){
             $datax = mysqli_fetch_array($tablex);
@@ -122,7 +57,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $pendapatan_penjualan_ety = 0;
     while($datae = mysqli_fetch_array($tablee)){
         $no_do_pembelian = $datae['no_do'];
-        $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  != 'Bon' ");
+        $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  != 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar != 'Nyicil' ");
 
         if(mysqli_num_rows($tablex2) === 1 ){
             $datax2 = mysqli_fetch_array($tablex2);
@@ -262,7 +197,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     //kadek
     while($data = mysqli_fetch_array($tabler)){
         $no_do_pembelian = $data['no_do'];
-        $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Bon' ");
+        $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil' ");
         $datax = mysqli_fetch_array($tablexr);
         if(isset($datax['jumlah'])){
             $jumlah = $datax['jumlah'];
@@ -277,7 +212,303 @@ if ($tanggal_awal == $tanggal_akhir) {
     $piutang_penjualan_ety = 0;
     while($datae = mysqli_fetch_array($tableer)){
         $no_do_pembelian = $datae['no_do'];
-        $tablex2r = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  = 'Bon' ");
+        $tablex2r = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil' ");
+        $datax2 = mysqli_fetch_array($tablex2r);
+        if(isset($datax2['jumlah'])){
+            $jumlahx = $datax2['jumlah'];
+            $piutang_penjualan_ety = $piutang_penjualan_ety + $jumlahx;
+        }
+
+        
+    }
+
+    //pengiriman ety
+    $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_s WHERE 
+                                        tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data2 = mysqli_fetch_array($table2);
+    $total_uj = $data2['total_uj'];
+    $total_gaji = $data2['total_gaji'];
+    $total_om = $data2['total_om'];
+
+     //pengiriman kadek
+     $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_sl WHERE 
+     tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data2sl = mysqli_fetch_array($table2sl);
+    $total_uj_sl = $data2sl['total_uj'];
+    $total_gaji_sl = $data2sl['total_gaji'];
+    $total_om_sl = $data2sl['total_om'];
+
+    //Biaya Kantor etty
+    $table3s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+    $data3s = mysqli_fetch_array($table3s);
+    $jml_biaya_kantor_s = $data3s['jumlah_biaya_kantor'];
+    if (!isset($data3s['jumlah_biaya_kantor'])) {
+        $jml_biaya_kantor_s = 0;
+    }
+    //Biaya Kantor kadek
+    $table3sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+    $data3sl = mysqli_fetch_array($table3sl);
+    $jml_biaya_kantor_sl = $data3sl['jumlah_biaya_kantor'];
+    if (!isset($data3sl['jumlah_biaya_kantor'])) {
+        $jml_biaya_kantor_sl = 0;
+    }
+
+    //Listrik & Telepon etty
+    $table4s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_listrik FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon'");
+    $data4s = mysqli_fetch_array($table4s);
+    $jml_listrik_s = $data4s['jumlah_listrik'];
+    if (!isset($data4s['jumlah_listrikr'])) {
+        $jml_listrik_s = 0;
+    }
+
+    //Listrik & Telepon kadek
+    $table4sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_listrik FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon'");
+    $data4sl = mysqli_fetch_array($table4sl);
+    $jml_listrik_sl = $data4sl['jumlah_listrik'];
+    if (!isset($data4sl['jumlah_listrikr'])) {
+        $jml_listrik_sl = 0;
+    }
+
+    //Trasnport/Perjalan Dinas etty
+    $table5s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+    $data5s = mysqli_fetch_array($table5s);
+    $jml_transport_s = $data5s['jumlah_transport'];
+    if (!isset($data5['jumlah_transport'])) {
+        $jml_transport_s = 0;
+    }
+
+     //Trasnport/Perjalan Dinas kadek
+     $table5sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+     $data5sl = mysqli_fetch_array($table5s);
+     $jml_transport_sl = $data5s['jumlah_transport'];
+     if (!isset($data5['jumlah_transport'])) {
+         $jml_transport_sl = 0;
+     }
+
+    //Alat Tulis Kantor etty
+    $table6s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_atk FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+    $data6s = mysqli_fetch_array($table6s);
+    $jml_atk_s = $data6s['jumlah_atk'];
+    if (!isset($data6s['jumlah_atk'])) {
+        $jml_atk_s = 0;
+    }
+
+    //Alat Tulis Kantor kadek
+    $table6sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_atk FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+    $data6sl = mysqli_fetch_array($table6sl);
+    $jml_atk_sl = $data6sl['jumlah_atk'];
+    if (!isset($data6sl['jumlah_atk'])) {
+        $jml_atk_sl = 0;
+    }
+
+    //pengeluran perbaikan
+    $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_sparepart) AS total_pembelian_sparepart FROM riwayat_pengeluaran_workshop_s
+                                         WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data7 = mysqli_fetch_array($table7);
+    $jml_pembelian_sparepart = $data7['total_pembelian_sparepart'];
+    if (!isset($data7['total_pembelian_sparepart'])) {
+        $jml_pembelian_sparepart = 0;
+    }
+
+
+    $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bengkel) AS jumlah_perbaikan FROM riwayat_pengeluaran_workshop_s
+                                         WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data8 = mysqli_fetch_array($table8);
+    $jml_perbaikan = $data8['jumlah_perbaikan'];
+    if (!isset($data8['jumlah_perbaikan'])) {
+        $jml_perbaikan = 0;
+    }
+
+    //gaji karaywan
+    $table8 = mysqli_query($koneksipbj, "SELECT jumlah  FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Gaji Karyawan' ");
+    $data8 = mysqli_fetch_array($table8);
+    
+    if(isset($data8['jumlah'])){
+  
+        $gaji_karyawan = $data8['jumlah'];
+    }
+    if (!isset($data8['jumlah'])) {
+        $gaji_karyawan = 0;
+    }
+} else {
+
+    // Penjualan kadek dan etty
+    $table = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $pendapatan_penjualan_kadek =0;
+    //kadek
+    while($data = mysqli_fetch_array($table)){
+        $no_do_pembelian = $data['no_do'];
+        $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar != 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar != 'Nyicil' ");
+
+        if(mysqli_num_rows($tablex) === 1 ){
+            $datax = mysqli_fetch_array($tablex);
+               $jumlah = $datax['jumlah'];
+               $pendapatan_penjualan_kadek = $pendapatan_penjualan_kadek + $jumlah;
+              }
+       
+    }
+    
+    //ety
+    $tablee = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $pendapatan_penjualan_ety = 0;
+    while($datae = mysqli_fetch_array($tablee)){
+        $no_do_pembelian = $datae['no_do'];
+        $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  != 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar != 'Nyicil' ");
+
+        if(mysqli_num_rows($tablex2) === 1 ){
+            $datax2 = mysqli_fetch_array($tablex2);
+            $jumlahx = $datax2['jumlah'];
+            $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
+              }
+       
+    }
+
+        
+    
+
+
+
+    //Untung angkutan / pranko
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' ");
+    $total_angkutan_edy = 0;
+    $total_angkutan_rama = 0;
+    $total_angkutan_aril = 0;
+    $total_angkutan_reni = 0;
+    while($data1 = mysqli_fetch_array($table1)){
+        $no_polisi = trim($data1["no_polisi"]);
+        $no_polisi_ts = str_replace(" ", "" , $no_polisi);
+        $kota = $data1['kota'];
+        $qty = $data1['qty'];
+        
+        //kak nyoman
+        if($kota == 'Kab Ogn Kmrg Ulu Tim'){
+            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+            $data1p = mysqli_fetch_array($table1p);
+            $tarif = $data1p['tarif_pranko'];
+            $total_angkut = $qty * $tarif;
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if(isset($data2p['status_kendaraan'])){
+                $pemilik = $data2p['status_kendaraan'];
+            }
+            
+            
+            if($pemilik == 'Bapak Nyoman Edi' ){
+                $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+            }
+            else if($pemilik == 'Bapak Rama'){
+                $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+            }
+            else if($pemilik == 'Bapak Aril'){
+                $total_angkutan_aril = $total_angkutan_aril + $total_angkut;
+            }
+            else if($pemilik == 'Mbak Reni'){
+                $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
+            }
+          
+        }
+        else if ($kota == 'Mesuji'){
+            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+            $data1p = mysqli_fetch_array($table1p);
+            $tarif = $data1p['tarif_pranko'];
+            $total_angkut = $qty * $tarif;
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if(isset($data2p['status_kendaraan'])){
+                $pemilik = $data2p['status_kendaraan'];
+            }
+            
+            if($pemilik == 'Bapak Nyoman Edi' ){
+                $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+            }
+        }
+        else if ($kota == 'Kab Tlg Bwg'){
+            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+            $data1p = mysqli_fetch_array($table1p);
+            $tarif = $data1p['tarif_pranko'];
+            $total_angkut = $qty * $tarif;
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if(isset($data2p['status_kendaraan'])){
+                $pemilik = $data2p['status_kendaraan'];
+            }
+
+            if($pemilik == 'Bapak Nyoman Edi' ){
+                $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+            }
+        }
+        else if ($kota == 'Kab Tlg Bwg Barat'){
+            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+            $data1p = mysqli_fetch_array($table1p);
+            $tarif = $data1p['tarif_pranko'];
+            $total_angkut = $qty * $tarif;
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if(isset($data2p['status_kendaraan'])){
+                $pemilik = $data2p['status_kendaraan'];
+            }
+            
+            if($pemilik == 'Bapak Nyoman Edi' ){
+                $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+            }
+        }
+
+    }
+
+    // pembelian kadek dan etty
+
+    $table = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $pembelian_kadek =0;
+    //kadek
+    while($data = mysqli_fetch_array($table)){
+        $no_do_pembelian = $data['no_do'];
+        $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' ");
+        $datax = mysqli_fetch_array($tablex);
+        if(isset($datax['jumlah'])){
+            $jumlah = $datax['jumlah'];
+            $pembelian_kadek = $pembelian_kadek + $jumlah;
+        }
+
+       
+    }
+    
+    //ety
+    $tabell = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $pembelian_ety = 0;
+    while($datae = mysqli_fetch_array($tabell)){
+        $no_do_pembelian = $datae['no_do'];
+        $tablell2 = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' ");
+        $datax2 = mysqli_fetch_array($tablell2);
+        if(isset($datax2['jumlah'])){
+            $jumlahx = $datax2['jumlah'];
+            $pembelian_ety = $pembelian_ety + $jumlahx;
+        }
+
+        
+    }
+
+    // piutang kadek dan etty
+    $tabler = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $piutang_penjualan_kadek =0;
+    //kadek
+    while($data = mysqli_fetch_array($tabler)){
+        $no_do_pembelian = $data['no_do'];
+        $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil' ");
+        $datax = mysqli_fetch_array($tablexr);
+        if(isset($datax['jumlah'])){
+            $jumlah = $datax['jumlah'];
+            $piutang_penjualan_kadek = $piutang_penjualan_kadek + $jumlah;
+        }
+
+       
+    }
+    
+    //ety
+    $tableer = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $piutang_penjualan_ety = 0;
+    while($datae = mysqli_fetch_array($tableer)){
+        $no_do_pembelian = $datae['no_do'];
+        $tablex2r = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil' ");
         $datax2 = mysqli_fetch_array($tablex2r);
         if(isset($datax2['jumlah'])){
             $jumlahx = $datax2['jumlah'];
