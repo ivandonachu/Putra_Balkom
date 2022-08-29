@@ -43,7 +43,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   $uang_copct1 = $data2['uang_copct1'];
 
   //Curah OPC Type 1 Bon
-  $table22 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_bon ,  SUM(jumlah) AS uang_copct1_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Curah OPC Type 1'");
+  $table22 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_bon ,  SUM(jumlah) AS uang_copct1_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Curah OPC Type 1' 
+                                                                                                                                  OR tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Nyicil' AND satuan = 'Curah OPC Type 1'");
   $data22 = mysqli_fetch_array($table22);
   $penjualan_copct1_bon = $data22['penjualan_copct1_bon'];
   $uang_copct1_bon= $data22['uang_copct1_bon'];
@@ -55,7 +56,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   $uang_cpcc = $data3['uang_cpcc'];
 
   //Curah PCC Bon
-  $table32 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_bon ,  SUM(jumlah) AS uang_cpcc_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Curah PCC'");
+  $table32 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_bon ,  SUM(jumlah) AS uang_cpcc_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Curah PCC' 
+                                                                                                                              OR tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Nyicil' AND satuan = 'Curah PCC'");
   $data32 = mysqli_fetch_array($table32);
   $penjualan_cpcc_bon = $data32['penjualan_cpcc_bon'];
   $uang_cpcc_bon= $data32['uang_cpcc_bon'];
@@ -67,7 +69,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   $uang_bopct1 = $data4['uang_bopct1'];
 
   //Big Bag OPC Type 1 Bon
-  $table42 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bopct1_bon ,  SUM(jumlah) AS uang_bopct1_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Big Bag OPC Type 1'");
+  $table42 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bopct1_bon ,  SUM(jumlah) AS uang_bopct1_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Big Bag OPC Type 1'
+                                                                                                                                  OR tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Nyicil' AND satuan = 'Big Bag OPC Type 1'");
   $data42 = mysqli_fetch_array($table42);
   $penjualan_bopct1_bon = $data42['penjualan_bopct1_bon'];
   $uang_bopct1_bon= $data42['uang_bopct1_bon'];
@@ -79,7 +82,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   $uang_bpcc = $data5['uang_bpcc'];
 
   //Big Bag PCC Bon
-  $table52 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bpcc_bon ,  SUM(jumlah) AS uang_bpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Big Bag PCC'");
+  $table52 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bpcc_bon ,  SUM(jumlah) AS uang_bpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Big Bag PCC'
+                                                                                                                              OR tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Nyicil' AND satuan = 'Big Bag PCC'");
   $data52 = mysqli_fetch_array($table52);
   $penjualan_bpcc_bon = $data52['penjualan_bpcc_bon'];
   $uang_bpcc_bon= $data52['uang_bpcc_bon'];
@@ -93,7 +97,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   $uang_sakpcc = $data6['uang_sakpcc'];
 
   //Sak PCC 50 Kg Bon
-  $table62 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_sakpcc_bon ,  SUM(jumlah) AS uang_sakpcc_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Sak PCC 50 Kg'");
+  $table62 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_sakpcc_bon ,  SUM(jumlah) AS uang_sakpcc_bon  FROM penjualan_sl WHERE   tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Bon' AND satuan = 'Sak PCC 50 Kg'
+                                                                                                                                  OR tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Nyicil' AND satuan = 'Sak PCC 50 Kg'");
   $data62 = mysqli_fetch_array($table62);
   $penjualan_sakpcc_bon = $data62['penjualan_sakpcc_bon'];
   $uang_sakpcc_bon= $data62['uang_sakpcc_bon'];
@@ -112,8 +117,9 @@ else{
   $uang_copct1 = $data2['uang_copct1'];
 
   //Curah OPC Type 1 Bon
-  $table22 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_bon ,  SUM(jumlah) AS uang_copct1_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
-  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Curah OPC Type 1'");
+  $table22 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_bon ,  SUM(jumlah) AS uang_copct1_bon  FROM penjualan_sl WHERE  
+                                      tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Curah OPC Type 1' OR
+                                      tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND satuan = 'Curah OPC Type 1'");
   $data22 = mysqli_fetch_array($table22);
   $penjualan_copct1_bon = $data22['penjualan_copct1_bon'];
   $uang_copct1_bon= $data22['uang_copct1_bon'];
@@ -127,8 +133,9 @@ else{
   $uang_cpcc = $data3['uang_cpcc'];
 
   //Curah PCC Bon
-  $table32 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_bon ,  SUM(jumlah) AS uang_cpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
-  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Curah PCC'");
+  $table32 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_bon ,  SUM(jumlah) AS uang_cpcc_bon  FROM penjualan_sl WHERE  
+  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Curah PCC' OR
+  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND satuan = 'Curah PCC'");
   $data32 = mysqli_fetch_array($table32);
   $penjualan_cpcc_bon = $data32['penjualan_cpcc_bon'];
   $uang_cpcc_bon= $data32['uang_cpcc_bon'];
@@ -142,8 +149,9 @@ else{
   $uang_bopct1 = $data4['uang_bopct1'];
 
   //Big Bag OPC Type 1 Bon
-  $table42 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bopct1_bon ,  SUM(jumlah) AS uang_bopct1_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
-  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Big Bag OPC Type 1'");
+  $table42 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bopct1_bon ,  SUM(jumlah) AS uang_bopct1_bon  FROM penjualan_sl WHERE  
+  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Big Bag OPC Type 1' OR
+  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND satuan = 'Big Bag OPC Type 1'");
   $data42 = mysqli_fetch_array($table42);
   $penjualan_bopct1_bon = $data42['penjualan_bopct1_bon'];
   $uang_bopct1_bon= $data42['uang_bopct1_bon'];
@@ -157,8 +165,9 @@ else{
   $uang_bpcc = $data5['uang_bpcc'];
 
   //Big Bag PCC Bon
-  $table52 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bpcc_bon ,  SUM(jumlah) AS uang_bpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
-  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Big Bag PCC'");
+  $table52 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bpcc_bon ,  SUM(jumlah) AS uang_bpcc_bon  FROM penjualan_sl WHERE 
+   tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Big Bag PCC' OR
+   tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND satuan = 'Big Bag PCC'");
   $data52 = mysqli_fetch_array($table52);
   $penjualan_bpcc_bon = $data52['penjualan_bpcc_bon'];
   $uang_bpcc_bon= $data52['uang_bpcc_bon'];
@@ -174,8 +183,9 @@ else{
   $uang_sakpcc = $data6['uang_sakpcc'];
 
   //Sak PCC 50 Kg Bon
-  $table62 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_sakpcc_bon ,  SUM(jumlah) AS uang_sakpcc_bon  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
-  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Sak PCC 50 Kg'");
+  $table62 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_sakpcc_bon ,  SUM(jumlah) AS uang_sakpcc_bon  FROM penjualan_sl WHERE  
+  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Sak PCC 50 Kg' OR
+  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND satuan = 'Sak PCC 50 Kg'");
   $data62 = mysqli_fetch_array($table62);
   $penjualan_sakpcc_bon = $data62['penjualan_sakpcc_bon'];
   $uang_sakpcc_bon= $data62['uang_sakpcc_bon'];
