@@ -266,6 +266,8 @@ else{
         <div class="col-md-6">
           <label>Nama</label>
           <select id="nama" name="nama" class="form-control">
+           <option> Nur Hasanaah </option> 
+           <option> Mang Jai </option> 
             <?php
             include 'koneksi.php';
             $result = mysqli_query($koneksi, "SELECT * FROM karyawan");   
@@ -298,6 +300,8 @@ else{
           <select id="pembayaran" name="pembayaran" class="form-control">
             <option>Cash</option>
             <option>Transfer</option>
+            <option>Bon Semen</option>
+            <option>Bon Baja</option>
           </select>
         </div>                
 

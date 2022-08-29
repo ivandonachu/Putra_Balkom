@@ -368,6 +368,110 @@ else{
       <td style='font-size: 14px'>"; ?> <a download="../file_workshop/<?= $file_bukti ?>" href="../file_workshop/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+<!-- Form EDIT DATA -->
+
+<div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role ="document">
+    <div class="modal-content"> 
+      <div class="modal-header">Form Edit Kas Kecil </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+
+
+      <!-- Form Edit Data -->
+      <div class="modal-body">
+        <form action="../proses/edit_workshop_br" enctype="multipart/form-data" method="POST">
+
+        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+      <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+       <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
+
+          <div class="row">
+    <div class="col-md-6">
+
+      <label>Tanggal</label>
+      <div class="col-sm-10">
+       <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
+     </div>
+
+
+  </div>
+  <div class="col-md-6">
+  </div>
+</div>
+
+
+<div class="row">
+  
+
+<div class="col-md-6">
+<div>
+<label>Nama Driver</label>
+</div>
+
+  <select class="form-control" name="nama_driver" >
+    <?php
+      $dataSelect = $data['nama_driver'];
+      include 'koneksi.php';
+      $result = mysqli_query($koneksibalsri, "SELECT * FROM driver ");
+
+      while ($data2 = mysqli_fetch_array($result)) {
+        $nama_driver = $data2['nama_driver'];
+
+        echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
+                                                                                                                      }
+                                                                                                                    ?>
+  </select>
+
+</div>    
+
+<div class="col-md-6">
+   <label>No Polisi</label>
+     <input class="form-control form-control-sm" type="text" id="no_polisi" value="<?php echo $no_polisi;?>" name="no_polisi" required=""> 
+</div>
+
+</div>
+
+<br>
+
+
+
+<div class="row">
+<div class="col-md-6">
+<label>Jumlah Pembayaran Bengkel</label>
+<input class="form-control form-control-sm" type="number" id="jumlah_bengkel" name="jumlah_bengkel" value="<?php echo $jumlah_bengkel;?>" required="">
+</div>    
+<div class="col-md-6">
+<label>Jumlah Penggunaan Sparepart</label>
+<input class="form-control form-control-sm" type="number" id="jumlah_sparepart" name="jumlah_sparepart" value="<?php echo $jumlah_sparepart;?>" required=""> 
+</div>         
+</div>
+
+
+
+<br>
+
+
+
+<div>
+<label>Upload File</label> 
+<input type="file" name="file"> 
+</div> 
+         
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Ubah </button>
+            <button type="reset" class="btn btn-danger"> RESET</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Pengeluaran'></button>
 
