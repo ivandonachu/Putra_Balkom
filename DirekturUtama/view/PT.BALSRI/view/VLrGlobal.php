@@ -67,7 +67,13 @@ else{
   $data_bb = mysqli_fetch_array($table_bb);
   $total_tagihan_bb = $data_bb['total_tagihan'];
 
-  $total_tagihan_global = $total_tagihan_br + $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bb + $total_tagihan_spbu;
+    // Tagihan bangka
+    $table_bk = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_bk a INNER JOIN master_tarif_bk b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data_bk = mysqli_fetch_array($table_bk);
+    $total_tagihan_bk = $data_bk['total_tagihan'];
+  
+
+  $total_tagihan_global = $total_tagihan_br + $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bb + $total_tagihan_spbu + $total_tagihan_bk ;
 
   // Potongan global 10%
   $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
@@ -119,9 +125,18 @@ else{
    $total_um_bb= $data2_bb['uang_makan'];
    $total_dexlite_bb = $total_uj_bb - ($total_jt_gps_bb*625);
 
+   //pengiriman bangka
+   $table2_bk = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $total_dexlite_bk =0;
+   $data2_bk = mysqli_fetch_array($table2_bk);
+   $total_uj_bk = $data2_bk['total_uj'];
+   $total_jt_gps_bk = $data2_bk['total_jt_gps'];
+   $total_um_bk= $data2_bk['uang_makan'];
+   $total_dexlite_bk = $total_uj_bk - ($total_jt_gps_bk*625);
+
     
-   $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg  + $total_dexlite_bb + $total_dexlite_spbu + $total_dexlite_lmg;
-    $total_um_global = $total_um_br + $total_um_lmg + $total_um_plg + $total_um_bb + $total_um_spbu;
+   $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg  + $total_dexlite_bb + $total_dexlite_spbu + $total_dexlite_lmg + $total_dexlite_bk;
+    $total_um_global = $total_um_br + $total_um_lmg + $total_um_plg + $total_um_bb + $total_um_spbu +  $total_um_bk;
 
     //BIAYA KANTOR
   //pengeluran Pul Biaya Kantor baturaja
@@ -152,8 +167,15 @@ else{
      if (!isset($data3_bb['jumlah_biaya_kantor'])) {
      $jml_biaya_kantor_bb = 0;
      }
+     //pengeluran Pul Biaya Kantor bangka
+    $table3_bk = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+    $data3_bk = mysqli_fetch_array($table3_bk);
+    $jml_biaya_kantor_bk = $data3_bk['jumlah_biaya_kantor'];
+     if (!isset($data3_bk['jumlah_biaya_kantor'])) {
+     $jml_biaya_kantor_bk = 0;
+     }
 
-     $biaya_kantor_global = $jml_biaya_kantor_br + $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg + $jml_biaya_kantor_bb;
+     $biaya_kantor_global = $jml_biaya_kantor_br + $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg + $jml_biaya_kantor_bb + $jml_biaya_kantor_bk;
 
     // LISTRIK & TELEPON
    //pengeluran Pul Listrik & Telepon baturaja
@@ -185,8 +207,15 @@ else{
      if (!isset($data4_bb['jumlah_listrik'])) {
      $jml_listrik_bb = 0;
      }
+     //pengeluran Pul Listrik & Telepon bangka
+    $table4_bk = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
+    $data4_bk = mysqli_fetch_array($table4_bk);
+    $jml_listrik_bk = $data4_bk['jumlah_listrik'];
+     if (!isset($data4_bk['jumlah_listrik'])) {
+     $jml_listrik_bk = 0;
+     }
 
-     $listrik_global = $jml_listrik_br + $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bb;
+     $listrik_global = $jml_listrik_br + $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bb + $jml_listrik_bk;
 
     // BIAYA SEWA
    //pengeluran Biaya Sewa baturaja
@@ -218,7 +247,15 @@ else{
      $jml_sewa_bb = 0;
      }
 
-     $biaya_sewa_global = $jml_sewa_br + $jml_sewa_lmg + $jml_sewa_plg + $jml_sewa_bb;
+     //pengeluran Biaya Sewa Belitung
+    $table5_bk = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
+    $data5_bk = mysqli_fetch_array($table5_bk);
+    $jml_sewa_bk = $data5_bk['jumlah_sewa'];
+     if (!isset($data5_bk['jumlah_sewa'])) {
+     $jml_sewa_bk = 0;
+     }
+
+     $biaya_sewa_global = $jml_sewa_br + $jml_sewa_lmg + $jml_sewa_plg + $jml_sewa_bb + $jml_sewa_bk;
 
     // ATK
    //pengeluran Alat Tulis Kantor baturaja
@@ -249,7 +286,15 @@ else{
     if (!isset($data6_bb['jumlah_atk'])) {
     $jml_atk_bb = 0;
     }
-    $atk_global = $jml_atk_br + $jml_atk_lmg + $jml_atk_plg + $jml_atk_bb;
+    //pengeluran Alat Tulis Kantor belitung
+   $table6_bk = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+   $data6_bk = mysqli_fetch_array($table6_bk);
+   $jml_atk_bk = $data6_bk['jumlah_atk'];
+    if (!isset($data6_bk['jumlah_atk'])) {
+    $jml_atk_bk = 0;
+    }
+
+    $atk_global = $jml_atk_br + $jml_atk_lmg + $jml_atk_plg + $jml_atk_bb + $jml_atk_bk;
 
     //TRANSPORT DAN PERJALANAN DINAS
     //pengeluran Transnport / Perjalanan Dinas baturaja
@@ -281,7 +326,16 @@ else{
     $jml_transport_bb = 0;
     }
 
-    $transport_global = $jml_transport_br + $jml_transport_lmg + $jml_transport_plg + $jml_transport_bb;
+    //pengeluran Transnport / Perjalanan Dinas bangka
+   $table61_bk = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $data61_bk = mysqli_fetch_array($table61_bk);
+   $jml_transport_bk = $data61_bk['jumlah_transport'];
+    if (!isset($data61_bk['jumlah_transport'])) {
+    $jml_transport_bk = 0;
+    }
+
+
+    $transport_global = $jml_transport_br + $jml_transport_lmg + $jml_transport_plg + $jml_transport_bb + $jml_transport_bk;
     
     // BIAYA KONSUMSI
     //pengeluran Biaya Konsumsi baturaja
@@ -313,7 +367,16 @@ else{
     $jml_konsumsi_bb = 0;
     }
 
-     $konsumsi_global = $jml_konsumsi_br + $jml_konsumsi_lmg + $jml_konsumsi_plg + $jml_konsumsi_bb;
+        //pengeluran Biaya Konsumsi bangka
+   $table62_bk = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $data62_bk = mysqli_fetch_array($table62_bk);
+   $jml_konsumsi_bk = $data62_bk['jumlah_konsumsi'];
+    if (!isset($data62_bk['jumlah_konsumsi'])) {
+    $jml_konsumsi_bk = 0;
+    }
+
+
+     $konsumsi_global = $jml_konsumsi_br + $jml_konsumsi_lmg + $jml_konsumsi_plg + $jml_konsumsi_bb + $jml_konsumsi_bk;
 
     //PERBAIKAN
     //pengeluran perbaikan baturaja
@@ -345,7 +408,15 @@ else{
     $jml_perbaikan_bb = 0;
     }
     
-    $perbaikan_global = $jml_perbaikan_br + $jml_perbaikan_lmg + $jml_perbaikan_plg + $jml_perbaikan_bb;
+        //pengeluran perbaikan bangka
+   $table7_bk = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $data7_bk = mysqli_fetch_array($table7_bk);
+   $jml_perbaikan_bk = $data7_bk['jumlah_perbaikan'];
+    if (!isset($data7_bk['jumlah_perbaikan'])) {
+    $jml_perbaikan_bk = 0;
+    }
+    
+    $perbaikan_global = $jml_perbaikan_br + $jml_perbaikan_lmg + $jml_perbaikan_plg + $jml_perbaikan_bb + $jml_perbaikan_bk;
     
     // GAJI KARYAWAN
      //Gaji karyawan baturaja
@@ -377,7 +448,15 @@ else{
     $gaji_karyawan_bb = 0;
     }
 
-    $gaji_karyawan_global = $gaji_karyawan_br + $gaji_karyawan_lmg + $gaji_karyawan_plg + $gaji_karyawan_bb;
+    //Gaji karyawan bangka
+   $table8_bk = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BK' ");
+   $data8_bk = mysqli_fetch_array($table8_bk);
+   $gaji_karyawan_bk = $data8_bk['jumlah_gaji'];
+    if (!isset($data8_bk['jumlah_gaji'])) {
+    $gaji_karyawan_bk = 0;
+    }
+
+    $gaji_karyawan_global = $gaji_karyawan_br + $gaji_karyawan_lmg + $gaji_karyawan_plg + $gaji_karyawan_bb + $gaji_karyawan_bk;
 
     // GAJI DRIVER
     //Gaji dRIVER baturaja
@@ -408,8 +487,16 @@ else{
     if (!isset($data9_bb['jumlah_gaji'])) {
     $gaji_driver_bb = 0;
     }
+
+         //Gaji dRIVER belitung
+   $table9_bk = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BK' ");
+   $data9_bk = mysqli_fetch_array($table9_bk);
+   $gaji_driver_bk = $data9_bk['jumlah_gaji'];
+    if (!isset($data9_bk['jumlah_gaji'])) {
+    $gaji_driver_bk = 0;
+    }
     
-    $gaji_driver_global = $gaji_driver_br + $gaji_driver_lmg + $gaji_driver_plg + $gaji_driver_bb;
+    $gaji_driver_global = $gaji_driver_br + $gaji_driver_lmg + $gaji_driver_plg + $gaji_driver_bb + $gaji_driver_bk;
     
     $total_gaji_karaywan_global = $gaji_karyawan_global + $gaji_driver_global + $gaji_driver_bb;
 
@@ -540,15 +627,14 @@ else{
                     </div>
                 </div>
             </li>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapsex" data-target="#collapseOnex"
-                  15  aria-expanded="true" aria-controls="collapseOnex">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOnex1"
+                  15  aria-expanded="true" aria-controls="collapseOnex1">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
                     <span style="font-size: 15px; color:white;" >Laporan Latex</span>
                 </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseOnex1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLRLatex">Laba Rugi Latex</a>

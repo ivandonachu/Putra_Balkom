@@ -236,15 +236,14 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
                     </div>
                 </div>
             </li>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapsex" data-target="#collapseOnex"
-                  15  aria-expanded="true" aria-controls="collapseOnex">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOnex1"
+                  15  aria-expanded="true" aria-controls="collapseOnex1">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
                     <span style="font-size: 15px; color:white;" >Laporan Latex</span>
                 </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseOnex1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLRLatex">Laba Rugi Latex</a>

@@ -319,7 +319,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
     <div>
     <div>
-      <?php echo "<a href='../VLabaRugiBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='../VLabaRugiBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     </div>
   <div class="row">

@@ -149,31 +149,30 @@ else{
         </div>
     </div>
 </li>
-</li>
   <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-      15  aria-expanded="true" aria-controls="collapseOne">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Laporan Latex</span>
-    </a>
-    <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VLRLatex">Laba Rugi Latex</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanLx">Pengiriman Latex</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitaseLx">Ritase Latex</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhLx">Jarak Tempuh Latex</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiLx">Gaji Driver Latex</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawanLx">Gaji Karyawan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanLx">Catat Perbaikan Latex</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranLx">Catat Pengluaran Latex</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VBayarKreditLx">Kredit Kendaraan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VAMTLx">AMT</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMTLx">MT</a>
-        </div>
-    </div>
-</li>
+  <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOnex1"
+                  15  aria-expanded="true" aria-controls="collapseOnex1">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Laporan Latex</span>
+                </a>
+                <div id="collapseOnex1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLRLatex">Laba Rugi Latex</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanLx">Pengiriman Latex</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseLx">Ritase Latex</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhLx">Jarak Tempuh Latex</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiLx">Gaji Driver Latex</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawanLx">Gaji Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanLx">Catat Perbaikan Latex</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranLx">Catat Pengluaran Latex</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBayarKreditLx">Kredit Kendaraan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAMTLx">AMT</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMTLx">MT</a>
+                    </div>
+                </div>
+            </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
