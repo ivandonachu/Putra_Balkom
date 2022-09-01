@@ -384,7 +384,7 @@ $table = mysqli_query($koneksilatex, "SELECT * FROM riwayat_penggajian ");
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/Latex/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/Latex/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       </tr>";
   }
   ?>

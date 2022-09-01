@@ -435,7 +435,7 @@ else{
       <td style='font-size: 14px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "
-      <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/Latex/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/Latex/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
 
 <?php echo  " </td> </tr>";

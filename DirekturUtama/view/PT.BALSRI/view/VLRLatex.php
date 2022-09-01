@@ -564,7 +564,7 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
                 <td class="text-left">Gaji Karyawan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_karyawan); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLx/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRLx/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
             </tr>
             <tr>
                 <td>5-520</td>
@@ -670,13 +670,6 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_mel); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRLx/VRMel?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-            </tr>
-            <tr>
-                <td>5-598</td>
-                <td class="text-left">Bayar Kredit</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLx/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>

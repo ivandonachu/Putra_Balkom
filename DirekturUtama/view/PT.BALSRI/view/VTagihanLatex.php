@@ -440,7 +440,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <td style='font-size: 14px'>$nama_driver_2</td>
                   <td style='font-size: 14px'>$no_polisi</td>
                   <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
-                  <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                  <td style='font-size: 14px'>"; ?> <a download="/Latex/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/Latex/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
                  </tr>";
                 }
         ?>

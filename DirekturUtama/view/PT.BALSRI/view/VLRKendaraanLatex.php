@@ -453,7 +453,7 @@ else{
    <?php  echo "<form  method='POST' action='VLabaRugi2' style='margin-bottom: 15px;'>" ?>
    <div>
    <div align="left">
-      <?php echo "<a href='VLabaRugiBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='VLRLatex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
 </div>
 </form>
@@ -568,13 +568,7 @@ else{
                 <td class="text-left"><?= formatuang($total_mel); ?></td>
                 <?php echo "<td class='text-right'><a href='VRDriverLx/VRMel?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
-            <tr>
-                <td>5-598</td>
-                <td class="text-left">Bayar Kredit</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($total_kredit); ?></td>
-                <td class="text-left"></td>
-            </tr>
+
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
                 <td class="thick-line"></td>

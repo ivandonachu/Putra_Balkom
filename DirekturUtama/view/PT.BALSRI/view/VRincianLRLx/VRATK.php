@@ -319,7 +319,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
     <div>
     <div>
-      <?php echo "<a href='../VLRLatextanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='../VLRLatex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     </div>
   <div class="row">
@@ -377,7 +377,7 @@ else{
      <td style='font-size: 14px'>$keterangan</td>
      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     <td style='font-size: 14px'>"; ?> <a download="/Latex/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/Latex/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
      "; ?>
     
 
