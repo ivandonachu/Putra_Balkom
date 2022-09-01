@@ -714,6 +714,7 @@ else{
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLRLatex">Laba Rugi Latex</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanLatex">Tagihan Latex</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanLx">Pengiriman Latex</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseLx">Ritase Latex</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhLx">Jarak Tempuh Latex</a>
