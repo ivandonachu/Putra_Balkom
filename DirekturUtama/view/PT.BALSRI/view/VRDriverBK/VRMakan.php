@@ -82,28 +82,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
-
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
-     <div class="sidebar-brand-icon rotate-n-15">
-
-     </div>
-     <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
- </a>
-
- <!-- Divider -->
-     <hr class="sidebar-divider">
-     <!-- Heading -->
-     <div class="sidebar-heading" style="font-size: 15px; color:white;">
-          Menu PT BALSRI
-     </div>
-     <!-- Nav Item - Pages Collapse Menu -->
-     <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-       15  aria-expanded="true" aria-controls="collapseTwo"><!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">

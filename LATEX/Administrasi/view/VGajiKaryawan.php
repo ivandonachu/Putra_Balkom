@@ -281,8 +281,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian ");
            <div class="col-md-6">
           <label>REF</label>
           <select id="referensi" name="referensi" class="form-control">
-            <option>BALSRI BKU</option>
-            <option>Driver BKU</option>
+            <option>Karyawan</option>
+            <option>Driver</option>
 
           </select>
         </div>  

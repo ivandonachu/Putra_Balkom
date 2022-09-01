@@ -18,34 +18,27 @@ else{ header("Location: logout.php");
 exit;
 }
 
-
-if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
- $no_polisilr = $_GET['no_polisi'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
+$tanggal_awal = $_GET['tanggal1'];
+$tanggal_akhir = $_GET['tanggal2'];
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksibalsri, "SELECT  SUM(um) AS uang_makan FROM pengiriman_bk a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table = mysqli_query($koneksilatex, "SELECT SUM(ug) AS uang_gaji FROM pengiriman WHERE tanggal  = '$tanggal_awal' ");
+  
+  }
+  
+  else{
+    $table = mysqli_query($koneksilatex, "SELECT b.nama_driver_1, SUM(ug) AS uang_gaji FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1 = b.no_driver_1 WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  GROUP BY b.nama_driver_1 ");
+  
+  }
 
-}
 
-else{
-    $table = mysqli_query($koneksibalsri, "SELECT SUM(a.ug) AS uang_gaji , b.nama_driver FROM pengiriman_bk a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no 
-                            WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND c.no_polisi = '$no_polisilr' GROUP BY b.nama_driver ");
-
-}
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,7 +46,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Gaji Driver  <?= $no_polisilr; ?> (Belitung)</title>
+  <title>Rincian Gaji Driver Latex</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -69,8 +62,6 @@ else{
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
 
   <!-- Link datepicker -->
 
@@ -78,11 +69,12 @@ else{
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+ 
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+      <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
@@ -244,6 +236,8 @@ else{
      </div>
  </li>
 
+          
+            
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -268,7 +262,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRMakantanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Gaji Driver $no_polisilr (Bangka)</h5></a>"; ?>
+  <?php echo "<a href='VRGaji'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Driver Latex</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -280,8 +274,8 @@ else{
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-
-
+          
+      
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -326,15 +320,14 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    
-    <div>
-    <div align="left">
-    <?php echo "<a href='../VLRKendaraanBk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
-    </div>
-    </div>
-  
-  
   <div class="row">
+  <div style="margin-left: 18px;">
+      <?php echo "<a href='../VLRLatex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    </div>
+
+</div>
+
+<div class="row">
     <div class="col-md-6">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
@@ -342,17 +335,13 @@ else{
 </div>
 
 
-
-
-
 <!-- Tabel -->    
-<h5 class="text-center" >Uang Gaji Berdasarkan Driver</h5>
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Nama Driver</th>
-      <th>Jumlah Gaji</th>
-      <th>Total Gaji</th>
+      <th>No Polisi</th>
+      <th>Jumlah Uang Gaji</th>
+      <th>Total Uang Gaji</th>
     </tr>
   </thead>
   <tbody>
@@ -362,31 +351,37 @@ else{
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
+ 
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $uang_gaji = $data['uang_gaji'];
-      $nama_driver =$data['nama_driver'];
-    $total = $total + $uang_gaji;
+      $nama_driver = $data['nama_driver_1'];
+      $total_ug = $data['uang_gaji'];
 
-      echo "<tr>
+      $total = $total + $total_ug;
+echo "<tr>
      
-      <td style='font-size: 14px'>$nama_driver</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($uang_gaji); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-      
- </tr>";
+<td style='font-size: 14px'>$nama_driver</td>
+<td style='font-size: 14px'>"?>  <?= formatuang($total_ug); ?> <?php echo "</td>
+<td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+
+</tr>";
+
+    
 }
+
 ?>
 
 </tbody>
 </table>
+</div>
 <br>
 <br>
-  </div>
+<br>
+
 
 </div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -432,8 +427,8 @@ aria-hidden="true">
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+<script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
+<script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -441,7 +436,7 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-<script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
+
 <!-- Tabel -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -468,43 +463,7 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
-<script>
-  function createOptions(number) {
-    var options = [], _options;
 
-    for (var i = 0; i < number; i++) {
-      var option = '<option value="' + i + '">Option ' + i + '</option>';
-      options.push(option);
-    }
-
-    _options = options.join('');
-
-    $('#number')[0].innerHTML = _options;
-    $('#number-multiple')[0].innerHTML = _options;
-
-    $('#number2')[0].innerHTML = _options;
-    $('#number2-multiple')[0].innerHTML = _options;
-  }
-
-  var mySelect = $('#first-disabled2');
-
-  createOptions(4000);
-
-  $('#special').on('click', function () {
-    mySelect.find('option:selected').prop('disabled', true);
-    mySelect.selectpicker('refresh');
-  });
-
-  $('#special2').on('click', function () {
-    mySelect.find('option:disabled').prop('disabled', false);
-    mySelect.selectpicker('refresh');
-  });
-
-  $('#basic2').selectpicker({
-    liveSearch: true,
-    maxOptions: 1
-  });
-</script>
 </body>
 
 </html>

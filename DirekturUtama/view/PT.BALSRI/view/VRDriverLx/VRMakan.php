@@ -31,13 +31,16 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksibalsri, "SELECT  SUM(um) AS uang_makan FROM pengiriman_bk a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksilatex, "SELECT  SUM(um) AS uang_makan FROM pengiriman a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
 }
 
 else{
-    $table = mysqli_query($koneksibalsri, "SELECT SUM(a.ug) AS uang_gaji , b.nama_driver FROM pengiriman_bk a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no 
-                            WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND c.no_polisi = '$no_polisilr' GROUP BY b.nama_driver ");
+
+
+$table = mysqli_query($koneksilatex, "SELECT SUM(a.um) AS uang_makan , b.no_polisi FROM pengiriman a INNER JOIN kendaraan b ON a.no_kendaraan=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr' ");
+
+$table2 = mysqli_query($koneksilatex, "SELECT SUM(a.um) AS uang_makan , b.nama_driver_1 FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND c.no_polisi = '$no_polisilr' GROUP BY b.nama_driver_1 ");
 
 }
 
@@ -53,7 +56,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Gaji Driver  <?= $no_polisilr; ?> (Belitung)</title>
+  <title>Rincian Uang Makan Driver  <?= $no_polisilr; ?></title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -243,7 +246,6 @@ else{
          </div>
      </div>
  </li>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -268,7 +270,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRMakantanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Gaji Driver $no_polisilr (Bangka)</h5></a>"; ?>
+      <?php echo "<a href='VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Uang Makan $no_polisilr (Latex)</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -329,7 +331,7 @@ else{
     
     <div>
     <div align="left">
-    <?php echo "<a href='../VLRKendaraanBk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    <?php echo "<a href='../VLRKendaraanLatex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     </div>
   
@@ -346,13 +348,13 @@ else{
 
 
 <!-- Tabel -->    
-<h5 class="text-center" >Uang Gaji Berdasarkan Driver</h5>
+<h5 class="text-center" >Uang Makan Berdasarkan Kendaraan</h5>
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Nama Driver</th>
-      <th>Jumlah Gaji</th>
-      <th>Total Gaji</th>
+      <th>No Polisi</th>
+      <th>Jumlah Uang Makan</th>
+      <th>Total Uang Makan</th>
     </tr>
   </thead>
   <tbody>
@@ -366,14 +368,14 @@ else{
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $uang_gaji = $data['uang_gaji'];
-      $nama_driver =$data['nama_driver'];
-    $total = $total + $uang_gaji;
+      $uang_makan = $data['uang_makan'];
+      $no_polisi =$data['no_polisi'];
+    $total = $total + $uang_makan;
 
       echo "<tr>
      
-      <td style='font-size: 14px'>$nama_driver</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($uang_gaji); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($uang_makan); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
       
  </tr>";
@@ -384,7 +386,42 @@ else{
 </table>
 <br>
 <br>
-  </div>
+<h5 class="text-center" >Uang Makan Berdasarkan Driver</h5>
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Nama Driver</th>
+      <th>Jumlah Uang Makan</th>
+      <th>Total Uang Makan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total=0;
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_driver = $data['nama_driver_1'];
+      $uang_makan = $data['uang_makan'];
+    $total = $total + $uang_makan;
+
+      echo "<tr>
+     
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($uang_makan); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      
+ </tr>";
+}
+?>
+
+</tbody>
+</table>
+</div>
+
+<br>
+<br>
 
 </div>
 </div>

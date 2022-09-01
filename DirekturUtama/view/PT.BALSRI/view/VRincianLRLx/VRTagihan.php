@@ -22,7 +22,6 @@ exit;
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
- $no_polisilr = $_GET['no_polisi'];
 } 
 
 elseif (isset($_POST['tanggal1'])) {
@@ -31,13 +30,19 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksibalsri, "SELECT  SUM(um) AS uang_makan FROM pengiriman_bk a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
 }
 
 else{
-    $table = mysqli_query($koneksibalsri, "SELECT SUM(a.ug) AS uang_gaji , b.nama_driver FROM pengiriman_bk a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no 
-                            WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND c.no_polisi = '$no_polisilr' GROUP BY b.nama_driver ");
+  $table = mysqli_query($koneksilatex, "SELECT * FROM tagihan a INNER JOIN driver_1 b on b.no_driver_1=a.no_driver_1
+                                                                            INNER JOIN driver_2 c on c.no_driver_2=a.no_driver_2
+                                                                            INNER JOIN kendaraan d on d.no=a.no_kendaraan 
+                                                                            WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal");
+
+$table2 = mysqli_query($koneksilatex, "SELECT SUM(total) AS total_tagihan, SUM(rit) AS total_rit  FROM tagihan WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$data2 = mysqli_fetch_array($table2);
+$total_tagihan = $data2['total_tagihan'];
+$total_rit = $data2['total_rit'];
 
 }
 
@@ -53,7 +58,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Gaji Driver  <?= $no_polisilr; ?> (Belitung)</title>
+  <title>Tagihan Angkutan Pertashop Latex</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -81,8 +86,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
@@ -268,7 +273,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRMakantanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Gaji Driver $no_polisilr (Bangka)</h5></a>"; ?>
+      <?php echo "<a href='VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Tagihan Angkutan Latex</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -329,7 +334,7 @@ else{
     
     <div>
     <div align="left">
-    <?php echo "<a href='../VLRKendaraanBk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='../VLRLatex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     </div>
   
@@ -346,45 +351,102 @@ else{
 
 
 <!-- Tabel -->    
-<h5 class="text-center" >Uang Gaji Berdasarkan Driver</h5>
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Nama Driver</th>
-      <th>Jumlah Gaji</th>
-      <th>Total Gaji</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $total=0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<thead>
+                <tr>
+                  <th>No</th>
+                  <th>Tanggal</th>
+                  <th>No Segel</th>
+                  <th>AMT 1</th>
+                  <th>AMT 2</th>
+                  <th>MT</th>
+                  <th>Total</th>
+                  <th>File</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $total_max_pesanan = 0;
+                $urut = 0;
+                function formatuang($angka)
+                {
+                  $uang = "Rp " . number_format($angka, 2, ',', '.');
+                  return $uang;
+                }
 
-    ?>
+                ?>
 
-    <?php while($data = mysqli_fetch_array($table)){
-      $uang_gaji = $data['uang_gaji'];
-      $nama_driver =$data['nama_driver'];
-    $total = $total + $uang_gaji;
+                <?php while ($data = mysqli_fetch_array($table)) {
+                  $no_tagihan = $data['no_tagihan'];
+                  $tanggal = $data['tanggal'];
+                  $no_segel = $data['no_segel'];
+                  $nama_driver_1 = $data['nama_driver_1'];
+                  $no_driver_1 = $data['no_driver_1'];
+                  $nama_driver_2 = $data['nama_driver_2'];
+                  $no_driver_2 = $data['no_driver_2'];
+                  $no_polisi = $data['no_polisi'];
+                  $jen_ken = $data['jenis_kendaraan'];
+                  $no_kendaraan = $data['no_kendaraan'];
+                  $total = $data['total'];
+                  $file_bukti = $data['file_bukti'];
+                  
+                  $urut = $urut + 1;
+               
+                  echo "<tr>
+                  <td style='font-size: 14px'>$urut</td>
+                  <td style='font-size: 14px'>$tanggal</td>
+                  <td style='font-size: 14px'>$no_segel</td>
+                  <td style='font-size: 14px'>$nama_driver_1</td>
+                  <td style='font-size: 14px'>$nama_driver_2</td>
+                  <td style='font-size: 14px'>$no_polisi</td>
+                  <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
+                  <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                 </tr>";
+                }
+        ?>
 
-      echo "<tr>
-     
-      <td style='font-size: 14px'>$nama_driver</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($uang_gaji); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-      
- </tr>";
-}
-?>
-
-</tbody>
+        </tbody>
 </table>
+</div>
 <br>
-<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Tagihan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_tagihan)  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Ritase</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_rit  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class=" fas fa-truck-moving fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<br>
+<br>
 
 </div>
 </div>
