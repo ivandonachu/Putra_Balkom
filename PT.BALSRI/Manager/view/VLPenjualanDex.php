@@ -383,6 +383,9 @@ else{
       <th  style="font-size: 11px">Total</th>
       <th  style="font-size: 11px">Stok awal</th>
       <th  style="font-size: 11px">Stok Akhir</th>
+      <th  style="font-size: 11px">sonding Awal</th>
+      <th  style="font-size: 11px">Sonding Akhir</th>
+      <th  style="font-size: 11px">Sirkulasi</th>
       <th  style="font-size: 11px">KET</th>
       <th  style="font-size: 11px">File</th>
       <th  style="font-size: 11px">Status</th>
