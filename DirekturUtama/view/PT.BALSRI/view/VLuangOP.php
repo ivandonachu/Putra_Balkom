@@ -500,7 +500,7 @@ function formatuang($angka){
      // BANGKA
 
        // Tagihan
-  $table_bK = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_bk a INNER JOIN master_tarif_bk b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table_bk = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_bk a INNER JOIN master_tarif_bk b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data_bk = mysqli_fetch_array($table_bk);
   $total_tagihan_bk = $data_bk['total_tagihan'];
 
