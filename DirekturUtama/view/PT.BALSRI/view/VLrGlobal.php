@@ -560,7 +560,7 @@ else{
     $gaji_driver_bk = 0;
     }
     //Gaji dRIVER bengkulu
-   $table9_bkl = mysqli_query($koneksiSTRE, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BKU' ");
+   $table9_bkl = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BKU' ");
    $data9_bkl = mysqli_fetch_array($table9_bkl);
    $gaji_driver_bkl = $data9_bkl['jumlah_gaji'];
     if (!isset($data9_bkl['jumlah_gaji'])) {
