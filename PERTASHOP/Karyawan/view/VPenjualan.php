@@ -334,6 +334,25 @@ $kode_perta = $data_perta['kode_perta'];
         </div>         
       </div>
 
+      <div class="row">
+      <div class="col-md-4">
+          <label>Sonding Awal</label>
+          <input class="form-control form-control-sm" type="float" id="sonding_awal" name="sonding_awal" required="">
+
+        </div>    
+        <div class="col-md-4">
+          <label>Sonding AKhir</label>
+             <input class="form-control form-control-sm" type="float" id="sonding_akhir" name="sonding_akhir" required="">
+        </div>                
+
+
+        <div class="col-md-4">
+          <label>Sirkulasi</label>
+          <input class="form-control form-control-sm" type="float" id="sirkulasi" name="sirkulasi" required="">
+
+        </div>         
+      </div>
+
       <div>
        <label>Keterangan</label>
        <div class="form-group">
@@ -377,6 +396,9 @@ $kode_perta = $data_perta['kode_perta'];
       <th  style="font-size: 11px">Total</th>
       <th  style="font-size: 11px">Stok awal</th>
       <th  style="font-size: 11px">Stok Akhir</th>
+      <th  style="font-size: 11px">sonding Awal</th>
+      <th  style="font-size: 11px">Sonding Akhir</th>
+      <th  style="font-size: 11px">Sirkulasi</th>
       <th  style="font-size: 11px">KET</th>
       <th  style="font-size: 11px">File</th>
       <th  style="font-size: 11px">Status</th>
@@ -392,6 +414,7 @@ $kode_perta = $data_perta['kode_perta'];
     }
     $uang_nb_max = 0;
     $terjual_nb_max = 0 ;
+
     ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no_penjualan = $data['no_penjualan'];
@@ -403,6 +426,9 @@ $kode_perta = $data_perta['kode_perta'];
       $qty = $data['qty'];
       $stok_awal = $data['stok_awal'];
       $stok_akhir = $data['stok_akhir'];
+      $sonding_awal = $data['sonding_awal'];
+      $sonding_akhir = $data['sonding_akhir'];
+      $sirkulasi = $data['sirkulasi'];
       $harga = $data['harga'];
       $jumlah = $qty * $harga;
       $keterangan = $data['keterangan'];
@@ -417,8 +443,8 @@ $kode_perta = $data_perta['kode_perta'];
          
         }
         else{
-          $uang_nb_dex =+ $jumlah; 
-          $terjual_nb_dex =+ $qty;
+          $uang_nb_dex =  $uang_nb_dex + $jumlah; 
+          $terjual_nb_dex = $terjual_nb_dex + $qty;
        
         }
         
@@ -451,6 +477,9 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$sonding_awal/L</td>
+      <td style='font-size: 11px' align = 'center'>$sonding_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$sirkulasi/L</td>
       <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "<td style='font-size: 11px'>"; ?>
