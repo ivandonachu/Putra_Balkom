@@ -612,7 +612,7 @@ function formatuang($angka){
      $total_tagihan_global = $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bta + $total_tagihan_bb + $total_tagihan_spbu + $total_tagihan_bk;
      $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
      $biaya_kantor_global = $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg + $jml_biaya_kantor_bta + $jml_biaya_kantor_bb + $jml_biaya_kantor_bk;
-     $listrik_global = $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bta + $jml_listrik_bb + $$jml_listrik_bk;
+     $listrik_global = $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bta + $jml_listrik_bb + $jml_listrik_bk;
      $sewa_global = $jml_sewa_lmg + $jml_sewa_plg + $jml_sewa_bta + $jml_sewa_bb + $jml_sewa_bk;
      $atk_global = $jml_atk_lmg + $jml_atk_plg + $jml_atk_bta + $jml_atk_bb + $jml_atk_bk;
      $gaji_karyawan_global = $total_gaji_karyawan_lmg + $total_gaji_karyawan_plg + $total_gaji_karyawan_bta + $total_gaji_karyawan_bb + $total_gaji_karyawan_bk; 
