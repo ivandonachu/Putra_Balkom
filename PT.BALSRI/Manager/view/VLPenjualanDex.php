@@ -386,6 +386,8 @@ else{
       <th  style="font-size: 11px">sonding Awal</th>
       <th  style="font-size: 11px">Sonding Akhir</th>
       <th  style="font-size: 11px">Sirkulasi</th> 
+      <th  style="font-size: 11px">Losis Penyimpanan</th>
+      <th  style="font-size: 11px">Losis Penjualan</th>
       <th  style="font-size: 11px">KET</th>
       <th  style="font-size: 11px">File</th>
       <th  style="font-size: 11px">Status</th>
@@ -409,7 +411,8 @@ else{
     $terjual_md = 0;
     $uang_sj = 0 ;
     $terjual_sj = 0;
-
+    $total_losis_penjualan = 0;
+    $total_losis_penyimpanan = 0;
   
 
     ?>
@@ -423,12 +426,19 @@ else{
       $qty = $data['qty'];
       $stok_awal = $data['stok_awal'];
       $stok_akhir = $data['stok_akhir'];
+      $sonding_awal = $data['sonding_awal'];
+      $sonding_akhir = $data['sonding_akhir'];
+      $sirkulasi = $data['sirkulasi'];
+      $losis_penyimpanan = $data['losis_penyimpanan'];
+      $losis_penjualan = $data['losis_penjualan'];
       $harga = $data['harga'];
       $jumlah = $qty * $harga;
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
       $status = $data['persetujuan'];
       $urut = $urut + 1;
+      $total_losis_penyimpanan = $total_losis_penyimpanan + $losis_penyimpanan;
+      $total_losis_penjualan = $total_losis_penjualan + $losis_penjualan;
     
       if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
@@ -471,6 +481,11 @@ else{
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$sonding_awal/L</td>
+      <td style='font-size: 11px' align = 'center'>$sonding_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$sirkulasi/L</td>
+      <td style='font-size: 11px' align = 'center'>$losis_penyimpanan/L</td>
+      <td style='font-size: 11px' align = 'center'>$losis_penjualan/L</td>
       <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "<td style='font-size: 11px'>"; ?>
@@ -528,10 +543,44 @@ else{
 </table>
 </div>
  </div>
+ <br>
+<hr>
+<br>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">List Losis</h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<thead>
+      <th style='font-size: 11px'>List Losis</th>
+      <th style='font-size: 11px'>Total Losis</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Losis Penyimpanan</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($total_losis_penyimpanan); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Losis Penjualan</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($total_losis_penjualan); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+</div>
+<br>
+<hr>
 <br>
 <div style="margin-right: 100px; margin-left: 100px;">
 <h6 align="Center">Stok Barang</h6>
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
       <th>Nama Barang</th>
       <th>STOK</th>
@@ -554,9 +603,11 @@ else{
 </tbody>
 </table>
 </div>
+</div>
 
 <br>
 <hr>
+<br>
 
 <div style="margin-right: 100px; margin-left: 100px;">
 <h6 align="Center">Laporan Barang Terjual</h6>

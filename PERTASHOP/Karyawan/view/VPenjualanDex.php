@@ -397,6 +397,8 @@ $kode_perta = $data_perta['kode_perta'];
       <th  style="font-size: 11px">sonding Awal</th>
       <th  style="font-size: 11px">Sonding Akhir</th>
       <th  style="font-size: 11px">Sirkulasi</th>
+      <th  style="font-size: 11px">Losis Penyimpanan</th>
+      <th  style="font-size: 11px">Losis Penjualan</th>
       <th  style="font-size: 11px">KET</th>
       <th  style="font-size: 11px">File</th>
       <th  style="font-size: 11px">Status</th>
@@ -412,6 +414,8 @@ $kode_perta = $data_perta['kode_perta'];
     }
     $uang_nb_dex = 0;
     $terjual_nb_dex = 0 ;
+    $total_losis_penjualan = 0;
+    $total_losis_penyimpanan = 0;
     ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no_penjualan = $data['no_penjualan'];
@@ -427,11 +431,15 @@ $kode_perta = $data_perta['kode_perta'];
       $sonding_awal = $data['sonding_awal'];
       $sonding_akhir = $data['sonding_akhir'];
       $sirkulasi = $data['sirkulasi'];
+      $losis_penyimpanan = $data['losis_penyimpanan'];
+      $losis_penjualan = $data['losis_penjualan'];
       $harga = $data['harga'];
       $jumlah = $qty * $harga;
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
       $status = $data['persetujuan'];
+      $total_losis_penyimpanan = $total_losis_penyimpanan + $losis_penyimpanan;
+      $total_losis_penjualan = $total_losis_penjualan + $losis_penjualan;
       $urut = $urut + 1;
       if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
@@ -472,6 +480,8 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>$sonding_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$sonding_akhir/L</td>
       <td style='font-size: 11px' align = 'center'>$sirkulasi/L</td>
+      <td style='font-size: 11px' align = 'center'>$losis_penyimpanan/L</td>
+      <td style='font-size: 11px' align = 'center'>$losis_penjualan/L</td>
       <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "<td style='font-size: 11px'>"; ?>
@@ -560,6 +570,39 @@ $kode_perta = $data_perta['kode_perta'];
 </table>
 </div>
  </div>
+ <br>
+<hr>
+<br>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">List Losis</h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<thead>
+      <th style='font-size: 11px'>List Losis</th>
+      <th style='font-size: 11px'>Total Losis</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Losis Penyimpanan</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($total_losis_penyimpanan); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Losis Penjualan</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($total_losis_penjualan); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+</div>
+<br>
+<hr>
 <br>
 <div style="margin-right: 100px; margin-left: 100px;">
 <h6 align="Center">Stok Barang</h6>
@@ -588,8 +631,11 @@ $kode_perta = $data_perta['kode_perta'];
 </table>
 </div>
 </div>
+
 <br>
 <hr>
+<br>
+
 <div style="margin-right: 100px; margin-left: 100px;">
 <h6 align="Center">Laporan Barang Terjual</h6>
 <div style="overflow-x: auto" align = 'center'>
