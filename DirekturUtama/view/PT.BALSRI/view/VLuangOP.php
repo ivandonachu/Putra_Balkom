@@ -721,18 +721,114 @@ function formatuang($angka){
 
     $total_oprasional_bkl =   $jml_biaya_kantor_bkl + $jml_listrik_bkl + $jml_sewa_bkl + $jml_atk_bkl + $total_gaji_karyawan_bkl + $jml_transport_bkl +  $jml_konsumsi_bkl;
      
-  
+    
+    
+    // Latex
 
-     $total_tagihan_global = $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bta + $total_tagihan_bb + $total_tagihan_spbu + $total_tagihan_bk + $total_tagihan_bkl;
+
+        // Tagihan
+        $table_lx = mysqli_query($koneksilatex, "SELECT SUM(total) AS total_tagihan FROM tagihan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+        $data_lx = mysqli_fetch_array($table_lx);
+        $total_tagihan_latex = $data_lx['total_tagihan'];
+      
+          // Potongan 10%
+          $jumlah_potongan_latex = (($total_tagihan_latex * 10) / 100);
+      
+        //pengiriman
+        $table2_lx = mysqli_query($koneksilatex, "SELECT SUM(uang_dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(mel) AS uang_mel FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+        $data2_lx = mysqli_fetch_array($table2_lx);
+        $total_dexlite_latex= $data2_lx['total_dex'];
+        $total_um_latex= $data2_lx['uang_makan'];
+        $total_ug_latex= $data2_lx['uang_gaji'];
+        $total_mel_latex= $data2_lx['uang_mel'];
+      
+    
+  //pengeluran Pul Biaya Kantor
+  $table3_lx = mysqli_query($koneksilatex, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+  $data3_lx = mysqli_fetch_array($table3_lx);
+  $jml_biaya_kantor_lx = $data3_lx['jumlah_biaya_kantor'];
+   if (!isset($data3_lx['jumlah_biaya_kantor'])) {
+   $jml_biaya_kantor_lx = 0;
+   }
+
+  //pengeluran Pul Listrik & Telepon
+  $table4_lx = mysqli_query($koneksilatex, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
+  $data4_lx = mysqli_fetch_array($table4_lx);
+  $jml_listrik_lx = $data4_lx['jumlah_listrik'];
+   if (!isset($data4_lx['jumlah_listrik'])) {
+   $jml_listrik_lx = 0;
+   }
+
+  //pengeluran Biaya Sewa
+  $table5_lx = mysqli_query($koneksilatex, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
+  $data5_lx = mysqli_fetch_array($table5_lx);
+  $jml_sewa_lx = $data5_lx['jumlah_sewa'];
+   if (!isset($data5_lx['jumlah_sewa'])) {
+   $jml_sewa_lx = 0;
+   }
+
+  //pengeluran Alat Tulis Kantor
+  $table6_lx = mysqli_query($koneksilatex, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+  $data6_lx = mysqli_fetch_array($table6_lx);
+  $jml_atk_lx = $data6_lx['jumlah_atk'];
+   if (!isset($data6_lx['jumlah_atk'])) {
+   $jml_atk_lx = 0;
+   }
+
+   //pengeluran Transnport / Perjalanan Dinas
+  $table61_lx = mysqli_query($koneksilatex, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+  $data61_lx = mysqli_fetch_array($table61_lx);
+  $jml_transport_lx = $data61_lx['jumlah_transport'];
+   if (!isset($data61_lx['jumlah_transport'])) {
+   $jml_transport_lx = 0;
+   }
+   //pengeluran Biaya Konsumsi
+  $table62_lx = mysqli_query($koneksilatex, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+  $data62_lx = mysqli_fetch_array($table62_lx);
+  $jml_konsumsi_lx = $data62_lx['jumlah_konsumsi'];
+   if (!isset($data62_lx['jumlah_konsumsi'])) {
+   $jml_konsumsi_lx = 0;
+   }
+
+   //pengeluran perbaikan
+  $table7_lx = mysqli_query($koneksilatex, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $data7_lx = mysqli_fetch_array($table7_lx);
+  $jml_perbaikan = $data7_lx['jumlah_perbaikan'];
+   if (!isset($data7_lx['jumlah_perbaikan'])) {
+   $jml_perbaikan_lx = 0;
+   }
+   
+   
+    //Gaji karyawan
+  $table8_lx = mysqli_query($koneksilatex, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Karyawan' ");
+  $data8_lx = mysqli_fetch_array($table8_lx);
+  $gaji_karyawan_lx = $data8_lx['jumlah_gaji'];
+   if (!isset($data8_lx['jumlah_gaji'])) {
+   $gaji_karyawan_lx = 0;
+   }
+   //Gaji dRIVER
+  $table9_lx = mysqli_query($koneksilatex, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver' ");
+  $data9_lx = mysqli_fetch_array($table9_lx);
+  $gaji_driver_lx = $data9_lx['jumlah_gaji'];
+   if (!isset($data9_lx['jumlah_gaji'])) {
+   $gaji_driver_lx = 0;
+   }
+   
+   $total_gaji_karyawan_lx = $gaji_karyawan_lx + $total_ug_latex ;
+
+    $total_oprasional_lx =   $jml_biaya_kantor_lx + $jml_listrik_lx + $jml_sewa_lx + $jml_atk_lx + $total_gaji_karyawan_lx + $jml_transport_lx +  $jml_konsumsi_lx;
+     
+
+     $total_tagihan_global = $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bta + $total_tagihan_bb + $total_tagihan_spbu + $total_tagihan_bk + $total_tagihan_bkl + $total_tagihan_latex;
      $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
-     $biaya_kantor_global = $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg + $jml_biaya_kantor_bta + $jml_biaya_kantor_bb + $jml_biaya_kantor_bk + $jml_biaya_kantor_bk + $jml_biaya_kantor_bkl;
-     $listrik_global = $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bta + $jml_listrik_bb + $jml_listrik_bk + $jml_listrik_bkl;
-     $sewa_global = $jml_sewa_lmg + $jml_sewa_plg + $jml_sewa_bta + $jml_sewa_bb + $jml_sewa_bk + $jml_sewa_bkl;
-     $atk_global = $jml_atk_lmg + $jml_atk_plg + $jml_atk_bta + $jml_atk_bb + $jml_atk_bk + $jml_atk_bkl;
-     $gaji_karyawan_global = $total_gaji_karyawan_lmg + $total_gaji_karyawan_plg + $total_gaji_karyawan_bta + $total_gaji_karyawan_bb + $total_gaji_karyawan_bk + $total_gaji_karyawan_bkl; 
-     $transport_global = $jml_transport_lmg + $jml_transport_plg + $jml_transport_bta + $jml_transport_bb + $jml_transport_bk + $jml_transport_bkl;
-     $konsumsi_global = $jml_konsumsi_lmg + $jml_konsumsi_plg + $jml_konsumsi_bta + $jml_konsumsi_bb + $jml_konsumsi_bk + $jml_konsumsi_bkl; 
-     $total_oprasional_global = $total_oprasional_bta + $total_oprasional_lmg + $total_oprasional_plg + $total_oprasional_bb + $total_oprasional_bk + $total_oprasional_bkl;
+     $biaya_kantor_global = $jml_biaya_kantor_lmg + $jml_biaya_kantor_plg + $jml_biaya_kantor_bta + $jml_biaya_kantor_bb + $jml_biaya_kantor_bk + $jml_biaya_kantor_bk + $jml_biaya_kantor_bkl + $jml_biaya_kantor_lx;
+     $listrik_global = $jml_listrik_lmg + $jml_listrik_plg + $jml_listrik_bta + $jml_listrik_bb + $jml_listrik_bk + $jml_listrik_bkl + $jml_listrik_lx;
+     $sewa_global = $jml_sewa_lmg + $jml_sewa_plg + $jml_sewa_bta + $jml_sewa_bb + $jml_sewa_bk + $jml_sewa_bkl + $jml_sewa_lx;
+     $atk_global = $jml_atk_lmg + $jml_atk_plg + $jml_atk_bta + $jml_atk_bb + $jml_atk_bk + $jml_atk_bkl + $jml_atk_lx;
+     $gaji_karyawan_global = $total_gaji_karyawan_lmg + $total_gaji_karyawan_plg + $total_gaji_karyawan_bta + $total_gaji_karyawan_bb + $total_gaji_karyawan_bk + $total_gaji_karyawan_bkl + $total_gaji_karyawan_lx; 
+     $transport_global = $jml_transport_lmg + $jml_transport_plg + $jml_transport_bta + $jml_transport_bb + $jml_transport_bk + $jml_transport_bkl + $jml_transport_lx;
+     $konsumsi_global = $jml_konsumsi_lmg + $jml_konsumsi_plg + $jml_konsumsi_bta + $jml_konsumsi_bb + $jml_konsumsi_bk + $jml_konsumsi_bkl + $jml_konsumsi_lx; 
+     $total_oprasional_global = $total_oprasional_bta + $total_oprasional_lmg + $total_oprasional_plg + $total_oprasional_bb + $total_oprasional_bk + $total_oprasional_bkl + $total_oprasional_lx;
 ?>
 
 
@@ -1720,6 +1816,99 @@ function formatuang($angka){
                   <tr style="background-color: navy;  color:white;" >
                     <td><strong>Total Sisa Potongan </strong></td>
                     <td class="no-line text-center"><?php echo formatuang($jumlah_potongan_bkl - $total_oprasional_bkl ); ?></td>
+                    <td class="thick-line"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+      
+</div>
+</div>
+</div>
+
+<br>
+<br>
+
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Latex</strong></h3>
+        </div>
+
+        <div>
+
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-condensed"  style="color : black;">
+                <thead>
+                                <tr>
+                      <td><strong>Akun</strong></td>
+                      <td class="text-center"><strong>Jumlah</strong></td>
+                      <td class="text-right"><strong>Aksi</strong></td>
+                                </tr>
+                </thead>
+                <tbody>
+                  <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                  <tr>
+                    <td>Total Tagihan</td>
+                    <td class="text-center"><?php echo formatuang($total_tagihan_latex);  ?></td>
+                    <?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                                <tr  style="background-color:    #F0F8FF; ">
+                      <td> <strong>Potongan Oprasional 10%</strong> </td>
+                    <td class="text-center"><strong><?php echo formatuang($jumlah_potongan_latex);  ?></strong></td>
+                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                                
+                                <tr>
+                      <td>Biaya Kantor</td>
+                    <td class="text-center"><?php echo formatuang($jml_biaya_kantor_lx);  ?></td>
+                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                                <tr>
+                      <td>Telepon & Listrik</td>
+                    <td class="text-center"><?php echo formatuang($jml_listrik_lx);  ?></td>
+                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                                <tr>
+                      <td>Biaya Sewa</td>
+                    <td class="text-center"><?php echo formatuang($jml_sewa_lx);  ?></td>
+                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                                <tr>
+                      <td>Alat Tulis Kantor</td>
+                    <td class="text-center"><?php echo formatuang($jml_atk_lx);  ?></td>
+                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                                <tr>
+                      <td>Gaji Karyawan</td>
+                    <td class="text-center"><?php echo formatuang($total_gaji_karyawan_lx);  ?></td>
+                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                                <tr>
+                      <td>Transport / Perjalanan Dinas</td>
+                    <td class="text-center"><?php echo formatuang($jml_transport_lx);  ?></td>
+                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                                <tr>
+                      <td>Konsumsi</td>
+                    <td class="text-center"><?php echo formatuang($jml_konsumsi_lx); ?></td>
+                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                                <tr  style="background-color:    #F0F8FF; ">
+                      <td><strong>Biaya Oprasional</strong> </td>
+                    <td class="text-center"><strong><?php echo formatuang($total_oprasional_lx); ?></strong></td>
+                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                  </tr>
+                              
+                  <tr style="background-color: navy;  color:white;" >
+                    <td><strong>Total Sisa Potongan </strong></td>
+                    <td class="no-line text-center"><?php echo formatuang($jumlah_potongan_latex - $total_oprasional_lx ); ?></td>
                     <td class="thick-line"></td>
                   </tr>
                 </tbody>
