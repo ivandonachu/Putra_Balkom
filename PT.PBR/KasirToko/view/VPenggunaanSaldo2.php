@@ -285,9 +285,37 @@ data-parent="#accordionSidebar">
           </div>
         </div>
 
+        <br>
 
         <div class="row">
            
+          <div class="col-md-6">
+          <label>Akun</label>
+          <select id="akun" name="akun" class="form-control">
+            <option>Setor Pendapatan</option>
+            <option>Dana Masuk</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+        <label>Jumlah</label>
+          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
+        </div>    
+        </div>            
+
+      </div>
+
+      <br>
+
+      <div class="row">
+      <div class="col-md-6">
+         <label>Saldo/Asal</label>
+          <select id="rekening" name="rekening" class="form-control">
+            <option>CBM</option>
+            <option>PBR</option>
+            <option>MES</option>
+          </select>
+        </div>        
           <div class="col-md-6">
            <label>REF/Tujuan Transfer</label>
           <select id="referensi" name="referensi" class="form-control">
@@ -298,39 +326,12 @@ data-parent="#accordionSidebar">
           <small></small>
         </div>
 
-        <div class="col-md-6">
-          <label>Akun</label>
-          <select id="akun" name="akun" class="form-control">
-            <option>Setor Pendapatan</option>
-            <option>Dana Masuk</option>
-          </select>
-        </div>            
-
+          
       </div>
-
-      <br>
-
      
 
-      <div class="row">
-        <div class="col-md-6">
-          <label>Jumlah</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
-        </div>    
-        <div class="col-md-6">
-        </div>         
-      </div>
 
-      <br>
-
-    <div>
-       <label>Saldo</label>
-          <select id="rekening" name="rekening" class="form-control">
-            <option>CBM</option>
-            <option>PBR</option>
-            <option>MES</option>
-          </select>
-    </div>
+      
     <br>
 
     <div>
@@ -371,7 +372,7 @@ data-parent="#accordionSidebar">
       <th>Tanggal</th>
       <th>Akun</th>
       <th>REF/Tujuan</th>
-      <th>Rekening</th>
+      <th>Saldo/Asal</th>
       <th>Debit</th>
       <th>Kredit</th>
       <th>Keterangan</th>
