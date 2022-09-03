@@ -292,7 +292,8 @@ data-parent="#accordionSidebar">
            <label>REF Transfer</label>
           <select id="referensi" name="referensi" class="form-control">
             <option>CBM</option>
-            <option>PBJ</option>
+            <option>PBR</option>
+            <option>MES</option>
           </select>
           <small></small>
         </div>
@@ -325,8 +326,9 @@ data-parent="#accordionSidebar">
     <div>
        <label>Saldo</label>
           <select id="rekening" name="rekening" class="form-control">
-            <option>MES</option>
+            <option>CBM</option>
             <option>PBR</option>
+            <option>MES</option>
           </select>
     </div>
     <br>
