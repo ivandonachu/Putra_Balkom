@@ -359,7 +359,6 @@ data-parent="#accordionSidebar">
 </div>
 
 </div>
-</div>
 
 
 
