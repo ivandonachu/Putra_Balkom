@@ -289,7 +289,7 @@ data-parent="#accordionSidebar">
         <div class="row">
            
           <div class="col-md-6">
-           <label>REF Transfer</label>
+           <label>REF/Tujuan Transfer</label>
           <select id="referensi" name="referensi" class="form-control">
             <option>CBM</option>
             <option>PBR</option>
@@ -370,7 +370,7 @@ data-parent="#accordionSidebar">
       <th>No</th>
       <th>Tanggal</th>
       <th>Akun</th>
-      <th>REF</th>
+      <th>REF/Tujuan</th>
       <th>Rekening</th>
       <th>Debit</th>
       <th>Kredit</th>
