@@ -372,6 +372,7 @@ else{
     <tr>
       <th style="font-size: 11px" >No</th>
       <th style="font-size: 11px" >Tanggal</th>
+      <th style="font-size: 11px" >Tanggal Pembayaran</th>
       <th style="font-size: 11px" >Lokasi Cor</th>
       <th style="font-size: 11px" >No Polisi</th>
       <th style="font-size: 11px" >Nama Driver</th>   
@@ -402,6 +403,7 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_cor = $data['no_cor'];
       $tanggal =$data['tanggal'];
+      $tanggal_pembayaran =$data['tanggal_pembayaran'];
       $lokasi_cor =$data['lokasi_cor'];
       $no_polisi =$data['no_polisi'];
       $nama_driver =$data['nama_driver'];
@@ -444,6 +446,7 @@ else{
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
       <td style='font-size: 11px' align = 'center'>$tanggal</td>
+      <td style='font-size: 11px' align = 'center'>$tanggal_pembayaran</td>
       <td style='font-size: 11px' align = 'center'>$lokasi_cor</td>
       <td style='font-size: 11px' align = 'center'>$no_polisi</td>
       <td style='font-size: 11px' align = 'center'>$nama_driver</td>
