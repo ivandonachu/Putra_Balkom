@@ -395,7 +395,7 @@ else{
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
+    $urut = 0;
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
@@ -410,7 +410,7 @@ else{
       $jumlah_angsuran = $data['jumlah_angsuran'];
       $file_bukti = $data['file_bukti'];
       $status_hutang = $data['status_bayar'];
-
+      $urut = $urut + 1;
       $sql_riw_bon = mysqli_query($koneksi, "SELECT tanggal_bayar FROM riwayat_bon_pribadi WHERE no_bon = '$no_bon' ORDER BY no_riwayat DESC LIMIT 1");
       $data_riw_bon = mysqli_fetch_assoc($sql_riw_bon);
       if( !isset($data_riw_bon['tanggal_bayar'])){
@@ -424,7 +424,7 @@ else{
 
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_bon </td>
+      <td style='font-size: 14px'>$urut </td>
       <td style='font-size: 14px'>$tanggal_bon</td>
       <td style='font-size: 14px'>$tanggal_angsur</td>
       <td style='font-size: 14px'>$tanggal_bayar</td>
