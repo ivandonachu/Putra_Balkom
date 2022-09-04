@@ -314,7 +314,7 @@ else{
 
     <?php while($data = mysqli_fetch_array($table)){
       $dexlite = $data['total_dexlite'];
-      $uang_dexlite = $dexlite * 9700;
+      $uang_dexlite = $dexlite * 13250;
       $no_polisi =$data['no_polisi'];
       $total = $total + $uang_dexlite;
 

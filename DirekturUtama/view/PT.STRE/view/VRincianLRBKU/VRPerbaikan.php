@@ -274,11 +274,11 @@ else{
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-   <div>
+  
    <div>
       <?php echo "<a href='../VLabaRugi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
-   </div>
+
 
 <div class="row">
   <div class="col-md-6">
@@ -289,7 +289,9 @@ else{
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+
   <thead>
     <tr>
       <th>No</th>
@@ -301,7 +303,7 @@ else{
       <th>Total</th>
       <th>Keterangan</th>
       <th>File</th>
-      <th>Aksi</th>
+
     </tr>
   </thead>
   <tbody>
@@ -346,6 +348,7 @@ else{
 
 </tbody>
 </table>
+</div>
 
 <br>
 <br>
@@ -380,14 +383,14 @@ else{
 
 </tbody>
 </table>
+</div>
 <br>
 <br>
 <br>
 
-</div>
-</div>
 
-</div>
+  </div>
+
 <!-- End of Main Content -->
 
 <!-- Footer -->

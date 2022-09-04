@@ -138,10 +138,10 @@ $no = $data_kendaraan['no'];
 
 if ($jns_trans == 'Lost') {
 	if ($file == '') {
-	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' ,no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' ,no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
 }
 	else{
-	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no' , jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no' , jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
 }
 
 
@@ -149,10 +149,10 @@ if ($jns_trans == 'Lost') {
 }
 else{
 	if ($file == '') {
-	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
 }
 	else{
-	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no' , jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_p SET no_driver = '$no_driver' , no = '$no' , jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
 }
 
 	
