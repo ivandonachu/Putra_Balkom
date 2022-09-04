@@ -31,6 +31,7 @@ $pembagi = $_POST['pembagi'];
 $upah_kotor = $_POST['upah_kotor'];
 $oa = $_POST['oa'];
 $b_kompor = $_POST['b_kompor'];
+$tank_alpha = $_POST['tank_alpha'];
 $upah_bersih = $_POST['upah_bersih'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
@@ -74,12 +75,12 @@ else if ( $nama_file != "" ) {
 
 	if ($file == '') {
 			$query3 = mysqli_query($koneksi,"UPDATE laporan_karet SET tanggal = '$tanggal' , nama_karyawan = '$nama_karyawan' , box_karet = '$box' , berat = '$berat' , 
-            harga_karet = '$harga' ,total_pendapatan = '$total_pendapatan' , pembagi = '$pembagi' , upah_kotor = '$upah_kotor' , ongkos_angkut = '$oa' , bayar_kompor = '$b_kompor' , upah_bersih = '$upah_bersih' , keterangan = '$keterangan' 
+            harga_karet = '$harga' ,total_pendapatan = '$total_pendapatan' , pembagi = '$pembagi' , upah_kotor = '$upah_kotor' , ongkos_angkut = '$oa' , bayar_kompor = '$b_kompor', tank_alpha = '$tank_alpha' , upah_bersih = '$upah_bersih' , keterangan = '$keterangan' 
             WHERE no_laporan = '$no_laporan'");
 	}
 	else{
 			$query3 = mysqli_query($koneksi,"UPDATE laporan_karet SET tanggal = '$tanggal' , nama_karyawan = '$nama_karyawan' , box_karet = '$box' , berat = '$berat' , 
-            harga_karet = '$harga' ,total_pendapatan = '$total_pendapatan' , pembagi = '$pembagi' , upah_kotor = '$upah_kotor' , ongkos_angkut = '$oa' , bayar_kompor = '$b_kompor' , upah_bersih = '$upah_bersih' , keterangan = '$keterangan' 
+            harga_karet = '$harga' ,total_pendapatan = '$total_pendapatan' , pembagi = '$pembagi' , upah_kotor = '$upah_kotor' , ongkos_angkut = '$oa' , bayar_kompor = '$b_kompor' , tank_alpha = '$tank_alpha', upah_bersih = '$upah_bersih' , keterangan = '$keterangan' 
              , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
 	}
 

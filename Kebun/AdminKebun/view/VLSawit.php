@@ -394,7 +394,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                     <!-- Tabel -->
-                    <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                    <div style="overflow-x: auto" align = 'center'>
+                    <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -617,6 +618,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         </tbody>
         </table>
     </div>
+                    </div>
     <br>
     <br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;"  align = 'center'>

@@ -21,59 +21,47 @@ exit;
 
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
+$tanggal = $_POST['tanggal'];
+$total_upah_kerja = $_POST['total_upah_kerja'];
+$total_potongan_bon = $_POST['total_potongan_bon'];
+
+$nama_file = $_FILES['file']['name'];
+if ($nama_file == "") {
+	$file = "";
+}
+
+else if ( $nama_file != "" ) {
+
+	function upload(){
+		$nama_file = $_FILES['file']['name'];
+		$ukuran_file = $_FILES['file']['size'];
+		$error = $_FILES['file']['error'];
+		$tmp_name = $_FILES['file']['tmp_name'];
+
+		$ekstensi_valid = ['jpg','jpeg','pdf','doc','docs','xls','xlsx','docx','txt','png'];
+		$ekstensi_file = explode(".", $nama_file);
+		$ekstensi_file = strtolower(end($ekstensi_file));
 
 
-if (isset($_POST['nama_karyawan'])) {
-    $nama_karyawan = $_POST['nama_karyawan']; 
-	$potongan_bon = $_POST['potongan_bon'];
-	$tanggal = $_POST['tanggal'];
+		$nama_file_baru = uniqid();
+		$nama_file_baru .= ".";
+		$nama_file_baru .= $ekstensi_file;
 
-	
-$result2 = mysqli_query($koneksi, "SELECT * FROM absensi_lengkiti WHERE nama_karyawan = '$nama_karyawan' AND tanggal = '$tanggal' ");
-if(mysqli_num_rows($result2) == 1 ){
-	 echo "<script>alert('Nama sudah tercatat :)'); window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
-	 }
+		move_uploaded_file($tmp_name, '../file_kebun/' . $nama_file_baru   );
 
+		return $nama_file_baru; 
 
-	$result = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti WHERE nama_karyawan = '$nama_karyawan' ");
-	$data_perta = mysqli_fetch_array($result);
-	$upah_kerja = $data_perta['upah_kerja'];
+	}
 
-	$query = mysqli_query($koneksi,"INSERT INTO absensi_lengkiti VALUES ('','$tanggal','$nama_karyawan',1,'$upah_kerja','$potongan_bon')");
-
-	
-	if ($query != "") {
-	echo "<script> window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-		   }
-
-} 
-
-else {
-    $tanggal = $_POST['tanggal'];
-
-	
-
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti ORDER BY no_karyawan ASC ");
-
-while($data = mysqli_fetch_array($result)){
-	$nama_karyawan = $data['nama_karyawan'];
-	$result2 = mysqli_query($koneksi, "SELECT * FROM absensi_lengkiti WHERE nama_karyawan = '$nama_karyawan' AND tanggal = '$tanggal' ");
-	if(mysqli_num_rows($result2) == 1 ){
-		 echo "<script>alert('Nama sudah tercatat :)'); window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
-		 }
+	$file = upload();
+	if (!$file) {
+		return false;
+	}
 
 }
 
-$result3 = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti ORDER BY no_karyawan ASC ");
-while($data = mysqli_fetch_array($result3)){
+	$query = mysqli_query($koneksi,"INSERT INTO absensi_lengkiti VALUES ('','$tanggal','$total_upah_kerja','$total_potongan_bon','$file')");
 
-	$upah_kerja = $data['upah_kerja'];
-	$nama_karyawan = $data['nama_karyawan'];
-	
-
-	$query = mysqli_query($koneksi,"INSERT INTO absensi_lengkiti VALUES ('','$tanggal','$nama_karyawan',1,'$upah_kerja','0')");
-
-}
 
 	
 		
@@ -81,7 +69,6 @@ while($data = mysqli_fetch_array($result3)){
 			
 		echo "<script> window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		   
-} 
 
 
      
