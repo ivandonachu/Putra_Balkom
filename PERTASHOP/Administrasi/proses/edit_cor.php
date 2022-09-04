@@ -20,6 +20,7 @@ exit;
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $tanggal = $_POST['tanggal'];
+$tanggal_pembayaran = $_POST['tanggal_pembayaran'];
 $no_cor = $_POST['no_cor'];
 $lokasi_cor = $_POST['lokasi_cor'];
 $no_polisi = $_POST['no_polisi'];
@@ -86,17 +87,17 @@ if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Pertamax'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
 
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran' ,lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
 		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
         ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }
 else if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Dexlite'){
@@ -113,17 +114,17 @@ else if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Dexlite'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
 
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
 		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
         ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorDexlitetanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }
 else if($lokasi_cor == 'Bedilan' && $nama_barang == 'Pertamax'){
@@ -140,17 +141,17 @@ else if($lokasi_cor == 'Bedilan' && $nama_barang == 'Pertamax'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
 
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
 		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
         ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }
 else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
@@ -167,17 +168,17 @@ else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
 
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
 		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
         ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }
 else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Dexlite'){
@@ -194,17 +195,17 @@ else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Dexlite'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
 
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
 		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
         ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }
 
@@ -225,17 +226,17 @@ else if($lokasi_cor == 'BK 3' && $nama_barang == 'Pertamax'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '11'");
 
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
 		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
         ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }
 else if($lokasi_cor == 'BK 3' && $nama_barang == 'Dexlite'){
@@ -252,17 +253,17 @@ else if($lokasi_cor == 'BK 3' && $nama_barang == 'Dexlite'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '12'");
 
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
 		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
         ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorDexlitetanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }
     
@@ -284,17 +285,17 @@ else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Pertamax'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '13'");
 
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
 		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
         ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
 
-		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }
 else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Dexlite'){
@@ -311,11 +312,11 @@ else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Dexlite'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '14'");
 
     if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
 		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
+		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
         ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	

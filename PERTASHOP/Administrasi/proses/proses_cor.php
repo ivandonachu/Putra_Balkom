@@ -20,6 +20,7 @@ exit;
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
+$tanggal_pembayaran = $_POST['tanggal_pembayaran'];
 $lokasi_cor = $_POST['lokasi_cor'];
 $no_polisi = $_POST['no_polisi'];
 $nama_driver = $_POST['nama_driver'];
@@ -71,7 +72,7 @@ else if ( $nama_file != "" ) {
 
         if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Pertamax'){
             
-            	$query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
+            	$query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -85,7 +86,7 @@ else if ( $nama_file != "" ) {
 		       	}
         }
         else if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -99,7 +100,7 @@ else if ( $nama_file != "" ) {
 		       	}
         }
         else if($lokasi_cor == 'Bedilan' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -113,7 +114,7 @@ else if ( $nama_file != "" ) {
 		       	}
         }
         else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -127,7 +128,7 @@ else if ( $nama_file != "" ) {
 		       	}
         }
         else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
+                $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -141,7 +142,7 @@ else if ( $nama_file != "" ) {
 		       	}
         }
         else if($lokasi_cor == 'BK 3' && $nama_barang == 'Pertamax'){
-            $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
+            $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
 
             $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '11' ");
             $data_stok = mysqli_fetch_array($result2);
@@ -156,7 +157,7 @@ else if ( $nama_file != "" ) {
         }
 
         else if($lokasi_cor == 'BK 3' && $nama_barang == 'Dexlite'){
-            $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
+            $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
 
             $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '12' ");
             $data_stok = mysqli_fetch_array($result2);
@@ -171,7 +172,7 @@ else if ( $nama_file != "" ) {
         }
 
         else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Pertamax'){
-            $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
+            $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
 
             $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '13' ");
             $data_stok = mysqli_fetch_array($result2);
@@ -185,7 +186,7 @@ else if ( $nama_file != "" ) {
             }
         }    
         else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Dexlite'){
-            $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
+            $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$keterangan','$file')");
 
             $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '14' ");
             $data_stok = mysqli_fetch_array($result2);
