@@ -383,6 +383,7 @@ else{
       <th  style="font-size: 11px">Total</th>
       <th  style="font-size: 11px">Stok awal</th>
       <th  style="font-size: 11px">Stok Akhir</th>
+      <th  style="font-size: 11px">Bongkaran</th>
       <th  style="font-size: 11px">sonding Awal</th>
       <th  style="font-size: 11px">Sonding Akhir</th>
       <th  style="font-size: 11px">Sirkulasi</th>
@@ -426,6 +427,7 @@ else{
       $qty = $data['qty'];
       $stok_awal = $data['stok_awal'];
       $stok_akhir = $data['stok_akhir'];
+      $bongkaran = $data['bongkaran'];
       $sonding_awal = $data['sonding_awal'];
       $sonding_akhir = $data['sonding_akhir'];
       $sirkulasi = $data['sirkulasi'];
@@ -481,6 +483,7 @@ else{
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$bongkaran/L</td>
       <td style='font-size: 11px' align = 'center'>$sonding_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$sonding_akhir/L</td>
       <td style='font-size: 11px' align = 'center'>$sirkulasi/L</td>

@@ -23,6 +23,7 @@ $sonding_awal = $_POST['sonding_awal'];
 $sonding_akhir = $_POST['sonding_akhir'];
 $sirkulasi = $_POST['sirkulasi'];
 $harga = $_POST['harga'];
+$bongkaran = $_POST['bongkaran'];
 $nama_karyawan = $_POST['nama_karyawan'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
@@ -74,10 +75,14 @@ $kode_perta = $data_perta['kode_perta'];
           $sonding_akhir_kemarin = $data_penjualan['sonding_akhir'];
           
           $losis_penyimapanan = $sonding_akhir_kemarin - $sonding_awal;
-          $losis_penjualan = $sonding_awal - $jual - $sonding_akhir; 
+
+
+          if($bongkaran != 0){
+            $losis_penjualan = ($sonding_awal + $bongkaran) - ($jual + $sonding_akhir); 
+          }
           
             
-          $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
+          $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -98,10 +103,13 @@ $kode_perta = $data_perta['kode_perta'];
                 $sonding_akhir_kemarin = $data_penjualan['sonding_akhir'];
                 
                 $losis_penyimapanan = $sonding_akhir_kemarin - $sonding_awal;
-                $losis_penjualan = $sonding_awal - $jual - $sonding_akhir; 
+                
+                if($bongkaran != 0){
+                  $losis_penjualan = ($sonding_awal + $bongkaran) - ($jual + $sonding_akhir); 
+                }
                 
                   
-                $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
+                $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
                       
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -121,10 +129,12 @@ $kode_perta = $data_perta['kode_perta'];
           $sonding_akhir_kemarin = $data_penjualan['sonding_akhir'];
           
           $losis_penyimapanan = $sonding_akhir_kemarin - $sonding_awal;
-          $losis_penjualan = $sonding_awal - $jual - $sonding_akhir; 
+          if($bongkaran != 0){
+            $losis_penjualan = ($sonding_awal + $bongkaran) - ($jual + $sonding_akhir); 
+          }
           
             
-          $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
+          $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -150,10 +160,12 @@ $kode_perta = $data_perta['kode_perta'];
           $sonding_akhir_kemarin = $data_penjualan['sonding_akhir'];
           
           $losis_penyimapanan = $sonding_akhir_kemarin - $sonding_awal;
-          $losis_penjualan = $sonding_awal - $jual - $sonding_akhir; 
+          if($bongkaran != 0){
+            $losis_penjualan = ($sonding_awal + $bongkaran) - ($jual + $sonding_akhir); 
+          }
           
             
-          $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
+          $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
                 $data_stok = mysqli_fetch_array($result2);
@@ -179,10 +191,12 @@ $kode_perta = $data_perta['kode_perta'];
           $sonding_akhir_kemarin = $data_penjualan['sonding_akhir'];
           
           $losis_penyimapanan = $sonding_akhir_kemarin - $sonding_awal;
-          $losis_penjualan = $sonding_awal - $jual - $sonding_akhir; 
+          if($bongkaran != 0){
+            $losis_penjualan = ($sonding_awal + $bongkaran) - ($jual + $sonding_akhir); 
+          }
           
             
-          $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
+          $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimapanan','$losis_penjualan','$keterangan','$file',0)");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
                 $data_stok = mysqli_fetch_array($result2);
