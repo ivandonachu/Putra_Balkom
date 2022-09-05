@@ -301,6 +301,9 @@ else{
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
+    $total_seluruh_rit=0;
+    $total_seluruh_liter=0;
+    $total_seluruh_ton=0;
     $total_tonase = 0;
     $total_liter = 0;
     ?>
@@ -319,13 +322,18 @@ else{
       $total_liter = $total_rit * $total_angkutan;
       $total_tonase = $total_rit * $total_angkutan;
 
+      $total_seluruh_rit = $total_seluruh_rit + $total_rit;
+      $total_seluruh_liter = $total_seluruh_liter + $total_liter;
+      $total_seluruh_ton = $total_seluruh_ton + $total_tonase;
+
+
 
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$jenis_kendaraan</td>
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
       <td style='font-size: 14px' align = 'center'>"?> <?php echo number_format($total_liter,0,".","."); ?> <?php echo" / Liter</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?php echo number_format($total_liter,0,".","."); ?> <?php echo" / Ton</td>
+      <td style='font-size: 14px' align = 'center'>"?> <?php echo number_format($total_tonase,0,".","."); ?> <?php echo" / Ton</td>
     
     
  </td> </tr>";
@@ -337,6 +345,59 @@ else{
 </div>
 <br>
 <br>
+<br>
+        <div class="row" style="margin-right: 20px; margin-left: 20px;">
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Total RIT</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_seluruh_rit  ?> RIT</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Total Liter</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($total_seluruh_liter,0,".",".")  ?> Liter</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class=" fas fa-truck-moving fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Total Tonase</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($total_seluruh_ton    ,0,".",".") ?> Ton</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
 <br>
 
 
