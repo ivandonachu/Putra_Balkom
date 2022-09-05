@@ -142,6 +142,7 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman Latex</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase Latex</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh Latex</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTonase">Tonase Latex</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji Driver Latex</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>

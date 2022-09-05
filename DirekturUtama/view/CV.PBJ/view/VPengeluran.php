@@ -34,11 +34,11 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj, "SELECT * FROM pengeluaran_s WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal' WHERE status_saldo = 'Keluar' ");
 }
 else{
-  $table = mysqli_query($koneksipbj, "SELECT * FROM pengeluaran_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM pengeluaran_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_saldo = 'Keluar' ");
+  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_saldo = 'Keluar' ");
   $data2 = mysqli_fetch_array($table2);
   $total_pengeluaran = $data2['total_pengeluaran'];
 
@@ -278,8 +278,8 @@ else{
 
 
 
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -289,7 +289,7 @@ else{
       <th>Pengeluaran</th>
       <th>Total</th>
       <th>file</th>
-      <th>Aksi</th>
+
     </tr>
   </thead>
   <tbody>
@@ -334,6 +334,7 @@ else{
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-3 col-md-6 mb-4">
