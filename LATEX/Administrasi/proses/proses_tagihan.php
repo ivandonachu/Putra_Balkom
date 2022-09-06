@@ -22,6 +22,7 @@ $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $no_segel = $_POST['no_segel'];
+$tonase = $_POST['tonase'];
 
 $amt_1 = $_POST['amt_1'];
 $sql_driver_1 = mysqli_query($koneksi, "SELECT no_driver_1 FROM driver_1 WHERE nama_driver_1 = '$amt_1' ");
@@ -84,7 +85,7 @@ else if ( $nama_file != "" ) {
 
 
 
-$query = mysqli_query($koneksi,"INSERT INTO tagihan VALUES('','$tanggal','$no_segel','$no_driver_1','$no_driver_2','$no_kendaraan','$total',1,'$file')");
+$query = mysqli_query($koneksi,"INSERT INTO tagihan VALUES('','$tanggal','$no_segel','$tonase','$no_driver_1','$no_driver_2','$no_kendaraan','$total',1,'$file')");
 
 if ($query != "") {
 echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

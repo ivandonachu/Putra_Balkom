@@ -320,6 +320,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <label>No Segel</label>
                             <input class="form-control form-control-sm" type="text"  name="no_segel" required="">
                           </div>
+                          <div class="col-md-6">
+                            <label>Tonase</label>
+                            <input class="form-control form-control-sm" type="float"  name="tonase" required="">
+                          </div>
                         </div>
 
 
@@ -415,6 +419,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <th>No</th>
                   <th>Tanggal</th>
                   <th>No Segel</th>
+                  <th>Tonase</th>
                   <th>AMT 1</th>
                   <th>AMT 2</th>
                   <th>MT</th>
@@ -440,6 +445,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $no_tagihan = $data['no_tagihan'];
                   $tanggal = $data['tanggal'];
                   $no_segel = $data['no_segel'];
+                  $tonase = $data['tonase'];
                   $nama_driver_1 = $data['nama_driver_1'];
                   $no_driver_1 = $data['no_driver_1'];
                   $nama_driver_2 = $data['nama_driver_2'];
@@ -456,6 +462,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <td style='font-size: 14px'>$urut</td>
                   <td style='font-size: 14px'>$tanggal</td>
                   <td style='font-size: 14px'>$no_segel</td>
+                  <td style='font-size: 14px'>$tonase</td>
                   <td style='font-size: 14px'>$nama_driver_1</td>
                   <td style='font-size: 14px'>$nama_driver_2</td>
                   <td style='font-size: 14px'>$no_polisi</td>
@@ -504,6 +511,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <div class="col-md-6">
                                   <label>No Segel</label>
                                   <input class="form-control form-control-sm" type="text" id="no_segel" name="no_segel" required="" disabled value="<?php echo $no_segel; ?>">
+                                </div>
+                                <div class="col-md-6">
+                                  <label>Tonase</label>
+                                  <input class="form-control form-control-sm" type="text" id="tonase" name="tonase" required=""  value="<?php echo $tonase; ?>">
                                 </div>
 
                               </div>

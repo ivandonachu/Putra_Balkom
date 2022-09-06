@@ -308,7 +308,8 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>No Segel</th>   
+      <th>No Segel</th>  
+      <th>Tonase</th>   
       <th>AMT</th>
       <th>Status AMT</th>
       <th>MT</th>
@@ -339,6 +340,7 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_pengiriman = $data['no_pengiriman'];
       $no_tagihan = $data['no_tagihan'];
+      $tonase = $data['tonase'];
       $tanggal =$data['tanggal'];
       $no_segel = $data['no_segel'];
       $amt =$data['nama_driver_1'];
@@ -363,6 +365,7 @@ else{
       <td style='font-size: 14px' align = 'center'>$urut</td>
       <td style='font-size: 14px' align = 'center'>$tanggal</td>
       <td style='font-size: 14px' align = 'center'>$no_segel</td>
+      <td style='font-size: 14px' align = 'center'>$tonase</td>
       <td style='font-size: 14px' align = 'center'>$amt</td>
       <td style='font-size: 14px' align = 'center'>$status_amt</td>
       <td style='font-size: 14px' align = 'center'>$mt</td>

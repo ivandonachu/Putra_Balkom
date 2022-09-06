@@ -20,6 +20,7 @@ exit;
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_tagihan = $_POST['no_tagihan'];
+$tonase = $_POST['tonase'];
 
 $tanggal = $_POST['tanggal'];
 
@@ -80,10 +81,10 @@ else if ( $nama_file != "" ) {
 
 
 		if ($file == '') {
-		$query = mysqli_query($koneksi,"UPDATE tagihan SET tanggal = '$tanggal', no_driver_1 = '$no_driver_1', no_driver_2 = '$no_driver_2' , no_kendaraan = '$no_kendaraan' , total = '$total'  WHERE no_tagihan = '$no_tagihan'");
+		$query = mysqli_query($koneksi,"UPDATE tagihan SET tanggal = '$tanggal',tonase = '$tonase', no_driver_1 = '$no_driver_1', no_driver_2 = '$no_driver_2' , no_kendaraan = '$no_kendaraan' , total = '$total'  WHERE no_tagihan = '$no_tagihan'");
 	}
 		else{
-		$query = mysqli_query($koneksi,"UPDATE tagihan SET tanggal = '$tanggal', no_driver_1 = '$no_driver_1', no_driver_2 = '$no_driver_2' , no_kendaraan = '$no_kendaraan' , total = '$total' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
+		$query = mysqli_query($koneksi,"UPDATE tagihan SET tanggal = '$tanggal',tonase = '$tonase', no_driver_1 = '$no_driver_1', no_driver_2 = '$no_driver_2' , no_kendaraan = '$no_kendaraan' , total = '$total' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
 	}
 
 	
