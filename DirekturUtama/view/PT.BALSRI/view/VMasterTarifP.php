@@ -370,7 +370,6 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif_p ");
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no =$data['no'];
       $pemilik =$data['pemilik'];
       $delivery_point =$data['delivery_point'];
       $koe_factor = $data['koe_factor'];

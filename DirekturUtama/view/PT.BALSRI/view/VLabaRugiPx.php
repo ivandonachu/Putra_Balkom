@@ -27,6 +27,10 @@ elseif (isset($_POST['tanggal1'])) {
    $tanggal_awal = $_POST['tanggal1'];
    $tanggal_akhir = $_POST['tanggal2'];
 }  
+else{
+    $tanggal_awal = date('2022-8-1');
+  $tanggal_akhir = date('2022-8-31');
+  }
 
 
 function formatuang($angka){
@@ -36,7 +40,7 @@ function formatuang($angka){
 
 if ($tanggal_awal == $tanggal_akhir) {
   // Tagihan
-  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point  WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_px a INNER JOIN master_tarif_px b ON a.no=b.no  WHERE tanggal = '$tanggal_awal'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
   //pengiriman
@@ -91,7 +95,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
     // Tagihan
-  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_px a INNER JOIN master_tarif_px b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
 
@@ -186,9 +190,9 @@ else{
     
     $total_gaji_karaywan = $gaji_karyawan + $gaji_driver;
         //list supir
-        $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+        $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_px WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
          //totalkredit
-         $table101 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+         $table101 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_px WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
     $total_kredit = 0;
     while($data = mysqli_fetch_array($table101)){
         $mt = $data['mt'];
@@ -594,7 +598,7 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
                  <td class="text-left">Tagihan Patra</td>
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
-                 <?php echo "<td class='text-right'><a href='VRincianLRPLG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                 <?php echo "<td class='text-right'><a href='VRincianLRPLG/VRTagihanx?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
              </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>

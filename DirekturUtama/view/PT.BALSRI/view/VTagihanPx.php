@@ -27,11 +27,15 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
+else{
+    $tanggal_awal = date('2022-8-1');
+  $tanggal_akhir = date('2022-8-31');
+  }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_px a INNER JOIN master_tarif_px b ON a.no=b.no WHERE tanggal = '$tanggal_awal'");
 
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point  WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_px a INNER JOIN master_tarif_px b ON a.no=b.no  WHERE tanggal = '$tanggal_awal'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan= $data2['total_tagihan'];
   $total_jt= $data2['total_jt'];
@@ -40,9 +44,9 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM tagihan_px a INNER JOIN master_tarif_px b ON a.no=b.no WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
 
-    $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table2 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_px a INNER JOIN master_tarif_px b ON a.no=b.no WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan= $data2['total_tagihan'];
   $total_jt= $data2['total_jt'];
@@ -368,7 +372,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VTagihanP2' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VTagihanPX' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
