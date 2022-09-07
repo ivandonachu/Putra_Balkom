@@ -37,7 +37,7 @@ if(mysqli_num_rows($result) == 1 ){
 	 }
 	
 
-	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_p VALUES('','$delivery_point','$pemilik','$jt','$hrg_bbm','$sk_pola','$koe_factor','$tarif_pertashop','$kl1','$kl2','$kl3','$kl4')");
+	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_p VALUES('$delivery_point','$pemilik','$jt','$hrg_bbm','$sk_pola','$koe_factor','$tarif_pertashop','$kl1','$kl2','$kl3','$kl4')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMasterTarifP';</script>";exit;

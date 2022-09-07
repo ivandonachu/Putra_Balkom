@@ -48,25 +48,24 @@ else if ($jumlah_pesanan == '5000 L') {
 
 $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_p WHERE delivery_point = '$delivery_point' ");
 $data_tarif = mysqli_fetch_array($result);
-$harga = $data_tarif[$kode_pesanan];
-$no = $data_tarif['no'];
+$total = $data_tarif[$kode_pesanan];
+
+
 
 
 if ($jumlah_pesanan == '1000 L') {
-	$total = 1000 * (($harga/1)/1000) ;
+	$harga = $total/1000 ;
 }
 else if ($jumlah_pesanan == '2000 L') {
-	$total = 2000 *(($harga/2)/1000) ;
+	$harga = $total/2000 ;
 }
 else if ($jumlah_pesanan == '3000 L') {
-	$total = 3000 * (($harga/3)/1000) ;
+	$harga = $total/3000 ;
 }
 else if ($jumlah_pesanan == '4000 L') {
-	$total = 4000 * (($harga/4)/1000) ;
+	$harga = $total/4000 ;
 }
-else if ($jumlah_pesanan == '5000 L') {
-	$total = 5000 * ($harga/1000) ;
-}
+
 
 
 $nama_file = $_FILES['file']['name'];
@@ -109,10 +108,10 @@ else if ( $nama_file != "" ) {
 
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_p SET no = '$no' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total'  WHERE no_tagihan = '$no_tagihan'");
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_p SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total'  WHERE no_tagihan = '$no_tagihan'");
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_p SET no = '$no' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_p SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
 	}
 
 

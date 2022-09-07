@@ -33,9 +33,9 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM tagihan_p a INNER JOIN master_tarif_p b ON a.no=b.no WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point WHERE tanggal = '$tanggal_awal'");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.no=b.no  WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point  WHERE tanggal = '$tanggal_awal'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan= $data2['total_tagihan'];
   $total_jt= $data2['total_jt'];
@@ -44,9 +44,9 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM tagihan_p a INNER JOIN master_tarif_p b ON a.no=b.no WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
+  $table = mysqli_query($koneksi, "SELECT * FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
 
-    $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.no=b.no WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_p a INNER JOIN master_tarif_p b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan= $data2['total_tagihan'];
   $total_jt= $data2['total_jt'];
@@ -544,16 +544,16 @@ else{
           $harga = $harga1 / 1000;
       }
       else if($jumlah_pesanan == 'kl2'){
-          $harga = $harga1 / 2000;
+          $harga = $harga1 / 1000;
       }
       else if($jumlah_pesanan == 'kl3'){
-          $harga = $harga1 / 3000;
+          $harga = $harga1 / 1000;
       }
       else if($jumlah_pesanan == 'kl4'){
-          $harga = $harga1 / 4000;
+          $harga = $harga1 / 1000;
       }
       else if($jumlah_pesanan == 'kl5'){
-          $harga = $harga1 / 5000;
+          $harga = $harga1 / 1000;
       }
 
       

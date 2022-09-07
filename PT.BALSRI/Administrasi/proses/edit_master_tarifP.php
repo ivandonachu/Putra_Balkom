@@ -22,7 +22,6 @@ exit;
 $delivery_point = $_POST['delivery_point'];
 $pemilik = $_POST['pemilik'];
 $koe_factor = $_POST['koe_factor'];
-$no = $_POST['no'];
 $sk_pola = $_POST['sk_pola'];
 $tarif_pertashop = $_POST['tarif_pertashop'];
 $jt = $_POST['jt'];
@@ -37,7 +36,7 @@ $kl4 = $_POST['kl4'];
 
 	
 
-		$query = mysqli_query($koneksi,"UPDATE master_tarif_p SET delivery_point = '$delivery_point', pemilik = '$pemilik' , koe_factor = '$koe_factor', tarif_pertashop = '$tarif_pertashop' , jt = '$jt' , hrg_bbm = '$hrg_bbm' , kl1 = '$kl1' , kl2 = '$kl2' , kl3 = '$kl3' , kl4 = '$kl4'  WHERE no = '$no'");
+		$query = mysqli_query($koneksi,"UPDATE master_tarif_p SET pemilik = '$pemilik' , sk_pola = '$sk_pola' , koe_factor = '$koe_factor', tarif_pertashop = '$tarif_pertashop' , jt = '$jt' , hrg_bbm = '$hrg_bbm' , kl1 = '$kl1' , kl2 = '$kl2' , kl3 = '$kl3' , kl4 = '$kl4'  WHERE delivery_point = '$delivery_point'");
 	
 	
 			echo "<script>alert('Update Data Berhasil :)'); window.location='../view/VMasterTarifP';</script>";exit;

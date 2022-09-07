@@ -417,7 +417,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no =$data['no'];
+ 
       $pemilik =$data['pemilik'];
       $delivery_point =$data['delivery_point'];
       $koe_factor = $data['koe_factor'];
@@ -463,7 +463,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
             <div class="modal-body">
               <form action="../proses/edit_master_tarifP" enctype="multipart/form-data" method="POST">
                 
-                   <input type="hidden" name="no" value="<?php echo $no;?>"> 
+                   <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>"> 
                 <div class="row">
               <div class="col-md-6">
              <label>Pemilik</label>
@@ -471,7 +471,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
            </div> 
           <div class="col-md-6">
                <label>Delivey Point</label>
-               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" value="<?php echo $delivery_point;?>" >
+               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" disabled value="<?php echo $delivery_point;?>" >
              </div>
            </div>
             
@@ -561,7 +561,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
 
     <div class="modal-body">
       <form action="../proses/hapus_master_tarifP" method="POST">
-        <input type="hidden" name="no" value="<?php echo $no;?>">
+        <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>">
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             
         </div>

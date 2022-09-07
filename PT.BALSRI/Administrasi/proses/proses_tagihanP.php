@@ -56,24 +56,22 @@ else if ($jumlah_pesanan == '5000 L') {
 
 $result3 = mysqli_query($koneksi, "SELECT * FROM master_tarif_p WHERE delivery_point = '$delivery_point' ");
 $data_tarif = mysqli_fetch_array($result3);
-$harga = $data_tarif[$kode_pesanan];
-$no = $data_tarif['no'];
+$total = $data_tarif[$kode_pesanan];
+
+
 
 
 if ($jumlah_pesanan == '1000 L') {
-	$total = 1000 * ($harga/1000) ;
+	$harga = $total/1000 ;
 }
 else if ($jumlah_pesanan == '2000 L') {
-	$total = 2000 * (($harga/2)/1000) ;
+	$harga = $total/2000 ;
 }
 else if ($jumlah_pesanan == '3000 L') {
-	$total = 3000 * (($harga/3)/1000) ;
+	$harga = $total/3000 ;
 }
 else if ($jumlah_pesanan == '4000 L') {
-	$total = 4000 * (($harga/4)/1000) ;
-}
-else if ($jumlah_pesanan == '5000 L') {
-	$total = 5000 * $harga;
+	$harga = $total/4000 ;
 }
 
 
@@ -117,7 +115,7 @@ else if ( $nama_file != "" ) {
 
 
 
-$query = mysqli_query($koneksi,"INSERT INTO tagihan_p VALUES('','$tanggal','$no','$so','$lo','$amt','$mt','$kode_pesanan','$total',1,'$file')");
+$query = mysqli_query($koneksi,"INSERT INTO tagihan_p VALUES('','$tanggal','$delivery_point','$so','$lo','$amt','$mt','$kode_pesanan','$total',1,'$file')");
 
 if ($query != "") {
 echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VTagihanP2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
