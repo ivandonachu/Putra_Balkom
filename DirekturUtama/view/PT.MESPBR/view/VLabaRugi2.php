@@ -421,14 +421,15 @@ $total_biaya_pemasaran = $total_biaya_pemasaran_tk + $total_biaya_pemasaran_kasi
 
 //BIAYA USAHA LAINNYATK
 //kasir
-$table16 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_usaha_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' AND referensi = 'PB' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' AND referensi = 'PBR' ");
+$table16 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_usaha_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' AND referensi = 'PBR' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' AND referensi = 'PB' ");
 $data_biaya_usaha_tk = mysqli_fetch_array($table16);
-$total_biaya_usaha_tk = $data_biaya_usaha_tk['total_biaya_usaha_tk'];
-if (!isset($data_total_biaya_usaha_tk['total_biaya_usaha_tk'])) {
-    $total_biaya_usaha_tk = 0;
+$total_biaya_usaha = $data_biaya_usaha_tk['total_biaya_usaha_tk'];
+if (!isset($data_biaya_usaha_tk['total_biaya_usaha_tk'])) {
+    $total_biaya_usaha = 0;
 }
 
-$total_biaya_usaha =  $total_biaya_usaha_tk;
+
+
 
 
 //BIAYA Perbaikan Kendaraan
