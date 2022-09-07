@@ -21,7 +21,29 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-$table = mysqli_query($koneksi,"SELECT * FROM penggunaan_sparepart a INNER JOIN list_sparepart b ON a.no_sparepart = b.no_sparepart ")
+if (isset($_GET['tanggal1'])) {
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+   } 
+   
+   elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+   }  
+   else{
+     $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+   }
+if ($tanggal_awal == $tanggal_akhir) {
+  
+  $table = mysqli_query($koneksi,"SELECT * FROM penggunaan_sparepart a INNER JOIN list_sparepart b ON a.no_sparepart = b.no_sparepart WHERE tanggal = '$tanggal_awal' ");
+
+}
+else{
+  
+  $table = mysqli_query($koneksi,"SELECT * FROM penggunaan_sparepart a INNER JOIN list_sparepart b ON a.no_sparepart = b.no_sparepart WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -185,6 +207,24 @@ $table = mysqli_query($koneksi,"SELECT * FROM penggunaan_sparepart a INNER JOIN 
 
 
  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+  
+ <?php  echo "<form  method='POST' action='VKasKecil2' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-md-8">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   </div>
+
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
@@ -217,7 +257,7 @@ $table = mysqli_query($koneksi,"SELECT * FROM penggunaan_sparepart a INNER JOIN 
       $kegiatan = $data['aksi'];
       $no_polisi = $data['no_polisi'];
       $nama_driver = $data['nama_driver'];
-      $jml_stok = $data['jml_stok'];
+      $stok = $data['stok'];
       $no_sparepart = $data['no_sparepart'];
 
       echo "<tr>
@@ -252,7 +292,7 @@ $table = mysqli_query($koneksi,"SELECT * FROM penggunaan_sparepart a INNER JOIN 
     <form action="../proses/hapus_riwayat_sparepart" method="POST">
       <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
       <input type="hidden" name="jumlah" value="<?php echo $jumlah;?>">
-       <input type="hidden" name="jml_stok" value="<?php echo $jml_stok;?>">
+       <input type="hidden" name="stok" value="<?php echo $stok;?>">
         <input type="hidden" name="no_sparepart" value="<?php echo $no_sparepart;?>">
         <input type="hidden" name="aksi" value="<?php echo $kegiatan;?>">
         <input type="hidden" name="tanggal" value="<?php echo $tanggal;?>">

@@ -21,22 +21,22 @@ exit;
 
 $no_laporan = $_POST['no_laporan'];
 $jumlah = $_POST['jumlah'];
-$jml_stok = $_POST['jml_stok'];
+$stok = $_POST['stok'];
 $no_sparepart = $_POST['no_sparepart'];
 $aksi = $_POST['aksi'];
 $tanggal = $_POST['tanggal'];
 
 	if ($aksi == 'Pembelian' || $aksi == 'Penambahan') {
-		$stok_asli_upt = $jml_stok - $jumlah;
+		$stok_asli_upt = $stok - $jumlah;
 
-		$query3 = mysqli_query($koneksi,"UPDATE list_sparepart SET jml_stok = '$stok_asli_upt' , tanggal = '$tanggal'  WHERE no_sparepart = '$no_sparepart'");
+		$query3 = mysqli_query($koneksi,"UPDATE list_sparepart SET stok = '$stok_asli_upt' WHERE no_sparepart = '$no_sparepart'");
 
 	}
 	else{
 
-		$stok_asli_upt = $jml_stok + $jumlah;
+		$stok_asli_upt = $stok + $jumlah;
 
-		$query3 = mysqli_query($koneksi,"UPDATE list_sparepart SET jml_stok = '$stok_asli_upt' , tanggal = '$tanggal'  WHERE no_sparepart = '$no_sparepart'");
+		$query3 = mysqli_query($koneksi,"UPDATE list_sparepart SET stok = '$stok_asli_upt' WHERE no_sparepart = '$no_sparepart'");
 
 	}
 

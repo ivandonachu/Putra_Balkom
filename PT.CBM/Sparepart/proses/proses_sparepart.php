@@ -22,10 +22,15 @@ $tanggal = $_POST['tanggal'];
 $aksi = $_POST['aksi'];
 $jumlah = $_POST['jumlah'];
 $harga = $_POST['harga'];
+if($harga = ''){
+	$harga = 0;
+}
 $stok_asli = $_POST['stok_asli'];
 $no_sparepart = $_POST['no_sparepart'];
 $no_polisi = $_POST['no_polisi'];
 $nama_driver = $_POST['nama_driver'];
+
+
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -65,20 +70,22 @@ else if ( $nama_file != "" ) {
 	if ($aksi == 'Pembelian' || $aksi == 'Penambahan') {
 		$stok_asli_upt = $stok_asli + $jumlah;
 
-		$query3 = mysqli_query($koneksi,"UPDATE list_sparepart SET jml_stok = '$stok_asli_upt' , tanggal = '$tanggal'  WHERE no_sparepart = '$no_sparepart'");
+		$query3 = mysqli_query($koneksi,"UPDATE list_sparepart SET stok = '$stok_asli_upt'  WHERE no_sparepart = '$no_sparepart'");
 
 	}
 	else{
 
 		$stok_asli_upt = $stok_asli - $jumlah;
 
-		$query3 = mysqli_query($koneksi,"UPDATE list_sparepart SET jml_stok = '$stok_asli_upt' , tanggal = '$tanggal'  WHERE no_sparepart = '$no_sparepart'");
+		$query3 = mysqli_query($koneksi,"UPDATE list_sparepart SET stok = '$stok_asli_upt'  WHERE no_sparepart = '$no_sparepart'");
 
 	}
-
+	var_dump($stok_asli);
+	var_dump($jumlah);
+	var_dump($stok_asli_upt);
 
 		if ($query3!= "") {
-			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VInventorySparepart.php';</script>";exit;
+		//	echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VRiwayatSparepart.php';</script>";exit;
 }
 
 

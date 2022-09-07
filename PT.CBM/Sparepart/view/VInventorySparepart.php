@@ -221,10 +221,9 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
           <div class="col-md-6">
             <label>REF</label>
             <select id="referensi" name="referensi" class="form-control">
-              <option>BK3</option>
+              <option>CBM</option>
               <option>BTA</option>
-              <option>MAE</option>
-              <option>LPG</option>
+              <option>BKU</option>
           </select>
       </div>
   </div> 
@@ -234,7 +233,7 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
       </div>
       <div class="form-group">
           <label>Jumlah Stok</label>
-          <input class="form-control form-control-sm" type="text" id="jml_stok" name="jml_stok" required="">          
+          <input class="form-control form-control-sm" type="text" id="stok" name="stok" required="">          
       </div>
 
  <div class="row">
@@ -247,11 +246,12 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
           </select>
       </div>
   </div> 
-<div>
-    <br>
-  <label>Upload File Gambar</label> 
-  <input type="file" name="file"> 
-</div> 
+  <div>
+     <label>Keterangan</label>
+     <div class="form-group">
+       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
+     </div>
+   </div>
 
 <div class="modal-footer">
     <button type="submit" class="btn btn-primary"> CATAT</button>
@@ -283,13 +283,12 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
 
     <?php while($data = mysqli_fetch_array($table)){
       $no_sparepart = $data['no_sparepart'];
-      $tanggal =$data['tanggal'];
       $referensi =$data['referensi'];
       $nama_sparepart = $data['nama_sparepart'];
       $harga = $data['harga'];
-      $jml_stok = $data['jml_stok'];
-      $file_gambar = $data['file_gambar'];
-    $satuan = $data['satuan'];
+      $stok = $data['stok'];
+      $satuan = $data['satuan'];
+      $keterangan = $data['keterangan'];
 
 
       echo "<tr>
@@ -297,7 +296,7 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
       <td style='font-size: 14px' align = 'center'>$referensi</td>
       <td style='font-size: 14px' align = 'center'>$nama_sparepart</td>
       <td style='font-size: 14px' align = 'center'>$harga / $satuan</td>
-      <td style='font-size: 14px' align = 'center'>$jml_stok  / $satuan </td>
+      <td style='font-size: 14px' align = 'center'>$stok  / $satuan </td>
       "; ?>
 
       <?php echo "<td style='font-size: 12px' align = 'center'>"; ?>
@@ -320,42 +319,23 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
           <form action="../proses/proses_sparepart.php" enctype="multipart/form-data" method="POST">
 
           <input type="hidden" name="no_sparepart" value="<?php echo $no_sparepart;?>"> 
-          <input type="hidden" name="stok_asli" value="<?php echo $jml_stok;?>"> 
+          <input type="hidden" name="stok_asli" value="<?php echo $stok;?>"> 
            <div class="form-group">
 
 
               <label>Tanggal</label>
               <div class="col-sm-10">
                <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
-             <script>
-               $(document) .ready(function(){
-
-                var dtToday = new Date();
-
-                var month = dtToday.getMonth() +1;
-                var day = dtToday.getDate();
-                var year = dtToday.getFullYear();
-                if (month < 10)
-                  month = '0' + month.toString();
-                if (day < 10)
-                  day = '0' + day.toString();
-
-                var maxDate = year + '-' + month + '-' +day;
-
-                $('#tanggal').attr('min',maxDate);
-
-              })
-            </script>       
+             </div>   
             
           </div>
           <div class="form-group">
               <label>No Polisi Kendaraan</label>
-              <input type="text" name="no_polisi" class="form-control"  >             
+              <input type="text" name="no_polisi" class="form-control">             
           </div>
           <div class="form-group">
               <label>Nama Driver</label>
-              <input type="text" name="nama_driver" class="form-control"  >             
+              <input type="text" name="nama_driver" class="form-control">             
           </div>
           <div class="form-group">
               <label>Proses Kegiatan</label>
@@ -381,7 +361,12 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
               <label>Jumlah Sparepart</label>
               <input type="text" name="jumlah" class="form-control" required="" >             
           </div>
-
+          <div>
+          <label>Keterangan</label>
+          <div class="form-group">
+            <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+          </div>
+        </div>
           <div>
               <label>Upload File</label> 
               <input type="file" name="file"> 
@@ -422,9 +407,9 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
               <label>REF</label>
               <select id="referensi" name="referensi" class="form-control">
                   <?php $dataSelect = $data['referensi']; ?>
-                  <option <?php echo ($dataSelect == 'BK3') ? "selected": "" ?> >BK3</option>
+                  <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
                   <option <?php echo ($dataSelect == 'BTA') ? "selected": "" ?>  >BTA</option>
-                  <option <?php echo ($dataSelect == 'MAE') ? "selected": "" ?>  >MAE</option>
+                  <option <?php echo ($dataSelect == 'BKU') ? "selected": "" ?>  >BKU</option>
               </select>            
           </div>
 
@@ -440,7 +425,7 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
 
           <div class="form-group">
               <label>Jumlah Stok</label>
-              <input type="text" name="jml_stok" class="form-control"  value="<?php echo $jml_stok;?>" required="" >             
+              <input type="text" name="stok" class="form-control"  value="<?php echo $stok;?>" required="" >             
           </div>
           <div class="form-group">
               <label>Satuan Jumlah</label>
@@ -452,10 +437,11 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
               </select>            
           </div>
           <div>
-              <label>Upload Gambar</label> 
-              <input type="file" name="file"> 
-          </div> 
-
+          <label>Keterangan</label>
+          <div class="form-group">
+            <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+          </div>
+        </div>
 
           <div class="modal-footer">
               <button type="submit" class="btn btn-primary"> Ubah </button>
