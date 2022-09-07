@@ -59,6 +59,21 @@ $data_tarif = mysqli_fetch_array($result3);
 $harga = $data_tarif[$kode_pesanan];
 
 
+if ($jumlah_pesanan == '1000 L') {
+	$total = 1000 * $harga;
+}
+else if ($jumlah_pesanan == '2000 L') {
+	$total = 1000 * $harga;
+}
+else if ($jumlah_pesanan == '3000 L') {
+	$total = 1000 * $harga;
+}
+else if ($jumlah_pesanan == '4000 L') {
+	$total = 1000 * $harga;
+}
+else if ($jumlah_pesanan == '5000 L') {
+	$total = 1000 * $harga;
+}
 
 
 
@@ -101,7 +116,7 @@ else if ( $nama_file != "" ) {
 
 
 
-$query = mysqli_query($koneksi,"INSERT INTO tagihan_bk VALUES('','$tanggal','$delivery_point','$so','$lo','$amt','$mt','$kode_pesanan','$harga',1,'$file')");
+$query = mysqli_query($koneksi,"INSERT INTO tagihan_bk VALUES('','$tanggal','$delivery_point','$so','$lo','$amt','$mt','$kode_pesanan','$total',1,'$file')");
 
 if ($query != "") {
 echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VTagihanBk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
