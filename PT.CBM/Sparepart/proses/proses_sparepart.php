@@ -80,12 +80,10 @@ else if ( $nama_file != "" ) {
 		$query3 = mysqli_query($koneksi,"UPDATE list_sparepart SET stok = '$stok_asli_upt'  WHERE no_sparepart = '$no_sparepart'");
 
 	}
-	var_dump($stok_asli);
-	var_dump($jumlah);
-	var_dump($stok_asli_upt);
+
 
 		if ($query3!= "") {
-		//	echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VRiwayatSparepart.php';</script>";exit;
+		echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VRiwayatSparepart.php';</script>";exit;
 }
 
 
