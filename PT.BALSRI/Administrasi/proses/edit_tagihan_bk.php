@@ -52,6 +52,23 @@ $harga = $data_tarif[$kode_pesanan];
 
 
 
+if ($jumlah_pesanan == '1000 L') {
+	$total = 1000 * $harga;
+}
+else if ($jumlah_pesanan == '2000 L') {
+	$total = 2000 * $harga;
+}
+else if ($jumlah_pesanan == '3000 L') {
+	$total = 3000 * $harga;
+}
+else if ($jumlah_pesanan == '4000 L') {
+	$total = 4000 * $harga;
+}
+else if ($jumlah_pesanan == '5000 L') {
+	$total = 5000 * $harga;
+}
+
+
 
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -91,10 +108,10 @@ else if ( $nama_file != "" ) {
 
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_bk SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$harga'  WHERE no_tagihan = '$no_tagihan'");
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_bk SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total'  WHERE no_tagihan = '$no_tagihan'");
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_bk SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$harga' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_bk SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
 	}
 
 
