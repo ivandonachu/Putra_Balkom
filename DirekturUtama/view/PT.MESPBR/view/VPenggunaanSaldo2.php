@@ -410,38 +410,23 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
       $keterangan = $data['keterangan'];
       $status_saldo = $data['status_saldo'];
     
-    //Masuk CBM Keluar CBM
-    if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'CBM') {
-        $masuk_mes_cbm = $masuk_mes_cbm + $jumlah;
+    //Masuk CBM Masuk MES
+    if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'MES') {
+        $masuk_cbm_mes = $masuk_cbm_mes + $jumlah;
       }
-    //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'PBJ') {
-        $masuk_mes_pbj = $masuk_mes_pbj + $jumlah;
+    //Masuk CBM Masuk PBR
+    else if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'PBR') {
+        $masuk_cbm_pbr = $masuk_cbm_pbr + $jumlah;
       }
-    //mASUK cbm kELUAR MT
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBR' && $referensi == 'CBM') {
-        $masuk_pbr_cbm = $masuk_pbr_cbm + $jumlah;
-      }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBR' && $referensi == 'PBJ') {
-        $masuk_pbr_cbm = $masuk_pbr_pbj + $jumlah;
-      }
+
    
-     //Masuk CBM Keluar CBM
+     //Masuk MES Keluar CBM
     if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'CBM') {
-        $masuk_mes_cbm = $masuk_mes_cbm + $jumlah;
+        $keluar_mes_cbm = $keluar_mes_cbm + $jumlah;
       }
-    //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'PBJ') {
-        $masuk_mes_pbj = $masuk_mes_pbj + $jumlah;
-      }
-    //mASUK cbm kELUAR MT
+    //mASUK PBR kELUAR CBM
     else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'CBM') {
-        $masuk_pbr_cbm= $masuk_pbr_cbm + $jumlah;
-      }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'PBJ') {
-        $masuk_pbr_pbj = $masuk_pbr_pbj + $jumlah;
+        $keluar_pbr_cbm= $keluar_pbr_cbm + $jumlah;
       }
 
         $urut = $urut + 1;
@@ -496,10 +481,8 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Total TF MES ke CBM</th>
-      <th>Total TF MES ke PBJ</th>
-      <th>Total TF PBR ke CBM</th>
-      <th>Total TF PBR ke PBJ</th>
+      <th>Total TF MES Keluar ke CBM</th>
+      <th>Total TF PBR Keluar ke CBM</th>
       <th>Rincian</th>
     </tr>
   </thead>
@@ -508,9 +491,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
     <?php 
       echo "<tr>
       <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_pbj); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_pbj); ?> <?php echo "</td>
       <td class='text-center'><a href='VRincianCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>
         </tr>";
   
@@ -528,10 +509,8 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Total TF MES ke CBM</th>
-      <th>Total TF MES ke PBJ</th>
-      <th>Total TF PBR ke CBM</th>
-      <th>Total TF PBR ke PBJ</th>
+      <th>Total TF CBM Masuk ke MES</th>
+      <th>Total TF CMB Masuk ke PBR</th>
       <th>Rincian</th>
     </tr>
   </thead>
@@ -539,10 +518,9 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 
     <?php 
       echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_mes_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_mes_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_pbj); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_mes); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_pbr); ?> <?php echo "</td>
+
       <td class='text-center'><a href='VRincianMT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>
         </tr>";
   
