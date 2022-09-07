@@ -17,14 +17,33 @@ if ($jabatan_valid == 'Staff HRD') {
 else{  header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
+$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1 '");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-$table = mysqli_query($koneksi, "SELECT * FROM aset");
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
 
-?>
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+}  
+else{
+    $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+}
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksi, "SELECT * FROM surat_izin WHERE tanggal = '$tanggal_awal' ORDER BY tanggal ASC");
+}
+else{
+  $table = mysqli_query($koneksi, "SELECT * FROM surat_izin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+}
 
+
+
+ ?>
  <!DOCTYPE html>
  <html lang="en">
 
@@ -36,7 +55,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Asset</title>
+  <title>Surat Izin</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -59,59 +78,57 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
 
 <body id="page-top">
 
- 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-               <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-            </a>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsStaffAdmin">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsStaffAdmin">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-        <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Staff Admin
-                </div>
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu Staff HRD
+    </div>
 
-               <!-- Nav Item - Pages Collapse Menu -->
-               <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Admin Karyawaan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Gaji & Kas</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSeluruhKaryawan">List Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSuratKeluarMasuk">Surat Keluar Masuk</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKontrakKerja">Kontrak Kerja</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSuratIzin">Surat Izin</a>
-                    </div>
-                </div>
-            </li>
-          
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Admin HRD</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSeluruhKaryawan">List Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSuratKeluarMasuk">Surat Keluar Masuk</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKontrakKerja">Kontrak Kerja</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSuratIzin">Surat Izin</a>
+        </div>
+    </div>
+</li>
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -137,8 +154,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VAset'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pencatatan Aset</h5></a>"; ?>
-
+      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Surat Izin</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -150,7 +166,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
       <ul class="navbar-nav ml-auto">
 
           
-      
+        
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -193,23 +210,41 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+    
+    <?php  echo "<form  method='POST' action='VSuratIzin' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
+    </div>
+  </form>
 
+  <div class="row">
+    <div class="col-md-8">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   </div>
 
   <div class="row">
     <div class="col-md-10">
- 
+     
    </div>
    <div class="col-md-2">
-    <!-- Button Input Data Bayar -->
+    <!-- Button Pindah Baja -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Aset</button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Surat</button> <br> <br>
     </div>
+  </div>
+</div>
     <!-- Form Modal  -->
     <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Pencatatan Aset</h5>
+          <h5 class="modal-title"> Form Pencatatan Suarat Izin </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -217,48 +252,54 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_catat_aset' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_surat_izin?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
-         
+          <div class="row">
+            <div class="col-md-6">
+              <label>Tanggal</label>
+              <div class="col-sm-10">
+               <input type="date" id="tanggal" name="tanggal" required="" class="form-control form-control-sm">
+             </div>
+          </div>
+          <div class="col-md-6">
+            <label>Perihal</label>
+            <input class="form-control form-control-sm" type="text" id="perihal" name="perihal"  required="">
+          </div>
+        </div>
+
+        <br>
+        
+        <div class="row">
+        <div class="col-md-12">
+          <label>Referensi</label>
+          <select id="referensi" name="referensi" class="form-control">
+            <option>CBM</option>
+            <option>MES</option>
+            <option>PBR</option>
+            <option>BALSRI</option>
+            <option>PBJ</option>
+            <option>STRE</option>
+            <option>KEBUN</option>
+          </select>
+        </div>            
+      </div>
+
       <br>
 
-     <div class="form-group">
-      <label>Nama Asset</label>
-      <input class="form-control form-control-sm" type="text" id="nm_asset" name="nm_asset" required="">          
-    </div>
-    <div class="form-group">
-      <label>Jumlah</label>
-      <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="">          
-    </div>
-    <div class="row">
-          <div class="col-md-6">
-            <label>REF</label>
-            <select id="referensi" name="referensi" class="form-control">
-              <option>CBM</option>
-              <option>MES</option>
-              <option>PBR</option>
-              <option>PBJ</option>
-              <option>BASRI</option>
-              <option>Kebon Lengkiti</option>
-              <option>Kebon Seberuk</option>
-            </select>
-          </div>
-    </div> 
-
-     <div class="form-group">
-      <label>Pengguna</label>
-      <input class="form-control form-control-sm" type="text" id="pengguna" name="pengguna" required="">          
-    </div>
-
-     <div>
+    <div>
      <label>Keterangan</label>
      <div class="form-group">
        <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
      </div>
    </div>
+   <br>
+  <div>
+    <label>Upload File</label> 
+    <input type="file" name="file"> 
+  </div> 
 
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> CATAT</button>
+    <button type="submit" class="btn btn-primary">CATAT</button>
     <button type="reset" class="btn btn-danger"> RESET</button>
   </div>
 </form>
@@ -268,55 +309,54 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
 </div>
 </div>
 
-</div>
-</div>
+
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
-      <th>Tanggal Input</th>
-      <th>REF</th>   
-      <th>Nama Asset</th>
-      <th>Jumlah</th>
-      <th>Nama Pengguna</th>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Referensi</th>
+      <th>Perihal</th>
       <th>Keterangan</th>
-      <th>Edit</th>
-      <th>Hapus</th>
+      <th>File Surat</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-
+    <?php
+    $urut = 0;
+    ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no_aset = $data['no_aset'];
+      $urut = $urut +1 ;
+      $no_surat = $data['no_surat'];
       $tanggal =$data['tanggal'];
-      $referensi =$data['referensi'];
-      $jumlah = $data['jumlah'];
-      $nama_asset = $data['nama_asset'];
-      $nama_pengguna = $data['pengguna'];
+      $perihal = $data['perihal'];
+      $referensi = $data['referensi'];
       $keterangan = $data['keterangan'];
-
-
+      $file_bukti = $data['file_bukti'];
 
       echo "<tr>
+      <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$perihal</td>
       <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_asset</td>
-      <td style='font-size: 14px'>$jumlah</td>
-      <td style='font-size: 14px'>$nama_pengguna</td>
       <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
+
       <?php echo "<td style='font-size: 12px'>"; ?>
 
-       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_aset']; ?>">Edit</button>
+       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_surat']; ?>">Edit</button>
 
         <!-- Form EDIT DATA -->
 
-        <div class="modal fade" id="formedit<?php echo $data['no_aset']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="formedit<?php echo $data['no_surat']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
             <div class="modal-content"> 
-              <div class="modal-header">
-                <h5 class="modal-title"> Form Edit Akun </h5>
+              <div class="modal-header">Form Edit Surat Keluar Masuk </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                   <span aria-hidden="true"> &times; </span>
                 </button>
@@ -325,34 +365,59 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
 
               <!-- Form Edit Data -->
               <div class="modal-body">
-                <form action="../proses/proses_edit_aset.php" method="POST">
+                <form action="../proses/edit_surat_izin" enctype="multipart/form-data" method="POST">
+                <input type="hidden" id="no_surat" name="no_surat"  value="<?php echo $no_surat;?>" required="">
+                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+                <div class="row">
+                    <div class="col-md-6">
+                    <label>Tanggal</label>
+                    <div class="col-sm-10">
+                    <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Perihal</label>
+                    <input class="form-control form-control-sm" type="text" id="perihal" name="perihal" value="<?php echo $perihal;?>"  required="">
+                </div>
+                </div>
+               <br>
+
+                <div class="row">
+                <div class="col-md-12">
+                <label>Referensi</label>
+                <select id="referensi" name="referensi" class="form-control">
+                    <?php $dataSelect = $data['referensi']; ?>
+                    <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
+                    <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+                    <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+                    <option <?php echo ($dataSelect == 'BALSRI') ? "selected": "" ?> >BALSRI</option>
+                    <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
+                    <option <?php echo ($dataSelect == 'STRE') ? "selected": "" ?> >STRE</option>
+                    <option <?php echo ($dataSelect == 'KEBUN') ? "selected": "" ?> >KEBUN</option>
+                </select>
+                </div>           
+            </div>
+
+            <br>
 
 
-                  <div class="form-group">
-                    <label> Nama Aset </label>
-                    <input type="text" name="nm_asset" class="form-control" value="<?php echo $nama_asset; ?>" required=""> 
-                                
-                  </div>
-                  <input type="hidden" name="no_aset" value="<?php echo $no_aset;?>"> 
-                  <div class="form-group">
-                    <label> Referensi </label>
-                    <input type="text" name="referensi" class="form-control" value="<?php echo $referensi;?>" disabled=""> 
-                    <input type="hidden" name="referensi" value="<?php echo $referensi;?>">            
-                  </div>
+            <div>
+            <label>Keterangan</label>
+            <div class="form-group">
+            <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+            </div>
+            </div>
 
-                  <div class="form-group">
-                    <label>Jumlah</label>
-                    <input type="number" name="jumlah" class="form-control" value="<?php echo $jumlah;?>" required="" >             
-                  </div>
-                  <div class="form-group">
-                    <label>Nama Pengguna</label>
-                    <input type="text" name="pengguna" class="form-control"  value="<?php echo $nama_pengguna;?>" required="" >             
-                  </div>
+            <br>
 
-                  <div class="form-group">
-                    <label>Keterangan</label>
-                    <input type="text" name="keterangan" class="form-control" value="<?php echo $keterangan;?>" required=""> 
-                  </div>
+
+
+            <div>
+                <label>Upload File</label> 
+                <input type="file" name="file"> 
+            </div> 
+                            
 
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-primary"> Ubah </button>
@@ -367,24 +432,28 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
 
 
 
-        <?php echo "</td> "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
 
-       <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_aset']; ?>" data-toggle='tooltip' title='Hapus Data Aset'></button>
 
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_aset']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_surat']; ?>" data-toggle='tooltip' title='Hapus Transaksi'>Hapus</button>
+
+      <div class="modal fade" id="PopUpHapus<?php echo $data['no_surat']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
        <div class="modal-dialog" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus Data Aset </b> </h4>
+            <h4 class="modal-title"> <b> Hapus </b> </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true"> &times; </span>
             </button>
           </div>
 
+
           <div class="modal-body">
-            <form action="../proses/hapus_aset" method="POST">
-              <input type="hidden" name="no_aset" value="<?php echo $no_aset;?>">
+            <form action="../proses/hapus_surat_izin" method="POST">
+              <input type="hidden" name="no_surat" value="<?php echo $no_surat; ?>">
+              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+
+
               <div class="form-group">
                 <h6> Yakin Ingin Hapus Data? </h6>             
               </div>
@@ -400,18 +469,14 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
 
     <?php echo  " </td> </tr>";
   }
+
   ?>
 
 </tbody>
 </table>
 </div>
-<br>
-<br>
-<br>
-
-
 </div>
-
+</div>
 </div>
 <!-- End of Main Content -->
 
@@ -494,6 +559,8 @@ aria-hidden="true">
   } );
 </script>
 
+
+
 </body>
 
-</html>
+</html> 

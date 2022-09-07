@@ -18,14 +18,15 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$no_laporan = $_POST['no_dokumen'];
+$no_surat = $_POST['no_surat'];
+$tanggal_awal = $_POST['tanggal1'];
+$tanggal_akhir = $_POST['tanggal2'];
 
 
 
 
 
+	$query = mysqli_query($koneksi,"DELETE FROM surat_izin WHERE no_surat = '$no_surat'");
 
-	$query = mysqli_query($koneksi,"DELETE FROM dokumen WHERE no_dokumen = '$no_laporan'");
-
-			echo "<script> window.location='../view/VDokumen';</script>";exit;
+			echo "<script> window.location='../view/VSuratIzin?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 	

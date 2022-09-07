@@ -18,12 +18,14 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$tanggal = date('Y-m-d');
-$nama_dokumen = $_POST['nama_dokumen'];
-$no_rak = $_POST['no_rak'];
-$referensi = $_POST['referensi'];
+$tanggal_awal = $_GET['tanggal1'];
+$tanggal_akhir = $_GET['tanggal2'];
+$tanggal = $_POST['tanggal'];
+$perihal = $_POST['perihal'];
+$status_surat = $_POST['status_surat'];
+$asal = $_POST['asal'];
+$tujuan = $_POST['tujuan'];
 $keterangan = $_POST['keterangan'];
-$no_dokumen = $_POST['no_dokumen'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -58,19 +60,10 @@ else if ( $nama_file != "" ) {
 	}
 
 }
-	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE dokumen SET tanggal = '$tanggal' , nama_dokumen = '$nama_dokumen' , no_rak = '$no_rak' , referensi = '$referensi' , keterangan = '$keterangan'  WHERE no_dokumen = '$no_dokumen'");;
-	}
-	else{
-			$query3 = mysqli_query($koneksi,"UPDATE dokumen SET tanggal = '$tanggal' , nama_dokumen = '$nama_dokumen' , no_rak = '$no_rak' , referensi = '$referensi' , keterangan = '$keterangan', file_bukti = '$file'  WHERE no_dokumen = '$no_dokumen'");
-	}
+
+	$query = mysqli_query($koneksi,"INSERT INTO surat_keluar_masuk VALUES ('','$tanggal','$perihal','$status_surat','$asal','$tujuan','$keterangan','$file')");
 
 
-
-
-
-			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VDokumen';</script>";exit;
-
-
-
-  ?>
+			if ($query != "") {
+				echo "<script> window.location='../view/VSuratKeluarMasuk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}

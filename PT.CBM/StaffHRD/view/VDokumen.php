@@ -10,7 +10,7 @@ $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$i
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Staff Admin') {
+if ($jabatan_valid == 'Staff HRD') {
 
 }
 
@@ -309,7 +309,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM dokumen");
       
 
        <?php echo "
-         <td style='font-size: 14px'>"; ?> <a download="../file_staff_admin/<?= $file_bukti ?>" href="../file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+         <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
 <?php echo "<td style='font-size: 12px'>"; ?>
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_dokumen']; ?>">Edit</button>
