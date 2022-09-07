@@ -43,7 +43,7 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ORDER BY no_penjualan ASC");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ORDER BY no_penjualan ASC");
 
 
   $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak'");
