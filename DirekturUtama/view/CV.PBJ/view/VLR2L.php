@@ -354,7 +354,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash' ");
 
-        while($datax2 = mysqli_num_rows($tablex2)){
+        while($datax2 = mysqli_fetch_array($tablex2)){
           
             $jumlahx = $datax2['jumlah'];
             $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
