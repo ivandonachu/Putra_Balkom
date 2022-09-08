@@ -339,7 +339,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 } else {
 
     // Penjualan kadek dan etty
-    $table = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sudah'");
+    $table = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
     $pendapatan_penjualan_kadek =0;
     //kadek
     while($data = mysqli_fetch_array($table)){
@@ -355,7 +355,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
     
     //ety
-    $tablee = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sudah'");
+    $tablee = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
     $pendapatan_penjualan_ety = 0;
     $pendapatan_penjualan_etyx = 0;
     while($datae = mysqli_fetch_array($tablee)){
