@@ -360,6 +360,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             $jumlahx = $datax2['jumlah'];
             $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
               }
+              
        
     }
 
