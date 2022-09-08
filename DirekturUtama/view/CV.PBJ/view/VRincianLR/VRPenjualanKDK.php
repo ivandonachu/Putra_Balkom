@@ -34,13 +34,13 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' ");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_awal'  AND no_do = '$no_do_pembelian' AND status_bayar = 'Lunas Transfer' OR tanggal_kirim = '$tanggal_awal'  AND no_do = '$no_do_pembelian' AND status_bayar = 'Lunas Cash' ");
 
 
 }
 
 else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Lunas Cash'  ORDER BY tanggal_kirim ASC");
 
   //Curah OPC Type 1 bayar
   $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1 ,  SUM(jumlah) AS uang_copct1  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 
