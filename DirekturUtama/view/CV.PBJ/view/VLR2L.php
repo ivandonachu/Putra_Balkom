@@ -351,6 +351,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     //ety
     $tablee = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $pendapatan_penjualan_ety = 0;
+    $pendapatan_penjualan_etyx = 0;
     while($datae = mysqli_fetch_array($tablee)){
         $no_do_pembelian = $datae['no_do'];
         $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Lunas Cash' ");
@@ -360,6 +361,9 @@ if ($tanggal_awal == $tanggal_akhir) {
             $jumlahx = $datax2['jumlah'];
             $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
               }
+    else{
+        $pendapatan_penjualan_etyx = $pendapatan_penjualan_etyx + $jumlahx;
+    }
               
        
     }
@@ -917,7 +921,7 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                 <tr>
                                                     <td>4-101</td>
                                                     <td class="text-left">Penjualan As Ety</td>
-                                                    <td class="text-left"><?= formatuang($pendapatan_penjualan_ety); ?></td>
+                                                    <td class="text-left"><?= formatuang($pendapatan_penjualan_ety + $pendapatan_penjualan_etyx); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPenjualanETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
