@@ -351,7 +351,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     //ety
     $tablee = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $pendapatan_penjualan_ety = 0;
-    while($datae = mysqli_fetch_array($tablee)){
+
         $no_do_pembelian = $datae['no_do'];
         $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash' ");
 
@@ -361,7 +361,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
               }
        
-    }
+    
 
         
     
