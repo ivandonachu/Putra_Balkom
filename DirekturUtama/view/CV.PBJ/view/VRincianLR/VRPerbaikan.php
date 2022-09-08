@@ -31,11 +31,17 @@ elseif (isset($_POST['tanggal1'])) {
 if ($tanggal_awal == $tanggal_akhir) {
 
   $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s WHERE tanggal = '$tanggal_awal' ");
+  $table2 = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Perbaikan Kendaraan' ");
+
+
 
 }
 else{
 
   $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table2 = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
+
+
 
 }
 
@@ -258,6 +264,7 @@ else{
 
 
 <!-- Tabel -->    
+<h3 align='center' >Pengeluaran Perbaikan Kendaraan Workshop</h3>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
@@ -307,14 +314,66 @@ else{
 
 </tbody>
 </table>
+
+<br>
+<br>
+<br>
+
+<h3 align='center' >Perbaikan Kendaraan Etty</h3>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Pengeluaran</th>
+      <th>Total</th>
+      <th>file</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total = 0;
+    $urut = 0;
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+     $no_laporan = $data['no_transaksi'];
+     $tanggal =$data['tanggal'];
+     $nama_akun = $data['nama_akun'];
+     $jumlah = $data['jumlah'];
+     $keterangan = $data['keterangan'];
+     $file_bukti = $data['file_bukti'];
+
+     $total = $total + $jumlah;
+     $urut = $urut + 1;
+
+
+     echo "<tr>
+     <td style='font-size: 14px'>$urut</td>
+     <td style='font-size: 14px'>$tanggal</td>
+     <td style='font-size: 14px'>$nama_akun</td>
+     <td style='font-size: 14px'>$keterangan</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     "; ?>
+     
+
+    <?php echo  " </tr>";
+  }
+
+?>
+
+</tbody>
+</table>
+
 </div>
-<br>
-<br>
-<br>
-
-
 </div>
-
 </div>
 <!-- End of Main Content -->
 
@@ -389,7 +448,19 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example1').DataTable( {
+      lengthChange: false,
+
     } );
 
     table.buttons().container()

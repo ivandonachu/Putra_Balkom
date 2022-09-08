@@ -553,7 +553,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table4s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_listrik FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon'");
     $data4s = mysqli_fetch_array($table4s);
     $jml_listrik_s = $data4s['jumlah_listrik'];
-    if (!isset($data4s['jumlah_listrikr'])) {
+    if (!isset($data4s['jumlah_listrik'])) {
         $jml_listrik_s = 0;
     }
 
@@ -569,14 +569,14 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table5s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
     $data5s = mysqli_fetch_array($table5s);
     $jml_transport_s = $data5s['jumlah_transport'];
-    if (!isset($data5['jumlah_transport'])) {
+    if (!isset($data5s['jumlah_transport'])) {
         $jml_transport_s = 0;
     }
 
      //Trasnport/Perjalan Dinas kadek
      $table5sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
-     $data5sl = mysqli_fetch_array($table5s);
-     $jml_transport_sl = $data5s['jumlah_transport'];
+     $data5sl = mysqli_fetch_array($table5sl);
+     $jml_transport_sl = $data5sl['jumlah_transport'];
      if (!isset($data5['jumlah_transport'])) {
          $jml_transport_sl = 0;
      }
@@ -597,13 +597,21 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jml_atk_sl = 0;
     }
 
-    //pengeluran perbaikan
+    //pengeluran perbaikan yani
     $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_sparepart) AS total_pembelian_sparepart FROM riwayat_pengeluaran_workshop_s
                                          WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data7 = mysqli_fetch_array($table7);
     $jml_pembelian_sparepart = $data7['total_pembelian_sparepart'];
     if (!isset($data7['total_pembelian_sparepart'])) {
         $jml_pembelian_sparepart = 0;
+    }
+
+    //pengeluran perbaikan etty
+    $table7s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
+    $data7s = mysqli_fetch_array($table7s);
+    $jml_perbaikan_etty = $data7s['jumlah_perbaikan'];
+    if (!isset($data7s['jumlah_perbaikan'])) {
+        $jml_perbaikan_etty = 0;
     }
 
 
@@ -630,7 +638,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek;
 $laba_kotor = $total_pendapatan - ($pembelian_ety + $pembelian_kadek);
 $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om +$jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
-                            $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl;
+                            $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty;
 $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 
 ?>
@@ -1078,7 +1086,7 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                     <td>5-595</td>
                                                     <td class="text-left">Biaya Perbaikan Kendaraan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($jml_perbaikan); ?></td>
+                                                    <td class="text-left"><?= formatuang($jml_perbaikan + $jml_perbaikan_etty); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>

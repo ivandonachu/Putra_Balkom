@@ -274,6 +274,7 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
+      <th>Akun</th>
       <th>Keterangan</th>
       <th>Masuk</th>
       <th>Keluar</th>
@@ -296,6 +297,7 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_transaksi'];
       $tanggal =$data['tanggal'];
+      $akun =$data['nama_akun'];
       $status_saldo = $data['status_saldo'];
       $jumlah = $data['jumlah'];
       $keterangan = $data['keterangan'];
@@ -310,6 +312,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
 
 
