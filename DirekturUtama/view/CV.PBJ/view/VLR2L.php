@@ -21,12 +21,18 @@ if ($jabatan_valid == 'Direktur Utama') {
 if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
     $tanggal_akhir = $_GET['tanggal2'];
+    $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+    $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 } elseif (isset($_POST['tanggal1'])) {
     $tanggal_awal = $_POST['tanggal1'];
     $tanggal_akhir = $_POST['tanggal2'];
+    $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+    $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 } else {
     $tanggal_awal = date('Y-m-1');
     $tanggal_akhir = date('Y-m-31');
+    $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+    $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 }
 
 function formatuang($angka)
@@ -333,7 +339,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 } else {
 
     // Penjualan kadek dan etty
-    $table = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'");
     $pendapatan_penjualan_kadek =0;
     //kadek
     while($data = mysqli_fetch_array($table)){
@@ -349,7 +355,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
     
     //ety
-    $tablee = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $tablee = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'");
     $pendapatan_penjualan_ety = 0;
     $pendapatan_penjualan_etyx = 0;
     while($datae = mysqli_fetch_array($tablee)){
@@ -491,7 +497,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
     // piutang kadek dan etty
-    $tabler = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $tabler = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'");
     $piutang_penjualan_kadek =0;
     //kadek
     while($data = mysqli_fetch_array($tabler)){
@@ -507,7 +513,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
     
     //ety
-    $tableer = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $tableer = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_sebelum' AND '$tanggal_sesudah'");
     $piutang_penjualan_ety = 0;
     while($datae = mysqli_fetch_array($tableer)){
         $no_do_pembelian = $datae['no_do'];

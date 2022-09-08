@@ -560,7 +560,7 @@ else{
 <br>
 <?php 
 
-$tablej2 = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+$tablej2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
 
 ?>
 
@@ -583,22 +583,18 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tangg
 
     <?php while($data = mysqli_fetch_array($tablej2)){
     $no_do_pembelian = $data['no_do'];
-    $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s  WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
-
- 
-    if(mysqli_num_rows($tablexj) === 1 ){
-
-        
-        }
-        else{
-          $urut = $urut +1;
+    $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
 
 
-          echo "<tr>
-          <td style='font-size: 14px'>$urut</td>
-          <td style='font-size: 14px'>$no_do_pembelian</td>
-        </tr>";
+    if(mysqli_num_rows($tablexj) === 0 ){
 
+         $urut = $urut +1;
+
+
+         echo "<tr>
+         <td style='font-size: 14px'>$urut</td>
+         <td style='font-size: 14px'>$no_do_pembelian</td>
+       </tr>";
         }
         
 
