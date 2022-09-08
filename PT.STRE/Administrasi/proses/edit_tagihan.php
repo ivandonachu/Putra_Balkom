@@ -43,19 +43,10 @@ else if ($jumlah_pesanan == '3000 L') {
 
 $result = mysqli_query($koneksi, "SELECT * FROM master_tarif WHERE delivery_point = '$delivery_point' ");
 $data_tarif = mysqli_fetch_array($result);
-$harga = $data_tarif[$kode_pesanan];
+$total = $data_tarif[$kode_pesanan];
 
 
 
-if ($jumlah_pesanan == '1000 L') {
-	$total = 1000 * $harga;
-}
-else if ($jumlah_pesanan == '2000 L') {
-	$total = 2000 * $harga;
-}
-else if ($jumlah_pesanan == '3000 L') {
-	$total = 3000 * $harga;
-}
 
 
 

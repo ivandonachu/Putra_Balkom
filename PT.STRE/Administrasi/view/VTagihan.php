@@ -483,7 +483,18 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $total_pesanan = 5000;
                     $total_max_pesanan = $total_max_pesanan + $total_pesanan;
                   }
-                  $harga = $data[$jumlah_pesanan];
+                  $harga1 = $data[$jumlah_pesanan];
+                    if($jumlah_pesanan == 'kl1'){
+                        $harga = $harga1 / 1000;
+                    }
+                    else if($jumlah_pesanan == 'kl2'){
+                        $harga = $harga1 / 2000;
+                    }
+                    else if($jumlah_pesanan == 'kl3'){
+                        $harga = $harga1 / 3000;
+                    }
+
+      
 
 
                   $urut = $urut + 1;
