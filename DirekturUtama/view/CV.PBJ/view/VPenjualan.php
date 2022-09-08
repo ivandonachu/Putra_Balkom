@@ -585,16 +585,20 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tangg
     $no_do_pembelian = $data['no_do'];
     $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s  WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
 
+ 
+    if(mysqli_num_rows($tablexj) === 1 ){
 
-    if(mysqli_num_rows($tablexj) === 0 ){
+        
+        }
+        else{
+          $urut = $urut +1;
 
-         $urut = $urut +1;
 
+          echo "<tr>
+          <td style='font-size: 14px'>$urut</td>
+          <td style='font-size: 14px'>$no_do_pembelian</td>
+        </tr>";
 
-         echo "<tr>
-         <td style='font-size: 14px'>$urut</td>
-         <td style='font-size: 14px'>$no_do_pembelian</td>
-       </tr>";
         }
         
 
