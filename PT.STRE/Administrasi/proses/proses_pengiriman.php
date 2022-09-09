@@ -45,7 +45,7 @@ else{
 	$dexlite = $jt_gps/6;
 }
 
-$u_dex = $dexlite*18500;
+$u_dex = $dexlite*17800;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
 
