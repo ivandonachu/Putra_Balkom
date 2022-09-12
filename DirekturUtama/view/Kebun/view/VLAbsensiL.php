@@ -18,6 +18,8 @@ else{ header("Location: logout.php");
 exit;
 }
 
+
+
 if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
     $tanggal_akhir = $_GET['tanggal2'];
@@ -146,7 +148,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         </div>
     </div>
 </li>
-<li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x"
       15  aria-expanded="true" aria-controls="collapseTwo1x">
         <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -162,6 +164,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         </div>
     </div>
 </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -259,8 +262,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <div class="col-md-6">
                                 <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
                             </div>
-                        </div>  
-
+                       
+                        </div>
+                       
 
 
                     <!-- Tabel -->
@@ -269,9 +273,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <tr>
                                 <th>No</th>
                                 <th>Tanggal</th>
-                                <th>Nama Karyawan</th>
-                                <th>Upah Kerja</th>
-                                <th>Potongan Bon</th>
+                                <th>Total Upah Kerja </th>
+                                <th>Total Potongan Bon</th>
+                                <th>File Absensi</th>
                           
 
                             </tr>
@@ -289,19 +293,19 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <?php while ($data = mysqli_fetch_array($table)) {
                                 $no_laporan = $data['no_laporan'];
                                 $tanggal = $data['tanggal'];
-                                $nama_karyawan = $data['nama_karyawan'];
-                                $upah_kerja = $data['upah_kerja'];
-                                $potongan_bon = $data['potongan_bon'];
+                                $total_upah_kerja = $data['total_upah_kerja'];
+                                $total_potongan_bon = $data['total_potongan_bon'];
+                                $file_bukti = $data['file_bukti'];
                                 $no_urut = $no_urut + 1;
 
 
                                 echo "<tr>
                                 <td style='font-size: 14px'>$no_urut</td>
                                 <td style='font-size: 14px'>$tanggal</td>
-                                <td style='font-size: 14px'>$nama_karyawan</td>
-                                <td style='font-size: 14px'>"; ?> <?= formatuang($upah_kerja); ?> <?php echo "</td>
-                                <td style='font-size: 14px'>"; ?> <?= formatuang($potongan_bon); ?> <?php echo "</td>
-                              </tr>";
+                                <td style='font-size: 14px'>"; ?> <?= formatuang($total_upah_kerja); ?> <?php echo "</td>
+                                <td style='font-size: 14px'>"; ?> <?= formatuang($total_potongan_bon); ?> <?php echo "</td>
+                                <td style='font-size: 14px'>"; ?> <a download="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>" href="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                                </tr>";
                                                     }
                                 ?>
 

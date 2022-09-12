@@ -19,19 +19,11 @@ exit;
 }
 
 
-$id= $_POST['id'];
-$nama_karyawan= $_POST['nama_karyawan'];
-$jabatan= $_POST['jabatan'];
+$nik = $_POST['nik'];
 
 
 
-	$query3 = mysqli_query($koneksi,"INSERT INTO karyawan VALUES('$id','$nama_karyawan','$jabatan')");
+	$query = mysqli_query($koneksi,"DELETE FROM seluruh_karyawan WHERE nik = '$nik'");
 
-		if ($query3!= "") {
-			echo "<script>alert('Tambah Data Berhasil :)'); window.location='../view/VKaryawan.php';</script>";exit;
-}
-
-
-
-
-  ?>
+			echo "<script> window.location='../view/VSeluruhKaryawan';</script>";exit;
+	
