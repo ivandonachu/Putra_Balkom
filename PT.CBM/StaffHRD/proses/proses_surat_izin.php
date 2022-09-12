@@ -59,7 +59,7 @@ else if ( $nama_file != "" ) {
 
 }
 
-	$query = mysqli_query($koneksi,"INSERT INTO surat_izin VALUES ('','$tanggal','$perihal','$referensi','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO surat_izin VALUES ('','$tanggal','$referensi','$perihal','$keterangan','$file')");
 
 
 			if ($query != "") {
