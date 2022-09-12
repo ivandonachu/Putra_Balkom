@@ -341,8 +341,8 @@ else{
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$perihal</td>
       <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$perihal</td>
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
