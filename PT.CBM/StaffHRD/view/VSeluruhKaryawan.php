@@ -248,13 +248,17 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
             <br>
             
             <div class="row">
-             <div class="col-md-6">
+             <div class="col-md-4">
               <label>Tanggal Lahir</label>
               <input class="form-control form-control-sm" type="date" id="tanggal_lahir" name="tanggal_lahir"  required="">
              </div>
-             <div class="col-md-6">
+             <div class="col-md-4">
               <label>NIK</label>
               <input class="form-control form-control-sm" type="text" id="nik" name="nik"  required="">
+              </div>
+              <div class="col-md-4">
+              <label>BPJS</label>
+              <input class="form-control form-control-sm" type="text" id="bpjs" name="bpjs"  required="">
               </div>
             </div>
 
@@ -301,6 +305,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
           <th style="font-size: 11px" scope="col">Tempat Lahir</th>
           <th style="font-size: 11px" scope="col">Tanggal Lahir</th>
           <th style="font-size: 11px" scope="col">NIK</th>
+          <th style="font-size: 11px" scope="col">BPJS</th>
           <th style="font-size: 11px" scope="col">Alamat</th>
           <th style="font-size: 11px" scope="col">No HP</th>
           <th style="font-size: 11px" scope="col">Status Karywan</th>
@@ -319,6 +324,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
           $tempat_lahir =$data2['tempat_lahir'];
           $tanggal_lahir =$data2['tanggal_lahir'];
           $nik =$data2['nik'];
+          $bpjs =$data2['bpjs'];
           $alamat =$data2['alamat'];
           $no_hp =$data2['no_hp'];          
           $status_karyawan = $data2['status_karyawan'];
@@ -333,6 +339,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
           <td style='font-size: 12px'>$tempat_lahir</td>
           <td style='font-size: 12px'>$tanggal_lahir</td>
           <td style='font-size: 12px'>$nik</td>
+          <td style='font-size: 12px'>$bpjs</td>
           <td style='font-size: 12px'>$alamat</td>
           <td style='font-size: 12px'>$no_hp</td>
           <td style='font-size: 12px'>$status_karyawan</td>
@@ -395,13 +402,17 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
                     <br>
                     
                     <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                     <label>Tanggal Lahir</label>
                     <input class="form-control form-control-sm" type="date" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $tanggal_lahir;?>"   required="">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                     <label>NIK</label>
                     <input class="form-control form-control-sm" type="text" id="nik" name="nik" value="<?php echo $nik;?>" required="">
+                    </div>
+                    <div class="col-md-4">
+                    <label>BPJS</label>
+                    <input class="form-control form-control-sm" type="text" id="bpjs" name="bpjs" value="<?php echo $bpjs;?>" required="">
                     </div>
                     </div>
 

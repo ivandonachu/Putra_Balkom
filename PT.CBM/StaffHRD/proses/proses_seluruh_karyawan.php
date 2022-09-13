@@ -25,13 +25,14 @@ exit;
           $tempat_lahir =$_POST['tempat_lahir'];
           $tanggal_lahir =$_POST['tanggal_lahir'];
           $nik =$_POST['nik'];
+          $bpjs =$_POST['bpjs'];
           $alamat =$_POST['alamat'];
           $no_hp =$_POST['no_hp'];          
           $status_karyawan = "Bekerja";
 
 
 
-	$query3 = mysqli_query($koneksi,"INSERT INTO seluruh_karyawan VALUES('$nama_karyawan','$perusahaan','$jabatan','$tempat_lahir','$tanggal_lahir','$nik','$alamat','$no_hp','$status_karyawan')");
+	$query3 = mysqli_query($koneksi,"INSERT INTO seluruh_karyawan VALUES('$nama_karyawan','$perusahaan','$jabatan','$tempat_lahir','$tanggal_lahir','$nik','$bpjs','$alamat','$no_hp','$status_karyawan')");
 
 		if ($query3!= "") {
 			echo "<script>alert('Tambah Data Karyawan Berhasil :)'); window.location='../view/VSeluruhKaryawan';</script>";exit;

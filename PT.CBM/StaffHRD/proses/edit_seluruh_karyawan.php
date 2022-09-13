@@ -26,6 +26,7 @@ exit;
           $tempat_lahir =$_POST['tempat_lahir'];
           $tanggal_lahir =$_POST['tanggal_lahir'];
           $nik =$_POST['nik'];
+          $bpjs =$_POST['bpjs'];
           $alamat =$_POST['alamat'];
           $no_hp =$_POST['no_hp'];          
           $status_karyawan =$_POST['status_karyawan'];
@@ -36,7 +37,7 @@ exit;
 
 
 	$query3 = mysqli_query($koneksi,"UPDATE seluruh_karyawan SET nama_karyawan = '$nama_karyawan' ,perusahaan = '$perusahaan', jabatan = '$jabatan', tempat_lahir = '$tempat_lahir', tanggal_lahir = '$tanggal_lahir', 
-                                                                 nik = '$nik', alamat = '$alamat', no_hp = '$no_hp', status_karyawan = '$status_karyawan' WHERE nik = '$nik_pk'");
+                                                                 nik = '$nik', alamat = '$alamat',bpjs='$bpjs', no_hp = '$no_hp', status_karyawan = '$status_karyawan' WHERE nik = '$nik_pk'");
 
 		if ($query3!= "") {
 			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VSeluruhKaryawan.php';</script>";exit;
