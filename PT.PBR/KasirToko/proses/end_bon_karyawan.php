@@ -20,10 +20,9 @@ exit;
 
 $no_bon = $_POST['no_bon'];
 $tanggal = $_POST['tanggal'];
-$jumlah = $_POST['jumlah'];
 $jumlah_bon = $_POST['jumlah_bon'];
-$jumlah_bayar = $_POST['jumlah_bayar'];
-$total_bayar = $jumlah_bayar + $jumlah;
+$jumlah_bayar = $_POST['jumlah_bon'];
+$total_bayar = $jumlah_bayar;
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -60,24 +59,6 @@ else if ( $nama_file != "" ) {
 }
 	
 
-if ($jumlah_bayar + $jumlah > $jumlah_bon) {
-	echo "<script> alert('Kembalinya Kebanyakan Gaes!'); window.location='../view/VBonKaryawan';</script>";exit;
-
-}
-else if ($jumlah_bayar + $jumlah < $jumlah_bon) {
-	$status_bayar = 'Belum Lunas';
-	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE bon_karyawan SET tanggal_bayar = '$tanggal' , jumlah_bayar = '$total_bayar' , status_bayar = '$status_bayar'  WHERE no_bon = 
-		'$no_bon'");
-	}
-	else{
-		$query3 = mysqli_query($koneksi,"UPDATE bon_karyawan SET tanggal_bayar = '$tanggal' , jumlah_bayar = '$total_bayar' , status_bayar = '$status_bayar' , file_bukti = '$file' WHERE no_bon = 
-		'$no_bon'");
-	}
-	echo "<script> alert('Pembayaran Berhasil!'); window.location='../view/VBonKaryawan';</script>";exit;
-}
-
-else if ($jumlah_bayar + $jumlah == $jumlah_bon) {
 	$status_bayar = 'Lunas';
 	if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE bon_karyawan SET tanggal_bayar = '$tanggal' , jumlah_bayar = '$total_bayar' , status_bayar = '$status_bayar'  WHERE no_bon = 
@@ -88,5 +69,5 @@ else if ($jumlah_bayar + $jumlah == $jumlah_bon) {
 		'$no_bon'");
 	}
 	echo "<script> alert('Pembayaran Berhasil!'); window.location='../view/VBonKaryawan';</script>";exit;
-}
+
 	

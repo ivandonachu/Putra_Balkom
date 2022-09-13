@@ -507,7 +507,7 @@ data-parent="#accordionSidebar">
 
                <input type="hidden" name="no_bon" value="<?php echo $no_bon;?>">
                <input type="hidden" name="jumlah_bon" value="<?php echo $jumlah_bon;?>">
-               <input type="hidden" name="jumlah_bayar" value="<?php echo $jumlah_bayar;?>">
+ 
 
                <div class="row">
                 <div class="col-md-6">
@@ -515,10 +515,6 @@ data-parent="#accordionSidebar">
                   <div class="col-sm-10">
                    <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
                  </div>
-               </div>
-               <div class="col-md-6">
-                <label>Jumlah</label>
-                <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="0"  required="">
                </div>
              </div>
 

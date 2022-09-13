@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include'koneksi.php';
@@ -24,8 +23,7 @@ $nama = $data['nama_karyawan'];
 
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE a.kode_baja != 'L03K01' AND a.kode_baja != 'L12K01' AND a.kode_baja != 'B05K01' AND a.kode_baja != 'B12K01' ");
-
+$table = mysqli_query($koneksi, "SELECT * FROM driver");
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -38,7 +36,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON 
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Inventory Perusahaan</title>
+  <title>List Driver</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -64,8 +62,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
@@ -139,7 +137,6 @@ data-parent="#accordionSidebar">
 </div>
 </div>
 </li>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -164,7 +161,7 @@ data-parent="#accordionSidebar">
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <a href="VInventoryPerusahaan"><h5 class="text-center sm" style="color:white; margin-top: 8px; ">Inventory Perusahaan</h5></a>
+      <?php echo "<a href='VListDriver'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Driver</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -175,8 +172,9 @@ data-parent="#accordionSidebar">
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
+          
         
-        
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -217,46 +215,190 @@ data-parent="#accordionSidebar">
 <div>   
 
 
-   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
-<h5 align="center" >Inventory</h3>
+  <!-- Name Page -->
+  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+
+  <div class="row">
+    <div class="col-md-10">
+     
+   </div>
+   <div class="col-md-2">
+    <!-- Button Pindah Baja -->
+    <div align="right">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Tambah Driver </button> <br> <br>
+    </div>
+    <!-- Form Modal  -->
+    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role ="document">
+       <div class="modal-content"> 
+        <div class="modal-header">
+          <h5 class="modal-title"> Form Tambah Driver </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <!-- Form Input Data -->
+        <div class="modal-body" align="left">
+          <?php  echo "<form action='../proses/proses_tambah_driver' enctype='multipart/form-data' method='POST'>";  ?>
+
+                  <div class="form-group">
+                    <label> ID Driver </label>
+                    <input type="text" name="id_driver" class="form-control" required=""> 
+                     <small>ID driver adalah Z lalu tambahkan angka yang belum di gunakan oleh driver lain</small>
+                  </div>
+                  <div class="form-group">
+                    <label> Nama Driver </label>
+                    <input type="text" name="nama_driver" class="form-control" required="" > 
+                           
+                  </div>
+
+                  <div class="form-group">
+                    <label>Status Driver</label>
+                    <input type="text" name="status" class="form-control" required="">             
+                  </div>
+                  <div class="form-group">
+                    <label>No Polisi</label>
+                    <input type="text" name="no_polisi" class="form-control"  required="" >             
+                  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Tambahkan</button>
+    <button type="reset" class="btn btn-danger"> RESET</button>
+  </div>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-   <thead>
+  <thead>
     <tr>
-      <th>Baja</th>
-      <th>Toko</th>
-      <th>Gudang</th>
-      <th>Global</th>
-      <th>Di Pinjam</th>
-      <th>Pasiv</th>
-      <th>Total</th>
+     <th>ID Driver</th>
+     <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Status</th>
+      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
 
-    <?php while($data2 = mysqli_fetch_array($table)){
-      $nama_baja = $data2['nama_baja'];
-      $toko =$data2['toko'];
-      $gudang = $data2['gudang'];
-      $dipinjam = $data2['dipinjam'];
-      $passive = $data2['passive'];
-      $global = $toko + $gudang;
-      $total = $toko + $gudang + $dipinjam + $passive;
+    <?php while($data = mysqli_fetch_array($table)){
+      $nama_driver = $data['nama_driver'];
+      $no_polisi =$data['no_polisi'];
+      $status = $data['status'];
+      $id_driver = $data['id_driver'];
       echo "<tr>
-      <td style='font-size: 14px'>$nama_baja</td>
-      <td style='font-size: 14px'>$toko</td>
-      <td style='font-size: 14px'>$gudang</td>
-      <td style='font-size: 14px'>$global</td>
-      <td style='font-size: 14px'>$dipinjam</td> 
-      <td style='font-size: 14px'>$passive</td> 
-      <td style='font-size: 14px'>$total</td> 
-        </tr>";
+      <td style='font-size: 14px'>$id_driver</td>
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$status</td>
+      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
+      <!-- Hapus -->
+      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['id_driver']; ?>" data-toggle='tooltip' title='Hapus'>HAPUS</button>
+
+      <div class="modal fade" id="PopUpHapus<?php echo $data['id_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+       <div class="modal-dialog" role ="document">
+         <div class="modal-content"> 
+          <div class="modal-header">
+            <h4 class="modal-title"> <b> Hapus </b> </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true"> &times; </span>
+            </button>
+          </div>
+
+
+          <div class="modal-body">
+            <form action="../proses/hapus_driver" method="POST">
+              <input type="hidden" name="id_driver" value="<?php echo $id_driver; ?>">
+
+              <div class="form-group">
+                <h6> Yakin Ingin Hapus Data? </h6>             
+              </div>
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary"> Hapus </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+        <!-- Hapus -->
+     <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['id_driver']; ?>">Edit</button>
+
+        <!-- Form EDIT DATA -->
+
+        <div class="modal fade" id="formedit<?php echo $data['id_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role ="document">
+            <div class="modal-content"> 
+              <div class="modal-header">
+                <h5 class="modal-title"> Form Edit Data Driver </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+
+              <!-- Form Edit Data -->
+              <div class="modal-body">
+                <form action="../proses/proses_edit_driver" method="POST">
+
+
+                  <div class="form-group">
+                    <label> ID Driver </label>
+                    <input type="text" name="id_driver" class="form-control" value="<?php echo $id_driver; ?>" disabled=""> 
+                    <input type="hidden" name="id_driver" value="<?php echo $id_driver;?>">            
+                  </div>
+                  <div class="form-group">
+                    <label> Nama Driver </label>
+                    <input type="text" name="nama_driver" class="form-control" value="<?php echo $nama_driver;?>" > 
+                           
+                  </div>
+
+                  <div class="form-group">
+                    <label>Status Driver</label>
+                    <input type="text" name="status" class="form-control" value="<?php echo $status;?>" required="" >             
+                  </div>
+                  <div class="form-group">
+                    <label>No Polisi</label>
+                    <input type="text" name="no_polisi" class="form-control"  value="<?php echo $no_polisi;?>" required="" >             
+                  </div>
+
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"> Ubah </button>
+                    <button type="reset" class="btn btn-danger"> RESET</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+    <?php echo  " </td> </tr>";
   }
   ?>
 
 </tbody>
 </table>
 </div>
+<br>
+<br>
+<br>
+
 
 </div>
 

@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include'koneksi.php';
@@ -22,11 +21,9 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+$table = mysqli_query($koneksi, "SELECT * FROM karyawan");
 
-
-$table = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE a.kode_baja != 'L03K01' AND a.kode_baja != 'L12K01' AND a.kode_baja != 'B05K01' AND a.kode_baja != 'B12K01' ");
-
- ?>
+?>
  <!DOCTYPE html>
  <html lang="en">
 
@@ -38,7 +35,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON 
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Inventory Perusahaan</title>
+  <title>List Karyawan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -64,8 +61,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
@@ -139,7 +136,6 @@ data-parent="#accordionSidebar">
 </div>
 </div>
 </li>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -164,7 +160,7 @@ data-parent="#accordionSidebar">
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <a href="VInventoryPerusahaan"><h5 class="text-center sm" style="color:white; margin-top: 8px; ">Inventory Perusahaan</h5></a>
+      <?php echo "<a href='VKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Karyawan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -175,8 +171,9 @@ data-parent="#accordionSidebar">
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
+          
         
-        
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -217,46 +214,163 @@ data-parent="#accordionSidebar">
 <div>   
 
 
-   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
-<h5 align="center" >Inventory</h3>
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-   <thead>
-    <tr>
-      <th>Baja</th>
-      <th>Toko</th>
-      <th>Gudang</th>
-      <th>Global</th>
-      <th>Di Pinjam</th>
-      <th>Pasiv</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
+  <!-- Name Page -->
+  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-    <?php while($data2 = mysqli_fetch_array($table)){
-      $nama_baja = $data2['nama_baja'];
-      $toko =$data2['toko'];
-      $gudang = $data2['gudang'];
-      $dipinjam = $data2['dipinjam'];
-      $passive = $data2['passive'];
-      $global = $toko + $gudang;
-      $total = $toko + $gudang + $dipinjam + $passive;
-      echo "<tr>
-      <td style='font-size: 14px'>$nama_baja</td>
-      <td style='font-size: 14px'>$toko</td>
-      <td style='font-size: 14px'>$gudang</td>
-      <td style='font-size: 14px'>$global</td>
-      <td style='font-size: 14px'>$dipinjam</td> 
-      <td style='font-size: 14px'>$passive</td> 
-      <td style='font-size: 14px'>$total</td> 
-        </tr>";
+  <div class="row">
+    <div class="col-md-10">
+     
+   </div>
+   <div class="col-md-2">
+   <!-- Button Input Data -->
+      <div align="right">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputkaryawan"> <i class="fas fa-plus-square mr-2"></i> Input Karyawan </button> <br> <br>
+      </div>
+      <div class="modal fade" id="inputkaryawan" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+       <div class="modal-dialog" role ="document">
+         <div class="modal-content"> 
+          <div class="modal-header">
+            <h5 class="modal-title"> Form Input Karyawan </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+
+          <!-- Form Input Data -->
+          <div class="modal-body" align="left">
+            <form action="../proses/proses_input_karyawan.php" method="POST">
+              <div class="form-group">
+                <label> ID Karyawan</label>
+                <input type="text" name="id" class="form-control" placeholder="Masukkan ID Karyawan..." required="" >
+                <small>kode ID sesuai jabatan liat id terakhir di List Karyawan</small>             
+              </div>
+              <div class="form-group">
+                <label> Nama Karyawan </label>
+                <input type="text" name="nama_karyawan" class="form-control" placeholder="Masukkan Nama..." required="">             
+              </div>
+
+              <div class="form-group">
+               <label> Jabatan </label>
+               <input type="text" name="jabatan" class="form-control" placeholder="Masukkan Jabatan..." required=""> 
+             </div>
+
+             <div class="modal-footer">
+              <button type="submit" class="btn btn-primary"> SUBMIT</button>
+              <button type="reset" class="btn btn-danger"> RESET</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- Tabel -->    
+<table id="example"  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>  
+          <th style="font-size: 11px" scope="col">ID Karyawan</th>
+          <th style="font-size: 11px" scope="col">Nama Karyawan</th>
+          <th style="font-size: 11px" scope="col">Jabatan Karywan</th>
+          <th style="font-size: 11px" scope="col">Status Karywan</th>
+          <th style="font-size: 11px" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <?php while($data2 = mysqli_fetch_array($table)){
+          $id_karyawan = $data2['id_karyawan'];
+          $nama_karyawan =$data2['nama_karyawan'];
+          $jabatan = $data2['jabatan'];
+          $status_karyawan = $data2['status_karyawan'];
+          echo "<tr>
+          <td style='font-size: 12px'>$id_karyawan</td>
+          <td style='font-size: 12px'>$nama_karyawan</td>
+          <td style='font-size: 12px'>$jabatan</td>
+          <td style='font-size: 12px'>$status_karyawan</td>
+          <td style='font-size: 12px'>"; ?>
+
+          <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data2['id_karyawan']; ?>">Edit</button>
+
+          <!-- Form EDIT DATA -->
+
+          <div class="modal fade" id="formedit<?php echo $data2['id_karyawan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+           <div class="modal-dialog" role ="document">
+             <div class="modal-content"> 
+              <div class="modal-header">
+                <h5 class="modal-title"> Form Edit Karyawan </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+              <?php
+              include 'koneksi.php';
+              $id_edit = $data2['id_karyawan'];
+              $queryE = mysqli_query($koneksi, "SELECT * FROM karyawan where id_karyawan = '$id_edit'");
+              $dataE = mysqli_fetch_array($queryE);
+              ?> 
+
+              <!-- Form Edit Data -->
+              <div class="modal-body">
+                <form action="../proses/proses_edit_karyawan.php" method="POST">
+                  
+
+                  <div class="form-group">
+                    <label> ID Karyawan </label>
+                    <input type="text" name="id_karyawan" class="form-control" value="<?php echo $dataE['id_karyawan'] ?>" disabled=""> 
+                    <input type="hidden" name="id_karyawan" value="<?php echo $dataE['id_karyawan'];?>">            
+                  </div>
+
+                  <div class="form-group">
+                    <label>Nama Karyawan</label>
+                    <input type="text" name="nama_karyawan" class="form-control" value="<?php echo $dataE['nama_karyawan'] ?>" required="" >             
+                  </div>
+
+                  <div class="form-group">
+                    <label>Jabatan</label>
+                    <input type="text" name="jabatan" class="form-control" value="<?php echo $dataE['jabatan'] ?>" required=""> 
+                  </div>
+
+                  <div class="form-group">
+
+                  <label>Status Karyawan</label>
+                  <select id="status_karyawan" name="status_karyawan" class="form-control">
+                    <?php $dataSelect = $data2['status_karyawan']; ?>
+                    <option <?php echo ($dataSelect == 'Masih Bekerja') ? "selected": "" ?> >Masih Bekerja</option>
+                    <option <?php echo ($dataSelect == 'Berhenti') ? "selected": "" ?> >Berhenti</option>
+                  </select>
+
+                  </div> 
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"> Ubah </button>
+                    <button type="reset" class="btn btn-danger"> RESET</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+     
+
+
+      <?php echo "</td> 
+      </tr>";
   }
   ?>
 
 </tbody>
 </table>
 </div>
+<br>
+<br>
+<br>
+
 
 </div>
 
