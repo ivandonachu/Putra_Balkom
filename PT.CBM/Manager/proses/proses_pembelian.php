@@ -1540,7 +1540,7 @@ elseif ($pembayaran == 'Kas di Tangan') {
 
 elseif($referensi == 'MES'){
 
-	if($pembayaran == 'Bank BRI MES') {
+	if($pembayaran == 'Bank BRI MES' || $pembayaran = 'Bank Mandiri') {
 
 	if ($kode_baja == 'L03K01') {
 		//pencatatan pembelian
@@ -1841,7 +1841,7 @@ elseif($referensi == 'MES'){
 
 elseif($referensi == 'PBR'){
 
-	if($pembayaran == 'Bank BRI PBR') {
+	if($pembayaran == 'Bank BRI PBR'  || $pembayaran = 'Bank Mandiri') {
 
 	if ($kode_baja == 'L03K01') {
 		//pencatatan pembelian
