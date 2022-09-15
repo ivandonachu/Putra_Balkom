@@ -296,22 +296,27 @@ $kode_perta = $data_perta['kode_perta'];
       <br>
 
       <div class="row">
-         <div class="col-md-4">
+         <div class="col-md-3">
         <label>Nama Barang</label>
           <select id="nama_barang" name="nama_barang" class="form-control">
             <option>Pertamax</option>
           </select>
           </div> 
           
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label>Jual</label>
              <input class="form-control form-control-sm" type="float" id="jual" name="jual" required="">
         </div>                
 
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label>Harga</label>
           <input class="form-control form-control-sm" type="float" id="harga" name="harga" required="">
+        </div>  
+
+        <div class="col-md-3">
+          <label>Total Uang Diskon</label>
+          <input class="form-control form-control-sm" type="float" id="uang_diskon" name="uang_diskon" required="">
         </div>    
       </div>
 
@@ -333,7 +338,7 @@ $kode_perta = $data_perta['kode_perta'];
       </div>
 
       <div class="row">
-      <div class="col-md-4">
+       <div class="col-md-4">
           <label>Sonding Awal</label>
           <input class="form-control form-control-sm" type="float" id="sonding_awal" name="sonding_awal" required="">
 
@@ -349,6 +354,19 @@ $kode_perta = $data_perta['kode_perta'];
           <input class="form-control form-control-sm" type="float" id="sirkulasi" name="sirkulasi" required="">
 
         </div>         
+      </div>
+
+      <div class="row">
+       <div class="col-md-6">
+          <label>Losis Penyimpanan</label>
+          <input class="form-control form-control-sm" type="float" id="losis_penyimpanan" name="losis_penyimpanan" required="">
+
+        </div>    
+        <div class="col-md-6">
+          <label>Losis Penjualan</label>
+             <input class="form-control form-control-sm" type="float" id=" losis_penjualan" name="losis_penjualan" required="">
+        </div>                
+   
       </div>
 
       <div>
@@ -392,6 +410,7 @@ $kode_perta = $data_perta['kode_perta'];
       <th  style="font-size: 11px">Terjual</th>
       <th  style="font-size: 11px">Harga</th>
       <th  style="font-size: 11px">Total</th>
+      <th  style="font-size: 11px">Total Uang Diskon</th>
       <th  style="font-size: 11px">Stok awal</th>
       <th  style="font-size: 11px">Stok Akhir</th>
       <th  style="font-size: 11px">Bongkaran</th>
@@ -435,7 +454,10 @@ $kode_perta = $data_perta['kode_perta'];
       $losis_penyimpanan = $data['losis_penyimpanan'];
       $losis_penjualan = $data['losis_penjualan'];
       $harga = $data['harga'];
+      $uang_diskon = $data['uang_diskon'];
+     
       $jumlah = $qty * $harga;
+     
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
       $status = $data['persetujuan'];
@@ -444,33 +466,41 @@ $kode_perta = $data_perta['kode_perta'];
       $total_losis_penjualan = $total_losis_penjualan + $losis_penjualan;
       if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
-          $uang_nb_max = $uang_nb_max + ($jumlah * $qty); 
+          $uang_nb_max = $uang_nb_max + $jumlah ; 
           $terjual_nb_max =  $terjual_nb_max + $qty;
-         
+
+          $total_uang_diskon_nb_max = $total_uang_diskon_nb_max + $uang_diskon;
+   
         }
         else{
           $uang_nb_dex =  $uang_nb_dex + $jumlah; 
           $terjual_nb_dex = $terjual_nb_dex + $qty;
-       
+
+          $total_uang_diskon_nb_dex = $total_uang_diskon_nb_dex + $uang_diskon;
+        
+     
         }
         
       }
       else if($kode_perta == 'bedilan'){
         $uang_be = $uang_be + $jumlah; 
         $terjual_be = $terjual_be + $qty;
+        $total_uang_diskon_be = $total_uang_diskon_be + $uang_diskon;
     
       }
       else if($kode_perta == 'muaradua'){
         $uang_md = $uang_md + $jumlah; 
         $terjual_md = $terjual_md + $qty;
+        $total_uang_diskon_md = $total_uang_diskon_md + $uang_diskon;
        
       }
       else if($kode_perta == 'sumberjaya'){
         $uang_sj = $uang_sj + $jumlah; 
         $terjual_sj = $terjual_sj + $qty;
+        $total_uang_diskon_sj = $total_uang_diskon_sj + $uang_diskon;
      
       }
-
+  
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
       <td style='font-size: 11px' align = 'center'>$tanggal</td>
@@ -481,6 +511,7 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>$qty/L</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($uang_diskon); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
       <td style='font-size: 11px' align = 'center'>$bongkaran/L</td>
@@ -492,6 +523,9 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "<td style='font-size: 11px'>"; ?>
+
+
+      
 
         <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Lihat</button>
 
@@ -538,6 +572,112 @@ $kode_perta = $data_perta['kode_perta'];
 
 
       <?php echo "<td style='font-size: 12px'>"; ?>
+
+
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formeditx<?php echo $no_penjualan ?>">Edit</button>
+
+<!-- Form EDIT DATA -->
+
+<div class="modal fade" id="formeditx<?php echo $no_penjualan ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+ <div class="modal-dialog" role ="document">
+   <div class="modal-content"> 
+    <div class="modal-header">
+      <h5 class="modal-title"> Form Edit Karyawan </h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+
+   
+    <!-- Form Edit Data -->
+    <div class="modal-body">
+      <form action="../proses/edit_penjualan"  enctype="multipart/form-data" method="POST">
+  
+        <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan;?>">
+        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+        <input type="hidden" name="lokasi" value="<?php echo $lokasi;?>">
+        <input type="hidden" name="nama_barang" value="<?php echo $nama_barang; ?>">
+       
+
+             
+          
+          <div class="row">
+          <div class="col-md-4">
+          <label>Stok Awal</label>
+          <input class="form-control form-control-sm" type="float" id="stok_awal" name="stok_awal" value="<?php echo $stok_awal;?>" required="">
+          </div>
+          <div class="col-md-4">
+          <label>Stok Akhir</label>
+          <input class="form-control form-control-sm" type="float" id="stok_akhir" name="stok_akhir" value="<?php echo $stok_akhir;?>" required="">
+          </div>
+          <div class="col-md-4">
+          <label>Bongkaran</label>
+          <input class="form-control form-control-sm" type="float" id="bongkaran" name="bongkaran" value="<?php echo $bongkaran;?>" required="">
+          </div>
+          </div>
+          <br>
+          
+          <div class="row">
+          <div class="col-md-4">
+          <label>Sonding Awal</label>
+          <input class="form-control form-control-sm" type="float" id="sonding_awal" name="sonding_awal" value="<?php echo $sonding_awal;?>"   required="">
+          </div>
+          <div class="col-md-4">
+          <label>Sonding Akhir</label>
+          <input class="form-control form-control-sm" type="float" id="sonding_akhir" name="sonding_akhir" value="<?php echo $sonding_akhir;?>" required="">
+          </div>
+          <div class="col-md-4">
+          <label>Sirkulasi</label>
+          <input class="form-control form-control-sm" type="float" id="sirkulasi" name="sirkulasi" value="<?php echo $sirkulasi;?>" required="">
+          </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+          <div class="col-md-4">
+          <label>Losis Penyimpanan</label>
+          <input class="form-control form-control-sm" type="float" id="losis_penyimpanan" name="losis_penyimpanan" value="<?php echo $losis_penyimpanan;?>"   required="">
+          </div>
+          <div class="col-md-4">
+          <label>Losis Penjualan</label>
+          <input class="form-control form-control-sm" type="float" id="losis_penjualan" name="losis_penjualan" value="<?php echo $losis_penjualan;?>" required="">
+          </div>
+          <div class="col-md-4">
+          <label>Total Uang Diskon</label>
+          <input class="form-control form-control-sm" type="float" id="uang_diskon" name="uang_diskon" value="<?php echo $uang_diskon;?>" required="">
+          </div>
+          </div>
+          <br>
+          <div>
+            <label>Keterangan</label>
+            <div class="form-group">
+            <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+            </div>
+            </div>
+
+            <br>
+
+
+
+            <div>
+                <label>Upload File ODO</label> 
+                <input type="file" name="file"> 
+            </div> 
+                        
+          <br>
+          <br>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Ubah </button>
+          <button type="reset" class="btn btn-danger"> RESET</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
     
 <!-- Button Hapus -->
 <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_penjualan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
@@ -545,7 +685,7 @@ $kode_perta = $data_perta['kode_perta'];
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+      <h4 class="modal-title"> <b> Hapus Data Penjualan </b> </h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="close">
         <span aria-hidden="true"> &times; </span>
       </button>
@@ -658,7 +798,7 @@ $kode_perta = $data_perta['kode_perta'];
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex ); ?></td>
      
   </tr>
   <tr>
@@ -763,31 +903,31 @@ $kode_perta = $data_perta['kode_perta'];
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex - $total_uang_diskon_nb_dex); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max - $total_uang_diskon_nb_max); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj - $total_uang_diskon_sj); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Bedilan</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be - $total_uang_diskon_be); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md - $total_uang_diskon_md); ?></td>
      
   </tr>
 

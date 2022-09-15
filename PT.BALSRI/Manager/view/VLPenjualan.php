@@ -442,32 +442,41 @@ else{
       $total_losis_penyimpanan = $total_losis_penyimpanan + $losis_penyimpanan;
       $total_losis_penjualan = $total_losis_penjualan + $losis_penjualan;
     
+      
       if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
-          $uang_nb_max = $uang_nb_max + $jumlah;
+          $uang_nb_max = $uang_nb_max + $jumlah ; 
           $terjual_nb_max =  $terjual_nb_max + $qty;
-         
+
+          $total_uang_diskon_nb_max = $total_uang_diskon_nb_max + $uang_diskon;
+   
         }
         else{
-          $uang_nb_dex = $uang_nb_dex + $jumlah; 
-          $terjual_nb_dex = $terjual_nb_dex+ $qty;
-       
+          $uang_nb_dex =  $uang_nb_dex + $jumlah; 
+          $terjual_nb_dex = $terjual_nb_dex + $qty;
+
+          $total_uang_diskon_nb_dex = $total_uang_diskon_nb_dex + $uang_diskon;
+        
+     
         }
         
       }
       else if($kode_perta == 'bedilan'){
         $uang_be = $uang_be + $jumlah; 
         $terjual_be = $terjual_be + $qty;
+        $total_uang_diskon_be = $total_uang_diskon_be + $uang_diskon;
     
       }
       else if($kode_perta == 'muaradua'){
         $uang_md = $uang_md + $jumlah; 
         $terjual_md = $terjual_md + $qty;
+        $total_uang_diskon_md = $total_uang_diskon_md + $uang_diskon;
        
       }
       else if($kode_perta == 'sumberjaya'){
         $uang_sj = $uang_sj + $jumlah; 
         $terjual_sj = $terjual_sj + $qty;
+        $total_uang_diskon_sj = $total_uang_diskon_sj + $uang_diskon;
      
       }
 
@@ -718,7 +727,8 @@ else{
 <hr>
 <div style="margin-right: 100px; margin-left: 100px;">
 <h6 align="Center"  >Laporan Uang Penjualan </h6>
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
       <th style='font-size: 11px'>Pertashop</th>
       <th style='font-size: 11px'>Nama Barang</th>
@@ -731,31 +741,31 @@ else{
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex - $total_uang_diskon_nb_dex); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max - $total_uang_diskon_nb_max); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj - $total_uang_diskon_sj); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Bedilan</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be - $total_uang_diskon_be); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md); ?></td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md - $total_uang_diskon_md); ?></td>
      
   </tr>
 

@@ -50,14 +50,14 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
   // Penjualan Pertamax
-  $table = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $table = mysqli_query($koneksiperta, "SELECT qty , harga, uang_diskon FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
   
   $total_pertamax=0;
   while($data = mysqli_fetch_array($table)){
     $qty = $data['qty'];
     $harga = $data['harga'];
-
-    $total_pertamax = $total_pertamax + ($qty * $harga);
+    $uang_diskon = $data['uang_diskon'];
+    $total_pertamax = ($total_pertamax + ($qty * $harga)) - $uang_diskon ;
 
   }
 
@@ -68,8 +68,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
-
-    $total_dexlite = $total_dexlite + ($qty * $harga);
+    $uang_diskon = $data['uang_diskon'];
+    $total_pertamax = ($total_pertamax + ($qty * $harga)) - $uang_diskon ;
 
   }
 
