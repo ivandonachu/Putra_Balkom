@@ -299,7 +299,7 @@ $kode_perta = $data_perta['kode_perta'];
          <div class="col-md-3">
         <label>Nama Barang</label>
           <select id="nama_barang" name="nama_barang" class="form-control">
-            <option>Pertamax</option>
+            <option>Dexlite</option>
           </select>
           </div> 
           
