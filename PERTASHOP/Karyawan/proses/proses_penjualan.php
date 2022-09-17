@@ -75,15 +75,9 @@ $kode_perta = $data_perta['kode_perta'];
 
             
           $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$uang_diskon','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimpanan','$losis_penjualan','$keterangan','$file',0)");
-                
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
-                $data_stok = mysqli_fetch_array($result2);
-                $stok_awal = $data_stok['stok'];
-                
-                $stok_baru = $stok_awal - ($jual);
 
               
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$sonding_akhir' WHERE kode_barang = '6'");
                 	if ($query != "") {
 			echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -92,14 +86,8 @@ $kode_perta = $data_perta['kode_perta'];
 
                   
                 $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$uang_diskon','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimpanan','$losis_penjualan','$keterangan','$file',0)");
-                      
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
-                $data_stok = mysqli_fetch_array($result2);
-                $stok_awal = $data_stok['stok'];
-                
-               $stok_baru = $stok_awal - ($jual);
-                
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
+
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$sonding_akhir' WHERE kode_barang = '7'");
                 	if ($query != "") {
 				echo "<script> window.location='../view/VPenjualanDex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -108,13 +96,9 @@ $kode_perta = $data_perta['kode_perta'];
 
           $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$uang_diskon','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimpanan','$losis_penjualan','$keterangan','$file',0)");
                 
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
-                $data_stok = mysqli_fetch_array($result2);
-                $stok_awal = $data_stok['stok'];
+
                 
-                $stok_baru = $stok_awal - ($jual);
-                
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$sonding_akhir' WHERE kode_barang = '8'");
                 if ($query != "") {
 				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -130,13 +114,8 @@ $kode_perta = $data_perta['kode_perta'];
             
           $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$uang_diskon','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimpanan','$losis_penjualan','$keterangan','$file',0)");
                 
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
-                $data_stok = mysqli_fetch_array($result2);
-                $stok_awal = $data_stok['stok'];
-                
-               $stok_baru = $stok_awal - ($jual);
-                
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
+
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$sonding_akhir' WHERE kode_barang = '9'");
                 if ($query != "") {
 				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
@@ -152,13 +131,9 @@ $kode_perta = $data_perta['kode_perta'];
             
           $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$uang_diskon','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimpanan','$losis_penjualan','$keterangan','$file',0)");
                 
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
-                $data_stok = mysqli_fetch_array($result2);
-                $stok_awal = $data_stok['stok'];
+
                 
-                $stok_baru = $stok_awal - ($jual);
-                
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$sonding_akhir' WHERE kode_barang = '10'");
                 if ($query != "") {
 				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
