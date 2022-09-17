@@ -595,7 +595,7 @@ else{
 <div style="overflow-x: auto" align = 'center'>
 <table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
-      <th>Lokasi</th>
+  <th>Lokasi</th>
       <th>Nama Barang</th>
       <th>STOK</th>
     </tr>
@@ -604,9 +604,11 @@ else{
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_barang =$data['nama_barang'];
       $stok = $data['stok'];
+      $lokasi = $data['lokasi'];
 
 
       echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$lokasi</td>
       <td style='font-size: 14px' align = 'center'>$nama_barang</td>
       <td style='font-size: 14px' align = 'center'>$stok</td>
      
