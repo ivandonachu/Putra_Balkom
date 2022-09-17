@@ -414,7 +414,7 @@ else{
     $terjual_sj = 0;
     $total_losis_penjualan = 0;
     $total_losis_penyimpanan = 0;
-  
+    $total_uang_diskon_nb_max = 0;
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
@@ -773,7 +773,61 @@ else{
 
 </tbody>
 </table>
+</div>
+</div>
 
+
+<br>
+<hr>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center"  >Laporan Diskon Penjualan </h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Diskon</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang( $total_uang_diskon_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_md); ?></td>
+     
+  </tr>
+
+
+
+</tbody>
+</table>
+</div>
 </div>
 <br>
 </div>
