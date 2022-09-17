@@ -37,7 +37,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $result = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
-   $table2 = mysqli_query($koneksi,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
+$table2 = mysqli_query($koneksi,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta");
 }
 
 else{
@@ -45,7 +45,7 @@ else{
   $result = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
 $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
-   $table2 = mysqli_query($koneksi,"SELECT * FROM barang WHERE kode_perta = '$kode_perta'");
+$table2 = mysqli_query($koneksi,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta");
 
 }
 

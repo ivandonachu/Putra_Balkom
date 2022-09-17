@@ -35,13 +35,13 @@ else if (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi'");
-   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
+  $table2 = mysqli_query($koneksi,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta");
 }
 
 else{
   $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi' ");
 
-   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
+  $table2 = mysqli_query($koneksi,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta");
 
 }
 
@@ -594,6 +594,7 @@ else{
 <div style="overflow-x: auto" align = 'center'>
 <table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
+  <th>Lokasi</th>
       <th>Nama Barang</th>
       <th>STOK</th>
     </tr>
@@ -602,9 +603,11 @@ else{
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_barang =$data['nama_barang'];
       $stok = $data['stok'];
+      $lokasi = $data['lokasi'];
 
 
       echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$lokasi</td>
       <td style='font-size: 14px' align = 'center'>$nama_barang</td>
       <td style='font-size: 14px' align = 'center'>$stok</td>
      
