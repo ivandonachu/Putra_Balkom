@@ -32,16 +32,21 @@ else if (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
  $lokasi = $_POST['lokasi'];
 } 
+else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+$lokasi = 'Nusa Bakti';
+}
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi'");
-  $table2 = mysqli_query($koneksi,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta");
+  $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta");
 }
 
 else{
   $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi' ");
 
-  $table2 = mysqli_query($koneksi,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta");
+  $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang a INNER JOIN pertashop b ON b.kode_perta = a.kode_perta");
 
 }
 
@@ -369,10 +374,10 @@ else{
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
-              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
-      <th  style="font-size: 11px" >No</th>
+    <th  style="font-size: 11px" >No</th>
       <th  style="font-size: 11px">Tanggal</th>
       <th  style="font-size: 11px">Kode Pertashop</th>   
       <th  style="font-size: 11px">Lokasi</th>
@@ -381,17 +386,19 @@ else{
       <th  style="font-size: 11px">Terjual</th>
       <th  style="font-size: 11px">Harga</th>
       <th  style="font-size: 11px">Total</th>
+      <th  style="font-size: 11px">Total Uang Diskon</th>
       <th  style="font-size: 11px">Stok awal</th>
       <th  style="font-size: 11px">Stok Akhir</th>
       <th  style="font-size: 11px">Bongkaran</th>
       <th  style="font-size: 11px">sonding Awal</th>
       <th  style="font-size: 11px">Sonding Akhir</th>
-      <th  style="font-size: 11px">Sirkulasi</th> 
+      <th  style="font-size: 11px">Sirkulasi</th>
       <th  style="font-size: 11px">Losis Penyimpanan</th>
       <th  style="font-size: 11px">Losis Penjualan</th>
       <th  style="font-size: 11px">KET</th>
       <th  style="font-size: 11px">File</th>
       <th  style="font-size: 11px">Status</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -412,9 +419,9 @@ else{
     $terjual_md = 0;
     $uang_sj = 0 ;
     $terjual_sj = 0;
+    $total_uang_diskon_nb_max = 0 ;
     $total_losis_penjualan = 0;
     $total_losis_penyimpanan = 0;
-    $total_uang_diskon_nb_dex = 0;
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
@@ -434,6 +441,7 @@ else{
       $losis_penyimpanan = $data['losis_penyimpanan'];
       $losis_penjualan = $data['losis_penjualan'];
       $harga = $data['harga'];
+      $uang_diskon = $data['uang_diskon'];
       $jumlah = $qty * $harga;
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
@@ -442,7 +450,6 @@ else{
       $total_losis_penyimpanan = $total_losis_penyimpanan + $losis_penyimpanan;
       $total_losis_penjualan = $total_losis_penjualan + $losis_penjualan;
     
-      
       if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
           $uang_nb_max = $uang_nb_max + $jumlah ; 
@@ -490,6 +497,7 @@ else{
       <td style='font-size: 11px' align = 'center'>$qty/L</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($uang_diskon); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
       <td style='font-size: 11px' align = 'center'>$bongkaran/L</td>

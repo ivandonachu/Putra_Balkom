@@ -33,7 +33,11 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
  $lokasi = $_POST['lokasi'];
 } 
-
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  $lokasi = 'Nusa Bakti';
+  }
 
 function formatuang($angka){
   $uang = "Rp " . number_format($angka,2,',','.');
