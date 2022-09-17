@@ -14,7 +14,7 @@ $lokasi =  $_POST['lokasi'];
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 date_default_timezone_set('Asia/Jakarta');
-$tanggal = date("Y-m-d h:i:s");
+$tanggal = date("Y-m-d G:i:s");
 $nama_karyawan = $_POST['nama_karyawan'];
 $status = $_POST['status'];
 
