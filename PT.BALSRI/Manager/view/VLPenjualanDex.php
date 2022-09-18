@@ -398,7 +398,7 @@ else{
       <th  style="font-size: 11px">KET</th>
       <th  style="font-size: 11px">File</th>
       <th  style="font-size: 11px">Status</th>
-      <th></th>
+
     </tr>
   </thead>
   <tbody>
