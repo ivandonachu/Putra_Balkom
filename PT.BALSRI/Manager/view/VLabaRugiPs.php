@@ -24,12 +24,16 @@ $nama = $data['nama_karyawan'];
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
+ $bulan_sebelum_awal = date('Y-m-d', strtotime('-1 month', strtotime($tanggal_awal))); 
+  $bulan_sebelum_akhir =  date('Y-m-d', strtotime('-1 month', strtotime($tanggal_akhir))); 
  $lokasi = $_GET['lokasi'];
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
+ $bulan_sebelum_awal = date('Y-m-d', strtotime('-1 month', strtotime($tanggal_awal))); 
+  $bulan_sebelum_akhir =  date('Y-m-d', strtotime('-1 month', strtotime($tanggal_akhir))); 
  $lokasi = $_POST['lokasi'];
 } 
 
@@ -236,7 +240,7 @@ else{
 
    //Sisa stok pertamax
 
-   $tabley1 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+   $tabley1 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$bulan_sebelum_awal' AND '$bulan_sebelum_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
 
    $datay1 = mysqli_fetch_array($tabley1);
    $no_penjualan_akhir_max = $datay1['penjualan_akhir'];
@@ -248,7 +252,7 @@ else{
    $total_uang_stok_max = $stok_akhir_max * $harga_stok_akhir_max;
 
    //Sisa stok Dexlite
-   $tabley2 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+   $tabley2 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$bulan_sebelum_awal' AND '$bulan_sebelum_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
 
    $datay2 = mysqli_fetch_array($tabley2);
    $no_penjualan_akhir_dex = $datay2['penjualan_akhir'];
