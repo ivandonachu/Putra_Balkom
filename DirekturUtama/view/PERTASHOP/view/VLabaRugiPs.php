@@ -54,8 +54,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   while($data = mysqli_fetch_array($table)){
     $qty = $data['qty'];
     $harga = $data['harga'];
-
-    $total_pertamax = $total_pertamax + ($qty * $harga);
+    $uang_diskon = $data['uang_diskon'];
+    $total_pertamax = ($total_pertamax + ($qty * $harga)) - $uang_diskon ;
 
   }
 
@@ -66,8 +66,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
-
-    $total_dexlite = $total_dexlite + ($qty * $harga);
+    $uang_diskon = $data['uang_diskon'];
+    $total_dexlite = ($total_dexlite + ($qty * $harga)) - $uang_diskon ;
 
   }
 
@@ -198,9 +198,9 @@ else{
   while($data = mysqli_fetch_array($table)){
     $qty = $data['qty'];
     $harga = $data['harga'];
-
+    $uang_diskon = $data['uang_diskon'];
     $pertamax_terjual = $pertamax_terjual + $qty;
-    $total_pertamax = $total_pertamax + ($qty * $harga);
+    $total_pertamax = ($total_pertamax + ($qty * $harga)) - $uang_diskon ;
 
 
   }
@@ -213,8 +213,9 @@ else{
   while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
+    $uang_diskon = $data['uang_diskon'];
     $dexlite_terjual = $dexlite_terjual + $qty;
-    $total_dexlite = $total_dexlite + ($qty * $harga);
+    $total_dexlite = ($total_dexlite + ($qty * $harga)) - $uang_diskon ;
   }
    //ngecor Pertamax
    $tablex1 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor, SUM(jumlah) AS qty_cor FROM ngecor  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi' ");

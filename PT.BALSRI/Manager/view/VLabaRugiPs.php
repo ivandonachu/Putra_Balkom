@@ -21,7 +21,6 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -33,11 +32,7 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
  $lokasi = $_POST['lokasi'];
 } 
-else{
-    $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-  $lokasi = 'Nusa Bakti';
-  }
+
 
 function formatuang($angka){
   $uang = "Rp " . number_format($angka,2,',','.');
@@ -54,7 +49,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
   // Penjualan Pertamax
-  $table = mysqli_query($koneksiperta, "SELECT qty , harga, uang_diskon FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $table = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
   
   $total_pertamax=0;
   while($data = mysqli_fetch_array($table)){
@@ -73,20 +68,20 @@ if ($tanggal_awal == $tanggal_akhir) {
     $qty = $data2['qty'];
     $harga = $data2['harga'];
     $uang_diskon = $data['uang_diskon'];
-    $total_pertamax = ($total_pertamax + ($qty * $harga)) - $uang_diskon ;
+    $total_dexlite = ($total_dexlite + ($qty * $harga)) - $uang_diskon ;
 
   }
 
   //ngecor Pertamax
 
-  $tablex1 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $tablex1 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi' ");
   
   $datax1 = mysqli_fetch_array($tablex1);
   $total_ngecor_max = $datax1['total_cor'];
 
 
   //ngecor Dexlite
-  $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  $tablex2 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor FROM ngecor  WHERE tanggal = '$tanggal_awal' AND nama_barang = 'Dexlite' AND lokasi_cor = '$lokasi' ");
 
   $datax2 = mysqli_fetch_array($tablex2);
   $total_ngecor_dex = $datax1['total_cor'];
@@ -204,9 +199,9 @@ else{
   while($data = mysqli_fetch_array($table)){
     $qty = $data['qty'];
     $harga = $data['harga'];
-
+    $uang_diskon = $data['uang_diskon'];
     $pertamax_terjual = $pertamax_terjual + $qty;
-    $total_pertamax = $total_pertamax + ($qty * $harga);
+    $total_pertamax = ($total_pertamax + ($qty * $harga)) - $uang_diskon ;
 
 
   }
@@ -219,13 +214,15 @@ else{
   while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
+    $uang_diskon = $data['uang_diskon'];
     $dexlite_terjual = $dexlite_terjual + $qty;
-    $total_dexlite = $total_dexlite + ($qty * $harga);
-    
+    $total_dexlite = ($total_dexlite + ($qty * $harga)) - $uang_diskon ;
+  }
    //ngecor Pertamax
    $tablex1 = mysqli_query($koneksiperta, "SELECT SUM(total) AS total_cor, SUM(jumlah) AS qty_cor FROM ngecor  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi' ");
   
    $datax1 = mysqli_fetch_array($tablex1);
+   
    $total_ngecor_max = $datax1['total_cor'];
    $qty_ngecor_max = $datax1['qty_cor'];
  
@@ -269,7 +266,7 @@ else{
    if (!isset($datax32['jumlah_setoran'])) {
    $jumlah_setoran = 0;
    }
-  }
+  
   //dividen pertamax
   $table100 = mysqli_query($koneksiperta, "SELECT  SUM(qty) AS total_terjual FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
   $data100 = mysqli_fetch_array($table100);
@@ -319,7 +316,7 @@ else{
   }
 
    // Pembelian Dexlite
-  $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi' ");
+  $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi'  ");
   
   $total_dexlite_b=0;
   $pembelian_dexlite =0;
@@ -357,16 +354,23 @@ else{
     if (!isset($data5['jumlah_sewa'])) {
     $jml_sewa = 0;
     }
-    $jml_sewa = $jml_sewa + $dividen_pertamax + $dividen_Dexlite;
+
    //pengeluran Alat Tulis Kantor
-   $table6 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor'  ");
+   $table6 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' AND b.lokasi = '$lokasi'   ");
    $data6 = mysqli_fetch_array($table6);
    $jml_atk = $data6['jumlah_atk'];
     if (!isset($data6['jumlah_atk'])) {
     $jml_atk = 0;
     }
+    //pengeluran Gaji
+   $table7 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_gaji FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Gaji Karyawan'  AND b.lokasi = '$lokasi'  ");
+   $data7 = mysqli_fetch_array($table7);
+   $jumlah_gaji = $data7['jumlah_gaji'];
+    if (!isset($data7['jumlah_gaji'])) {
+    $jumlah_gaji = 0;
+    }
 
-    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa ;
+    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa + $jumlah_gaji ;
 
 
     $laba_bersih_sebelum_pajak = $laba_kotor_dex + $laba_kotor_max - $total_biaya_usaha_final;
@@ -412,9 +416,8 @@ else{
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
-          <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
@@ -581,7 +584,6 @@ else{
    
 
  <?php } ?>
-
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -1151,7 +1153,7 @@ else{
                                     <td class="text-left">GAJI</td>
                                     <td class="text-left"></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?=  formatuang(0); ?></td>
+                                    <td class="text-left"><?=  formatuang($jumlah_gaji); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                     
                                 </tr>
