@@ -590,70 +590,10 @@ $table2 = mysqli_query($koneksi,"SELECT * FROM barang a INNER JOIN pertashop b O
         <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan;?>">
         <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-        <input type="hidden" name="lokasi" value="<?php echo $lokasi;?>">
         <input type="hidden" name="nama_barang" value="<?php echo $nama_barang; ?>">
        
 
              
-          
-          <div class="row">
-          <div class="col-md-4">
-          <label>Stok Awal</label>
-          <input class="form-control form-control-sm" type="float" id="stok_awal" name="stok_awal" value="<?php echo $stok_awal;?>" required="">
-          </div>
-          <div class="col-md-4">
-          <label>Stok Akhir</label>
-          <input class="form-control form-control-sm" type="float" id="stok_akhir" name="stok_akhir" value="<?php echo $stok_akhir;?>" required="">
-          </div>
-          <div class="col-md-4">
-          <label>Bongkaran</label>
-          <input class="form-control form-control-sm" type="float" id="bongkaran" name="bongkaran" value="<?php echo $bongkaran;?>" required="">
-          </div>
-          </div>
-          <br>
-          
-          <div class="row">
-          <div class="col-md-4">
-          <label>Sonding Awal</label>
-          <input class="form-control form-control-sm" type="float" id="sonding_awal" name="sonding_awal" value="<?php echo $sonding_awal;?>"   required="">
-          </div>
-          <div class="col-md-4">
-          <label>Sonding Akhir</label>
-          <input class="form-control form-control-sm" type="float" id="sonding_akhir" name="sonding_akhir" value="<?php echo $sonding_akhir;?>" required="">
-          </div>
-          <div class="col-md-4">
-          <label>Sirkulasi</label>
-          <input class="form-control form-control-sm" type="float" id="sirkulasi" name="sirkulasi" value="<?php echo $sirkulasi;?>" required="">
-          </div>
-          </div>
-
-          <br>
-
-          <div class="row">
-          <div class="col-md-4">
-          <label>Losis Penyimpanan</label>
-          <input class="form-control form-control-sm" type="float" id="losis_penyimpanan" name="losis_penyimpanan" value="<?php echo $losis_penyimpanan;?>"   required="">
-          </div>
-          <div class="col-md-4">
-          <label>Losis Penjualan</label>
-          <input class="form-control form-control-sm" type="float" id="losis_penjualan" name="losis_penjualan" value="<?php echo $losis_penjualan;?>" required="">
-          </div>
-          <div class="col-md-4">
-          <label>Total Uang Diskon</label>
-          <input class="form-control form-control-sm" type="float" id="uang_diskon" name="uang_diskon" value="<?php echo $uang_diskon;?>" required="">
-          </div>
-          </div>
-          <br>
-          <div>
-            <label>Keterangan</label>
-            <div class="form-group">
-            <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
-            </div>
-            </div>
-
-            <br>
-
-
 
             <div>
                 <label>Upload File ODO</label> 
@@ -673,35 +613,6 @@ $table2 = mysqli_query($koneksi,"SELECT * FROM barang a INNER JOIN pertashop b O
 </div>
 </div>
     
-<!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_penjualan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
- <div class="modal-dialog" role ="document">
-   <div class="modal-content"> 
-    <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Penjualan </b> </h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-        <span aria-hidden="true"> &times; </span>
-      </button>
-    </div>
-
-    <div class="modal-body">
-      <form action="../proses/hapus_penjualan" method="POST">
-        <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan;?>">
-        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-        <div class="form-group">
-          <h6> Yakin Ingin Hapus Data? </h6>             
-        </div>
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Hapus </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
 
 <?php echo  " </td> </tr>";
 }

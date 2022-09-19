@@ -412,7 +412,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_transaksi = $data['no_pengeluaran'];
+      $no_pengeluaran = $data['no_pengeluaran'];
       $tanggal =$data['tanggal'];
       $referensi = $data['referensi'];
       $nama_akun = $data['nama_akun'];
@@ -441,6 +441,120 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
       <td style='font-size: 14px'>"; ?> <a download="../file_toko/<?= $file_bukti ?>" href="../file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
+
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_pengeluaran']; ?>">Edit</button>
+
+<!-- Form EDIT DATA -->
+
+<div class="modal fade" id="formedit<?php echo $data['no_pengeluaran']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role ="document">
+    <div class="modal-content"> 
+      <div class="modal-header">Form Edit Kas Kecil </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+
+
+      <!-- Form Edit Data -->
+      <div class="modal-body">
+        <form action="../proses/edit_pengeluaran.php" enctype="multipart/form-data" method="POST">
+
+          <div class="row">
+    <div class="col-md-6">
+
+      <label>Tanggal</label>
+      <div class="col-sm-10">
+       <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
+     </div>
+
+
+  </div>
+  <div class="col-md-6">
+  </div>
+</div>
+<div class="row">
+          <div class="col-md-12">
+            <label>REF</label>
+            <select id="referensi" name="referensi" class="form-control">
+            <?php $dataSelect = $data['referensi']; ?>
+            <option <?php echo ($dataSelect == 'TK') ? "selected": "" ?> >TK</option>
+            <option <?php echo ($dataSelect == 'GD') ? "selected": "" ?> >GD</option>
+            <option <?php echo ($dataSelect == 'TF') ? "selected": "" ?> >TF</option>
+            </select>
+          </div>
+        </div>
+
+<div class="row">
+  
+
+<div class="col-md-6">
+
+  <label>Akun</label>
+  <select id="akun" name="akun" class="form-control">
+    <?php $dataSelect = $data['nama_akun']; ?>
+    <option <?php echo ($dataSelect == 'Kembalikan Saldo Mocash') ? "selected": "" ?> >Kembalikan Saldo Mocash</option>
+    <option <?php echo ($dataSelect == 'Setor Pendapatan') ? "selected": "" ?> >Setor Pendapatan</option>
+    <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
+    <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
+    <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+    <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
+     <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
+     <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
+     <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
+     <option <?php echo ($dataSelect == 'Prive') ? "selected": "" ?> >Prive</option>
+
+  </select>
+
+</div>            
+
+</div>
+
+<br>
+
+
+
+<div class="row">
+<div class="col-md-6">
+  <label>Jumlah</label>
+  <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="<?php echo $jumlah_pengeluaran;?>"  required="">
+</div>    
+<div class="col-md-6">
+</div>         
+</div>
+
+<div>
+<label>Keterangan</label>
+<div class="form-group">
+<textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+</div>
+</div>
+
+      <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+      <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+       <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran;?>">
+
+<br>
+
+
+
+<div>
+<label>Upload File</label> 
+<input type="file" name="file"> 
+</div> 
+         
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Ubah </button>
+            <button type="reset" class="btn btn-danger"> RESET</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
       <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_pengeluaran']; ?>" data-toggle='tooltip' title='Hapus Pengeluaran'></button>
 

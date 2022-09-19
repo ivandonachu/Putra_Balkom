@@ -14,18 +14,7 @@ $lokasi = $data['lokasi'];
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_penjualan = $_POST['no_penjualan'];
-$lokasi = $_POST['lokasi'];
 $nama_barang = $_POST['nama_barang'];
-$stok_awal = $_POST['stok_awal'];
-$stok_akhir = $_POST['stok_akhir'];
-$sonding_awal = $_POST['sonding_awal'];
-$sonding_akhir = $_POST['sonding_akhir'];
-$sirkulasi = $_POST['sirkulasi'];
-$uang_diskon = $_POST['uang_diskon'];
-$bongkaran = $_POST['bongkaran'];
-$losis_penyimpanan = $_POST['losis_penyimpanan'];
-$losis_penjualan = $_POST['losis_penjualan'];
-$keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -69,16 +58,11 @@ $kode_perta = $data_perta['kode_perta'];
 			
         if( $nama_barang == 'Pertamax'){
 
-			if ($file == '') {
-				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET uang_diskon = '$uang_diskon' , stok_awal = '$stok_awal' , stok_akhir = '$stok_akhir' , bongkaran = '$bongkaran' , sonding_awal = '$sonding_awal'
-																		, sonding_akhir = '$sonding_akhir' , sirkulasi = '$sirkulasi', losis_penyimpanan = '$losis_penyimpanan', losis_penjualan = '$losis_penjualan' ,keterangan = '$keterangan'  WHERE no_penjualan = 
+
+		
+				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET  file_bukti = '$file' WHERE no_penjualan = 
 				'$no_penjualan'");
-			}
-			else{
-				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET uang_diskon = '$uang_diskon' , stok_awal = '$stok_awal' , stok_akhir = '$stok_akhir' , bongkaran = '$bongkaran' , sonding_awal = '$sonding_awal'
-				, sonding_akhir = '$sonding_akhir' , sirkulasi = '$sirkulasi', losis_penyimpanan = '$losis_penyimpanan', losis_penjualan = '$losis_penjualan' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_penjualan = 
-				'$no_penjualan'");
-			}
+			
 			
 		
          
@@ -86,16 +70,11 @@ $kode_perta = $data_perta['kode_perta'];
 			
         }
 		else{
-			if ($file == '') {
-				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET uang_diskon = '$uang_diskon' , stok_awal = '$stok_awal' , stok_akhir = '$stok_akhir' , bongkaran = '$bongkaran' , sonding_awal = '$sonding_awal'
-																		, sonding_akhir = '$sonding_akhir' , sirkulasi = '$sirkulasi', losis_penyimpanan = '$losis_penyimpanan', losis_penjualan = '$losis_penjualan' ,keterangan = '$keterangan'  WHERE no_penjualan = 
+
+	
+				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET  file_bukti = '$file' WHERE no_penjualan = 
 				'$no_penjualan'");
-			}
-			else{
-				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET uang_diskon = '$uang_diskon' , stok_awal = '$stok_awal' , stok_akhir = '$stok_akhir' , bongkaran = '$bongkaran' , sonding_awal = '$sonding_awal'
-				, sonding_akhir = '$sonding_akhir' , sirkulasi = '$sirkulasi', losis_penyimpanan = '$losis_penyimpanan', losis_penjualan = '$losis_penjualan' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_penjualan = 
-				'$no_penjualan'");
-			}
+			
 			
 		
          
