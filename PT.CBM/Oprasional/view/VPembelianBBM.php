@@ -130,6 +130,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
                         <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo Baru</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Pembelian BBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR/MES</a>
                     </div>
                 </div>
             </li>

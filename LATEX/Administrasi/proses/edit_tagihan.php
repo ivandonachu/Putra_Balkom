@@ -40,7 +40,7 @@ $sql_kendaraan = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE no_polisi
 $data_kendaraan = mysqli_fetch_assoc($sql_kendaraan);
 $no_kendaraan = $data_kendaraan['no'];
 
-$total = 8000000;
+$total = 10000000;
 
 
 
