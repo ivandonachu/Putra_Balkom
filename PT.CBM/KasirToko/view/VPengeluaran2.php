@@ -449,7 +449,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
 <div class="modal fade" id="formedit<?php echo $data['no_pengeluaran']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog" role ="document">
     <div class="modal-content"> 
-      <div class="modal-header">Form Edit Kas Kecil </h5>
+      <div class="modal-header">Form Edit Pengeluaran </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="close">
           <span aria-hidden="true"> &times; </span>
         </button>
