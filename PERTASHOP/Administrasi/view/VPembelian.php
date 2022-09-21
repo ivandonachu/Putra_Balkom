@@ -458,7 +458,7 @@ else{
 
 
       if($losis < 0){
-        if($kode_perta == '2P.323.208'){
+        if($kode_perta == 'nusabakti'){
           if($nama_barang == 'Pertamax'){
             $losis_nb_dex = $losis_nb_dex + $losis;
           }
