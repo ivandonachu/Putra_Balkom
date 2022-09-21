@@ -302,6 +302,7 @@ Menu Administrasi
     $uang_sj = 0 ;
     $terjual_sj = 0;
     $total_uang_diskon_nb_dex = 0 ;
+    $total_uang_diskon_be_dex = 0 ;
     $total_losis_penjualan = 0;
     $total_losis_penyimpanan = 0;
 
@@ -538,6 +539,36 @@ Menu Administrasi
 </div>
 </div>
     
+<!-- Button Hapus -->
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_penjualan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+ <div class="modal-dialog" role ="document">
+   <div class="modal-content"> 
+    <div class="modal-header">
+      <h4 class="modal-title"> <b> Hapus Data Penjualan </b> </h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form action="../proses/hapus_penjualan" method="POST">
+        <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan;?>">
+        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+        <input type="hidden" name="lokasi" value="<?php echo $lokasi;?>">
+        <div class="form-group">
+          <h6> Yakin Ingin Hapus Data? </h6>             
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Hapus </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
 
 <!-- Button Persetujuan -->
 <button href="#" type="submit" class=" bg-success mr-2 rounded" data-toggle="modal" data-target="#PopUpsetuju<?php echo $data['no_penjualan']; ?>" data-toggle='tooltip' title='Persetujuan Dokumen'>Setuju</button>
