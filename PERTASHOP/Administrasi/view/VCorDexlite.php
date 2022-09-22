@@ -292,7 +292,7 @@ else{
 
         <label>Tanggal Pembayaran</label>
         <div class="col-sm-10">
-        <input  class="form-control form-control-sm" type="date" id="tanggal_pembayaran" name="tanggal_pembayaran" required="">
+        <input  class="form-control form-control-sm" type="date" id="tanggal_pembayaran" name="tanggal_pembayaran" >
         </div>      
 
         </div>

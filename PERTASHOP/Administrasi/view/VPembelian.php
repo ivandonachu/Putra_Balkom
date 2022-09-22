@@ -460,11 +460,10 @@ else{
       if($losis < 0){
         if($kode_perta == 'nusabakti'){
           if($nama_barang == 'Pertamax'){
-            $losis_nb_dex = $losis_nb_dex + $losis;
+            $losis_nb_max = $losis_nb_max + $losis; 
           }
           else{
-            $losis_nb_max = $losis_nb_max + $losis; 
-           
+            $losis_nb_dex = $losis_nb_dex + $losis;
           }
           
         }
