@@ -222,13 +222,20 @@ $nama = $data['nama_karyawan'];
           <?php  echo "<form action='../proses/proses_kontrak_kerja' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label>Tanggal Awal Bekerja</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal_bekerja" name="tanggal_bekerja" required="" class="form-control form-control-sm">
-             </div>
+              
+               <input type="date" id="tanggal_bekerja" name="tanggal_bekerja" required="" class="form-control ">
+            
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
+          <label>Jenis Kontrak</label>
+          <select id="jenis_kontrak" name="jenis_kontrak" class="form-control">
+            <option>Tetap</option>
+            <option>Training</option>
+          </select>
+        </div>       
+          <div class="col-md-4">
           <label>Karyawan</label>
           <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
                               <?php
@@ -247,6 +254,7 @@ $nama = $data['nama_karyawan'];
        
           </div>            
          </div>
+         
 
       <br>
 
@@ -274,6 +282,7 @@ $nama = $data['nama_karyawan'];
   <thead>
     <tr>
       <th>No</th>
+      <th>Jenis Kontrak</th>
       <th>Nama Karyawan</th>
       <th>Perusahaan</th>
       <th>Jabatan</th>
@@ -289,6 +298,7 @@ $nama = $data['nama_karyawan'];
     <?php while($data = mysqli_fetch_array($table)){
       $urut = $urut +1 ;
       $no_surat = $data['no_surat'];
+      $jenis_kontrak = $data['jenis_kontrak'];
       $tanggal_bekerja =$data['tanggal_bekerja'];
       $nama_karyawan = $data['nama_karyawan'];
       $perusahaan = $data['perusahaan'];
@@ -297,6 +307,7 @@ $nama = $data['nama_karyawan'];
 
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$jenis_kontrak</td>
       <td style='font-size: 14px'>$nama_karyawan</td>
       <td style='font-size: 14px'>$perusahaan</td>
       <td style='font-size: 14px'>$jabatan</td>
@@ -326,19 +337,30 @@ $nama = $data['nama_karyawan'];
                 <input type="hidden" id="no_surat" name="no_surat"  value="<?php echo $no_surat;?>" required="">
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                     <label>Tanggal Awal Bekerja</label>
-                    <div class="col-sm-10">
-                    <input type="date" id="tanggal_bekerja" name="tanggal_bekerja"  value="<?php echo $tanggal_bekerja;?>" required="">
-                    </div>
+               
+                    <input type="date" id="tanggal_bekerja" name="tanggal_bekerja" class="form-control" value="<?php echo $tanggal_bekerja;?>" required="">
+             
                 </div>
-                <div class="col-md-6">
-                <label>Karyawan</label>
+                <div class="col-md-4">
+                <label>Jenis Kontrak</label>
+                <select id="jenis_kontrak" name="jenis_kontrak" class="form-control">
+                    <?php $dataSelect = $data['jenis_kontrak']; ?>
+                    <option <?php echo ($dataSelect == 'Tetap') ? "selected": "" ?> >Tetap</option>
+                    <option <?php echo ($dataSelect == 'Training') ? "selected": "" ?> >Training</option>
+                </select>
+                </div>   
+                <div class="col-md-4">
+                  <div>
+                  <label>Karyawan</label>
+                  </div>
+      
                 <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
                                     <?php
                                     include 'koneksi.php';
                                     $dataSelect = $data['nama_karyawan'];
-                                    $result = mysqli_query($koneksi, "SELECT * FROM nama_karyawan");
+                                    $result = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
 
                                     while ($data2 = mysqli_fetch_array($result)) {
                                       $nama_karyawan = $data2['nama_karyawan'];

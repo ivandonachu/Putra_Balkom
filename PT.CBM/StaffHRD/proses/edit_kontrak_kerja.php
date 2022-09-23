@@ -21,7 +21,7 @@ exit;
 $tanggal_bekerja = $_POST['tanggal_bekerja'];
 $nama_karyawan = $_POST['nama_karyawan'];
 $no_surat = $_POST['no_surat'];
-
+$jenis_kontrak = $_POST['jenis_kontrak'];
 $result2 = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan WHERE nama_karyawan = '$nama_karyawan' ");
 $data_karyawan = mysqli_fetch_array($result2);
 $nik = $data_karyawan['nik'];
@@ -61,10 +61,10 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE kontrak_kerja SET nik = '$nik' , tanggal_bekerja = '$tanggal_bekerja' WHERE no_surat = '$no_surat'");;
+			$query3 = mysqli_query($koneksi,"UPDATE kontrak_kerja SET jenis_kontrak = '$jenis_kontrak' ,nik = '$nik' , tanggal_bekerja = '$tanggal_bekerja' WHERE no_surat = '$no_surat'");;
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE kontrak_kerja SET nik = '$nik' , tanggal_bekerja = '$tanggal_bekerja' , file_bukti = '$file'  WHERE no_surat = '$no_surat'");
+			$query3 = mysqli_query($koneksi,"UPDATE kontrak_kerja SET jenis_kontrak = '$jenis_kontrak', nik = '$nik' , tanggal_bekerja = '$tanggal_bekerja' , file_bukti = '$file'  WHERE no_surat = '$no_surat'");
 	}
 
 
