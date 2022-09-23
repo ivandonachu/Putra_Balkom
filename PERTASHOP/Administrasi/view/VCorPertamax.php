@@ -453,6 +453,7 @@ else{
     $cor_be =0;
     $cor_md = 0;
     $cor_sj = 0;
+    $cor_pb = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -499,6 +500,10 @@ else{
       else if($lokasi_cor == 'Sumber Jaya'){
      
         $cor_sj = $cor_sj + $jumlah;
+      }
+      else if($lokasi_cor == 'Pul Baturaja'){
+     
+        $cor_pb = $cor_pb + $jumlah;
       }
 
 
@@ -809,6 +814,12 @@ else{
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
       <td style='font-size: 11px' align = 'center'><?=  ($cor_md); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Pul Baturaja</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_pb); ?></td>
      
   </tr>
 
