@@ -27,5 +27,5 @@ $no_surat = $_POST['no_surat'];
 
 	$query = mysqli_query($koneksi,"DELETE FROM kontrak_kerja WHERE no_surat = '$no_surat'");
 
-			echo "<script> window.location='../view/VSuratIzin';</script>";exit;
+			echo "<script> window.location='../view/VKontrakKerja';</script>";exit;
 	
