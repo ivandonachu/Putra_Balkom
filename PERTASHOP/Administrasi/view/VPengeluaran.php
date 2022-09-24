@@ -37,9 +37,11 @@ $tanggal_akhir = date('Y-m-31');
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' GROUP BY b.lokasi");
 }
 else{
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY b.lokasi");
 }
 
 
@@ -564,6 +566,38 @@ else{
 </tbody>
 </table>
 </div>
+
+
+<br>
+<br>
+<h5 align="center" >Total Pengeluaran</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Lokasi</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+      $lokasi = $data['lokasi'];
+      $total_pengeluaran =$data['total_pengeluaran'];
+
+
+      echo "<tr>
+      <td style='font-size: 14px' >$lokasi</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+
   </div>
 <br>
 <br>
@@ -653,6 +687,8 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+
+
 
 </body>
 
