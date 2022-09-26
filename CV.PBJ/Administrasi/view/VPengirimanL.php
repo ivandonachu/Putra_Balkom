@@ -87,8 +87,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -149,7 +149,7 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
         </div>
     </div>
 </li>
@@ -173,7 +173,6 @@ else{
 </div>
 </div>
 </li>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -273,9 +272,9 @@ else{
  </div>
  <br>
 
- <
+ 
 <!-- Tabel -->    
-<div style="overflow-x: auto">
+<div style="overflow-x: auto" align = 'center'>
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
@@ -293,7 +292,7 @@ else{
       <th>Tgl Nota Tarikan</th>
       <th>KET</th>
       <th>File</th>
-      <th></th>
+
     </tr>
   </thead>
   <tbody>

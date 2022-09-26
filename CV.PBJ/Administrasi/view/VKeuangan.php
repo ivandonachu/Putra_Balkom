@@ -22,6 +22,7 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -82,9 +83,8 @@ else{
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -145,7 +145,7 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
         </div>
     </div>
 </li>
@@ -169,6 +169,7 @@ else{
 </div>
 </div>
 </li>
+
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -194,7 +195,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan</h5></a>"; ?>
+      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Keuangan Etty</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -251,7 +252,7 @@ else{
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-    <?php  echo "<form  method='POST' action='VLKeuangan' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VKeuangan' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -268,9 +269,6 @@ else{
    </div>
  </div>
 
-
-
-
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
   <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -284,7 +282,7 @@ else{
       <th>Keluar</th>
       <th>Saldo</th>
       <th>file</th>
-      
+
     </tr>
   </thead>
   <tbody>
@@ -301,7 +299,7 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_transaksi'];
       $tanggal =$data['tanggal'];
-      $nama_akun =$data['nama_akun'];
+      $akun =$data['nama_akun'];
       $status_saldo = $data['status_saldo'];
       $jumlah = $data['jumlah'];
       $keterangan = $data['keterangan'];
@@ -316,7 +314,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>"; ?> <?php echo "
+      <td style='font-size: 14px'>$akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
 
 
@@ -341,8 +339,9 @@ else{
       <?php echo "
       <td style='font-size: 14px'>"?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
       <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-    "?>
-<?php echo  "</tr>";
+      "; ?>
+     
+<?php echo  " </tr>";
 }
 
 ?>
@@ -350,6 +349,7 @@ else{
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
 <br>
@@ -381,7 +381,7 @@ else{
 
 
 </div>
-</div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -425,7 +425,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
-</div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

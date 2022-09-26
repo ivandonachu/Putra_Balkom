@@ -76,8 +76,8 @@ $no_lokasi = $_GET['no_lokasi'];
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -138,7 +138,7 @@ $no_lokasi = $_GET['no_lokasi'];
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
         </div>
     </div>
 </li>

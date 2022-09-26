@@ -22,28 +22,54 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
+
+
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
+ $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+  $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
+ $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+  $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 } 
 else{
   $tanggal_awal = date('Y-m-1');
   $tanggal_akhir = date('Y-m-31');
+
+  $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
+  $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir))); 
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ORDER BY no_penjualan ASC");
 
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' ");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak'");
   $data2 = mysqli_fetch_array($table2);
   $penjualan_zak = $data2['penjualan_zak'];
   $uang_zak= $data2['uang_zak'];
+
+  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Bon'AND satuan = 'Zak' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Nyicil'AND satuan = 'Zak'");
+  $data3 = mysqli_fetch_array($table3);
+  $penjualan_zak_bon = $data3['penjualan_zak_bon'];
+  $uang_zak_bon = $data3['uang_zak_bon'];
+
+  $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
+  $data4 = mysqli_fetch_array($table4);
+  $penjualan_bag = $data4['penjualan_bag'];
+  $uang_bag= $data4['uang_bag'];
+
+  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Bon'AND satuan = 'Bag' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Nyicil'AND satuan = 'Bag'");
+  $data5 = mysqli_fetch_array($table5);
+  $penjualan_bag_bon = $data5['penjualan_bag_bon'];
+  $uang_bag_bon = $data5['uang_bag_bon'];
+
 
 
 }
@@ -56,7 +82,7 @@ else{
   $penjualan_zak = $data2['penjualan_zak'];
   $uang_zak= $data2['uang_zak'];
 
-  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak'");
+  $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak'");
   $data3 = mysqli_fetch_array($table3);
   $penjualan_zak_bon = $data3['penjualan_zak_bon'];
   $uang_zak_bon = $data3['uang_zak_bon'];
@@ -66,13 +92,12 @@ else{
   $penjualan_bag = $data4['penjualan_bag'];
   $uang_bag= $data4['uang_bag'];
 
-  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag'");
+  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag'");
   $data5 = mysqli_fetch_array($table5);
   $penjualan_bag_bon = $data5['penjualan_bag_bon'];
   $uang_bag_bon = $data5['uang_bag_bon'];
 
 }
-
 
 
 
@@ -117,8 +142,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
- <!-- Sidebar -->
- <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -160,7 +185,7 @@ else{
         <h6 class="collapse-header" style="font-size: 15px;">Riwayat</h6>
        
             <a class="collapse-item" style="font-size: 15px;" href="VLSaldo">Laporan Saldo</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Riwayat Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Riwayat Pengiriman</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
     </div>
@@ -177,7 +202,7 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Riwayat Pengiriman</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
         </div>
@@ -303,11 +328,13 @@ else{
     <div class="col-md-6">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-  </div>
+</div>
+
+
 
 
 <!-- Tabel -->    
-<div style="overflow-x: auto">
+<div style="overflow-x: auto" align = 'center'>
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
@@ -365,7 +392,7 @@ else{
 
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_urut</td> 
+      <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal_do</td>
       <td style='font-size: 14px'>$tanggal_kirim</td>
       <td style='font-size: 14px'>$no_do</td>
@@ -381,7 +408,7 @@ else{
       <td style='font-size: 14px'>$status_bayar</td>
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>$catatan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
    
 
@@ -403,7 +430,7 @@ else{
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Penjualan ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $penjualan_zak ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $penjualan_zak + $penjualan_zak_bon ?></div>
           </div>
           <div class="col-auto">
            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -419,7 +446,7 @@ else{
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Uang ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_zak) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_zak + $uang_zak_bon) ?></div>
           </div>
           <div class="col-auto">
             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -529,9 +556,59 @@ else{
     </div>
   </div>
 </div>
-<br>
-<br>
 
+<br>
+<hr>
+<br>
+<?php 
+
+$tablej2 = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
+
+?>
+
+<h3 class="text-center" >Do Pembelian belum Tercatat tetapi DO Penjualan sudah Tercatat</h3>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Do belum tercatat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total = 0;
+    $urut = 0;
+
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($tablej2)){
+    $no_do_pembelian = $data['no_do'];
+    $tablexj = mysqli_query($koneksi, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
+
+
+    if(mysqli_num_rows($tablexj) === 0 ){
+
+         $urut = $urut +1;
+
+
+         echo "<tr>
+         <td style='font-size: 14px'>$urut</td>
+         <td style='font-size: 14px'>$no_do_pembelian</td>
+       </tr>";
+        }
+        
+
+  }
+
+?>
+
+</tbody>
+</table>
+<br>
+<br>
+</div>
 </div>
 </div>
 <!-- End of Main Content -->
@@ -663,6 +740,8 @@ aria-hidden="true">
              }
            }
          </script>
+
+         
 </body>
 
 </html>
