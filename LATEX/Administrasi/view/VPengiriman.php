@@ -360,7 +360,7 @@ else{
       $mel = $data['mel'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
-
+      var_dump($file_bukti);
       $urut = $urut + 1;
 
       echo "<tr>
