@@ -381,7 +381,7 @@ else{
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug_dimuka); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($mel); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>$file_bukti</td>
+      <td style='font-size: 14px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "
       <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
