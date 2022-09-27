@@ -56,7 +56,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT * , a.file_bukti FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan INNER JOIN tagihan d ON d.no_tagihan=a.no_tagihan WHERE a.tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY a.tanggal");
+  $table = mysqli_query($koneksi, "SELECT *  FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan INNER JOIN tagihan d ON d.no_tagihan=a.no_tagihan WHERE a.tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY a.tanggal");
 
   $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan, SUM(mel) AS uang_mel, SUM(uang_dexlite) AS uang_dex FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
@@ -359,8 +359,8 @@ else{
       $uj = $data['uj'];
       $mel = $data['mel'];
       $keterangan = $data['keterangan'];
-      $file_bukti = $data['file_bukti'];
-      var_dump($file_bukti);
+      $file_bukti = $data['file_bukti_x'];
+
       $urut = $urut + 1;
 
       echo "<tr>
