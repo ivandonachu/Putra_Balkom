@@ -43,7 +43,9 @@ $uang_makan = (625*$jt_gps)/2;
 $uang_gaji = (625 * $jt_gps)/2;
 $ug_dimuka = ($dexlite * 1850)/2;
 $uang_jalan = $u_dex + $uang_makan;
-
+$mel = 50000/2;
+$jt_gps_x = $jt_gps/2;
+$jt_odo_x = $jt_odo/2;
 
 
 $nama_file = $_FILES['file']['name'];
@@ -82,10 +84,10 @@ else if ( $nama_file != "" ) {
 }
 
 if ($file == '') {
-    $query = mysqli_query($koneksi,"UPDATE pengiriman SET jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', uang_dexlite = '$u_dex' , um = '$uang_makan', ug = '$uang_gaji', ug_dimuka = '$ug_dimuka', uj = '$uang_jalan', keterangan = '$keterangan'  WHERE no_tagihan = '$no_tagihan'");
+    $query = mysqli_query($koneksi,"UPDATE pengiriman SET jt_gps = '$jt_gps_x' , jt_odo = '$jt_odo_x' , dexlite = '$dexlite', uang_dexlite = '$u_dex' , um = '$uang_makan', ug = '$uang_gaji', ug_dimuka = '$ug_dimuka', uj = '$uang_jalan', mel = '$mel', keterangan = '$keterangan'  WHERE no_tagihan = '$no_tagihan'");
 }
     else{
-    $query = mysqli_query($koneksi,"UPDATE pengiriman SET jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', uang_dexlite = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', ug_dimuka = '$ug_dimuka', uj = '$uang_jalan', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
+    $query = mysqli_query($koneksi,"UPDATE pengiriman SET jt_gps = '$jt_gps_x' , jt_odo = '$jt_odo_x' , dexlite = '$dexlite', uang_dexlite = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', ug_dimuka = '$ug_dimuka', uj = '$uang_jalan', mel = '$mel', keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
 }
 
 
