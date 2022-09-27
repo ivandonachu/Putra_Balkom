@@ -30,7 +30,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksibalsri, "SELECT * FROM pengeluaran_pul_p WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Transport / Perjalanan Dinas' ");
 }
 else{
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengeluaran_pul_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun  = 'Transport / Perjalanan Dinas'");
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengeluaran_pul_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun  = 'Transport / Perjalanan Dinas' ORDER BY tanggal");
 }
 
 

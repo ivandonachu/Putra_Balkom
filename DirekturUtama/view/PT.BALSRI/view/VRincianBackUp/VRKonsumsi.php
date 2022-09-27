@@ -30,7 +30,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksibalsri, "SELECT * FROM pengeluaran_pul WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Konsumsi' ");
 }
 else{
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi'");
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ORDER BY tanggal");
 }
 
 

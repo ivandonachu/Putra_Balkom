@@ -36,7 +36,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
 
-  $table = mysqli_query($koneksilatex, "SELECT * FROM riwayat_perbaikan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi = '$no_polisilr'");
+  $table = mysqli_query($koneksilatex, "SELECT * FROM riwayat_perbaikan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi = '$no_polisilr' ORDER BY tanggal");
  
 }
 
