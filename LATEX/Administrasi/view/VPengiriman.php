@@ -341,6 +341,7 @@ else{
       $no_pengiriman = $data['no_pengiriman'];
       $no_tagihan = $data['no_tagihan'];
       $tonase = $data['tonase'];
+      $tonase = $tonase/2;
       $tanggal =$data['tanggal'];
       $no_segel = $data['no_segel'];
       $amt =$data['nama_driver_1'];
