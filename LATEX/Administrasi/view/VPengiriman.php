@@ -42,7 +42,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan INNER JOIN tagihan d ON d.no_tagihan=a.no_tagihan WHERE a.tanggal = '$tanggal_awal' ORDER BY a.tanggal");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan, SUM(mel) AS total_nel FROM pengiriman WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan, SUM(mel) AS uang_mel, SUM(uang_dexlite) AS uang_dex  FROM pengiriman WHERE tanggal = '$tanggal_awal'");
   $data2 = mysqli_fetch_array($table2);
   $jml_jt_gps= $data2['total_jt_gps'];
   $jml_jt_odo= $data2['total_jt_odo'];
@@ -50,14 +50,15 @@ if ($tanggal_awal == $tanggal_akhir) {
   $total_um= $data2['uang_makan'];
   $total_ug= $data2['uang_gaji'];
   $total_uj= $data2['uang_jalan'];
-  $total_mel= $data2['total_mel'];
+  $total_mel= $data2['uang_mel'];
+  $total_uang_dex= $data2['uang_dex'];
 
 }
 else{
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengiriman a INNER JOIN driver_1 b ON a.no_driver_1=b.no_driver_1 INNER JOIN kendaraan c ON c.no=a.no_kendaraan INNER JOIN tagihan d ON d.no_tagihan=a.no_tagihan WHERE a.tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY a.tanggal");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan, SUM(mel) AS total_mel, SUM(uang_dexlite) AS total_uang_dex FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(jt_gps) AS total_jt_gps, SUM(jt_odo) AS total_jt_odo , SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(uj) AS uang_jalan, SUM(mel) AS uang_mel, SUM(uang_dexlite) AS uang_dex FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $jml_jt_gps= $data2['total_jt_gps'];
   $jml_jt_odo= $data2['total_jt_odo'];
@@ -65,8 +66,8 @@ else{
   $total_um= $data2['uang_makan'];
   $total_ug= $data2['uang_gaji'];
   $total_uj= $data2['uang_jalan'];
-  $total_mel= $data2['total_mel'];
-  $total_uang_dex= $data2['total_uang_dex'];
+  $total_mel= $data2['uang_mel'];
+  $total_uang_dex= $data2['uang_dex'];
 
 
 }
