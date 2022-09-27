@@ -381,7 +381,7 @@ else{
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug_dimuka); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($mel); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>$keterangan</td>
+      <td style='font-size: 14px' align = 'center'>$file_bukti</td>
       "; ?>
       <?php echo "
       <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
@@ -541,7 +541,7 @@ else{
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+      <h4 class="modal-title"> <b> Hapus Data pengiriman </b> </h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="close">
         <span aria-hidden="true"> &times; </span>
       </button>
