@@ -18,7 +18,6 @@ else{  header("Location: logout.php");
 exit;
 }
 
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -78,8 +77,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
@@ -170,8 +169,6 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
         </div>
     </div>
 </li>
-
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -196,7 +193,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Penggunaan Saldo Perusahaan</h5></a>"; ?>
+      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -254,7 +251,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
   <div>
     <div align="left">
-    <?php echo "<a href='VPenggunaanSaldo2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    <?php echo "<a href='VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     </div>
   

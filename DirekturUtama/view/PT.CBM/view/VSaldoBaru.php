@@ -19,7 +19,6 @@ exit;
 }
 
 
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -118,6 +117,14 @@ $data1011 = mysqli_fetch_array($table1011);
 $jumlah_kel_pbj_kebunmbah = $data1011['jumlah_kel_pbj_kebunmbah'];
  if (!isset($data1011['jumlah_kel_pbj_kebunmbah'])) {
  $jumlah_kel_pbj_kebunmbah = 0;
+ }
+
+ //keluar CBM untuk kebun MBAH
+$table1011y = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_cbm_kebunmbah FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Kebun Mbah' AND status_saldo = 'Keluar' ");
+$data1011y = mysqli_fetch_array($table1011y);
+$jumlah_kel_cbm_kebunmbah = $data1011y['jumlah_kel_cbm_kebunmbah'];
+ if (!isset($data1011y['jumlah_kel_cbm_kebunmbah'])) {
+ $jumlah_kel_cbm_kebunmbah = 0;
  }
 
  //keluar CBM untuk kebun KELING
@@ -236,6 +243,14 @@ if (!isset($data24['jumlah_kel_pri_pbr'])) {
 $jumlah_kel_pri_pbr = 0;
 }
 
+//Keluar pribadi untuk PBR 
+$table25 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kel_pbr_ranau FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'PBR' AND referensi = 'Kebun Ranau' AND status_saldo = 'Keluar' ");
+$data25 = mysqli_fetch_array($table25);
+$jumlah_kel_pbr_ranau = $data25['jumlah_kel_pbr_ranau'];
+if (!isset($data25['jumlah_kel_pbr_ranau'])) {
+$jumlah_kel_pbr_ranau = 0;
+}
+
 // kode salado
 
 $CBM = 'CBM';
@@ -250,6 +265,7 @@ $Kebun = 'Kebun Lengkiti';
 $Keluar = 'Keluar';
 $Masuk = 'Masuk';
 $mbah = 'Kebun Mbah';
+$ranau = 'Kebun Ranau';
 
 }
  ?>
@@ -290,8 +306,8 @@ $mbah = 'Kebun Mbah';
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
@@ -382,6 +398,7 @@ $mbah = 'Kebun Mbah';
         </div>
     </div>
 </li>
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -406,7 +423,7 @@ $mbah = 'Kebun Mbah';
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPenggunaanSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
+      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -462,7 +479,7 @@ $mbah = 'Kebun Mbah';
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php  echo "<form  method='POST' action='VPenggunaanSaldo2' style='margin-bottom: 15px;'>" ?>
+ <?php  echo "<form  method='POST' action='VSaldoBaru' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -478,6 +495,7 @@ $mbah = 'Kebun Mbah';
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir </a>" ?>
    </div>
    </div>
+   
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
@@ -493,6 +511,7 @@ $mbah = 'Kebun Mbah';
       <th>Kredit</th>
       <th>Keterangan</th>
       <th>File</th>
+
     </tr>
   </thead>
   <tbody>
@@ -547,8 +566,7 @@ $mbah = 'Kebun Mbah';
       echo "
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-
-   </tr>";
+    </tr>";
   }
   ?>
 
@@ -604,6 +622,13 @@ $mbah = 'Kebun Mbah';
       <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbj_kebunmbah); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$PBJ&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm_kebunmbah); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$mbah&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
   <tr>
@@ -667,6 +692,13 @@ $mbah = 'Kebun Mbah';
       <td style='font-size: 11px' align = 'center'>PBR</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pri_pbr); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PBR&rekening=$PRIBADI&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>PBR</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Ranau</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbr_ranau); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$ranau&rekening=$PBR&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
 

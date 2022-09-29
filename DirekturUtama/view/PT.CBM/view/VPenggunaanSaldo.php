@@ -17,9 +17,6 @@ if ($jabatan_valid == 'Direktur Utama') {
 else{  header("Location: logout.php");
 exit;
 }
-$result = mysqli_query($koneksicbm, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
-$data = mysqli_fetch_array($result);
-$nama = $data['nama_karyawan'];
 
  ?>
  <!DOCTYPE html>
