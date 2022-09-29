@@ -252,6 +252,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
   <div>
     <div align="left">
     <?php echo "<a href='VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    
     </div>
     </div>
   
