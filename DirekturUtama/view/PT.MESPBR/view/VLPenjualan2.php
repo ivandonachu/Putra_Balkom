@@ -1298,7 +1298,7 @@ echo "
 <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
 <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
 <td style='font-size: 14px'>$keterangan</td>
-<td style='font-size: 14px'>"; ?> <a download="../file_toko/<?= $file_bukti ?>" href="../file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+<td style='font-size: 14px'>"; ?> <a download="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
 "; ?>
 
 

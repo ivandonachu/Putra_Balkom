@@ -14,16 +14,34 @@ if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-
-else{  header("Location: logout.php");
+else{ header("Location: logout.php");
 exit;
 }
 
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
 
-$table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+}  
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
+  
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_kas_kecil WHERE tanggal = '$tanggal_awal' ORDER BY tanggal ASC");
+}
+else{
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_kas_kecil WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+}
 
-?>
 
+
+ ?>
  <!DOCTYPE html>
  <html lang="en">
 
@@ -35,7 +53,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Asset</title>
+  <title>Penggunaan Kas Kecil</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -58,12 +76,11 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
 
 <body id="page-top">
 
- 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
- <!-- Sidebar -->
- <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+      <!-- Sidebar -->
+      <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
@@ -154,7 +171,6 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
         </div>
     </div>
 </li>
-          
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -180,8 +196,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VDokumen'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Daftar Dokumen</h5></a>"; ?>
-
+      <?php echo "<a href='VKasKecil'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Kas Kecil</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -193,7 +208,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
       <ul class="navbar-nav ml-auto">
 
           
-      
+        
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -236,45 +252,95 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+    
+    <?php  echo "<form  method='POST' action='VKasKecil' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
+    </div>
+  </form>
 
-
+  <div class="row">
+    <div class="col-md-8">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   </div>
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Tanggal Input</th>
-      <th>REF</th>   
-      <th>No Rak</th>
-      <th>Nama Dokumen</th>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Akun</th>
       <th>Keterangan</th>
-      <th>File</th>
+      <th>Debit</th>
+      <th>Kredit</th>
+      <th>file</th>
     </tr>
   </thead>
   <tbody>
+    <?php
+    $total_kredit = 0;
+    $total_debit = 0;
+    $urut = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
 
+    ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no_dokumen = $data['no_dokumen'];
+        $urut = $urut +1 ;
+      $no_laporan = $data['no_transaksi'];
       $tanggal =$data['tanggal'];
-      $referensi =$data['referensi'];
-      $no_rak = $data['no_rak'];
-      $nama_dokumen = $data['nama_dokumen'];
+      $nama_akun = $data['nama_akun'];
+      $jumlah = $data['jumlah'];
       $keterangan = $data['keterangan'];
-
+      $status_saldo = $data['status_saldo'];
+       $file_bukti = $data['file_bukti'];
+      if ($status_saldo == 'Masuk') {
+        $total_debit = $total_debit + $jumlah;
+      }
+      elseif($status_saldo == 'Keluar'){
+        $total_kredit = $total_kredit + $jumlah;
+      }
 
 
       echo "<tr>
+      <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$no_rak</td>
-      <td style='font-size: 14px'>$nama_dokumen</td>
-      <td style='font-size: 14px'>$keterangan</td> "; ?>
-      
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$keterangan</td>";
 
-       <?php echo "
+      
+      if ($nama_akun == 'Saldo Awal') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+
+      if ($nama_akun != 'Saldo Awal') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+      ?>
+      <?php echo "
          <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       </tr>";
   }
+
   ?>
 
 </tbody>
@@ -283,7 +349,32 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
 <br>
 <br>
 <br>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
+<!-- Tabel -->    
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Total Debit</th>
+      <th>Total Kredit</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_debit); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_kredit); ?> <?php echo "</td>
+        </tr>";
+  
+  ?>
+
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<br>
 
 </div>
 
@@ -368,6 +459,8 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+
+
 
 </body>
 

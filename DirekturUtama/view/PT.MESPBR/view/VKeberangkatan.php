@@ -14,7 +14,8 @@ if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{ header("Location: logout.php");
+
+else{  header("Location: logout.php");
 exit;
 }
 
@@ -27,21 +28,26 @@ if (isset($_GET['tanggal1'])) {
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
-} 
+}  
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
+
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' ");
-$table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal = '$tanggal_awal'");
 }
 else{
-$table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
-$table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
-
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 }
- ?>
- <!DOCTYPE html>
- <html lang="en">
 
- <head>
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,7 +55,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penggunaan Uang</title>
+  <title>Keberangkatan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -72,59 +78,59 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+   <!-- Page Wrapper -->
+    <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+         <!-- Sidebar -->
+      <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTPBRMES">
-     <div class="sidebar-brand-icon rotate-n-15">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTPBRMES">
+   <div class="sidebar-brand-icon rotate-n-15">
 
-     </div>
-     <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
- </a>
+   </div>
+   <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
+</a>
 
- <!-- Divider -->
- <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
- 
-   <!-- Nav Item - Dashboard -->
- <li class="nav-item active" >
-     <a class="nav-link" href="DsPTPBRMES">
-         <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-         <span style="font-size: 16px;" >Dashboard</span></a>
-     </li>
 
-     <!-- Divider -->
-     <hr class="sidebar-divider">
-     <!-- Heading -->
-     <div class="sidebar-heading" style="font-size: 15px; color:white;">
-          Menu PBRMES
-     </div>
-     <!-- Nav Item - Pages Collapse Menu -->
-     <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-       15  aria-expanded="true" aria-controls="collapseTwo">
-         <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-         <span style="font-size: 15px; color:white;" >List Perusahaan</span>
-     </a>
-     <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-         <div class="bg-white py-2 collapse-inner rounded">
-             <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT. CBM</a>
-             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-         </div>
-     </div>
- </li>
-      <!-- Nav Item - Pages Collapse Menu -->
+ <!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+   <a class="nav-link" href="DsPTPBRMES">
+       <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+       <span style="font-size: 16px;" >Dashboard</span></a>
+   </li>
+
+   <!-- Divider -->
+   <hr class="sidebar-divider">
+   <!-- Heading -->
+   <div class="sidebar-heading" style="font-size: 15px; color:white;">
+        Menu PBRMES
+   </div>
+   <!-- Nav Item - Pages Collapse Menu -->
+   <li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+     15  aria-expanded="true" aria-controls="collapseTwo">
+       <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+       <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+   </a>
+   <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT. CBM</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+           <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+       </div>
+   </div>
+</li>
+   <!-- Nav Item - Pages Collapse Menu -->
    <li class="nav-item">
        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
      15  aria-expanded="true" aria-controls="collapseTwo">
@@ -175,7 +181,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
+        <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Uang Jalan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -186,8 +192,8 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-          
-        
+
+      
 
 
 
@@ -231,7 +237,9 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php  echo "<form  method='POST' action='VPenggunaanSaldo2' style='margin-bottom: 15px;'>" ?>
+
+
+    <?php  echo "<form  method='POST' action='VKeberangkatan' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -242,13 +250,11 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
     </div>
   </form>
 
-  <div class="row">
+
     <div class="col-md-8">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-</div>
-
-
+   <br>
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
@@ -257,122 +263,73 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Akun</th>
-      <th>REF/Tujuan</th>
-      <th>Saldo/Asal</th>
-      <th>Debit</th>
-      <th>Kredit</th>
+      <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Posisi Bongkar</th>
+      <th>Tujuan Berangkat</th>
+      <th>Uang Jalan</th>
+      <th>LPG 3kg</th>
+      <th>LPG 3kg Rt</th>
+      <th>LPG 12kg</th>
+      <th>LPG 12kg Rt</th>
+      <th>BG 5,5kg</th>
+      <th>BG 5,5kg Rt</th>
+      <th>BG 12kg</th>
+      <th>BG 12kg Rt</th>
+      <th>Status</th>
       <th>Keterangan</th>
-      <th>File</th>
+      <th>File LO</th>
 
     </tr>
   </thead>
   <tbody>
     <?php
-    //Masuk CBM Keluar CBM
-    $masuk_pbr_cbm = 0;
-    //Masuk CBM Keluar PBJ
-    $masuk_pbr_pbj = 0;
-    //mASUK cbm kELUAR MT
-    $masuk_mes_cbm = 0;
-    //masuk mt keluar cbm
-    $masuk_mes_pbj= 0;
-   
-    
-    //keluar cbm masuk cbm
-    $keluar_pbr_cbm = 0;
-    //keluar cbm masuk pbj
-    $keluar_pbr_pbj = 0;
-    //keluar cbm masuk mt
-    $keluar_mes_cbm = 0;
-    //keluar mt masuk cbm
-    $keluar_mes_pbj = 0;
-   
-
-    
-    $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
+    $total_uang_jalan = 0;
     ?>
+
     <?php while($data = mysqli_fetch_array($table)){
-      $no_laporan = $data['no_laporan'];
+      $no_keberangkatan = $data['no_keberangkatan'];
       $tanggal =$data['tanggal'];
-      $referensi = $data['referensi'];
-      $nama_akun = $data['nama_akun'];
-      $nama_rekening = $data['nama_rekening'];
-      $jumlah = $data['jumlah'];
-      $file_bukti = $data['file_bukti'];
+      $nama_driver = $data['nama_driver'];
+      $no_polisi = $data['no_polisi'];
+      $posisi_bongkar = $data['posisi_bongkar'];
+      $tujuan_keberangkatan = $data['tujuan_berangkat'];
+      $L03K11 = $data['L03K11'];
+      $L03K00 = $data['L03K00'];
+      $L12K11 = $data['L12K11'];
+      $L12K00 = $data['L12K00'];
+      $B05K11 = $data['B05K11'];
+      $B05K00 = $data['B05K00'];
+      $B12K11 = $data['B12K11'];
+      $B12K00 = $data['B12K00'];
+      $uang_jalan = $data['uang_jalan'];
       $keterangan = $data['keterangan'];
-      $status_saldo = $data['status_saldo'];
-    
-    //Masuk CBM Keluar CBM
-    if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'CBM') {
-        $masuk_mes_cbm = $masuk_mes_cbm + $jumlah;
-      }
-    //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'PBJ') {
-        $masuk_mes_pbj = $masuk_mes_pbj + $jumlah;
-      }
-    //mASUK cbm kELUAR MT
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBR' && $referensi == 'CBM') {
-        $masuk_pbr_cbm = $masuk_pbr_cbm + $jumlah;
-      }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBR' && $referensi == 'PBJ') {
-        $masuk_pbr_cbm = $masuk_pbr_pbj + $jumlah;
-      }
-   
-     //Masuk CBM Keluar CBM
-    if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'CBM') {
-        $masuk_mes_cbm = $masuk_mes_cbm + $jumlah;
-      }
-    //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'PBJ') {
-        $masuk_mes_pbj = $masuk_mes_pbj + $jumlah;
-      }
-    //mASUK cbm kELUAR MT
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'CBM') {
-        $masuk_pbr_cbm= $masuk_pbr_cbm + $jumlah;
-      }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'PBJ') {
-        $masuk_pbr_pbj = $masuk_pbr_pbj + $jumlah;
-      }
-
-        $urut = $urut + 1;
-
+      $file_bukti = $data['file_bukti'];
+      $status = $data['jenis_keberangkatan'];
+      $total_uang_jalan = $total_uang_jalan + $uang_jalan;
       echo "<tr>
-      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$no_keberangkatan</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_rekening</td>";
-
-
-      if ($status_saldo == 'Masuk') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-
-      if ($status_saldo == 'Keluar') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-        
-      echo "
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$posisi_bongkar</td>
+      <td style='font-size: 14px'>$tujuan_keberangkatan</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($uang_jalan); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$L03K11</td>
+      <td style='font-size: 14px'>$L03K00</td>
+      <td style='font-size: 14px'>$L12K11</td>
+      <td style='font-size: 14px'>$L12K00</td>
+      <td style='font-size: 14px'>$B05K11</td>
+      <td style='font-size: 14px'>$B05K00</td>
+      <td style='font-size: 14px'>$B12K11</td>
+      <td style='font-size: 14px'>$B12K00</td>
+      <td style='font-size: 14px'>$status</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
      </tr>";
   }
   ?>
@@ -380,78 +337,29 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 </tbody>
 </table>
 </div>
+<br>
+<br>
+
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Jalan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_uang_jalan); ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<br>
-<br>
-<br>
-
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-<h6 align="center">Rekap Transfer Saldo Keluar</h6>
-<!-- Tabel -->    
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Total TF MES ke CBM</th>
-      <th>Total TF MES ke PBJ</th>
-      <th>Total TF PBR ke CBM</th>
-      <th>Total TF PBR ke PBJ</th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php 
-      echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_pbj); ?> <?php echo "</td>
-
-        </tr>";
-  
-  ?>
-
-</tbody>
-</table>
 </div>
-
 <br>
-
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-<h6 align="center">Rekap Transfer Saldo Masuk</h6>
-<!-- Tabel -->    
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Total TF MES ke CBM</th>
-      <th>Total TF MES ke PBJ</th>
-      <th>Total TF PBR ke CBM</th>
-      <th>Total TF PBR ke PBJ</th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php 
-      echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_mes_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_mes_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_pbj); ?> <?php echo "</td>
- 
-        </tr>";
-  
-  ?>
-
-</tbody>
-</table>
-</div>
-
-
-<br>
-<br>
-<br>
-
+  </div>
 
 </div>
 
@@ -503,6 +411,7 @@ aria-hidden="true">
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- Core plugin JavaScript-->
 <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 

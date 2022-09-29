@@ -20,14 +20,34 @@ exit;
 }
 
 
-$table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
+
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+}  
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
+
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal = '$tanggal_awal'");
+}
+else{
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+}
+
+
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
- <!DOCTYPE html>
- <html lang="en">
-
- <head>
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +55,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Asset</title>
+  <title>Keberangkatan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -58,12 +78,11 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
 
 <body id="page-top">
 
- 
-    <!-- Page Wrapper -->
+   <!-- Page Wrapper -->
     <div id="wrapper">
 
- <!-- Sidebar -->
- <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+         <!-- Sidebar -->
+      <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
@@ -154,7 +173,6 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
         </div>
     </div>
 </li>
-          
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -180,8 +198,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VDokumen'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Daftar Dokumen</h5></a>"; ?>
-
+        <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Uang Jalan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -192,8 +209,9 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-          
+
       
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -238,42 +256,98 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
+    <?php  echo "<form  method='POST' action='VKeberangkatan' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
+    </div>
+  </form>
+
+
+    <div class="col-md-8">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   <br>
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
-      <th>Tanggal Input</th>
-      <th>REF</th>   
-      <th>No Rak</th>
-      <th>Nama Dokumen</th>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Posisi Bongkar</th>
+      <th>Tujuan Berangkat</th>
+      <th>Uang Jalan</th>
+      <th>LPG 3kg</th>
+      <th>LPG 3kg Rt</th>
+      <th>LPG 12kg</th>
+      <th>LPG 12kg Rt</th>
+      <th>BG 5,5kg</th>
+      <th>BG 5,5kg Rt</th>
+      <th>BG 12kg</th>
+      <th>BG 12kg Rt</th>
+      <th>Status</th>
       <th>Keterangan</th>
-      <th>File</th>
+      <th>File LO</th>
+
     </tr>
   </thead>
   <tbody>
+    <?php
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+    $total_uang_jalan = 0;
+    ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_dokumen = $data['no_dokumen'];
+      $no_keberangkatan = $data['no_keberangkatan'];
       $tanggal =$data['tanggal'];
-      $referensi =$data['referensi'];
-      $no_rak = $data['no_rak'];
-      $nama_dokumen = $data['nama_dokumen'];
+      $nama_driver = $data['nama_driver'];
+      $no_polisi = $data['no_polisi'];
+      $posisi_bongkar = $data['posisi_bongkar'];
+      $tujuan_keberangkatan = $data['tujuan_berangkat'];
+      $L03K11 = $data['L03K11'];
+      $L03K00 = $data['L03K00'];
+      $L12K11 = $data['L12K11'];
+      $L12K00 = $data['L12K00'];
+      $B05K11 = $data['B05K11'];
+      $B05K00 = $data['B05K00'];
+      $B12K11 = $data['B12K11'];
+      $B12K00 = $data['B12K00'];
+      $uang_jalan = $data['uang_jalan'];
       $keterangan = $data['keterangan'];
-
-
-
+      $file_bukti = $data['file_bukti'];
+      $status = $data['jenis_keberangkatan'];
+      $total_uang_jalan = $total_uang_jalan + $uang_jalan;
       echo "<tr>
+      <td style='font-size: 14px'>$no_keberangkatan</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$no_rak</td>
-      <td style='font-size: 14px'>$nama_dokumen</td>
-      <td style='font-size: 14px'>$keterangan</td> "; ?>
-      
-
-       <?php echo "
-         <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      </tr>";
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$posisi_bongkar</td>
+      <td style='font-size: 14px'>$tujuan_keberangkatan</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($uang_jalan); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$L03K11</td>
+      <td style='font-size: 14px'>$L03K00</td>
+      <td style='font-size: 14px'>$L12K11</td>
+      <td style='font-size: 14px'>$L12K00</td>
+      <td style='font-size: 14px'>$B05K11</td>
+      <td style='font-size: 14px'>$B05K00</td>
+      <td style='font-size: 14px'>$B12K11</td>
+      <td style='font-size: 14px'>$B12K00</td>
+      <td style='font-size: 14px'>$status</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     </tr>";
   }
   ?>
 
@@ -282,8 +356,27 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
 </div>
 <br>
 <br>
-<br>
 
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Jalan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_uang_jalan); ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+  </div>
 
 </div>
 

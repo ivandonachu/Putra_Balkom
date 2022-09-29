@@ -19,8 +19,32 @@ else{  header("Location: logout.php");
 exit;
 }
 
+   
+if (isset($_GET['tanggal1'])) {
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+   } 
+   
+   elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+   }  
+   else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
 
-$table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
+   if ($tanggal_awal == $tanggal_akhir) {
+    $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penggajian");
+   }
+   else{
+
+     $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   }
+
+
+
+
 
 ?>
 
@@ -35,7 +59,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Asset</title>
+  <title>Pencatatan Gaji Karyawan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -62,6 +86,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+      
  <!-- Sidebar -->
  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
@@ -154,8 +179,9 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
         </div>
     </div>
 </li>
-          
 
+          
+            
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -180,7 +206,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VDokumen'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Daftar Dokumen</h5></a>"; ?>
+  <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pencatatan Gaji Karyawan</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -236,44 +262,56 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+  <?php  echo "<form  method='POST' action='VGajiKaryawan' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
+    </div>
+  </form>
 
-
+  <div class="row">
+    <div class="col-md-8">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   </div>
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Tanggal Input</th>
-      <th>REF</th>   
-      <th>No Rak</th>
-      <th>Nama Dokumen</th>
-      <th>Keterangan</th>
+      <th>Tanggal</th>
+      <th>Jumlah</th>
       <th>File</th>
+
     </tr>
   </thead>
   <tbody>
+    <?php
+    $total_pendapatan = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
+    ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_dokumen = $data['no_dokumen'];
+      $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
-      $referensi =$data['referensi'];
-      $no_rak = $data['no_rak'];
-      $nama_dokumen = $data['nama_dokumen'];
-      $keterangan = $data['keterangan'];
+      $jumlah = $data['jumlah'];
+      $file_bukti = $data['file_bukti'];
 
 
 
       echo "<tr>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$no_rak</td>
-      <td style='font-size: 14px'>$nama_dokumen</td>
-      <td style='font-size: 14px'>$keterangan</td> "; ?>
-      
-
-       <?php echo "
-         <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      </tr>";
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     </tr>";
   }
   ?>
 
