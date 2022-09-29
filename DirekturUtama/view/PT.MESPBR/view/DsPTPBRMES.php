@@ -522,6 +522,9 @@ $tanggal_awal = date('y-m-d');
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRincianSAMES">Rincian SA MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRincianSAPBR">Rincian SA PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                     </div>
                 </div>
             </li>

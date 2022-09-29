@@ -62,21 +62,22 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
     <div class="sidebar-brand-icon rotate-n-15">
 
-     </div>
+    </div>
     <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
 </a>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
- <!-- Nav Item - Dashboard -->
+
+  <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
     <a class="nav-link" href="DsPTCBM">
         <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
@@ -122,13 +123,18 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
             <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
+            
             <?php if($nama == 'Nyoman Edy Susanto'){
-                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
-                        } ?>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
+            echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
+            } ?>
+            <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Laporan Saldo</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
             <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
              <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+             <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
+             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
+             <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
 </li>
@@ -148,7 +154,6 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
         </div>
     </div>
 </li>
-
           
 
 <!-- Divider -->

@@ -1821,10 +1821,14 @@ if (isset($_GET['tanggal1'])) {
                         <?php if($nama == 'Nyoman Edy Susanto'){
                         echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
                         } ?>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Laporan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
                          <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                     </div>
                 </div>
             </li>

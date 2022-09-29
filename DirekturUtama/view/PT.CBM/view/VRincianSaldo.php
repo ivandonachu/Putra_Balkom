@@ -78,11 +78,11 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
@@ -92,12 +92,14 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
- <!-- Nav Item - Dashboard -->
+
+  <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
     <a class="nav-link" href="DsPTCBM">
         <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->
@@ -114,7 +116,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
     <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-           <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
@@ -137,16 +139,22 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
             <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
+            
             <?php if($nama == 'Nyoman Edy Susanto'){
-                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
-                        } ?>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
+            echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
+            } ?>
+            <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Laporan Saldo</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
             <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
              <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+             <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
+             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
+             <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
 </li>
+
 <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
@@ -162,6 +170,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
         </div>
     </div>
 </li>
+
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 

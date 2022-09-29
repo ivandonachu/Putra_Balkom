@@ -225,28 +225,31 @@ $jumlah_bersih_pbr = $data_total_pendapatan_pbr - $data_total_pengeluaran_pbr;
      </div>
  </li>
      <!-- Nav Item - Pages Collapse Menu -->
-     <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-       15  aria-expanded="true" aria-controls="collapseTwo">
-         <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-         <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
-     </a>
-     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-         <div class="bg-white py-2 collapse-inner rounded">
-             <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-             <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
-             <?php if($nama == 'Nyoman Edy Susanto'){
-                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi PBR</a>
-                             <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiMes'>Laba Rugi MES</a>";
-             } ?>
-             <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
-             <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON</a>
-             <a class="collapse-item" style="font-size: 15px;" href="VRincianSAMES">Rincian SA MES</a>
-             <a class="collapse-item" style="font-size: 15px;" href="VRincianSAPBR">Rincian SA PBR</a>
-         </div>
-     </div>
- </li>
+   <li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+     15  aria-expanded="true" aria-controls="collapseTwo">
+       <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+       <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
+   </a>
+   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
+           <?php if($nama == 'Nyoman Edy Susanto'){
+           echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi PBR</a>
+                <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiMes'>Laba Rugi MES</a>";
+           } ?>
+           <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VRincianSAMES">Rincian SA MES</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VRincianSAPBR">Rincian SA PBR</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+       </div>
+   </div>
+</li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
