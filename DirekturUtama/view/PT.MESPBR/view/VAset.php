@@ -62,11 +62,11 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM aset");
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-         <!-- Sidebar -->
+        <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
+             <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTPBRMES">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -79,7 +79,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM aset");
             
               <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsPTCBM">
+                <a class="nav-link" href="DsPTPBRMES">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
@@ -88,7 +88,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM aset");
                 <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu PTCBM
+                     Menu PBRMES
                 </div>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
@@ -105,9 +105,9 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM aset");
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
                     </div>
                 </div>
             </li>
@@ -123,10 +123,14 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM aset");
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
+                        <?php if($nama == 'Nyoman Edy Susanto'){
+                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi PBR</a>
+                             <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiMes'>Laba Rugi MES</a>";
+                        } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Rincian SA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSAMES">Rincian SA MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSAPBR">Rincian SA PBR</a>
                     </div>
                 </div>
             </li>

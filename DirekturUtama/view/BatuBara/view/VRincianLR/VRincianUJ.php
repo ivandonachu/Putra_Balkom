@@ -139,7 +139,9 @@ else{
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VLR">Laba Rugi</a>
+                        <?php if($nama == 'Nyoman Edy Susanto'){
+                          echo"<a class='collapse-item' style='font-size: 15px;' href='../VLR'>Laba Rugi</a>";
+                        } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="../VLSaldo">Laporan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="../VCatatPengiriman">Riwayat Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="../VPerbaikan">Beban Kendaraan</a>

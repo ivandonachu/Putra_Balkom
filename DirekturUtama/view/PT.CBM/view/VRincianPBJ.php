@@ -152,7 +152,9 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi</a>
+                        <?php if($nama == 'Nyoman Edy Susanto'){
+                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
+                        } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
                     </div>

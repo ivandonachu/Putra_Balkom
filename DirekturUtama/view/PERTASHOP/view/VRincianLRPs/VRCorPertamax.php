@@ -123,8 +123,8 @@ elseif (isset($_POST['tanggal1'])) {
                 </div>
             </div>
         </li>
-         <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+          <!-- Nav Item - Pages Collapse Menu -->
+          <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
               15  aria-expanded="true" aria-controls="collapseOne">
                 <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -133,18 +133,20 @@ elseif (isset($_POST['tanggal1'])) {
             <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-                    <a class="collapse-item" style="font-size: 15px;" href="VLabaRugiPs">Laba Rugi</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="Setoran">Setoran</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Lap Penjualan Pertamax</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VLPenjualanDex">Lap Penjualan Dexlite</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VCorPertamax">Lap Ngecor Pertamax</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Lap Ngecor Dexlite</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Laporan Pengeluran</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Laporan Pembelian</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
-                    <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualanPagi">Grafik Jual Pagi</a>
+                    <?php if($nama == 'Nyoman Edy Susanto'){
+                          echo"<a class='collapse-item' style='font-size: 15px;' href='../VLabaRugiPs'>Laba Rugi</a>";
+                        } ?>
+                    <a class="collapse-item" style="font-size: 15px;" href="../Setoran">Setoran</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VLPenjualan">Lap Penjualan Pertamax</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VLPenjualanDex">Lap Penjualan Dexlite</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VCorPertamax">Lap Ngecor Pertamax</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VCorDexlite">Lap Ngecor Dexlite</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VLPengeluaran">Laporan Pengeluran</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VLKeuangan">Laporan Keuangan</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VPembelian">Laporan Pembelian</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VAbsensi">Absensi</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VGrafikPenjualan">Grafik Penjualan</a>
+                    <a class="collapse-item" style="font-size: 15px;" href="../VGrafikPenjualanPagi">Grafik Jual Pagi</a>
                 </div>
             </div>
         </li>

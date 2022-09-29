@@ -145,7 +145,9 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Bangkulu</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLabaRugi">Laba Rugi Bangkulu</a>
+            <?php if($nama == 'Nyoman Edy Susanto'){
+                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi Bangkulu</a>";
+                        } ?>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif BKU</a>
         </div>
     </div>
