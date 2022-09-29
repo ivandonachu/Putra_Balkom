@@ -34,6 +34,7 @@ elseif (isset($_POST['tanggal1'])) {
 } 
 
 
+
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi,"SELECT * FROM ngecor WHERE tanggal ='$tanggal_awal' AND nama_barang = 'Dexlite' AND lokasi_cor = '$lokasi' ");
   $table2 = mysqli_query($koneksi,"SELECT * FROM barang ");

@@ -32,10 +32,7 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
  $lokasi = $_POST['lokasi'];
 } 
-else{
-  $tanggal_awal = date('Y-m-1');
-$tanggal_akhir = date('Y-m-31');
-}
+
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi,"SELECT * FROM ngecor WHERE tanggal ='$tanggal_awal' AND nama_barang = 'Pertamax' AND lokasi_cor = '$lokasi'");

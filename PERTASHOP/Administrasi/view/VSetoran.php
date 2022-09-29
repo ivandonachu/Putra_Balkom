@@ -34,6 +34,7 @@ if (isset($_GET['tanggal1'])) {
   $lokasi = $_POST['lokasi'];
  } 
 
+
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM setoran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND  b.lokasi = '$lokasi'");
 }

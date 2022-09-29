@@ -85,8 +85,9 @@ else{
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPertashop">
@@ -125,32 +126,34 @@ else{
 </li>
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                  15  aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugiPs'>Laba Rugi</a>";
-                        } ?>
-                        <a class="collapse-item" style="font-size: 15px;" href="Setoran">Setoran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Lap Penjualan Pertamax</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualanDex">Lap Penjualan Dexlite</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCorPertamax">Lap Ngecor Pertamax</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Lap Ngecor Dexlite</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Laporan Pengeluran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Laporan Pembelian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualanPagi">Grafik Jual Pagi</a>
-                    </div>
-                </div>
-            </li>
+    
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+      15  aria-expanded="true" aria-controls="collapseOne">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Laporan</span>
+    </a>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
             
+            <?php if($nama == 'Nyoman Edy Susanto'){
+              echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugiPs'>Laba Rugi</a>";
+            } ?>
+            <a class="collapse-item" style="font-size: 15px;" href="Setoran">Setoran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan">Lap Penjualan Pertamax</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLPenjualanDex">Lap Penjualan Dexlite</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCorPertamax">Lap Ngecor Pertamax</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Lap Ngecor Dexlite</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Laporan Pengeluran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Laporan Pembelian</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualanPagi">Grafik Jual Pagi</a>
+        </div>
+    </div>
+</li>
+
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -262,8 +265,6 @@ else{
  <br>
 
 
-
-
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -271,6 +272,7 @@ else{
     <tr>
       <th style="font-size: 11px" >No</th>
       <th style="font-size: 11px" >Tanggal</th>
+      <th style="font-size: 11px" >Tanggal Pembayaran</th>
       <th style="font-size: 11px" >Lokasi Cor</th>
       <th style="font-size: 11px" >No Polisi</th>
       <th style="font-size: 11px" >Nama Driver</th>   
@@ -281,6 +283,7 @@ else{
       <th style="font-size: 11px" >Total</th>
       <th style="font-size: 11px" >Keterangan</th>
       <th style="font-size: 11px" >File</th>
+
     </tr>
   </thead>
   <tbody>
@@ -292,6 +295,7 @@ else{
     $cor_be =0;
     $cor_md = 0;
     $cor_sj = 0;
+    $cor_pb = 0;
 
 
     function formatuang($angka){
@@ -303,6 +307,7 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_cor = $data['no_cor'];
       $tanggal =$data['tanggal'];
+      $tanggal_pembayaran =$data['tanggal_pembayaran'];
       $lokasi_cor =$data['lokasi_cor'];
       $no_polisi =$data['no_polisi'];
       $nama_driver =$data['nama_driver'];
@@ -340,13 +345,17 @@ else{
      
         $cor_sj = $cor_sj + $jumlah;
       }
-
+      else if($lokasi_cor == 'Pul Baturaja'){
+     
+        $cor_pb = $cor_pb + $jumlah;
+      }
 
      
 
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
       <td style='font-size: 11px' align = 'center'>$tanggal</td>
+      <td style='font-size: 11px' align = 'center'>$tanggal_pembayaran</td>
       <td style='font-size: 11px' align = 'center'>$lokasi_cor</td>
       <td style='font-size: 11px' align = 'center'>$no_polisi</td>
       <td style='font-size: 11px' align = 'center'>$nama_driver</td>
@@ -359,7 +368,7 @@ else{
       "; ?>
       <?php echo "
       <td style='font-size: 11px'>"; ?> <a download="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PERTASHOP/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     </tr>";
+   </tr>";
 }
 ?>
 
@@ -443,6 +452,12 @@ else{
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
       <td style='font-size: 11px' align = 'center'><?=  ($cor_md); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Pul Baturaja</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_pb); ?></td>
      
   </tr>
 
