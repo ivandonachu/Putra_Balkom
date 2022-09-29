@@ -260,27 +260,36 @@ $kode_perta = $data_perta['kode_perta'];
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
-      <th  style="font-size: 11px" >No</th>
+    <th  style="font-size: 11px" >No</th>
       <th  style="font-size: 11px">Tanggal</th>
       <th  style="font-size: 11px">Kode Pertashop</th>   
       <th  style="font-size: 11px">Lokasi</th>
       <th  style="font-size: 11px">Penjual</th>
       <th  style="font-size: 11px">Barang</th>
-      <th  style="font-size: 11px">Total Keluar</th>
-      <th  style="font-size: 11px">Ngecor</th>
-      <th  style="font-size: 11px">Jual</th>
+      <th  style="font-size: 11px">Terjual</th>
       <th  style="font-size: 11px">Harga</th>
-      <th  style="font-size: 11px">Jumlah</th>
+      <th  style="font-size: 11px">Total</th>
+      <th  style="font-size: 11px">Total Uang Diskon</th>
       <th  style="font-size: 11px">Stok awal</th>
       <th  style="font-size: 11px">Stok Akhir</th>
+      <th  style="font-size: 11px">Bongkaran</th>
+      <th  style="font-size: 11px">sonding Awal</th>
+      <th  style="font-size: 11px">Sonding Akhir</th>
+      <th  style="font-size: 11px">Sirkulasi</th>
+      <th  style="font-size: 11px">Losis Penyimpanan</th>
+      <th  style="font-size: 11px">Losis Penjualan</th>
       <th  style="font-size: 11px">KET</th>
       <th  style="font-size: 11px">File</th>
       <th  style="font-size: 11px">Status</th>
-
     </tr>
   </thead>
   <tbody>
     <?php
+    $urut = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
     $urut = 0;
     $uang_nb_max = 0;
     $terjual_nb_max = 0;
@@ -292,10 +301,10 @@ $kode_perta = $data_perta['kode_perta'];
     $terjual_md = 0;
     $uang_sj = 0 ;
     $terjual_sj = 0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
+    $total_uang_diskon_nb_max = 0 ;
+    $total_uang_diskon_be = 0 ;
+    $total_losis_penjualan = 0;
+    $total_losis_penyimpanan = 0;
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
@@ -306,48 +315,60 @@ $kode_perta = $data_perta['kode_perta'];
       $nama_barang = $data['nama_barang'];
       $nama_karyawan = $data['nama_karyawan'];
       $qty = $data['qty'];
-      $ngecor = $data['ngecor'];
-      $total_qty = $qty + $ngecor;
       $stok_awal = $data['stok_awal'];
       $stok_akhir = $data['stok_akhir'];
+      $bongkaran = $data['bongkaran'];
+      $sonding_awal = $data['sonding_awal'];
+      $sonding_akhir = $data['sonding_akhir'];
+      $sirkulasi = $data['sirkulasi'];
+      $losis_penyimpanan = $data['losis_penyimpanan'];
+      $losis_penjualan = $data['losis_penjualan'];
       $harga = $data['harga'];
+      $uang_diskon = $data['uang_diskon'];
       $jumlah = $qty * $harga;
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
       $status = $data['persetujuan'];
       $urut = $urut + 1;
-
-
+      $total_losis_penyimpanan = $total_losis_penyimpanan + $losis_penyimpanan;
+      $total_losis_penjualan = $total_losis_penjualan + $losis_penjualan;
+    
       if($kode_perta == 'nusabakti'){
         if($nama_barang == 'Pertamax'){
-          $uang_nb_max = $uang_nb_max + $jumlah;
+          $uang_nb_max = $uang_nb_max + $jumlah ; 
           $terjual_nb_max =  $terjual_nb_max + $qty;
-         
+
+          $total_uang_diskon_nb_max = $total_uang_diskon_nb_max + $uang_diskon;
+   
         }
         else{
-          $uang_nb_dex = $uang_nb_dex + $jumlah; 
-          $terjual_nb_dex = $terjual_nb_dex+ $qty;
-       
-        }
+          $uang_nb_dex =  $uang_nb_dex + $jumlah; 
+          $terjual_nb_dex = $terjual_nb_dex + $qty;
+
+          $total_uang_diskon_nb_dex = $total_uang_diskon_nb_dex + $uang_diskon;
         
+     
+        }
         
       }
       else if($kode_perta == 'bedilan'){
         $uang_be = $uang_be + $jumlah; 
         $terjual_be = $terjual_be + $qty;
-        $cor_be = $cor_be + $ngecor;
+        $total_uang_diskon_be = $total_uang_diskon_be + $uang_diskon;
+    
       }
       else if($kode_perta == 'muaradua'){
         $uang_md = $uang_md + $jumlah; 
         $terjual_md = $terjual_md + $qty;
-        $cor_md = $cor_md + $ngecor;
+        $total_uang_diskon_md = $total_uang_diskon_md + $uang_diskon;
+       
       }
       else if($kode_perta == 'sumberjaya'){
         $uang_sj = $uang_sj + $jumlah; 
         $terjual_sj = $terjual_sj + $qty;
-        $cor_sj = $cor_sj + $ngecor;
+        $total_uang_diskon_sj = $total_uang_diskon_sj + $uang_diskon;
+     
       }
-
 
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
@@ -356,13 +377,18 @@ $kode_perta = $data_perta['kode_perta'];
       <td style='font-size: 11px' align = 'center'>$lokasi</td>
       <td style='font-size: 11px' align = 'center'>$nama_karyawan</td>
       <td style='font-size: 11px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 11px' align = 'center'>$total_qty/L</td>
-      <td style='font-size: 11px' align = 'center'>$ngecor/L</td>
       <td style='font-size: 11px' align = 'center'>$qty/L</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($uang_diskon); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$bongkaran/L</td>
+      <td style='font-size: 11px' align = 'center'>$sonding_awal/L</td>
+      <td style='font-size: 11px' align = 'center'>$sonding_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>$sirkulasi/L</td>
+      <td style='font-size: 11px' align = 'center'>$losis_penyimpanan/L</td>
+      <td style='font-size: 11px' align = 'center'>$losis_penjualan/L</td>
       <td style='font-size: 11px' align = 'center'>$keterangan</td>
       "; ?>
       <?php echo "<td style='font-size: 11px'>"; ?>
@@ -395,7 +421,7 @@ $kode_perta = $data_perta['kode_perta'];
               </div>
             </div>
           </div>
-     
+       
 
 
 
@@ -410,9 +436,8 @@ $kode_perta = $data_perta['kode_perta'];
       }
       ?>
 
-
     
-<?php echo  " </tr>";
+<?php echo  "</tr>";
 }
 ?>
 

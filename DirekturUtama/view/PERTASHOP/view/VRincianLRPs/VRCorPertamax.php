@@ -253,6 +253,7 @@ elseif (isset($_POST['tanggal1'])) {
     <tr>
       <th style="font-size: 11px" >No</th>
       <th style="font-size: 11px" >Tanggal</th>
+      <th style="font-size: 11px" >Tanggal Pembayaran</th>
       <th style="font-size: 11px" >Lokasi Cor</th>
       <th style="font-size: 11px" >No Polisi</th>
       <th style="font-size: 11px" >Nama Driver</th>   
@@ -263,6 +264,7 @@ elseif (isset($_POST['tanggal1'])) {
       <th style="font-size: 11px" >Total</th>
       <th style="font-size: 11px" >Keterangan</th>
       <th style="font-size: 11px" >File</th>
+
     </tr>
   </thead>
   <tbody>
@@ -273,6 +275,7 @@ elseif (isset($_POST['tanggal1'])) {
     $cor_be =0;
     $cor_md = 0;
     $cor_sj = 0;
+    $cor_pb = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -282,6 +285,7 @@ elseif (isset($_POST['tanggal1'])) {
     <?php while($data = mysqli_fetch_array($table)){
       $no_cor = $data['no_cor'];
       $tanggal =$data['tanggal'];
+      $tanggal_pembayaran =$data['tanggal_pembayaran'];
       $lokasi_cor =$data['lokasi_cor'];
       $no_polisi =$data['no_polisi'];
       $nama_driver =$data['nama_driver'];
@@ -296,7 +300,7 @@ elseif (isset($_POST['tanggal1'])) {
       
       $urut = $urut + 1;
 
-      if($kode_perta == '2P.323.208'){
+      if($lokasi_cor == 'Nusa Bakti'){
         if($nama_barang == 'Pertamax'){
        
           $cor_nb_max = $cor_nb_max + $jumlah;
@@ -307,23 +311,28 @@ elseif (isset($_POST['tanggal1'])) {
         }
         
       }
-      else if($kode_perta == 'bedilan'){
+      else if($lokasi_cor == 'Bedilan'){
      
         $cor_be = $cor_be + $jumlah;
       }
-      else if($kode_perta == 'muaradua'){
+      else if($lokasi_cor == 'Muara Dua'){
       
         $cor_md = $cor_md + $jumlah;
       }
-      else if($kode_perta == 'sumberjaya'){
+      else if($lokasi_cor == 'Sumber Jaya'){
      
         $cor_sj = $cor_sj + $jumlah;
+      }
+      else if($lokasi_cor == 'Pul Baturaja'){
+     
+        $cor_pb = $cor_pb + $jumlah;
       }
 
 
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
       <td style='font-size: 11px' align = 'center'>$tanggal</td>
+      <td style='font-size: 11px' align = 'center'>$tanggal_pembayaran</td>
       <td style='font-size: 11px' align = 'center'>$lokasi_cor</td>
       <td style='font-size: 11px' align = 'center'>$no_polisi</td>
       <td style='font-size: 11px' align = 'center'>$nama_driver</td>
