@@ -22,6 +22,7 @@ $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $akun = $_POST['akun'];
+$sumber_dana = $_POST['sumber_dana'];
 $jumlah = $_POST['jumlah'];
 $lokasi = $_POST['lokasi'];
 $keterangan = $_POST['keterangan'];
@@ -65,7 +66,7 @@ $data_perta = mysqli_fetch_array($result);
 $kode_perta = $data_perta['kode_perta'];
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pengeluaran VALUES ('','$tanggal','$kode_perta','$akun','Keluar','$jumlah','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengeluaran VALUES ('','$tanggal','$kode_perta','$akun','$sumber_dana','Keluar','$jumlah','$keterangan','$file')");
 
 
 			if ($query != "") {

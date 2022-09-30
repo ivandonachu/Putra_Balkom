@@ -303,6 +303,14 @@ else{
              <option>Biaya Sewa</option>
              <option>Gaji Karyawan</option>
           </select>
+        </div>          
+        <div class="col-md-6">
+          <label>Sumber Dana</label>
+          <select id="sumber_dana" name="sumber_dana" class="form-control">
+            <option>Uang Penjualan</option>
+            <option>Uang Jalan Balsri</option>>
+            <option>Uang Pertashop</option>
+          </select>
         </div>            
 
       </div>
@@ -364,6 +372,7 @@ else{
       <th>Kode Perta</th>
       <th>Lokasi</th>
       <th>Akun</th>
+      <th>Sumber Dana</th>
       <th>Keterangan</th>
       <th>Pengeluaran</th>
       <th>Total</th>
@@ -388,6 +397,7 @@ else{
      $kode_perta =$data['kode_perta'];
      $lokasi =$data['lokasi'];
      $nama_akun = $data['nama_akun'];
+     $sumber_dana = $data['sumber_dana'];
      $jumlah = $data['jumlah'];
      $keterangan = $data['keterangan'];
      $file_bukti = $data['file_bukti'];
@@ -402,6 +412,7 @@ else{
      <td style='font-size: 14px'>$kode_perta</td>
      <td style='font-size: 14px'>$lokasi</td>
      <td style='font-size: 14px'>$nama_akun</td>
+     <td style='font-size: 14px'>$sumber_dana</td>
      <td style='font-size: 14px'>$keterangan</td>
      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
@@ -474,7 +485,18 @@ else{
              <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected": "" ?> >Gaji Karyawan</option>
           </select>
 
-        </div>            
+        </div>       
+        <div class="col-md-6">
+
+          <label>Sumber Dana</label>
+          <select id="sumber_dana" name="sumber_dana" class="form-control">
+            <?php $dataSelect = $data['nama_akun']; ?>
+            <option <?php echo ($dataSelect == 'Uang Penjualan') ? "selected": "" ?> >Uang Penjualan</option>
+            <option <?php echo ($dataSelect == 'Uang Jalan Balsri') ? "selected": "" ?> >Uang Jalan Balsri</option>
+            <option <?php echo ($dataSelect == 'Uang Pertashop') ? "selected": "" ?> >Uang Pertashop</option>
+          </select>
+
+        </div>         
 
       </div>
 
