@@ -490,7 +490,7 @@ else{
 
           <label>Sumber Dana</label>
           <select id="sumber_dana" name="sumber_dana" class="form-control">
-            <?php $dataSelect = $data['nama_akun']; ?>
+            <?php $dataSelect = $data['sumber_dana']; ?>
             <option <?php echo ($dataSelect == 'Uang Penjualan') ? "selected": "" ?> >Uang Penjualan</option>
             <option <?php echo ($dataSelect == 'Uang Jalan Balsri') ? "selected": "" ?> >Uang Jalan Balsri</option>
             <option <?php echo ($dataSelect == 'Uang Pertashop') ? "selected": "" ?> >Uang Pertashop</option>
