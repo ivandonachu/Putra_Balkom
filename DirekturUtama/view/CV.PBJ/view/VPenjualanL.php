@@ -317,7 +317,7 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
             <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>";
+                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLR2Lx'>Laba Rugi</a>";
                         } ?>
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
