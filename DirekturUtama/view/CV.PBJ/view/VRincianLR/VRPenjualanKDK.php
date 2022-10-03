@@ -785,6 +785,42 @@ else{
     </div>
   </div>
 </div>
+<br>
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Seluruh QTY </div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=    $penjualan_bopct1 + $penjualan_bopct1_bon + $penjualan_bpcc + $penjualan_bpcc_bon + $penjualan_copct1 + $penjualan_copct1_bon + $penjualan_cpcc + $penjualan_cpcc_bon + $penjualan_sakpcc + $penjualan_sakpcc_bon ?></div>
+          </div>
+          <div class="col-auto">
+             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Seluruh Uang</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_bopct1 + $uang_bopct1_bon + $uang_bpcc + $uang_bpcc_bon + $uang_copct1 + $uang_copct1_bon + $uang_cpcc + $uang_cpcc_bon + $uang_sakpcc + $uang_bpcc_bon) ?></div>
+          </div>
+          <div class="col-auto">
+             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <br>
