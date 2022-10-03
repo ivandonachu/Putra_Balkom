@@ -765,7 +765,7 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
                         <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLR2Lx'>Laba Rugi</a>";
+                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>";
                         } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
@@ -865,7 +865,7 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                 </nav>
                 <!-- End of Topbar -->
                 <div class="container" style="color : black;">
-                    <?php echo "<form  method='POST' action='VLR2Lx' style='margin-bottom: 15px;'>" ?>
+                    <?php echo "<form  method='POST' action='VLR2L' style='margin-bottom: 15px;'>" ?>
                     <div>
                         <div align="left" style="margin-left: 20px;">
                             <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
