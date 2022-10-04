@@ -344,6 +344,7 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
                   <option>Pembelian</option>
                   <option>Penambahan</option>
                   <option>Penyusutan</option>
+                  <option>Penjualan</option>
               </select>            
           </div>
 
