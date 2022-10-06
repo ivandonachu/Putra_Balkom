@@ -382,25 +382,18 @@ data-parent="#accordionSidebar">
   </thead>
   <tbody>
     <?php
-    //Masuk CBM Keluar CBM
-    $masuk_pbr_cbm = 0;
-    //Masuk CBM Keluar PBJ
-    $masuk_pbr_pbj = 0;
-    //mASUK cbm kELUAR MT
-    $masuk_mes_cbm = 0;
-    //masuk mt keluar cbm
-    $masuk_mes_pbj= 0;
+    //masuk cbm ke mes
+    $masuk_cbm_mes = 0;
+    //masuk cbm ke pbr
+    $masuk_cbm_pbr = 0;
+
    
     
-    //keluar cbm masuk cbm
+    //keluar mes ke cbm
     $keluar_pbr_cbm = 0;
-    //keluar cbm masuk pbj
-    $keluar_pbr_pbj = 0;
-    //keluar cbm masuk mt
+    //keluar pbr ke cbm
     $keluar_mes_cbm = 0;
-    //keluar mt masuk cbm
-    $keluar_mes_pbj = 0;
-   
+
 
     
     $urut = 0;
@@ -421,39 +414,24 @@ data-parent="#accordionSidebar">
       $keterangan = $data['keterangan'];
       $status_saldo = $data['status_saldo'];
     
-    //Masuk CBM Keluar CBM
-    if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'CBM') {
-        $masuk_mes_cbm = $masuk_mes_cbm + $jumlah;
+    //Masuk cbm ke pbr
+    if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'PBR') {
+        $masuk_cbm_pbr = $masuk_cbm_pbr + $jumlah;
       }
     //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'PBJ') {
-        $masuk_mes_pbj = $masuk_mes_pbj + $jumlah;
+    else if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'MES') {
+        $masuk_cbm_mes = $masuk_cbm_mes + $jumlah;
       }
-    //mASUK cbm kELUAR MT
+    //Keluar pbr kELUAR cbm
     else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBR' && $referensi == 'CBM') {
-        $masuk_pbr_cbm = $masuk_pbr_cbm + $jumlah;
+        $keluar_pbr_cbm = $keluar_pbr_cbm + $jumlah;
       }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBR' && $referensi == 'PBJ') {
-        $masuk_pbr_cbm = $masuk_pbr_pbj + $jumlah;
+    //keluar mes keluar cbm
+    else if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'CBM') {
+        $keluar_mes_cbm = $keluar_mes_cbm + $jumlah;
       }
    
-     //Masuk CBM Keluar CBM
-    if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'CBM') {
-        $masuk_mes_cbm = $masuk_mes_cbm + $jumlah;
-      }
-    //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'PBJ') {
-        $masuk_mes_pbj = $masuk_mes_pbj + $jumlah;
-      }
-    //mASUK cbm kELUAR MT
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'CBM') {
-        $masuk_pbr_cbm= $masuk_pbr_cbm + $jumlah;
-      }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'PBJ') {
-        $masuk_pbr_pbj = $masuk_pbr_pbj + $jumlah;
-      }
+   
 
         $urut = $urut + 1;
 
@@ -545,10 +523,10 @@ data-parent="#accordionSidebar">
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Total TF MES ke CBM</th>
-      <th>Total TF MES ke PBJ</th>
-      <th>Total TF PBR ke CBM</th>
-      <th>Total TF PBR ke PBJ</th>
+      <th>Total TF Dari CBM ke PBR</th>
+      <th>Total TF Dari CBM ke MES</th>
+      <th>Total TF Dari PBR ke CBM</th>
+      <th>Total TF Dari MES ke CBM</th>
       <th>Rincian</th>
     </tr>
   </thead>
@@ -556,10 +534,10 @@ data-parent="#accordionSidebar">
 
     <?php 
       echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_pbj); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_mes); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_pbj); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_cbm); ?> <?php echo "</td>
       <td class='text-center'><a href='VRincianCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
         </tr>";
   
@@ -569,37 +547,6 @@ data-parent="#accordionSidebar">
 </table>
 </div>
 
-<br>
-
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-<h6 align="center">Rekap Transfer Saldo Masuk</h6>
-<!-- Tabel -->    
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Total TF MES ke CBM</th>
-      <th>Total TF MES ke PBJ</th>
-      <th>Total TF PBR ke CBM</th>
-      <th>Total TF PBR ke PBJ</th>
-      <th>Rincian</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php 
-      echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_mes_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_mes_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_pbj); ?> <?php echo "</td>
-      <td class='text-center'><a href='VRincianMT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
-        </tr>";
-  
-  ?>
-
-</tbody>
-</table>
-</div>
 
 
 <br>
