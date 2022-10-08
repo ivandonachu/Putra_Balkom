@@ -71,11 +71,11 @@ else{
 
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_keb_lengkiti SET tanggal = '$tanggal' , nama_akun = '$akun' , referensi = '$referensi' ,
+			$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_keb_lengkiti SET tanggal = '$tanggal' , nama_akun = '$akun' , jumlah ='$jumlah' , referensi = '$referensi' ,
             keterangan = '$keterangan', status_saldo = '$status_saldo' WHERE no_laporan = '$no_laporan'");
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_keb_lengkiti SET tanggal = '$tanggal' , nama_akun = '$akun' , referensi = '$referensi' ,
+			$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_keb_lengkiti SET tanggal = '$tanggal' , nama_akun = '$akun' , jumlah ='$jumlah'  , referensi = '$referensi' ,
             keterangan = '$keterangan', status_saldo = '$status_saldo' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
 	}
 
