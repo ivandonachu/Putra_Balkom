@@ -28,6 +28,7 @@ $harga = $_POST['harga'];
 $total_pendapatan = $berat * $harga;
 $pembagi = $_POST['pembagi'];
 $upah_kotor = $_POST['upah_kotor'];
+$cashbon = $_POST['cashbon'];
 $oa = $_POST['oa'];
 $b_kompor = $_POST['b_kompor'];
 $upah_bersih = $_POST['upah_bersih'];
@@ -69,7 +70,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO laporan_karet VALUES('','$tanggal','$nama_karyawan','$box','$berat','$harga','$total_pendapatan','$pembagi','$upah_kotor','$oa','$b_kompor','$tank_alpha','$upah_bersih','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO laporan_karet VALUES('','$tanggal','$nama_karyawan','$box','$berat','$harga','$total_pendapatan','$pembagi','$upah_kotor','$oa','$b_kompor','$tank_alpha','$cashbon','$upah_bersih','$keterangan','$file')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VLKaret?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

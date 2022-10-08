@@ -321,11 +321,12 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 var oa = document.getElementById('oa').value;
                                                 var b_kompor = document.getElementById('b_kompor').value;
                                                 var tank_alpha = document.getElementById('tank_alpha').value;
+                                                var cashbon = document.getElementById('cashbon').value;
                                                 var result = (parseInt(berat) * parseInt(harga))/parseFloat(pembagi);
                                                 if (!isNaN(result)) {
                                                 document.getElementById('upah_kotor').value = result;
                                                 }
-                                                var result2 = parseFloat(result) - (parseInt(oa) + parseInt(b_kompor) + parseInt(tank_alpha));
+                                                var result2 = parseFloat(result) - (parseInt(oa) + parseInt(b_kompor) + parseInt(tank_alpha) + parseInt(cashbon));
                                                 if (!isNaN(result2)) {
                                                 document.getElementById('upah_bersih').value = result2;
                                                 }
@@ -358,12 +359,18 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <input class="form-control form-control-sm" type="number" id="tank_alpha" name="tank_alpha" onkeyup="sum();" required="">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label>Upah Bersih</label>
-                                                        <input class="form-control form-control-sm" type="float" id="upah_bersih" name="upah_bersih" required=""> 
+                                                        <label>Cashbon</label>
+                                                        <input class="form-control form-control-sm" type="float" id="cashbon" name="cashbon" onkeyup="sum();" required=""> 
                                                     </div>
                                                 </div>
 
                                                 <br>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Upah Bersih</label>
+                                                        <input class="form-control form-control-sm" type="float" id="upah_bersih" name="upah_bersih" required=""> 
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-group">
                                                     <label>Keterangan</label>
@@ -411,6 +418,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <th>Ongkos Angkut</th>
                                 <th>Bayar Kompor</th>
                                 <th>Tank Alpha</th>
+                                <th>Cashbon</th>
                                 <th>Upah Bersih</th>
                                 <th>Ket</th>
                                 <th>File</th>
@@ -441,6 +449,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 $ongkos_angkut = $data['ongkos_angkut'];
                                 $bayar_kompor = $data['bayar_kompor'];
                                 $tank_alpha = $data['tank_alpha'];
+                                $cashbon = $data['cashbon'];
                                 $upah_bersih = $data['upah_bersih'];
                                 $keterangan = $data['keterangan'];
                                 $file_bukti = $data['file_bukti'];
@@ -459,6 +468,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($ongkos_angkut); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($bayar_kompor); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($tank_alpha); ?> <?php echo "</td>
+                                <td style='font-size: 14px'>"; ?> <?= formatuang($cashbon); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($upah_bersih); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>$keterangan</td>
                                 <td style='font-size: 14px'>"; ?> <a download="../file_kebun/<?= $file_bukti ?>" href="../file_kebun/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
@@ -552,14 +562,24 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <br>
                                                 
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <label>Bayar Kompor</label>
                                                         <input class="form-control form-control-sm" type="number" id="b_kompor" name="b_kompor"   onkeyup="sum();" value="<?php echo $bayar_kompor;?>"  required="">
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <label>Tank Alpha</label>
                                                         <input class="form-control form-control-sm" type="number" id="tank_alpha" name="tank_alpha"   onkeyup="sum();" value="<?php echo $tank_alpha;?>"  required="">
                                                     </div>
+                                                    <div class="col-md-4">
+                                                        <label>Cashbon</label>
+                                                        <input class="form-control form-control-sm" type="float" id="cashbon" name="cashbon" onkeyup="sum();" value="<?php echo $cashbon;?>"  required=""> 
+                                                    </div>
+                                                </div>
+
+                                                <br>
+
+                                                <div class="row">
+
                                                     <div class="col-md-6">
                                                         <label>Upah Bersih</label>
                                                         <input class="form-control form-control-sm" type="float" id="upah_bersih" name="upah_bersih" value="<?php echo $upah_bersih;?>"  required=""> 
@@ -567,7 +587,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 </div>
 
                                                 <br>
-
                                                 <div class="form-group">
                                                     <label>Keterangan</label>
                                                     <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
