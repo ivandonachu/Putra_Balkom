@@ -389,8 +389,8 @@ else{
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($uang_diskon); ?> <?php echo "</td>
-      <td style='font-size: 11px' align = 'center'>$stok_awal/L</td>
-      <td style='font-size: 11px' align = 'center'>$stok_akhir/L</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= round($stok_awal ,3) ?> <?php echo "/L</td>
+      <td style='font-size: 11px' align = 'center'>"?>  <?= round($stok_akhir ,3) ?> <?php echo "/L</td>
       <td style='font-size: 11px' align = 'center'>$bongkaran/L</td>
       <td style='font-size: 11px' align = 'center'>$sonding_awal/L</td>
       <td style='font-size: 11px' align = 'center'>$sonding_akhir/L</td>
