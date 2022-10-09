@@ -549,6 +549,7 @@ $ranau = 'Kebun Ranau';
             <option>Pengeluaran Pak Nyoman</option>
             <option>Pengeluaran Buk Mery</option>
             <option>Kebun Ranau</option>
+            <option>Tabungan Anak</option>
           </select>
         </div>            
         <div class="col-md-6">
@@ -757,6 +758,7 @@ $ranau = 'Kebun Ranau';
             <option <?php echo($dataSelect == 'Pengeluaran Pak Nyoman')?"selected": ""?>>Pengeluaran Pak Nyoman</option>
             <option <?php echo($dataSelect == 'Pengeluaran Buk Mery')?"selected": ""?>>Pengeluaran Buk Mery</option>
             <option <?php echo ($dataSelect == 'Kebun Ranau') ? "selected": "" ?> >Kebun Ranau</option>
+            <option <?php echo ($dataSelect == 'Tabungan Anak') ? "selected": "" ?> >Tabungan Anak</option>
 
           </select>
 
