@@ -256,7 +256,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
        <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
      </div>
    </div>
-
+   <div>
+                  <label>Upload File</label> 
+                  <input type="file" name="file"> 
+                </div> 
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary"> CATAT</button>
     <button type="reset" class="btn btn-danger"> RESET</button>
@@ -281,6 +284,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
       <th>Jumlah</th>
       <th>Nama Pengguna</th>
       <th>Keterangan</th>
+      <th>File</th>
       <th>Edit</th>
       <th>Hapus</th>
     </tr>
@@ -296,7 +300,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
       $nama_pengguna = $data['pengguna'];
       $keterangan = $data['keterangan'];
 
-
+      $file_bukti = $data['file_bukti'];
 
       echo "<tr>
       <td style='font-size: 14px'>$tanggal</td>
@@ -306,6 +310,12 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
       <td style='font-size: 14px'>$nama_pengguna</td>
       <td style='font-size: 14px'>$keterangan</td>
       "; ?>
+      
+
+      <?php echo "
+        <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     "; ?>
+
       <?php echo "<td style='font-size: 12px'>"; ?>
 
        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_aset']; ?>">Edit</button>
@@ -324,8 +334,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
 
 
               <!-- Form Edit Data -->
-              <div class="modal-body">
-                <form action="../proses/proses_edit_aset.php" method="POST">
+              <div class="modal-body"> 
+                <form action="../proses/proses_edit_aset.php" enctype="multipart/form-data" method="POST">
 
 
                   <div class="form-group">
@@ -353,7 +363,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM aset");
                     <label>Keterangan</label>
                     <input type="text" name="keterangan" class="form-control" value="<?php echo $keterangan;?>" required=""> 
                   </div>
-
+                  <div>
+                  <label>Upload File</label> 
+                  <input type="file" name="file"> 
+                </div> 
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-primary"> Ubah </button>
                     <button type="reset" class="btn btn-danger"> RESET</button>

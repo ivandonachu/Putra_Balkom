@@ -24,9 +24,43 @@ $pengguna = $_POST['pengguna'];
 $referensi = $_POST['referensi'];
 $jumlah = $_POST['jumlah'];
 $keterangan = $_POST['keterangan'];
+$nama_file = $_FILES['file']['name'];
+if ($nama_file == "") {
+	$file = "";
+}
+
+else if ( $nama_file != "" ) {
+
+	function upload(){
+		$nama_file = $_FILES['file']['name'];
+		$ukuran_file = $_FILES['file']['size'];
+		$error = $_FILES['file']['error'];
+		$tmp_name = $_FILES['file']['tmp_name'];
+
+		$ekstensi_valid = ['jpg','jpeg','pdf','doc','docs','xls','xlsx','docx','txt','png'];
+		$ekstensi_file = explode(".", $nama_file);
+		$ekstensi_file = strtolower(end($ekstensi_file));
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO aset VALUES ('','$tanggal','$nm_asset','$jumlah','$referensi','$pengguna','$keterangan')");
+		$nama_file_baru = uniqid();
+		$nama_file_baru .= ".";
+		$nama_file_baru .= $ekstensi_file;
+
+		move_uploaded_file($tmp_name, '../../StaffAdmin/file_staff_admin/' . $nama_file_baru   );
+
+		return $nama_file_baru; 
+
+	}
+
+	$file = upload();
+	if (!$file) {
+		return false;
+	}
+
+}
+
+
+	$query = mysqli_query($koneksi,"INSERT INTO aset VALUES ('','$tanggal','$nm_asset','$jumlah','$referensi','$pengguna','$keterangan','$file')");
 
 
 			if ($query != "") {
