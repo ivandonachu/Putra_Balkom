@@ -30,12 +30,16 @@ if (isset($_GET['tanggal1'])) {
      $tanggal_awal = date('Y-m-1');
    $tanggal_akhir = date('Y-m-31');
    }
+
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksistre, "SELECT * FROM pengeluaran_pul WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksistre, "SELECT nama_akun , SUM(jumlah) AS total_pengeluaran FROM pengeluaran_pul WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
 }
 else{
   $table = mysqli_query($koneksistre, "SELECT * FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksistre, "SELECT nama_akun , SUM(jumlah) AS total_pengeluaran FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
 }
+
 
 
 ?>
@@ -349,6 +353,36 @@ else{
 
 </tbody>
 </table>
+</div>
+<br>
+<hr>
+<br>
+<div style="margin-right: 100px; margin-left: 100px;">
+<h6 align="Center">Total Per Akun</h6>
+<div style="overflow-x: auto" align = 'center'>
+<table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+      <th>Nama Akun</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_akun =$data['nama_akun'];
+      $total_pengeluaran = $data['total_pengeluaran'];
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+     
+  </tr>";
+}
+?>
+
+</tbody>
+</table>
+</div>
 </div>
 <br>
 <br>
