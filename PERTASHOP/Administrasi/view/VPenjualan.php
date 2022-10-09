@@ -522,6 +522,10 @@ Menu Administrasi
           <label>Terjual</label>
           <input class="form-control form-control-sm" type="float" id="qty" name="qty" value="<?php echo $qty;?>" required="">
           </div>
+          <div class="col-md-4">
+          <label>Harga</label>
+          <input class="form-control form-control-sm" type="float" id="harga" name="harga" value="<?php echo $harga;?>" required="">
+          </div>
           </div>
           <br>
           <div>

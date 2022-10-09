@@ -23,6 +23,7 @@ $tanggal_akhir = $_POST['tanggal2'];
 $no_penjualan = $_POST['no_penjualan'];
 $lokasi = $_POST['lokasi'];
 $qty = $_POST['qty'];
+$harga = $_POST['harga'];
 $nama_barang = $_POST['nama_barang'];
 $stok_awal = $_POST['stok_awal'];
 $stok_akhir = $_POST['stok_akhir'];
@@ -45,7 +46,7 @@ $kode_perta = $data_perta['kode_perta'];
         if( $nama_barang == 'Pertamax'){
 
 			
-				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET qty = '$qty', uang_diskon = '$uang_diskon' , stok_awal = '$stok_awal' , stok_akhir = '$stok_akhir' , bongkaran = '$bongkaran' , sonding_awal = '$sonding_awal'
+				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET qty = '$qty', harga = '$harga', uang_diskon = '$uang_diskon' , stok_awal = '$stok_awal' , stok_akhir = '$stok_akhir' , bongkaran = '$bongkaran' , sonding_awal = '$sonding_awal'
 																		, sonding_akhir = '$sonding_akhir' , sirkulasi = '$sirkulasi', losis_penyimpanan = '$losis_penyimpanan', losis_penjualan = '$losis_penjualan' ,keterangan = '$keterangan'  WHERE no_penjualan = 
 				'$no_penjualan'");
 
