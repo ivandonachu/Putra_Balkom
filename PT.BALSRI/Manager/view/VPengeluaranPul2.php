@@ -512,8 +512,8 @@ else{
 
 
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_akun</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
      
   </tr>";
 }
