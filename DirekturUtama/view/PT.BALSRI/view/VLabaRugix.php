@@ -27,6 +27,10 @@ elseif (isset($_POST['tanggal1'])) {
    $tanggal_awal = $_POST['tanggal1'];
    $tanggal_akhir = $_POST['tanggal2'];
 }  
+else{
+    $tanggal_awal = date('2022-8-1');
+  $tanggal_akhir = date('2022-8-31');
+  }
 
 
 function formatuang($angka){
