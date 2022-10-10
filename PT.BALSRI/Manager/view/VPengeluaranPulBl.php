@@ -32,11 +32,12 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_pul_bl WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksi, "SELECT nama_akun , SUM(jumlah) AS pengeluaran_pul_bl FROM pengeluaran_pul WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
   
 }
 else{
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksi, "SELECT nama_akun , SUM(jumlah) AS total_pengeluaran FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksi, "SELECT nama_akun , SUM(jumlah) AS pengeluaran_pul_bl FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
 }
 
 

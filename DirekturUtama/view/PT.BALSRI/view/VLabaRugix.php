@@ -243,8 +243,8 @@ else{
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
@@ -766,7 +766,7 @@ else{
 </div>
 </div>
 </div>
-</div>
+
 <br>
 <br>
 <h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Lampung</h3>

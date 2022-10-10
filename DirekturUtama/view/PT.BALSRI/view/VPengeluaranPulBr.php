@@ -28,9 +28,12 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksibalsri, "SELECT * FROM pengeluaran_pul_br WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT nama_akun , SUM(jumlah) AS pengeluaran_pul_br FROM pengeluaran_pul WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
+
 }
 else{
   $table = mysqli_query($koneksibalsri, "SELECT * FROM pengeluaran_pul_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT nama_akun , SUM(jumlah) AS pengeluaran_pul_br FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
 }
 
 
