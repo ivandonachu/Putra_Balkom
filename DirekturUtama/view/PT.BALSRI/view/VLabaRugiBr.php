@@ -32,7 +32,6 @@ else{
   $tanggal_akhir = date('2022-8-31');
   }
 
-
 function formatuang($angka){
   $uang = "Rp " . number_format($angka,2,',','.');
   return $uang;
@@ -40,7 +39,7 @@ function formatuang($angka){
 
 if ($tanggal_awal == $tanggal_akhir) {
   // Tagihan
-  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_brx a INNER JOIN master_tarif_brx b ON a.no=b.no  WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_br a INNER JOIN master_tarif_br b ON a.no=b.no  WHERE tanggal = '$tanggal_awal'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
   //pengiriman
@@ -95,7 +94,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
     // Tagihan
-  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_brx a INNER JOIN master_tarif_brx b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_br a INNER JOIN master_tarif_br b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
 
@@ -190,9 +189,9 @@ else{
     
     $total_gaji_karaywan = $gaji_karyawan + $gaji_driver;
         //list supir
-        $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_brx WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+        $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
          //totalkredit
-         $table101 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_brx WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+         $table101 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
     $total_kredit = 0;
     while($data = mysqli_fetch_array($table101)){
         $mt = $data['mt'];
@@ -555,7 +554,7 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
 </nav>
 <!-- End of Topbar -->
 <div class="container" style="color : black;">
-   <?php  echo "<form  method='POST' action='VLabaRugiBrx' style='margin-bottom: 15px;'>" ?>
+   <?php  echo "<form  method='POST' action='VLabaRugiBr' style='margin-bottom: 15px;'>" ?>
    <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
