@@ -244,9 +244,9 @@ else{
    $datay1 = mysqli_fetch_array($tabley1);
    $no_penjualan_akhir_max = $datay1['penjualan_akhir'];
 
-   $tabley12 = mysqli_query($koneksiperta, "SELECT stok_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_max' ");
+   $tabley12 = mysqli_query($koneksiperta, "SELECT sonding_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_max' ");
    $datay12 = mysqli_fetch_array($tabley12);
-   $stok_akhir_max = $datay12['stok_akhir'];
+   $stok_akhir_max = $datay12['sonding_akhir'];
    $harga_stok_akhir_max = $datay12['harga'];
    $total_uang_stok_max = $stok_akhir_max * $harga_stok_akhir_max;
 
@@ -256,9 +256,9 @@ else{
    $datay2 = mysqli_fetch_array($tabley2);
    $no_penjualan_akhir_dex = $datay2['penjualan_akhir'];
 
-   $tabley22 = mysqli_query($koneksiperta, "SELECT stok_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_dex' ");
+   $tabley22 = mysqli_query($koneksiperta, "SELECT sonding_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_dex' ");
    $datay22 = mysqli_fetch_array($tabley22);
-   $stok_akhir_dex = $datay22['stok_akhir'];
+   $stok_akhir_dex = $datay22['sonding_akhir'];
    $harga_stok_akhir_dex = $datay22['harga'];
    $total_uang_stok_dex = $stok_akhir_dex * $harga_stok_akhir_dex;
 
