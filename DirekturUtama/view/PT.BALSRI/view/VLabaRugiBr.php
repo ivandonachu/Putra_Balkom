@@ -28,8 +28,8 @@ elseif (isset($_POST['tanggal1'])) {
    $tanggal_akhir = $_POST['tanggal2'];
 }  
 else{
-    $tanggal_awal = date('2022-8-1');
-  $tanggal_akhir = date('2022-8-31');
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
   }
 
 function formatuang($angka){
@@ -610,7 +610,7 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
                  <td class="text-left">Tagihan Patra</td>
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
-                 <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRTagihanx?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                 <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
              </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
