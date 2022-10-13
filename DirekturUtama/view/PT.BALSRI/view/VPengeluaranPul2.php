@@ -546,9 +546,9 @@ else{
     </tr>
   </thead>
   <tbody>
-    <?php while($data = mysqli_fetch_array($table2)){
-      $nama_akun =$data['nama_akun'];
-      $total_pengeluaran = $data['total_pengeluaran'];
+    <?php while($data2= mysqli_fetch_array($table2)){
+      $nama_akun =$data2['nama_akun'];
+      $total_pengeluaran = $data2['total_pengeluaran'];
 
 
       echo "<tr>
