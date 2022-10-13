@@ -518,14 +518,7 @@ else{
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
              </tr>
-             <tr>
-                 <td>4-201</td>
-                 <td class="text-left">Tagihan SPBU</td>
-                 <td class="text-left"><?= formatuang($total_tagihan_spbu); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRTagihanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-             </tr>
-             
+           
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
