@@ -31,14 +31,14 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksibalsri, "SELECT  SUM(dexlite) AS total_dexlite FROM pengiriman_bk a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table = mysqli_query($koneksibalsri, "SELECT  SUM(dexlite) AS total_dexlite FROM pengiriman_bl a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
 }
 
 else{
 
 
-  $table = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_bk a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+  $table = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_bl a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
 
 }
 
