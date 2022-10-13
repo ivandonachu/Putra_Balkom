@@ -17,7 +17,6 @@ if ($jabatan_valid == 'Direktur Utama') {
 else{ header("Location: logout.php");
 exit;
 }
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -52,7 +51,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Perbaikan Kendaraan</title>
+  <title>Perbaikan Kendaraan Belitung</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -315,7 +314,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VCatatPerbaikanBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pencatatan Perbaikan Kendaraan BL</h5></a>"; ?>
+      <?php echo "<a href='VCatatPerbaikanBk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pencatatan Perbaikan Kendaraan BL</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -373,7 +372,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
    <div style="margin-right: 100px; margin-left: 100px;">
 
-    <?php  echo "<form  method='POST' action='VCatatPerbaikanBl.php'>" ?>
+    <?php  echo "<form  method='POST' action='VCatatPerbaikanBl'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -388,112 +387,6 @@ else{
   <div class="col-md-6">
    <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
  </div>
- <div class="col-md-6">
-  <!-- Button Input Data Bayar -->
-  <div align="right">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Perbaikan Kendaraan </button> <br> <br>
-  </div>
-
-  <!-- Form Modal  -->
-  <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-lg" role ="document">
-     <div class="modal-content"> 
-      <div class="modal-header">
-        <h5 class="modal-title"> Form Pengeluaran Perbakian </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div> 
-
-      <!-- Form Input Data -->
-      <div class="modal-body" align="left">
-        <?php  echo "<form action='../proses/proses_catat_perbaikanBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-        <div class="row">
-          <div class="col-md-6">
-
-            <label>Tanggal</label>
-            <div class="col-sm-10">
-             <input type="date" id="tanggal" name="tanggal" required="">
-           </div>
-
-         </div>
-       </div>
-
-
-       <br>
-
-       <div class="row">
-
-        <div class="col-md-6">
-         <label>AMT</label>
-         <select id="amt" name="amt" class="form-control ">
-          <?php
-          include 'koneksi.php';
-          $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Bangka Belitung'");   
-
-          while ($data2 = mysqli_fetch_array($result)){
-            $nama_driver = $data2['nama_driver'];
-
-
-            echo "<option> $nama_driver </option> ";
-
-          }
-          ?>
-        </select>
-      </div>
-
-      <div class="col-md-6">
-        <label>MT</label>
-        <select id="mt" name="mt" class="form-control">
-          <?php
-          include 'koneksi.php';
-          $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Bangka Belitung'");   
-
-          while ($data2 = mysqli_fetch_array($result)){
-            $no_polisi = $data2['no_polisi'];
-
-
-            echo "<option> $no_polisi </option> ";
-
-          }
-          ?>
-        </select>
-      </div>            
-
-    </div>
-    <br>
-
-    <div class="row">
-      <div class="col-md-6">
-        <label>Jumlah Pengeluaran</label>
-        <input class="form-control form-control-sm" type="float" id="jml_pengeluaran" name="jml_pengeluaran" required="">
-      </div>      
-      <div class="col-md-6">
-       <label>Keterangan Kerusakan / Maintenance</label>
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
-     </div>  
-   </div>
-
-
-   <br>
-
-   <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> BAYAR</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 
 
@@ -544,7 +437,8 @@ else{
       <td style='font-size: 14px'>"?>  <?= formatuang($jml_pengeluaran); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td> </tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      </tr>";
 }
 ?>
 
