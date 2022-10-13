@@ -516,12 +516,12 @@ else{
                  <td class="text-left">Tagihan Patra</td>
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
-                 <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                 <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
              </tr>
            
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
-                <td class="thick-line"></td>
+                <td class="thick-line"></td>VRincianLRBKU
                 <td class="no-line text-left"><?= formatuang($total_laba_kotor); ?> </td>
                 <td class="no-line text-left"><?= formatuang(0); ?> </td>
                 <td class="thick-line"></td>
@@ -546,28 +546,28 @@ else{
                 <td class="text-left">Gaji Karyawan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_karyawan); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-520</td>
                 <td class="text-left">Alat Tulis Kantor</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_atk); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-570</td>
                 <td class="text-left">Biaya Sewa</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_sewa); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRPerjalanan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRPerjalanan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                  <td>4-101</td>
@@ -602,28 +602,28 @@ else{
                 <td class="text-left">Gaji Driver</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-540</td>
                 <td class="text-left">Biaya Kantor</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_biaya_kantor); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRBiayaKantor?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRBiayaKantor?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-550</td>
                 <td class="text-left">Listrik & Telepon</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_listrik); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-560</td>
                 <td class="text-left">Biaya Konsumsi</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_konsumsi); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRKonsumsi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRKonsumsi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             
             
@@ -632,42 +632,42 @@ else{
                 <td class="text-left">Biaya Perbaikan Kendaraan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_perbaikan); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-596</td>
                 <td class="text-left">Uang Makan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_um); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-580</td>
                 <td class="text-left">Uang Makan SPBU</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_um_spbu); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRMakanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRMakanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-597</td>
                 <td class="text-left">Uang Dexlite</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-581</td>
                 <td class="text-left">Uang Dexlite SPBU</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite_spbu); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRDexliteSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRDexliteSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-598</td>
                 <td class="text-left">Bayar Kredit </td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit); ?></td>
-                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                <?php echo "<td class='text-right'><a href='VRincianLRBKU/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
