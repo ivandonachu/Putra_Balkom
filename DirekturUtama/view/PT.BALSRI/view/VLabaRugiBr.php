@@ -822,7 +822,7 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
      echo "<tr>
      <td style='font-size: 14px' align = 'center'>$mt</td>
      <td style='font-size: 14px' align = 'center'>$jenis_ken</td>"?>
-     <?php echo "<td class='text-center'><a href='VLRKendaraanP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$mt'>LR Kendaraan</a></td>"; ?>
+     <?php echo "<td class='text-center'><a href='VLRKendaraanBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$mt'>LR Kendaraan</a></td>"; ?>
      
     
   <?php echo  " </tr>";
