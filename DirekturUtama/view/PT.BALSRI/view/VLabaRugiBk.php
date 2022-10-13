@@ -173,14 +173,14 @@ else{
     
     
      //Gaji karyawan
-   $table8 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BL' ");
+   $table8 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BK' ");
    $data8 = mysqli_fetch_array($table8);
    $gaji_karyawan = $data8['jumlah_gaji'];
     if (!isset($data8['jumlah_gaji'])) {
     $gaji_karyawan = 0;
     }
     //Gaji dRIVER
-   $table9 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BL' ");
+   $table9 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BK' ");
    $data9 = mysqli_fetch_array($table9);
    $gaji_driver = $data9['jumlah_gaji'];
     if (!isset($data9['jumlah_gaji'])) {
