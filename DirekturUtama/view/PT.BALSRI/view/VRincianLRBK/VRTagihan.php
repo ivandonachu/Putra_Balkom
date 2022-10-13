@@ -364,7 +364,7 @@ else{
       <th>SO</th>
       <th>LO</th>
       <th>Delivery Point</th>
-      <th>Alamat</th>
+      <th>Pemilik</th>
       <th>Jumlah Pemesanan</th>
       <th>Jarak Tempuh</th>
       <th>AMT</th>
@@ -392,7 +392,7 @@ else{
       $so = $data['so'];
       $lo = $data['lo'];
       $delivery_point = $data['delivery_point'];
-      $alamat = $data['alamat'];
+      $pemilik = $data['pemilik'];
       $jumlah_pesanan = $data['jumlah_pesanan'];
       $jt = $data['jt'];
       $amt = $data['amt'];
@@ -430,7 +430,7 @@ else{
       <td style='font-size: 14px'>$so</td>
       <td style='font-size: 14px'>$lo</td>
       <td style='font-size: 14px'>$delivery_point</td>
-      <td style='font-size: 14px'>$alamat</td>
+      <td style='font-size: 14px'>$pemilik</td>
       <td style='font-size: 14px'>$total_pesanan/L</td>
       <td style='font-size: 14px'>$jt</td>
       <td style='font-size: 14px'>$amt</td>
