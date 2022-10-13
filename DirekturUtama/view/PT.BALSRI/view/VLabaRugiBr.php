@@ -43,7 +43,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
   //pengiriman
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji FROM pengiriman_p WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji FROM pengiriman_br WHERE tanggal = '$tanggal_awal'");
   $data2 = mysqli_fetch_array($table2);
   $jml_dex= $data2['total_dex'];
   $total_um= $data2['uang_makan'];
@@ -102,13 +102,13 @@ else{
     $jumlah_potongan = (($total_tagihan * 10) / 100);
 
   //pengiriman
-  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan FROM pengiriman_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
 
   $total_um= $data2['uang_makan'];
 
   $total_dexlite = 0;
-  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   while($data = mysqli_fetch_array($table222)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
