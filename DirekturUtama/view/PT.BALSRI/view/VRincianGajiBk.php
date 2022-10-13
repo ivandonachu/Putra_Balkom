@@ -20,8 +20,6 @@ exit;
 
 
 
-
-
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -36,12 +34,12 @@ $nama_driver = $_GET['nama_driver'];
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengiriman_bl a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal = '$tanggal_awal' AND nama_driver = '$nama_driver' " );
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengiriman_bk a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal = '$tanggal_awal' AND nama_driver = '$nama_driver' " );
 
 }
 else{
 
-  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengiriman_bl a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_driver = '$nama_driver' ");
+  $table = mysqli_query($koneksibalsri, "SELECT * FROM pengiriman_bk a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_driver = '$nama_driver' ");
 
 }
 ?>
@@ -56,7 +54,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Ritase Driver</title>
+  <title>Rincian Gaji Bk</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -82,8 +80,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
@@ -293,6 +291,7 @@ else{
         </div>
     </div>
 </li>
+
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -317,7 +316,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRincianRitDriverBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Ritase Driver BL</h5></a>"; ?>
+      <?php echo "<a href='VRincianGajiBk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Gaji Bangka</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -377,7 +376,7 @@ else{
 
    <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
  <div align="left">
-      <?php echo "<a href='VRitaseBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='VGajiBk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     <br>
     <br>
@@ -417,7 +416,9 @@ else{
   </thead>
   <tbody>
     <?php
-
+    $total_lost = 0;
+    $toal_ug = 0;
+    $total_gaji_bersih = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -440,7 +441,10 @@ else{
       $jml_trans = $data['jml_trans'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
-
+        if($jns_trans == 'Lost'){
+        $total_lost = $total_lost + $jml_trans; 
+        }
+    $total_gaji_bersih = $total_gaji_bersih + $ug; 
 
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$no_laporan</td>
@@ -474,6 +478,72 @@ else{
 <br>
 <br>
 
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Lost</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_lost?>/L</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-road fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Lost</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_lost * 8350);   ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-road fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Gaji Kotor</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_gaji_bersih + ($total_lost * 8350));  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Gaji Bersih</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_gaji_bersih);  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>
 
