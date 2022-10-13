@@ -379,6 +379,7 @@ else{
       </div>
     </div>
   </form>
+  
   <div class="row">
     <div class="col-md-6">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
