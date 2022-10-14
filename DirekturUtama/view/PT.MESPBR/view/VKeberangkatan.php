@@ -323,6 +323,7 @@ else{
       }
       echo "<tr>
       <td style='font-size: 14px'>$no_keberangkatan</td>
+      <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$nama_driver</td>
       <td style='font-size: 14px'>$no_polisi</td>
