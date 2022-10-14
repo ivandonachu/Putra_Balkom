@@ -393,6 +393,7 @@ else{
   
 </div>
 
+
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>

@@ -428,6 +428,7 @@ else{
 
       $perbandingan  = $jt_odo - $jt_gps;
 
+      
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$no_laporan</td>
       <td style='font-size: 14px' align = 'center'>$tanggal</td>
