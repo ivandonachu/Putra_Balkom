@@ -262,6 +262,7 @@ else{
   <thead>
     <tr>
       <th>No</th>
+      <th>Referensi</th>
       <th>Tanggal</th>
       <th>Nama Driver</th>
       <th>No Polisi</th>
@@ -289,10 +290,13 @@ else{
       return $uang;
     }
     $total_uang_jalan = 0;
+    $total_uang_jalan_pbr = 0;
+    $total_uang_jalan_mes = 0;
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
       $no_keberangkatan = $data['no_keberangkatan'];
+      $referensi =$data['referensi'];
       $tanggal =$data['tanggal'];
       $nama_driver = $data['nama_driver'];
       $no_polisi = $data['no_polisi'];
@@ -311,6 +315,12 @@ else{
       $file_bukti = $data['file_bukti'];
       $status = $data['jenis_keberangkatan'];
       $total_uang_jalan = $total_uang_jalan + $uang_jalan;
+      if($referensi == 'PB' || $referensi == 'PBR' ){
+      $total_uang_jalan_pbr = $total_uang_jalan_pbr + $uang_jalan;
+      }
+      else{
+        $total_uang_jalan_mes = $total_uang_jalan_mes + $uang_jalan;
+      }
       echo "<tr>
       <td style='font-size: 14px'>$no_keberangkatan</td>
       <td style='font-size: 14px'>$tanggal</td>
@@ -349,6 +359,38 @@ else{
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Uang Jalan</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_uang_jalan); ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+             Uang Jalan MES</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_uang_jalan_mes); ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+             Uang Jalan PBR</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_uang_jalan_pbr); ?></div>
           </div>
           <div class="col-auto">
            <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
