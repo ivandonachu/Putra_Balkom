@@ -371,7 +371,7 @@ $table = mysqli_query($koneksibalsri, "SELECT * FROM master_tarif ");
       <th>KL 3</th>
       <th>KL 4</th>
       <th>KL 5</th>
-      <th></th>
+
     </tr>
   </thead>
   <tbody>
