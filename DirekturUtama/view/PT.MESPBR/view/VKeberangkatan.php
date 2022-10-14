@@ -292,6 +292,7 @@ else{
     $total_uang_jalan = 0;
     $total_uang_jalan_pbr = 0;
     $total_uang_jalan_mes = 0;
+    $no_urut=0;
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
@@ -315,6 +316,7 @@ else{
       $file_bukti = $data['file_bukti'];
       $status = $data['jenis_keberangkatan'];
       $total_uang_jalan = $total_uang_jalan + $uang_jalan;
+      $no_urut = $no_urut +1;
       if($referensi == 'PB' || $referensi == 'PBR' ){
       $total_uang_jalan_pbr = $total_uang_jalan_pbr + $uang_jalan;
       }
@@ -322,7 +324,7 @@ else{
         $total_uang_jalan_mes = $total_uang_jalan_mes + $uang_jalan;
       }
       echo "<tr>
-      <td style='font-size: 14px'>$no_keberangkatan</td>
+      <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$nama_driver</td>
