@@ -427,7 +427,7 @@ else{
   </thead>
   <tbody>
         <?php 
-        $no_urut = 0;
+        $urut = 0;
         ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no_polisi = $data['no_polisi'];
