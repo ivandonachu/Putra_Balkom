@@ -18,7 +18,6 @@ else{ header("Location: logout.php");
 exit;
 }
 
-$table = mysqli_query($koneksibalsri,"SELECT * FROM pengiriman_a ")
 
 ?>
 <!DOCTYPE html>
