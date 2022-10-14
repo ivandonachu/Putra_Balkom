@@ -372,7 +372,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VJarakTempuh2' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VJarakTempuhP2' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -433,7 +433,7 @@ else{
       <td style='font-size: 14px' align = 'center'>$perbandingan/Km</td>
       "; ?>
       <?php echo "
-      <td style='font-size: 14px'>"; ?> <a download="../file_Manager/<?= $file_bukti ?>" href="../file_Manager/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
     
  </td> </tr>";
 }
