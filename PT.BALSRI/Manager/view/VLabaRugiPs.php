@@ -243,7 +243,7 @@ else{
 
    $tabley12 = mysqli_query($koneksiperta, "SELECT sonding_awal, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_max' ");
    $datay12 = mysqli_fetch_array($tabley12);
-   $stok_akhir_max = $datay12['sonding_awal'];
+   $stok_akhir_max = $datay12['sonding_akhir'];
    $harga_stok_akhir_max = $datay12['harga'];
    $total_uang_stok_max = $stok_akhir_max * $harga_stok_akhir_max;
 
@@ -255,7 +255,7 @@ else{
 
    $tabley22 = mysqli_query($koneksiperta, "SELECT sonding_awal, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_dex' ");
    $datay22 = mysqli_fetch_array($tabley22);
-   $stok_akhir_dex = $datay22['sonding_awal'];
+   $stok_akhir_dex = $datay22['sonding_akhir'];
    $harga_stok_akhir_dex = $datay22['harga'];
    $total_uang_stok_dex = $stok_akhir_dex * $harga_stok_akhir_dex;
 
