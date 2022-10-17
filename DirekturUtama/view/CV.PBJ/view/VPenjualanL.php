@@ -901,7 +901,63 @@ else{
 
 <br>
 <br>
+<?php 
 
+$tablej2 = mysqli_query($koneksipbj, "SELECT no_do, tanggal, tujuan, qty FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
+
+?>
+
+
+<h3 class="text-center" >Do Pembelian sudah Tercatat tetapi DO Penjualan belum Tercatat</h3>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Do belum tercatat</th>
+      <th>Tanggal DO</th>
+      <th>Tujuan</th>
+      <th>Qty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total = 0;
+    $urut = 0;
+
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($tablej2)){
+    $no_do_pembelian = $data['no_do'];
+    $tanggal = $data['tanggal'];
+    $tujuan = $data['tujuan'];
+    $qty = $data['qty'];
+    $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
+
+
+    if(mysqli_num_rows($tablexj) === 0 ){
+
+         $urut = $urut +1;
+
+
+         echo "<tr>
+         <td style='font-size: 14px'>$urut</td>
+         <td style='font-size: 14px'>$no_do_pembelian</td>
+         <td style='font-size: 14px'>$tanggal</td>
+         <td style='font-size: 14px'>$tujuan</td>
+         <td style='font-size: 14px'>$qty</td>
+         
+       </tr>";
+        }
+        
+
+  }
+
+?>
+
+</tbody>
+</table>
 </div>
 </div>
 <!-- End of Main Content -->
