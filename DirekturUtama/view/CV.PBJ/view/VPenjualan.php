@@ -628,24 +628,36 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT no_do, tanggal, tujuan, qty FROM pe
     $tanggal = $data['tanggal'];
     $tujuan = $data['tujuan'];
     $qty = $data['qty'];
-    $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
+
+    $tablexk = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
+    if(mysqli_num_rows($tablexk) === 0 ){
 
 
-    if(mysqli_num_rows($tablexj) === 0 ){
+     }
+     
+     else{
+      $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
 
-         $urut = $urut +1;
+
+      if(mysqli_num_rows($tablexj) === 0 ){
+  
+           $urut = $urut +1;
+  
+  
+           echo "<tr>
+           <td style='font-size: 14px'>$urut</td>
+           <td style='font-size: 14px'>$no_do_pembelian</td>
+           <td style='font-size: 14px'>$tanggal</td>
+           <td style='font-size: 14px'>$tujuan</td>
+           <td style='font-size: 14px'>$qty</td>
+           
+         </tr>";
+          }
+          
+     }
 
 
-         echo "<tr>
-         <td style='font-size: 14px'>$urut</td>
-         <td style='font-size: 14px'>$no_do_pembelian</td>
-         <td style='font-size: 14px'>$tanggal</td>
-         <td style='font-size: 14px'>$tujuan</td>
-         <td style='font-size: 14px'>$qty</td>
-         
-       </tr>";
-        }
-        
+
 
   }
 
