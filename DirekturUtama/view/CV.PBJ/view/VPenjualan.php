@@ -598,7 +598,7 @@ else{
 <br>
 <?php 
 
-$tablej2 = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
+$tablej2 = mysqli_query($koneksipbj, "SELECT no_do, tanggal FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
 
 ?>
 
