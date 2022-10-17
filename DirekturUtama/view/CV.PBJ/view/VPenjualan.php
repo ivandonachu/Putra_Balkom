@@ -598,17 +598,18 @@ else{
 <br>
 <?php 
 
-$tablej2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
+$tablej2 = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
 
 ?>
 
 
-<h3 class="text-center" >Do Pembelian belum Tercatat tetapi DO Penjualan sudah Tercatat</h3>
+<h3 class="text-center" >Do Pembelian sudah Tercatat tetapi DO Penjualan belum Tercatat</h3>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
 
   <thead>
     <tr>
       <th>No</th>
+      <th>Tanggal DO</th>
       <th>Do belum tercatat</th>
     </tr>
   </thead>
@@ -622,7 +623,8 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tangga
 
     <?php while($data = mysqli_fetch_array($tablej2)){
     $no_do_pembelian = $data['no_do'];
-    $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
+    $tanggal = $data['tanggal'];
+    $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
 
 
     if(mysqli_num_rows($tablexj) === 0 ){
@@ -632,6 +634,7 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tangga
 
          echo "<tr>
          <td style='font-size: 14px'>$urut</td>
+         <td style='font-size: 14px'>$tanggal</td>
          <td style='font-size: 14px'>$no_do_pembelian</td>
        </tr>";
         }
