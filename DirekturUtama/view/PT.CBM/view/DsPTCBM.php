@@ -1829,6 +1829,7 @@ if (isset($_GET['tanggal1'])) {
                          <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
                          <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
                          <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
                     </div>
                 </div>
             </li>
