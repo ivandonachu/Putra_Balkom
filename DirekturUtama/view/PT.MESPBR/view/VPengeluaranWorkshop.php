@@ -14,15 +14,38 @@ if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{ header("Location: logout.php");
+
+else{  header("Location: logout.php");
 exit;
 }
 
- ?>
- <!DOCTYPE html>
- <html lang="en">
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
 
- <head>
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+} 
+else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+}
+
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksipbr,"SELECT * FROM riwayat_pengeluaran_workshop WHERE tanggal ='$tanggal_awal' ");
+}
+
+else{
+  $table = mysqli_query($koneksipbr,"SELECT * FROM riwayat_pengeluaran_workshop WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +53,7 @@ exit;
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penggunaan Saldo</title>
+  <title>Workshop CBM</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,8 +79,8 @@ exit;
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTPBRMES">
@@ -132,34 +155,34 @@ exit;
        </div>
    </div>
 </li>
-
-<!-- Divider -->
-<hr class="sidebar-divider">
-
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
 
 
-<!-- Sidebar Toggler (Sidebar) -->
-<div class="text-center d-none d-md-inline">
-  <button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 
 
 
-</ul>
-<!-- End of Sidebar -->
+  </ul>
+  <!-- End of Sidebar -->
 
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
 
-  <!-- Main Content -->
-  <div id="content">
+    <!-- Main Content -->
+    <div id="content">
 
-    <!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPenggunaanSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
-      <!-- Sidebar Toggle (Topbar) -->
-      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
+      <?php echo "<a href='VPengeluaranWorkshop'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Workshop CBM</h5></a>"; ?>
+
+       <!-- Sidebar Toggle (Topbar) -->
+       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
       </button>
 
@@ -168,8 +191,8 @@ exit;
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-          
-        
+
+
 
 
 
@@ -211,34 +234,90 @@ exit;
 <div>   
 
 
-
   <!-- Name Page -->
-  <div style="margin-right: 100px; margin-left: 100px;">
-
-      <?php  echo "<form  method='POST' action='VPenggunaanSaldo2.php'>" ?>
-      <div>
-        <div align="left" style="margin-left: 20px;"> 
-          <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-          <span>-</span>
-          <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-          <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+ <?php  echo "<form  method='POST' action='VPengeluaranWorkshop' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
       </div>
-  </div>
-</form>
+    </div>
+  </form>
+    <div class="row">
+      <div class="col-md-10">
+        <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+      </div>
+  
+    </div>
+
+
+
+
+ <!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Tanggal</th>
+      <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Jumlah Pengeluaran Bengkel</th>
+      <th>Jumlah Penggunaan Sparepart</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total_pendapatan = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $nama_driver =$data['nama_driver'];
+      $no_polisi =$data['no_polisi'];
+      $jumlah_bengkel = $data['jumlah_bengkel'];
+      $jumlah_sparepart = $data['jumlah_sparepart'];
+      $file_bukti = $data['file_bukti'];
+
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bengkel); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_sparepart); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>" href="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+   </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
 </div>
+
 
 </div>
 
 </div>
+
 <!-- End of Main Content -->
 
 <!-- Footer -->
 <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
-        </div>
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
     </div>
+  </div>
 </footer>
 <!-- End of Footer -->
 
@@ -250,38 +329,66 @@ exit;
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
+  <i class="fas fa-angle-up"></i>
 </a>
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
 <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="logout">Logout</a>
-        </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
     </div>
+    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+      <a class="btn btn-primary" href="logout">Logout</a>
+    </div>
+  </div>
 </div>
 </div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
+
+<!-- Tabel -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example').DataTable( {
+      lengthChange: false,
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
 
 </body>
 
