@@ -14,6 +14,7 @@ if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
+
 else{  header("Location: logout.php");
 exit;
 }
@@ -21,29 +22,30 @@ exit;
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
- $referensi1 = $_GET['referensi'];
- $rekening1 = $_GET['rekening'];
- $status_saldo1 = $_GET['status_saldo'];
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 } 
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' ");
-
-}
 else{
-$table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = '$referensi1' AND nama_rekening = '$rekening1' AND status_saldo = '$status_saldo1'  ");
-
-
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
 }
- ?>
- <!DOCTYPE html>
- <html lang="en">
 
- <head>
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksicbm,"SELECT * FROM riwayat_pengeluaran_workshop WHERE tanggal ='$tanggal_awal' ");
+}
+
+else{
+  $table = mysqli_query($koneksicbm,"SELECT * FROM riwayat_pengeluaran_workshop WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,7 +53,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penggunaan Uang</title>
+  <title>Workshop CBM</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,7 +80,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
   <div id="wrapper">
 
    <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
@@ -170,33 +172,34 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
         </div>
     </div>
 </li>
-<!-- Divider -->
-<hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
 
 
 
-<!-- Sidebar Toggler (Sidebar) -->
-<div class="text-center d-none d-md-inline">
-  <button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 
 
 
-</ul>
-<!-- End of Sidebar -->
+  </ul>
+  <!-- End of Sidebar -->
 
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
 
-  <!-- Main Content -->
-  <div id="content">
+    <!-- Main Content -->
+    <div id="content">
 
-    <!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
-      <!-- Sidebar Toggle (Topbar) -->
-      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
+      <?php echo "<a href='VPengeluaranWorkshop'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Workshop CBM</h5></a>"; ?>
+
+       <!-- Sidebar Toggle (Topbar) -->
+       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
       </button>
 
@@ -205,8 +208,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-          
-        
+
+
 
 
 
@@ -250,93 +253,67 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-  <div>
-    <div align="left">
-    <?php echo "<a href='VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
-    
+ <?php  echo "<form  method='POST' action='VPengeluaranWorkshop' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
     </div>
+  </form>
+    <div class="row">
+      <div class="col-md-10">
+        <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+      </div>
+  
     </div>
-  
-  
-  <div class="row">
-    <div class="col-md-6">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-   </div>
-   
-</div>
- <br>
 
-<!-- Tabel -->    
+
+
+
+ <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>No</th>
       <th>Tanggal</th>
-      <th>Rekening</th>
-      <th>REF/Digunakan</th>
-      <th>Akun</th>
-      <th>Debit</th>
-      <th>Kredit</th>
-      <th>Keterangan</th>
+      <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Jumlah Pengeluaran Bengkel</th>
+      <th>Jumlah Penggunaan Sparepart</th>
       <th>File</th>
     </tr>
   </thead>
   <tbody>
     <?php
-
-    
-    $urut = 0;
+    $total_pendapatan = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
+
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
-      $nama_rekening = $data['nama_rekening'];
-      $referensi = $data['referensi'];
-      $nama_akun = $data['nama_akun'];
-      $jumlah = $data['jumlah'];
+      $nama_driver =$data['nama_driver'];
+      $no_polisi =$data['no_polisi'];
+      $jumlah_bengkel = $data['jumlah_bengkel'];
+      $jumlah_sparepart = $data['jumlah_sparepart'];
       $file_bukti = $data['file_bukti'];
-      $keterangan = $data['keterangan'];
-      $status_saldo = $data['status_saldo'];
 
-        $urut = $urut + 1;
+
+
       echo "<tr>
-      <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_rekening</td>
-      <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      
-     ";
-
-
-      if ($status_saldo == 'Masuk') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-
-      if ($status_saldo == 'Keluar') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-        
-      echo "
-      <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      
-    </tr>";
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bengkel); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_sparepart); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+   </tr>";
   }
   ?>
 
@@ -348,6 +325,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
 </div>
 
 </div>
+
 <!-- End of Main Content -->
 
 <!-- Footer -->
@@ -395,6 +373,7 @@ aria-hidden="true">
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- Core plugin JavaScript-->
 <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 

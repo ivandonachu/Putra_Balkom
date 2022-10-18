@@ -213,6 +213,7 @@ $jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_peng
              <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
              <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
              <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
         </div>
     </div>
 </li>
