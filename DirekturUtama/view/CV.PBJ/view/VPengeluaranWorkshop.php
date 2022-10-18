@@ -14,12 +14,10 @@ if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{ header("Location: logout.php");
+
+else{  header("Location: logout.php");
 exit;
 }
-
-
-
 
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
@@ -32,17 +30,16 @@ elseif (isset($_POST['tanggal1'])) {
 } 
 else{
   $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
+$tanggal_akhir = date('Y-m-31');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
- $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal = '$tanggal_awal'");
-
+  $table = mysqli_query($koneksipbj,"SELECT * FROM riwayat_pengeluaran_workshop_s WHERE tanggal ='$tanggal_awal' ");
 }
+
 else{
-  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM riwayat_pengeluaran_workshop_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -56,7 +53,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Keuangan</title>
+  <title>Workshop Semen</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -147,7 +144,6 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
-
         </div>
     </div>
 </li>
@@ -161,9 +157,11 @@ else{
     <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+            
             <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>";
-                        } ?>
+              echo"<a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>";
+            } ?>
+           
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
@@ -173,34 +171,34 @@ else{
         </div>
     </div>
 </li>
-
-<!-- Divider -->
-<hr class="sidebar-divider">
-
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
 
 
-<!-- Sidebar Toggler (Sidebar) -->
-<div class="text-center d-none d-md-inline">
-  <button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 
 
 
-</ul>
-<!-- End of Sidebar -->
+  </ul>
+  <!-- End of Sidebar -->
 
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
 
-  <!-- Main Content -->
-  <div id="content">
+    <!-- Main Content -->
+    <div id="content">
 
-    <!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan Kadek</h5></a>"; ?>
-      <!-- Sidebar Toggle (Topbar) -->
-      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
+      <?php echo "<a href='VPengeluaranWorkshop'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Workshop Semen</h5></a>"; ?>
+
+       <!-- Sidebar Toggle (Topbar) -->
+       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
       </button>
 
@@ -254,8 +252,7 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-    <?php  echo "<form  method='POST' action='VKeuanganL' style='margin-bottom: 15px;'>" ?>
+ <?php  echo "<form  method='POST' action='VPengeluaranWorkshop' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -265,127 +262,69 @@ else{
       </div>
     </div>
   </form>
+    <div class="row">
+      <div class="col-md-10">
+        <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+      </div>
+  
+    </div>
 
-  <div class="row">
-    <div class="col-md-8">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-   </div>
- </div>
 
 
 
-<!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+ <!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>No</th>
       <th>Tanggal</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Masuk</th>
-      <th>Keluar</th>
-      <th>Saldo</th>
-      <th>file</th>
-      
+      <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Jumlah Pengeluaran Bengkel</th>
+      <th>Jumlah Penggunaan Sparepart</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
     <?php
-    $total_kredit = 0;
-    $no_urut = 0;
-    $total_debit = 0;
+    $total_pendapatan = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
+
     <?php while($data = mysqli_fetch_array($table)){
-      $no_laporan = $data['no_transaksi'];
+      $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
-      $nama_akun =$data['nama_akun'];
-      $status_saldo = $data['status_saldo'];
-      $jumlah = $data['jumlah'];
-      $keterangan = $data['keterangan'];
-      if ($status_saldo == 'Masuk') {
-        $total_debit = $total_debit + $jumlah;
-      }
-      elseif($status_saldo == 'Keluar'){
-        $total_kredit = $total_kredit + $jumlah;
-      }
-      $no_urut = $no_urut + 1;
+      $nama_driver =$data['nama_driver'];
+      $no_polisi =$data['no_polisi'];
+      $jumlah_bengkel = $data['jumlah_bengkel'];
+      $jumlah_sparepart = $data['jumlah_sparepart'];
       $file_bukti = $data['file_bukti'];
+
+
+
       echo "<tr>
-      <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$keterangan</td>";
-
-
-      if ($status_saldo == 'Masuk') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-
-      if ($status_saldo == 'Keluar') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-      ?>
-      <?php echo "
-      <td style='font-size: 14px'>"?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-    "?>
-<?php echo  "</tr>";
-}
-
-?>
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bengkel); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_sparepart); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>" href="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+   </tr>";
+  }
+  ?>
 
 </tbody>
 </table>
 </div>
-<br>
-<br>
-<br>
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-  <!-- Tabel -->    
-  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-    <thead>
-      <tr>
-        <th>Total Debit</th>
-        <th>Total Kredit</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      <?php 
-      echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($total_debit); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($total_kredit); ?> <?php echo "</td>
-      </tr>";
-
-      ?>
-
-    </tbody>
-  </table>
-</div>
-<br>
-<br>
 
 
 </div>
+
 </div>
-</div>
+
 <!-- End of Main Content -->
 
 <!-- Footer -->
@@ -428,7 +367,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
-</div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -466,8 +405,6 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
-
-
 
 </body>
 
