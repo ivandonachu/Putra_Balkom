@@ -368,12 +368,28 @@ else{
     //pengeluran Gaji
    $table7 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_gaji FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Gaji Karyawan'  AND b.lokasi = '$lokasi'  ");
    $data7 = mysqli_fetch_array($table7);
-   $jumlah_gaji = $data7['jumlah_gaji'];
+   $jml_gaji = $data7['jumlah_gaji'];
     if (!isset($data7['jumlah_gaji'])) {
-    $jumlah_gaji = 0;
+    $jml_gaji = 0;
     }
 
-    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa + $jumlah_gaji ;
+    //pengeluran perjalanan dinas
+   $table8 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport & Perjalanan Dinas'  AND b.lokasi = '$lokasi'  ");
+   $data8 = mysqli_fetch_array($table8);
+   $jml_transport = $data8['jumlah_transport'];
+    if (!isset($data8['jumlah_transport'])) {
+    $jml_transport = 0;
+    }
+
+    //pengeluran konsumsi
+   $table9 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi'  AND b.lokasi = '$lokasi'  ");
+   $data9 = mysqli_fetch_array($table9);
+   $jml_konsumsi = $data9['jumlah_konsumsi'];
+    if (!isset($data9['jumlah_konsumsi'])) {
+    $jml_konsumsi = 0;
+    }
+
+    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa + $jumlah_gaji + $jumlah_transport + $jumlah_konsumsi;
 
 
     $laba_bersih_sebelum_pajak = $laba_kotor_dex + $laba_kotor_max - $total_biaya_usaha_final;
@@ -1055,7 +1071,7 @@ else{
                                     <td class="text-left">GAJI</td>
                                     <td class="text-left"></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?=  formatuang($jumlah_gaji); ?></td>
+                                    <td class="text-left"><?=  formatuang($jml_gaji); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                     
                                 </tr>
@@ -1092,6 +1108,24 @@ else{
                                     <td class="text-left"></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($jml_sewa); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                  
+                                </tr>
+                                <tr>
+                                    <td>5-591</td>
+                                    <td class="text-left">Transport & Perjalanan Dinas</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($jml_transport); ?></td>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                  
+                                </tr>
+                                <tr>
+                                    <td>5-592</td>
+                                    <td class="text-left">Biaya Konsumsi</td>
+                                    <td class="text-left"></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($jml_konsumsi); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                   
                                 </tr>
