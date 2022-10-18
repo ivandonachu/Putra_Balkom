@@ -1068,7 +1068,7 @@ else{
 
 <br>
 <br>
-</div>
+
 
 <?php 
 
@@ -1134,7 +1134,7 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT tanggal_do, tanggal_kirim, no_do, t
 </tbody>
 </table>
 
-
+</div>
 </div>
 </div>
 <!-- End of Main Content -->
