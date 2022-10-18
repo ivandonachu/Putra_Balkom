@@ -302,14 +302,17 @@ else{
             <option>Alat Tulis Kantor</option>
              <option>Biaya Sewa</option>
              <option>Gaji Karyawan</option>
+             <option>Transport & Perjalanan Dinas</option>
+             <option>Biaya Konsumsi</option>
           </select>
         </div>          
         <div class="col-md-6">
           <label>Sumber Dana</label>
           <select id="sumber_dana" name="sumber_dana" class="form-control">
             <option>Uang Penjualan</option>
-            <option>Uang Jalan Balsri</option>>
+            <option>Uang Jalan Balsri</option>
             <option>Uang Pertashop</option>
+            <option>Uang Serli</option>
           </select>
         </div>            
 
@@ -483,6 +486,9 @@ else{
             <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
              <option <?php echo ($dataSelect == 'Biaya Sewa') ? "selected": "" ?> >Biaya Sewa</option>
              <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected": "" ?> >Gaji Karyawan</option>
+             <option <?php echo ($dataSelect == 'Transport & Perjalanan Dinas') ? "selected": "" ?> >Transport & Perjalanan Dinas</option>
+             <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+
           </select>
 
         </div>       
@@ -494,6 +500,8 @@ else{
             <option <?php echo ($dataSelect == 'Uang Penjualan') ? "selected": "" ?> >Uang Penjualan</option>
             <option <?php echo ($dataSelect == 'Uang Jalan Balsri') ? "selected": "" ?> >Uang Jalan Balsri</option>
             <option <?php echo ($dataSelect == 'Uang Pertashop') ? "selected": "" ?> >Uang Pertashop</option>
+            <option <?php echo ($dataSelect == 'Uang Serli') ? "selected": "" ?> >Uang Serli</option>
+
           </select>
 
         </div>         
