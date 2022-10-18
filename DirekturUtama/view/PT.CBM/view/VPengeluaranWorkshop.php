@@ -312,7 +312,7 @@ else{
       <td style='font-size: 14px'>$no_polisi</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bengkel); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_sparepart); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>" href="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
    </tr>";
   }
   ?>
