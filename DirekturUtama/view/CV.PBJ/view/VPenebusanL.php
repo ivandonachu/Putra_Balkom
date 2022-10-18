@@ -1143,7 +1143,7 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do,
 ?>
 
 
-<h3 class="text-center" >Do Pembelian belum Tercatat tetapi DO Penjualan (Ety) sudah Tercatat</h3>
+<h3 class="text-center" >Do Pembelian belum Tercatat tetapi DO Penjualan (Kadek) sudah Tercatat</h3>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
 
   <thead>
@@ -1200,6 +1200,9 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do,
 
 </tbody>
 </table>
+<br>
+<br>
+<br>
 </div>
 </div>
 </div>
