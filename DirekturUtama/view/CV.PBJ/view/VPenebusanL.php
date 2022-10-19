@@ -1079,7 +1079,7 @@ else{
 <br>
 <?php 
 
-$tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do, tujuan_pengiriman, qty FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
+$tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do, tujuan_pengiriman, qty FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$bulan_sesudah'");
 
 ?>
 
@@ -1146,7 +1146,7 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do,
 <br>
 <?php 
 
-$tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do, tujuan_pengiriman, qty FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
+$tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do, tujuan_pengiriman, qty FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$bulan_sesudah'");
 
 ?>
 
