@@ -24,22 +24,22 @@ exit;
 if (isset($_GET['tanggal1'])) {
   $tanggal_awal = $_GET['tanggal1'];
   $tanggal_akhir = $_GET['tanggal2'];
-  $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
-   $bulan_sesudah =  date('Y-m-d', strtotime('+3 month', strtotime($tanggal_akhir))); 
+  $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
+   $bulan_sesudah =  date('Y-m-d', strtotime('+3 day', strtotime($tanggal_akhir))); 
  } 
  
  elseif (isset($_POST['tanggal1'])) {
   $tanggal_awal = $_POST['tanggal1'];
   $tanggal_akhir = $_POST['tanggal2'];
-  $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
-   $bulan_sesudah =  date('Y-m-d', strtotime('+3 month', strtotime($tanggal_akhir))); 
+  $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
+   $bulan_sesudah =  date('Y-m-d', strtotime('+3 day', strtotime($tanggal_akhir))); 
  } 
  else{
    $tanggal_awal = date('Y-m-1');
    $tanggal_akhir = date('Y-m-31');
  
-   $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal))); 
-   $bulan_sesudah =  date('Y-m-d', strtotime('+3 month', strtotime($tanggal_akhir))); 
+   $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
+   $bulan_sesudah =  date('Y-m-d', strtotime('+3 day', strtotime($tanggal_akhir))); 
  }
 
 if ($tanggal_awal == $tanggal_akhir) {
