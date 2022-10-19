@@ -944,14 +944,14 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT no_do, tanggal, tujuan, qty FROM pe
     $tujuan = $data['tujuan'];
     $qty = $data['qty'];
 
-    $tablexk = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
+    $tablexk = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
     if(mysqli_num_rows($tablexk) === 1 ){
 
 
      }
      
      else{
-      $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah' AND no_do = '$no_do_pembelian'");
+      $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
 
 
       if(mysqli_num_rows($tablexj) === 0 ){

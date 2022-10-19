@@ -1113,7 +1113,7 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do,
     $qty = $data['qty'];
 
 
-      $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$belun_sebelum' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
+      $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
 
 
       if(mysqli_num_rows($tablexj) === 0 ){
