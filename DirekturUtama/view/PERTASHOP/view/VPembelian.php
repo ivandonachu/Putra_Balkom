@@ -511,35 +511,35 @@ else{
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
       <td style='font-size: 11px' align = 'center'><?=  ($qty_nb_dex); ?></td>
-      <td style='font-size: 11px' align = 'center'><?=  ($uang_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'><?= formatuang($uang_nb_dex); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'><?=  ($qty_nb_max); ?></td>
-      <td style='font-size: 11px' align = 'center'><?=  ($uang_nb_max); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'><?=  ($qty_sj); ?></td>
-      <td style='font-size: 11px' align = 'center'><?=  ($uang_sj); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Bedilan</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'><?=  ($qty_be); ?></td>
-      <td style='font-size: 11px' align = 'center'><?=  ($uang_be); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'><?=  ($qty_md); ?></td>
-      <td style='font-size: 11px' align = 'center'><?=  ($uang_md); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md); ?></td>
      
   </tr>
 
