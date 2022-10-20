@@ -36,13 +36,13 @@ $tanggal_akhir = date('Y-m-31');
 $lokasi = 'Nusa Bakti';
 }
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi,"SELECT * FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' AND b.lokasi = '$lokasi' ");
-   $table2 = mysqli_query($koneksi,"SELECT * FROM barang ");
+  $table = mysqli_query($koneksiperta,"SELECT * FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' AND b.lokasi = '$lokasi' ");
+   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
 }
 
 else{
-  $table = mysqli_query($koneksi,"SELECT * FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'");
-  $table2 = mysqli_query($koneksi,"SELECT * FROM barang ");
+  $table = mysqli_query($koneksiperta,"SELECT * FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'");
+  $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
 }
 
 
