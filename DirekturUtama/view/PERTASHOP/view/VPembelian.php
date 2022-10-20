@@ -43,6 +43,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
   $table = mysqli_query($koneksiperta,"SELECT * FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'");
   $table2 = mysqli_query($koneksiperta,"SELECT * FROM barang ");
+
 }
 
 
@@ -300,6 +301,19 @@ else{
     $losis_sj = 0 ;
     $losis_md =0;
     $losis_be = 0;
+
+    $qty_nb_dex = 0;
+    $qty_nb_max = 0;
+    $qty_sj = 0 ;
+    $qty_md =0;
+    $qty_be = 0;
+
+    $uang_nb_dex = 0;
+    $uang_nb_max = 0;
+    $uang_sj = 0 ;
+    $uang_md =0;
+    $uang_be = 0;
+
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -332,22 +346,32 @@ else{
         if($kode_perta == 'nusabakti'){
           if($nama_barang == 'Pertamax'){
             $losis_nb_max = $losis_nb_max + $losis; 
+            $qty_nb_max = $qty_nb_max + $qty;
+            $uang_nb_max = $uang_nb_max + $jumlah;
           }
           else{
             $losis_nb_dex = $losis_nb_dex + $losis;
+            $qty_nb_dex = $qty_nb_dex + $qty;
+            $uang_nb_dex = $uang_nb_dex + $jumlah;
           }
           
         }
         else if($kode_perta == 'bedilan'){
           $losis_be = $losis_be + $losis; 
+          $qty_be = $qty_be + $qty;
+            $uang_be = $uang_be + $jumlah;
          
         }
         else if($kode_perta == 'muaradua'){
           $losis_md = $losis_md + $losis; 
+          $qty_md = $qty_md + $qty;
+            $uang_md = $uang_md + $jumlah;
          
         }
         else if($kode_perta == 'sumberjaya'){
           $losis_sj = $losis_sj + $losis; 
+          $qty_sj = $qty_sj + $qty;
+            $uang_sj = $uang_sj + $jumlah;
           
         }
       }
@@ -384,7 +408,7 @@ else{
 
 <br>
 <br>
-<div style="margin-right: 100px; margin-left: 100px;">
+
 <h6 align="Center">Stok</h6>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -415,12 +439,12 @@ else{
 
 </tbody>
 </table>
-</div>
-</div>
+
+
 
 <br>
 <hr>
-<div style="margin-right: 100px; margin-left: 100px;">
+
 <h6 align="Center">Laporan Losis</h6>
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -466,8 +490,64 @@ else{
 
 </tbody>
 </table>
-</div>
+
+
 <br>
+<hr>
+
+<h6 align="Center">Laporan QTY dan Uang Pembelian</h6>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Qty Beli</th>
+      <th style='font-size: 11px'>Total Uang Beli</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($qty_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($uang_nb_dex); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($qty_nb_max); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($uang_nb_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($qty_sj); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($uang_sj); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($qty_be); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($uang_be); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($qty_md); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($uang_md); ?></td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+
+ </div>
 </div>
 </div>
 <!-- End of Main Content -->
