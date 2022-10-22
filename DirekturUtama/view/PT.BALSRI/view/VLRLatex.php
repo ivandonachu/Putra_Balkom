@@ -50,10 +50,10 @@ else{
     // Potongan 10%
     $jumlah_potongan = (($total_tagihan * 10) / 100);
 
-// Kredit Mobil 
-$tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
-$dataa = mysqli_fetch_array($tablee);
-$total_kredit= $dataa['total_kredit'];
+    // Kredit Mobil 
+    $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $dataa = mysqli_fetch_array($tablee);
+    $total_kredit= $dataa['total_kredit'];
 
   //pengiriman
   $table2 = mysqli_query($koneksilatex, "SELECT SUM(uang_dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(mel) AS uang_mel FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
