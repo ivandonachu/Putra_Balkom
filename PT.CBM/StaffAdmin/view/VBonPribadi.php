@@ -427,7 +427,7 @@ else{
       <td style='font-size: 14px'>$jumlah_angsuran</td>
       <td style='font-size: 14px'>$status_hutang</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="../file_staf_admin/<?= $file_bukti ?>" href="../file_staf_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="../file_staff_admin/<?= $file_bukti ?>" href="../file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
 
