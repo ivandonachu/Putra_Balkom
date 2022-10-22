@@ -264,32 +264,21 @@ else{
       <div class="row">
 
         <div class="col-md-6">
-          <label>Nama</label>
-          <select id="nama" name="nama" class="form-control">
-           <option> Nur Hasanaah </option> 
-           <option> Mang Jai </option> 
+
+        <label>Nama</label>
+          <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
+          <option> Nur Hasanaah </option> 
+          <option> Mang Jai </option> 
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");   
+            $result2 = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
 
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['nama_karyawan'];
+            while ($data2 = mysqli_fetch_array($result2)) {
+              $nama_karyawan = $data2['nama_karyawan'];
 
-           
-                echo "<option> $data_pangakalan </option> ";
-        
-            }
-            ?>
-             <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM driver");   
-
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['nama_driver'];
-
-          
-                echo "<option> $data_pangakalan </option> ";
-           
+    
+                echo "<option> $nama_karyawan </option> ";
+              
             }
             ?>
           </select>
