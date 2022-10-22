@@ -301,32 +301,35 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <!-- Tabel -->
                         <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                            <thead>
-                                <tr>
-                                    <th>Waktu Absen</th>
-                                    <th>Status</th>
-                                    <th>Nama Karyawan</th>
-                                    <th>Lokasi</th>
-                                    <th>Bukti Foto</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <thead>
+                <tr>
+                  <th>Waktu Absen</th>
+                  <th>Status</th>
+                  <th>Nama Karyawan</th>
+                  <th>Lokasi</th>
+                  <th>Keterangan</th>
+                  <th>Bukti Foto</th>
+                </tr>
+              </thead>
+              <tbody>
 
-                                <?php while ($data = mysqli_fetch_array($table)) {
-                                    $no_absen = $data['no_absen'];
-                                    $status = $data['status'];
-                                    $tanggal = $data['tanggal'];
-                                    $nama_karyawan = $data['nama_karyawan'];
-                                    $lokasi = $data['lokasi'];
-                                    $file_bukti = $data['file_bukti'];
+                <?php while ($data = mysqli_fetch_array($table)) {
+                  $no_absen = $data['no_absen'];
+                  $status = $data['status'];
+                  $tanggal = $data['tanggal'];
+                  $nama_karyawan = $data['nama_karyawan'];
+                  $keterangan = $data['keterangan'];
+                  $lokasi = $data['lokasi'];
+                  $file_bukti = $data['file_bukti'];
 
 
 
-                                    echo "<tr>
+                  echo "<tr>
         <td style='font-size: 14px'>$tanggal</td>
         <td style='font-size: 14px'>$status</td>
         <td style='font-size: 14px'>$nama_karyawan</td>
         <td style='font-size: 14px'>$lokasi</td>
+        <td style='font-size: 14px'>$keterangan</td>
         "; ?>
 
                                     <?php echo "<td style='font-size: 12px'>"; ?>

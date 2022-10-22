@@ -265,10 +265,11 @@ if ($tanggal_awal == $tanggal_akhir) {
             <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
               <thead>
                 <tr>
-                  <th>Waktu Absen<a /th>
-                  <th>Status<a /th>
+                  <th>Waktu Absen</th>
+                  <th>Status</th>
                   <th>Nama Karyawan</th>
                   <th>Lokasi</th>
+                  <th>Keterangan</th>
                   <th>Bukti Foto</th>
                 </tr>
               </thead>
@@ -279,6 +280,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $status = $data['status'];
                   $tanggal = $data['tanggal'];
                   $nama_karyawan = $data['nama_karyawan'];
+                  $keterangan = $data['keterangan'];
                   $lokasi = $data['lokasi'];
                   $file_bukti = $data['file_bukti'];
 
@@ -289,6 +291,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         <td style='font-size: 14px'>$status</td>
         <td style='font-size: 14px'>$nama_karyawan</td>
         <td style='font-size: 14px'>$lokasi</td>
+        <td style='font-size: 14px'>$keterangan</td>
         "; ?>
 
                   <?php echo "<td style='font-size: 12px'>"; ?>
