@@ -268,8 +268,6 @@ else{
 
         <label>Nama</label>
           <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
-          <option> Nur Hasanaah </option> 
-          <option> Mang Jai </option> 
             <?php
             include 'koneksi.php';
             $result2 = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
