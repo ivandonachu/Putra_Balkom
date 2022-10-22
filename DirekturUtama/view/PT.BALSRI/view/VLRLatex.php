@@ -50,6 +50,11 @@ else{
     // Potongan 10%
     $jumlah_potongan = (($total_tagihan * 10) / 100);
 
+// Kredit Mobil 
+$tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
+$dataa = mysqli_fetch_array($tablee);
+$total_kredit= $dataa['total_kredit'];
+
   //pengiriman
   $table2 = mysqli_query($koneksilatex, "SELECT SUM(uang_dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(mel) AS uang_mel FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
@@ -144,7 +149,7 @@ else{
 }
 $total_laba_kotor = $total_tagihan;
 $sisa_oprasional = $jumlah_potongan - ($jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport );
-$total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um  +  $jml_konsumsi + $total_mel  + $total_ug;
+$total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $total_kredit   +  $jml_konsumsi + $total_mel  + $total_ug;
 $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya_usaha_final;
 ?>
 
@@ -676,6 +681,13 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRLx/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit); ?></td>
+                <td class="text-left"></td>
             </tr>
             <tr>
                 <td>5-599</td>
