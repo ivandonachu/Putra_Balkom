@@ -17,6 +17,7 @@ date_default_timezone_set('Asia/Jakarta');
 $tanggal = date("Y-m-d G:i:s");
 $nama_karyawan = $_POST['nama_karyawan'];
 $status = $_POST['status'];
+$keterangan = $_POST['keterangan'];
 
 
 

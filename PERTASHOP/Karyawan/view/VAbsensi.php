@@ -249,9 +249,19 @@ else{
           <label>Status</label>
           <select id="status" name="status" class="form-control">
             <option>Cek In</option>
-            <option>Cek Out</option>>
+            <option>Cek Out</option>
+            <option>Izin</option>
+            <option>Lainnya</option>
           </select>
         </div>  
+        <br>
+        <div>
+     <label>Keterangan</label>
+     <div class="form-group">
+       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
+     </div>
+   </div>
+
         <br>
       <label>Upload File</label> 
       <input type="file" name="file" required> 
@@ -275,13 +285,15 @@ else{
 
 
   <!-- Tabel -->    
-  <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
     <thead>
       <tr>
         <th>Waktu Absen<a/th>
         <th>Status<a/th>
         <th>Nama Karyawan</th>
         <th>Lokasi</th>
+        <th>Keterangan</th>
         <th>Bukti Foto</th>
         <th>Hapus Absen</th>
       </tr>
@@ -294,6 +306,7 @@ else{
         $status =$data['status'];
         $nama_karyawan =$data['nama_karyawan'];
         $lokasi = $data['lokasi'];
+        $keterangan = $data['keterangan'];
         $file_bukti = $data['file_bukti'];
        
 
@@ -302,6 +315,7 @@ else{
         <td style='font-size: 14px'>$tanggal</td>
         <td style='font-size: 14px'>$status</td>
         <td style='font-size: 14px'>$nama_karyawan</td>
+        <td style='font-size: 14px'>$keterangan</td>
         <td style='font-size: 14px'>$lokasi</td>
         "; ?>
         
@@ -335,7 +349,7 @@ else{
               </div>
             </div>
           </div>
-        </div>
+   
 
 
 
@@ -385,6 +399,7 @@ else{
     </tbody>
   </table>
 </div>
+  </div>
 
 
 </div>
