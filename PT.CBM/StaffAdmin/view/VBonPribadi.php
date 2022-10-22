@@ -37,12 +37,12 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM bon_pribadi a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal_bon = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksi, "SELECT * FROM riwayat_bon_pribadi a INNER JOIN bon_pribadi b ON b.no_bon=a.no_bon INNER JOIN karyawan c ON c.id_karyawan=b.id_karyawan WHERE tanggal_bon = '$tanggal_awal' ");
+  $table = mysqli_query($koneksi, "SELECT * FROM bon_pribadi a INNER JOIN seluruh_karyawan b ON a.nik = b.nik INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal_bon = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksi, "SELECT * FROM riwayat_bon_pribadi a INNER JOIN bon_pribadi b ON b.no_bon=a.no_bon INNER JOIN seluruh_karyawan c ON c.nik=b.nik WHERE tanggal_bon = '$tanggal_awal' ");
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM bon_pribadi a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal_bon BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-  $table2 = mysqli_query($koneksi, "SELECT * FROM riwayat_bon_pribadi a INNER JOIN bon_pribadi b ON b.no_bon=a.no_bon INNER JOIN karyawan c ON c.id_karyawan=b.id_karyawan WHERE tanggal_bon BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi, "SELECT * FROM bon_pribadi a INNER JOIN seluruh_karyawan b ON a.nik = b.nik INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal_bon BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table2 = mysqli_query($koneksi, "SELECT * FROM riwayat_bon_pribadi a INNER JOIN bon_pribadi b ON b.no_bon=a.no_bon INNER JOIN seluruh_karyawan c ON c.nik=b.nik WHERE tanggal_bon BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 }
 
 
@@ -270,7 +270,7 @@ else{
            <option> Mang Jai </option> 
             <?php
             include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM karyawan");   
+            $result = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");   
 
             while ($data2 = mysqli_fetch_array($result)){
               $data_pangakalan = $data2['nama_karyawan'];
