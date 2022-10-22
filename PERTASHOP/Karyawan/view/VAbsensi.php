@@ -315,8 +315,8 @@ else{
         <td style='font-size: 14px'>$tanggal</td>
         <td style='font-size: 14px'>$status</td>
         <td style='font-size: 14px'>$nama_karyawan</td>
-        <td style='font-size: 14px'>$keterangan</td>
         <td style='font-size: 14px'>$lokasi</td>
+        <td style='font-size: 14px'>$keterangan</td>
         "; ?>
         
         <?php echo "<td style='font-size: 12px'>"; ?>

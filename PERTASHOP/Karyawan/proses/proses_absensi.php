@@ -57,7 +57,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO absensi VALUES ('','$tanggal','$status','$nama_karyawan','$lokasi','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO absensi VALUES ('','$tanggal','$status','$nama_karyawan','$lokasi','$keterangan','$file')");
 
 
 			if ($query != "") {
