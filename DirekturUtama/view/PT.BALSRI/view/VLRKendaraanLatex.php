@@ -574,6 +574,13 @@ else{
                 <?php echo "<td class='text-right'><a href='VRDriverLx/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit); ?></td>
+                <td class="text-left"></td>
+            </tr>
+            <tr>
                 <td>5-599</td>
                 <td class="text-left">Uang Mel</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
