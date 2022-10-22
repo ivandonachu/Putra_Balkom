@@ -380,6 +380,7 @@ else{
       <th>Tanggal Angsuran</th>
       <th>Tanggal Terakhir Mengangsur</th>
       <th>Nama Karyawan</th>
+      <th>Perusahaan</th>
       <th>Total Bon</th>
       <th>Total Bayar</th>
       <th>Jumlah Angsuran</th>
@@ -405,6 +406,7 @@ else{
       $total_bayar = $data['total_bayar'];
       $nama_akun = $data['nama_akun'];
       $nama_karyawan = $data['nama_karyawan'];
+      $perusahaan = $data['perusahaan'];
       $keterangan = $data['keterangan'];
       $jumlah_bon = $data['jumlah_bon'];
       $jumlah_angsuran = $data['jumlah_angsuran'];
@@ -429,6 +431,7 @@ else{
       <td style='font-size: 14px'>$tanggal_angsur</td>
       <td style='font-size: 14px'>$tanggal_bayar</td>
       <td style='font-size: 14px'>$nama_karyawan</td>
+      <td style='font-size: 14px'>$perusahaan</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bon); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($total_bayar); ?> <?php echo "</td>
       <td style='font-size: 14px'>$jumlah_angsuran</td>
