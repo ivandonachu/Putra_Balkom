@@ -907,7 +907,7 @@ $ranau = 'Kebun Ranau';
       <td style='font-size: 11px' align = 'center'>CBM</td>
       <td style='font-size: 11px' align = 'center'>Melodi Tani</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_mt); ?></td>
-      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MT&rekening=$MT&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$MT&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
   <tr>
