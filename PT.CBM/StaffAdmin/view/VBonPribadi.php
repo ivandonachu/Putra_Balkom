@@ -267,7 +267,7 @@ else{
         <div class="col-md-6">
 
         <label>Nama</label>
-          <select id="tokens" class="selectpicker form-control" name="nama_karyawan" multiple data-live-search="true">
+          <select id="tokens" class="selectpicker form-control" name="nama" multiple data-live-search="true">
           <option> Nur Hasanaah </option> 
           <option> Mang Jai </option> 
             <?php
