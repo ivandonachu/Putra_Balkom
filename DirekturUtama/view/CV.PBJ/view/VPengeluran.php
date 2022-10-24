@@ -134,8 +134,8 @@ else{
                     </div>
                 </div>
             </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+              <!-- Nav Item - Pages Collapse Menu -->
+              <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
@@ -149,7 +149,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
-    
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap DO Penjualan</a>
                     </div>
                 </div>
             </li>
@@ -163,15 +163,18 @@ else{
                 <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+                        
                         <?php if($nama == 'Nyoman Edy Susanto'){
                           echo"<a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>";
                         } ?>
+                       
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
-    
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualanL">Rekap DO Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
                     </div>
                 </div>
             </li>

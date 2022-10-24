@@ -188,47 +188,50 @@ else{
         </div>
     </div>
 </li>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Laporan Etty</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
-
-        </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-      15  aria-expanded="true" aria-controls="collapseTwo3">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Laporan Kadek</span>
-    </a>
-    <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-            <?php if($nama == 'Nyoman Edy Susanto'){
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Laporan Etty</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap DO Penjualan</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+                  15  aria-expanded="true" aria-controls="collapseTwo3">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Laporan Kadek</span>
+                </a>
+                <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+                        
+                        <?php if($nama == 'Nyoman Edy Susanto'){
                           echo"<a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>";
                         } ?>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
-
-        </div>
-    </div>
-</li>
+                       
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualanL">Rekap DO Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
+                    </div>
+                </div>
+            </li>
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -597,77 +600,8 @@ else{
 <br>
 <hr>
 <br>
-<?php 
-
-$tablej2 = mysqli_query($koneksipbj, "SELECT no_do, tanggal, tujuan, qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-
-?>
 
 
-<h3 class="text-center" >Do Pembelian sudah Tercatat tetapi DO Penjualan belum Tercatat</h3>
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Do belum tercatat</th>
-      <th>Tanggal DO</th>
-      <th>Tujuan</th>
-      <th>Qty</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $total = 0;
-    $urut = 0;
-
-
-    ?>
-
-    <?php while($data = mysqli_fetch_array($tablej2)){
-    $no_do_pembelian = $data['no_do'];
-    $tanggal = $data['tanggal'];
-    $tujuan = $data['tujuan'];
-    $qty = $data['qty'];
-
-    $tablexk = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
-    if(mysqli_num_rows($tablexk) === 1 ){
-
-
-     }
-     
-     else{
-      $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
-
-
-      if(mysqli_num_rows($tablexj) === 0 ){
-  
-           $urut = $urut +1;
-  
-  
-           echo "<tr>
-           <td style='font-size: 14px'>$urut</td>
-           <td style='font-size: 14px'>$no_do_pembelian</td>
-           <td style='font-size: 14px'>$tanggal</td>
-           <td style='font-size: 14px'>$tujuan</td>
-           <td style='font-size: 14px'>$qty</td>
-           
-         </tr>";
-          }
-          
-     }
-
-
-
-
-  }
-
-?>
-
-</tbody>
-</table>
-<br>
-<br>
 </div>
 </div>
 </div>
