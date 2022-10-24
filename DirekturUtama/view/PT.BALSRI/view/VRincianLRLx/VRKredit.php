@@ -30,13 +30,13 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksibalsri, "SELECT  SUM(dexlite) AS total_dexlite FROM pengiriman_bk a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-
+  $table10 =  mysqli_query($koneksilatex, "SELECT no_polisi FROM tagihan a INNER JOIN kendaraan b ON a.no_kendaraan=b.no WHERE tanggal = '$tanggal_awal' GROUP BY no_polisi ");
+  $total_kredit = 0;
 }
 
 else{
     //list supir
-    $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    $table10 =  mysqli_query($koneksilatex, "SELECT no_polisi FROM tagihan a INNER JOIN kendaraan b ON a.no_kendaraan=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi ");
     //totalkredit
     $total_kredit = 0;
    
@@ -55,7 +55,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Kredit Bangka</title>
+  <title>Rincian Kredit Latex</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -270,7 +270,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Kredit Bangka</h5></a>"; ?>
+      <?php echo "<a href='VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Kredit Latex</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -331,7 +331,7 @@ else{
     
     <div>
     <div align="left">
-      <?php echo "<a href='../VLabaRugiBk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='../VLRLatex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     </div>
   
@@ -369,8 +369,8 @@ else{
                
     
     <?php while($data = mysqli_fetch_array($table10)){
-       $mt = $data['mt'];
-       $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+       $no_polisi = $data['no_polisi'];
+       $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisi'");
        $dataa = mysqli_fetch_array($tablee);
        $jml_kredit= $dataa['total_kredit'];
        if(isset($total_kredit)){
@@ -379,7 +379,7 @@ else{
 
       echo "<tr>
      
-      <td style='font-size: 14px'>$mt</td>
+      <td style='font-size: 14px'>$no_polisi</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jml_kredit); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($total_kredit); ?> <?php echo "</td>
       

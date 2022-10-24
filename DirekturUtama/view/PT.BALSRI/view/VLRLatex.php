@@ -51,9 +51,19 @@ else{
     $jumlah_potongan = (($total_tagihan * 10) / 100);
 
     // Kredit Mobil 
-    $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-    $dataa = mysqli_fetch_array($tablee);
-    $total_kredit= $dataa['total_kredit'];
+    $table10 =  mysqli_query($koneksilatex, "SELECT no_polisi FROM tagihan a INNER JOIN kendaraan b ON a.no_kendaraan=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi ");
+    $total_kredit = 0;
+    while($data = mysqli_fetch_array($table10)){
+        $no_polisi = $data['no_polisi'];
+        $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisi'");
+        $dataa = mysqli_fetch_array($tablee);
+        $jml_kredit= $dataa['total_kredit'];
+   
+            $total_kredit += $jml_kredit;
+        
+ 
+ }
+
 
   //pengiriman
   $table2 = mysqli_query($koneksilatex, "SELECT SUM(uang_dexlite) AS total_dex, SUM(um) AS uang_makan, SUM(ug) AS uang_gaji, SUM(mel) AS uang_mel FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
@@ -687,7 +697,7 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor + $sisa_oprasional - $total_biaya
                 <td class="text-left">Bayar Kredit</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit); ?></td>
-                <td class="text-left"></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRLx/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr>
                 <td>5-599</td>
