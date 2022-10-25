@@ -32,7 +32,7 @@ exit;
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rekap Do Penjualan Semen Kadek & Etty</title>
+  <title>Rekap Do Penjualan Semen Kadek & Etty </title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -355,6 +355,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
