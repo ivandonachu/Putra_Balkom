@@ -304,7 +304,7 @@ data-parent="#accordionSidebar">
         </div>    
         </div>            
 
-      </div>
+    
 
       <br>
 
@@ -354,7 +354,7 @@ data-parent="#accordionSidebar">
   </div>
 </form>
 </div>
-
+</div>
 </div>
 </div>
 </div>
@@ -382,6 +382,10 @@ data-parent="#accordionSidebar">
   </thead>
   <tbody>
     <?php
+    //masuk mes ke mes
+    $masuk_cbm_mes = 0;
+    //masuk mes ke mes
+    $masuk_cbm_pbr = 0;
     //masuk cbm ke mes
     $masuk_cbm_mes = 0;
     //masuk cbm ke pbr
