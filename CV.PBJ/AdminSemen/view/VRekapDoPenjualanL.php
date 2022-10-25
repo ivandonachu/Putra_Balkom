@@ -214,7 +214,7 @@ $nama = $data['nama_karyawan'];
 
 <?php 
 
-$tablej2 = mysqli_query($koneksipbj, "SELECT no_do, tanggal, tujuan, qty FROM pembelian_sl ");
+$tablej2 = mysqli_query($koneksi, "SELECT no_do, tanggal, tujuan, qty FROM pembelian_sl ");
 
 ?>
 
@@ -245,14 +245,14 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT no_do, tanggal, tujuan, qty FROM pe
     $tujuan = $data['tujuan'];
     $qty = $data['qty'];
 
-    $tablexk = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE no_do = '$no_do_pembelian'");
+    $tablexk = mysqli_query($koneksi, "SELECT no_do FROM penjualan_s WHERE no_do = '$no_do_pembelian'");
     if(mysqli_num_rows($tablexk) === 1 ){
 
 
      }
      
      else{
-      $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE  no_do = '$no_do_pembelian'");
+      $tablexj = mysqli_query($koneksi, "SELECT no_do FROM penjualan_sl WHERE  no_do = '$no_do_pembelian'");
 
 
       if(mysqli_num_rows($tablexj) === 1 ){

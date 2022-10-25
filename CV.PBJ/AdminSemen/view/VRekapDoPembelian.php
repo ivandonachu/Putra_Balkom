@@ -212,7 +212,7 @@ $nama = $data['nama_karyawan'];
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
   <?php 
 
-$tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do, tujuan_pengiriman, qty FROM penjualan_s");
+$tablej2 = mysqli_query($koneksi, "SELECT  tanggal_do, tanggal_kirim , no_do, tujuan_pengiriman, qty FROM penjualan_s");
 
 ?>
 
@@ -246,7 +246,7 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do,
     $qty = $data['qty'];
 
 
-      $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE no_do = '$no_do_pembelian'");
+      $tablexj = mysqli_query($koneksi, "SELECT no_do FROM pembelian_sl WHERE no_do = '$no_do_pembelian'");
 
 
       if(mysqli_num_rows($tablexj) === 1 ){
@@ -282,7 +282,7 @@ $tablej2 = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do,
 <br>
 <?php 
 
-$tablej2x = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do, tujuan_pengiriman, qty FROM penjualan_sl");
+$tablej2x = mysqli_query($koneksi, "SELECT  tanggal_do, tanggal_kirim , no_do, tujuan_pengiriman, qty FROM penjualan_sl");
 
 ?>
 
@@ -316,7 +316,7 @@ $tablej2x = mysqli_query($koneksipbj, "SELECT  tanggal_do, tanggal_kirim , no_do
     $qty = $data['qty'];
 
 
-      $tablexjx = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE no_do = '$no_do_pembelian'");
+      $tablexjx = mysqli_query($koneksi, "SELECT no_do FROM pembelian_sl WHERE no_do = '$no_do_pembelian'");
 
 
       if(mysqli_num_rows($tablexjx) === 1 ){
