@@ -18,8 +18,9 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$tanggal_awal = $_GET['tanggal1'];
-$tanggal_akhir = $_GET['tanggal2'];
+$tanggal_awal = $_POST['tanggal1'];
+$tanggal_akhir = $_POST['tanggal2'];
+$no_laporan = $_POST['no_laporan'];
 $tanggal = $_POST['tanggal'];
 $referensi = $_POST['referensi'];
 $akun = $_POST['akun'];
@@ -82,7 +83,7 @@ else if ( $nama_file != "" ) {
 
 		$nama_file_baru = uniqid();
 		$nama_file_baru .= ".";
-		$nama_file_baru .= $ekstensi_file;	
+		$nama_file_baru .= $ekstensi_file;
 
 		move_uploaded_file($tmp_name, '../file_toko/' . $nama_file_baru   );
 
@@ -97,10 +98,13 @@ else if ( $nama_file != "" ) {
 
 }
 
-$query = mysqli_query($koneksi,"INSERT INTO riwayat_saldo_armada VALUES ('','$tanggal','$referensi','$akun','$rekening','$status_saldo','$jumlah','$keterangan','$file')");
+if ($file == '') {
+		$query3 = mysqli_query($koneksi,"UPDATE riwayat_saldo_armada SET tanggal = '$tanggal' , referensi = '$referensi' , nama_akun = '$akun' , nama_rekening = '$rekening' , status_saldo = '$status_saldo', jumlah = '$jumlah', keterangan = '$keterangan'  WHERE no_laporan  =  '$no_laporan'");
+	}
+	else{
+		$query3 = mysqli_query($koneksi,"UPDATE riwayat_saldo_armada SET tanggal = '$tanggal' , referensi = '$referensi' , nama_akun = '$akun' , nama_rekening = '$rekening' , status_saldo = '$status_saldo', jumlah = '$jumlah', keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_laporan  =  '$no_laporan' ");
+	}
 
-
-
-			if ($query != "") {
 				echo "<script> window.location='../view/VPenggunaanSaldo2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-			}
+	
+

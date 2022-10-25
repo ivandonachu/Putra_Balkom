@@ -75,8 +75,8 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTPBRMES">
@@ -176,7 +176,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
+      <?php echo "<a href='VPenggunaanSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -247,7 +247,8 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
     <div class="col-md-8">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-</div>
+   </div>
+  
 
 
 
@@ -265,30 +266,22 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
       <th>Kredit</th>
       <th>Keterangan</th>
       <th>File</th>
-
     </tr>
   </thead>
   <tbody>
     <?php
-    //Masuk CBM Keluar CBM
-    $masuk_pbr_cbm = 0;
-    //Masuk CBM Keluar PBJ
-    $masuk_pbr_pbj = 0;
-    //mASUK cbm kELUAR MT
-    $masuk_mes_cbm = 0;
-    //masuk mt keluar cbm
-    $masuk_mes_pbj= 0;
-   
-    
-    //keluar cbm masuk cbm
-    $keluar_pbr_cbm = 0;
-    //keluar cbm masuk pbj
-    $keluar_pbr_pbj = 0;
-    //keluar cbm masuk mt
-    $keluar_mes_cbm = 0;
-    //keluar mt masuk cbm
-    $keluar_mes_pbj = 0;
-   
+    //dana masuk cbm ke mes
+    $dana_masuk_cbm_mes = 0;
+    //dana masuk cbm ke pbr
+    $dana_masuk_cbm_pbr = 0;
+
+
+  
+    //setor mes ke  mes
+    $setor_mes_mes = 0;
+    //setor pbr ke pbr
+    $setor_pbr_pbr = 0;
+
 
     
     $urut = 0;
@@ -309,39 +302,24 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
       $keterangan = $data['keterangan'];
       $status_saldo = $data['status_saldo'];
     
-    //Masuk CBM Keluar CBM
-    if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'CBM') {
-        $masuk_mes_cbm = $masuk_mes_cbm + $jumlah;
+    //Dana Masuk cbm ke pbr
+    if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'PBR') {
+        $dana_masuk_cbm_mes = $dana_masuk_cbm_mes + $jumlah;
       }
-    //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'PBJ') {
-        $masuk_mes_pbj = $masuk_mes_pbj + $jumlah;
+    //Dana Masuk CBM Keluar mes
+    else if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'MES') {
+        $dana_masuk_cbm_pbr = $dana_masuk_cbm_pbr + $jumlah;
       }
-    //mASUK cbm kELUAR MT
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBR' && $referensi == 'CBM') {
-        $masuk_pbr_cbm = $masuk_pbr_cbm + $jumlah;
+    //Setor pbr kELUAR pbr
+    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'PBR') {
+        $setor_mes_mes = $setor_mes_mes + $jumlah;
       }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBR' && $referensi == 'PBJ') {
-        $masuk_pbr_cbm = $masuk_pbr_pbj + $jumlah;
+    //Setor mes keluar mes
+    else if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'MES') {
+        $setor_pbr_pbr = $setor_pbr_pbr + $jumlah;
       }
    
-     //Masuk CBM Keluar CBM
-    if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'CBM') {
-        $masuk_mes_cbm = $masuk_mes_cbm + $jumlah;
-      }
-    //Masuk CBM Keluar PBJ
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'PBJ') {
-        $masuk_mes_pbj = $masuk_mes_pbj + $jumlah;
-      }
-    //mASUK cbm kELUAR MT
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'CBM') {
-        $masuk_pbr_cbm= $masuk_pbr_cbm + $jumlah;
-      }
-    //masuk mt keluar cbm
-    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'PBJ') {
-        $masuk_pbr_pbj = $masuk_pbr_pbj + $jumlah;
-      }
+   
 
         $urut = $urut + 1;
 
@@ -374,7 +352,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
       echo "
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     </tr>";
+    </tr>";
   }
   ?>
 
@@ -387,15 +365,15 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 <br>
 
 <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-<h6 align="center">Rekap Transfer Saldo Keluar</h6>
+<h6 align="center">Rekap Saldo MES & PBR</h6>
 <!-- Tabel -->    
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Total TF MES ke CBM</th>
-      <th>Total TF MES ke PBJ</th>
-      <th>Total TF PBR ke CBM</th>
-      <th>Total TF PBR ke PBJ</th>
+      <th>Total Setor PBR ke PBR</th>
+      <th>Total Setor MES ke MES</th>
+      <th>Total Dana Masuk CBM ke PBR</th>
+      <th>Total Dana Masuk CBM ke MES</th>
 
     </tr>
   </thead>
@@ -403,10 +381,12 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 
     <?php 
       echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_pbj); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($setor_pbr_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($setor_mes_mes); ?> <?php echo "</td>
+      
+      <td style='font-size: 14px'>";?> <?= formatuang($dana_masuk_cbm_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($dana_masuk_cbm_mes); ?> <?php echo "</td>
+      
 
         </tr>";
   
@@ -416,37 +396,6 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 </table>
 </div>
 
-<br>
-
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-<h6 align="center">Rekap Transfer Saldo Masuk</h6>
-<!-- Tabel -->    
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Total TF MES ke CBM</th>
-      <th>Total TF MES ke PBJ</th>
-      <th>Total TF PBR ke CBM</th>
-      <th>Total TF PBR ke PBJ</th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php 
-      echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_mes_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_mes_pbj); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_pbr_pbj); ?> <?php echo "</td>
- 
-        </tr>";
-  
-  ?>
-
-</tbody>
-</table>
-</div>
 
 
 <br>

@@ -382,21 +382,17 @@ data-parent="#accordionSidebar">
   </thead>
   <tbody>
     <?php
-    //masuk mes ke mes
-    $masuk_cbm_mes = 0;
-    //masuk mes ke mes
-    $masuk_cbm_pbr = 0;
-    //masuk cbm ke mes
-    $masuk_cbm_mes = 0;
-    //masuk cbm ke pbr
-    $masuk_cbm_pbr = 0;
+    //dana masuk cbm ke mes
+    $dana_masuk_cbm_mes = 0;
+    //dana masuk cbm ke pbr
+    $dana_masuk_cbm_pbr = 0;
 
-   
-    
-    //keluar mes ke cbm
-    $keluar_pbr_cbm = 0;
-    //keluar pbr ke cbm
-    $keluar_mes_cbm = 0;
+
+  
+    //setor mes ke  mes
+    $setor_mes_mes = 0;
+    //setor pbr ke pbr
+    $setor_pbr_pbr = 0;
 
 
     
@@ -418,21 +414,21 @@ data-parent="#accordionSidebar">
       $keterangan = $data['keterangan'];
       $status_saldo = $data['status_saldo'];
     
-    //Masuk cbm ke pbr
+    //Dana Masuk cbm ke pbr
     if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'PBR') {
-        $masuk_cbm_pbr = $masuk_cbm_pbr + $jumlah;
+        $dana_masuk_cbm_mes = $dana_masuk_cbm_mes + $jumlah;
       }
-    //Masuk CBM Keluar PBJ
+    //Dana Masuk CBM Keluar mes
     else if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'MES') {
-        $masuk_cbm_mes = $masuk_cbm_mes + $jumlah;
+        $dana_masuk_cbm_pbr = $dana_masuk_cbm_pbr + $jumlah;
       }
-    //Keluar pbr kELUAR cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'PBR' && $referensi == 'CBM') {
-        $keluar_pbr_cbm = $keluar_pbr_cbm + $jumlah;
+    //Setor pbr kELUAR pbr
+    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'PBR') {
+        $setor_mes_mes = $setor_mes_mes + $jumlah;
       }
-    //keluar mes keluar cbm
-    else if ($status_saldo == 'Masuk' && $nama_rekening == 'MES' && $referensi == 'CBM') {
-        $keluar_mes_cbm = $keluar_mes_cbm + $jumlah;
+    //Setor mes keluar mes
+    else if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'MES') {
+        $setor_pbr_pbr = $setor_pbr_pbr + $jumlah;
       }
    
    
@@ -470,7 +466,123 @@ data-parent="#accordionSidebar">
       <td style='font-size: 14px'>"; ?> <a download="../file_toko/<?= $file_bukti ?>" href="../file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
-       
+      
+      
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+<!-- Form EDIT DATA -->
+
+<div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role ="document">
+    <div class="modal-content"> 
+      <div class="modal-header">Form Edit Kas Kecil </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+
+
+      <!-- Form Edit Data -->
+      <div class="modal-body">
+        <form action="../proses/edit_penggunaan_saldo" enctype="multipart/form-data" method="POST">
+
+        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+      <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+       <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
+
+
+          <div class="row">
+    <div class="col-md-6">
+
+      <label>Tanggal</label>
+      <div class="col-sm-10">
+       <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
+    </div>
+  </div>
+  <div class="col-md-6">
+  <label><label>Akun</label></label>
+<select id="akun" name="akun" class="form-control">
+ <?php $dataSelect1 = $data['nama_akun']; ?>
+ <option <?php echo ($dataSelect1 == 'Setor Pendapatan') ? "selected": "" ?> >Setor Pendapatan</option>
+ <option <?php echo ($dataSelect1 == 'Dana Masuk') ? "selected": "" ?> >Dana Masuk</option>
+</select>
+  </div>
+</div>
+
+
+<br>
+
+
+<div class="row">
+<div class="col-md-6">
+
+<label><label>Saldo/Asal</label></label>
+<select id="rekening" name="rekening" class="form-control">
+ <?php $dataSelect1 = $data['nama_rekening']; ?>
+ <option <?php echo ($dataSelect1 == 'CBM') ? "selected": "" ?> >CBM</option>
+ <option <?php echo ($dataSelect1 == 'PBR') ? "selected": "" ?> >PBR</option>
+ <option <?php echo ($dataSelect1 == 'MES') ? "selected": "" ?> >MES</option>
+</select>
+
+
+</div>    
+
+<div class="col-md-6">
+
+  <label><label>REF/Tujuan Transfer</label></label>
+  <select id="referensi" name="referensi" class="form-control">
+    <?php $dataSelect = $data['referensi']; ?>
+    <option <?php echo ($dataSelect1 == 'CBM') ? "selected": "" ?> >CBM</option>
+  <option <?php echo ($dataSelect1 == 'PBR') ? "selected": "" ?> >PBR</option>
+  <option <?php echo ($dataSelect1 == 'MES') ? "selected": "" ?> >MES</option>
+    
+  </select>
+
+</div>            
+</div>
+
+<br>
+
+<div class="row">
+
+  <div class="col-md-6">
+  <label>Jumlah</label>
+  <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
+  </div>
+</div>
+
+<br>
+
+<div>
+<label>Keterangan</label>
+<div class="form-group">
+<textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+</div>
+</div>
+
+     
+
+<br>
+
+
+
+<div>
+<label>Upload File</label> 
+<input type="file" name="file"> 
+</div> 
+         
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Ubah </button>
+            <button type="reset" class="btn btn-danger"> RESET</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
       <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
 
       <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
@@ -522,27 +634,29 @@ data-parent="#accordionSidebar">
 <br>
 
 <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-<h6 align="center">Rekap Transfer Saldo Keluar</h6>
+<h6 align="center">Rekap Saldo MES & PBR</h6>
 <!-- Tabel -->    
 <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Total TF Dari CBM ke PBR</th>
-      <th>Total TF Dari CBM ke MES</th>
-      <th>Total TF Dari PBR ke CBM</th>
-      <th>Total TF Dari MES ke CBM</th>
-      <th>Rincian</th>
+      <th>Total Setor PBR ke PBR</th>
+      <th>Total Setor MES ke MES</th>
+      <th>Total Dana Masuk CBM ke PBR</th>
+      <th>Total Dana Masuk CBM ke MES</th>
+
     </tr>
   </thead>
   <tbody>
 
     <?php 
       echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_pbr); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($masuk_cbm_mes); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_pbr_cbm); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($keluar_mes_cbm); ?> <?php echo "</td>
-      <td class='text-center'><a href='VRincianCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>
+      <td style='font-size: 14px'>";?> <?= formatuang($setor_pbr_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($setor_mes_mes); ?> <?php echo "</td>
+      
+      <td style='font-size: 14px'>";?> <?= formatuang($dana_masuk_cbm_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($dana_masuk_cbm_mes); ?> <?php echo "</td>
+      
+
         </tr>";
   
   ?>
