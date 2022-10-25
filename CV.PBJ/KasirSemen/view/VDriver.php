@@ -108,6 +108,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_s");
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap Do Penjualan</a>
                     </div>
                 </div>
             </li>
