@@ -221,7 +221,6 @@ else{
                         <?php if($nama == 'Nyoman Edy Susanto'){
                           echo"<a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>";
                         } ?>
-                       
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
