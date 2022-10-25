@@ -532,9 +532,9 @@ data-parent="#accordionSidebar">
   <label><label>REF/Tujuan Transfer</label></label>
   <select id="referensi" name="referensi" class="form-control">
     <?php $dataSelect = $data['referensi']; ?>
-    <option <?php echo ($dataSelect1 == 'CBM') ? "selected": "" ?> >CBM</option>
-  <option <?php echo ($dataSelect1 == 'PBR') ? "selected": "" ?> >PBR</option>
-  <option <?php echo ($dataSelect1 == 'MES') ? "selected": "" ?> >MES</option>
+    <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
+  <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+  <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
     
   </select>
 
