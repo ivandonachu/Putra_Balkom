@@ -135,7 +135,6 @@ exit;
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap DO Penjualan</a>
                     </div>
                 </div>
             </li>
