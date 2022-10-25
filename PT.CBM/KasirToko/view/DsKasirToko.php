@@ -230,6 +230,7 @@ $nama = $data['nama_karyawan'];
             </div>
         </li>
 
+        
     </ul>
 
 </nav>

@@ -59,6 +59,7 @@ else if ( $nama_file != "" ) {
    
 
 
+
             mysqli_query($koneksi,"UPDATE account SET foto_profile = '$file' WHERE id_karyawan =  '$id1' ");
         
         
