@@ -74,7 +74,7 @@ $status_karyawan = $data['status_karyawan'];
     float: left;
     width: 50px;
     height: 30px;
-    background-color: #300030;
+    background-color: #2C7873;
     margin-right: 25px
   }
 
@@ -82,7 +82,7 @@ $status_karyawan = $data['status_karyawan'];
     float: left;
     width: 50px;
     height: 30px;
-    background-color: #300030;
+    background-color: #2C7873;
     margin-right: 25px
   }
 
@@ -90,7 +90,7 @@ $status_karyawan = $data['status_karyawan'];
     float: left;
     width: 50px;
     height: 30px;
-    background-color: #300030;
+    background-color: #2C7873;
   }
 
   #jam-digital p {
@@ -203,7 +203,7 @@ data-parent="#accordionSidebar">
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#601848;">
+        <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
           
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -308,8 +308,10 @@ data-parent="#accordionSidebar">
           
           <div class="card overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
-              <div class="col-md-3 pt-0">
+            <div class="col-md-3 pt-0">
                 <div class="list-group list-group-flush account-settings-links">
+                  <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
+                  <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
                 </div>
               </div>
               <div class="col-md-9">
@@ -317,7 +319,7 @@ data-parent="#accordionSidebar">
                   <div class="tab-pane fade active show" id="account-general">
                     <?php echo "<form action='../proses/edit_profil' enctype='multipart/form-data' method='POST'>";  ?>
                     <div class="card-body media align-items-center">
-                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>">
+                    <img src="/assets/img/foto_profile/<?= $foto_profile; ?>" style="max-height: 150px; " alt="" class="d-block ui-w-80">
                       <div class="media-body ml-4">
 
 
@@ -348,6 +350,38 @@ data-parent="#accordionSidebar">
                       </div>
                     </div>
                   </div>
+
+
+                    <div class="tab-pane fade" id="account-change-password">
+                    <div class="card-body pb-2">
+                      <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control mb-1" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">password lama</label>
+                        <input type="password" name="password_lama" class="form-control" disabled>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-label">password baru</label>
+                        <input type="password" name="password_baru1" class="form-control" disabled>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-label">Konfirmasi password baru</label>
+                        <input type="password" name="password_baru2" class="form-control" disabled>
+                      </div>
+                      <small>
+                        <ul>
+                          <li>password tidak boleh ada spasi</li>
+                          <li>minimal password 8 character</li>
+                          <li>maksimal password 15 character</li>
+                        </ul>
+                      </small>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -359,15 +393,16 @@ data-parent="#accordionSidebar">
           </div>
           </form>
         </div>
+        <br>
 
       </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="footer" style="background-color:#601848; height: 55px; padding-top: 15px; ">
+      <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span style="color:white; font-size: 12px;"></span>
+          <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
           </div>
         </div>
       </footer>
