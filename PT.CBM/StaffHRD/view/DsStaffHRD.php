@@ -9,6 +9,7 @@ $id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
+$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Staff HRD') {
 
@@ -44,25 +45,54 @@ $nama = $data['nama_karyawan'];
 
     <!-- Custom styles for this template-->
     <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
+    
     <script type="text/javascript">
-    window.setTimeout("waktu()",1000);
+    window.setTimeout("waktu()", 1000);
+
     function waktu() {
-        var tanggal = new Date();
-        setTimeout("waktu()",1000);
-        document.getElementById("jam").innerHTML = tanggal.getHours();
-        document.getElementById("menit").innerHTML = tanggal.getMinutes();
-        document.getElementById("detik").innerHTML = tanggal.getSeconds();
+      var tanggal = new Date();
+      setTimeout("waktu()", 1000);
+      document.getElementById("jam").innerHTML = tanggal.getHours();
+      document.getElementById("menit").innerHTML = tanggal.getMinutes();
+      document.getElementById("detik").innerHTML = tanggal.getSeconds();
     }
-</script>
+    </script>
 
 </head>
 
 <style>
-    #jam-digital{overflow:hidden}
-    #hours{float:left; width:50px; height:30px; background-color:#008B8B; margin-right:25px}
-    #minute{float:left; width:50px; height:30px; background-color:  #008B8B; margin-right:25px}
-    #second{float:left; width:50px; height:30px; background-color: #008B8B;}
-    #jam-digital p{color:#FFF; font-size: 22px; text-align:center}
+  #jam-digital {
+    overflow: hidden
+  }
+
+  #hours {
+    float: left;
+    width: 50px;
+    height: 30px;
+    background-color: #2C7873;
+    margin-right: 25px
+  }
+
+  #minute {
+    float: left;
+    width: 50px;
+    height: 30px;
+    background-color: #2C7873;
+    margin-right: 25px
+  }
+
+  #second {
+    float: left;
+    width: 50px;
+    height: 30px;
+    background-color: #2C7873;
+  }
+
+  #jam-digital p {
+    color: #FFF;
+    font-size: 22px;
+    text-align: center
+  }
 </style>
 
 </head>
@@ -76,7 +106,7 @@ $nama = $data['nama_karyawan'];
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffHRD">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -88,7 +118,7 @@ $nama = $data['nama_karyawan'];
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsStaffAdmin">
+                <a class="nav-link" href="DsStaffHRD">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
@@ -105,7 +135,7 @@ $nama = $data['nama_karyawan'];
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <i class="fa fa-id-card" style="font-size: 18px; color:white;" ></i>
                     <span style="font-size: 15px; color:white;" >Admin HRD</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -186,13 +216,12 @@ $nama = $data['nama_karyawan'];
 
                 <div class="topbar-divider d-none d-sm-block"></div>
 
-                <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
+               <!-- Nav Item - User Information -->
+               <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                    <img class="img-profile rounded-circle"
-                    src="img/undraw_profile.svg">
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -201,17 +230,13 @@ $nama = $data['nama_karyawan'];
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
-                <a class="dropdown-item" href="VSetting">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-            </div>
-        </li>
+              </div>
+             </li>
 
     </ul>
 

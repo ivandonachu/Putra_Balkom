@@ -45,6 +45,7 @@ $nama = $data['nama_karyawan'];
 
     <!-- Custom styles for this template-->
     <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
+    
     <script type="text/javascript">
     window.setTimeout("waktu()", 1000);
 
@@ -247,8 +248,8 @@ $nama = $data['nama_karyawan'];
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-            </div>
-        </li>
+              </div>
+             </li>
 
     </ul>
 
