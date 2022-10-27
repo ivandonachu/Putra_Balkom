@@ -333,15 +333,28 @@ else{
 
   }
 
-
-  $total_losis_max = abs($stok_akhir_max - $sonding_akhir_max);
-  $total_uang_losis_max = $total_losis_max * $harga_stok_akhir_max;
-
-  $total_losis_dex = abs($stok_akhir_dex - $sonding_akhir_dex);
-  $total_uang_losis_dex = $total_losis_dex * $harga_stok_akhir_dex;
+if($sonding_akhir_max == 0){
+    $total_losis_max = 0;
+    $total_uang_losis_max = 0;
+}
+else{
+    $total_losis_max = abs($stok_akhir_max - $sonding_akhir_max);
+    $total_uang_losis_max = $total_losis_max * $harga_stok_akhir_max;
+}
+  
+if($sonding_akhir_dex == 0){
+    $total_losis_dex = 0;
+    $total_uang_losis_dex = 0;
+}
+else{
+    $total_losis_dex = abs($stok_akhir_dex - $sonding_akhir_dex);
+    $total_uang_losis_dex = $total_losis_dex * $harga_stok_akhir_dex;
+}
+  
 
   $laba_kotor_dex = $total_pendapatan_dex - $total_dexlite_b - $total_uang_losis_dex;
   $laba_kotor_max = $total_pendapatan_max - $total_pertamax_b - $total_uang_losis_max;
+
   //pengeluran Biaya Kantor
    $table32= mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' AND b.lokasi = '$lokasi'  ");
    $data32 = mysqli_fetch_array($table32);
