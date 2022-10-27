@@ -291,6 +291,15 @@ else{
            </div>
          </div>
          <br>
+
+        <div>
+         <label>Keterangan</label>
+         <div class="form-group">
+           <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
+         </div>
+       </div>
+         
+         <br>
        <div>
         <label>Upload File</label> 
         <input type="file" name="file"> 
@@ -388,7 +397,13 @@ else{
           
                  </div>
                </div>
+               <br>
 
+                <div>
+                <label>Keterangan</label>
+                <div class="form-group">
+                <textarea id = "keterangan" name="keterangan"  style="width: 300px;"><?php echo $keterangan;?></textarea>
+                </div>
               <br>
 
              <div>

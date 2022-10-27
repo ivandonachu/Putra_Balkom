@@ -22,6 +22,7 @@ $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_laporan = $_POST['no_laporan'];
 $tanggal = $_POST['tanggal'];
+$keterangan = $_POST['keterangan'];
 $potongan_harga = $_POST['potongan_harga'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -58,11 +59,11 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE potongan_harga SET tanggal = '$tanggal',potongan_harga = '$potongan_harga'  WHERE no_laporan = 
+		$query3 = mysqli_query($koneksi,"UPDATE potongan_harga SET tanggal = '$tanggal',potongan_harga = '$potongan_harga', keterangan = '$keterangan'  WHERE no_laporan = 
 		'$no_laporan'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE potongan_harga SET tanggal = '$tanggal',potongan_harga = '$potongan_harga' ,  file_bukti = '$file' WHERE no_laporan = 
+		$query3 = mysqli_query($koneksi,"UPDATE potongan_harga SET tanggal = '$tanggal',potongan_harga = '$potongan_harga' , keterangan = '$keterangan',  file_bukti = '$file' WHERE no_laporan = 
 		'$no_laporan'");
 	}
 	
