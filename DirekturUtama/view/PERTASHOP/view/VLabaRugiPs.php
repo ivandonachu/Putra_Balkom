@@ -244,11 +244,12 @@ else{
    $datay1 = mysqli_fetch_array($tabley1);
    $no_penjualan_akhir_max = $datay1['penjualan_akhir'];
 
-   $tabley12 = mysqli_query($koneksiperta, "SELECT sonding_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_max' ");
+   $tabley12 = mysqli_query($koneksiperta, "SELECT stok_akhir, sonding_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_max' ");
    $datay12 = mysqli_fetch_array($tabley12);
-   $stok_akhir_max = $datay12['sonding_akhir'];
+   $sonding_akhir_max = $datay12['sonding_akhir'];
+   $stok_akhir_max = $datay12['stok_akhir'];
    $harga_stok_akhir_max = $datay12['harga'];
-   $total_uang_stok_max = $stok_akhir_max * $harga_stok_akhir_max;
+   $total_uang_stok_max = $sonding_akhir_max * $harga_stok_akhir_max;
 
    //Sisa stok Dexlite
    $tabley2 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
@@ -256,11 +257,12 @@ else{
    $datay2 = mysqli_fetch_array($tabley2);
    $no_penjualan_akhir_dex = $datay2['penjualan_akhir'];
 
-   $tabley22 = mysqli_query($koneksiperta, "SELECT sonding_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_dex' ");
+   $tabley22 = mysqli_query($koneksiperta, "SELECT stok_akhir,sonding_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_dex' ");
    $datay22 = mysqli_fetch_array($tabley22);
-   $stok_akhir_dex = $datay22['sonding_akhir'];
+   $sonding_akhir_dex = $datay22['sonding_akhir'];
+   $stok_akhir_dex = $datay22['stok_akhir'];
    $harga_stok_akhir_dex = $datay22['harga'];
-   $total_uang_stok_dex = $stok_akhir_dex * $harga_stok_akhir_dex;
+   $total_uang_stok_dex = $sonding_akhir_dex * $harga_stok_akhir_dex;
 
   // setoran
   $tablex32= mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_setoran FROM setoran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'  ");
@@ -393,6 +395,12 @@ else{
 
 
     $laba_bersih_sebelum_pajak = $laba_kotor_dex + $laba_kotor_max - $total_biaya_usaha_final;
+
+    $total_losis_max = abs($stok_akhir_max - $sonding_akhir_max);
+    $total_uang_losis_max = $total_losis_max * $harga_stok_akhir_max;
+
+    $total_losis_dex = abs($stok_akhir_dex - $sonding_akhir_dex);
+    $total_uang_losis_dex = $total_losis_dex * $harga_stok_akhir_dex;
     
 }
 
@@ -678,7 +686,7 @@ else{
                                 <tr>
                                     <td>4-110</td>
                                     <td class="text-left">Sisa Stok Pertamax</td>
-                                    <td class="text-left"><?=formatjumlah($stok_akhir_max) ?> Liter</td>
+                                    <td class="text-left"><?=formatjumlah($sonding_akhir_max) ?> Liter</td>
                                     <td class="text-left"><?= formatuang($total_uang_stok_max); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                   
@@ -699,8 +707,16 @@ else{
                                 <tr style="background-color:     #F0F8FF; ">
                                     <td><strong>Total Pendapatan + Cor + Stok</strong></td>
                                     <td class="text-left"></td>
-                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_max + $pertamax_terjual + $stok_akhir_max ); ?> Liter</td>
+                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_max + $pertamax_terjual + $sonding_akhir_max ); ?> Liter</td>
                                     <td class="no-line text-left"><?= formatuang($total_pendapatan_max); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                     <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Total Losis</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"><?= formatjumlah($total_losis_max ); ?> Liter</td>
+                                    <td class="no-line text-left"><?= formatuang($total_uang_losis_max); ?></td>
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
@@ -835,7 +851,7 @@ else{
                                 <tr>
                                     <td>4-111</td>
                                     <td class="text-left">Sisa Stok Dexlite</td>
-                                    <td class="text-left"><?=formatjumlah($stok_akhir_dex)?> Liter</td>
+                                    <td class="text-left"><?=formatjumlah($sonding_akhir_dex)?> Liter</td>
                                     <td class="text-left"><?= formatuang($total_uang_stok_dex); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     
@@ -856,8 +872,16 @@ else{
                                 <tr style="background-color:     #F0F8FF; ">
                                     <td><strong>Total Pendapatan + Cor + Sisa Stok</strong></td>
                                     <td class="text-left"></td>
-                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_dex + $dexlite_terjual + $stok_akhir_dex ); ?> Liter</td>
+                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_dex + $dexlite_terjual + $sonding_akhir_dex ); ?> Liter</td>
                                     <td class="no-line text-left"><?= formatuang($total_pendapatan_dex); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                     <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Total Losis</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"><?= formatjumlah($total_losis_dex ); ?> Liter</td>
+                                    <td class="no-line text-left"><?= formatuang($total_uang_losis_dex); ?></td>
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
