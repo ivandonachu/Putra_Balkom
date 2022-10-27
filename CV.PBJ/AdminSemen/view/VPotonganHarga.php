@@ -329,6 +329,7 @@ else{
       <th>No</th>
       <th>Tanggal</th>
       <th>Total Potongan Harga</th>
+      <th>Keterangan</th>
       <th>file</th>
       <th></th>
       
@@ -353,11 +354,14 @@ else{
       <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($potongan_harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_admin_semen/<?= $file_bukti ?>" href="../file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
 
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+      
+  <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'>Hapus</button>
 
       <!-- Form EDIT DATA -->
 
@@ -421,7 +425,6 @@ else{
   </div>
 
 
-  <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'>Hapus</button>
 
   <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
    <div class="modal-dialog" role ="document">
