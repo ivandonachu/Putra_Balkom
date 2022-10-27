@@ -9,6 +9,7 @@ $id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
+$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Administrasi') {
 
@@ -44,25 +45,54 @@ $nama = $data['nama_karyawan'];
 
     <!-- Custom styles for this template-->
     <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
+    
     <script type="text/javascript">
-    window.setTimeout("waktu()",1000);
+    window.setTimeout("waktu()", 1000);
+
     function waktu() {
-        var tanggal = new Date();
-        setTimeout("waktu()",1000);
-        document.getElementById("jam").innerHTML = tanggal.getHours();
-        document.getElementById("menit").innerHTML = tanggal.getMinutes();
-        document.getElementById("detik").innerHTML = tanggal.getSeconds();
+      var tanggal = new Date();
+      setTimeout("waktu()", 1000);
+      document.getElementById("jam").innerHTML = tanggal.getHours();
+      document.getElementById("menit").innerHTML = tanggal.getMinutes();
+      document.getElementById("detik").innerHTML = tanggal.getSeconds();
     }
-</script>
+    </script>
 
 </head>
 
 <style>
-    #jam-digital{overflow:hidden}
-    #hours{float:left; width:50px; height:30px; background-color:#008B8B; margin-right:25px}
-    #minute{float:left; width:50px; height:30px; background-color:  #008B8B; margin-right:25px}
-    #second{float:left; width:50px; height:30px; background-color: #008B8B;}
-    #jam-digital p{color:#FFF; font-size: 22px; text-align:center}
+  #jam-digital {
+    overflow: hidden
+  }
+
+  #hours {
+    float: left;
+    width: 50px;
+    height: 30px;
+    background-color: #2C7873;
+    margin-right: 25px
+  }
+
+  #minute {
+    float: left;
+    width: 50px;
+    height: 30px;
+    background-color: #2C7873;
+    margin-right: 25px
+  }
+
+  #second {
+    float: left;
+    width: 50px;
+    height: 30px;
+    background-color: #2C7873;
+  }
+
+  #jam-digital p {
+    color: #FFF;
+    font-size: 22px;
+    text-align: center
+  }
 </style>
 
 </head>
@@ -182,56 +212,69 @@ $nama = $data['nama_karyawan'];
 
                 <div class="topbar-divider d-none d-sm-block"></div>
 
-                <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
+        <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                    <img class="img-profile rounded-circle"
-                    src="img/undraw_profile.svg">
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
-                <!-- Dropdown - User Information -->
+        <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
-                <a class="dropdown-item" href="VSetting">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-            </div>
-        </li>
+              </div>
+             </li>
 
     </ul>
 
 </nav>
+
 <!-- End of Topbar -->
 <div class="row">
-        <div class="col-sm-9">
+          <div class="col-sm-9">
+          </div>
+          <div class="col-sm-3" style="color: black; font-size: 18px;">
+            <script type='text/javascript'>
+              var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+              var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+              var date = new Date();
+              var day = date.getDate();
+              var month = date.getMonth();
+              var thisDay = date.getDay(),
+                thisDay = myDays[thisDay];
+              var yy = date.getYear();
+              var year = (yy < 1000) ? yy + 1900 : yy;
+              document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+            </script>
+          </div>
         </div>
-        <div class="col-sm-3" style="color: black; font-size: 18px;">
-       
-    </div>
-</div> 
 
         <div class="row">
-        <div class="col-sm-9">
-        </div>
-        <div class="col-sm-3">
+          <div class="col-sm-9">
+          </div>
+          <div class="col-sm-3">
             <div id="jam-digital">
-                <div id="hours"><p id="jam"></p> </div> 
-                <div id="minute"><p id="menit"> </p></div>
-                <div id="second"><p id="detik"> </p></div>
+              <div id="hours">
+                <p id="jam"></p>
+              </div>
+              <div id="minute">
+                <p id="menit"> </p>
+              </div>
+              <div id="second">
+                <p id="detik"> </p>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
 
     <div class="container">
         <img style="margin-top: 60px; margin-left: 100px;" src="../gambar/kasir_toko.svg">
