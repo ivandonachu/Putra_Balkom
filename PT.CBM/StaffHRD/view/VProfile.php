@@ -11,15 +11,13 @@ $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Kasir') {
+if ($jabatan_valid == 'Staff HRD') {
 
 }
 
 else{  header("Location: logout.php");
 exit;
 }
-
-
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
@@ -107,11 +105,11 @@ $status_karyawan = $data['status_karyawan'];
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffHRD">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
@@ -123,7 +121,7 @@ $status_karyawan = $data['status_karyawan'];
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
-    <a class="nav-link" href="DsKasirToko.php">
+    <a class="nav-link" href="DsStaffHRD">
         <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
@@ -133,51 +131,28 @@ $status_karyawan = $data['status_karyawan'];
 
     <!-- Heading -->
     <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Kasir Toko
+         Menu Staff HRD
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
       15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Transaksi</span>
+        <i class="fa fa-id-card" style="font-size: 18px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Admin HRD</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPenjualan">Riwayat Bon Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
-          
+            <h6 class="collapse-header" style="font-size: 15px;">Menu</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSeluruhKaryawan">List Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSuratKeluarMasuk">Surat Keluar Masuk</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKontrakKerja">Kontrak Kerja</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSuratIzin">Surat Izin</a>
         </div>
     </div>
-</li>
-
-<!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-    aria-expanded="true" aria-controls="collapseUtilities">
-    <i class="far fa-calendar-alt" style="font-size: 15px; color:white;"></i>
-    <span style="font-size: 15px; color:white;">Pencatatan Inventory</span>
-</a>
-<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-data-parent="#accordionSidebar">
-<div class="bg-white py-2 collapse-inner rounded">
-    <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
-    <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
-    <a class="collapse-item" href="VPerpindahanBaja1" style="font-size: 15px;">Perpindahan Baja</a>
-    <a class="collapse-item" href="VPerpindahanSaldo" style="font-size: 15px;">Perpindahan Saldo</a>
-    <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
-    <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
-    <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
-</div>
-</div>
-</li>
+</li> 
 
 
       <!-- Divider -->
