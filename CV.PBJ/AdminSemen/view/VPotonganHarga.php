@@ -348,6 +348,7 @@ else{
       $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
       $potongan_harga = $data['potongan_harga'];
+      $keterangan = $data['keterangan'];
       $no_urut = $no_urut + 1;
       $file_bukti = $data['file_bukti'];
       echo "<tr>
