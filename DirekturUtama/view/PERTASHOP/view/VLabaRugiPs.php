@@ -341,7 +341,7 @@ else{
   $total_uang_losis_dex = $total_losis_dex * $harga_stok_akhir_dex;
 
   $laba_kotor_dex = $total_pendapatan_dex - $total_dexlite_b - $total_uang_losis_dex;
-  $laba_kotor_max = $total_pendapatan_max - $total_pertamax_b - $total_uang_losis_dex;
+  $laba_kotor_max = $total_pendapatan_max - $total_pertamax_b - $total_uang_losis_max;
   //pengeluran Biaya Kantor
    $table32= mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' AND b.lokasi = '$lokasi'  ");
    $data32 = mysqli_fetch_array($table32);
@@ -709,16 +709,16 @@ else{
                                     <td><strong>Total Pendapatan + Cor + Stok</strong></td>
                                     <td class="text-left"></td>
                                     <td class="no-line text-left"><?= formatjumlah($qty_ngecor_max + $pertamax_terjual + $sonding_akhir_max ); ?> Liter</td>
-                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
                                     <td class="no-line text-left"><?= formatuang($total_pendapatan_max); ?></td>
+                                    <td class="no-line text-left"><?= formatuang(0); ?></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
                                 <tr style="background-color:     #F0F8FF; ">
                                     <td><strong>Total Losis</strong></td>
                                     <td class="text-left"></td>
                                     <td class="no-line text-left"><?= formatjumlah($total_losis_max ); ?> Liter</td>
-                                    <td class="no-line text-left"><?= formatuang($total_uang_losis_max); ?></td>
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                    <td class="no-line text-left"><?= formatuang($total_uang_losis_max); ?></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
                                 <tr>
