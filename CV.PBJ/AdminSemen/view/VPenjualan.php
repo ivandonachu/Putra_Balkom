@@ -289,6 +289,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualanL">Rekap DO Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPotonganHarga">Potongan Harga</a>
                     </div>
                 </div>
             </li>
@@ -1043,7 +1044,7 @@ else{
       <td style='font-size: 14px'>$tanggal_bayar</td>
       <td style='font-size: 14px'>$status_bayar</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="../file_semen/<?= $file_bukti ?>" href="../file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="../file_admin_semen/<?= $file_bukti ?>" href="../file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
    
 

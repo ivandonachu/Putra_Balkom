@@ -23,7 +23,28 @@ $nama = $data['nama_karyawan'];
 
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
+if (isset($_GET['tanggal1'])) {
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
+
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+} 
+else{
+  $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+}
+
+if ($tanggal_awal == $tanggal_akhir) {
+ $table = mysqli_query($koneksi, "SELECT * FROM potongan_harga WHERE tanggal = '$tanggal_awal'");
+
+}
+else{
+  $table = mysqli_query($koneksi, "SELECT * FROM potongan_harga WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +58,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pencatatan Kendaraan</title>
+  <title>Potongan Harga</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,11 +84,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -132,16 +153,16 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
                 </div>
             </li>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider">
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
 
 
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
 
 
@@ -156,7 +177,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VMT'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Kendaraan</h5></a>"; ?>
+      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Potongan Harga</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -210,128 +231,171 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
 <div>   
 
 
-
+  <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-   <div class="row">
-    <div class="col-md-10">
-
-    </div>
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Kendaraan</button> <br> <br>
+    <?php  echo "<form  method='POST' action='VPotonganHarga' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
       </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form Pencatatan Kendaraan</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_kendaraan' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
-
-            <div class="row">
-              <div class="col-md-6">
-                <label>No Polisi</label>
-                <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required="">
-              </div>    
-
-
-              <div class="col-md-6">
-                <label>Jenis Kendaraan</label>
-                <select id="jenis_kendaraan" name="jenis_kendaraan" class="form-control">
-                 <option>Bapak Nyoman Edi</option>
-                 <option>Bapak Rama</option>
-                 <option>Bapak Aril</option>
-                 <option>Mbak Reni</option>
-               </select>
-             </div>
-           </div>
-
-           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary"> CATAT</button>
-            <button type="reset" class="btn btn-danger"> RESET</button>
-          </div>
-        </form>
-      </div>
-
     </div>
+  </form>
+
+  <div class="row">
+    <div class="col-md-8">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+ </div>
+
+ <div class="row">
+  <div class="col-md-10">
+
   </div>
+  <div class="col-md-2">
+    <!-- Button Pindah Baja -->
+    <div align="right">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Potongan Harga </button> <br> <br>
+    </div>
+    <!-- Form Modal  -->
+    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role ="document">
+       <div class="modal-content"> 
+        <div class="modal-header">
+          <h5 class="modal-title"> Form Potongan Harga </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <!-- Form Input Data -->
+        <div class="modal-body" align="left">
+          <?php  echo "<form action='../proses/proses_potong_harga?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+
+          <div class="row">
+            <div class="col-md-6">
+
+              <label>Tanggal</label>
+              <div class="col-sm-10">
+               <input type="date" id="tanggal" name="tanggal" required="">
+             </div>
+
+
+           </div>
+           <div class="col-md-6">
+           <label>Total Potongan Harga</label>
+            <input class="form-control form-control-sm" type="number" id="potongan_harga" name="potongan_harga"value='0'  required="">
+           </div>
+         </div>
+         <br>
+       <div>
+        <label>Upload File</label> 
+        <input type="file" name="file"> 
+      </div> 
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">CATAT</button>
+        <button type="reset" class="btn btn-danger"> RESET</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+</div>
 </div>
 
 </div>
 </div>
+
+
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
-      <th>No Polisi</th>
-      <th>Status Kendaraan</th>
+      <th>Tanggal</th>
+      <th>Total Potongan Harga</th>
+      <th>file</th>
       <th></th>
+      
     </tr>
   </thead>
   <tbody>
+    <?php
+    $no_urut = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
 
+    ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no = $data['no_kendaraan'];
-     $no_polisi = $data['no_polisi'];
-     $jenis_kendaraan =$data['status_kendaraan'];
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $potongan_harga = $data['potongan_harga'];
+      $no_urut = $no_urut + 1;
+      $file_bukti = $data['file_bukti'];
+      echo "<tr>
+      <td style='font-size: 14px'>$no_urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($potongan_harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="../file_admin_semen/<?= $file_bukti ?>" href="../file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
 
-     echo "<tr>
-     <td style='font-size: 14px' align = 'center'>$no</td>
-     <td style='font-size: 14px' align = 'center'>$no_polisi</td>
-     <td style='font-size: 14px' align = 'center'>$jenis_kendaraan</td>
-     "; ?>
-     <?php echo "<td style='font-size: 12px'>"; ?>
-     <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_kendaraan']; ?>">Edit</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
 
-     <!-- Form EDIT DATA -->
+      <!-- Form EDIT DATA -->
 
-     <div class="modal fade" id="formedit<?php echo $data['no_kendaraan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role ="document">
-        <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form Edit Driver </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-          <!-- Form Edit Data -->
-          <div class="modal-body">
-            <form action="../proses/edit_kendaraan.php" enctype="multipart/form-data" method="POST">
-              <input type="hidden" name="no" value="<?php echo $no;?>">
-              <div class="row">
-                <div class="col-md-6">
-                  <label>No Polisi</label>
-                  <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required=""  value="<?php echo $no_polisi;?>" >
-                </div>    
+      <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role ="document">
+          <div class="modal-content"> 
+            <div class="modal-header">
+              <h5 class="modal-title"> Form Edit </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true"> &times; </span>
+              </button>
+            </div>
 
 
-                <div class="col-md-6">
-                  <label>Jenis Kendaraan</label>
-                  <select id="jenis_kendaraan" name="jenis_kendaraan" class="form-control">
-                  <option>Bapak Nyoman Edi</option>
-                 <option>Bapak Rama</option>
-                 <option>Bapak Aril</option>
-                 <option>Mbak Reni</option>
-                 </select>
+            <!-- Form Edit Data -->
+            <div class="modal-body">
+              <form action="../proses/edit_potongan_harga" method="POST" enctype="multipart/form-data">
+
+
+
+                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+                <div class="row">
+                  <div class="col-md-6">
+
+                    <label>Tanggal</label>
+                    <div class="col-sm-10">
+                     <input type="date" id="tanggal" name="tanggal" required="" value="<?php echo $tanggal;?>">
+                   </div>
+
+
+                 </div>
+                 <div class="col-md-6">
+                 <label>Total Potongan Harga</label>
+                  <input class="form-control form-control-sm" type="number" id="potongan_harga" name="potongan_harga" value='<?php echo $potongan_harga;?>'  required="">
+          
+                 </div>
                </div>
-             </div>
 
+              <br>
 
-             <div class="modal-footer">
+             <div>
+              <label>Upload File</label> 
+              <input type="file" name="file"> 
+            </div> 
+            <div class="modal-footer">
               <button type="submit" class="btn btn-primary"> Ubah </button>
               <button type="reset" class="btn btn-danger"> RESET</button>
             </div>
@@ -341,21 +405,27 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
     </div>
   </div>
 
-  <!-- Button Hapus -->
-  <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_kendaraan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-  <div class="modal fade" id="PopUpHapus<?php echo $data['no_kendaraan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+
+  <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'>Hapus</button>
+
+  <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
    <div class="modal-dialog" role ="document">
      <div class="modal-content"> 
       <div class="modal-header">
-        <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+        <h4 class="modal-title"> <b> Hapus </b> </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="close">
           <span aria-hidden="true"> &times; </span>
         </button>
       </div>
 
+
       <div class="modal-body">
-        <form action="../proses/hapus_kendaraan" method="POST">
-          <input type="hidden" name="no" value="<?php echo $no;?>">
+        <form action="../proses/hapus_potongan_harga" method="POST">
+          <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+          <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+          <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+
+
           <div class="form-group">
             <h6> Yakin Ingin Hapus Data? </h6>             
           </div>
@@ -371,6 +441,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
 
 <?php echo  " </td> </tr>";
 }
+
 ?>
 
 </tbody>
@@ -380,9 +451,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
 <br>
 <br>
 
-
 </div>
-
+</div>
 </div>
 <!-- End of Main Content -->
 
@@ -426,7 +496,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
-
+</div>
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

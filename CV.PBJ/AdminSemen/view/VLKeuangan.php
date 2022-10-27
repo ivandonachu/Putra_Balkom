@@ -132,6 +132,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualanL">Rekap DO Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPotonganHarga">Potongan Harga</a>
                     </div>
                 </div>
             </li>
@@ -306,6 +307,7 @@ else{
             <option>Alat Tulis Kantor</option>
             <option>Perbaikan Kendaraan</option>
             <option>Kembalikan Lebih Bayar</option>
+            <option>Deposit</option>
             </select>
           </div>    
           <div class="col-md-6">
@@ -453,6 +455,7 @@ else{
                     <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
                     <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                     <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Kembalikan Lebih Bayar</option>
+                    <option <?php echo ($dataSelect == 'Deposit') ? "selected": "" ?> >Deposit</option>
                   </select>
                 </div>    
                 <div class="col-md-6">
