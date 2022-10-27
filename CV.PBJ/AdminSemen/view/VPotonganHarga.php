@@ -363,6 +363,38 @@ else{
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
       
   <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'>Hapus</button>
+  
+
+  <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+   <div class="modal-dialog" role ="document">
+     <div class="modal-content"> 
+      <div class="modal-header">
+        <h4 class="modal-title"> <b> Hapus </b> </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+
+
+      <div class="modal-body">
+        <form action="../proses/hapus_potongan_harga" method="POST">
+          <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+          <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+          <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+
+
+          <div class="form-group">
+            <h6> Yakin Ingin Hapus Data? </h6>             
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Hapus </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
       <!-- Form EDIT DATA -->
 
@@ -427,36 +459,6 @@ else{
 
 
 
-  <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-   <div class="modal-dialog" role ="document">
-     <div class="modal-content"> 
-      <div class="modal-header">
-        <h4 class="modal-title"> <b> Hapus </b> </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true"> &times; </span>
-        </button>
-      </div>
-
-
-      <div class="modal-body">
-        <form action="../proses/hapus_potongan_harga" method="POST">
-          <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
-          <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-          <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-
-
-          <div class="form-group">
-            <h6> Yakin Ingin Hapus Data? </h6>             
-          </div>
-
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary"> Hapus </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 <?php echo  " </td> </tr>";
 }
