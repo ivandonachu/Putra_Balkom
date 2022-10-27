@@ -136,6 +136,25 @@ data-parent="#accordionSidebar">
 </div>
 </div>
 </li>
+ <!-- Nav Item - Utilities Collapse Menu -->
+ <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesx"
+                aria-expanded="true" aria-controls="collapseUtilitiesx">
+                <i class="far fa-calendar-alt" style="font-size: 15px; color:white;"></i>
+                <span style="font-size: 15px; color:white;">Administrasi</span>
+            </a>
+            <div id="collapseUtilitiesx" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header" style="font-size: 15px;">Menu Administrasi</h6>
+                <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
+                <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">Karyawan</a>
+                <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
+                <a class="collapse-item" href="VRute" style="font-size: 15px;">Rute</a>
+            </div>
+        </div>
+    </li>
+    
 <!-- Divider -->
 <hr class="sidebar-divider">
 
