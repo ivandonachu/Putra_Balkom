@@ -429,9 +429,7 @@ else{
     $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
      WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $table2 = mysqli_query($koneksipbr, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja WHERE b.kode_baja != 'L03K01' AND b.kode_baja != 'L12K01' AND b.kode_baja != 'B05K01' AND b.kode_baja != 'B12K01'");
-     $sql_bon = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN piutang dagang b ON a.no_transaksi=b.no_transaksi INNER JOIN baja c ON a.kode_baja=c.kode_baja
-        WHERE no_transaksi = $no_transaksi AND status_piutang = 'Sudah di Bayar' AND tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-
+  
 
 
 

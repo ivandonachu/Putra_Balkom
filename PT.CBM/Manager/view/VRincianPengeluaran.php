@@ -306,9 +306,11 @@ else{
 </tbody>
 </table>
 
+<br>
+<br>
 
 <!-- Tabel -->    
-<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -350,6 +352,8 @@ else{
 </tbody>
 </table>
 
+<br>
+<br>
 
 </div>
 
@@ -430,6 +434,18 @@ aria-hidden="true">
     var table = $('#example').DataTable( {
       lengthChange: false,
       buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+
     } );
 
     table.buttons().container()

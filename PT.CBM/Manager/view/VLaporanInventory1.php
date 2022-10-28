@@ -1,22 +1,20 @@
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
-  header("Location: logout.php");
-  exit;
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
+    header("Location: logout.php");
+    exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Kepala Gudang') {
-
-}
-
-else{  header("Location: logout.php");
-exit;
+if ($jabatan_valid == 'Manager') {
+} else {
+    header("Location: logout.php");
+    exit;
 }
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
@@ -84,52 +82,98 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
-
-       <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKepalaGudang.php">
+     <!-- Sidebar -->
+     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+                <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png"></div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsKepalaGudang.php">
+            <li class="nav-item active">
+                <a class="nav-link" href="DsManager">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+                    <span style="font-size: 16px;">Dashboard</span></a>
+            </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Kepala Gudang
-       </div>
+            <!-- Heading -->
+            <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                Menu Manager
+            </div>
 
-       <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fas fa-warehouse" style="font-size: 18px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Inventory</span>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Transaksi</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
-                        <a class="collapse-item" href="VLaporanInventory" style="font-size: 15px;">Laporan Inventory</a>
-                        <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
-                        <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
-                        <a class="collapse-item" href="VPindahBajaMD" style="font-size: 15px;">Pidah Baja MES/PBR</a>
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian Barang Jual</a>
                     </div>
                 </div>
             </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2" 15 aria-expanded="true" aria-controls="collapseTwo2">
+                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Laporan CBM</span>
+                </a>
+                <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan CBM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Lap Pembelian BBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Lap Penggunaan BBM</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo2">
+                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Laporan MES/PBR</span>
+                </a>
+                <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualanpbr1">L Penjualan MES/PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuanganpbr1">L Keuangan MES/PBR</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-id-card-alt" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">SDM</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" href="VLaporanInventory1" style="font-size: 15px;">Laporan Inventory</a>
+                        <a class="collapse-item" href="VDataPangkalan" style="font-size: 15px;">Data Pangkalan</a>
+                        <a class="collapse-item" href="VDataRute" style="font-size: 15px;">Data Rute</a>
+                        <a class="collapse-item" href="VDataKaryawan" style="font-size: 15px;">Data Karyawan</a>
+                        <a class="collapse-item" href="VAset" style="font-size: 15px;">Daftar Aset</a>
+                        <a class="collapse-item" href="VDokumen" style="font-size: 15px;">Daftar Dokumen</a>
+                        <a class="collapse-item" href="VAbsensiPerta" style="font-size: 15px;">Absensi Pertashop</a>
+                    </div>
+                </div>
+            </li>
+
 
 <!-- Divider -->
 <hr class="sidebar-divider">
