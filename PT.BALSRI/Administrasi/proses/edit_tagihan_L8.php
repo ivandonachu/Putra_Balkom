@@ -38,7 +38,7 @@ $harga = $data_tarif[$kode_pesanan];
 
 
 
-	$total = 8000 * $harga;
+	$total = $harga;
 
 
 
