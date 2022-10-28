@@ -267,142 +267,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
    <br>
-  <div class="row">
-    <div class="col-md-10">
-     
-   </div>
-   <div class="col-md-2">
-    <!-- Button Pindah Baja -->
-    <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Laporan Inventory </button> <br> <br>
-    </div>
-    <!-- Form Modal  -->
-    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-       <div class="modal-content"> 
-        <div class="modal-header">
-          <h5 class="modal-title"> Form Laporan Inventory </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> 
-
-        <!-- Form Input Data -->
-        <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_laporan_inventory' enctype='multipart/form-data' method='POST'>";  ?>
-
-          <div class="row">
-            <div class="col-md-6">
-
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
-    
-
-          </div>
-          <div class="col-md-6">
-          <label>REF</label>
-            <select id="referensi" name="referensi"  enctype="multipart/form-data" class="form-control">
-              <option>TK</option>
-              <option>GD</option>
-       
-            </select>
-          </div>
-        </div>
-
-      <br>
-
-     
-
-      <div class="row">
-
-        <div class="col-md-4">
-          <label>Elpiji 3 Kg Baja + Isi</label>
-          <input class="form-control form-control-sm" type="number" id="L03K11" name="L03K11"  required="">
-        </div>   
-        <div class="col-md-4">
-          <label>Elpiji 3 Kg Kosong</label>
-          <input class="form-control form-control-sm" type="number" id="L03K10" name="L03K10"  required="">
-        </div>    
-        <div class="col-md-4">
-          <label>Elpiji 3 Kg Retur</label>
-          <input class="form-control form-control-sm" type="number" id="L03K00" name="L03K00"  required="">
-        </div>              
-      </div>
-
-      <br>
-
-      <div class="row">
-        <div class="col-md-4">
-          <label>Elpiji 12 Kg Baja + Isi</label>
-          <input class="form-control form-control-sm" type="number" id="L12K11" name="L12K11"  required="">
-        </div>   
-        <div class="col-md-4">
-          <label>Elpiji 12 Kg Kosong</label>
-          <input class="form-control form-control-sm" type="number" id="L12K10" name="L12K10"  required="">
-        </div>    
-        <div class="col-md-4">
-          <label>Elpiji 12 Kg Retur</label>
-          <input class="form-control form-control-sm" type="number" id="L12K00" name="L12K00"  required="">
-        </div>              
-      </div>
-
-      <br>
-
-       <div class="row">
-        <div class="col-md-4">
-          <label>Bright Gas 5,5 Kg Baja + Isi</label>
-          <input class="form-control form-control-sm" type="number" id="B05K11" name="B05K11"  required="">
-        </div>   
-        <div class="col-md-4">
-          <label>Bright Gas 5,5 Kg Kosong</label>
-          <input class="form-control form-control-sm" type="number" id="B05K10" name="B05K10"  required="">
-        </div>    
-        <div class="col-md-4">
-          <label>Bright Gas 5,5 Kg Retur</label>
-          <input class="form-control form-control-sm" type="number" id="B05K00" name="B05K00"  required="">
-        </div>              
-      </div>
-
-      <br>
-
-      <div class="row">
-        <div class="col-md-4">
-          <label>Bright Gas 12 Kg Baja + Isi</label>
-          <input class="form-control form-control-sm" type="number" id="B12K11" name="B12K11"  required="">
-        </div>   
-        <div class="col-md-4">
-          <label>Bright Gas 12 Kg Kosong</label>
-          <input class="form-control form-control-sm" type="number" id="B12K10" name="B12K10"  required="">
-        </div>    
-        <div class="col-md-4">
-          <label>Bright Gas 12 Kg Retur</label>
-          <input class="form-control form-control-sm" type="number" id="B12K00" name="B12K00"  required="">
-        </div>              
-      </div>
-
-      <br>
-    
-    <div>
-     <label>Upload File</label> 
-    <input type="file" name="file"> 
-   </div>
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> Laporkan</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
+ 
 
 
 <!-- Tabel -->    
@@ -425,7 +290,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
       <th>B12K10</th>
       <th>B12K00</th>
       <th>FILE</th>
-      <th>Aksi</th>
+
     </tr>
   </thead>
   <tbody>
@@ -466,40 +331,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
       <td style='font-size: 14px'>$B12K10</td>
       <td style='font-size: 14px'>$B12K00</td>
      <td style='font-size: 14px'>"; ?> <a download="../file_gudang/<?= $file_bukti ?>" href="../file_gudang/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?> 
-      <?php echo "<td style='font-size: 12px'>"; ?>
-
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Laporan'></button>
-
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-       <div class="modal-dialog" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus Laporan </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <form action="../proses/hapus_laporan_inventory" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-              <input type="hidden" name="referensi" value="<?php echo $referensie; ?>">
-
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
-              </div>
-
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <?php echo  " </td> </tr>";
+ </tr>";
   }
   ?>
 
