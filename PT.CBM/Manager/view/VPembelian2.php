@@ -638,7 +638,7 @@ WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR
  <h5 align="center" >PBR</h5>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
-  <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <table id="example4" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -844,7 +844,7 @@ aria-hidden="true">
 </script>
 <script>
   $(document).ready(function() {
-    var table = $('#example3').DataTable( {
+    var table = $('#example4').DataTable( {
       lengthChange: false,
   
     } );
