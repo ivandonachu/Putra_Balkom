@@ -733,7 +733,7 @@ WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR
 </tbody>
 </table>
 </div>
-</div>
+
 <br>
 <br>
 <br>
