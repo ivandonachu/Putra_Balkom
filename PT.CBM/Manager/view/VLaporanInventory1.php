@@ -251,7 +251,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-  <?php  echo "<form  method='POST' action='VLaporanInventory' style='margin-bottom: 15px;'>" ?>
+  <?php  echo "<form  method='POST' action='VLaporanInventory1' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
