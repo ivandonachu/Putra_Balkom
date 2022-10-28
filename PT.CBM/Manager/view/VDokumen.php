@@ -248,8 +248,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM dokumen");
       <th>No Rak</th>
       <th>Nama Dokumen</th>
       <th>Keterangan</th>
-      <th>Edit</th>
-      <th>Hapus</th>
     </tr>
   </thead>
   <tbody>

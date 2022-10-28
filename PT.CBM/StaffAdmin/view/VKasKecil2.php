@@ -313,11 +313,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
   </div>
 </form>
 </div>
-
 </div>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -572,33 +568,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
 <br>
 <br>
 <br>
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-<!-- Tabel -->    
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Kode Akun</th>
-      <th>Nama Rekening</th>
-      <th>Jumlah Saldo</th>
-    </tr>
-  </thead>
-  <tbody>
-      <?php while($data2 = mysqli_fetch_array($table2)){
-      $kode_akun = $data2['kode_akun'];
-      $nama_rekening =$data2['nama_rekening'];
-      $jumlah = $data2['jumlah'];
 
-      echo "<tr>
-      <td style='font-size: 14px'>$kode_akun</td>
-      <td style='font-size: 14px'>$nama_rekening</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-        </tr>";
-  }
-  ?>
-
-</tbody>
-</table>
-</div>
 
 </div>
 
@@ -625,6 +595,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
 <a class="scroll-to-top rounded" href="#page-top">
   <i class="fas fa-angle-up"></i>
 </a>
+
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

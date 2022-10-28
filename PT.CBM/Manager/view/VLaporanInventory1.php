@@ -1,55 +1,54 @@
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
-  header("Location: logout.php");
-  exit;
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
+    header("Location: logout.php");
+    exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Manager') {
-
-}
-
-else{  header("Location: logout.php");
-exit;
+} else {
+    header("Location: logout.php");
+    exit;
 }
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+ }  
+ else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+ }
+ 
+ if ($tanggal_awal == $tanggal_akhir) {
+   $table = mysqli_query($koneksi, "SELECT * FROM laporan_inventory  WHERE tanggal = '$tanggal_awal' ORDER BY no_laporan");
+ }
+ else{
+   $table = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY no_laporan ");
+ }
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
 
 
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' ");
-  $table2 = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun  WHERE tanggal = '$tanggal_awal' ORDER BY no_bon DESC");
-}
-else{
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY no_bon DESC");
-}
+$table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+ ?>
+ <!DOCTYPE html>
+ <html lang="en">
 
-
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+ <head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,7 +56,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Pengeluaran Toko</title>
+  <title>Laporan Inventory</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -83,40 +82,39 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
-<!-- Sidebar - Brand -->
+     <!-- Sidebar -->
+     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+                <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png"></div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
+            <li class="nav-item active">
                 <a class="nav-link" href="DsManager">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+                    <span style="font-size: 16px;">Dashboard</span></a>
+            </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Manager
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                Menu Manager
+            </div>
 
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Transaksi</span>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Transaksi</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -126,12 +124,11 @@ else{
                 </div>
             </li>
 
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-                  15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan CBM</span>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2" 15 aria-expanded="true" aria-controls="collapseTwo2">
+                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Laporan CBM</span>
                 </a>
                 <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -144,11 +141,10 @@ else{
                 </div>
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-                  15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan MES/PBR</span>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo2">
+                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Laporan MES/PBR</span>
                 </a>
                 <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -160,25 +156,24 @@ else{
             </li>
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-id-card-alt" style="font-size: 15px; color:white;"></i>
-                <span style="font-size: 15px; color:white;">SDM</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-                <a class="collapse-item" href="VLaporanInventory1" style="font-size: 15px;">Laporan Inventory</a>
-                <a class="collapse-item" href="VDataPangkalan" style="font-size: 15px;">Data Pangkalan</a>
-                <a class="collapse-item" href="VDataRute" style="font-size: 15px;">Data Rute</a>
-                <a class="collapse-item" href="VDataKaryawan" style="font-size: 15px;">Data Karyawan</a>
-                <a class="collapse-item" href="VAset" style="font-size: 15px;">Daftar Aset</a>
-                <a class="collapse-item" href="VDokumen" style="font-size: 15px;">Daftar Dokumen</a>
-                <a class="collapse-item" href="VAbsensiPerta" style="font-size: 15px;">Absensi Pertashop</a>
-            </div>
-        </div>
-    </li>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-id-card-alt" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">SDM</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" href="VLaporanInventory1" style="font-size: 15px;">Laporan Inventory</a>
+                        <a class="collapse-item" href="VDataPangkalan" style="font-size: 15px;">Data Pangkalan</a>
+                        <a class="collapse-item" href="VDataRute" style="font-size: 15px;">Data Rute</a>
+                        <a class="collapse-item" href="VDataKaryawan" style="font-size: 15px;">Data Karyawan</a>
+                        <a class="collapse-item" href="VAset" style="font-size: 15px;">Daftar Aset</a>
+                        <a class="collapse-item" href="VDokumen" style="font-size: 15px;">Daftar Dokumen</a>
+                        <a class="collapse-item" href="VAbsensiPerta" style="font-size: 15px;">Absensi Pertashop</a>
+                    </div>
+                </div>
+            </li>
+
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -204,7 +199,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-        <?php echo "<a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Pengeluaran Toko</h5></a>"; ?>
+       <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Laporan Inventory</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -215,17 +210,21 @@ else{
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
+          
+       
+
+
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
-         <!-- Nav Item - User Information -->
-         <li class="nav-item dropdown no-arrow">
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
                     <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
-                <!-- Dropdown - User Information -->
+        <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
@@ -249,13 +248,27 @@ else{
 <div>   
 
 
-    <!-- Name Page -->
+  <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <div align="left">
-      <?php echo "<a href='VLKeuangan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+
+  <?php  echo "<form  method='POST' action='VLaporanInventory1' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
     </div>
-    <br>
-    <br>
+  </form>
+
+
+    <div class="col-md-8">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   <br>
+ 
+
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
@@ -264,98 +277,70 @@ else{
       <th>No</th>
       <th>Tanggal</th>
       <th>REF</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Jumlah Pengeluaran</th>
-      <th>File</th>
+      <th>L03K11</th>
+      <th>L03K10</th>
+      <th>L03K00</th>
+      <th>L12K11</th>
+      <th>L12K10</th>
+      <th>L12K00</th>
+      <th>B05K11</th>
+      <th>B05K10</th>
+      <th>B05K00</th>
+      <th>B12K11</th>
+      <th>B12K10</th>
+      <th>B12K00</th>
+      <th>FILE</th>
+
     </tr>
   </thead>
   <tbody>
-    <?php
-    $urut = 0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_transaksi = $data['no_pengeluaran'];
+      $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
       $referensi = $data['referensi'];
-      $nama_akun = $data['nama_akun'];
-      $keterangan = $data['keterangan'];
-      $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
+      $L03K11 = $data['L03K11'];
+      $L03K10 = $data['L03K10'];
+      $L03K00 = $data['L03K00'];
+      $L12K11 = $data['L12K11'];
+      $L12K10 = $data['L12K10'];
+      $L12K00 = $data['L12K00'];
+      $B05K11 = $data['B05K11'];
+      $B05K10 = $data['B05K10'];
+      $B05K00 = $data['B05K00'];
+      $B12K11 = $data['B12K11'];
+      $B12K10 = $data['B12K10'];
+      $B12K00 = $data['B12K00'];
       $file_bukti = $data['file_bukti'];
-        $urut = $urut +1;
+
 
       echo "<tr>
-      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$no_laporan</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_pengeluaran); ?> <?php echo "</td>
-        <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-    
-   </tr>";
+      <td style='font-size: 14px'>$L03K11</td>
+      <td style='font-size: 14px'>$L03K10</td>
+      <td style='font-size: 14px'>$L03K00</td>
+      <td style='font-size: 14px'>$L12K11</td>
+      <td style='font-size: 14px'>$L12K10</td>
+      <td style='font-size: 14px'>$L12K00</td>
+      <td style='font-size: 14px'>$B05K11</td>
+      <td style='font-size: 14px'>$B05K10</td>
+      <td style='font-size: 14px'>$B05K00</td>
+      <td style='font-size: 14px'>$B12K11</td>
+      <td style='font-size: 14px'>$B12K10</td>
+      <td style='font-size: 14px'>$B12K00</td>
+     <td style='font-size: 14px'>"; ?> <a download="../file_gudang/<?= $file_bukti ?>" href="../file_gudang/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+ </tr>";
   }
   ?>
 
 </tbody>
 </table>
-
-<br>
-<br>
-
-<!-- Tabel -->    
-<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>Akun</th>
-      <th>Nama Karyawan</th>
-      <th>Jumlah Bon</th>
-      <th>Keterangan</th>
-      <th>File</th>
-    </tr>
-  </thead>
-  <tbody>
-
-
-    <?php while($data = mysqli_fetch_array($table2)){
-      $no_bon = $data['no_bon'];
-      $tanggal =$data['tanggal'];
-      $nama_akun = $data['nama_akun'];
-      $nama_karyawan = $data['nama_karyawan'];
-      $keterangan = $data['keterangan'];
-      $jumlah_bon = $data['jumlah_bon'];
-      $file_bukti = $data['file_bukti'];
-
-
-      echo "<tr>
-      <td style='font-size: 14px'>$no_bon </td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$nama_karyawan</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bon); ?> <?php echo "</td>
-      <td style='font-size: 14px'>$keterangan</td>
-        <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     
-
-   </tr>";
-  }
-  ?>
-
-</tbody>
-</table>
-
-<br>
-<br>
-
 </div>
+<br>
+<br>
+<br>
 
 </div>
 
@@ -403,6 +388,7 @@ aria-hidden="true">
 </div>
 </div>
 
+
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -434,18 +420,6 @@ aria-hidden="true">
     var table = $('#example').DataTable( {
       lengthChange: false,
       buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
-    } );
-
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
-
-<script>
-  $(document).ready(function() {
-    var table = $('#example2').DataTable( {
-      lengthChange: false,
-
     } );
 
     table.buttons().container()
