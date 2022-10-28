@@ -476,6 +476,7 @@ aria-hidden="true">
 </div>
 </div>
 
+
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
