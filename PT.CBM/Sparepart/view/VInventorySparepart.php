@@ -292,7 +292,7 @@ $table = mysqli_query($koneksi,"SELECT * FROM list_sparepart ")
       "; ?>
 
       <?php echo "<td style='font-size: 12px' align = 'center'>"; ?>
-       <button href="#" type="button" class="fas fa-pen bg-secondary color:white" data-toggle="modal" data-target="#aksi<?php echo $data['no_sparepart']; ?>">Proses Sparepart</button>
+       <button href="#" type="button" class="fas fa-pen bg-light mr-2 rounded" data-toggle="modal" data-target="#aksi<?php echo $data['no_sparepart']; ?>">Proses Sparepart</button>
 
       <!-- Form EDIT DATA -->
 
