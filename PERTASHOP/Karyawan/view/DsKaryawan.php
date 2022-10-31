@@ -77,7 +77,7 @@ $lokasi = $data2['lokasi'];
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+                <div class="sidebar-brand-text mx-3" > <img style="height: 60px; width: 190px;" src="../gambar/logo balsri.png" > </div>
             </a>
 
             <!-- Divider -->
@@ -95,7 +95,7 @@ $lokasi = $data2['lokasi'];
 
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Kasir
+                     Menu Operator
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
@@ -107,7 +107,7 @@ $lokasi = $data2['lokasi'];
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Kasir</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Operator</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Pertamax</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualanDex">Penjualan Dexlite</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
@@ -246,7 +246,7 @@ $lokasi = $data2['lokasi'];
     </div>
 
     <div class="container">
-        <img style="margin-top: 60px; margin-left: 100px;" src="../gambar/kasir_toko.svg">
+        <img style="margin-top: 60px; margin-left: 100px;" src="../gambar/opr.svg">
     </div>
 
 </div>
