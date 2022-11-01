@@ -9,6 +9,7 @@ $id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
+$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Admin Semen') {
 
@@ -302,7 +303,7 @@ else{
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px;" src="../gambar/Logo PBJ.PNG" ></div>
+                <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.PNG" ></div>
             </a>
             <br>
             
@@ -312,7 +313,7 @@ else{
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsKasir">
+                <a class="nav-link" href="DsAdminSemen">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
@@ -322,7 +323,7 @@ else{
 
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Admin Semen
+                ADMIN SEMEN
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
@@ -334,7 +335,7 @@ else{
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Kasir</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenebusan">Penebusan</a>
@@ -354,7 +355,7 @@ else{
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>  
                         <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
@@ -401,36 +402,29 @@ else{
 
 
 
-
-
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-          <img class="img-profile rounded-circle"
-          src="img/undraw_profile.svg">
-        </a>
-        <!-- Dropdown - User Information -->
-        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-        aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="VProfile">
-          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-          Profile
-        </a>
-        <a class="dropdown-item" href="VSetting">
-          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-          Settings
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Logout
-        </a>
-      </div>
-    </li>
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="VProfile">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+              </div>
+             </li>
 
   </ul>
 
