@@ -320,6 +320,7 @@ else{
             <option>Uang Jalan Balsri</option>
             <option>Uang Pertashop</option>
             <option>Uang Serli</option>
+            <option>Uang Risa</option>
           </select>
         </div>            
 
