@@ -41,6 +41,13 @@ else{
 
   $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
+  $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran, nama_akun, tanggal FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun ");
+  $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran, nama_akun, tanggal, referensi FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'ME' 
+                                                                                                            OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'  GROUP BY nama_akun ");
+  $table4 = mysqli_query($koneksi, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran, nama_akun, tanggal, referensi FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PB' 
+                                                                                                            OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR'  GROUP BY nama_akun ");
+  
+
 }
 
 ?>
@@ -329,7 +336,6 @@ data-parent="#accordionSidebar">
             <option>Alat Tulis Kantor</option>
             <option>Listrik & Telepon</option>
             <option>Biaya Kantor</option>
-            <option>Biaya Penyusutan</option>
             <option>Biaya Konsumsi</option>
           </select>
         </div>
@@ -588,6 +594,103 @@ data-parent="#accordionSidebar">
 </tbody>
 </table>
 </div>
+
+
+<br>
+<br>
+<h5 align="center" >Rincian Pengeluaran</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_akun = $data['nama_akun'];
+      $total_pengeluaran =$data['total_pengeluaran'];
+
+
+      echo "<tr>
+      <td style='font-size: 14px' >$nama_akun</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+<br>
+
+<br>
+<br>
+<h5 align="center" >Rincian Pengeluaran MES</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table3)){
+      $nama_akun = $data['nama_akun'];
+      $total_pengeluaran =$data['total_pengeluaran'];
+
+
+      echo "<tr>
+      <td style='font-size: 14px' >$nama_akun</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+<br>
+
+<br>
+<br>
+<h5 align="center" >Rincian Pengeluaran PBR</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table4)){
+      $nama_akun = $data['nama_akun'];
+      $total_pengeluaran =$data['total_pengeluaran'];
+
+
+      echo "<tr>
+      <td style='font-size: 14px' >$nama_akun</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+<br>
 
 </div>
 

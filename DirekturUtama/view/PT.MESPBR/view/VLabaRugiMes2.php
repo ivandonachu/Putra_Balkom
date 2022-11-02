@@ -392,6 +392,16 @@ if (!isset($data_pengeluaran_listrik_tk['total_listrik_tk'])) {
 
 $total_pengeluaran_listrik = $total_pengeluaran_listrik_tk;
 
+//Biaya konsumsi
+$table14x = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_konsumsi_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-560' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-560' AND referensi = 'ME'");
+$data_pengeluaran_konsumsi_tk = mysqli_fetch_array($table14x);
+$total_pengeluaran_konsumsi_tk = $data_pengeluaran_konsumsi_tk['total_konsumsi_tk'];
+if (!isset($data_pengeluaran_konsumsi_tk['total_konsumsi_tk'])) {
+    $total_pengeluaran_konsumsi_tk = 0;
+}
+
+$total_pengeluaran_konsumsi =  $total_pengeluaran_konsumsi_tk;
+
 
 
 //Biaya Penjualan dan Pemasaran
@@ -454,7 +464,7 @@ if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 }
@@ -927,16 +937,9 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                 </tr>
                                 <tr>
                                     <td>5-560</td>
-                                    <td class="text-left">Biaya Penyusutan</td>
+                                    <td class="text-left">Biaya Konsumsi</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                   <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
-                                </tr>
-                                <tr>
-                                    <td>5-570</td>
-                                    <td class="text-left">Biaya Sewa</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                   <td class="text-left"><?= formatuang(0); ?></td>
+                                   <td class="text-left"><?= formatuang($total_pengeluaran_konsumsi); ?></td>
                                     <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
                                 <tr>
