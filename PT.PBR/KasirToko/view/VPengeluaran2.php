@@ -608,10 +608,13 @@ data-parent="#accordionSidebar">
     </tr>
   </thead>
   <tbody>
-
+  <?php 
+    $total_seluruh = 0;
+  ?>
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_akun = $data['nama_akun'];
       $total_pengeluaran =$data['total_pengeluaran'];
+      $total_seluruh = $total_seluruh + $total_pengeluaran;
 
 
       echo "<tr>
@@ -621,7 +624,10 @@ data-parent="#accordionSidebar">
       </tr>";
 }
 ?>
+<td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
 
+      </tr>
 </tbody>
 </table>
 
@@ -640,11 +646,13 @@ data-parent="#accordionSidebar">
     </tr>
   </thead>
   <tbody>
-
+  <?php 
+    $total_seluruh = 0;
+  ?>
     <?php while($data = mysqli_fetch_array($table3)){
       $nama_akun = $data['nama_akun'];
       $total_pengeluaran =$data['total_pengeluaran'];
-
+      $total_seluruh = $total_seluruh + $total_pengeluaran;
 
       echo "<tr>
       <td style='font-size: 14px' >$nama_akun</td>
@@ -653,7 +661,10 @@ data-parent="#accordionSidebar">
       </tr>";
 }
 ?>
+<td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
 
+      </tr>
 </tbody>
 </table>
 
@@ -672,11 +683,13 @@ data-parent="#accordionSidebar">
     </tr>
   </thead>
   <tbody>
-
+  <?php 
+    $total_seluruh = 0;
+  ?>
     <?php while($data = mysqli_fetch_array($table4)){
       $nama_akun = $data['nama_akun'];
       $total_pengeluaran =$data['total_pengeluaran'];
-
+      $total_seluruh = $total_seluruh + $total_pengeluaran;
 
       echo "<tr>
       <td style='font-size: 14px' >$nama_akun</td>
@@ -684,8 +697,12 @@ data-parent="#accordionSidebar">
 
       </tr>";
 }
-?>
 
+?>
+      <td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
+
+      </tr>
 </tbody>
 </table>
 
