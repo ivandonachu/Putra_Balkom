@@ -250,6 +250,15 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_gaji_sl = $data2sl['total_gaji'];
     $total_om_sl = $data2sl['total_om'];
 
+
+    //Cashback
+    $table_cashback = mysqli_query($koneksipbj, "SELECT SUM(potongan_harga) AS jumlah_potongan_harga FROM potongan_harga WHERE tanggal = '$tanggal_awal' ");
+    $data_cashback = mysqli_fetch_array($table_cashback);
+    $jml_cashback = $data_cashback['jumlah_potongan_harga'];
+    if (!isset($data_cashback['jumlah_potongan_harga'])) {
+        $jml_cashback = 0;
+    }
+
     //Biaya Kantor etty
     $table3s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM keuangan_s WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Kantor' ");
     $data3s = mysqli_fetch_array($table3s);
@@ -549,6 +558,13 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_gaji_sl = $data2sl['total_gaji'];
     $total_om_sl = $data2sl['total_om'];
 
+    //Cashback
+    $table_cashback = mysqli_query($koneksipbj, "SELECT SUM(potongan_harga) AS jumlah_potongan_harga FROM potongan_harga WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $data_cashback = mysqli_fetch_array($table_cashback);
+    $jml_cashback = $data_cashback['jumlah_potongan_harga'];
+    if (!isset($data_cashback['jumlah_potongan_harga'])) {
+        $jml_cashback = 0;
+    }
     //Biaya Kantor etty
     $table3s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
     $data3s = mysqli_fetch_array($table3s);
@@ -650,7 +666,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $gaji_karyawan = 0;
     }
 }
-$total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek;
+$total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
 $laba_kotor = $total_pendapatan - ($pembelian_ety + $pembelian_kadek);
 $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om +$jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
                             $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty;
@@ -980,6 +996,13 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                     <td class="text-left"><?= formatuang($total_angkutan_reni); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPrankoRENI?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-103</td>
+                                                    <td class="text-left">Cashback</td>
+                                                    <td class="text-left"><?= formatuang($jml_cashback); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color:     #F0F8FF; ">
                                                     <td><strong>Total Pendapatan</strong></td>
