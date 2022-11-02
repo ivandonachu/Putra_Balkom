@@ -39,6 +39,10 @@ $tanggal_akhir = date('Y-m-31');
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal'");
   $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' GROUP BY b.lokasi");
+  $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' GROUP BY a.sumber_dana");
+  $table4 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND lokasi = 'Bedilan' GROUP BY a.sumber_dana");
+  $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND lokasi = 'Nusa Bakti' GROUP BY a.sumber_dana");
+  $table6 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND lokasi = 'Sumber Jaya' GROUP BY a.sumber_dana");
 }
 else{
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
@@ -250,7 +254,7 @@ else{
    <div class="col-md-6">
     <!-- Button Input Data Bayar -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Tagihan </button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pengeluaran </button> <br> <br>
     </div>
     
      <!-- Form Modal  -->
@@ -258,7 +262,7 @@ else{
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Penggunaan Kas Kecil </h5>
+          <h5 class="modal-title"> Form Pengeluaran</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -442,7 +446,7 @@ else{
         <div class="modal fade" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
             <div class="modal-content"> 
-              <div class="modal-header">Form Edit Kas Kecil </h5>
+              <div class="modal-header">Form Edit Pengeluaran </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                   <span aria-hidden="true"> &times; </span>
                 </button>
