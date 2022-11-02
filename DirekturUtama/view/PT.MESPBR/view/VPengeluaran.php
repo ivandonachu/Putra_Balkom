@@ -41,6 +41,11 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
 
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran, nama_akun, tanggal FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun ");
+  $table3 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran, nama_akun, tanggal, referensi FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'ME' 
+                                                                                                            OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'  GROUP BY nama_akun ");
+  $table4 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_pengeluaran, nama_akun, tanggal, referensi FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PB' 
+                                                                                                            OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR'  GROUP BY nama_akun ");
 
 }
 
@@ -311,27 +316,119 @@ else{
 
 </tbody>
 </table>
-</div><br>
+</div>
+
+<br>
+<br>
+<h5 align="center" >Rincian Pengeluaran</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $total_seluruh = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_akun = $data['nama_akun'];
+      $total_pengeluaran =$data['total_pengeluaran'];
+      $total_seluruh = $total_seluruh + $total_pengeluaran;
+
+
+      echo "<tr>
+      <td style='font-size: 14px' >$nama_akun</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+
+      </tr>";
+}
+?>
+<td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
+
+      </tr>
+</tbody>
+</table>
+
+<br>
 <br>
 
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Pengeluaran</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_pengeluaran); ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<br>
+<br>
+<h5 align="center" >Rincian Pengeluaran MES</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $total_seluruh = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table3)){
+      $nama_akun = $data['nama_akun'];
+      $total_pengeluaran =$data['total_pengeluaran'];
+      $total_seluruh = $total_seluruh + $total_pengeluaran;
+
+      echo "<tr>
+      <td style='font-size: 14px' >$nama_akun</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+
+      </tr>";
+}
+?>
+<td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
+
+      </tr>
+</tbody>
+</table>
+
+<br>
+<br>
+
+<br>
+<br>
+<h5 align="center" >Rincian Pengeluaran PBR</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $total_seluruh = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table4)){
+      $nama_akun = $data['nama_akun'];
+      $total_pengeluaran =$data['total_pengeluaran'];
+      $total_seluruh = $total_seluruh + $total_pengeluaran;
+
+      echo "<tr>
+      <td style='font-size: 14px' >$nama_akun</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+
+      </tr>";
+}
+
+?>
+      <td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
+
+      </tr>
+</tbody>
+</table>
+
+<br>
 <br>
 </div>
 
