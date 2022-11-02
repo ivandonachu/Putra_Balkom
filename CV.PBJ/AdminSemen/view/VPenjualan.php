@@ -740,7 +740,7 @@ else{
                  <option <?php echo ($dataSelect == 'Big Bag PCC') ? "selected": "" ?> >Big Bag PCC</option>
                  <option <?php echo ($dataSelect == 'Curah OPC Type 1') ? "selected": "" ?> >Curah OPC Type 1</option>
                  <option <?php echo ($dataSelect == 'Curah PCC') ? "selected": "" ?> >Curah PCC</option>
-                 <option <?php echo ($dataSelect == 'Sak PCC 50 Kg ') ? "selected": "" ?> >Sak PCC 50 Kg </option>
+                 <option <?php echo ($dataSelect == 'Sak PCC 50 Kg') ? "selected": "" ?> >Sak PCC 50 Kg </option>
               </select>
             </div>                
           </div>
