@@ -42,6 +42,7 @@ else{
   
   $table = mysqli_query($koneksiperta,"SELECT * FROM absensi  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $table2 = mysqli_query($koneksiperta, "SELECT nama_karyawan, COUNT(nama_karyawan) as jumlah_absen FROM absensi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_karyawan ");
+  $table3 = mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND lokasi = 'Bedilan' GROUP BY a.sumber_dana");
 
 }
 

@@ -35,6 +35,11 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM absensi  WHERE tanggal ='$tanggal_awal'");
 } else {
   $table = mysqli_query($koneksi, "SELECT * FROM absensi  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksi, "SELECT nama_karyawan, COUNT(nama_karyawan) as jumlah_absen FROM absensi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_karyawan ");
+  $table3 = mysqli_query($koneksi, "SELECT nama_karyawan, COUNT(nama_karyawan) as jumlah_absen_cekin  FROM absensi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status = 'Cek In' GROUP BY nama_karyawan  ");
+  $table4 = mysqli_query($koneksi, "SELECT nama_karyawan, COUNT(nama_karyawan) as jumlah_absen_cekout  FROM absensi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status = 'Cek Out' GROUP BY nama_karyawan  ");
+  $table5 = mysqli_query($koneksi, "SELECT nama_karyawan, COUNT(nama_karyawan) as jumlah_absen_izin  FROM absensi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status = 'Izin' GROUP BY nama_karyawan  ");
+  $table6 = mysqli_query($koneksi, "SELECT nama_karyawan, COUNT(nama_karyawan) as jumlah_absen_lainnya  FROM absensi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status = 'Lainnya' GROUP BY nama_karyawan  ");
 }
 
 ?>
@@ -334,7 +339,7 @@ data-parent="#accordionSidebar">
                       </div>
                     </div>
                   </div>
-          </div>
+      
 
 
         <?php echo "</td> 
@@ -344,6 +349,183 @@ data-parent="#accordionSidebar">
 
         </tbody>
         </table>
+        <br>
+<br>
+<h5 align="center" >Jumlah Absensi Karyawan</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Nama Karyawan</th>
+
+      <th>Total Absensi</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_karyawan = $data['nama_karyawan'];
+
+      $jumlah_absen =$data['jumlah_absen'];
+ 
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
+
+      <td style='font-size: 14px' align = 'center'>$jumlah_absen</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+
+<br>
+
+<br>
+<br>
+<h5 align="center" >Jumlah Absensi Karyawan Cek In</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Nama Karyawan</th>
+
+      <th>Total Absensi</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table3)){
+      $nama_karyawan = $data['nama_karyawan'];
+
+      $jumlah_absen_cekin =$data['jumlah_absen_cekin'];
+ 
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
+
+      <td style='font-size: 14px' align = 'center'>$jumlah_absen_cekin</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+<br>
+
+<br>
+<br>
+<h5 align="center" >Jumlah Absensi Karyawan Cek Out</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Nama Karyawan</th>
+
+      <th>Total Absensi</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table4)){
+      $nama_karyawan = $data['nama_karyawan'];
+
+      $jumlah_absen_cekout =$data['jumlah_absen_cekout'];
+ 
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
+
+      <td style='font-size: 14px' align = 'center'>$jumlah_absen_cekout</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+<br>
+
+<br>
+<br>
+<h5 align="center" >Jumlah Absensi Karyawan Izin</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Nama Karyawan</th>
+
+      <th>Total Absensi</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table5)){
+      $nama_karyawan = $data['nama_karyawan'];
+
+      $jumlah_absen_izin =$data['jumlah_absen_izin'];
+ 
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
+
+      <td style='font-size: 14px' align = 'center'>$jumlah_absen_izin</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+<br>
+
+<br>
+<br>
+<h5 align="center" >Jumlah Absensi Karyawan Lainnya</h5>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Nama Karyawan</th>
+
+      <th>Total Absensi</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table3)){
+      $nama_karyawan = $data['nama_karyawan'];
+
+      $jumlah_absen_lainnya =$data['jumlah_absen_lainnya'];
+ 
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$nama_karyawan</td>
+
+      <td style='font-size: 14px' align = 'center'>$jumlah_absen_lainnya</td>
+
+      </tr>";
+}
+?>
+
+</tbody>
+</table>
+<br>
+<br>
+<br>
         </div>
 
 
