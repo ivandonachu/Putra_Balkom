@@ -314,9 +314,9 @@ else{
       
       $no_do =$data['no_do'];
 
-      $tablez = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do'");
+ 
 
-      if(mysqli_num_rows($tablez) === 1 ){
+ 
         $no_pembelian = $data['no_pembelian'];
       $tanggal =$data['tanggal'];
      
@@ -357,7 +357,7 @@ else{
   
   <?php echo  " </tr>";
 
-          }
+          
 
    
 }

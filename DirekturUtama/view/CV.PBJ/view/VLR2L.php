@@ -485,15 +485,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         
     }
     
-    //ety
-    $tablell2 = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
-    $pembelian_ety = 0;
-    while($datae = mysqli_fetch_array($tablell2)){
 
-            $jumlahx = $datae['jumlah'];
-            $pembelian_ety = $pembelian_ety + $jumlahx;
- 
-    }
 
     // piutang kadek dan etty
     $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' ");
@@ -647,7 +639,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 }
 $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
-$laba_kotor = $total_pendapatan - ($pembelian_ety + $pembelian_kadek);
+$laba_kotor = $total_pendapatan - $pembelian_kadek;
 $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om +$jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
                             $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty;
 $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
@@ -1007,14 +999,7 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                 </tr>
                                                 <tr>
                                                     <td>5-100</td>
-                                                    <td class="text-left">Pembelian Barang Etty</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($pembelian_ety); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelianETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr>
-                                                <tr>
-                                                    <td>5-100</td>
-                                                    <td class="text-left">Pembelian Barang Kadek</td>
+                                                    <td class="text-left">Pembelian Barang </td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($pembelian_kadek); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelianKDK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
