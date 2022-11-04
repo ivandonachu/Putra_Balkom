@@ -516,11 +516,10 @@ if ($tanggal_awal == $tanggal_akhir) {
     $piutang_penjualan_kadek =0;
     //kadek
     while($data = mysqli_fetch_array($tablexr)){
-        $datax = mysqli_fetch_array($tablexr);
-        if(isset($datax['jumlah'])){
-            $jumlah = $datax['jumlah'];
+
+            $jumlah = $data['jumlah'];
             $piutang_penjualan_kadek = $piutang_penjualan_kadek + $jumlah;
-        }
+        
 
        
     }
