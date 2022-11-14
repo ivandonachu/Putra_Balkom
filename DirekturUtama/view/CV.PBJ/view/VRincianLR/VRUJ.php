@@ -257,7 +257,7 @@ else{
 
 
 
-<h5 align="center" >Gaji Driver Etty</h5>
+<h5 align="center" >Uang Jalan Etty</h5>
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -297,7 +297,7 @@ else{
 <br>
 
 
-<h5 align="center" >Gaji Driver Kadek</h5>
+<h5 align="center" >Uang Jalan Kadek</h5>
 <!-- Tabel -->    
 <table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
