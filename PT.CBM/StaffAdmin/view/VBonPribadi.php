@@ -699,7 +699,6 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example3').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
     table.buttons().container()
