@@ -257,9 +257,9 @@ else{
 
 
 
-<h5 align="center" >Gaji Driver Etty</h5>
+<h5 align="center" >Uang Jalan Etty</h5>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th align="center">Nama Driver</th>
@@ -297,7 +297,7 @@ else{
 <br>
 
 
-<h5 align="center" >Gaji Driver Kadek</h5>
+<h5 align="center" >Uang Jalan Kadek</h5>
 <!-- Tabel -->    
 <table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -408,7 +408,19 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example1').DataTable( {
+      lengthChange: false,
+
     } );
 
     table.buttons().container()

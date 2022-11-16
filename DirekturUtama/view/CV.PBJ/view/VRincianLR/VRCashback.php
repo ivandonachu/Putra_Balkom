@@ -34,24 +34,15 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal'");
+ $table = mysqli_query($koneksipbj, "SELECT * FROM potongan_harga WHERE tanggal = '$tanggal_awal'");
+
 }
 else{
-  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
-  $data2 = mysqli_fetch_array($table2);
-  $total_pengeluaran = $data2['total_pengeluaran'];
-
-  $tablex = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
-  $table2x = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
-  $data2x = mysqli_fetch_array($table2x);
-  $total_pengeluaran_kadek = $data2x['total_pengeluaran'];
-
+  $table = mysqli_query($koneksipbj, "SELECT * FROM potongan_harga WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
 }
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +54,8 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran Listrik & Telepon</title>
+  <title>Potongan Harga</title>
+
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -85,12 +77,11 @@ else{
 
 <body id="page-top">
 
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
@@ -181,7 +172,6 @@ else{
 </li>
 
 
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -206,8 +196,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Pengeluaran Listrik & Telepon</h5></a>"; ?>
-
+      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Potongan Harga</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -219,37 +208,29 @@ else{
       <ul class="navbar-nav ml-auto">
 
 
-
-
-
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-          <img class="img-profile rounded-circle"
-          src="img/undraw_profile.svg">
-        </a>
-        <!-- Dropdown - User Information -->
-        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-        aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="VProfile">
-          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-          Profile
-        </a>
-        <a class="dropdown-item" href="VSetting">
-          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-          Settings
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Logout
-        </a>
-      </div>
-    </li>
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="VProfile">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+              </div>
+             </li>
 
   </ul>
 
@@ -276,165 +257,55 @@ else{
 
 
 
-<h3 align='center' >Pengeluaran Listrik & Telepon Etty</h3>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Akun</th>
+      <th>Total Potongan Harga</th>
       <th>Keterangan</th>
-      <th>Pengeluaran</th>
-      <th>Total</th>
       <th>file</th>
 
     </tr>
   </thead>
   <tbody>
     <?php
-    $total = 0;
-    $urut = 0;
+    $no_urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
-
     <?php while($data = mysqli_fetch_array($table)){
-     $no_laporan = $data['no_transaksi'];
-     $tanggal =$data['tanggal'];
-     $nama_akun = $data['nama_akun'];
-     $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
-     $file_bukti = $data['file_bukti'];
-
-     $total = $total + $jumlah;
-     $urut = $urut + 1;
-
-
-     echo "<tr>
-     <td style='font-size: 14px'>$urut</td>
-     <td style='font-size: 14px'>$tanggal</td>
-     <td style='font-size: 14px'>$nama_akun</td>
-     <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     
-
-    <?php echo  " </tr>";
-  }
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $potongan_harga = $data['potongan_harga'];
+      $keterangan = $data['keterangan'];
+      $no_urut = $no_urut + 1;
+      $file_bukti = $data['file_bukti'];
+      echo "<tr>
+      <td style='font-size: 14px'>$no_urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($potongan_harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     </tr>";
+}
 
 ?>
 
 </tbody>
 </table>
-
-<br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Pengeluaran</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran) ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <br>
-<hr>
 <br>
-
-<h3 align='center' >Pengeluaran Listrik & Telepon Kadek</h3>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Pengeluaran</th>
-      <th>Total</th>
-      <th>file</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $total = 0;
-    $urut = 0;
-
-
-    ?>
-
-    <?php while($data = mysqli_fetch_array($tablex)){
-     $no_laporan = $data['no_transaksi'];
-     $tanggal =$data['tanggal'];
-     $nama_akun = $data['nama_akun'];
-     $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
-     $file_bukti = $data['file_bukti'];
-
-     $total = $total + $jumlah;
-     $urut = $urut + 1;
-
-
-     echo "<tr>
-     <td style='font-size: 14px'>$urut</td>
-     <td style='font-size: 14px'>$tanggal</td>
-     <td style='font-size: 14px'>$nama_akun</td>
-     <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     
-
-    <?php echo  " </tr>";
-  }
-
-?>
-
-</tbody>
-</table>
-
 <br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Pengeluaran</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran_kadek) ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-
 
 </div>
 </div>
-
 </div>
 <!-- End of Main Content -->
 
@@ -478,7 +349,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
-
+</div>
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -509,7 +380,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ ]
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
     table.buttons().container()
@@ -517,17 +388,7 @@ aria-hidden="true">
   } );
 </script>
 
-<script>
-  $(document).ready(function() {
-    var table = $('#example1').DataTable( {
-      lengthChange: false,
-      buttons: [ ]
-    } );
 
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
 
 </body>
 

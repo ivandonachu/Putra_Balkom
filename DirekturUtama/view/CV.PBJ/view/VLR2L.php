@@ -63,7 +63,10 @@ if ($tanggal_awal == $tanggal_akhir) {
     $pendapatan_penjualan_ety = 0;
     while($datae = mysqli_fetch_array($tablee)){
         $no_do_pembelian = $datae['no_do'];
-        $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar  != 'Bon' OR tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar != 'Nyicil' ");
+        $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar  != 'Bon' 
+                                                                            OR tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar != 'Nyicil'
+                                                                            OR tanggal_kirim = '$tanggal_awal' AND no_do = '' AND status_bayar != 'Bon'
+                                                                            OR tanggal_kirim = '$tanggal_awal' AND no_do = '' AND status_bayar != 'Nyicil' ");
 
         if(mysqli_num_rows($tablex2) === 1 ){
             $datax2 = mysqli_fetch_array($tablex2);
@@ -203,7 +206,10 @@ if ($tanggal_awal == $tanggal_akhir) {
     //kadek
     while($data = mysqli_fetch_array($tabler)){
         $no_do_pembelian = $data['no_do'];
-        $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Bon' OR tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil' ");
+        $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Bon' 
+                                                                            OR tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil'
+                                                                            OR tanggal_kirim = '$tanggal_awal' AND no_do = '' AND status_bayar = 'Bon'
+                                                                            OR tanggal_kirim = '$tanggal_awal' AND no_do = '' AND status_bayar = 'Nyicil' ");
         $datax = mysqli_fetch_array($tablexr);
         if(isset($datax['jumlah'])){
             $jumlah = $datax['jumlah'];
@@ -243,6 +249,15 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_uj_sl = $data2sl['total_uj'];
     $total_gaji_sl = $data2sl['total_gaji'];
     $total_om_sl = $data2sl['total_om'];
+
+
+    //Cashback
+    $table_cashback = mysqli_query($koneksipbj, "SELECT SUM(potongan_harga) AS jumlah_potongan_harga FROM potongan_harga WHERE tanggal = '$tanggal_awal' ");
+    $data_cashback = mysqli_fetch_array($table_cashback);
+    $jml_cashback = $data_cashback['jumlah_potongan_harga'];
+    if (!isset($data_cashback['jumlah_potongan_harga'])) {
+        $jml_cashback = 0;
+    }
 
     //Biaya Kantor etty
     $table3s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM keuangan_s WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Kantor' ");
@@ -339,34 +354,28 @@ if ($tanggal_awal == $tanggal_akhir) {
 } else {
 
     // Penjualan kadek dan etty
-    $table = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
+    $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' ");
     $pendapatan_penjualan_kadek =0;
     //kadek
-    while($data = mysqli_fetch_array($table)){
-        $no_do_pembelian = $data['no_do'];
-        $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Lunas Cash' ");
+    while($data = mysqli_fetch_array($tablex)){
 
-        if(mysqli_num_rows($tablex) === 1 ){
-            $datax = mysqli_fetch_array($tablex);
-               $jumlah = $datax['jumlah'];
+     
+           
+               $jumlah = $data['jumlah'];
                $pendapatan_penjualan_kadek = $pendapatan_penjualan_kadek + $jumlah;
-              }
+              
        
     }
     
     //ety
-    $tablee = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
-    $pendapatan_penjualan_ety = 0;
-    $pendapatan_penjualan_etyx = 0;
-    while($datae = mysqli_fetch_array($tablee)){
-        $no_do_pembelian = $datae['no_do'];
-        $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Lunas Cash' ");
+    $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash' ");
+    $pendapatan_penjualan_ety = 0; 
 
-        if(mysqli_num_rows($tablex2) === 1 ){
-            $datax2 = mysqli_fetch_array($tablex2);
-            $jumlahx = $datax2['jumlah'];
+    while($datae = mysqli_fetch_array($tablex2)){
+  
+            $jumlahx = $datae['jumlah'];
             $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
-              }
+              
 
               
        
@@ -466,63 +475,41 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     // pembelian kadek dan etty
 
-    $table = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
+    $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
     $pembelian_kadek =0;
     //kadek
-    while($data = mysqli_fetch_array($table)){
-        $no_do_pembelian = $data['no_do'];
-        $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' ");
-        $datax = mysqli_fetch_array($tablex);
-        if(isset($datax['jumlah'])){
-            $jumlah = $datax['jumlah'];
+    while($data = mysqli_fetch_array($tablex)){
+
+            $jumlah = $data['jumlah'];
             $pembelian_kadek = $pembelian_kadek + $jumlah;
-        }
-
-       
-    }
-    
-    //ety
-    $tabell = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$bulan_sebelum' AND '$bulan_sesudah'");
-    $pembelian_ety = 0;
-    while($datae = mysqli_fetch_array($tabell)){
-        $no_do_pembelian = $datae['no_do'];
-        $tablell2 = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' ");
-        $datax2 = mysqli_fetch_array($tablell2);
-        if(isset($datax2['jumlah'])){
-            $jumlahx = $datax2['jumlah'];
-            $pembelian_ety = $pembelian_ety + $jumlahx;
-        }
-
         
     }
+    
+
 
     // piutang kadek dan etty
-    $tabler = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' ");
     $piutang_penjualan_kadek =0;
     //kadek
-    while($data = mysqli_fetch_array($tabler)){
-        $no_do_pembelian = $data['no_do'];
-        $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil' ");
-        $datax = mysqli_fetch_array($tablexr);
-        if(isset($datax['jumlah'])){
-            $jumlah = $datax['jumlah'];
+    while($data = mysqli_fetch_array($tablexr)){
+
+            $jumlah = $data['jumlah'];
             $piutang_penjualan_kadek = $piutang_penjualan_kadek + $jumlah;
-        }
+        
 
        
     }
     
     //ety
-    $tableer = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $tablex2r = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar  = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  status_bayar = 'Nyicil' ");
     $piutang_penjualan_ety = 0;
-    while($datae = mysqli_fetch_array($tableer)){
-        $no_do_pembelian = $datae['no_do'];
-        $tablex2r = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar  = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil' ");
-        $datax2 = mysqli_fetch_array($tablex2r);
-        if(isset($datax2['jumlah'])){
-            $jumlahx = $datax2['jumlah'];
+    while($datae = mysqli_fetch_array($tablex2r)){
+      
+ 
+      
+            $jumlahx = $datae['jumlah'];
             $piutang_penjualan_ety = $piutang_penjualan_ety + $jumlahx;
-        }
+        
 
         
     }
@@ -543,6 +530,13 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_gaji_sl = $data2sl['total_gaji'];
     $total_om_sl = $data2sl['total_om'];
 
+    //Cashback
+    $table_cashback = mysqli_query($koneksipbj, "SELECT SUM(potongan_harga) AS jumlah_potongan_harga FROM potongan_harga WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $data_cashback = mysqli_fetch_array($table_cashback);
+    $jml_cashback = $data_cashback['jumlah_potongan_harga'];
+    if (!isset($data_cashback['jumlah_potongan_harga'])) {
+        $jml_cashback = 0;
+    }
     //Biaya Kantor etty
     $table3s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
     $data3s = mysqli_fetch_array($table3s);
@@ -644,8 +638,8 @@ if ($tanggal_awal == $tanggal_akhir) {
         $gaji_karyawan = 0;
     }
 }
-$total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek;
-$laba_kotor = $total_pendapatan - ($pembelian_ety + $pembelian_kadek);
+$total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
+$laba_kotor = $total_pendapatan - $pembelian_kadek;
 $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om +$jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
                             $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty;
 $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
@@ -929,7 +923,7 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                 <tr>
                                                     <td>4-101</td>
                                                     <td class="text-left">Penjualan As Ety</td>
-                                                    <td class="text-left"><?= formatuang($pendapatan_penjualan_ety + $pendapatan_penjualan_etyx); ?></td>
+                                                    <td class="text-left"><?= formatuang($pendapatan_penjualan_ety); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPenjualanETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
@@ -975,6 +969,13 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPrankoRENI?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
+                                                <tr>
+                                                    <td>4-103</td>
+                                                    <td class="text-left">Cashback</td>
+                                                    <td class="text-left"><?= formatuang($jml_cashback); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
                                                 <tr style="background-color:     #F0F8FF; ">
                                                     <td><strong>Total Pendapatan</strong></td>
                                                     <td class="thick-line"></td>
@@ -998,14 +999,7 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                 </tr>
                                                 <tr>
                                                     <td>5-100</td>
-                                                    <td class="text-left">Pembelian Barang Etty</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($pembelian_ety); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelianETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr>
-                                                <tr>
-                                                    <td>5-100</td>
-                                                    <td class="text-left">Pembelian Barang Kadek</td>
+                                                    <td class="text-left">Pembelian Barang </td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($pembelian_kadek); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelianKDK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>

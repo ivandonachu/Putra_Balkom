@@ -167,7 +167,7 @@ else if ( $nama_file != "" ) {
 				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
 	}
-	elseif ($akun == 'Biaya Penyusutan') {
+	elseif ($akun == 'Biaya Konsumsi') {
 		$kode_akun = '5-560';
 		//riwayat pengeluran
 		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
@@ -198,6 +198,15 @@ else if ( $nama_file != "" ) {
 			}
 	}
 	elseif ($akun == 'Biaya Penjualan & Pemasaran') {
+		$kode_akun = '5-580';
+		//riwayat pengeluran
+		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
+
+		if ($query != "") {
+				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+	}
+	elseif ($akun == 'Biaya Konsumsi') {
 		$kode_akun = '5-580';
 		//riwayat pengeluran
 		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
