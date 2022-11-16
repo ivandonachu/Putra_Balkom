@@ -9,6 +9,7 @@ $id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
+$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Administrasi') {
 
@@ -95,6 +96,17 @@ else{
     <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
 </a>
 
+<!-- Sidebar -->
+<ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+    <div class="sidebar-brand-icon rotate-n-15">
+
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+</a>
+
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
@@ -116,7 +128,7 @@ else{
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
       15  aria-expanded="true" aria-controls="collapseOne">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
         <span style="font-size: 15px; color:white;" >Tagihan</span>
     </a>
     <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -124,7 +136,7 @@ else{
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanL8">Tagihan Lampung 8KL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelmbang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelembang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanBl">Tagihan Belitung</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanBk">Tagihan Bangka</a>
@@ -141,7 +153,7 @@ else{
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
       15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <i class="fas fa-truck" style="font-size: 15px; color:white;" ></i>
         <span style="font-size: 15px; color:white;" >Pengiriman</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -202,7 +214,7 @@ else{
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
       15  aria-expanded="true" aria-controls="collapseTwo1">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
         <span style="font-size: 15px; color:white;" >SDM</span>
     </a>
     <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -252,38 +264,29 @@ else{
       <ul class="navbar-nav ml-auto">
 
 
-
-
-
-
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-          <img class="img-profile rounded-circle"
-          src="img/undraw_profile.svg">
-        </a>
-        <!-- Dropdown - User Information -->
-        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-        aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="VProfile">
-          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-          Profile
-        </a>
-        <a class="dropdown-item" href="VSetting">
-          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-          Settings
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Logout
-        </a>
-      </div>
-    </li>
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="VProfile">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+              </div>
+             </li>
 
   </ul>
 
