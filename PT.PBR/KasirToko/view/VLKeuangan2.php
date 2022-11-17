@@ -9,6 +9,7 @@ $id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
+$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Kasir') {
 
@@ -177,16 +178,17 @@ $jumlah_bersih_pbr = $data_total_pendapatan_pbr - $data_total_pengeluaran_pbr;
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <!-- Sidebar -->
-       <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+             <!-- Sidebar -->
+             <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+    <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 110px; width: 120px; " src="../gambar/Logo CBM.PNG" ></div>
 </a>
+<br> <br>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
@@ -219,11 +221,10 @@ $jumlah_bersih_pbr = $data_total_pendapatan_pbr - $data_total_pengeluaran_pbr;
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon Pembelian</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon </a>
             <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keauangan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
@@ -233,42 +234,40 @@ $jumlah_bersih_pbr = $data_total_pendapatan_pbr - $data_total_pengeluaran_pbr;
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
     aria-expanded="true" aria-controls="collapseUtilities">
-    <i class="far fa-calendar-alt" style="font-size: 15px; color:white;"></i>
+    <i class="fas fa-dolly-flatbed" style="font-size: 15px; color:white;"></i>
     <span style="font-size: 15px; color:white;">Pencatatan Inventory</span>
 </a>
 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
 data-parent="#accordionSidebar">
 <div class="bg-white py-2 collapse-inner rounded">
     <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
-    <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-    <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
     <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
-    <a class="collapse-item" href="VPenggunaanSaldo" style="font-size: 15px;">Transfer Saldo</a>
+    <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
     <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
     <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
     <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
-
 </div>
 </div>
 </li>
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesx"
-                aria-expanded="true" aria-controls="collapseUtilitiesx">
-                <i class="far fa-calendar-alt" style="font-size: 15px; color:white;"></i>
-                <span style="font-size: 15px; color:white;">Administrasi</span>
-            </a>
-            <div id="collapseUtilitiesx" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="font-size: 15px;">Menu Administrasi</h6>
-                <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">Karyawan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
-                <a class="collapse-item" href="VRute" style="font-size: 15px;">Rute</a>
-            </div>
-        </div>
-    </li>
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesx"
+    aria-expanded="true" aria-controls="collapseUtilitiesx">
+    <i class="fas fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+    <span style="font-size: 15px; color:white;">Administrasi</span>
+</a>
+<div id="collapseUtilitiesx" class="collapse" aria-labelledby="headingUtilities"
+data-parent="#accordionSidebar">
+<div class="bg-white py-2 collapse-inner rounded">
+    <h6 class="collapse-header" style="font-size: 15px;">Menu Administrasi</h6>
+    <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
+    <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">Karyawan</a>
+    <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
+    <a class="collapse-item" href="VRute" style="font-size: 15px;">Rute</a>
+</div>
+</div>
+</li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -333,12 +332,11 @@ data-parent="#accordionSidebar">
                 <div class="topbar-divider d-none d-sm-block"></div>
 
                 <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
+               <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                    <img class="img-profile rounded-circle"
-                    src="img/undraw_profile.svg">
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -347,17 +345,13 @@ data-parent="#accordionSidebar">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
-                <a class="dropdown-item" href="VSetting">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-            </div>
-        </li>
+              </div>
+             </li>
 
     </ul>
 
