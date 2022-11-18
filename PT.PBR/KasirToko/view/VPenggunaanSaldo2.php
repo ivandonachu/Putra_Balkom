@@ -123,6 +123,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening ");
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo2">Laporan Saldo</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon </a>
             <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
