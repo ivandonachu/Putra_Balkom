@@ -410,7 +410,7 @@ else{
     <?php
       $dataSelect = $data['nama_driver'];
       include 'koneksi.php';
-      $result = mysqli_query($koneksipbj, "SELECT * FROM driver ");
+      $result = mysqli_query($koneksipbj, "SELECT * FROM driver_s ");
 
       while ($data2 = mysqli_fetch_array($result)) {
         $nama_driver = $data2['nama_driver'];
