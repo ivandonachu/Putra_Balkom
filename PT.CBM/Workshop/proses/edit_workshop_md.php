@@ -49,7 +49,7 @@ else if ( $nama_file != "" ) {
 		$nama_file_baru .= ".";
 		$nama_file_baru .= $ekstensi_file;
 
-		move_uploaded_file($tmp_name, '../gambar/' . $nama_file_baru   );
+		move_uploaded_file($tmp_name, '../file_workshop/' . $nama_file_baru   );
 
 		return $nama_file_baru; 
 
