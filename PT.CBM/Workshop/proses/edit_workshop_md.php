@@ -66,7 +66,7 @@ else if ( $nama_file != "" ) {
 		$query3 = mysqli_query($koneksipbr,"UPDATE riwayat_pengeluaran_workshop SET tanggal = '$tanggal' , nama_driver = '$nama_driver' , no_polisi = '$no_polisi' , jumlah_bengkel = '$jumlah_bengkel' , jumlah_sparepart = '$jumlah_sparepart' WHERE no_laporan = '$no_laporan'");
 	}
 	else{
-		$query3 = mysqli_query($koneksipbr,"UPDATE riwayat_pengeluaran_workshop SET tanggal = '$tanggal' , nama_driver = '$nama_driver' , no_polisi = '$no_polisi' , jumlah_bengkel = '$jumlah_bengkel' , jumlah_sparepart = '$jumlah_sparepart', file_gambar = '$file'   WHERE no_laporan = '$no_laporan'");
+		$query3 = mysqli_query($koneksipbr,"UPDATE riwayat_pengeluaran_workshop SET tanggal = '$tanggal' , nama_driver = '$nama_driver' , no_polisi = '$no_polisi' , jumlah_bengkel = '$jumlah_bengkel' , jumlah_sparepart = '$jumlah_sparepart', file_bukti = '$file'   WHERE no_laporan = '$no_laporan'");
 	}
 	
 
