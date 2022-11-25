@@ -44,7 +44,7 @@ $tempo = $_POST['tempo'];
 $tanggal_bayar = $_POST['tanggal_bayar'];
 $status_bayar = $_POST['status_bayar'];
 $keterangan = $_POST['keterangan'];
-$catatan = 'inputan kadek';
+$catatan = $_POST['catatan'];
 $bulan = $_POST['bulan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
