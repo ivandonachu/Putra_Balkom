@@ -354,7 +354,7 @@ if (!isset($data_gaji['total_gaji'])) {
 $table16x = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_prive FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '3-500' AND referensi = 'PB' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '3-500' AND referensi = 'PBR'");
 $data_biaya_prive = mysqli_fetch_array($table16x);
 $total_biaya_prive = $data_biaya_prive['total_prive'];
-if (!isset($total_biaya_prive['total_prive'])) {
+if (!isset($data_biaya_prive['total_prive'])) {
     $total_biaya_prive = 0;
 }
 
