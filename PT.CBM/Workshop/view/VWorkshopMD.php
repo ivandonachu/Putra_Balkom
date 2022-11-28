@@ -229,7 +229,7 @@ else{
          <div class="modal-dialog  modal-lg" role ="document">
            <div class="modal-content"> 
             <div class="modal-header">
-              <h5 class="modal-title"> Form Penggunaan Kas Kecil </h5>
+              <h5 class="modal-title"> Form Workshop </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -365,7 +365,7 @@ else{
 <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog" role ="document">
     <div class="modal-content"> 
-      <div class="modal-header">Form Edit Kas Kecil </h5>
+      <div class="modal-header">Form Edit Workshop </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="close">
           <span aria-hidden="true"> &times; </span>
         </button>

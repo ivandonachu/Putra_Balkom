@@ -645,7 +645,7 @@ else{
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
+      <h4 class="modal-title"> <b> Hapus Data Pengiriman </b> </h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="close">
         <span aria-hidden="true"> &times; </span>
       </button>
