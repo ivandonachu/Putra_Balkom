@@ -349,6 +349,14 @@ if (!isset($data_gaji['total_gaji'])) {
     $total_gaji_karyawan = 0;
 }
 
+//BIAYA Prive
+//kasir
+$table16x = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_prive FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '3-500' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '3-500' AND referensi = 'ME'");
+$data_biaya_prive = mysqli_fetch_array($table16x);
+$total_biaya_prive = $data_biaya_prive['total_prive'];
+if (!isset($total_biaya_prive['total_prive'])) {
+    $total_biaya_prive = 0;
+}
 
 //ALAT TULIS KANTOR TK
 $table11 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_atk_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-520' AND referensi = 'PB' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-520' AND referensi = 'PBR'  ");
@@ -468,7 +476,7 @@ if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
@@ -913,6 +921,13 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_gaji_karyawan); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>3-500</td>
+                                    <td class="text-left">Prive</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_biaya_prive); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRPrive?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-520</td>
