@@ -32,10 +32,10 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
 }  
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_kas_kecil WHERE tanggal = '$tanggal_awal' ORDER BY tanggal ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_kas_kecil WHERE tanggal = '$tanggal_awal' ORDER BY no_transaksi ASC");
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_kas_kecil WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_kas_kecil WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY no_transaksi ASC");
 }
 
 $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'");
