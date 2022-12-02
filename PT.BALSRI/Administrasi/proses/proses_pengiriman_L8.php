@@ -60,7 +60,7 @@ if ($jns_trans == 'Lost') {
 
 else{
 
-	$uang_gaji = $uang_gaji;
+	$uang_gaji = (625 * $jt_gps);
 }
 
 $nama_file = $_FILES['file']['name'];
