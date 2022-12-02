@@ -35,6 +35,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
 
   $table = mysqli_query($koneksibalsri, "SELECT * FROM riwayat_perbaikan_bk  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan, no_polisi FROM riwayat_perbaikan_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi ");
 
 }
 
@@ -445,6 +446,34 @@ else{
 </tbody>
 </table>
 </div>
+<br>
+<br>
+<h3 class="text-center" >Total Pengeluaran Per Kendaraan</h3>
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<thead>
+    <tr>
+      <th class="text-center" >No Polisi</th>
+      <th class="text-center" >Total Perbaikan</th>
+ 
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table2)){
+     $no_polisi = $data['no_polisi'];
+     $total_perbaikan = $data['jumlah_perbaikan'];
+
+     echo "<tr>
+     <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+     <td style='font-size: 14px' align = 'center'>$total_perbaikan</td>"?>
+     
+    
+  <?php echo  " </tr>";
+}
+?>
+
+</tbody>
+</table>
 <br>
 <br>
 <br>

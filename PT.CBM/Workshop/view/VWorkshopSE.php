@@ -368,7 +368,11 @@ else{
 <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog" role ="document">
     <div class="modal-content"> 
+<<<<<<< HEAD
       <div class="modal-header">Form Edit Workshop Semen </h5>
+=======
+      <div class="modal-header">Form Edit Workshop </h5>
+>>>>>>> 5661ebb1b669e885e022b5a63dc1e6b93b48c54a
         <button type="button" class="close" data-dismiss="modal" aria-label="close">
           <span aria-hidden="true"> &times; </span>
         </button>
@@ -410,7 +414,7 @@ else{
     <?php
       $dataSelect = $data['nama_driver'];
       include 'koneksi.php';
-      $result = mysqli_query($koneksipbj, "SELECT * FROM driver ");
+      $result = mysqli_query($koneksipbj, "SELECT * FROM driver_s ");
 
       while ($data2 = mysqli_fetch_array($result)) {
         $nama_driver = $data2['nama_driver'];
@@ -472,7 +476,7 @@ else{
        <div class="modal-dialog" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus Data Pengeluaran </b> </h4>
+            <h4 class="modal-title"> <b> Hapus Data Workshop </b> </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true"> &times; </span>
             </button>

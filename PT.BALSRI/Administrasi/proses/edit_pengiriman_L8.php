@@ -46,12 +46,12 @@ else{
 $u_dex = $dexlite*18100;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
-$uang_gaji = 100000;
+
 if ($jns_trans == 'Lost') {
 	if ($muatan == '8000 L') {
 		$jml_lost = (8000 * 0.15) / 100;
 		$total_lost = $jml_trans - $jml_lost;
-		$uang_gaji = ($uang_gaji - ($total_lost  * 8350));
+		$uang_gaji = ((625 * $jt_gps) - ($total_lost  * 8350));
 }
 	}
 	

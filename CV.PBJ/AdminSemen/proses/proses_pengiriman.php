@@ -42,6 +42,7 @@ $om = $_POST['om'];
 $tanggal_gaji = $_POST['tanggal_gaji'];
 $tanggal_nota = $_POST['tanggal_nota'];
 $keterangan = $_POST['keterangan'];
+$catatan = $_POST['catatan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";

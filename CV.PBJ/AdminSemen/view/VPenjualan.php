@@ -564,6 +564,11 @@ else{
    <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
  </div>
 
+ <br>
+ <label>Catatan</label>
+ <div class="form-group">
+   <textarea id = "catatan" name="catatan" style="width: 300px;"></textarea>
+ </div>
 
  <br>
  <div class="col-md-6">
@@ -617,6 +622,7 @@ else{
       <th>TGL Bayar</th>
       <th>Status Bayar</th>
       <th>Ket</th>
+      <th>Catatan</th>
       <th>File</th>
       
     </tr>
@@ -648,6 +654,7 @@ else{
       $tanggal_bayar = $data['tanggal_bayar'];
       $status_bayar = $data['status_bayar'];
       $keterangan = $data['keterangan'];
+      $catatan = $data['catatan'];
       $bulan = $data['bulan'];
       $file_bukti = $data['file_bukti'];
       $no_urut = $no_urut + 1;
@@ -822,7 +829,11 @@ else{
        <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
      </div>
    </div>
-
+   <br>
+     <label>Catatan</label>
+     <div class="form-group">
+       <textarea id = "catatan" name="catatan" style="width: 300px;"><?php echo $catatan;?></textarea>
+     </div>
      <br>
      <div>
      <div class="form-group">
@@ -1037,6 +1048,7 @@ else{
       <td style='font-size: 14px'>$tanggal_bayar</td>
       <td style='font-size: 14px'>$status_bayar</td>
       <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>$catatan</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_admin_semen/<?= $file_bukti ?>" href="../file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
    
