@@ -508,20 +508,25 @@ if ($tanggal_awal == $tanggal_akhir) {
                   if ($jumlah_pesanan == 'kl1') {
                     $total_pesanan = 1000;
                     $total_max_pesanan = $total_max_pesanan + $total_pesanan;
+                    $harga = $data[$jumlah_pesanan] / $total_pesanan;
                   } else if ($jumlah_pesanan == 'kl2') {
                     $total_pesanan = 2000;
                     $total_max_pesanan = $total_max_pesanan + $total_pesanan;
+                    $harga = $data[$jumlah_pesanan] / $total_pesanan;
                   } else if ($jumlah_pesanan == 'kl3') {
                     $total_pesanan = 3000;
                     $total_max_pesanan = $total_max_pesanan + $total_pesanan;
+                    $harga = $data[$jumlah_pesanan] / $total_pesanan;
                   } else if ($jumlah_pesanan == 'kl4') {
                     $total_pesanan = 4000;
                     $total_max_pesanan = $total_max_pesanan + $total_pesanan;
+                    $harga = $data[$jumlah_pesanan] / $total_pesanan;
                   } else if ($jumlah_pesanan == 'kl5') {
                     $total_pesanan = 5000;
                     $total_max_pesanan = $total_max_pesanan + $total_pesanan;
+                    $harga = $data[$jumlah_pesanan] / $total_pesanan;
                   }
-                  $harga = $data[$jumlah_pesanan];
+                  $total = $data[$jumlah_pesanan];
 
 
                   $urut = $urut + 1;

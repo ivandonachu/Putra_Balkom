@@ -53,19 +53,19 @@ $harga = $data_tarif[$kode_pesanan];
 
 
 if ($jumlah_pesanan == '1000 L') {
-	$total = 1000 * $harga;
+	$total = $harga;
 }
 else if ($jumlah_pesanan == '2000 L') {
-	$total = 1000 * $harga;
+	$total = $harga;
 }
 else if ($jumlah_pesanan == '3000 L') {
-	$total = 1000 * $harga;
+	$total = $harga;
 }
 else if ($jumlah_pesanan == '4000 L') {
-	$total = 1000 * $harga;
+	$total = $harga;
 }
 else if ($jumlah_pesanan == '5000 L') {
-	$total = 1000 * $harga;
+	$total = $harga;
 }
 
 
