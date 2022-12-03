@@ -630,7 +630,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'kl2') ? "selected" : "" ?>>2000 L</option>
                                     <option <?php echo ($dataSelect == 'kl3') ? "selected" : "" ?>>3000 L</option>
                                     <option <?php echo ($dataSelect == 'kl4') ? "selected" : "" ?>>4000 L</option>
-                                    <option <?php echo ($dataSelect == 'kl4') ? "selected" : "" ?>>5000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl5') ? "selected" : "" ?>>5000 L</option>
                                   </select>
                                 </div>
 
