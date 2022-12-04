@@ -134,10 +134,10 @@ exit;
                           echo"<a class='collapse-item' style='font-size: 15px;' href='VLR'>Laba Rugi</a>";
                         } ?>
                        
-                        <a class="collapse-item" style="font-size: 15px;" href="VLSaldo">Laporan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Riwayat Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VLSaldo">Laporan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VCatatPengiriman">Riwayat Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPerbaikan">Beban Kendaraan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VOperasional">Beban Operasional</a>
                     </div>
                 </div>
             </li>
@@ -270,7 +270,7 @@ exit;
             </div>
         </div>
     </div>
-    
+
 <div class="container">
 <img style="margin-top: 60px; margin-left: 100px;" src="../gambar/kasir_toko.svg">
 
