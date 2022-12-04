@@ -270,8 +270,10 @@ exit;
             </div>
         </div>
     </div>
+    
 <div class="container">
-        <img style="margin-top: 60px; margin-left: 100px;" src="../gambar/kasir_toko.svg">
+<img style="margin-top: 60px; margin-left: 100px;" src="../gambar/kasir_toko.svg">
+
     </div>
 
 </div>
