@@ -1108,7 +1108,7 @@ else{
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
           <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-          Uang Total Penebusan</div>
+           Total QTY Penebusan</div>
           <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $total_qty ?></div>
         </div>
         <div class="col-auto">
