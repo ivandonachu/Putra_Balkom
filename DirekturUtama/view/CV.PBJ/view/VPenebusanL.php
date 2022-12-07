@@ -146,10 +146,11 @@ else{
   
 
   //Curah OPC Type 1 Debit
-  $table1x = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS uang_pembelian  FROM pembelian_sl WHERE  tanggal BETWEEN 
+  $table1x = mysqli_query($koneksipbj, "SELECT SUM(qty) AS jumlah_qty , SUM(jumlah) AS uang_pembelian  FROM pembelian_sl WHERE  tanggal BETWEEN 
   '$tanggal_awal' AND '$tanggal_akhir' ");
   $data2x = mysqli_fetch_array($table1x);
   $total_uang_pembelian = $data2x['uang_pembelian'];
+  $total_qty = $data2x['jumlah_qty'];
 
   //Curah OPC Type 1 Debit
   $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_debit ,  SUM(jumlah) AS uang_copct1_debit  FROM pembelian_sl WHERE  tanggal BETWEEN 
@@ -1099,7 +1100,24 @@ else{
       </div>
     </div>
   </div>
+  <br>
 
+<div class="col-xl-12 col-md-12 mb-12">
+  <div class="card border-left-success shadow h-100 py-2">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+          Uang Total Penebusan</div>
+          <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $total_qty ?></div>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <br>
 <br>
 <br>
