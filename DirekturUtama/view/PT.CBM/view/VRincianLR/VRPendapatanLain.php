@@ -33,11 +33,11 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
- WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-610' ");
+ WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-610' ");
 }
 else{
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
- WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-610' ");
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja 
+  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-610' ");
 }
 
 
@@ -360,44 +360,7 @@ else{
 </table>
 </div>
 <br>
-<br>
-<br>
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-<!-- Tabel -->    
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Elpiji 3 KG</th>
-      <th>Bright Gas 5,5 KG</th>
-      <th>Bright Gas 12 KG</th>
-      <th>Elpiji 12 KG</th>
-      <th>Cash Elpiji 3 KG</th>
-      <th>Cash Bright Gas 5,5 KG</th>
-      <th>Cash Bright Gas 12 KG</th>
-      <th>Cash Elpiji 12 KG</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php 
-      echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($L03); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($B05); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($B12); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($L12); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($L03_cash); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($B05_cash); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($B12_cash); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($L12_cash); ?> <?php echo "</td>
-
-        </tr>";
-  
-  ?>
-
-</tbody>
-</table>
-</div>
 <br>
 <br>
 
