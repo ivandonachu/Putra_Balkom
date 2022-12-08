@@ -760,11 +760,7 @@ else{
           <div class="col-md-6">
             <label>Harga</label>
             <input class="form-control form-control-sm" type="float" id="harga" name="harga" onkeyup="sum();" required="" value="<?php echo $harga;?>">
-          </div>    
-          <div class="col-md-6">
-           <label>Jumlah</label>
-           <input class="form-control form-control-sm" type="float" id="jumlah" name="jumlah" required="" value="<?php echo $jumlah;?>"> 
-         </div>                
+          </div>               
        </div>
 
        <br>
