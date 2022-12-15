@@ -46,6 +46,14 @@ if (!isset($data_pendapatan_refill['penjualan_refill'])) {
     $total_pendapatan_refill = 0;
 }
 
+// TOTAL Pendapatan lain - lain
+$table1x = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pendapatan_lain FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-610' ");
+$data_pendapatan_lain = mysqli_fetch_array($table1x);
+$total_pendapatan_lain = $data_pendapatan_lain['pendapatan_lain'];
+if (!isset($data_pendapatan_lain['pendapatan_lain'])) {
+    $total_pendapatan_lain = 0;
+}
+
 
 // TOTAL PENJUALAN BAJA + ISI
 $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_bajaisi FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND kode_akun = '4-120' ");
@@ -298,7 +306,7 @@ $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $to
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
                             $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi;
 
-$laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
+$laba_bersih_sebelum_pajak =  ($laba_kotor + $total_pendapatan_lain)  - $total_biaya_usaha_final;
 }
 
 
@@ -314,6 +322,16 @@ $total_pendapatan_refill = $data_pendapatan_refill['penjualan_refill'];
 if (!isset($data_pendapatan_refill['penjualan_refill'])) {
     $total_pendapatan_refill = 0;
 }
+
+
+// TOTAL Pendapatan lain - lain
+$table1x = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pendapatan_lain FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-610' ");
+$data_pendapatan_lain = mysqli_fetch_array($table1x);
+$total_pendapatan_lain = $data_pendapatan_lain['pendapatan_lain'];
+if (!isset($data_pendapatan_lain['pendapatan_lain'])) {
+    $total_pendapatan_lain = 0;
+}
+
 
 
 // TOTAL PENJUALAN BAJA + ISI
@@ -569,7 +587,7 @@ $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $to
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
                             $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi;
 
-$laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
+$laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_biaya_usaha_final;
 }
 
 
@@ -1114,9 +1132,9 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                 <tr>
                                     <td>5-610</td>
                                     <td class="text-left">Pendapatan Lain-lain Diluar Usaha</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_pendapatan_lain); ?></td>
                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
+                                   <?php echo "<td class='text-right'><a href='VRincianLR/VRPendapatanLain?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-620</td>

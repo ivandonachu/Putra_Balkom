@@ -927,7 +927,8 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left">Prive</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_biaya_prive); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRPrive?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRPrive?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-520</td>
@@ -962,7 +963,7 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left">Biaya Konsumsi</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                    <td class="text-left"><?= formatuang($total_pengeluaran_konsumsi); ?></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
+                                   <?php echo "<td class='text-right'><a href='VRincianLR/VRKonsumsi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-580</td>

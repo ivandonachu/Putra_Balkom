@@ -410,7 +410,7 @@ else{
     $jml_konsumsi = 0;
     }
 
-    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa + $jumlah_gaji + $jumlah_transport + $jumlah_konsumsi;
+    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa + $jml_gaji + $jumlah_transport + $jumlah_konsumsi;
 
 
     $laba_bersih_sebelum_pajak = $laba_kotor_dex + $laba_kotor_max - $total_biaya_usaha_final;
