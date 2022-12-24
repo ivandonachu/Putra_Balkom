@@ -310,15 +310,15 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pengeluaran a INNER JO
       $total_pengeluaran = $total_pengeluaran + $jumlah_pengeluaran;
       $file_bukti = $data['file_bukti'];
 
-      if ($nama_akun == 'Bank BRI CBM') {
+      if ($nama_akun == "Bank BRI CBM") {
         
         $nama_akun = "Kembalikan Saldo Mocash";
       }
-      else if($nama_akun =='Kas Armada'){
-          $nama_akun ='Kembalikan Saldo Brankas';
+      else if($nama_akun =="Kas Armada"){
+          $nama_akun ="Kembalikan Saldo Brankas";
       }
-      else if($nama_akun =='Kas di Tangan'){
-          $nama_akun ='Setor Pendapatan';
+      else if($nama_akun =="Kas di Tangan"){
+          $nama_akun ="Setor Pendapatan";
       }
       $urut = $urut + 1;
       echo "<tr>
