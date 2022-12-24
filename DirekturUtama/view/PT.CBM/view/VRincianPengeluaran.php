@@ -289,7 +289,16 @@ else{
       $keterangan = $data['keterangan'];
       $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
       $file_bukti = $data['file_bukti'];
-
+      if ($nama_akun == "Bank BRI CBM") {
+        
+        $nama_akun = "Kembalikan Saldo Mocash";
+      }
+      else if($nama_akun =="Kas Armada"){
+          $nama_akun ="Kembalikan Saldo Brankas";
+      }
+      else if($nama_akun =="Kas di Tangan"){
+          $nama_akun ="Setor Pendapatan";
+      }
 
       echo "<tr>
       <td style='font-size: 14px'>$no_transaksi</td>
