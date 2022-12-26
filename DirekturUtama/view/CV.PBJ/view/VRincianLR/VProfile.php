@@ -11,6 +11,8 @@ $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
+$nama_pemilik = $data1['nama_pemilik'];
+
 if ($jabatan_valid == 'Direktur Utama') {
 
 }
@@ -20,34 +22,10 @@ exit;
 }
 
 
-if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-} 
-else{
-  $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-}
-
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal' WHERE status_saldo = 'Keluar' ");
-}
-else{
-  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_saldo = 'Keluar' ");
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_saldo = 'Keluar' ");
-  $data2 = mysqli_fetch_array($table2);
-  $total_pengeluaran = $data2['total_pengeluaran'];
-
-}
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,28 +37,70 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran</title>
+  <title>Profile</title>
+
   <!-- Custom fonts for this template-->
-  <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-  href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-  rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/sbadmin/vendor/bootstrap/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
   <!-- Custom styles for this template-->
   <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
-  <!-- Link Tabel -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <!-- Link datepicker -->
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/styleprofil.css" rel="stylesheet">
+
+  <script type="text/javascript">
+    window.setTimeout("waktu()", 1000);
+
+    function waktu() {
+      var tanggal = new Date();
+      setTimeout("waktu()", 1000);
+      document.getElementById("jam").innerHTML = tanggal.getHours();
+      document.getElementById("menit").innerHTML = tanggal.getMinutes();
+      document.getElementById("detik").innerHTML = tanggal.getSeconds();
+    }
+  </script>
+
+</head>
+
+<style>
+  #jam-digital {
+    overflow: hidden
+  }
+
+  #hours {
+    float: left;
+    width: 50px;
+    height: 30px;
+    background-color: #2C7873;
+    margin-right: 25px
+  }
+
+  #minute {
+    float: left;
+    width: 50px;
+    height: 30px;
+    background-color: #2C7873;
+    margin-right: 25px
+  }
+
+  #second {
+    float: left;
+    width: 50px;
+    height: 30px;
+    background-color: #2C7873;
+  }
+
+  #jam-digital p {
+    color: #FFF;
+    font-size: 22px;
+    text-align: center
+  }
+</style>
 
 </head>
 
 <body id="page-top">
-
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -271,201 +291,187 @@ Logout
 </div>
 </li>
 
-  </ul>
+          </ul>
 
-</nav>
-<!-- End of Topbar -->
+        </nav>
+        <!-- End of Topbar -->
+        <div class="row">
+          <div class="col-sm-9">
+          </div>
+          <div class="col-sm-3" style="color: black; font-size: 18px;">
+            <script type='text/javascript'>
+              var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+              var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+              var date = new Date();
+              var day = date.getDate();
+              var month = date.getMonth();
+              var thisDay = date.getDay(),
+                thisDay = myDays[thisDay];
+              var yy = date.getYear();
+              var year = (yy < 1000) ? yy + 1900 : yy;
+              document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+            </script>
+          </div>
+        </div>
 
-<!-- Top content -->
-<div>   
+        <div class="row">
+          <div class="col-sm-9">
+          </div>
+          <div class="col-sm-3">
+            <div id="jam-digital">
+              <div id="hours">
+                <p id="jam"></p>
+              </div>
+              <div id="minute">
+                <p id="menit"> </p>
+              </div>
+              <div id="second">
+                <p id="detik"> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container light-style flex-grow-1 container-p-y">
+
+          <h4 class="font-weight-bold py-3 mb-4">
+            Account settings
+          </h4>
+
+          
+          <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+            <div class="col-md-3 pt-0">
+                <div class="list-group list-group-flush account-settings-links">
+                  <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
+                  <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="tab-content">
+                  <div class="tab-pane fade active show" id="account-general">
+                    <?php echo "<form action='edit_profil' enctype='multipart/form-data' method='POST'>";  ?>
+                    <div class="card-body media align-items-center">
+                    <img src="/assets/img/foto_profile/<?= $foto_profile; ?>" style="max-height: 150px; " alt="" class="d-block ui-w-80">
+                      <div class="media-body ml-4">
 
 
-  <!-- Name Page -->
-  <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-    <?php  echo "<form  method='POST' action='VPengeluran' style='margin-bottom: 15px;'>" ?>
-    <div>
-      <div align="left" style="margin-left: 20px;"> 
-        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-        <span>-</span>
-        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+                        <input type="file" class="" name='file_profile'>
+                        <input type="hidden" name="nama_pemilik" value="<?= $nama_pemilik; ?>">
+
+                      </div>
+                    </div>
+                    <hr class="border-light m-0">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label class="form-label">Nama</label>
+                        <input type="text" class="form-control mb-1" name="nama_karyawan" value="<?= $nama; ?> "disabled>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Jabatan</label>
+                        <input type="text" class="form-control" value="<?= $jabatan_valid; ?> " disabled>
+                      
+                      </div>
+           
+                    
+                    </div>
+                  </div>
+
+
+                    <div class="tab-pane fade" id="account-change-password">
+                    <div class="card-body pb-2">
+                      <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control mb-1" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">password lama</label>
+                        <input type="password" name="password_lama" class="form-control" disabled>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-label">password baru</label>
+                        <input type="password" name="password_baru1" class="form-control" disabled>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-label">Konfirmasi password baru</label>
+                        <input type="password" name="password_baru2" class="form-control" disabled>
+                      </div>
+                      <small>
+                        <ul>
+                          <li>password tidak boleh ada spasi</li>
+                          <li>minimal password 8 character</li>
+                          <li>maksimal password 15 character</li>
+                        </ul>
+                      </small>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-right mt-3">
+            <button type="Submit" class="btn btn-primary">Save changes</button>&nbsp;
+            <button type="reset" class="btn btn-default">Reset</button>
+          </div>
+          </form>
+        </div>
+        <br>
+
       </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+          <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
     </div>
-  </form>
-  <div class="row">
-    <div class="col-md-6">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-   </div>
+    <!-- End of Content Wrapper -->
 
-</div>
-
-
-
-
-
-
-<div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Pengeluaran</th>
-      <th>Total</th>
-      <th>file</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $total = 0;
-    $urut = 0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
-
-    <?php while($data = mysqli_fetch_array($table)){
-     $no_laporan = $data['no_transaksi'];
-     $tanggal =$data['tanggal'];
-     $nama_akun = $data['nama_akun'];
-     $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
-     $file_bukti = $data['file_bukti'];
-
-     $total = $total + $jumlah;
-     $urut = $urut + 1;
-
-
-     echo "<tr>
-     <td style='font-size: 14px'>$urut</td>
-     <td style='font-size: 14px'>$tanggal</td>
-     <td style='font-size: 14px'>$nama_akun</td>
-     <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     
-
-    <?php echo  " </tr>";
-  }
-
-?>
-
-</tbody>
-</table>
-</div>
   </div>
-<br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Pengeluaran</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran) ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="logout">Logout</a>
         </div>
       </div>
     </div>
   </div>
-</div>
-<br>
 
+  <!-- Bootstrap core JavaScript-->
+  <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
+  <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-</div>
+  <!-- Core plugin JavaScript-->
+  <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-</div>
-<!-- End of Main Content -->
-
-<!-- Footer -->
-<footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-  <div class="container my-auto">
-    <div class="copyright text-center my-auto">
-      <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
-    </div>
-  </div>
-</footer>
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
-    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-      <a class="btn btn-primary" href="logout">Logout</a>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- Bootstrap core JavaScript-->
-<script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
-<script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="/sbadmin/js/sb-admin-2.min.js"></script>
-
-<!-- Tabel -->
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    var table = $('#example').DataTable( {
-      lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
-    } );
-
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
+  <!-- Custom scripts for all pages-->
+  <script src="/sbadmin/js/sb-admin-2.min.js"></script>
 
 </body>
 
