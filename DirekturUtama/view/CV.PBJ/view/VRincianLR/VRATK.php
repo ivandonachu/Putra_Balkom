@@ -189,10 +189,6 @@ else{
                 } ?>
    
 
-
-
-
-   
 <!-- Divider -->
 <hr class="sidebar-divider">
 

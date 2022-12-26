@@ -165,11 +165,11 @@ exit;
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
-                <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VPenjualan">Laporan Penjualan</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VPengiriman">Laporan Pengiriman</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VKeuangan">Laporan Keuangan</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VPengeluran">Laporan Pengeluaran</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaranWorkshop">Pengeluaran Workshop</a>
             </div>
         </div>
     </li>
@@ -183,13 +183,14 @@ exit;
         <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
-                <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualanL">Rekap DO Penjualan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
+                
+                <a class="collapse-item" style="font-size: 15px;" href="../VPenjualanL">Laporan Penjualan</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VPenebusanL">Laporan Penebusan</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VPengirimanL">Laporan Pengiriman</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VKeuanganL">Laporan Keuangan</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaranL">Laporan Pengeluaran</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VRekapDoPenjualanL">Rekap DO Penjualan</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../VRekapDoPembelian">Rekap DO Pembelian</a>
             </div>
         </div>
     </li>
@@ -198,15 +199,11 @@ exit;
                   echo"
                   <li class='nav-item'>
                   <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
-                  <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VLR2L'> Laba Rugi </a>
+                  <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='../VLR2L'> Laba Rugi </a>
                   </li>";
                 } ?>
    
 
-
-
-
-   
 <!-- Divider -->
 <hr class="sidebar-divider">
 
