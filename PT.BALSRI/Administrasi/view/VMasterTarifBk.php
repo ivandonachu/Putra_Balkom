@@ -337,14 +337,18 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
         </div>
 
         <div class="row">
-         <div class="col-md-6">
+         <div class="col-md-4">
              <label>KL 3</label>
             <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required="">
            </div>
 
-           <div class="col-md-6">
+           <div class="col-md-4">
              <label>KL 4</label>
             <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required="">
+           </div>   
+           <div class="col-md-4">
+             <label>KL 5</label>
+            <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required="">
            </div>                 
         </div>
 
@@ -375,6 +379,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
       <th>KL 2</th>
       <th>KL 3</th>
       <th>KL 4</th>
+      <th>KL 5</th>
       <th></th>
     </tr>
   </thead>
@@ -390,6 +395,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
       $kl2 = $data['kl2'];
       $kl3 = $data['kl3'];
       $kl4 = $data['kl4'];
+      $kl5 = $data['kl5'];
 
 
       echo "<tr>
@@ -403,6 +409,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
       <td style='font-size: 14px' align = 'center'>$kl2/L</td>
       <td style='font-size: 14px' align = 'center'>$kl3/L</td>
       <td style='font-size: 14px' align = 'center'>$kl4/L</td>
+      <td style='font-size: 14px' align = 'center'>$kl5/L</td>
 
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
@@ -468,14 +475,18 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
         </div>
 
         <div class="row">
-         <div class="col-md-6">
+         <div class="col-md-4">
              <label>KL 3</label>
             <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required=""  value="<?php echo $kl3;?>">
            </div>
 
-           <div class="col-md-6">
+           <div class="col-md-4">
              <label>KL 4</label>
             <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required=""  value="<?php echo $kl4;?>">
+           </div>
+           <div class="col-md-4">
+             <label>KL 5</label>
+            <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required=""  value="<?php echo $kl5;?>">
            </div>                 
         </div>
 
