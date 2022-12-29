@@ -259,18 +259,6 @@ else{
         
             }
             ?>
-             <?php
-            include 'koneksi.php';
-            $result = mysqli_query($koneksi, "SELECT * FROM driver");   
-
-            while ($data2 = mysqli_fetch_array($result)){
-              $data_pangakalan = $data2['nama_driver'];
-
-          
-                echo "<option> $data_pangakalan </option> ";
-           
-            }
-            ?>
           </select>
         </div>    
 
