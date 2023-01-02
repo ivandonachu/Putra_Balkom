@@ -25,7 +25,7 @@ $nama = $data['nama_karyawan'];
 
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
+$table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 
 
 ?>
