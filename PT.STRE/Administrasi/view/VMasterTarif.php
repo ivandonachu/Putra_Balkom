@@ -264,11 +264,15 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 
             <br>
             <div class="row">
-              <div class="col-md-6">
-               <label>Supplay Point</label>
+              <div class="col-md-4">
+               <label>Alamat</label>
                <input class="form-control form-control-sm" type="text" id="supply_point" name="supply_point" required="">
              </div>
-             <div class="col-md-6">
+             <div class="col-md-4">
+               <label>Pemilik</label>
+               <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik" required="">
+             </div>
+             <div class="col-md-4">
                <label>Delivey Point</label>
                <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="">
              </div>
@@ -341,7 +345,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
   <thead>
     <tr>
    
-      <th>Supply Point</th>
+      <th>Alamat</th>
+      <th>Pemilik</th>
       <th>Delivery Point</th>   
       <th>SK Pola</th>
       <th>KF</th>
@@ -357,7 +362,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 
     <?php while($data = mysqli_fetch_array($table)){
 
-      $supply_point =$data['supply_point'];
+      $alamat =$data['supply_point'];
+      $pemilik =$data['pemilik'];
       $delivery_point =$data['delivery_point'];
       $sk_pola = $data['sk_pola'];
       $kf = $data['kf'];
@@ -369,7 +375,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 
       echo "<tr>
   
-      <td style='font-size: 14px' align = 'center'>$supply_point</td>
+      <td style='font-size: 14px' align = 'center'>$alamat</td>
+      <td style='font-size: 14px' align = 'center'>$pemilik</td>
       <td style='font-size: 14px' align = 'center'>$delivery_point</td>
       <td style='font-size: 14px' align = 'center'>$sk_pola</td>
       <td style='font-size: 14px' align = 'center'>$kf</td>
@@ -403,11 +410,15 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
                 
 
                 <div class="row">
-              <div class="col-md-6">
-               <label>Supplay Point</label>
-               <input class="form-control form-control-sm" type="text" id="supply_point" name="supply_point" required=""  value="<?php echo $supply_point;?>" >
+              <div class="col-md-4">
+               <label>Alamat</label>
+               <input class="form-control form-control-sm" type="text" id="supply_point" name="supply_point" required=""  value="<?php echo $alamat;?>" >
              </div>
-             <div class="col-md-6">
+             <div class="col-md-4">
+               <label>Pemilik</label>
+               <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik" required=""  value="<?php echo $pemilik;?>" >
+             </div>
+             <div class="col-md-4">
                <label>Delivey Point</label>
                <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" disabled value="<?php echo $delivery_point;?>" >
              </div>
