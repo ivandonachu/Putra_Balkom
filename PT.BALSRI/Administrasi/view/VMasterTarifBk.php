@@ -434,62 +434,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
                 <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>"> 
                 
 
-                <div class="row">
-             <div class="col-md-6">
-               <label>Delivey Point</label>
-               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" disabled value="<?php echo $delivery_point;?>" >
-             </div>
-             <div class="col-md-6">
-             <label>pemilik</label>
-             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik" required=""  value="<?php echo $pemilik;?>" >
-           </div>
-           </div>
-
-           <br>
-
-       
-         <div class="row">
-          <div class="col-md-4">
-            <label>Jarak Tempuh</label>
-            <input class="form-control form-control-sm" type="number" id="jt" name="jt" required=""  value="<?php echo $jt;?>">
-          </div>    
-          <div class="col-md-4">
-            <label>Harga BBM</label>
-            <input class="form-control form-control-sm" type="number" id="hrg_bbm" name="hrg_bbm" required=""  value="<?php echo $hrg_bbm;?>">
-          </div>
         
-        </div>
-
-        <br>
-
-        <div class="row">
-        <div class="col-md-6">
-            <label>KL 1</label>
-            <input class="form-control form-control-sm" type="float" id="kl1" name="kl1" required=""  value="<?php echo $kl1;?>">
-          </div>                
-
-         <div class="col-md-6">
-             <label>KL 2</label>
-            <input class="form-control form-control-sm" type="float" id="kl2" name="kl2" required=""  value="<?php echo $kl2;?>">
-           </div>           
-        </div>
-
-        <div class="row">
-         <div class="col-md-4">
-             <label>KL 3</label>
-            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required=""  value="<?php echo $kl3;?>">
-           </div>
-
-           <div class="col-md-4">
-             <label>KL 4</label>
-            <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required=""  value="<?php echo $kl4;?>">
-           </div>
-           <div class="col-md-4">
-             <label>KL 5</label>
-            <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required=""  value="<?php echo $kl5;?>">
-           </div>                 
-        </div>
-
 
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary"> Ubah </button>
