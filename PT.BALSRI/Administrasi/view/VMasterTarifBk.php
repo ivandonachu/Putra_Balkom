@@ -410,7 +410,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
       <td style='font-size: 14px' align = 'center'>$kl3/L</td>
       <td style='font-size: 14px' align = 'center'>$kl4/L</td>
       <td style='font-size: 14px' align = 'center'>$kl5/L</td>
-      <td style='font-size: 12px'>"; ?>
+      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['delivery_point']; ?>">Edit</button>
 
       <!-- Form EDIT DATA -->
@@ -427,12 +428,80 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 
             <!-- Form Edit Data -->
             <div class="modal-body">
-              <form action="../proses/edit_master_tarif_bk" enctype="multipart/form-data" method="POST">
+              <form action="../proses/edit_master_tarif" enctype="multipart/form-data" method="POST">
 
                 <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>"> 
                 
 
-        
+                <div class="row">
+              <div class="col-md-6">
+               <label>Supplay Point</label>
+               <input class="form-control form-control-sm" type="text" id="supply_point" name="supply_point" required=""  value="<?php echo $supply_point;?>" >
+             </div>
+             <div class="col-md-6">
+               <label>Delivey Point</label>
+               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" disabled value="<?php echo $delivery_point;?>" >
+             </div>
+           </div>
+
+           <br>
+
+           <div class="row">
+            <div class="col-md-6">
+             <label>Cluster</label>
+             <input class="form-control form-control-sm" type="text" id="cluster" name="cluster" required=""  value="<?php echo $cluster;?>" >
+           </div>
+
+           <div class="col-md-6">
+             <label>Alamat</label>
+             <textarea id = "alamat" name="alamat" style="width: 300px;"> <?php echo $alamat;?></textarea>
+           </div>            
+         </div>
+
+         <br>
+
+         <div class="row">
+          <div class="col-md-4">
+            <label>Jarak Tempuh</label>
+            <input class="form-control form-control-sm" type="number" id="jt" name="jt" required=""  value="<?php echo $jt;?>">
+          </div>    
+          <div class="col-md-4">
+            <label>Harga BBM</label>
+            <input class="form-control form-control-sm" type="number" id="hrg_bbm" name="hrg_bbm" required=""  value="<?php echo $hrg_bbm;?>">
+          </div>
+          <div class="col-md-4">
+            <label>KL 1</label>
+            <input class="form-control form-control-sm" type="float" id="kl1" name="kl1" required=""  value="<?php echo $kl1;?>">
+          </div>                
+
+        </div>
+
+        <br>
+
+        <div class="row">
+         <div class="col-md-6">
+             <label>KL 2</label>
+            <input class="form-control form-control-sm" type="float" id="kl2" name="kl2" required=""  value="<?php echo $kl2;?>">
+           </div>
+
+           <div class="col-md-6">
+             <label>KL 3</label>
+            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required=""  value="<?php echo $kl3;?>">
+           </div>                 
+        </div>
+
+        <div class="row">
+         <div class="col-md-6">
+             <label>KL 4</label>
+            <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required=""  value="<?php echo $kl4;?>">
+           </div>
+
+           <div class="col-md-6">
+             <label>KL 5</label>
+            <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required=""  value="<?php echo $kl5;?>">
+           </div>                 
+        </div>
+
 
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary"> Ubah </button>
@@ -457,7 +526,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
     </div>
 
     <div class="modal-body">
-      <form action="../proses/hapus_master_tarif_bk" method="POST">
+      <form action="../proses/hapus_master_tarif" method="POST">
         <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>">
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             
