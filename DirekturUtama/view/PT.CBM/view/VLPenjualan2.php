@@ -2016,7 +2016,7 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
       $total = $total + $jumlah; 
-
+        // Bikin Ulang Code Periksa kembali
       if($pembayaran == 'Cash' OR $pembayaran =='Deposit' ){
         $total_cash = $total_cash + $jumlah;
       }
@@ -2026,64 +2026,69 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       else if($pembayaran == 'Transfer' ){
         $total_transfer = $total_transfer + $jumlah;
       }
+      if($nama_akun == 'Pendapatan Lain-lain Diluar Usaha' ){
 
-      if ($pembayaran == 'Cash' OR $pembayaran =='Deposit') {
-        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
-          $L03_cash = $L03_cash + $jumlah;
-        }
-        elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
-          $L12_cash = $L12_cash + $jumlah;
-        }
-        elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
-          $B05_cash = $B05_cash + $jumlah;
-        }
-        elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
-          $B12_cash = $B12_cash + $jumlah;
-        }
-      }
-       else if ($pembayaran == 'Bon') {
-            $sql_bon = mysqli_query($koneksicbm, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
-            $data_bon = mysqli_fetch_array($sql_bon);
-            $jumlah_bon = $data_bon['jumlah_bayar'];
-        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
-          $L03_cash = $L03_cash + $jumlah_bon;
-        }
-        elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
-          $L12_cash = $L12_cash + $jumlah_bon;
-        }
-        elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
-          $B05_cash = $B05_cash + $jumlah_bon;
-        }
-        elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
-          $B12_cash = $B12_cash + $jumlah_bon;
-        }
-        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
-            $L03 = $L03 + $jumlah;
-          }
-          elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
-            $L12 = $L12 + $jumlah;
-          }
-          elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
-            $B05 = $B05 + $jumlah;
-          }
-          elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
-            $B12 = $B12 + $jumlah;
-          }
       }
       else{
-        if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
-          $L03 = $L03 + $jumlah;
-        }
-        elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
-          $L12 = $L12 + $jumlah;
-        }
-        elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
-          $B05 = $B05 + $jumlah;
-        }
-        elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
-          $B12 = $B12 + $jumlah;
-        }
+        if ($pembayaran == 'Cash' OR $pembayaran =='Deposit') {
+            if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+              $L03_cash = $L03_cash + $jumlah;
+            }
+            elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+              $L12_cash = $L12_cash + $jumlah;
+            }
+            elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+              $B05_cash = $B05_cash + $jumlah;
+            }
+            elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+              $B12_cash = $B12_cash + $jumlah;
+            }
+          }
+           else if ($pembayaran == 'Bon') {
+                $sql_bon = mysqli_query($koneksicbm, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
+                $data_bon = mysqli_fetch_array($sql_bon);
+                $jumlah_bon = $data_bon['jumlah_bayar'];
+            if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+              $L03_cash = $L03_cash + $jumlah_bon;
+            }
+            elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+              $L12_cash = $L12_cash + $jumlah_bon;
+            }
+            elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+              $B05_cash = $B05_cash + $jumlah_bon;
+            }
+            elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+              $B12_cash = $B12_cash + $jumlah_bon;
+            }
+            if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+                $L03 = $L03 + $jumlah;
+              }
+              elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+                $L12 = $L12 + $jumlah;
+              }
+              elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+                $B05 = $B05 + $jumlah;
+              }
+              elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+                $B12 = $B12 + $jumlah;
+              }
+          }
+          else{
+            if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
+              $L03 = $L03 + $jumlah;
+            }
+            elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+              $L12 = $L12 + $jumlah;
+            }
+            elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+              $B05 = $B05 + $jumlah;
+            }
+            elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+              $B12 = $B12 + $jumlah;
+            }
+          }
       }
+     
 
       $nama_baja1 = "Pembayaran Selain Penjualan";
 

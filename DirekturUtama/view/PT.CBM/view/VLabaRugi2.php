@@ -72,7 +72,7 @@ if (!isset($data_pendapatan_bajakosong['penjualan_bajakosong'])) {
     $total_pendapatan_bajakosong = 0;
 }
 
-$total_pendapatan = $total_pendapatan_refill + $total_pendapatan_bajaisi + $total_pendapatan_bajakosong;
+$total_pendapatan = $total_pendapatan_refill;
 
 
 //HARGA POKOK PENJUALAN
@@ -351,7 +351,7 @@ if (!isset($data_pendapatan_bajakosong['penjualan_bajakosong'])) {
     $total_pendapatan_bajakosong = 0;
 }
 
-$total_pendapatan = $total_pendapatan_refill + $total_pendapatan_bajaisi + $total_pendapatan_bajakosong;
+$total_pendapatan = $total_pendapatan_refill ;
 
 
 //HARGA POKOK PENJUALAN
