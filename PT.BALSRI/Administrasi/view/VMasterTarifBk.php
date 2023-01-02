@@ -40,7 +40,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Master Tarif</title>
+  <title>Master Tarif Bengkulu</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -66,8 +66,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+     <!-- Sidebar -->
+     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -222,7 +222,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VMasterTarifBk'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif Bangka</h5></a>"; ?>
+      <?php echo "<a href='VMasterTarif'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif Bengkulu</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -232,7 +232,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
-
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -293,60 +292,73 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_master_tarif_bk' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_master_tarif' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
             <div class="row">
+              <div class="col-md-6">
+               <label>Supplay Point</label>
+               <input class="form-control form-control-sm" type="text" id="supply_point" name="supply_point" required="">
+             </div>
              <div class="col-md-6">
                <label>Delivey Point</label>
                <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="">
              </div>
-             <div class="col-md-6">
-             <label>Pemilik</label>
-             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik" required="">
-           </div>
            </div>
 
            <br>
 
+           <div class="row">
+            <div class="col-md-6">
+             <label>Cluster</label>
+             <input class="form-control form-control-sm" type="text" id="cluster" name="cluster" required="">
+           </div>
+
+           <div class="col-md-6">
+             <label>Alamat</label>
+             <textarea id = "alamat" name="alamat" style="width: 300px;"></textarea>
+           </div>            
+         </div>
+
+         <br>
 
          <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label>Jarak Tempuh</label>
             <input class="form-control form-control-sm" type="number" id="jt" name="jt" required="">
           </div>    
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label>Harga BBM</label>
             <input class="form-control form-control-sm" type="number" id="hrg_bbm" name="hrg_bbm" required="">
           </div>
-            
+          <div class="col-md-4">
+            <label>KL 1</label>
+            <input class="form-control form-control-sm" type="float" id="kl1" name="kl1" required="">
+          </div>                
+
         </div>
 
         <br>
 
         <div class="row">
          <div class="col-md-6">
-             <label>KL 1</label>
-            <input class="form-control form-control-sm" type="float" id="kl1" name="kl1" required="">
+             <label>KL 2</label>
+            <input class="form-control form-control-sm" type="float" id="kl2" name="kl2" required="">
            </div>
 
            <div class="col-md-6">
-             <label>KL 2</label>
-            <input class="form-control form-control-sm" type="float" id="kl2" name="kl2" required="">
+             <label>KL 3</label>
+            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required="">
            </div>                 
         </div>
 
         <div class="row">
-         <div class="col-md-4">
-             <label>KL 3</label>
-            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required="">
-           </div>
-
-           <div class="col-md-4">
+         <div class="col-md-6">
              <label>KL 4</label>
             <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required="">
-           </div>   
-           <div class="col-md-4">
+           </div>
+
+           <div class="col-md-6">
              <label>KL 5</label>
             <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required="">
            </div>                 
@@ -371,7 +383,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Delivery Point</th>   
+   
+    <th>Delivery Point</th>   
       <th>Pemilik</th>
       <th>JT</th>
       <th>Harga BBM</th>
@@ -387,20 +400,18 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 
     <?php while($data = mysqli_fetch_array($table)){
 
-      $delivery_point =$data['delivery_point'];
-      $pemilik = $data['pemilik'];
-      $jt = $data['jt'];
-      $hrg_bbm = $data['hrg_bbm'];
-      $kl1 = $data['kl1'];
-      $kl2 = $data['kl2'];
-      $kl3 = $data['kl3'];
-      $kl4 = $data['kl4'];
-      $kl5 = $data['kl5'];
-
+$delivery_point =$data['delivery_point'];
+$pemilik = $data['pemilik'];
+$jt = $data['jt'];
+$hrg_bbm = $data['hrg_bbm'];
+$kl1 = $data['kl1'];
+$kl2 = $data['kl2'];
+$kl3 = $data['kl3'];
+$kl4 = $data['kl4'];
+$kl5 = $data['kl5'];
 
       echo "<tr>
   
-
       <td style='font-size: 14px' align = 'center'>$delivery_point</td>
       <td style='font-size: 14px' align = 'center'>$pemilik</td>
       <td style='font-size: 14px' align = 'center'>$jt/KM</td>
@@ -410,6 +421,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
       <td style='font-size: 14px' align = 'center'>$kl3/L</td>
       <td style='font-size: 14px' align = 'center'>$kl4/L</td>
       <td style='font-size: 14px' align = 'center'>$kl5/L</td>
+
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['delivery_point']; ?>">Edit</button>
