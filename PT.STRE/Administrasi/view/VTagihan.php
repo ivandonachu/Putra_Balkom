@@ -433,6 +433,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <th>SO</th>
                   <th>LO</th>
                   <th>Delivery Point</th>
+                  <th>Pemilik</th>
+                  <th>Alamat</th>
                   <th>Jumlah Pemesanan</th>
                   <th>Jarak Tempuh</th>
                   <th>AMT</th>
@@ -460,6 +462,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $tanggal = $data['tanggal'];
                   $so = $data['so'];
                   $lo = $data['lo'];
+                  $alamat = $data['supply_point'];
+                  $pemilik = $data['pemilik'];
                   $delivery_point = $data['delivery_point'];
                   $jumlah_pesanan = $data['jumlah_pesanan'];
                   $jt = $data['jt'];
@@ -505,6 +509,8 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$so</td>
       <td style='font-size: 14px'>$lo</td>
       <td style='font-size: 14px'>$delivery_point</td>
+      <td style='font-size: 14px'>$pemilik</td>
+      <td style='font-size: 14px'>$alamat</td>
       <td style='font-size: 14px'>$total_pesanan/L</td>
       <td style='font-size: 14px'>$jt</td>
       <td style='font-size: 14px'>$amt</td>
