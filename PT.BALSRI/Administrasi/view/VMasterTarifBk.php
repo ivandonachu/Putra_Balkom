@@ -270,7 +270,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-   <div class="row">
+  <div class="row">
     <div class="col-md-10">
 
     </div>
@@ -292,73 +292,60 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_master_tarif' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_master_tarif_bk' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
             <div class="row">
-              <div class="col-md-6">
-               <label>Supplay Point</label>
-               <input class="form-control form-control-sm" type="text" id="supply_point" name="supply_point" required="">
-             </div>
              <div class="col-md-6">
                <label>Delivey Point</label>
                <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="">
              </div>
+             <div class="col-md-6">
+             <label>Pemilik</label>
+             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik" required="">
+           </div>
            </div>
 
            <br>
 
-           <div class="row">
-            <div class="col-md-6">
-             <label>Cluster</label>
-             <input class="form-control form-control-sm" type="text" id="cluster" name="cluster" required="">
-           </div>
-
-           <div class="col-md-6">
-             <label>Alamat</label>
-             <textarea id = "alamat" name="alamat" style="width: 300px;"></textarea>
-           </div>            
-         </div>
-
-         <br>
 
          <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <label>Jarak Tempuh</label>
             <input class="form-control form-control-sm" type="number" id="jt" name="jt" required="">
           </div>    
-          <div class="col-md-4">
+          <div class="col-md-6">
             <label>Harga BBM</label>
             <input class="form-control form-control-sm" type="number" id="hrg_bbm" name="hrg_bbm" required="">
           </div>
-          <div class="col-md-4">
-            <label>KL 1</label>
-            <input class="form-control form-control-sm" type="float" id="kl1" name="kl1" required="">
-          </div>                
-
+            
         </div>
 
         <br>
 
         <div class="row">
          <div class="col-md-6">
-             <label>KL 2</label>
-            <input class="form-control form-control-sm" type="float" id="kl2" name="kl2" required="">
+             <label>KL 1</label>
+            <input class="form-control form-control-sm" type="float" id="kl1" name="kl1" required="">
            </div>
 
            <div class="col-md-6">
-             <label>KL 3</label>
-            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required="">
+             <label>KL 2</label>
+            <input class="form-control form-control-sm" type="float" id="kl2" name="kl2" required="">
            </div>                 
         </div>
 
         <div class="row">
-         <div class="col-md-6">
-             <label>KL 4</label>
-            <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required="">
+         <div class="col-md-4">
+             <label>KL 3</label>
+            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required="">
            </div>
 
-           <div class="col-md-6">
+           <div class="col-md-4">
+             <label>KL 4</label>
+            <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required="">
+           </div>   
+           <div class="col-md-4">
              <label>KL 5</label>
             <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required="">
            </div>                 
