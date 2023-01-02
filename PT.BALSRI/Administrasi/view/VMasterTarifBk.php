@@ -25,7 +25,7 @@ $nama = $data['nama_karyawan'];
 
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
+$table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
 
 
 ?>
@@ -40,7 +40,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Master Tarif Bengkulu</title>
+  <title>Master Tarif</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -222,7 +222,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VMasterTarif'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif Bengkulu</h5></a>"; ?>
+      <?php echo "<a href='VMasterTarif'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif Lampung</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -384,8 +384,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
   <thead>
     <tr>
    
-    <th>Delivery Point</th>   
-      <th>Pemilik</th>
+      <th>Supply Point</th>
+      <th>Delivery Point</th>   
+      <th>Cluster</th>
+      <th>Alamat</th>
       <th>JT</th>
       <th>Harga BBM</th>
       <th>KL 1</th>
@@ -400,20 +402,24 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 
     <?php while($data = mysqli_fetch_array($table)){
 
-$delivery_point =$data['delivery_point'];
-$pemilik = $data['pemilik'];
-$jt = $data['jt'];
-$hrg_bbm = $data['hrg_bbm'];
-$kl1 = $data['kl1'];
-$kl2 = $data['kl2'];
-$kl3 = $data['kl3'];
-$kl4 = $data['kl4'];
-$kl5 = $data['kl5'];
+      $supply_point =$data['supply_point'];
+      $delivery_point =$data['delivery_point'];
+      $cluster = $data['cluster'];
+      $alamat = $data['alamat'];
+      $jt = $data['jt'];
+      $hrg_bbm = $data['hrg_bbm'];
+      $kl1 = $data['kl1'];
+      $kl2 = $data['kl2'];
+      $kl3 = $data['kl3'];
+      $kl4 = $data['kl4'];
+      $kl5 = $data['kl5'];
 
       echo "<tr>
   
+      <td style='font-size: 14px' align = 'center'>$supply_point</td>
       <td style='font-size: 14px' align = 'center'>$delivery_point</td>
-      <td style='font-size: 14px' align = 'center'>$pemilik</td>
+      <td style='font-size: 14px' align = 'center'>$cluster</td>
+      <td style='font-size: 14px' align = 'center'>$alamat</td>
       <td style='font-size: 14px' align = 'center'>$jt/KM</td>
       <td style='font-size: 14px' align = 'center'>$hrg_bbm</td>
       <td style='font-size: 14px' align = 'center'>$kl1/L</td>
@@ -421,7 +427,6 @@ $kl5 = $data['kl5'];
       <td style='font-size: 14px' align = 'center'>$kl3/L</td>
       <td style='font-size: 14px' align = 'center'>$kl4/L</td>
       <td style='font-size: 14px' align = 'center'>$kl5/L</td>
-
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['delivery_point']; ?>">Edit</button>
