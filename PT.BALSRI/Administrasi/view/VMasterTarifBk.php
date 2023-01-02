@@ -410,9 +410,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
       <td style='font-size: 14px' align = 'center'>$kl3/L</td>
       <td style='font-size: 14px' align = 'center'>$kl4/L</td>
       <td style='font-size: 14px' align = 'center'>$kl5/L</td>
-
-      "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
+      <td style='font-size: 12px'>"; ?>
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['delivery_point']; ?>">Edit</button>
 
       <!-- Form EDIT DATA -->
