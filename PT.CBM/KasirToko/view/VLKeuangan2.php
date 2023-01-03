@@ -64,7 +64,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $data_total_pengeluaran = 0;
     }
     
-    $data_total_pengeluaran = $data_total_pengeluaran + $data_total_bon;
+    $data_total_pengeluaran = $data_total_pengeluaran;
     
     $jumlah_bersih = $data_total_pendapatan + $data_total_piutang - $data_total_pengeluaran;
     
