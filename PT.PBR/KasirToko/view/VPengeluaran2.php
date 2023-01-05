@@ -321,9 +321,7 @@ else{
           <div class="col-md-6">
            <label>Akun</label>
            <select id="akun" name="akun" class="form-control ">
-            <option>Prive</option>
             <option>Transport / Perjalanan Dinas</option>
-            <option>Biaya Penjualan & Pemasaran</option>
             <option>Biaya Usaha Lainnya</option>
             <option>Biaya Perbaikan Kendaraan</option>
             <option>Alat Tulis Kantor</option>
@@ -485,9 +483,7 @@ else{
   <label>Akun</label>
   <select id="akun" name="akun" class="form-control">
     <?php $dataSelect = $data['nama_akun']; ?>
-    <option <?php echo ($dataSelect == 'Prive') ? "selected": "" ?> >Prive</option>
     <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
-    <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
     <option <?php echo ($dataSelect == 'Biaya Usaha Lainnyar') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
     <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
     <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
