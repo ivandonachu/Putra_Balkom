@@ -112,6 +112,24 @@ elseif ($akun == 'Setor Pendapatan') {
     $kode_akun = '1-111';
 
 }
+elseif ($akun == 'Uang Makan') {
+	$kode_akun = '5-511';
+
+}
+elseif ($akun == 'Uang Antar Gas') {
+	$kode_akun = '5-512';
+
+}
+elseif ($akun == 'Uang Bongkar Ulang') {
+	$kode_akun = '5-513';
+
+}
+elseif ($akun == 'Uang Lembur') {
+	$kode_akun = '5-514';
+
+}
+
+
 
 	if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE riwayat_pengeluaran SET tanggal = '$tanggal',referensi = '$referensi' , kode_akun = '$kode_akun' , keterangan = '$keterangan' ,jumlah_pengeluaran = '$jumlah'  WHERE no_pengeluaran = 

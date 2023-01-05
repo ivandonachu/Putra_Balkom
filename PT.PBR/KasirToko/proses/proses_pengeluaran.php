@@ -215,5 +215,41 @@ else if ( $nama_file != "" ) {
 				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
 	}
+	elseif ($akun == 'Uang Makan') {
+		$kode_akun = '5-511';
+		//riwayat pengeluran
+		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
+
+		if ($query != "") {
+				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+	}
+	elseif ($akun == 'Uang Antar Gas') {
+		$kode_akun = '5-512';
+		//riwayat pengeluran
+		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
+
+		if ($query != "") {
+				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+	}
+	elseif ($akun == 'Uang Bongkar Ulang') {
+		$kode_akun = '5-513';
+		//riwayat pengeluran
+		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
+
+		if ($query != "") {
+				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+	}
+	elseif ($akun == 'Uang Lembur') {
+		$kode_akun = '5-514';
+		//riwayat pengeluran
+		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
+
+		if ($query != "") {
+				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+	}
 
 	
