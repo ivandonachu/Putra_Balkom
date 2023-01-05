@@ -47,6 +47,9 @@ if ($tanggal_awal == $tanggal_akhir) {
   $total_tagihan = $data2['total_tagihan'];
   $total_jt = $data2['total_jt'];
   $total_rit = $data2['total_rit'];
+
+  $table3 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit , c.no_polisi FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point INNER JOIN kendaraan c ON c.no=a.mt
+                                                                                                                                               WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY c.no_polisi");
 }
 
 ?>
@@ -472,7 +475,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         </tbody>
         </table>
-        </div>
+       
         <br>
         <div class="row" style="margin-right: 20px; margin-left: 20px;">
           <div class="col-xl-3 col-md-6 mb-4">
@@ -543,6 +546,49 @@ if ($tanggal_awal == $tanggal_akhir) {
         <br>
         <br>
 
+
+
+            <!-- Tabel -->
+            <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+              <thead>
+                <tr>
+                  <th>No Polisi</th>
+                  <th>Total Tagihan</th>
+                  <th>Total KM</th>
+                  <th>Total Pesanan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+      
+                $urut = 0;
+
+                ?>
+
+                <?php while ($data = mysqli_fetch_array($table)) {
+                  $no_polisi = $data['no_polisi'];
+                  $total_tagihan = $data['total_tagihan'];
+                  $total_jt = $data['total_jt'];
+                  $total_rit = $data['total_rit'];
+                  $total_pesanan = $total_rit*8000;
+
+
+                  echo "<tr>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$total_tagihan</td>
+      <td style='font-size: 14px'>$total_jt</td>
+      <td style='font-size: 14px'>$total_rit</td>
+      <td style='font-size: 14px'>$total_pesanan*8000</td>
+   
+      </tr>";
+                }
+        ?>
+
+        </tbody>
+        </table>
+        
+        </div>
+        <br>
       </div>
     </div>
     <!-- End of Main Content -->
