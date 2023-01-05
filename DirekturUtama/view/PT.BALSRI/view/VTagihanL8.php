@@ -46,10 +46,10 @@ if ($tanggal_awal == $tanggal_akhir) {
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan = $data2['total_tagihan'];
   $total_jt = $data2['total_jt'];
-  $total_rit = $data2['total_rit'];
+  $total_rit = $data2['total_rit']; 
 
-  $table3 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit , c.no_polisi FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point INNER JOIN kendaraan c ON c.no=a.mt
-                                                                                                                                               WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY c.no_polisi");
+  $table3 = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit, mt  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point 
+                                                                                                                                               WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt");
 }
 
 ?>
@@ -565,8 +565,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                 ?>
 
-                <?php while ($data = mysqli_fetch_array($table)) {
-                  $no_polisi = $data['no_polisi'];
+                <?php while ($data = mysqli_fetch_array($table3)) {
+               $mt = $data['mt'];
                   $total_tagihan = $data['total_tagihan'];
                   $total_jt = $data['total_jt'];
                   $total_rit = $data['total_rit'];
@@ -574,11 +574,11 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                   echo "<tr>
-      <td style='font-size: 14px'>$no_polisi</td>
-      <td style='font-size: 14px'>$total_tagihan</td>
-      <td style='font-size: 14px'>$total_jt</td>
-      <td style='font-size: 14px'>$total_rit</td>
-      <td style='font-size: 14px'>$total_pesanan*8000</td>
+                  <td style='font-size: 14px'>$mt</td>
+                  <td style='font-size: 14px'>$total_tagihan</td>
+                  <td style='font-size: 14px'>$total_jt</td>
+                  <td style='font-size: 14px'>$total_rit</td>
+                  <td style='font-size: 14px'>$total_pesanan</td>
    
       </tr>";
                 }
