@@ -330,6 +330,10 @@ else{
             <option>Listrik & Telepon</option>
             <option>Biaya Kantor</option>
             <option>Biaya Konsumsi</option>
+            <option>Uang Makan</option>
+            <option>Uang Antar Gas</option>
+            <option>Uang Bongkar Ulang</option>
+            <option>Uang Lembur</option>
           </select>
         </div>
       </div>
@@ -491,6 +495,10 @@ else{
      <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
      <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
      <option <?php echo ($dataSelect == 'Prive') ? "selected": "" ?> >Prive</option>
+     <option <?php echo ($dataSelect == 'Uang Makan') ? "selected": "" ?> >Uang Makan</option>
+     <option <?php echo ($dataSelect == 'Uang Antar Gas') ? "selected": "" ?> >Uang Antar Gas</option>
+     <option <?php echo ($dataSelect == 'Uang Bongkar Ulang') ? "selected": "" ?> >Uang Bongkar Ulang</option>
+     <option <?php echo ($dataSelect == 'Uang Lembur') ? "selected": "" ?> >Uang Lembur</option>
 
   </select>
 
