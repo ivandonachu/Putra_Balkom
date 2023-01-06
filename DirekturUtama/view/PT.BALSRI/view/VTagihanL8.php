@@ -554,7 +554,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <tr>
                   <th>No Polisi</th>
                   <th>Total Tagihan</th>
-                  <th>Total KM</th>
+                  <th>Total jt</th>
+                  <th>Total rit</th>
                   <th>Total Pesanan</th>
                 </tr>
               </thead>
