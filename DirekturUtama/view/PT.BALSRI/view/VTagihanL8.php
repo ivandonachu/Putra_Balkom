@@ -567,7 +567,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 ?>
 
                 <?php while ($data = mysqli_fetch_array($table3)) {
-               $mt = $data['mt'];
+                  $mt = $data['mt'];
                   $total_tagihan = $data['total_tagihan'];
                   $total_jt = $data['total_jt'];
                   $total_rit = $data['total_rit'];
