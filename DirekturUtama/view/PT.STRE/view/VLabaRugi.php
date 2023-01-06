@@ -521,7 +521,7 @@ else{
            
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
-                <td class="thick-line"></td>VRincianLRBKU
+                <td class="thick-line"></td>
                 <td class="no-line text-left"><?= formatuang($total_laba_kotor); ?> </td>
                 <td class="no-line text-left"><?= formatuang(0); ?> </td>
                 <td class="thick-line"></td>
