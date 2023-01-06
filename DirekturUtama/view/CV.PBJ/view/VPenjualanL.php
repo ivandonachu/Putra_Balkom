@@ -923,7 +923,7 @@ Logout
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Seluruh Uang</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_bopct1 + $uang_bopct1_bon + $uang_bpcc + $uang_bpcc_bon + $uang_copct1 + $uang_copct1_bon + $uang_cpcc + $uang_cpcc_bon + $uang_sakpcc + $uang_bpcc_bon) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_bopct1 + $uang_bopct1_bon + $uang_bpcc + $uang_bpcc_bon + $uang_copct1 + $uang_copct1_bon + $uang_cpcc + $uang_cpcc_bon + $uang_sakpcc + $uang_bpcc_bon + $uang_sakpcc_bon) ?></div>
           </div>
           <div class="col-auto">
              <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
