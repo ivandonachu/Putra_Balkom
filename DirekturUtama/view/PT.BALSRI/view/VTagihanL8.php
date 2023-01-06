@@ -576,10 +576,10 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                   echo "<tr>
                   <td style='font-size: 14px'>$mt</td>
-                  <td style='font-size: 14px'>$total_tagihan</td>
-                  <td style='font-size: 14px'>$total_jt</td>
-                  <td style='font-size: 14px'>$total_rit</td>
-                  <td style='font-size: 14px'>$total_pesanan</td>
+                  <td style='font-size: 14px'>"; ?> <?= formatuang($total_tagihan); ?> <?php echo "</td>
+                  <td style='font-size: 14px'>$total_jt / Km</td>
+                  <td style='font-size: 14px'>$total_rit / rit </td>
+                  <td style='font-size: 14px'>$total_pesanan / Liter</td>
    
       </tr>";
                 }
