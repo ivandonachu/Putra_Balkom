@@ -178,6 +178,52 @@ if (!isset($data_pengeluaran_listrik_tk['total_listrik_tk'])) {
 
 $total_pengeluaran_listrik =  $total_pengeluaran_listrik_tk;
 
+//Biaya konsumsi
+$table14x = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_konsumsi_tk FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-560' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND kode_akun = '5-560' AND referensi = 'ME'");
+$data_pengeluaran_konsumsi_tk = mysqli_fetch_array($table14x);
+$total_pengeluaran_konsumsi_tk = $data_pengeluaran_konsumsi_tk['total_konsumsi_tk'];
+if (!isset($data_pengeluaran_konsumsi_tk['total_konsumsi_tk'])) {
+    $total_pengeluaran_konsumsi_tk = 0;
+}
+
+$total_pengeluaran_konsumsi =  $total_pengeluaran_konsumsi_tk;
+
+//uang makan
+$table18 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_makan FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal'AND kode_akun = '5-511' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND kode_akun = '5-511' AND referensi = 'ME'");
+$data_uang_makan = mysqli_fetch_array($table18);
+$total_uang_makan = $data_uang_makan['uang_makan'];
+if (!isset($data_uang_makan['uang_makan'])) {
+    $total_uang_makan = 0;
+}
+
+
+
+//uang antar gas
+$table19 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_antar_gas FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-512' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND kode_akun = '5-512' AND referensi = 'ME'");
+$data_uang_antar_gas = mysqli_fetch_array($table19);
+$total_uang_anter_gas = $data_uang_antar_gas['uang_antar_gas'];
+if (!isset($data_uang_antar_gas['uang_antar_gas'])) {
+    $total_uang_anter_gas = 0;
+}
+
+
+
+//uang bongkar ulang
+$table110 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_bongkar_ulang FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-513' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND kode_akun = '5-513' AND referensi = 'ME'");
+$data_uang_bongkar_ulang = mysqli_fetch_array($table110);
+$total_uang_bongkar_ulang = $data_uang_bongkar_ulang['uang_bongkar_ulang'];
+if (!isset($data_uang_bongkar_ulang['uang_bongkar_ulang'])) {
+    $total_uang_bongkar_ulang = 0;
+}
+
+
+//uang lembur
+$table111 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_lembur FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-560' AND referensi = 'MES' OR tanggal = '$tanggal_awal'AND kode_akun = '5-560' AND referensi = 'ME'");
+$data_uang_lembur = mysqli_fetch_array($table111);
+$total_uang_lembur = $data_uang_lembur['uang_lembur'];
+if (!isset($data_uang_lembur['uang_lembur'])) {
+    $total_uang_lembur = 0;
+}
 
 
 //Biaya Penjualan dan Pemasaran
@@ -241,7 +287,7 @@ if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 }
@@ -403,6 +449,42 @@ if (!isset($data_pengeluaran_konsumsi_tk['total_konsumsi_tk'])) {
 $total_pengeluaran_konsumsi =  $total_pengeluaran_konsumsi_tk;
 
 
+//uang makan
+$table18 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_makan FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-511' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-511' AND referensi = 'ME'");
+$data_uang_makan = mysqli_fetch_array($table18);
+$total_uang_makan = $data_uang_makan['uang_makan'];
+if (!isset($data_uang_makan['uang_makan'])) {
+    $total_uang_makan = 0;
+}
+
+
+
+//uang antar gas
+$table19 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_antar_gas FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-512' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-512' AND referensi = 'ME'");
+$data_uang_antar_gas = mysqli_fetch_array($table19);
+$total_uang_anter_gas = $data_uang_antar_gas['uang_antar_gas'];
+if (!isset($data_uang_antar_gas['uang_antar_gas'])) {
+    $total_uang_anter_gas = 0;
+}
+
+
+
+//uang bongkar ulang
+$table110 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_bongkar_ulang FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-513' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-513' AND referensi = 'ME'");
+$data_uang_bongkar_ulang = mysqli_fetch_array($table110);
+$total_uang_bongkar_ulang = $data_uang_bongkar_ulang['uang_bongkar_ulang'];
+if (!isset($data_uang_bongkar_ulang['uang_bongkar_ulang'])) {
+    $total_uang_bongkar_ulang = 0;
+}
+
+
+//uang lembur
+$table111 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_lembur FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-560' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-560' AND referensi = 'ME'");
+$data_uang_lembur = mysqli_fetch_array($table111);
+$total_uang_lembur = $data_uang_lembur['uang_lembur'];
+if (!isset($data_uang_lembur['uang_lembur'])) {
+    $total_uang_lembur = 0;
+}
 
 //Biaya Penjualan dan Pemasaran
 
@@ -473,7 +555,7 @@ if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 }
@@ -915,6 +997,34 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_gaji_karyawan); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLRMES/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-511</td>
+                                    <td class="text-left">Uang Makan</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_uang_makan); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRUangMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-512</td>
+                                    <td class="text-left">Uang Antar Gas</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_uang_anter_gas); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRAntarGas?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-513</td>
+                                    <td class="text-left">Uang Bongkar Ulang</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_uang_bongkar_ulang); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRBongkarUlang?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-514</td>
+                                    <td class="text-left">Uang Lembur</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_uang_lembur); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRLembur?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>3-500</td>
