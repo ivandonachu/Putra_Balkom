@@ -469,7 +469,8 @@ else{
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto">
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -725,7 +726,6 @@ else{
   </div>
 </div>
 </div>
-</div>
 
 
 <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_tagihan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
@@ -766,6 +766,7 @@ else{
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-3 col-md-6 mb-4">
