@@ -515,7 +515,8 @@ else{
 </div>
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center';>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -778,6 +779,7 @@ else{
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
 
