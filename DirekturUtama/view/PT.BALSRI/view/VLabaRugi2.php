@@ -116,7 +116,7 @@ else{
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
     $dexlite = $data['dexlite'];
-    $total_dexlite = ($uang_jalan - ($jt_gps*625));
+    $total_dexlite = $total_dexlite + ($uang_jalan - ($jt_gps*625));
     $total_bbm = $total_bbm + $dexlite;
     
 }
@@ -133,7 +133,7 @@ else{
   while($data = mysqli_fetch_array($table222_spbu)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
-    $total_dexlite_spbu = ($uang_jalan - ($jt_gps*625));
+    $total_dexlite_spbu = $total_dexlite_spbu + ($uang_jalan - ($jt_gps*625));
     $total_bbm_spbu = $total_bbm_spbu + $dexlite;
     
 }
