@@ -905,7 +905,7 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
                 <td class="thick-line"></td>
             </tr>
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td><strong>LABA BERSIH BBM</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
