@@ -623,7 +623,7 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
                 <td>5-581</td>
                 <td class="text-left">Uang BBM</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($uang_bbm); ?></td>
+                <td class="text-left"><?= formatuang($uang_bbm_spbu); ?></td>
                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRDexliteSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             uang_bbm
