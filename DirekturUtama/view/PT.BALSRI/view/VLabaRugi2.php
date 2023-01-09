@@ -235,7 +235,7 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
 
 }
     $total_laba_kotor = $total_tagihan + $total_tagihan_spbu;
-    $total_seluruh_bbm =  $total_bbm + $total_bbm_spbu;
+    $total_seluruh_bbm =  $uang_bbm + $uang_bbm_spbu;
     $total_seluruh_dexlite = $total_dexlite + $total_dexlite_spbu;
     $selisih_bbm =  $total_seluruh_dexlite - $total_seluruh_bbm;
     $sisa_oprasional = $jumlah_potongan - ($jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport );
