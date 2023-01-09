@@ -96,7 +96,6 @@ else{
 }
 $uang_bbm = $total_bbm * 10000;
  
- $total_um_spbu= $data2_spbu['uang_makan'];
   $total_dexlite_spbu = 0;
   $total_bbm_spbu = 0;
   $table222_spbu = mysqli_query($koneksibalsri, "SELECT jt_gps, uj, dexlite FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND b.no_polisi = '$no_polisilr'");
