@@ -284,12 +284,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
             <div class="col-md-6">
              <label>Koefisien Faktor</label>
              <input class="form-control form-control-sm" type="text" id="kf" name="kf" required="">
-           </div>
-
-           <div class="col-md-6">
-             <label>SK Pola</label>
-             <input class="form-control form-control-sm" type="text" id="sk_pola" name="sk_pola" required="">
-           </div>            
+           </div>       
          </div>
 
          <br>
@@ -348,7 +343,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
       <th>Alamat</th>
       <th>Pemilik</th>
       <th>Delivery Point</th>   
-      <th>SK Pola</th>
       <th>KF</th>
       <th>JT</th>
       <th>Harga BBM</th>
@@ -365,7 +359,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
       $alamat =$data['supply_point'];
       $pemilik =$data['pemilik'];
       $delivery_point =$data['delivery_point'];
-      $sk_pola = $data['sk_pola'];
       $kf = $data['kf'];
       $jt = $data['jt'];
       $hrg_bbm = $data['hrg_bbm'];
@@ -378,7 +371,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
       <td style='font-size: 14px' align = 'center'>$alamat</td>
       <td style='font-size: 14px' align = 'center'>$pemilik</td>
       <td style='font-size: 14px' align = 'center'>$delivery_point</td>
-      <td style='font-size: 14px' align = 'center'>$sk_pola</td>
       <td style='font-size: 14px' align = 'center'>$kf</td>
       <td style='font-size: 14px' align = 'center'>$jt/KM</td>
       <td style='font-size: 14px' align = 'center'>$hrg_bbm</td>
@@ -431,11 +423,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif ");
              <label>Koefisien Faktor</label>
              <input class="form-control form-control-sm" type="text" id="kf" name="kf" required="" value="<?php echo $kf;?>">
            </div>
-
-           <div class="col-md-6">
-             <label>SK Pola</label>
-             <input class="form-control form-control-sm" type="text" id="sk_pola" name="sk_pola" required="" value="<?php echo $sk_pola;?>">
-           </div>                
+             
          </div>
 
          <br>
