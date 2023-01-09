@@ -120,6 +120,7 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
    $jml_dex_spbu = $data2_spbu['total_dex'];
    $total_um_spbu = $data2_spbu['uang_makan'];
   
+   $selisih_bbm =  $total_dexlite_spbu - $uang_bbm_spbu;
 
       // Potongan 10%
 
@@ -626,13 +627,20 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
                 <td class="text-left"><?= formatuang($uang_bbm_spbu); ?></td>
                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRDexliteSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
-            uang_bbm
+   
             <tr>
                 <td>5-598</td>
                 <td class="text-left">Bayar Kredit</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit); ?></td>
                 <td class="text-left"></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($selisih_bbm); ?></td>
+                <td class="thick-line"></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>

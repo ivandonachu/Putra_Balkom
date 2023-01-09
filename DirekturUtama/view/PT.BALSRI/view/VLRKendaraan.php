@@ -95,6 +95,8 @@ else{
    
 }
 $uang_bbm = $total_bbm * 10000;
+
+$selisih_bbm =  $total_dexlite - $uang_bbm;
  //pengiriman Spbus
  $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_spbu a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
  $data2_spbu = mysqli_fetch_array($table2_spbu);
@@ -625,13 +627,19 @@ $uang_bbm = $total_bbm * 10000;
                 <td class="text-left"><?= formatuang($uang_bbm); ?></td>
                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRDexliteSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
-            uang_bbm
             <tr>
                 <td>5-598</td>
                 <td class="text-left">Bayar Kredit</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit); ?></td>
                 <td class="text-left"></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($selisih_bbm); ?></td>
+                <td class="thick-line"></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
