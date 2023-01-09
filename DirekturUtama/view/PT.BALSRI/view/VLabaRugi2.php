@@ -882,7 +882,7 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
                     <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?></td>
 
                 <?php }
-                else if ($total_tagihan == 0) { ?>
+                else if ($laba_bersih_sebelum_pajak == 0) { ?>
 
                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                     <td class="no-line text-left"><?= formatuang(0); ?></td>
@@ -920,7 +920,7 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
                     <td class="no-line text-left"><?= formatuang($laba_bersih_bbm); ?></td>
 
                 <?php }
-                else if ($total_tagihan == 0) { ?>
+                else if ($laba_bersih_bbm == 0) { ?>
 
                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                     <td class="no-line text-left"><?= formatuang(0); ?></td>
