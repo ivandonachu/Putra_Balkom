@@ -93,11 +93,15 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
    $table_spbu = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr'");
    $data_spbu = mysqli_fetch_array($table_spbu);
    $total_tagihan_spbu = $data_spbu['total_tagihan'];
-
+ //pengiriman spbu
+ $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(a.dexlite) AS total_dex, SUM(a.um) AS uang_makan FROM pengiriman_spbu a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+ $data2_spbu = mysqli_fetch_array($table2_spbu);
+ $jml_dex_spbu = $data2_spbu['total_dex'];
+ $total_um_spbu = $data2_spbu['uang_makan'];
 
       // Potongan 10%
 
-  $jumlah_potongan = ((($total_dexlite_spbu) * 10) / 100);
+  $jumlah_potongan = ((($total_tagihan_spbu) * 10) / 100);
 
   // Kredit Mobil 
   $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
@@ -133,7 +137,7 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
 }
 
     $total_laba_kotor = $total_tagihan - $jumlah_potongan;
-    $total_biaya_usaha_final = $total_dexlite  + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit;
+    $total_biaya_usaha_final = $total_dexlite_spbu  + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit;
     $laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
     
 ?>
