@@ -48,7 +48,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $total_dexlite = $jml_dex * 13250;
 
   //pengeluran Pul Biaya Kantor
-   $table3 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pu_pl WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Kantor' ");
+   $table3 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_p WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Kantor' ");
    $data3 = mysqli_fetch_array($table3);
    $jml_biaya_kantor = $data3['jumlah_biaya_kantor'];
     if (!isset($data3['jumlah_biaya_kantor'])) {
