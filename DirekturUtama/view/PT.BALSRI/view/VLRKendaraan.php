@@ -563,13 +563,6 @@ $uang_bbm = $total_bbm * 10000;
                  <?php echo "<td class='text-right'><a href='VRDriverLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
              </tr>
              <tr>
-                 <td>4-201</td>
-                 <td class="text-left">Tagihan SPBU</td>
-                 <td class="text-left"><?= formatuang($total_tagihan_spbu); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRTagihanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
-             </tr>
-             <tr>
                  <td>4-101</td>
                  <td class="text-left">Potongan Biaya Oprasional 10%</td>
                  <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
