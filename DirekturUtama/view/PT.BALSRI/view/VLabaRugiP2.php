@@ -105,15 +105,19 @@ else{
   $total_um= $data2['uang_makan'];
 
   $total_dexlite = 0;
-  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $total_bbm = 0;
+  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj , dexlite FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   while($data = mysqli_fetch_array($table222)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
+    $dexlite = $data['dexlite'];
     $total_dexlite = $total_dexlite + ($uang_jalan - ($jt_gps*625));
-
+    $total_bbm = $total_bbm + $dexlite;
     
 }
+    $uang_bbm = $total_bbm * 10000;
   
+    $selisih_bbm =  $total_dexlite - $uang_bbm;
 
   //pengeluran Pul Biaya Kantor
    $table3 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
@@ -735,6 +739,20 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor  - $total_biaya_usaha_final;
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRPLG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-5971</td>
+                <td class="text-left">Uang BBM</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($uang_bbm); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($selisih_bbm); ?></td>
+                <td class="thick-line"></td>
             </tr>
             <tr>
                 <td>5-598</td>
