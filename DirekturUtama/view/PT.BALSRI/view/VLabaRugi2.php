@@ -111,7 +111,7 @@ else{
 
   $total_dexlite = 0;
   $total_bbm = 0;
-  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj , dexkite FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj , dexlite FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   while($data = mysqli_fetch_array($table222)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
@@ -129,7 +129,7 @@ else{
   $total_um_spbu= $data2_spbu['uang_makan'];
   $total_dexlite_spbu = 0;
   $total_bbm_spbu = 0;
-  $table222_spbu = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table222_spbu = mysqli_query($koneksibalsri, "SELECT jt_gps, uj, dexlite FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   while($data = mysqli_fetch_array($table222_spbu)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
