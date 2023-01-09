@@ -100,7 +100,7 @@ else{
     $total_bbm = $total_bbm + $dexlite;
     
 }
-    $uang_bbm = $total_bbm * 10150;
+    $uang_bbm = $total_bbm * 11000;
   
     $selisih_bbm =  $total_dexlite - $uang_bbm;
 
