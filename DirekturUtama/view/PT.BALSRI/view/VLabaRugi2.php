@@ -931,9 +931,6 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
 </table>
 <br>
 <br>
-
-<br>
-<br>
 <h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Lampung 8 KL</h3>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
 <thead>

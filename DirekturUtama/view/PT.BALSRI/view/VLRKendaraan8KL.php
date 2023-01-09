@@ -157,6 +157,8 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
     
     //list supir
     $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    $table1001=  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+
 }
 
     $total_laba_kotor = $total_tagihan + $total_tagihan_spbu - $jumlah_potongan;
@@ -726,9 +728,41 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
 
 </tbody>
 </table>
-<br
-><br>
 
+<br>
+<br>
+<h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Lampung 8 KL</h3>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<thead>
+    <tr>
+      <th class="text-center" >No Polisi</th>
+      <th class="text-center" >Jenis Kendaraan</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table1001)){
+     $mt = $data['mt'];
+     
+     $result = mysqli_query($koneksibalsri, "SELECT * FROM kendaraan WHERE no_polisi = '$mt' ");
+    $data_ken = mysqli_fetch_array($result);
+    $jenis_ken = $data_ken['jenis_kendaraan']; 
+
+     echo "<tr>
+     <td style='font-size: 14px' align = 'center'>$mt</td>
+     <td style='font-size: 14px' align = 'center'>$jenis_ken</td>"?>
+     <?php echo "<td class='text-center'><a href='VLRKendaraan8KL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$mt'>LR Kendaraan</a></td>"; ?>
+     
+    
+  <?php echo  " </tr>";
+}
+?>
+
+</tbody>
+</table>
+<br>
+<br>
 </div>
 </div>
 <!-- End of Main Content -->
