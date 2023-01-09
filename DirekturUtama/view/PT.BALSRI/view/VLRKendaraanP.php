@@ -49,14 +49,20 @@ else{
   $total_um= $data2['uang_makan'];
 
   $total_dexlite = 0;
-  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_p a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+  $total_bbm = 0;
+  $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj , dexlite FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   while($data = mysqli_fetch_array($table222)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
+    $dexlite = $data['dexlite'];
     $total_dexlite = $total_dexlite + ($uang_jalan - ($jt_gps*625));
-
+    $total_bbm = $total_bbm + $dexlite;
     
 }
+    $uang_bbm = $total_bbm * 10000;
+  
+    $selisih_bbm =  $total_dexlite - $uang_bbm;
+
           // Potongan 10%
   $jumlah_potongan = (($total_tagihan * 10) / 100);
 
@@ -550,6 +556,20 @@ else{
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_dexlite); ?></td>
                 <?php echo "<td class='text-right'><a href='VRDriverPLG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-5971</td>
+                <td class="text-left">Uang BBM</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($uang_bbm); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRLMG/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($selisih_bbm); ?></td>
+                <td class="thick-line"></td>
             </tr>
             <tr>
                 <td>5-598</td>
