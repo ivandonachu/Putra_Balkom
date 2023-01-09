@@ -558,8 +558,8 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
                 </tr>
                 <tr>
                  <td>4-100</td>
-                 <td class="text-left">Tagihan Patra</td>
-                 <td class="text-left"><?= formatuang($total_tagihan); ?></td>
+                 <td class="text-left">Tagihan SPBU</td>
+                 <td class="text-left"><?= formatuang($total_tagihan_spbu); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <?php echo "<td class='text-right'><a href='VRDriverLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
              </tr>
