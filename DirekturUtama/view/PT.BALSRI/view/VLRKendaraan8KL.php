@@ -163,7 +163,10 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
 
     $total_laba_kotor = $total_tagihan + $total_tagihan_spbu - $jumlah_potongan;
     $total_biaya_usaha_final = $total_dexlite  + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit;
+    $total_biaya_usaha_final_bbm = $uang_bbm  + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit;
+
     $laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
+    $laba_bersih_bbm = $total_laba_kotor - $total_biaya_usaha_final_bbm;
     
 ?>
 
@@ -682,6 +685,44 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
 
                 <?php }
                 else if ($total_tagihan == 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                <?php }
+                ?>
+                <td class="thick-line"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+                <td class="thick-line"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+                <td class="thick-line"></td>
+            </tr>
+            <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA BERSIH BBM</strong></td>
+                <td class="thick-line"></td>
+                <?php
+
+                if ($laba_bersih_bbm > 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_bbm); ?> </td>
+                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                <?php }
+                else if ($laba_bersih_bbm < 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_bbm); ?></td>
+
+                <?php }
+                else if ($laba_bersih_bbm == 0) { ?>
 
                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                     <td class="no-line text-left"><?= formatuang(0); ?></td>

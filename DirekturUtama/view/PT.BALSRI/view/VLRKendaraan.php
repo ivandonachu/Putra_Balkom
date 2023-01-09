@@ -691,31 +691,6 @@ $selisih_bbm =  $total_dexlite - $uang_bbm;
                 ?>
                 <td class="thick-line"></td>
             </tr>
-
-            <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
-                <td class="thick-line"></td>
-                <?php
-
-                if ($laba_bersih_sebelum_pajak > 0) { ?>
-
-                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?> </td>
-                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
-                <?php }
-                else if ($laba_bersih_sebelum_pajak < 0) { ?>
-
-                    <td class="no-line text-left"><?= formatuang(0); ?></td>
-                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?></td>
-
-                <?php }
-                else if ($total_tagihan == 0) { ?>
-
-                    <td class="no-line text-left"><?= formatuang(0); ?></td>
-                    <td class="no-line text-left"><?= formatuang(0); ?></td>
-                <?php }
-                ?>
-                <td class="thick-line"></td>
-            </tr>
             <tr>
                 <td></td>
                 <td class="thick-line"></td>
