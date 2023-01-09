@@ -612,13 +612,6 @@ $uang_bbm = $total_bbm * 10000;
                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRMakan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             <tr>
-                <td>5-580</td>
-                <td class="text-left">Uang Makan SPBU</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($total_um_spbu); ?></td>
-                <?php echo "<td class='text-right'><a href='VRDriverLMG/VRMakanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
-            </tr>
-            <tr>
                 <td>5-597</td>
                 <td class="text-left">Uang Dexlite Pertashop</td>
                 <td class="text-left"><?= formatuang(0); ?></td>

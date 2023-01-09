@@ -69,39 +69,61 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 }
 else{
+    // Tagihan
+  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan a INNER JOIN master_tarif b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr'");
+  $data = mysqli_fetch_array($table);
+  $total_tagihan= $data['total_tagihan'];
 
 
- //pengiriman Spbus
- $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_spbu a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
- $data2_spbu = mysqli_fetch_array($table2_spbu);
 
+ //pengiriman
+ $table2 = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan FROM pengiriman a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+ $data2 = mysqli_fetch_array($table2);
+
+ $total_um= $data2['uang_makan'];
+
+ $total_dexlite = 0;
+ $total_bbm = 0;
+ $table222 = mysqli_query($koneksibalsri, "SELECT jt_gps, uj, dexlite FROM pengiriman a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+ while($data = mysqli_fetch_array($table222)){
+    $uang_jalan = $data['uj'];
+    $jt_gps = $data['jt_gps'];
+    $dexlite = $data['dexlite'];
+    $total_dexlite = $total_dexlite + ($uang_jalan - ($jt_gps*625));
+    $total_bbm = $total_bbm + $dexlite;
+
+   
+}
+$uang_bbm = $total_bbm * 10000;
+ 
  $total_um_spbu= $data2_spbu['uang_makan'];
- $total_dexlite_spbu = 0;
- $total_bbm_spbu = 0;
- $table222_spbu = mysqli_query($koneksibalsri, "SELECT jt_gps, uj FROM pengiriman_spbu a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
- while($data = mysqli_fetch_array($table222_spbu)){
+  $total_dexlite_spbu = 0;
+  $total_bbm_spbu = 0;
+  $table222_spbu = mysqli_query($koneksibalsri, "SELECT jt_gps, uj, dexlite FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  while($data = mysqli_fetch_array($table222_spbu)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
     $dexlite = $data['dexlite'];
     $total_dexlite_spbu = $total_dexlite_spbu + ($uang_jalan - ($jt_gps*625));
     $total_bbm_spbu = $total_bbm_spbu + $dexlite;
-
-   
+    
 }
 $uang_bbm_spbu = $total_bbm_spbu * 10000;
+
    // Tagihan spbu
    $table_spbu = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr'");
    $data_spbu = mysqli_fetch_array($table_spbu);
    $total_tagihan_spbu = $data_spbu['total_tagihan'];
- //pengiriman spbu
- $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(a.dexlite) AS total_dex, SUM(a.um) AS uang_makan FROM pengiriman_spbu a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
- $data2_spbu = mysqli_fetch_array($table2_spbu);
- $jml_dex_spbu = $data2_spbu['total_dex'];
- $total_um_spbu = $data2_spbu['uang_makan'];
+   //pengiriman spbu
+   $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(a.dexlite) AS total_dex, SUM(a.um) AS uang_makan FROM pengiriman_spbu a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.no_polisi = '$no_polisilr'");
+   $data2_spbu = mysqli_fetch_array($table2_spbu);
+   $jml_dex_spbu = $data2_spbu['total_dex'];
+   $total_um_spbu = $data2_spbu['uang_makan'];
+  
 
       // Potongan 10%
 
-  $jumlah_potongan = ((($total_tagihan_spbu) * 10) / 100);
+  $jumlah_potongan = ((($total_tagihan + $total_tagihan_spbu) * 10) / 100);
 
   // Kredit Mobil 
   $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
@@ -136,8 +158,8 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
     $table10 =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
 }
 
-    $total_laba_kotor = $total_tagihan - $jumlah_potongan;
-    $total_biaya_usaha_final = $total_dexlite_spbu  + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit;
+    $total_laba_kotor = $total_tagihan + $total_tagihan_spbu - $jumlah_potongan;
+    $total_biaya_usaha_final = $total_dexlite  + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit;
     $laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
     
 ?>
@@ -534,12 +556,12 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
                     <td class="text-left"></td>
                     <?php echo "<td class='text-right'></td>"; ?>
                 </tr>
-             <tr>
-                 <td>4-201</td>
-                 <td class="text-left">Tagihan SPBU</td>
-                 <td class="text-left"><?= formatuang($total_tagihan_spbu); ?></td>
+                <tr>
+                 <td>4-100</td>
+                 <td class="text-left">Tagihan Patra</td>
+                 <td class="text-left"><?= formatuang($total_tagihan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
-                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRTagihanSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
              </tr>
              <tr>
                  <td>4-101</td>
@@ -601,7 +623,7 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
                 <td>5-581</td>
                 <td class="text-left">Uang BBM</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($uang_bbm_spbu); ?></td>
+                <td class="text-left"><?= formatuang($uang_bbm); ?></td>
                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRDexliteSPBU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
             </tr>
             uang_bbm
@@ -756,4 +778,4 @@ aria-hidden="true">
 
 </body>
 
-</html>s
+</html>
