@@ -144,7 +144,7 @@ else{
     $laba_bersih_sebelum_pajak = $total_laba_kotor - ($total_dexlite  + $jml_perbaikan + $total_gaji_karaywan + $total_um + $total_kredit);
     $total_biaya_usaha_final = $total_dexlite  + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit;
 
-    $total_biaya_usaha_final_bbm = $uang_bbm + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport ;
+    $total_biaya_usaha_final_bbm = $uang_bbm + + $jml_perbaikan + $total_um + $total_gaji_karaywan + $total_kredit ;
     $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
 ?>
 
