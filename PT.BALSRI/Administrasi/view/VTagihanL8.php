@@ -458,25 +458,25 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             <!-- Tabel -->
             <div style="overflow-x: auto" align = 'center';>
-              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Tanggal</th>
-                  <th>SO</th>
-                  <th>LO</th>
-                  <th>Delivery Point</th>
-                  <th>Alamat</th>
-                  <th>Jumlah Pemesanan</th>
-                  <th>Jarak Tempuh</th>
-                  <th>AMT</th>
-                  <th>MT</th>
-                  <th>Harga</th>
-                  <th>Total</th>
-                  <th>File</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
+                <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>SO</th>
+                    <th>LO</th>
+                    <th>Delivery Point</th>
+                    <th>Alamat</th>
+                    <th>Jumlah Pemesanan</th>
+                    <th>Jarak Tempuh</th>
+                    <th>AMT</th>
+                    <th>MT</th>
+                    <th>Harga</th>
+                    <th>Total</th>
+                    <th>File</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
               <tbody>
                 <?php
                 $total_max_pesanan = 0;
@@ -512,20 +512,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $urut = $urut + 1;
 
                   echo "<tr>
-      <td style='font-size: 14px'>$urut</td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$so</td>
-      <td style='font-size: 14px'>$lo</td>
-      <td style='font-size: 14px'>$delivery_point</td>
-      <td style='font-size: 14px'>$alamat</td>
-      <td style='font-size: 14px'>$total_pesanan/L</td>
-      <td style='font-size: 14px'>$jt</td>
-      <td style='font-size: 14px'>$amt</td>
-      <td style='font-size: 14px'>$mt</td>
-      <td style='font-size: 14px'>"; ?> <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
+                  <td style='font-size: 14px'>$urut</td>
+                  <td style='font-size: 14px'>$tanggal</td>
+                  <td style='font-size: 14px'>$so</td>
+                  <td style='font-size: 14px'>$lo</td>
+                  <td style='font-size: 14px'>$delivery_point</td>
+                  <td style='font-size: 14px'>$alamat</td>
+                  <td style='font-size: 14px'>$total_pesanan/L</td>
+                  <td style='font-size: 14px'>$jt</td>
+                  <td style='font-size: 14px'>$amt</td>
+                  <td style='font-size: 14px'>$mt</td>
+                  <td style='font-size: 14px'>"; ?> <?= formatuang($harga); ?> <?php echo "</td>
+                  <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
+                  <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                  "; ?>
                     <?php echo "<td style='font-size: 12px'>"; ?>
                     <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_tagihan']; ?>">Edit</button>
 
@@ -678,38 +678,38 @@ if ($tanggal_awal == $tanggal_akhir) {
          
 
 
-          <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_tagihan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
+                    <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_tagihan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
 
-          <div class="modal fade" id="PopUpHapus<?php echo $data['no_tagihan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title"> <b> Hapus </b> </h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                    <span aria-hidden="true"> &times; </span>
-                  </button>
-                </div>
+                    <div class="modal fade" id="PopUpHapus<?php echo $data['no_tagihan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title"> <b> Hapus </b> </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                              <span aria-hidden="true"> &times; </span>
+                            </button>
+                          </div>
 
-                <div class="modal-body">
-                  <form action="../proses/hapus_tagihan_L8" method="POST">
-                    <input type="hidden" name="no_tagihan" value="<?php echo $data['no_tagihan']; ?>">
-                    <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-                    <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                          <div class="modal-body">
+                            <form action="../proses/hapus_tagihan_L8" method="POST">
+                              <input type="hidden" name="no_tagihan" value="<?php echo $data['no_tagihan']; ?>">
+                              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
 
-                    <div class="form-group">
-                      <h6> Yakin Ingin Hapus Data? </h6>
+                              <div class="form-group">
+                                <h6> Yakin Ingin Hapus Data? </h6>
+                              </div>
+
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary"> Hapus </button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary"> Hapus </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <?php echo  " </td> </tr>";
+                  <?php echo  " </td> </tr>";
                 }
         ?>
 
