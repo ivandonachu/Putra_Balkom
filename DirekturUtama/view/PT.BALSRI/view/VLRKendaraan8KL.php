@@ -98,7 +98,7 @@ $uang_bbm = $total_bbm * 10000;
  
   $total_dexlite_spbu = 0;
   $total_bbm_spbu = 0;
-  $table222_spbu = mysqli_query($koneksibalsri, "SELECT jt_gps, uj, dexlite FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND b.no_polisi = '$no_polisilr'");
+  $table222_spbu = mysqli_query($koneksibalsri, "SELECT jt_gps, uj, dexlite FROM pengiriman_spbu a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND b.no_polisi = '$no_polisilr'");
   while($data = mysqli_fetch_array($table222_spbu)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
