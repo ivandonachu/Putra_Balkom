@@ -259,7 +259,7 @@ $jumlah_kel_pbr_ranau = 0;
 $table26 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_cbm_exxa_da FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Exxa' AND status_saldo = 'Keluar' ");
 $data26 = mysqli_fetch_array($table26);
 $jumlah_kel_cbm_exxa = $data26['jumlah_kel_cbm_exxa_da'];
-if (!isset($data25['jumlah_kel_cbm_exxa_da'])) {
+if (!isset($data26['jumlah_kel_cbm_exxa_da'])) {
 $jumlah_kel_cbm_exxa = 0;
 }
 
