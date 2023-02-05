@@ -35,7 +35,7 @@ if ($status_saldo == 'Masuk') {
 			$query1= mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_rekening1_new' WHERE nama_rekening = '$rekening' ");
 
 		
-			echo "<script> window.location='../view/VPenggunaanSaldo2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			echo "<script> window.location='../view/VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			
 }
 elseif ($status_saldo == 'Keluar') {
@@ -47,6 +47,6 @@ elseif ($status_saldo == 'Keluar') {
 			$query1= mysqli_query($koneksi,"UPDATE rekening SET jumlah = '$jumlah_rekening1_new' WHERE nama_rekening = '$rekening' ");
 
 			
-				echo "<script> window.location='../view/VPenggunaanSaldo2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			
 }
