@@ -255,6 +255,14 @@ if (!isset($data25['jumlah_kel_pbr_ranau'])) {
 $jumlah_kel_pbr_ranau = 0;
 }
 
+//Keluar CBM untuk Exxa 
+$table26 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_cbm_exxa FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Exxa' AND status_saldo = 'Keluar' ");
+$data26 = mysqli_fetch_array($table26);
+$jumlah_kel_cbm_exxa = $data26['jumlah_kel_cbm_exxa'];
+if (!isset($data25['jumlah_kel_cbm_exxa'])) {
+$jumlah_kel_cbm_exxa = 0;
+}
+
 // kode salado
 
 $CBM = 'CBM';
@@ -270,6 +278,8 @@ $Keluar = 'Keluar';
 $Masuk = 'Masuk';
 $mbah = 'Kebun Mbah';
 $ranau = 'Kebun Ranau';
+$exxa = 'Exxa';
+
 
 }
  ?>
@@ -512,6 +522,7 @@ $ranau = 'Kebun Ranau';
             <option>PBR</option>
             <option>STE</option>
             <option>Kebun Ranau</option>
+            <option>Exxa</option>
           </select>
           <small></small>
         </div>
@@ -719,6 +730,8 @@ $ranau = 'Kebun Ranau';
             <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
             <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
             <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
+            <option <?php echo ($dataSelect == 'Kebun Ranau') ? "selected": "" ?> >Kebun Ranau</option>
+            <option <?php echo ($dataSelect == 'Exxa') ? "selected": "" ?> >Exxa</option>
             
           </select>
 
@@ -963,6 +976,13 @@ $ranau = 'Kebun Ranau';
       <td style='font-size: 11px' align = 'center'>Kebun Ranau</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_pbr_ranau); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$ranau&rekening=$PBR&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>Exxa</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm_exxa); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$exxa&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
 
