@@ -382,7 +382,7 @@ else{
   }
 
     $total_pertamax_b = ($total_uang_stok_awal_max + $pertamax_b) - $total_uang_stok_max;
-    $total_pertamax_x = ($sonding_awal_max + $pembelian_pertamax) - $sonding_akhir_max;
+    $pembelian_pertamax_x = ($sonding_awal_max + $pembelian_pertamax) - $sonding_akhir_max;
 
    // Pembelian Dexlite
   $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi'  ");
