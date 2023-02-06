@@ -826,7 +826,7 @@ else{
                                 <tr>
                                     <td>5-120</td>
                                     <td class="text-left">Stok Akhir Bulan Pertamax</td>
-                                    <td class="text-left"><?=formatjumlah($sonding_awal_max) ?> Liter</td>
+                                    <td class="text-left"><?=formatjumlah($sonding_akhir_max) ?> Liter</td>
                                     <td class="text-left"><?= formatuang($total_uang_stok_max); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                   
