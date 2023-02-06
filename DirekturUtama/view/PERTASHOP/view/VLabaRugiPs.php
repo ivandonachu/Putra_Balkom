@@ -285,7 +285,7 @@ else{
    $tabley1x = mysqli_query($koneksiperta, "SELECT MIN(no_penjualan) AS penjualan_awal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
 
    $datay1x = mysqli_fetch_array($tabley1x);
-   $no_penjualan_awal_max = $datay1x['penjualan_akhir'];
+   $no_penjualan_awal_max = $datay1x['penjualan_awal'];
 
         //no akhir pembelian Dexlite
         $tabley1zx = mysqli_query($koneksiperta, "SELECT MIN(no_pembelian) AS pembelian_awal FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
