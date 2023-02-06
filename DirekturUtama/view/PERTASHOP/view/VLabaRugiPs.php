@@ -713,7 +713,7 @@ else{
                                 <tr style="background-color:     #F0F8FF; ">
                                     <td><strong>Total Pendapatan + Cor</strong></td>
                                     <td class="text-left"></td>
-                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_max + $pertamax_terjual + $sonding_akhir_max ); ?> Liter</td>
+                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_max + $pertamax_terjual ); ?> Liter</td>
                                     <td class="no-line text-left"><?= formatuang($total_pendapatan_max); ?></td>
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
