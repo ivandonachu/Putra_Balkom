@@ -298,8 +298,8 @@ else{
 
    $tabley12x = mysqli_query($koneksiperta, "SELECT stok_awal, sonding_awal, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_awal_max' ");
    $datay12x = mysqli_fetch_array($tabley12x);
-   $sonding_awal_max = $datay12['sonding_akhir'];
-   $stok_awal_max = $datay12['stok_awal'];
+   $sonding_awal_max = $datay12x['sonding_awal'];
+   $stok_awal_max = $datay12x['stok_awal'];
    $harga_stok_awal_max = $datay22zx['harga'];
    $total_uang_stok_awal_max = $sonding_awal_max * $harga_stok_awal_max;
 
@@ -319,8 +319,8 @@ else{
 
    $tabley22x = mysqli_query($koneksiperta, "SELECT stok_awal,sonding_awal, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_awal_dex' ");
    $datay22x = mysqli_fetch_array($tabley22x);
-   $sonding_awal_dex = $datay22x['sonding_akhir'];
-   $stok_awal_dex = $datay22x['stok_akhir'];
+   $sonding_awal_dex = $datay22x['sonding_awal'];
+   $stok_awal_dex = $datay22x['stok_awal'];
    $harga_stok_awal_dex = $datay22zx['harga'];
    $total_uang_stok_awal_dex = $sonding_awal_dex * $harga_stok_awal_dex;
 
