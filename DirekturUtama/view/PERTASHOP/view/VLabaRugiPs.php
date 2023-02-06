@@ -291,7 +291,7 @@ else{
         $tabley1zx = mysqli_query($koneksiperta, "SELECT MIN(no_pembelian) AS pembelian_awal FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
 
         $datay1zx = mysqli_fetch_array($tabley1zx);
-        $no_pembelian_awal_max = $datay1zx['pembelian_akhir'];
+        $no_pembelian_awal_max = $datay1zx['pembelian_awal'];
 
         $tabley22zx = mysqli_query($koneksiperta, "SELECT harga FROM pembelian WHERE no_pembelian = '$no_pembelian_awal_max' ");
         $datay22zx = mysqli_fetch_array($tabley22zx);
@@ -1001,7 +1001,7 @@ else{
                                 <tr>
                                     <td>5-120</td>
                                     <td class="text-left">Stok Akhir Bulan Dexlite</td>
-                                    <td class="text-left"><?=formatjumlah($sonding_awal_dex) ?> Liter</td>
+                                    <td class="text-left"><?=formatjumlah($sonding_akhir_dex) ?> Liter</td>
                                     <td class="text-left"><?= formatuang($total_uang_stok_awal_dex); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                   
