@@ -377,11 +377,11 @@ else{
     $qty = $data3['qty'];
     $harga = $data3['harga'];
     $pembelian_pertamax = $pembelian_pertamax + $qty;
-    $total_pertamax_b = $total_pertamax_b + ($qty * $harga);
+    $pertamax_b = $pertamax_b + ($qty * $harga);
     
   }
 
-    $total_pertamax_b = ($total_uang_stok_awal_max + $total_pertamax_b) - $total_uang_stok_max;
+    $total_pertamax_b = ($total_uang_stok_awal_max + $pertamax_b) - $total_uang_stok_max;
 
    // Pembelian Dexlite
   $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi'  ");
@@ -392,10 +392,10 @@ else{
     $qty = $data4['qty'];
     $harga = $data4['harga'];
     $pembelian_dexlite = $pembelian_dexlite + $qty;
-    $total_dexlite_b = $total_dexlite_b + ($qty * $harga);
+    $dexlite_b = $dexlite_b + ($qty * $harga);
 
   }
-  $total_dexlite_b = ($total_uang_stok_awal_dex + $total_dexlite_b) - $total_uang_stok_dex;
+  $total_dexlite_b = ($total_uang_stok_awal_dex + $dexlite_b) - $total_uang_stok_dex;
 
 if($sonding_akhir_max == 0){
     $total_losis_max = 0;
@@ -811,7 +811,7 @@ else{
                                     <td class="text-left">Pembelian Pertamax</td>
                                     <td class="text-left"><?=formatjumlah($pembelian_pertamax)?> Liter</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_pertamax_b); ?></td>
+                                    <td class="text-left"><?= formatuang($pertamax_b); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPembPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
@@ -985,7 +985,7 @@ else{
                                     <td class="text-left">Pembelian Dexlite</td>
                                     <td class="text-left"><?=formatjumlah($pembelian_dexlite)?> Liter</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_dexlite_b); ?></td>
+                                    <td class="text-left"><?= formatuang($dexlite_b); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPembDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                    
                                 </tr>
@@ -993,8 +993,8 @@ else{
                                     <td>5-110</td>
                                     <td class="text-left">Stok Awal Bulan Dexlite</td>
                                     <td class="text-left"><?=formatjumlah($sonding_awal_dex) ?> Liter</td>
-                                    <td class="text-left"><?= formatuang($total_uang_stok_awal_dex); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_awal_dex); ?></td>
                                   
                                     <?php echo "<td class='thick-line'></td>"; ?>
                                 </tr>
