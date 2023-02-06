@@ -192,8 +192,6 @@ else{
 
 else{
 
-
-
   // Penjualan Pertamax
   $table = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
   
@@ -237,33 +235,96 @@ else{
    $qty_ngecor_dex = $datax2['qty_cor'];
 
 
-   //Sisa stok pertamax
+   //Sisa stok Akhir pertamax
 
    $tabley1 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
 
    $datay1 = mysqli_fetch_array($tabley1);
    $no_penjualan_akhir_max = $datay1['penjualan_akhir'];
 
+        //no akhir pembelian Dexlite
+        $tabley1z = mysqli_query($koneksiperta, "SELECT MAX(no_pembelian) AS pembelian_akhir FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+
+        $datay1z = mysqli_fetch_array($tabley1z);
+        $no_pembelian_akhir_max = $datay1z['pembelian_akhir'];
+
+        $tabley22z = mysqli_query($koneksiperta, "SELECT harga FROM pembelian WHERE no_pembelian = '$no_pembelian_akhir_max' ");
+        $datay22z = mysqli_fetch_array($tabley22z);
+
    $tabley12 = mysqli_query($koneksiperta, "SELECT stok_akhir, sonding_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_max' ");
    $datay12 = mysqli_fetch_array($tabley12);
    $sonding_akhir_max = $datay12['sonding_akhir'];
    $stok_akhir_max = $datay12['stok_akhir'];
-   $harga_stok_akhir_max = $datay12['harga'];
+   $harga_stok_akhir_max = $datay22z['harga'];
    $total_uang_stok_max = $sonding_akhir_max * $harga_stok_akhir_max;
 
-   //Sisa stok Dexlite
+   //Sisa stok Akhir Dexlite
    $tabley2 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
 
    $datay2 = mysqli_fetch_array($tabley2);
    $no_penjualan_akhir_dex = $datay2['penjualan_akhir'];
+     
+        //no akhir pembelian Dexlite
+        $tabley2z = mysqli_query($koneksiperta, "SELECT MAX(no_pembelian) AS pembelian_akhir FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+
+        $datay2z = mysqli_fetch_array($tabley2z);
+        $no_pembelian_akhir_dex = $datay2z['pembelian_akhir'];
+        $tabley22z = mysqli_query($koneksiperta, "SELECT harga FROM pembelian WHERE no_pembelian = '$no_pembelian_akhir_dex' ");
+        $datay22z = mysqli_fetch_array($tabley22z);
 
    $tabley22 = mysqli_query($koneksiperta, "SELECT stok_akhir,sonding_akhir, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_akhir_dex' ");
    $datay22 = mysqli_fetch_array($tabley22);
    $sonding_akhir_dex = $datay22['sonding_akhir'];
    $stok_akhir_dex = $datay22['stok_akhir'];
-   $harga_stok_akhir_dex = $datay22['harga'];
+   $harga_stok_akhir_dex = $datay22z['harga'];
    $total_uang_stok_dex = $sonding_akhir_dex * $harga_stok_akhir_dex;
 
+
+   //Sisa stok Awal pertamax
+
+   $tabley1x = mysqli_query($koneksiperta, "SELECT MIN(no_penjualan) AS penjualan_awal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+
+   $datay1x = mysqli_fetch_array($tabley1x);
+   $no_penjualan_awal_max = $datay1x['penjualan_akhir'];
+
+        //no akhir pembelian Dexlite
+        $tabley1zx = mysqli_query($koneksiperta, "SELECT MIN(no_pembelian) AS pembelian_awal FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+
+        $datay1zx = mysqli_fetch_array($tabley1zx);
+        $no_pembelian_awal_max = $datay1zx['pembelian_akhir'];
+
+        $tabley22zx = mysqli_query($koneksiperta, "SELECT harga FROM pembelian WHERE no_pembelian = '$no_pembelian_awal_max' ");
+        $datay22zx = mysqli_fetch_array($tabley22zx);
+
+   $tabley12x = mysqli_query($koneksiperta, "SELECT stok_awal, sonding_awal, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_awal_max' ");
+   $datay12x = mysqli_fetch_array($tabley12x);
+   $sonding_awal_max = $datay12['sonding_akhir'];
+   $stok_awal_max = $datay12['stok_awal'];
+   $harga_stok_awal_max = $datay22zx['harga'];
+   $total_uang_stok_awal_max = $sonding_awal_max * $harga_stok_awal_max;
+
+   //Sisa stok Awal Dexlite
+   $tabley2x = mysqli_query($koneksiperta, "SELECT MIN(no_penjualan) AS penjualan_awal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+
+   $datay2x = mysqli_fetch_array($tabley2x);
+   $no_penjualan_awal_dex = $datay2x['penjualan_awal'];
+     
+        //no akhir pembelian Dexlite
+        $tabley2zx = mysqli_query($koneksiperta, "SELECT MIN(no_pembelian) AS pembelian_awal FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+
+        $datay2zx = mysqli_fetch_array($tabley2zx);
+        $no_pembelian_awal_dex = $datay2zx['pembelian_awal'];
+        $tabley22zx = mysqli_query($koneksiperta, "SELECT harga FROM pembelian WHERE no_pembelian = '$no_pembelian_awal_dex' ");
+        $datay22zx = mysqli_fetch_array($tabley22zx);
+
+   $tabley22x = mysqli_query($koneksiperta, "SELECT stok_awal,sonding_awal, harga FROM penjualan WHERE no_penjualan = '$no_penjualan_awal_dex' ");
+   $datay22x = mysqli_fetch_array($tabley22x);
+   $sonding_awal_dex = $datay22x['sonding_akhir'];
+   $stok_awal_dex = $datay22x['stok_akhir'];
+   $harga_stok_awal_dex = $datay22zx['harga'];
+   $total_uang_stok_awal_dex = $sonding_awal_dex * $harga_stok_awal_dex;
+
+   
   // setoran
   $tablex32= mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_setoran FROM setoran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'  ");
   $datax32 = mysqli_fetch_array($tablex32);
@@ -317,8 +378,10 @@ else{
     $harga = $data3['harga'];
     $pembelian_pertamax = $pembelian_pertamax + $qty;
     $total_pertamax_b = $total_pertamax_b + ($qty * $harga);
-
+    
   }
+
+    $total_pertamax_b = ($total_uang_stok_awal_max + $total_pertamax_b) - $total_uang_stok_max;
 
    // Pembelian Dexlite
   $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi'  ");
@@ -332,6 +395,7 @@ else{
     $total_dexlite_b = $total_dexlite_b + ($qty * $harga);
 
   }
+  $total_dexlite_b = ($total_uang_stok_awal_dex + $total_dexlite_b) - $total_uang_stok_dex;
 
 if($sonding_akhir_max == 0){
     $total_losis_max = 0;
@@ -750,7 +814,24 @@ else{
                                     <td class="text-left"><?= formatuang($total_pertamax_b); ?></td>
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPembPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
-                            
+                                <tr>
+                                    <td>5-110</td>
+                                    <td class="text-left">Stok Awal Bulan Pertamax</td>
+                                    <td class="text-left"><?=formatjumlah($sonding_awal_max) ?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_awal_max); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                  
+                                    <?php echo "<td class='thick-line'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-120</td>
+                                    <td class="text-left">Stok Akhir Bulan Pertamax</td>
+                                    <td class="text-left"><?=formatjumlah($sonding_awal_max) ?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_awal_max); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                  
+                                    <?php echo "<td class='thick-line'></td>"; ?>
+                                </tr>
                                 <tr style="background-color:    #F0F8FF;  ">
                                     <td><strong>Total Harga Pokok Penjualan</strong></td>
                                     <td class="text-left"></td>
@@ -793,15 +874,7 @@ else{
 
                                     <td class="thick-line"></td>
                                 </tr>
-                                <tr>
-                                    <td>4-110</td>
-                                    <td class="text-left">Sisa Stok Pertamax</td>
-                                    <td class="text-left"><?=formatjumlah($sonding_akhir_max) ?> Liter</td>
-                                    <td class="text-left"><?= formatuang($total_uang_stok_max); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                  
-                                    <?php echo "<td class='thick-line'></td>"; ?>
-                                </tr>
+                                
 
                             </tbody>
                         </table>
@@ -864,15 +937,6 @@ else{
                                 </tr>
                                 
                                 <tr>
-                                    <td>4-111</td>
-                                    <td class="text-left">Sisa Stok Dexlite</td>
-                                    <td class="text-left"><?=formatjumlah($sonding_akhir_dex)?> Liter</td>
-                                    <td class="text-left"><?= formatuang($total_uang_stok_dex); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    
-                                    <?php echo "<td class='thick-line'></td>"; ?>
-                                </tr>
-                                <tr>
                                     <td>4-112</td>
                                     <td class="text-left">Total Ngecor Dexlite</td>
                                     <td class="text-left"><?=formatjumlah($qty_ngecor_dex)?> Liter</td>
@@ -887,7 +951,7 @@ else{
                                 <tr style="background-color:     #F0F8FF; ">
                                     <td><strong>Total Pendapatan + Cor + Sisa Stok</strong></td>
                                     <td class="text-left"></td>
-                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_dex + $dexlite_terjual + $sonding_akhir_dex ); ?> Liter</td>
+                                    <td class="no-line text-left"><?= formatjumlah($qty_ngecor_dex + $dexlite_terjual  ); ?> Liter</td>
                                     <td class="no-line text-left"><?= formatuang($total_pendapatan_dex); ?></td>
                                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
@@ -925,6 +989,24 @@ else{
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPembDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                    
                                 </tr>
+                                <tr>
+                                    <td>5-110</td>
+                                    <td class="text-left">Stok Awal Bulan Dexlite</td>
+                                    <td class="text-left"><?=formatjumlah($sonding_awal_dex) ?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_awal_dex); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                  
+                                    <?php echo "<td class='thick-line'></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-120</td>
+                                    <td class="text-left">Stok Akhir Bulan Dexlite</td>
+                                    <td class="text-left"><?=formatjumlah($sonding_awal_dex) ?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_awal_dex); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                  
+                                    <?php echo "<td class='thick-line'></td>"; ?>
+                                </tr>
                             
                                 <tr style="background-color:    #F0F8FF;  ">
                                     <td><strong>Total Harga Pokok Penjualan Dex</strong></td>
@@ -934,6 +1016,7 @@ else{
                                     <td class="text-left"><?= formatuang($total_dexlite_b); ?></td>
                                     <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
+
                                 <tr>
                                     <td></td>
                                     <td class="thick-line"></td>
