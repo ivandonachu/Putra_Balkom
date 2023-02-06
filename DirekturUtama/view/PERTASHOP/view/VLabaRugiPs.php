@@ -818,8 +818,9 @@ else{
                                     <td>5-110</td>
                                     <td class="text-left">Stok Awal Bulan Pertamax</td>
                                     <td class="text-left"><?=formatjumlah($sonding_awal_max) ?> Liter</td>
-                                    <td class="text-left"><?= formatuang($total_uang_stok_awal_max); ?></td>
+                                    
                                     <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_awal_max); ?></td>
                                   
                                     <?php echo "<td class='thick-line'></td>"; ?>
                                 </tr>
