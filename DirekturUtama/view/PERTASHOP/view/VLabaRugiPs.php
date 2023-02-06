@@ -382,6 +382,7 @@ else{
   }
 
     $total_pertamax_b = ($total_uang_stok_awal_max + $pertamax_b) - $total_uang_stok_max;
+    $total_pertamax_x = ($sonding_awal_max + $pembelian_pertamax) - $sonding_akhir_max;
 
    // Pembelian Dexlite
   $table4 = mysqli_query($koneksiperta, "SELECT qty , harga FROM pembelian  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite'  AND b.lokasi = '$lokasi'  ");
@@ -396,6 +397,7 @@ else{
 
   }
   $total_dexlite_b = ($total_uang_stok_awal_dex + $dexlite_b) - $total_uang_stok_dex;
+  $pembelian_dexlite_x = ($sonding_awal_dex + $pembelian_dexlite) - $sonding_akhir_dex;
 
 if($sonding_akhir_max == 0){
     $total_losis_max = 0;
@@ -836,7 +838,7 @@ else{
                                 <tr style="background-color:    #F0F8FF;  ">
                                     <td><strong>Total Harga Pokok Penjualan</strong></td>
                                     <td class="text-left"></td>
-                                    <td class="thick-line"></td>
+                                    <td class="text-left"><?=formatjumlah($pembelian_pertamax_x) ?> Liter</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_pertamax_b); ?></td>
                                     <?php echo "<td class='text-right'></td>"; ?>
@@ -1012,7 +1014,7 @@ else{
                                 <tr style="background-color:    #F0F8FF;  ">
                                     <td><strong>Total Harga Pokok Penjualan Dex</strong></td>
                                     <td class="text-left"></td>
-                                    <td class="thick-line"></td>
+                                    <td class="text-left"><?=formatjumlah($pembelian_dexlite_x) ?> Liter</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_dexlite_b); ?></td>
                                     <?php echo "<td class='text-right'></td>"; ?>
