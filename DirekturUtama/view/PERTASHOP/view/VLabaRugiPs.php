@@ -1003,7 +1003,7 @@ else{
                                     <td>5-120</td>
                                     <td class="text-left">Stok Akhir Bulan Dexlite</td>
                                     <td class="text-left"><?=formatjumlah($sonding_akhir_dex) ?> Liter</td>
-                                    <td class="text-left"><?= formatuang($total_uang_stok_awal_dex); ?></td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_dex); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                   
                                     <?php echo "<td class='thick-line'></td>"; ?>
