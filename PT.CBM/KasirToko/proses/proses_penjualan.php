@@ -559,13 +559,24 @@ if ($referensi == 'TK') {
 
 		else if ($nama_baja == "Pendapatan Lain-lain Diluar Usaha") {
 			$kode_akun = '5-610';
-			$kode_baja = 'L03K01';
+			$kode_baja = '000000';
 			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
 				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
 		}
+		else if ($nama_baja == "Kas Kecil") {
+			$kode_akun = '1-112';
+			$kode_baja = '000000';
+			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
+				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
+			if ($query1!= "") {
+				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+		}
+
+		
 
 	}
 
@@ -1173,13 +1184,24 @@ if ($referensi == 'TK') {
 
 		else if ($nama_baja == "Pendapatan Lain-lain Diluar Usaha") {
 			$kode_akun = '5-610';
-			$kode_baja = 'L03K01';
+			$kode_baja = '000000';
 			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
 				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
 		}
+		else if ($nama_baja == "Kas Kecil") {
+			$kode_akun = '1-112';
+			$kode_baja = '000000';
+			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
+				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
+			if ($query1!= "") {
+				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+		}
+
+		
 	}
 	//Bon
 	if ($pembayaran=="Bon") {
@@ -2401,13 +2423,23 @@ if ($referensi == "GD") {
 
 		else if ($nama_baja == "Pendapatan Lain-lain Diluar Usaha") {
 			$kode_akun = '5-610';
-			$kode_baja = 'L03K01';
+			$kode_baja = '000000';
 			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
 				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
 		}
+		else if ($nama_baja == "Kas Kecil") {
+			$kode_akun = '1-112';
+			$kode_baja = '000000';
+			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
+				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
+			if ($query1!= "") {
+				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+		}
+
 
 	}
 
@@ -2899,13 +2931,23 @@ if ($referensi == "GD") {
 
 		else if ($nama_baja == "Pendapatan Lain-lain Diluar Usaha") {
 			$kode_akun = '5-610';
-			$kode_baja = 'L03K01';
+			$kode_baja = '000000';
 			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
 				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
 		}
+		else if ($nama_baja == "Kas Kecil") {
+			$kode_akun = '1-112';
+			$kode_baja = '000000';
+			$query1 = mysqli_query($koneksi,"INSERT INTO riwayat_penjualan VALUES ('','$id','$tanggal','$referensi','$kode_akun','$kode_baja','$penyaluran',
+				'$nama','$pembayaran','$qty','$harga','$jumlah','$keterangan','$file')");
+			if ($query1!= "") {
+				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+		}
+
 	}
 	//Bon
 	if ($pembayaran=="Bon") {

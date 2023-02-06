@@ -426,7 +426,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           
         </tr>
         <tr>
-          <td align="center" style="font-weight: bold; text-decoration: underline;">Miftakhul Janah</td>
+          <td align="center" style="font-weight: bold; text-decoration: underline;">Lilis Magdalena</td>
         </tr>
         <tr>
           <td align="center" style="font-weight: bold; font-style: italic;">Kasir</td>
