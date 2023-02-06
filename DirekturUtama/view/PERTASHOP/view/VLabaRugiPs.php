@@ -303,8 +303,8 @@ else{
   }
 
 
-  $total_pendapatan_max = $total_pertamax  + $total_ngecor_max + $total_uang_stok_max;
-  $total_pendapatan_dex = $total_dexlite + $total_ngecor_dex  + $total_uang_stok_dex;
+  $total_pendapatan_max = $total_pertamax  + $total_ngecor_max ;
+  $total_pendapatan_dex = $total_dexlite + $total_ngecor_dex ;
 
 
     // Pembelian Pertamax
@@ -697,15 +697,7 @@ else{
                                     <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRPenPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                 </tr>
                                 
-                                <tr>
-                                    <td>4-110</td>
-                                    <td class="text-left">Sisa Stok Pertamax</td>
-                                    <td class="text-left"><?=formatjumlah($sonding_akhir_max) ?> Liter</td>
-                                    <td class="text-left"><?= formatuang($total_uang_stok_max); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                  
-                                    <?php echo "<td class='thick-line'></td>"; ?>
-                                </tr>
+                                
 
 
                                 <tr>
@@ -719,7 +711,7 @@ else{
                                 </tr>
  
                                 <tr style="background-color:     #F0F8FF; ">
-                                    <td><strong>Total Pendapatan + Cor + Stok</strong></td>
+                                    <td><strong>Total Pendapatan + Cor</strong></td>
                                     <td class="text-left"></td>
                                     <td class="no-line text-left"><?= formatjumlah($qty_ngecor_max + $pertamax_terjual + $sonding_akhir_max ); ?> Liter</td>
                                     <td class="no-line text-left"><?= formatuang($total_pendapatan_max); ?></td>
@@ -800,6 +792,15 @@ else{
 
 
                                     <td class="thick-line"></td>
+                                </tr>
+                                <tr>
+                                    <td>4-110</td>
+                                    <td class="text-left">Sisa Stok Pertamax</td>
+                                    <td class="text-left"><?=formatjumlah($sonding_akhir_max) ?> Liter</td>
+                                    <td class="text-left"><?= formatuang($total_uang_stok_max); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                  
+                                    <?php echo "<td class='thick-line'></td>"; ?>
                                 </tr>
 
                             </tbody>

@@ -787,8 +787,7 @@ $ranau = 'Kebun Ranau';
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri_pri); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$PRIBADI&rekening=$PRIBADI&status_saldo=$Masuk'>Rincian</a></td>"; ?>
      
-  </tr>
-  tr>
+  </tr> 
       <td style='font-size: 11px' align = 'center'>PRIBADI</td>
       <td style='font-size: 11px' align = 'center'>Kebun Mbah</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_mas_pri_mbah); ?></td>
