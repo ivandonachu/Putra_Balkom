@@ -232,6 +232,13 @@ if(mysqli_num_rows($result2) === 1 ){
 
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		}
+		elseif ($kode_baja == '000000') {
+			
+			$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+
+
+			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	}
 
 	}
 
@@ -429,7 +436,13 @@ if(mysqli_num_rows($result2) === 1 ){
 
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		}
+		elseif ($kode_baja == '000000') {
+			
+			$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
 
+
+			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	}
 		
 		}
 
@@ -854,6 +867,13 @@ if ($referensi == 'TK') {
 			
 			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		}
+		elseif ($kode_baja == '000000') {
+			
+			$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+
+
+			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	}
 	}
 	//Briva
 	else if ($pembayaran == 'Briva') {
@@ -1325,6 +1345,13 @@ if ($referensi == 'TK') {
 			
 			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		}
+		elseif ($kode_baja == '000000') {
+			
+			$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+
+
+			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	}
 	}
 	//Bon
 	else if ($pembayaran == 'Bon') {
@@ -1596,6 +1623,13 @@ if ($referensi == 'TK') {
 			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 		}
+		elseif ($kode_baja == '000000') {
+			
+			$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+
+
+			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	}
 	}
 	//Deposit
 	else if ($pembayaran == 'Deposit') {
@@ -1802,6 +1836,13 @@ if ($referensi == 'TK') {
 			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 		}
+		elseif ($kode_baja == '000000') {
+			
+			$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+
+
+			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	}
 	}
 }
 else if ($referensi == 'GD') {
@@ -2223,6 +2264,13 @@ else if ($referensi == 'GD') {
 			
 			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		}
+		elseif ($kode_baja == '000000') {
+			
+			$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+
+
+			echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	}
 	}
 	//Briva
 	else if ($pembayaran == 'Briva') {
@@ -2695,6 +2743,13 @@ else if ($referensi == 'GD') {
 
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
+			elseif ($kode_baja == '000000') {
+			
+				$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+	
+	
+				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		}
 		}
 	//Bon
 		else if ($pembayaran == 'Bon') {
@@ -3147,6 +3202,13 @@ else if ($referensi == 'GD') {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 			}
+			elseif ($kode_baja == '000000') {
+			
+				$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+	
+	
+				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		}
 		}
 	//Deposit
 		else if ($pembayaran == 'Deposit') {
@@ -3353,6 +3415,13 @@ else if ($referensi == 'GD') {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 			}
+			elseif ($kode_baja == '000000') {
+			
+				$query4 = mysqli_query($koneksi,"DELETE FROM riwayat_penjualan WHERE no_transaksi = '$no_laporan'");
+	
+	
+				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		}
 		}
 	}
 
