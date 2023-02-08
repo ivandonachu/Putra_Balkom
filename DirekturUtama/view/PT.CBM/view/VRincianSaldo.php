@@ -9,6 +9,7 @@ $id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
+$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
 
@@ -99,145 +100,163 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
 
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                     Menu PT. CBM
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >List Company</span>
+                </a>
+                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+                    </div>
+                </div>
+            </li>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
+                        
+                        <?php if($nama == 'Nyoman Edy Susanto'){
+                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
+                        } ?>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Laporan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+                    </div>
+                </div>
+            </li>
+            
+            <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                  15  aria-expanded="true" aria-controls="collapseTwo2">
+                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Daftar SDM</span>
+                </a>
+                <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Daftar Aset</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Daftar Dokumen</a>
+                    </div>
+                </div>
+            </li>
+
+    
+           
+
     <!-- Divider -->
     <hr class="sidebar-divider">
-    <!-- Heading -->
-    <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu PTCBM
-    </div>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >List Perusahaan</span>
-    </a>
-    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-        </div>
-    </div>
-</li>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
-            
-            <?php if($nama == 'Nyoman Edy Susanto'){
-            echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
-            } ?>
-            <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Laporan Saldo</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
-             <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
-             <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
-             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
-             <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
-             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
-             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
-        </div>
-    </div>
-</li>
 
-<!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-      15  aria-expanded="true" aria-controls="collapseTwo2">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Daftar SDM</span>
-    </a>
-    <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VAset">Daftar Aset</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Daftar Dokumen</a>
-        </div>
-    </div>
-</li>
-<!-- Divider -->
-<hr class="sidebar-divider">
+    
+         
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
 
 
 
+        </ul>
+        <!-- End of Sidebar -->
 
-<!-- Sidebar Toggler (Sidebar) -->
-<div class="text-center d-none d-md-inline">
-  <button class="rounded-circle border-0" id="sidebarToggle"></button>
-</div>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
+            <!-- Main Content -->
+            <div id="content">
 
-
-</ul>
-<!-- End of Sidebar -->
-
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
-
-  <!-- Main Content -->
-  <div id="content">
-
-    <!-- Topbar -->
+                 <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
+      <?php echo "<a href='VRincianSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
       </button>
 
 
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
 
-      <!-- Topbar Navbar -->
-      <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <!-- Dropdown - Messages -->
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                        aria-labelledby="searchDropdown">
+                        <form class="form-inline mr-auto w-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small"
+                                placeholder="Search for..." aria-label="Search"
+                                aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
 
-          
-        
 
 
 
-        <div class="topbar-divider d-none d-sm-block"></div>
+                <div class="topbar-divider d-none d-sm-block"></div>
 
-        <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-          <img class="img-profile rounded-circle"
-          src="img/undraw_profile.svg">
-        </a>
-        <!-- Dropdown - User Information -->
-        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-        aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="VProfile">
-          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-          Profile
-        </a>
-        <a class="dropdown-item" href="VSetting">
-          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-          Settings
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Logout
-        </a>
-      </div>
-    </li>
+                <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
+                </a>
+                <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="VProfile">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+                </div>
+                </li>
 
   </ul>
 

@@ -9,6 +9,7 @@ $id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
+$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
 
@@ -1782,18 +1783,18 @@ if (isset($_GET['tanggal1'])) {
                 <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu PTCBM
+                     Menu PT. CBM
                 </div>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
                   15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+                    <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >List Company</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="DsPTCBM">PT. CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
@@ -1809,14 +1810,14 @@ if (isset($_GET['tanggal1'])) {
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
                     <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjaulan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
                         
                         <?php if($nama == 'Nyoman Edy Susanto'){
                         echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
@@ -1838,7 +1839,7 @@ if (isset($_GET['tanggal1'])) {
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
                   15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;" ></i>
                     <span style="font-size: 15px; color:white;" >Daftar SDM</span>
                 </a>
                 <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -1917,31 +1918,24 @@ if (isset($_GET['tanggal1'])) {
                 <div class="topbar-divider d-none d-sm-block"></div>
 
                 <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                    <img class="img-profile rounded-circle"
-                    src="img/undraw_profile.svg">
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
                 <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="userDropdown">
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
-                </a>
-                <a class="dropdown-item" href="VSetting">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-            </div>
-        </li>
+                </div>
+                </li>
 
     </ul>
 
