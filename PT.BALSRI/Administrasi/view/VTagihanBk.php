@@ -345,14 +345,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         </div>
 
                         <div class="row">
-                          <div class="col-md-6">
-                            <label>SO</label>
-                            <input class="form-control form-control-sm" type="text" id="so" name="so" required="">
-                          </div>
-
-
-
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                             <label>LO</label>
                             <input class="form-control form-control-sm" type="text" id="lo" name="lo" required="">
                           </div>
@@ -468,7 +461,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <tr>
                   <th>No</th>
                   <th>Tanggal</th>
-                  <th>SO</th>
                   <th>LO</th>
                   <th>Delivery Point</th>
                   <th>Pemilik</th>
@@ -497,7 +489,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <?php while ($data = mysqli_fetch_array($table)) {
                   $no_tagihan = $data['no_tagihan'];
                   $tanggal = $data['tanggal'];
-                  $so = $data['so'];
                   $lo = $data['lo'];
                   $delivery_point = $data['delivery_point'];
                   $pemilik = $data['pemilik'];
@@ -531,7 +522,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                   echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$so</td>
       <td style='font-size: 14px'>$lo</td>
       <td style='font-size: 14px'>$delivery_point</td>
       <td style='font-size: 14px'>$pemilik</td>
@@ -582,14 +572,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <div class="row">
 
 
-                                <div class="col-md-6">
-                                  <label>SO</label>
-                                  <input class="form-control form-control-sm" type="text" id="so" name="so" required="" value="<?php echo $so; ?>">
-                                </div>
-
-
-
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                   <label>LO</label>
                                   <input class="form-control form-control-sm" type="text" id="lo" name="lo" required="" value="<?php echo $lo; ?>">
                                 </div>

@@ -30,6 +30,7 @@ $nama_barang = $_POST['nama_barang'];
 $jumlah = $_POST['jumlah'];
 $harga = $_POST['harga'];
 $total = $jumlah * $harga;
+$jenis_cor = $_POST['jenis_cor'];
 $keterangan = $_POST['keterangan'];
 
 $nama_file = $_FILES['file']['name'];
@@ -88,11 +89,11 @@ if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Pertamax'){
 
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran' ,lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
+		 ,harga = '$harga',total = '$total', jenis_cor = '$jenis_cor' ,keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-        ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
+        ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
@@ -115,11 +116,11 @@ else if($lokasi_cor == 'Nusa Bakti' && $nama_barang == 'Dexlite'){
 
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
+		 ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-        ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
+        ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
@@ -142,11 +143,11 @@ else if($lokasi_cor == 'Bedilan' && $nama_barang == 'Pertamax'){
 
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
+		 ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-        ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
+        ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
@@ -169,11 +170,11 @@ else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
 
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
+		 ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-        ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
+        ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
@@ -196,11 +197,11 @@ else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Dexlite'){
 
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
+		 ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-        ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
+        ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
@@ -227,11 +228,11 @@ else if($lokasi_cor == 'BK 3' && $nama_barang == 'Pertamax'){
 
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
+		 ,harga = '$harga',total = '$total', jenis_cor = '$jenis_cor' ,keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-        ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
+        ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
@@ -254,11 +255,11 @@ else if($lokasi_cor == 'BK 3' && $nama_barang == 'Dexlite'){
 
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
+		 ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-        ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
+        ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
@@ -286,11 +287,11 @@ else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Pertamax'){
 
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
+		 ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor' ,keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-        ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
+        ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 
@@ -313,11 +314,11 @@ else if($lokasi_cor == 'Pul Baturaja' && $nama_barang == 'Dexlite'){
 
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-		 ,harga = '$harga',total = '$total',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
+		 ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor',keterangan = '$keterangan'  WHERE no_cor = '$no_cor'");
 	}
 	else{
 		$query3 = mysqli_query($koneksi,"UPDATE ngecor SET tanggal = '$tanggal', tanggal_pembayaran = '$tanggal_pembayaran',lokasi_cor = '$lokasi_cor' , no_polisi = '$no_polisi' , nama_driver = '$nama_driver', nama_perusahaan = '$nm_pt' , nama_barang = '$nama_barang', jumlah = '$jumlah'
-        ,harga = '$harga',total = '$total',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
+        ,harga = '$harga',total = '$total' , jenis_cor = '$jenis_cor',keterangan = '$keterangan' ,  file_bukti = '$file' WHERE no_cor = 	'$no_cor'");
 	}
 	
 

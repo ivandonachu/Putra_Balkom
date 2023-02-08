@@ -1041,13 +1041,6 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <?php echo "<td class='text-right'><a href='VRincianLRMES/VRATKTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
-                                    <td>5-520</td>
-                                    <td class="text-left">Alat Tulis Kantor</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_pengeluaran_atk); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRATKTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                </tr>
-                                <tr>
                                     <td>5-530</td>
                                     <td class="text-left">Transport / Perjalan Dinas</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>

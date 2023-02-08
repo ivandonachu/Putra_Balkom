@@ -360,7 +360,6 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>SO</th>
       <th>LO</th>
       <th>Delivery Point</th>
       <th>Pemilik</th>
@@ -388,7 +387,6 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_tagihan = $data['no_tagihan'];
       $tanggal =$data['tanggal'];
-      $so = $data['so'];
       $lo = $data['lo'];
       $delivery_point = $data['delivery_point'];
       $pemilik = $data['pemilik'];
@@ -426,7 +424,6 @@ else{
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$so</td>
       <td style='font-size: 14px'>$lo</td>
       <td style='font-size: 14px'>$delivery_point</td>
       <td style='font-size: 14px'>$pemilik</td>
