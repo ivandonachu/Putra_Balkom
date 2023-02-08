@@ -2096,6 +2096,8 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
             <option>Bright Gas 12 Kg Baja + Isi</option>
             <option>Bright Gas 12 Kg Baja Kosong</option>
             <option>Pendapatan Lain-lain Diluar Usaha</option>
+            <option>Kas Kecil</option>
+            
           </select>
         </div>
 
