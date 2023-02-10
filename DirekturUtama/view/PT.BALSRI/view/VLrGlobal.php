@@ -93,6 +93,15 @@ else{
    $total_jt_gps_br = $data2_br['total_jt_gps'];
    $total_um_br= $data2_br['uang_makan'];
    $total_dexlite_br = $total_uj_br - ($total_jt_gps_br*625);
+
+   $table222_br = mysqli_query($koneksibalsri, "SELECT jt_gps, uj , dexlite FROM pengiriman_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    while($data = mysqli_fetch_array($table222_br)){
+ 
+        $dexlite_br = $data['dexlite'];
+        $total_bbm_br = $total_bbm_br + $dexlite_br;
+        
+    }
+        $uang_bbm_br = $total_bbm_br * 10150;
    
 
   //pengiriman lampung
@@ -104,6 +113,15 @@ else{
    $total_um_lmg = $data2_lmg['uang_makan'];
    $total_dexlite_lmg = $total_uj_lmg - ($total_jt_gps_lmg*625);
 
+   $table222_lpg = mysqli_query($koneksibalsri, "SELECT dexlite FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    while($data = mysqli_fetch_array($table222_lpg)){
+
+        $dexlite_lpg = $data['dexlite'];
+        $total_bbm_lpg = $total_bbm_lpg + $dexlite_lpg;
+        
+    }
+        $uang_bbm_lpg = $total_bbm_lpg * 10000;
+
    //pengiriman spbu
    $table2_spbu = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
    $total_dexlite_spbu =0;
@@ -113,6 +131,15 @@ else{
    $total_um_spbu= $data2_spbu['uang_makan'];
    $total_dexlite_spbu = $total_uj_spbu - ($total_jt_gps_spbu*625);
 
+   $table222_spbu = mysqli_query($koneksibalsri, "SELECT dexlite FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    while($data = mysqli_fetch_array($table222_spbu)){
+
+        $dexlite_spbu = $data['dexlite'];
+        $total_bbm_spbu = $total_bbm_spbu + $dexlite_spbu;
+        
+    }
+    $uang_bbm_spbu = $total_bbm_spbu * 10000;
+
    //pengiriman palembang
    $table2_plg = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
    $total_dexlite_plg =0;
@@ -121,6 +148,15 @@ else{
    $total_jt_gps_plg = $data2_plg['total_jt_gps'];
    $total_um_plg= $data2_plg['uang_makan'];
    $total_dexlite_plg = $total_uj_plg - ($total_jt_gps_plg*625);
+
+   $table222_plg = mysqli_query($koneksibalsri, "SELECT jt_gps, uj , dexlite FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    while($data = mysqli_fetch_array($table222_plg)){
+
+        $dexlite_plg = $data['dexlite'];
+        $total_bbm_plg = $total_bbm_plg + $dexlite_plg;
+        
+    }
+        $uang_bbm_plg = $total_bbm_plg * 10000;
 
    //pengiriman belitung
    $table2_bb = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
@@ -149,9 +185,19 @@ else{
    $total_um_bkl = $data2_bkl['uang_makan'];
    $total_dexlite_bkl = $total_uj_bkl - ($total_jt_gps_bkl*625);
 
+   $table222_bku = mysqli_query($koneksistre, "SELECT jt_gps, uj , dexlite FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    while($data = mysqli_fetch_array($table222_bku)){
+
+        $dexlite_bku = $data['dexlite'];
+        $total_bbm_bku = $total_bbm_bku + $dexlite_bku;
+        
+    }
+        $uang_bbm_bku = $total_bbm_bku * 11000;
+
     
    $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg  + $total_dexlite_bb + $total_dexlite_spbu + $total_dexlite_lmg + $total_dexlite_bk + $total_dexlite_bkl;
     $total_um_global = $total_um_br + $total_um_lmg + $total_um_plg + $total_um_bb + $total_um_spbu +  $total_um_bk + $total_um_bkl;
+    $total_bbm_global = $uang_bbm_br + $uang_bbm_lpg + $uang_bbm_spbu + $uang_bbm_bku + $uang_bbm_plg;
 
     //BIAYA KANTOR
   //pengeluran Pul Biaya Kantor baturaja
@@ -590,9 +636,13 @@ else{
 
 }
     $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
+
     $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit;
+
+    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit;
            
     $laba_bersih_sebelum_pajak = $total_tagihan_global - $total_biaya_usaha_final;
+    $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_final_bbm;
             
 ?>
 
@@ -1099,6 +1149,13 @@ else{
                 <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
             </tr>
             <tr>
+                <td>5-5971</td>
+                <td class="text-left">Uang BBM</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_bbm_global); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+            </tr>
+            <tr>
                 <td>5-598</td>
                 <td class="text-left">Bayar Kredit</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
@@ -1127,7 +1184,7 @@ else{
                 <td class="thick-line"></td>
             </tr>
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td><strong>LABA BERSIH SEBELUM PAJAK (DEX)</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
@@ -1140,6 +1197,29 @@ else{
 
                     <td class="no-line text-left"><?= formatuang(0); ?></td>
                     <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?></td>
+
+                <?php }
+                else if ($total_tagihan_global == 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                <?php }
+                ?>
+                <td class="thick-line"></td>
+            </tr> <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA BERSIH SEBELUM PAJAK (BBM)</strong></td>
+                <td class="thick-line"></td>
+                <?php
+
+                if ($laba_bersih_sebelum_pajak_bbm > 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_bbm); ?> </td>
+                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_bbm < 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_bbm); ?></td>
 
                 <?php }
                 else if ($total_tagihan_global == 0) { ?>
