@@ -559,6 +559,7 @@ $beruk = 'Kebun Seberuk';
             <option>Bon Karyawan</option>
             <option>Mocash</option>
             <option>Prive</option>
+            <option>Pengeluaran Lainnya</option>
           </select>
         </div>            
         <div class="col-md-6">
