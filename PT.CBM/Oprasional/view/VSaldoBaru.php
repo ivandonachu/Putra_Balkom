@@ -263,6 +263,14 @@ if (!isset($data26['jumlah_kel_cbm_exxa_da'])) {
 $jumlah_kel_cbm_exxa = 0;
 }
 
+//Keluar CBM untuk Kebun Seberuk 
+$table27 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_cbm_beruk FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'CBM' AND referensi = 'Kebun Seberuk' AND status_saldo = 'Keluar' ");
+$data27 = mysqli_fetch_array($table27);
+$jumlah_kel_cbm_beruk = $data27['jumlah_kel_cbm_beruk'];
+if (!isset($data27['jumlah_kel_cbm_beruk'])) {
+$jumlah_kel_cbm_beruk = 0;
+}
+
 // kode salado
 
 $CBM = 'CBM';
@@ -279,6 +287,7 @@ $Masuk = 'Masuk';
 $mbah = 'Kebun Mbah';
 $ranau = 'Kebun Ranau';
 $exxa = 'Exxa';
+$beruk = 'Kebun Seberuk';
 
 
 }
@@ -359,13 +368,10 @@ $exxa = 'Exxa';
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Oprasional</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VListDriver">List Driver</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VListRute">List Rute</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Penggunaan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo Baru</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Pembelian BBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR/MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganMelody">Keuangan Melody Group</a>
                     </div>
                 </div>
             </li>
@@ -523,6 +529,7 @@ $exxa = 'Exxa';
             <option>STE</option>
             <option>Kebun Ranau</option>
             <option>Exxa</option>
+            <option>Kebun Seberuk</option>
           </select>
           <small></small>
         </div>
@@ -544,15 +551,14 @@ $exxa = 'Exxa';
             <option>Biaya Usaha Lainnya</option>
             <option>Biaya Perbaikan Kendaraan</option>
             <option>Biaya Penjualan & Pemasaran</option>
+            <option>Alat Tulis Kantor</option>
+            <option>Biaya Kantor</option>
+            <option>Biaya Konsumsi</option>
+            <option>Transport / Perjalanan Dinas</option>
+            <option>Listrik & Telepon</option>
             <option>Bon Karyawan</option>
-            <option>Transfer Ke Bos</option>
-            <option>Bayar Pajak</option>
-            <option>Bayar Kir</option>
             <option>Mocash</option>
-            <option>Pengeluaran Pak Nyoman</option>
-            <option>Pengeluaran Buk Mery</option>
-            <option>Kebun Ranau</option>
-            <option>Tabungan Anak</option>
+            <option>Prive</option>
           </select>
         </div>            
         <div class="col-md-6">
@@ -732,7 +738,7 @@ $exxa = 'Exxa';
             <option <?php echo ($dataSelect == 'STE') ? "selected": "" ?> >STE</option>
             <option <?php echo ($dataSelect == 'Kebun Ranau') ? "selected": "" ?> >Kebun Ranau</option>
             <option <?php echo ($dataSelect == 'Exxa') ? "selected": "" ?> >Exxa</option>
-            
+            <option <?php echo ($dataSelect == 'Kebun Seberuk') ? "selected": "" ?> >Kebun Seberuk</option>
           </select>
 
         </div>            
@@ -756,14 +762,13 @@ $exxa = 'Exxa';
             <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
             <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
             <option <?php echo ($dataSelect == 'Bon Karyawan') ? "selected": "" ?> >Bon Karyawan</option>
-            <option <?php echo ($dataSelect == 'Transfer Ke Bos') ? "selected": "" ?> >Transfer Ke Bos</option>
-            <option <?php echo($dataSelect == 'Bayar Pajak')?"selected": ""?>>Bayar Pajak</option>
-            <option <?php echo($dataSelect == 'Bayar Kir')?"selected": ""?>>Bayar Kir</option>
+            <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
+            <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
+            <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+            <option <?php echo($dataSelect == 'Transport / Perjalanan Dinas')?"selected": ""?>>Transport / Perjalanan Dinas</option>
+            <option <?php echo($dataSelect == 'Listrik & Telepon')?"selected": ""?>>Listrik & Telepon</option>
             <option <?php echo($dataSelect == 'Mocash')?"selected": ""?>>Mocash</option>
-            <option <?php echo($dataSelect == 'Pengeluaran Pak Nyoman')?"selected": ""?>>Pengeluaran Pak Nyoman</option>
-            <option <?php echo($dataSelect == 'Pengeluaran Buk Mery')?"selected": ""?>>Pengeluaran Buk Mery</option>
-            <option <?php echo ($dataSelect == 'Kebun Ranau') ? "selected": "" ?> >Kebun Ranau</option>
-            <option <?php echo ($dataSelect == 'Tabungan Anak') ? "selected": "" ?> >Tabungan Anak</option>
+            <option <?php echo($dataSelect == 'Prive')?"selected": ""?>>Prive</option>
 
           </select>
 
@@ -983,6 +988,13 @@ $exxa = 'Exxa';
       <td style='font-size: 11px' align = 'center'>Exxa</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm_exxa); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$exxa&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>CBM</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Seberuk</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm_beruk); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$beruk&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
 
