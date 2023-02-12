@@ -124,6 +124,8 @@ WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian Barang Jual</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBungaBank">Bunga Bank</a>
                     </div>
                 </div>
             </li>
