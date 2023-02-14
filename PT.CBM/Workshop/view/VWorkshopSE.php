@@ -352,20 +352,16 @@
         <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
 
   <!-- Form EDIT DATA -->
+  -- Form EDIT DATA -->
 
-  <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" role ="document">
-      <div class="modal-content"> 
-  <<<<<<< HEAD
-        <div class="modal-header">Form Edit Workshop Semen </h5>
-  =======
-        <div class="modal-header">Form Edit Workshop </h5>
-  >>>>>>> 5661ebb1b669e885e022b5a63dc1e6b93b48c54a
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true"> &times; </span>
-          </button>
-        </div>
-
+<div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role ="document">
+    <div class="modal-content"> 
+      <div class="modal-header">Form Edit Workshop Semen</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
 
         <!-- Form Edit Data -->
         <div class="modal-body">
