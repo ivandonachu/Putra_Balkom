@@ -259,19 +259,7 @@
         <div class="row">
             <div class="col-md-6">
             <label>Nama Driver</label>
-          <select id="tokens" class="selectpicker form-control" name="nama_driver" multiple data-live-search="true">
-          <?php
-          include 'koneksi.php';
-          $result = mysqli_query($koneksipbj, "SELECT * FROM driver_s");   
-
-          while ($data2 = mysqli_fetch_array($result)){
-            $data_pangakalan = $data2['nama_driver'];
-
-              echo "<option> $data_pangakalan </option> ";
-            
-          }
-          ?>
-        </select>
+            <input class="form-control form-control-sm" type="text" id="nama_driver" name="nama_driver" required=""> 
 
             </div>
     
@@ -410,19 +398,7 @@
   <label>Nama Driver</label>
   </div>
 
-    <select class="form-control" name="nama_driver" >
-      <?php
-        $dataSelect = $data['nama_driver'];
-        include 'koneksi.php';
-        $result = mysqli_query($koneksipbj, "SELECT * FROM driver_s ");
-
-        while ($data2 = mysqli_fetch_array($result)) {
-          $nama_driver = $data2['nama_driver'];
-
-          echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
-                                                                                                                        }
-                                                                                                                      ?>
-    </select>
+  <input class="form-control form-control-sm" type="text" id="nama_driver" value="<?php echo $nama_driver;?>" name="nama_driver" required=""> 
 
   </div>    
 
