@@ -47,7 +47,7 @@ else if ($jumlah_pesanan == '5000 L') {
 }
 
 
-$result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg WHERE delivery_point = '$delivery_point' ");
+$result = mysqli_query($koneksi, "SELECT * FROM master_tarif_pa WHERE delivery_point = '$delivery_point' ");
 $data_tarif = mysqli_fetch_array($result);
 $total = $data_tarif[$kode_pesanan];
 
@@ -95,13 +95,13 @@ else if ( $nama_file != "" ) {
 
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_tg SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total'  WHERE no_tagihan = '$no_tagihan'");
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_pa SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total'  WHERE no_tagihan = '$no_tagihan'");
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_tg SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_pa SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
 	}
 
 
-	echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VTagihanTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VTagihanPA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 ?>

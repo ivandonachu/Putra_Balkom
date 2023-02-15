@@ -47,6 +47,12 @@ else if ($jumlah_pesanan == '2000 L') {
 else if ($jumlah_pesanan == '3000 L') {
 	$kode_pesanan = 'kl3';
 }
+else if ($jumlah_pesanan == '4000 L') {
+	$kode_pesanan = 'kl4';
+}
+else if ($jumlah_pesanan == '5000 L') {
+	$kode_pesanan = 'kl5';
+}
 
 
 $result3 = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg WHERE delivery_point = '$delivery_point' ");

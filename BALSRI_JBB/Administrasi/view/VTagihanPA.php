@@ -33,17 +33,17 @@ else{
   }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM tagihan_tg a INNER JOIN master_tarif_tg b ON a.delivery_point=b.delivery_point WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM tagihan_pa a INNER JOIN master_tarif_pa b ON a.delivery_point=b.delivery_point WHERE tanggal = '$tanggal_awal'");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_tg a INNER JOIN master_tarif_tg b ON a.delivery_point=b.delivery_point  WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_pa a INNER JOIN master_tarif_pa b ON a.delivery_point=b.delivery_point  WHERE tanggal = '$tanggal_awal'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan = $data2['total_tagihan'];
   $total_jt = $data2['total_jt'];
   $total_rit = $data2['total_rit'];
 } else {
-  $table = mysqli_query($koneksi, "SELECT * FROM tagihan_tg a INNER JOIN master_tarif_tg b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
+  $table = mysqli_query($koneksi, "SELECT * FROM tagihan_pa a INNER JOIN master_tarif_pa b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY a.tanggal");
 
-  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_tg a INNER JOIN master_tarif_tg b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksi, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_pa a INNER JOIN master_tarif_pa b ON a.delivery_point=b.delivery_point WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
   $total_tagihan = $data2['total_tagihan'];
   $total_jt = $data2['total_jt'];
@@ -62,7 +62,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Tagihan Angkutan Pertashop Tanjung Gerem</title>
+  <title>Tagihan Angkutan Pertashop Padalarang</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -228,7 +228,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-          <?php echo "<a href='VTagihanTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Tagihan Angkutan Pertashop Tanjung Gerem</h5></a>"; ?>
+          <?php echo "<a href='VTagihanPA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Tagihan Angkutan Pertashop Padalarang</h5></a>"; ?>
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -317,7 +317,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                       <!-- Form Input Data -->
                       <div class="modal-body" align="left">
-                        <?php echo "<form action='../proses/proses_tagihan_TG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                        <?php echo "<form action='../proses/proses_tagihan_PA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
                         <div class="row">
                           <div class="col-md-6">
@@ -357,7 +357,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="delivery_point" multiple data-live-search="true">
                               <?php
                               include 'koneksi.php';
-                              $result2 = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg");
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM master_tarif_pa");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
                                 $data_tarif = $data2['delivery_point'];
@@ -394,7 +394,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="amt" name="amt" class="form-control ">
                               <?php
                               include 'koneksi.php';
-                              $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Tanjung Gerem'");
+                              $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Padalarang'");
 
                               while ($data2 = mysqli_fetch_array($result)) {
                                 $nama_driver = $data2['nama_driver'];
@@ -411,7 +411,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="mt" name="mt" class="form-control">
                               <?php
                               include 'koneksi.php';
-                              $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Tanjung Gerem'");
+                              $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Padalarang'");
 
                               while ($data2 = mysqli_fetch_array($result)) {
                                 $no_polisi = $data2['no_polisi'];
@@ -567,7 +567,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                           <!-- Form Edit Data -->
                           <div class="modal-body" align="left">
-                            <form action="../proses/edit_tagihan_TG" enctype="multipart/form-data" method="POST">
+                            <form action="../proses/edit_tagihan_PA" enctype="multipart/form-data" method="POST">
 
                               <input type="hidden" name="no_tagihan" value="<?php echo $no_tagihan; ?>">
                               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
@@ -615,7 +615,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php
                                     include 'koneksi.php';
                                     $dataSelect = $data['delivery_point'];
-                                    $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg");
+                                    $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_pa");
 
                                     while ($data2 = mysqli_fetch_array($result)) {
                                       $data_tarif = $data2['delivery_point'];
@@ -655,7 +655,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php
                                     $dataSelect = $data['amt'];
                                     include 'koneksi.php';
-                                    $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Tanjung Gerem'");
+                                    $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Padalarang'");
 
                                     while ($data2 = mysqli_fetch_array($result)) {
                                       $nama_driver = $data2['nama_driver'];
@@ -674,7 +674,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php
                                     $dataSelect = $data['mt'];
                                     include 'koneksi.php';
-                                    $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Tanjung Gerem'");
+                                    $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Padalarang'");
 
                                     while ($data2 = mysqli_fetch_array($result)) {
                                       $no_polisi = $data2['no_polisi'];
@@ -719,7 +719,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 </div>
 
                 <div class="modal-body">
-                  <form action="../proses/hapus_tagihan_TG" method="POST">
+                  <form action="../proses/hapus_tagihan_PA" method="POST">
                     <input type="hidden" name="no_tagihan" value="<?php echo $data['no_tagihan']; ?>">
                     <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                     <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">

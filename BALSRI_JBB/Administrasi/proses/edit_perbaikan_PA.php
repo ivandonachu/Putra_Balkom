@@ -17,45 +17,15 @@ if ($jabatan_valid == 'Administrasi') {
 else{  header("Location: logout.php");
 exit;
 }
-
-$no_tagihan = $_POST['no_tagihan'];
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
+$no_laporan = $_POST['no_laporan'];
 $tanggal = $_POST['tanggal'];
-$delivery_point = $_POST['delivery_point'];
-$so = $_POST['so'];
-$lo = $_POST['lo'];
-$jumlah_pesanan = $_POST['jumlah_pesanan'];
+$akun = $_POST['akun'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
-
-
-if ($jumlah_pesanan == '1000 L') {
-	$kode_pesanan = 'kl1';
-}
-else if ($jumlah_pesanan == '2000 L') {
-	$kode_pesanan = 'kl2';
-}
-else if ($jumlah_pesanan == '3000 L') {
-	$kode_pesanan = 'kl3';
-}
-else if ($jumlah_pesanan == '4000 L') {
-	$kode_pesanan = 'kl4';
-}
-else if ($jumlah_pesanan == '5000 L') {
-	$kode_pesanan = 'kl5';
-}
-
-
-$result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg WHERE delivery_point = '$delivery_point' ");
-$data_tarif = mysqli_fetch_array($result);
-$total = $data_tarif[$kode_pesanan];
-
-
-
-
-
-
+$jml_pengeluaran = $_POST['jml_pengeluaran'];
+$keterangan = $_POST['keterangan'];
 
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -93,15 +63,16 @@ else if ( $nama_file != "" ) {
 }
 
 
-
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_tg SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total'  WHERE no_tagihan = '$no_tagihan'");
+			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_pa SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_tg SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
+			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_pa SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
 	}
 
+if ($query != "") {
+	echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VCatatPerbaikanPA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
-	echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VTagihanTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+}
 
 ?>
