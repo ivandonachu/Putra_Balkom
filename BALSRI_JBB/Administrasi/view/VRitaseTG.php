@@ -9,7 +9,6 @@ $id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
-$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Administrasi') {
 
@@ -41,17 +40,25 @@ elseif (isset($_POST['tanggal1'])) {
 //ritase
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
-  $table2 = mysqli_query($koneksi, "SELECT  a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_br b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_tg b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
-  $table2 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_br b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_tg b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
 
 }
 
+if ($tanggal_awal == $tanggal_akhir) {
+
+  $table2 = mysqli_query($koneksi, "SELECT  a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_tg b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
+
+}
+else{
+
+  $table2 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_tg b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
+
+}
 
 
 ?>
@@ -66,7 +73,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Riwayat Ritase BTA</title>
+  <title>Riwayat Ritase</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -91,16 +98,15 @@ else{
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 65px; width: 220px;" src="../gambar/Logo CBM.jpg" ></div>
 </a>
 
 <!-- Divider -->
@@ -124,24 +130,20 @@ else{
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
       15  aria-expanded="true" aria-controls="collapseOne">
-        <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
         <span style="font-size: 15px; color:white;" >Tagihan</span>
     </a>
     <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanL8">Tagihan Lampung 8KL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelembang</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBl">Tagihan Belitung</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBk">Tagihan Bangka</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifL8">Master Tarif LMG 8KL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBl">Master Tarif BL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBk">Master Tarif BK</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanTG">Tagihan Tanjung Gerem</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanPA">Tagihan Padalarang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanPL">Tagihan Plumpang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanUB">Tagihan Ujung Berung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifTG">Master Tarif TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPA">Master Tarif PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPL">Master Tarif PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifUB">Master Tarif UB</a>
         </div>
     </div>
 </li>
@@ -149,36 +151,28 @@ else{
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
       15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-truck" style="font-size: 15px; color:white;" ></i>
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
         <span style="font-size: 15px; color:white;" >Pengiriman</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL8">Pengiriman LMG 8KL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBl">Pengiriman BL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBk">Pengiriman BK</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitaseL8">Ritase LMG 8KL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBl">Ritase BL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBk">Ritase BK</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhL8">Jarak Tempuh LMG 8KL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBl">Jarak Tempuh BL</a> 
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBk">Jarak Tempuh BK</a> 
-            <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiL8">Gaji LMG 8KL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiBl">Gaji BL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiBk">Gaji BK</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanTG">Pengiriman TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPA">Pengiriman PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPL">Pengiriman PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanUB">Pengiriman UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseTG">Ritase TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitasePA">Ritase PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitasePL">Ritase PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseUB">Ritase UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhTG">Jarak Tempuh TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPA">Jarak Tempuh PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPL">Jarak Tempuh PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhUB">Jarak Tempuh UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiTG">Gaji TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiPA">Gaji PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiPL">Gaji PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiUB">Gaji UB</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
@@ -193,16 +187,14 @@ else{
     <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBl">Catat Perbaikan BL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBk">Catat Perbaikan BK</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBl">Pengeluaran Pul BL</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBk">Pengeluaran Pul BK</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanTG">Catat Perbaikan TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPA">Catat Perbaikan PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPL">Catat Perbaikan PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanUB">Catat Perbaikan UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulTG">Pengeluaran Pul TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPA">Pengeluaran Pul PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPL">Pengeluaran Pul PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulUB">Pengeluaran Pul UB</a>
         </div>
     </div>
 </li>
@@ -210,7 +202,7 @@ else{
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
       15  aria-expanded="true" aria-controls="collapseTwo1">
-        <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
         <span style="font-size: 15px; color:white;" >SDM</span>
     </a>
     <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -218,11 +210,11 @@ else{
             <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
         </div>
     </div>
 </li>
+
 
   <!-- Divider -->
   <hr class="sidebar-divider">
@@ -248,7 +240,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRitaseBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Ritase BTA</h5></a>"; ?>
+      <?php echo "<a href='VRitaseTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Ritase TG</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -260,29 +252,38 @@ else{
       <ul class="navbar-nav ml-auto">
 
 
+
+
+
+
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
-                </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="VProfile">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                </a>
-              </div>
-             </li>
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+          <img class="img-profile rounded-circle"
+          src="img/undraw_profile.svg">
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+        aria-labelledby="userDropdown">
+        <a class="dropdown-item" href="VProfile">
+          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Profile
+        </a>
+        <a class="dropdown-item" href="VSetting">
+          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+          Settings
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          Logout
+        </a>
+      </div>
+    </li>
 
   </ul>
 
@@ -297,7 +298,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VRitaseBr' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VRitaseTG' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -352,7 +353,7 @@ $urut = 0;
         $total_jt_odo =$data['total_jt_odo'];
    
        $table4 = mysqli_query($koneksi, "SELECT  SUM(rit) AS total_rit2 , SUM(jt_gps) AS total_jt_gps2 , SUM(jt_odo) AS total_jt_odo2 FROM kendaraan a 
-       INNER JOIN pengiriman_br b ON a.no=b.no WHERE tanggal BETWEEN '$tgl_perbaikan' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
+       INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal BETWEEN '$tgl_perbaikan' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
        $data4 = mysqli_fetch_array($table4);
 
       $total_rit2 =$data4['total_rit2'];
@@ -466,7 +467,7 @@ $urut = 0;
       <td style='font-size: 14px' align = 'center'>$total_rit</td>
        <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
       <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>
-      <td  align = 'center'><a href='VRincianRitDriverBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
+      <td  align = 'center'><a href='VRincianRitDriverTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
       </tr>";
 }
 ?>
