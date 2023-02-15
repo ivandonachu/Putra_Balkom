@@ -328,6 +328,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
             <option>Biaya Usaha Lainnya</option>
             <option>Biaya Perbaikan Kendaraan</option>
             <option>Prive</option>
+            <option>Pengeluaran Lainnya</option>
           </select>
         </div>
       </div>
@@ -499,6 +500,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
      <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
      <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
      <option <?php echo ($dataSelect == 'Prive') ? "selected": "" ?> >Prive</option>
+     <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
 
   </select>
 

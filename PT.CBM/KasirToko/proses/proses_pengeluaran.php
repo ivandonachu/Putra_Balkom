@@ -218,5 +218,14 @@ else if ( $nama_file != "" ) {
 				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
 	}
+	elseif ($akun == 'Pengeluaran Lainnya') {
+		$kode_akun = '5-596';
+		//riwayat pengeluran
+		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pengeluaran VALUES ('','$tanggal','$referensi','$kode_akun','$keterangan','$jumlah','$file')");
+
+		if ($query != "") {
+				echo "<script> window.location='../view/VPengeluaran2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+	}
 
 	
