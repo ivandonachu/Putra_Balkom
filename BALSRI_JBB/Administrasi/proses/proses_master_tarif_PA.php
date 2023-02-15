@@ -33,7 +33,7 @@ $kl5 = $_POST['kl5'];
 	
 $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_pa WHERE delivery_point = '$delivery_point'");
 if(mysqli_num_rows($result) == 1 ){
-	 echo "<script>alert('Master Tasrif sudah tercatat :)'); window.location='../view/VMasterTarif';</script>"; exit;
+	 echo "<script>alert('Master Tasrif sudah tercatat :)'); window.location='../view/VMasterTarifPA';</script>"; exit;
 	 }
 	
 

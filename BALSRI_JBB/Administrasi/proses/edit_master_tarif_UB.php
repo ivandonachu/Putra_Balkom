@@ -18,6 +18,7 @@ else{  header("Location: logout.php");
 exit;
 }
 
+
 $supply_point = $_POST['supply_point'];
 $alamat = $_POST['alamat'];
 $delivery_point = $_POST['delivery_point'];
@@ -30,18 +31,15 @@ $kl4 = $_POST['kl4'];
 $kl5 = $_POST['kl5'];
 
 
-	
-$result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg WHERE delivery_point = '$delivery_point'");
-if(mysqli_num_rows($result) == 1 ){
-	 echo "<script>alert('Master Tasrif sudah tercatat :)'); window.location='../view/VMasterTarifTG';</script>"; exit;
-	 }
+
+
 	
 
-	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_tg VALUES('$supply_point','$delivery_point','$alamat','$jt','$hrg_bbm','$kl1','$kl2','$kl3','$kl4','$kl5')");
+		$query = mysqli_query($koneksi,"UPDATE master_tarif_ub SET supply_point = '$supply_point', alamat = '$alamat' , jt = '$jt' , hrg_bbm = '$hrg_bbm' , kl1 = '$kl1' , kl2 = '$kl2' , kl3 = '$kl3', kl4 = '$kl4', kl5 = '$kl5'  WHERE delivery_point = '$delivery_point'");
+	
+	
+			    echo "<script>alert('Update Data Berhasil :)'); window.location='../view/VMasterTarifUB';</script>";exit;
 
-			if ($query != "") {
-			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMasterTarifTG';</script>";exit;
 
-}
 
   ?>

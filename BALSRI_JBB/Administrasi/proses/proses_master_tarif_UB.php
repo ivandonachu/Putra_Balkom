@@ -31,16 +31,16 @@ $kl5 = $_POST['kl5'];
 
 
 	
-$result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg WHERE delivery_point = '$delivery_point'");
+$result = mysqli_query($koneksi, "SELECT * FROM master_tarif_ub WHERE delivery_point = '$delivery_point'");
 if(mysqli_num_rows($result) == 1 ){
-	 echo "<script>alert('Master Tasrif sudah tercatat :)'); window.location='../view/VMasterTarifTG';</script>"; exit;
+	 echo "<script>alert('Master Tasrif sudah tercatat :)'); window.location='../view/VMasterTarifUB';</script>"; exit;
 	 }
 	
 
-	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_tg VALUES('$supply_point','$delivery_point','$alamat','$jt','$hrg_bbm','$kl1','$kl2','$kl3','$kl4','$kl5')");
+	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_ub VALUES('$supply_point','$delivery_point','$alamat','$jt','$hrg_bbm','$kl1','$kl2','$kl3','$kl4','$kl5')");
 
 			if ($query != "") {
-			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMasterTarifTG';</script>";exit;
+			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMasterTarifUB';</script>";exit;
 
 }
 
