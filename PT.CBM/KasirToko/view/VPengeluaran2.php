@@ -491,6 +491,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
   <select id="akun" name="akun" class="form-control">
     <?php $dataSelect = $data['nama_akun']; ?>
     <option <?php echo ($dataSelect == 'Kembalikan Saldo Mocash') ? "selected": "" ?> >Kembalikan Saldo Mocash</option>
+    <option <?php echo ($dataSelect == 'Kembalikan Saldo Brankas') ? "selected": "" ?> >Kembalikan Saldo Brankas</option>
     <option <?php echo ($dataSelect == 'Setor Pendapatan') ? "selected": "" ?> >Setor Pendapatan</option>
     <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
     <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
