@@ -18,8 +18,9 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$tanggal_awal = $_GET['tanggal1'];
-$tanggal_akhir = $_GET['tanggal2'];
+$no_tagihan = $_POST['no_tagihan'];
+$tanggal_awal = $_POST['tanggal1'];
+$tanggal_akhir = $_POST['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $delivery_point = $_POST['delivery_point'];
 $so = $_POST['so'];
@@ -28,15 +29,6 @@ $jumlah_pesanan = $_POST['jumlah_pesanan'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
 
-$result = mysqli_query($koneksi, "SELECT * FROM tagihan_tg WHERE so = '$so' AND tanggal = '$tanggal' ");
- if(mysqli_num_rows($result) == 1 ){
-  	echo "<script>alert('SO sudah tercatat :)'); window.location='../view/VTagihanTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
-      }
-
-$result2 = mysqli_query($koneksi, "SELECT * FROM tagihan_tg WHERE lo = '$lo' AND tanggal = '$tanggal' ");
- if(mysqli_num_rows($result2) == 1 ){
-  	echo "<script>alert('LO sudah tercatat :)'); window.location='../view/VTagihanTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
-      }
 
 if ($jumlah_pesanan == '1000 L') {
 	$kode_pesanan = 'kl1';
@@ -55,9 +47,13 @@ else if ($jumlah_pesanan == '5000 L') {
 }
 
 
-$result3 = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg WHERE delivery_point = '$delivery_point' ");
-$data_tarif = mysqli_fetch_array($result3);
+$result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg WHERE delivery_point = '$delivery_point' ");
+$data_tarif = mysqli_fetch_array($result);
 $total = $data_tarif[$kode_pesanan];
+
+
+
+
 
 
 
@@ -98,15 +94,14 @@ else if ( $nama_file != "" ) {
 
 
 
+	if ($file == '') {
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_tg SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total'  WHERE no_tagihan = '$no_tagihan'");
+	}
+	else{
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_tg SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , file_bukti = '$file'  WHERE no_tagihan = '$no_tagihan'");
+	}
 
 
-$query = mysqli_query($koneksi,"INSERT INTO tagihan_tg VALUES('','$tanggal','$delivery_point','$so','$lo','$amt','$mt','$kode_pesanan','$total',1,'$file')");
-
-if ($query != "") {
-echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VTagihanTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-
-}
-
-
+	echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VTagihanTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 ?>
