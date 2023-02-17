@@ -418,8 +418,8 @@ else{
 }
   
 
-  $laba_kotor_dex = $total_pendapatan_dex - $total_dexlite_b - $total_uang_losis_dex;
-  $laba_kotor_max = $total_pendapatan_max - $total_pertamax_b - $total_uang_losis_max;
+  $laba_kotor_dex = $total_pendapatan_dex - $total_dexlite_b ;
+  $laba_kotor_max = $total_pendapatan_max - $total_pertamax_b ;
 
   //pengeluran Biaya Kantor
    $table32= mysqli_query($koneksiperta, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' AND b.lokasi = '$lokasi'  ");
@@ -792,6 +792,7 @@ else{
                                     <td class="no-line text-left"><?= formatuang($total_uang_losis_max); ?></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
+                                
                                 <tr>
                                     <td></td>
                                     <td class="thick-line"></td>
@@ -842,6 +843,22 @@ else{
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_pertamax_b); ?></td>
                                     <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Total Pendapatan + Cor + Losis</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"><?= formatjumlah($total_losis_max + $qty_ngecor_max + $pertamax_terjual); ?> Liter</td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                     <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Selisih</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"><?= formatjumlah(($total_losis_max + $qty_ngecor_max + $pertamax_terjual) - $pembelian_pertamax_x ); ?> Liter</td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                     <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -1018,6 +1035,22 @@ else{
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_dexlite_b); ?></td>
                                     <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Total Pendapatan + Cor + Losis</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"><?= formatjumlah($total_losis_dex + $qty_ngecor_dex + $dexlite_terjual); ?> Liter</td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                     <?php echo "<td class='text-right'></td>"; ?>
+                                </tr>
+                                <tr style="background-color:     #F0F8FF; ">
+                                    <td><strong>Selisih</strong></td>
+                                    <td class="text-left"></td>
+                                    <td class="no-line text-left"><?= formatjumlah(($total_losis_dex + $qty_ngecor_dex + $dexlite_terjual) - $pembelian_dexlite_x ); ?> Liter</td>
+                                    <td class="no-line text-left"></td>
+                                    <td class="no-line text-left"></td>
+                                     <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
 
                                 <tr>
