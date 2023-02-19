@@ -35,10 +35,10 @@ if (isset($_GET['tanggal1'])) {
    $tanggal_akhir = date('Y-m-31');
    }
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM kredit WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM transport_fee WHERE tanggal = '$tanggal_awal'");
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM kredit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM transport_fee WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 }
 
 
@@ -55,7 +55,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Kredit</title>
+  <title>Transport Fee</title>
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -208,7 +208,7 @@ data-parent="#accordionSidebar">
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VBungaBank'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Kredit</h5></a>"; ?>
+      <?php echo "<a href='VTrasnportFee'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Transport Fee</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -264,7 +264,7 @@ data-parent="#accordionSidebar">
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-    <?php  echo "<form  method='POST' action='VKredit' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VTransportFee' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -281,7 +281,7 @@ data-parent="#accordionSidebar">
    <div class="col-md-6">
     <!-- Button Input Data Bayar -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Kredit </button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Transport Fee </button> <br> <br>
     </div>
     
      <!-- Form Modal  -->
@@ -289,7 +289,7 @@ data-parent="#accordionSidebar">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Pencatatan Kredit </h5>
+          <h5 class="modal-title"> Form Pencatatan Transport Fee </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -297,7 +297,7 @@ data-parent="#accordionSidebar">
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_kredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_transport_fee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-6">
@@ -308,14 +308,7 @@ data-parent="#accordionSidebar">
              </div>
 
           </div>
-          <div class="col-md-6">
-          <label>Referensi</label>
-          <select id="referensi" name="referensi" class="form-control">
-            <option>CBM</option>
-            <option>MES</option>
-            <option>PBR</option>
-          </select>
-        </div>   
+ 
         </div>
 
 
@@ -323,9 +316,13 @@ data-parent="#accordionSidebar">
           
 
         <div class="col-md-6">
-          <label>No Kendaraan</label>
-          <input class="form-control form-control-sm" type="text" id="no_kendaraan" name="no_kendaraan"  required="">
-        </div>            
+          <label>Referensi</label>
+          <select id="referensi" name="referensi" class="form-control">
+            <option>CBM</option>
+            <option>MES</option>
+            <option>PBR</option>
+          </select>
+        </div>  
 
         <div class="col-md-6">
           <label>Jumlah</label>
@@ -375,7 +372,6 @@ data-parent="#accordionSidebar">
       <th>No</th>
       <th>Tanggal</th>
       <th>Referensi</th>
-      <th>No Kendaraan</th>
       <th>Jumlah</th>
       <th>Keterangan</th>
       <th>file</th>
@@ -397,7 +393,6 @@ data-parent="#accordionSidebar">
      $no_laporan = $data['no_laporan'];
      $tanggal =$data['tanggal'];
      $referensi = $data['referensi'];
-     $no_kendaraan = $data['no_kendaraan'];
      $jumlah = $data['jumlah'];
      $keterangan = $data['keterangan'];
      $file_bukti = $data['file_bukti'];
@@ -409,7 +404,6 @@ data-parent="#accordionSidebar">
      <td style='font-size: 14px'>$urut</td>
      <td style='font-size: 14px'>$tanggal</td>
      <td style='font-size: 14px'>$referensi</td>
-     <td style='font-size: 14px'>$no_kendaraan</td>
      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
      <td style='font-size: 14px'>$keterangan</td>
      <td style='font-size: 14px'>"; ?> <a download="../file_manager/<?= $file_bukti ?>" href="../file_manager/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
@@ -423,7 +417,7 @@ data-parent="#accordionSidebar">
         <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
             <div class="modal-content"> 
-              <div class="modal-header">Form Edit Bunga Bank </h5>
+              <div class="modal-header">Form Edit Transport Fee </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                   <span aria-hidden="true"> &times; </span>
                 </button>
@@ -432,7 +426,7 @@ data-parent="#accordionSidebar">
 
               <!-- Form Edit Data -->
               <div class="modal-body">
-                <form action="../proses/edit_kredit" enctype="multipart/form-data" method="POST">
+                <form action="../proses/edit_transport_fee" enctype="multipart/form-data" method="POST">
 
                                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
@@ -446,27 +440,22 @@ data-parent="#accordionSidebar">
                         </div>
                       </div>
 
-                      <div class="col-md-6">
-
-                        <label>Referensi</label>
-                        <select id="referensi" name="referensi" class="form-control">
-                        <?php $dataSelect = $data['referensi']; ?>
-                        <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
-                        <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
-                        <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
-                        </select>
-
-                        </div>   
+                        
                   </div>
 
 
                  <div class="row">
                             <div class="col-md-6">
 
-                            <label>No Kendaraan</label>
-                            <input class="form-control form-control-sm" type="text" id="no_kendaraan" name="no_kendaraan"  value="<?php echo $no_kendaraan;?>"  required="">
+                            <label>Referensi</label>
+                            <select id="referensi" name="referensi" class="form-control">
+                            <?php $dataSelect = $data['referensi']; ?>
+                            <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
+                            <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+                            <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+                            </select>
 
-                            </div>  
+                            </div> 
                             <div class="col-md-6">
                             <label>Jumlah</label>
                             <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
@@ -523,7 +512,7 @@ data-parent="#accordionSidebar">
 
 
           <div class="modal-body">
-            <form action="../proses/hapus_kredit" method="POST">
+            <form action="../proses/hapus_transport_fee" method="POST">
               <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
