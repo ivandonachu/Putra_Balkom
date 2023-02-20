@@ -125,13 +125,13 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanTG">Tagihan Tanjung Gerem</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanTG">Tagihan Tanjung Gerem 8KL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanTG8KL">Tagihan Tanjung Gerem 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanPA">Tagihan Padalarang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanPL">Tagihan Plumpang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanUB">Tagihan Ujung Berung</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanUB">Tagihan Balongan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifTG">Master Tarif TG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifTG">Master Tarif TG 8KL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifTG8KL">Master Tarif TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPA">Master Tarif PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPL">Master Tarif PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifUB">Master Tarif UB</a>
