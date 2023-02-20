@@ -86,8 +86,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -125,13 +125,17 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanTG">Tagihan Tanjung Gerem</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanTG">Tagihan Tanjung Gerem 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanPA">Tagihan Padalarang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanPL">Tagihan Plumpang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanUB">Tagihan Ujung Berung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanUB">Tagihan Balongan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifTG">Master Tarif TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifTG">Master Tarif TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPA">Master Tarif PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPL">Master Tarif PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifUB">Master Tarif UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBA">Master Tarif BA</a>
         </div>
     </div>
 </li>
@@ -146,21 +150,29 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanTG">Pengiriman TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanTG8KL">Pengiriman TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPA">Pengiriman PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPL">Pengiriman PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanUB">Pengiriman UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanBA">Pengiriman BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseTG">Ritase TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseTG8KL">Ritase TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitasePA">Ritase PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitasePL">Ritase PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseUB">Ritase UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBA">Ritase BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhTG">Jarak Tempuh TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhTG8KL">Jarak Tempuh TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPA">Jarak Tempuh PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPL">Jarak Tempuh PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhUB">Jarak Tempuh UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBA">Jarak Tempuh BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiTG">Gaji TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiTG8KL">Gaji TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiPA">Gaji PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiPL">Gaji PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiUB">Gaji UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiBA">Gaji BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
@@ -176,13 +188,17 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanTG">Catat Perbaikan TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanTG8KL">Catat Perbaikan TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPA">Catat Perbaikan PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPL">Catat Perbaikan PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanUB">Catat Perbaikan UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanUB">Catat Perbaikan BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulTG">Pengeluaran Pul TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulTG8KL">Pengeluaran Pul TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPA">Pengeluaran Pul PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPL">Pengeluaran Pul PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulUB">Pengeluaran Pul UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBA">Pengeluaran Pul BA</a>
         </div>
     </div>
 </li>
