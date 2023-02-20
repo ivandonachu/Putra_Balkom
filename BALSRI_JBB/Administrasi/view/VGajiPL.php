@@ -349,7 +349,7 @@ else{
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$amt</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($mt); ?> <?php echo "</td>
-      <td align = 'center'><a href='VRincianGajiTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$amt'>Rincian</a></td>
+      <td align = 'center'><a href='VRincianGajiPL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$amt'>Rincian</a></td>
       </tr>";
 }
 ?>

@@ -25,42 +25,30 @@ $nama = $data['nama_karyawan'];
 
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+   } 
+   
+   elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+   }  
+   else{
+     $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+   }
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  else{
-    $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-  }
 
-//ritase
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_pl b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.nama_driver , SUM(ug) AS total_gaji FROM driver a INNER JOIN pengiriman_tg_8kl b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_pl b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.nama_driver , SUM(ug) AS total_gaji FROM driver a INNER JOIN pengiriman_tg_8kl b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
 
 }
-
-if ($tanggal_awal == $tanggal_akhir) {
-
-  $table2 = mysqli_query($koneksi, "SELECT  a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_pl b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
-
-}
-else{
-
-  $table2 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_pl b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
-
-}
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +61,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Riwayat Ritase</title>
+  <title>Riwayat Gaji</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -98,8 +86,9 @@ else{
 
   <!-- Page Wrapper -->
   <div id="wrapper">
- <!-- Sidebar -->
- <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
@@ -256,7 +245,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRitasePL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Ritase PL</h5></a>"; ?>
+      <?php echo "<a href='VGajiTG8KL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Gaji TG 8KL</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -314,7 +303,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VRitasePL' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VGajiTG8KL' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -331,166 +320,42 @@ else{
  </div>
  <br>
 
- <?php 
-$urut = 0;
-
-?>
-
-<h5 align="center" >Ritease Kendaraan</h5>
-<!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center'>
-              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
-  <thead>
-    <tr>
-    <th>No</th>
-      <th>No Polisi</th>
-      <th>Total Rit</th>
-      <th>Total GPS</th>
-      <th>Total ODO</th>
-      <th>Total Rit Setelah Perbaikan</th>
-      <th>Total GPS Setelah Perbaikan</th>
-      <th>Total ODO Setelah Perbaikan</th>
-      <th>Status Maintenance</th>
-      <th>Terakhir Maintenance</th>
-      <th></th>
-      <th></th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php while($data = mysqli_fetch_array($table)){
-      $no_polisi = $data['no_polisi'];
-      $urut = $urut + 1;
-      $tgl_perbaikan = $data['tgl_perbaikan'];
+ <div class="row">
   
-        $total_rit =$data['total_rit'];
-        $total_jt_gps =$data['total_jt_gps'];
-        $total_jt_odo =$data['total_jt_odo'];
-   
-       $table4 = mysqli_query($koneksi, "SELECT  SUM(rit) AS total_rit2 , SUM(jt_gps) AS total_jt_gps2 , SUM(jt_odo) AS total_jt_odo2 FROM kendaraan a 
-       INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal BETWEEN '$tgl_perbaikan' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
-       $data4 = mysqli_fetch_array($table4);
-
-      $total_rit2 =$data4['total_rit2'];
-      $total_jt_gps2 =$data4['total_jt_gps2'];
-      $total_jt_odo2 =$data4['total_jt_odo2'];
-
-      
-      
-      
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$urut</td>
-      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit2</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_gps2</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_odo2</td>"?>
-      <?php 
-
-        if ($total_jt_odo2 > 5000) {
-          echo "<td style='font-size: 14px; color: red;' align = 'center'>Butuh Maintenance</td>";
-        } 
-        else{
-          echo "<td style='font-size: 14px; color: green;' align = 'center'>Kendaraan Aman</td>";
-        }
-      
-     ?>
-      <?php echo "
-      <td style='font-size: 14px' align = 'center'>$tgl_perbaikan</td>
-      <td align = 'center'><a href='VRincianRitKenPL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no']; ?>">Konfirmasi Perbaikan</button>
-
-      <!-- Form EDIT DATA -->
-
-      <div class="modal fade" id="formedit<?php echo $data['no'];  ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role ="document">
-          <div class="modal-content"> 
-            <div class="modal-header">Konfirmasi Perbaikan</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                <span aria-hidden="true"> &times; </span>
-              </button>
-            </div>
-
-
-            <!-- Form Edit Data -->
-            <div class="modal-body">
-              <form action="../proses/konfirmasi_perbaikan"  method="POST">
-
-              <input type="hidden" name="lokasi" value="Lampung">
-               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-               <input type="hidden" name="no_polisi" value="<?php echo $no_polisi;?>">
-
-               <div class="row">
-                <div class="col-md-6">
-                  <label>Tanggal</label>
-                  <div class="col-sm-10">
-                   <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
-                 </div>
-               </div>
-              
-             </div>
-
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary"> Konfirmasi </button>
-              <button type="reset" class="btn btn-danger"> RESET</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <?php echo  " </td> </tr>";
-}
-
-?>
-
-</tbody>
-</table>
 </div>
 
-<br>
-<br>
-<h5 align="center" >Ritease Driver</h5>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th>Nama Driver</th>
-      <th>Total Rit</th>
-      <th>Total GPS</th>
-      <th>Total ODO</th>
-      <th></th>
-
+      <th>AMT</th>   
+      <th>Total Gaji</th>
+      <th>Rincian</th>
     </tr>
   </thead>
   <tbody>
+    <?php
 
-    <?php while($data = mysqli_fetch_array($table2)){
-      $nama_driver = $data['nama_driver'];
-      $total_rit =$data['total_rit'];
-      $total_jt_gps =$data['total_jt_gps'];
-      $total_jt_odo =$data['total_jt_odo'];
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
+    ?>
+    <?php while($data = mysqli_fetch_array($table)){
+      $amt =$data['nama_driver'];
+      $mt = $data['total_gaji'];
 
       echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit</td>
-       <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>
-      <td  align = 'center'><a href='VRincianRitDriverPL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
+      <td style='font-size: 14px' align = 'center'>$amt</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($mt); ?> <?php echo "</td>
+      <td align = 'center'><a href='VRincianGajiTG8KL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$amt'>Rincian</a></td>
       </tr>";
 }
 ?>
 
 </tbody>
 </table>
-
 </div>
 <br>
 <br>
@@ -581,17 +446,6 @@ aria-hidden="true">
   } );
 </script>
 
-<script>
-  $(document).ready(function() {
-    var table1 = $('#example1').DataTable( {
-      lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
-    } );
-
-    table1.buttons().container()
-    .appendTo( '#example_wrapper1 .col-md-6:eq(0)' );
-  } );
-</script>
 
 
 </body>

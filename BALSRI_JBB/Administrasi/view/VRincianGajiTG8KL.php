@@ -25,42 +25,31 @@ $nama = $data['nama_karyawan'];
 
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+ }  
+ else{
+   $tanggal_awal = date('Y-m-1');
+ $tanggal_akhir = date('Y-m-31');
+ }
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  else{
-    $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-  }
+$nama_driver = $_GET['nama_driver'];
 
-//ritase
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_pl b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_tg_8kl a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal = '$tanggal_awal' AND nama_driver = '$nama_driver' " );
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_pl b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_tg_8kl a INNER JOIN driver b ON a.no_driver=b.no_driver INNER JOIN kendaraan c ON c.no=a.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_driver = '$nama_driver' ");
 
 }
-
-if ($tanggal_awal == $tanggal_akhir) {
-
-  $table2 = mysqli_query($koneksi, "SELECT  a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_pl b ON a.no_driver=b.no_driver WHERE tanggal = '$tanggal_awal' GROUP BY a.nama_driver ");
-
-}
-else{
-
-  $table2 = mysqli_query($koneksi, "SELECT   a.nama_driver , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM driver a INNER JOIN pengiriman_pl b ON a.no_driver=b.no_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.nama_driver ");
-
-}
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +62,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Riwayat Ritase</title>
+  <title>Rincian Gaji</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -98,6 +87,7 @@ else{
 
   <!-- Page Wrapper -->
   <div id="wrapper">
+
  <!-- Sidebar -->
  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
@@ -231,7 +221,6 @@ else{
     </div>
 </li>
 
-
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -256,7 +245,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRitasePL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Ritase PL</h5></a>"; ?>
+      <?php echo "<a href='VRincianGajiTG8KL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rincian Gaji TG 8KL</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -314,16 +303,12 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VRitasePL' style='margin-bottom: 15px;'>" ?>
-    <div>
-      <div align="left" style="margin-left: 20px;"> 
-        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
-        <span>-</span>
-        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
-      </div>
+   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+ <div align="left">
+      <?php echo "<a href='VGajiTG8KL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
-  </form>
+    <br>
+    <br>
 
 
   <div class="col-md-8">
@@ -331,171 +316,163 @@ else{
  </div>
  <br>
 
- <?php 
-$urut = 0;
+ <div class="row">
+  <div class="col-md-10">
 
-?>
+  </div>
+</div>
 
-<h5 align="center" >Ritease Kendaraan</h5>
 <!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center'>
-              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-    <th>No</th>
-      <th>No Polisi</th>
-      <th>Total Rit</th>
-      <th>Total GPS</th>
-      <th>Total ODO</th>
-      <th>Total Rit Setelah Perbaikan</th>
-      <th>Total GPS Setelah Perbaikan</th>
-      <th>Total ODO Setelah Perbaikan</th>
-      <th>Status Maintenance</th>
-      <th>Terakhir Maintenance</th>
-      <th></th>
-      <th></th>
-
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>AMT</th>   
+      <th>MT</th>
+      <th>Muat</th>
+      <th>JT GPS</th>
+      <th>JT ODO</th>
+      <th>DEX</th>
+      <th>Uang Makan</th>
+      <th>Gaji</th>
+      <th>Uang Jalan</th>
+      <th>Jns Trans</th>
+      <th>Jml Trans</th>
+      <th>KET</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
+    <?php
+    $total_lost = 0;
+    $toal_ug = 0;
+    $total_gaji_bersih = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
 
+    ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no_polisi = $data['no_polisi'];
-      $urut = $urut + 1;
-      $tgl_perbaikan = $data['tgl_perbaikan'];
-  
-        $total_rit =$data['total_rit'];
-        $total_jt_gps =$data['total_jt_gps'];
-        $total_jt_odo =$data['total_jt_odo'];
-   
-       $table4 = mysqli_query($koneksi, "SELECT  SUM(rit) AS total_rit2 , SUM(jt_gps) AS total_jt_gps2 , SUM(jt_odo) AS total_jt_odo2 FROM kendaraan a 
-       INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal BETWEEN '$tgl_perbaikan' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
-       $data4 = mysqli_fetch_array($table4);
-
-      $total_rit2 =$data4['total_rit2'];
-      $total_jt_gps2 =$data4['total_jt_gps2'];
-      $total_jt_odo2 =$data4['total_jt_odo2'];
-
-      
-      
-      
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$urut</td>
-      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit2</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_gps2</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_odo2</td>"?>
-      <?php 
-
-        if ($total_jt_odo2 > 5000) {
-          echo "<td style='font-size: 14px; color: red;' align = 'center'>Butuh Maintenance</td>";
-        } 
-        else{
-          echo "<td style='font-size: 14px; color: green;' align = 'center'>Kendaraan Aman</td>";
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $amt =$data['nama_driver'];
+      $mt = $data['no_polisi'];
+      $muatan = $data['muatan'];
+      $jt_gps = $data['jt_gps'];
+      $jt_odo = $data['jt_odo'];
+      $dexlite = $data['dexlite'];
+      $um = $data['um'];
+      $ug = $data['ug'];
+      $uj = $data['uj'];
+      $jns_trans = $data['jns_trans'];
+      $jml_trans = $data['jml_trans'];
+      $keterangan = $data['keterangan'];
+      $file_bukti = $data['file_bukti'];
+        if($jns_trans == 'Lost'){
+        $total_lost = $total_lost + $jml_trans; 
         }
-      
-     ?>
+    $total_gaji_bersih = $total_gaji_bersih + $ug; 
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$no_laporan</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$amt</td>
+      <td style='font-size: 14px' align = 'center'>$mt</td>
+      <td style='font-size: 14px' align = 'center'>$muatan</td>
+      <td style='font-size: 14px' align = 'center'>$jt_gps/Km</td>
+      <td style='font-size: 14px' align = 'center'>$jt_odo/km</td>
+      <td style='font-size: 14px' align = 'center'>$dexlite/L</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($um); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>$jns_trans</td>
+      <td style='font-size: 14px' align = 'center'>$jml_trans/L</td>
+      <td style='font-size: 14px' align = 'center'>$keterangan</td>
+      "; ?>
       <?php echo "
-      <td style='font-size: 14px' align = 'center'>$tgl_perbaikan</td>
-      <td align = 'center'><a href='VRincianRitKenPL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>";?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
+      <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
 
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no']; ?>">Konfirmasi Perbaikan</button>
+<?php echo  " </td> </tr>";
+}
+?>
 
-      <!-- Form EDIT DATA -->
+</tbody>
+</table>
+</div>
+</div>
+<br>
+<br>
+<br>
 
-      <div class="modal fade" id="formedit<?php echo $data['no'];  ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role ="document">
-          <div class="modal-content"> 
-            <div class="modal-header">Konfirmasi Perbaikan</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                <span aria-hidden="true"> &times; </span>
-              </button>
-            </div>
-
-
-            <!-- Form Edit Data -->
-            <div class="modal-body">
-              <form action="../proses/konfirmasi_perbaikan"  method="POST">
-
-              <input type="hidden" name="lokasi" value="Lampung">
-               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-               <input type="hidden" name="no_polisi" value="<?php echo $no_polisi;?>">
-
-               <div class="row">
-                <div class="col-md-6">
-                  <label>Tanggal</label>
-                  <div class="col-sm-10">
-                   <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
-                 </div>
-               </div>
-              
-             </div>
-
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary"> Konfirmasi </button>
-              <button type="reset" class="btn btn-danger"> RESET</button>
-            </div>
-          </form>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Lost</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_lost?>/L</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-road fa-2x text-gray-300"></i>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <?php echo  " </td> </tr>";
-}
-
-?>
-
-</tbody>
-</table>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Lost</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_lost * 8350);   ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-road fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Gaji Kotor</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_gaji_bersih + ($total_lost * 8350));  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Gaji Bersih</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_gaji_bersih);  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<br>
-<br>
-<h5 align="center" >Ritease Driver</h5>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Nama Driver</th>
-      <th>Total Rit</th>
-      <th>Total GPS</th>
-      <th>Total ODO</th>
-      <th></th>
-
-    </tr>
-  </thead>
-  <tbody>
-
-    <?php while($data = mysqli_fetch_array($table2)){
-      $nama_driver = $data['nama_driver'];
-      $total_rit =$data['total_rit'];
-      $total_jt_gps =$data['total_jt_gps'];
-      $total_jt_odo =$data['total_jt_odo'];
-
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>$total_rit</td>
-       <td style='font-size: 14px' align = 'center'>$total_jt_gps</td>
-      <td style='font-size: 14px' align = 'center'>$total_jt_odo</td>
-      <td  align = 'center'><a href='VRincianRitDriverPL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama_driver=$nama_driver'>Rincian</a></td>
-      </tr>";
-}
-?>
-
-</tbody>
-</table>
-
-</div>
-<br>
-<br>
-<br>
-
 
 </div>
 
@@ -581,17 +558,6 @@ aria-hidden="true">
   } );
 </script>
 
-<script>
-  $(document).ready(function() {
-    var table1 = $('#example1').DataTable( {
-      lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
-    } );
-
-    table1.buttons().container()
-    .appendTo( '#example_wrapper1 .col-md-6:eq(0)' );
-  } );
-</script>
 
 
 </body>
