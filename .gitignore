@@ -50,6 +50,10 @@
 /DirekturUtama/view/PT.STRE/proses/koneksi.php
 /DirekturUtama/view/PT.STRE/view/logout.php
 
+/DirekturUtama/view/BALSRI_JBB/view/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/koneksi.php
+
+
 /PERTASHOP/Administrasi/file_administrasi
 /PERTASHOP/Administrasi/proses/koneksi.php
 /PERTASHOP/Administrasi/view/koneksi.php
