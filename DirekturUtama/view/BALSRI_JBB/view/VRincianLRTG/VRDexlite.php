@@ -30,7 +30,7 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksibalsri_jbb, "SELECT  SUM(dexlite) AS total_dexlite FROM pengiriman_tg a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table = mysqli_query($koneksibalsri_jbb, "SELECT  SUM(a.u_dex) AS total_uang_dex , SUM(dexlite) AS total_dexlite FROM pengiriman_tg a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
 }
 

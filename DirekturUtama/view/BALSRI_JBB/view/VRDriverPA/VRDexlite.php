@@ -31,12 +31,12 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksibalsri_jbb, "SELECT  SUM(dexlite) AS total_dexlite FROM pengiriman_pa a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table = mysqli_query($koneksibalsri_jbb, "SELECT  SUM(a.u_dex) AS total_uang_dex , SUM(dexlite) AS total_dexlite FROM pengiriman_pa a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
 }
 
 else{
-    $table = mysqli_query($koneksibalsri_jbb, "SELECT SUM(a.dexlite) AS total_dexlite , b.no_polisi FROM pengiriman_pa a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  b.no_polisi = '$no_polisilr' ");
+    $table = mysqli_query($koneksibalsri_jbb, "SELECT SUM(a.u_dex) AS total_uang_dex , SUM(a.dexlite) AS total_dexlite , b.no_polisi FROM pengiriman_pa a INNER JOIN kendaraan b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  b.no_polisi = '$no_polisilr' ");
 
 }
 
@@ -367,7 +367,7 @@ else{
 
     <?php while($data = mysqli_fetch_array($table)){
       $dexlite = $data['total_dexlite'];
-      $uang_dexlite = $dexlite * 9700;
+      $uang_dexlite = $data['total_uang_dex'];
       $no_polisi =$data['no_polisi'];
       $total = $total + $uang_dexlite;
 
