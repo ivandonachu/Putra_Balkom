@@ -109,12 +109,13 @@ else{
  
   $total_dexlite = 0;
   $total_bbm = 0;
-  $table222 = mysqli_query($koneksibalsri_jbb, "SELECT jt_gps, uj , dexlite FROM pengiriman_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table222 = mysqli_query($koneksibalsri_jbb, "SELECT jt_gps, uj , u_dex, dexlite FROM pengiriman_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   while($data = mysqli_fetch_array($table222)){
     $uang_jalan = $data['uj'];
     $jt_gps = $data['jt_gps'];
     $dexlite = $data['dexlite'];
-    $total_dexlite = $total_dexlite + ($uang_jalan - ($jt_gps*625));
+    $u_dex = $data['u_dex'];
+    $total_dexlite = $total_dexlite + $u_dex;
     $total_bbm = $total_bbm + $dexlite;
     
 }
