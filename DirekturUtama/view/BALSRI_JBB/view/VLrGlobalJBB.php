@@ -131,9 +131,9 @@ else{
    $table2_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
    $total_dexlite_ub =0;
    $data2_ub = mysqli_fetch_array($table2_ub);
-   $total_uj_ub = $data2_bk['total_uj'];
-   $total_jt_gps_ub = $data2_bk['total_jt_gps'];
-   $total_um_ub = $data2_bk['uang_makan'];
+   $total_uj_ub = $data2_ub['total_uj'];
+   $total_jt_gps_ub = $data2_ub['total_jt_gps'];
+   $total_um_ub = $data2_ub['uang_makan'];
    $total_dexlite_ub = $total_uj_ub - ($total_jt_gps_ub*625);
 
   
@@ -186,7 +186,7 @@ else{
     $jml_biaya_kantor_ub = 0;
     }
 
-     $biaya_kantor_global = $jml_biaya_kantor_ba + $jml_biaya_kantor_pa + $jml_biaya_kantor_pl + $jml_biaya_kantor_tg + $jml_biaya_kantor_tg8kl + $jml_biaya_kantor_bu;
+     $biaya_kantor_global = $jml_biaya_kantor_ba + $jml_biaya_kantor_pa + $jml_biaya_kantor_pl + $jml_biaya_kantor_tg + $jml_biaya_kantor_tg8kl + $jml_biaya_kantor_ub;
 
     // LISTRIK & TELEPON
    //pengeluran Pul Listrik & Telepon balongan
@@ -366,7 +366,7 @@ else{
     $jml_transport_tg8kl = 0;
     }
     //pengeluran Transnport / Perjalanan Dinas ujung berung
-   $table61_ub = mysqli_query($koneksibalsri_ub, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $table61_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
    $data61_ub = mysqli_fetch_array($table61_ub);
    $jml_transport_ub = $data61_ub['jumlah_transport'];
     if (!isset($data61_ub['jumlah_transport'])) {
@@ -378,7 +378,7 @@ else{
     
     // BIAYA KONSUMSI
     //pengeluran Biaya Konsumsi balongan
-   $table62_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $table62_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
    $data62_ba = mysqli_fetch_array($table62_ba);
    $jml_konsumsi_ba = $data62_ba['jumlah_konsumsi'];
     if (!isset($data62_ba['jumlah_konsumsi'])) {
@@ -462,7 +462,7 @@ else{
     }
 
     //pengeluran perbaikan ujung berung
-   $table7_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $table7_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
    $data7_ub = mysqli_fetch_array($table7_ub);
    $jml_perbaikan_ub = $data7_ub['jumlah_perbaikan'];
     if (!isset($data7_ub['jumlah_perbaikan'])) {
@@ -480,11 +480,11 @@ else{
     $gaji_karyawan_ba = 0;
     }
     //Gaji karyawan Padalarang
-   $table8_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI PA' ");
-   $data8_pl = mysqli_fetch_array($table8_pl);
-   $gaji_karyawan_pl = $data8_pl['jumlah_gaji'];
-    if (!isset($data8_pl['jumlah_gaji'])) {
-    $gaji_karyawan_pl = 0;
+   $table8_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI PA' ");
+   $data8_pa = mysqli_fetch_array($table8_pa);
+   $gaji_karyawan_pa = $data8_pa['jumlah_gaji'];
+    if (!isset($data8_pa['jumlah_gaji'])) {
+    $gaji_karyawan_pa = 0;
     }
     //Gaji karyawan plumpang
    $table8_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI PL' ");
