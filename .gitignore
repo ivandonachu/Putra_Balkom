@@ -18,6 +18,8 @@
 /DirekturUtama/view/koneksi.php
 /DirekturUtama/view/BatuBara/view/koneksi.php
 /DirekturUtama/view/BatuBara/view/VRincianLR/koneksi.php
+/DirekturUtama/view/BatuBara/view/VRincianLRKen/koneksi.php
+/DirekturUtama/view/BatuBara/view/VRincianLRKen/logout.php
 /DirekturUtama/view/PERTASHOP/view/koneksi.php
 /DirekturUtama/view/PERTASHOP/view/logout.php
 /DirekturUtama/view/PERTASHOP/view/VRincianLRPs/koneksi.php
@@ -78,8 +80,7 @@
 /DirekturUtama/view/BALSRI_JBB/view/VRincianLRUB/logout.php
 /DirekturUtama/view/BALSRI_JBB/view/VRincianLRUB/koneksi.php
 
-    /DirekturUtama/view/BatuBara/view/VRincianLRKen/koneksi.php
-/DirekturUtama/view/BatuBara/view/VRincianLRKen/logout.php
+
 /DirekturUtama/view/PT.BALSRI/view/VRDriverBK/koneksi.php
 /DirekturUtama/view/PT.BALSRI/view/VRDriverLx/koneksi.php
 /DirekturUtama/view/PT.BALSRI/view/VRincianLRBK/koneksi.php
@@ -87,9 +88,6 @@
 /DirekturUtama/view/PT.STRE/view/VRDriverBKU/koneksi.php
 /DirekturUtama/view/PT.STRE/view/VRincianLRBKU/koneksi.php
 
-    /CV.PBJ/AdminSemen/gambar/Logo PBJ.PNG
-	/CV.PBJ/KasirSemen/gambar/Logo PBJ.PNG
-	/DirekturUtama/view/BatuBara/view/VRincianLRKen/koneksi.php
 	
 /PERTASHOP/Administrasi/file_administrasi
 /PERTASHOP/Administrasi/proses/koneksi.php
