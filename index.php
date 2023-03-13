@@ -48,7 +48,7 @@
             </a>
 
             <nav id="navbar" class="navbar">
-                <a class="getstarted scrollto" href="login.php">LOGIN x</a>
+                <a class="getstarted scrollto" href="login.php">LOGIN</a>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
             <!-- .navbar -->
