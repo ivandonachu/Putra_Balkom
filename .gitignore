@@ -55,7 +55,6 @@
 /DirekturUtama/view/BALSRI_JBB/view/VRDriverBA/logout.php
 /DirekturUtama/view/BALSRI_JBB/view/VRDriverBA/koneksi.php
 /DirekturUtama/view/BALSRI_JBB/view/VRDriverPA/logout.php
-DirekturUtama/view/BALSRI_JBB/view/VRDriverPA/logout.php
 /DirekturUtama/view/BALSRI_JBB/view/VRDriverPA/koneksi.php
 /DirekturUtama/view/BALSRI_JBB/view/VRDriverPL/logout.php
 /DirekturUtama/view/BALSRI_JBB/view/VRDriverPL/koneksi.php
@@ -79,6 +78,14 @@ DirekturUtama/view/BALSRI_JBB/view/VRDriverPA/logout.php
 /DirekturUtama/view/BALSRI_JBB/view/VRincianLRUB/logout.php
 /DirekturUtama/view/BALSRI_JBB/view/VRincianLRUB/koneksi.php
 
+/DirekturUtama/view/BatuBara/view/VRincianLRKen/koneksi.php
+/DirekturUtama/view/BatuBara/view/VRincianLRKen/logout.php
+/DirekturUtama/view/PT.BALSRI/view/VRDriverBK/koneksi.php
+/DirekturUtama/view/PT.BALSRI/view/VRDriverLx/koneksi.php
+/DirekturUtama/view/PT.BALSRI/view/VRincianLRBK/koneksi.php
+/DirekturUtama/view/PT.BALSRI/view/VRincianLRLx/koneksi.php
+/DirekturUtama/view/PT.STRE/view/VRDriverBKU/koneksi.php
+/DirekturUtama/view/PT.STRE/view/VRincianLRBKU/koneksi.php
 
 
 /PERTASHOP/Administrasi/file_administrasi
