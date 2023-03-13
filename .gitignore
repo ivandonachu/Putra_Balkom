@@ -87,7 +87,10 @@
 /DirekturUtama/view/PT.STRE/view/VRDriverBKU/koneksi.php
 /DirekturUtama/view/PT.STRE/view/VRincianLRBKU/koneksi.php
 
-
+    /CV.PBJ/AdminSemen/gambar/Logo PBJ.PNG
+	/CV.PBJ/KasirSemen/gambar/Logo PBJ.PNG
+	/DirekturUtama/view/BatuBara/view/VRincianLRKen/koneksi.php
+	
 /PERTASHOP/Administrasi/file_administrasi
 /PERTASHOP/Administrasi/proses/koneksi.php
 /PERTASHOP/Administrasi/view/koneksi.php
@@ -166,6 +169,5 @@
 /BALSRI_JBB/Administrasi/proses/logout.php
 /BALSRI_JBB/Administrasi/file_administrasi
 /BALSRI_JBB/Administrasi/gambar/kasir_toko.svg
-
 
 
