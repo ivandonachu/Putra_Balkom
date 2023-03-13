@@ -35,7 +35,7 @@ $nama = $data['nama_karyawan'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Administrasi</title>
+    <title>Dashboard Administrasi x</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
