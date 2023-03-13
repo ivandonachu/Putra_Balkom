@@ -22,12 +22,12 @@ $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksistre, "SELECT * FROM riwayat_penggajian WHERE tanggal  = '$tanggal_awal'  AND referensi = 'Driver BA' OR tanggal  = '$tanggal_awal'  AND referensi = 'BALSRI BA'");
+    $table = mysqli_query($koneksibalsri_jbb, "SELECT * FROM riwayat_penggajian WHERE tanggal  = '$tanggal_awal'  AND referensi = 'Driver BA' OR tanggal  = '$tanggal_awal'  AND referensi = 'BALSRI BA'");
   
   }
   
   else{
-    $table = mysqli_query($koneksistre, "SELECT * FROM riwayat_penggajian WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BA' OR tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BA'");
+    $table = mysqli_query($koneksibalsri_jbb, "SELECT * FROM riwayat_penggajian WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BA' OR tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BA'");
   
   }
 

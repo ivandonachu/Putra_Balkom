@@ -218,7 +218,7 @@ else{
 
 }
 
-    $total_laba_kotor = $total_tagihan + $total_tagihan_spbu;
+    $total_laba_kotor = $total_tagihan ;
     $sisa_oprasional = $jumlah_potongan - ($jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport );
     $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport;
     $laba_bersih_sebelum_pajak = $total_laba_kotor  - $total_biaya_usaha_final;
@@ -814,7 +814,7 @@ $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
 </div>
 <br>
 <br>
-<h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Bengkulu</h3>
+<h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Tanjung Gerem</h3>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
 <thead>
     <tr>

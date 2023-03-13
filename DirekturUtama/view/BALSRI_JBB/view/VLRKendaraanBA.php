@@ -659,7 +659,7 @@ else{
 </div>
 <br>
 <br>
-<h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Tj Gerem</h3>
+<h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Balongan</h3>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
 <thead>
     <tr>

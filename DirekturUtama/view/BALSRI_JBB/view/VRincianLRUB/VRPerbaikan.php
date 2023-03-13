@@ -435,8 +435,7 @@ else{
 <br>
 <br>
 <br>
-
-
+</div>
   </div>
 
 <!-- End of Main Content -->

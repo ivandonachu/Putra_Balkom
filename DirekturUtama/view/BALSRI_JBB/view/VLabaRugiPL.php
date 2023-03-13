@@ -813,7 +813,7 @@ $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
 </div>
 <br>
 <br>
-<h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Bengkulu</h3>
+<h3 class="text-center" >Laba Rugi Berdasarkan Kendaraan Plumpang</h3>
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
 <thead>
     <tr>
