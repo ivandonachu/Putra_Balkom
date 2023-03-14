@@ -45,7 +45,7 @@ else if ( $nama_file != "" ) {
 		$nama_file_baru .= ".";
 		$nama_file_baru .= $ekstensi_file;
 
-		move_uploaded_file($tmp_name, '../../../../assets/img/foto_profile/' . $nama_file_baru   );
+		move_uploaded_file($tmp_name, '../../assets/img/foto_profile/' . $nama_file_baru   );
 
 		return $nama_file_baru; 
 
@@ -65,7 +65,7 @@ else if ( $nama_file != "" ) {
             mysqli_query($koneksicbm,"UPDATE super_account SET foto_profile = '$file' WHERE nama_pemilik =  '$nama' ");
         
         
-       echo "<script>alert('Profil Berhasil Di Edit'); window.location='VProfile';</script>";exit;
+   //    echo "<script>alert('Profil Berhasil Di Edit'); window.location='VProfile';</script>";exit;
 
     
 
