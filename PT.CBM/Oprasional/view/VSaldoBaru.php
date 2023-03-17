@@ -273,7 +273,7 @@ $jumlah_kel_cbm_beruk = 0;
 
 //Keluar Kebun Seberuk untuk Kebun Seberuk 
 $table28 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_beruk_beruk FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'Kebun Seberuk' AND referensi = 'Kebun Seberuk' AND status_saldo = 'Keluar' ");
-$data28 = mysqli_fetch_array($data28);
+$data28 = mysqli_fetch_array($table28);
 $jumlah_kel_beruk_beruk = $data28['jumlah_kel_beruk_beruk'];
 if (!isset($data28['jumlah_kel_beruk_beruk'])) {
 $jumlah_kel_beruk_beruk = 0;
@@ -281,7 +281,7 @@ $jumlah_kel_beruk_beruk = 0;
 
 //Keluar pribadi untuk kebun 
 $table29 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_lengkiti_lengkiti FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'Kebun Lenkiti' AND referensi = 'Kebun Lenkiti' AND status_saldo = 'Keluar' ");
-$data29 = mysqli_fetch_array($data29);
+$data29 = mysqli_fetch_array($table29);
 $jumlah_kel_lengkiti_lengkiti = $data29['jumlah_kel_lengkiti_lengkiti'];
 if (!isset($data29['jumlah_kel_lengkiti_lengkiti'])) {
 $jumlah_kel_lengkiti_lengkiti = 0;
