@@ -271,6 +271,22 @@ if (!isset($data27['jumlah_kel_cbm_beruk'])) {
 $jumlah_kel_cbm_beruk = 0;
 }
 
+//Keluar Kebun Seberuk untuk Kebun Seberuk 
+$table28 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_beruk_beruk FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'Kebun Seberuk' AND referensi = 'Kebun Seberuk' AND status_saldo = 'Keluar' ");
+$data28 = mysqli_fetch_array($data28);
+$jumlah_kel_beruk_beruk = $data28['jumlah_kel_beruk_beruk'];
+if (!isset($data27['jumlah_kel_beruk_beruk'])) {
+$jumlah_kel_beruk_beruk = 0;
+}
+
+//Keluar pribadi untuk kebun 
+$table29 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_lengkiti_lengkiti FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'Kebun Lenkiti' AND referensi = 'Kebun Lenkiti' AND status_saldo = 'Keluar' ");
+$data29 = mysqli_fetch_array($data29);
+$jumlah_kel_lengkiti_lengkiti = $data29['jumlah_kel_lengkiti_lengkiti'];
+if (!isset($data29['jumlah_kel_lengkiti_lengkiti'])) {
+$jumlah_kel_lengkiti_lengkiti = 0;
+}
+
 // kode salado
 
 $CBM = 'CBM';
@@ -512,6 +528,8 @@ $beruk = 'Kebun Seberuk';
             <option>PRIBADI</option>
             <option>BALSRI</option>
             <option>STE</option>
+            <option>Kebun Lengkiti</option>
+            <option>Kebun Seberuk</option>
             
           </select>
     </div>
@@ -718,6 +736,8 @@ $beruk = 'Kebun Seberuk';
          <option <?php echo ($dataSelect1 == 'BALSRI') ? "selected": "" ?> >BALSRI</option>
          <option <?php echo ($dataSelect1 == 'STE') ? "selected": "" ?> >STE</option>
          <option <?php echo ($dataSelect1 == 'PRIBADI') ? "selected": "" ?> >PRIBADI</option>
+         <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
+         <option <?php echo ($dataSelect == 'Kebun Seberuk') ? "selected": "" ?> >Kebun Seberuk</option>
        </select>
 
 
@@ -997,6 +1017,20 @@ $beruk = 'Kebun Seberuk';
       <td style='font-size: 11px' align = 'center'>Kebun Seberuk</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_cbm_beruk); ?></td>
       <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$beruk&rekening=$CBM&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Kebun Seberuk</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Seberuk</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_beruk_beruk); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$beruk&rekening=$beruk&status_saldo=$Keluar'>Rincian</a></td>"; ?>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Kebun Lengkiti</td>
+      <td style='font-size: 11px' align = 'center'>Kebun Lengkiti</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($jumlah_kel_lengkiti_lengkiti); ?></td>
+      <?php echo "<td class='thick-line'><a href='VRincianSaldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&referensi=$Kebun&rekening=$Kebun&status_saldo=$Keluar'>Rincian</a></td>"; ?>
      
   </tr>
 
