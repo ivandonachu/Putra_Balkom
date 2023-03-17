@@ -275,7 +275,7 @@ $jumlah_kel_cbm_beruk = 0;
 $table28 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_kel_beruk_beruk FROM riwayat_saldo_armada WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_rekening = 'Kebun Seberuk' AND referensi = 'Kebun Seberuk' AND status_saldo = 'Keluar' ");
 $data28 = mysqli_fetch_array($data28);
 $jumlah_kel_beruk_beruk = $data28['jumlah_kel_beruk_beruk'];
-if (!isset($data27['jumlah_kel_beruk_beruk'])) {
+if (!isset($data28['jumlah_kel_beruk_beruk'])) {
 $jumlah_kel_beruk_beruk = 0;
 }
 
