@@ -40,12 +40,12 @@ elseif (isset($_POST['tanggal1'])) {
 //ritase
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_ba b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi, a.wilayah_operasi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_ba b ON a.no=b.no WHERE tanggal = '$tanggal_awal' GROUP BY a.no_polisi ");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_ba b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
+  $table = mysqli_query($koneksi, "SELECT a.tgl_perbaikan ,a.no, a.no_polisi, a.wilayah_operasi , SUM(rit) AS total_rit , SUM(jt_gps) AS total_jt_gps , SUM(jt_odo) AS total_jt_odo FROM kendaraan a INNER JOIN pengiriman_ba b ON a.no=b.no WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY a.no_polisi ");
 
 }
 
@@ -375,6 +375,7 @@ $urut = 0;
       $tgl_perbaikan = $data['tgl_perbaikan'];
   
         $total_rit =$data['total_rit'];
+        $wilayah_operasi =$data['wilayah_operasi'];
         $total_jt_gps =$data['total_jt_gps'];
         $total_jt_odo =$data['total_jt_odo'];
    
@@ -431,10 +432,11 @@ $urut = 0;
             <div class="modal-body">
               <form action="../proses/konfirmasi_perbaikan"  method="POST">
 
-              <input type="hidden" name="lokasi" value="Lampung">
+           
                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
                <input type="hidden" name="no_polisi" value="<?php echo $no_polisi;?>">
+               <input type="hidden" name="wilayah_operasi" value="<?php echo $wilayah_operasi;?>">
 
                <div class="row">
                 <div class="col-md-6">
