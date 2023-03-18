@@ -640,16 +640,11 @@ else {
     }
 
     //gaji karaywan
-    $table8 = mysqli_query($koneksipbj, "SELECT jumlah  FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Gaji Karyawan' ");
+    $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Gaji Karyawan' ");
     $data8 = mysqli_fetch_array($table8);
+    $gaji_karyawan = $data8['total_pengeluaran'];
     
-    if(isset($data8['jumlah'])){
-  
-        $gaji_karyawan = $data8['jumlah'];
-    }
-    if (!isset($data8['jumlah'])) {
-        $gaji_karyawan = 0;
-    }
+
 }
 
 $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
