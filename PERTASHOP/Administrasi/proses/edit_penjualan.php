@@ -57,7 +57,7 @@ $kode_perta = $data_perta['kode_perta'];
         }
 		else{
 	
-				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET qty = '$qty', uang_diskon = '$uang_diskon' , stok_awal = '$stok_awal' , stok_akhir = '$stok_akhir' , bongkaran = '$bongkaran' , sonding_awal = '$sonding_awal'
+				$query3 = mysqli_query($koneksi,"UPDATE penjualan SET qty = '$qty', harga = '$harga', uang_diskon = '$uang_diskon' , stok_awal = '$stok_awal' , stok_akhir = '$stok_akhir' , bongkaran = '$bongkaran' , sonding_awal = '$sonding_awal'
 																		, sonding_akhir = '$sonding_akhir' , sirkulasi = '$sirkulasi', losis_penyimpanan = '$losis_penyimpanan', losis_penjualan = '$losis_penjualan' ,keterangan = '$keterangan'  WHERE no_penjualan = 
 				'$no_penjualan'");
 

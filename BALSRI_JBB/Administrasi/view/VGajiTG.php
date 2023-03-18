@@ -87,15 +87,15 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 65px; width: 220px;" src="../gambar/Logo CBM.jpg" ></div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
 </a>
 
 <!-- Divider -->
@@ -119,20 +119,18 @@ else{
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
       15  aria-expanded="true" aria-controls="collapseOne">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
         <span style="font-size: 15px; color:white;" >Tagihan</span>
     </a>
     <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanTG">Tagihan Tanjung Gerem</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanTG8KL">Tagihan Tanjung Gerem 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanPA">Tagihan Padalarang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanPL">Tagihan Plumpang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanUB">Tagihan Ujung Berung</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanUB">Tagihan Balongan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBA">Tagihan Balongan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifTG">Master Tarif TG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifTG8KL">Master Tarif TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPA">Master Tarif PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPL">Master Tarif PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifUB">Master Tarif UB</a>
@@ -144,32 +142,28 @@ else{
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
       15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <i class="fas fa-truck" style="font-size: 15px; color:white;" ></i>
         <span style="font-size: 15px; color:white;" >Pengiriman</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanTG">Pengiriman TG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanTG8KL">Pengiriman TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPA">Pengiriman PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPL">Pengiriman PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanUB">Pengiriman UB</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanBA">Pengiriman BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseTG">Ritase TG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitaseTG8KL">Ritase TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitasePA">Ritase PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitasePL">Ritase PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseUB">Ritase UB</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseBA">Ritase BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhTG">Jarak Tempuh TG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhTG8KL">Jarak Tempuh TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPA">Jarak Tempuh PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPL">Jarak Tempuh PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhUB">Jarak Tempuh UB</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBA">Jarak Tempuh BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiTG">Gaji TG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiTG8KL">Gaji TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiPA">Gaji PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiPL">Gaji PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiUB">Gaji UB</a>
@@ -189,13 +183,11 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanTG">Catat Perbaikan TG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanTG8KL">Catat Perbaikan TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPA">Catat Perbaikan PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPL">Catat Perbaikan PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanUB">Catat Perbaikan UB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanUB">Catat Perbaikan BA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBA">Catat Perbaikan BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulTG">Pengeluaran Pul TG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulTG8KL">Pengeluaran Pul TG 8KL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPA">Pengeluaran Pul PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPL">Pengeluaran Pul PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulUB">Pengeluaran Pul UB</a>
@@ -207,7 +199,7 @@ else{
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
       15  aria-expanded="true" aria-controls="collapseTwo1">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
         <span style="font-size: 15px; color:white;" >SDM</span>
     </a>
     <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -221,16 +213,17 @@ else{
 </li>
 
 
-  <!-- Divider -->
-  <hr class="sidebar-divider">
+
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
 
 
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
+</div>
 
 
 
@@ -240,57 +233,74 @@ else{
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
-  <!-- Main Content -->
-  <div id="content">
+<!-- Main Content -->
+<div id="content">
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VGajiTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Riwayat Gaji TG</h5></a>"; ?>
-      <!-- Sidebar Toggle (Topbar) -->
-      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
-      </button>
+
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+        </button>
 
 
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
 
-      <!-- Topbar Navbar -->
-      <ul class="navbar-nav ml-auto">
-
-
-
-
-
-
-        <div class="topbar-divider d-none d-sm-block"></div>
-
-        <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-          <img class="img-profile rounded-circle"
-          src="img/undraw_profile.svg">
-        </a>
-        <!-- Dropdown - User Information -->
-        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-        aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="VProfile">
-          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-          Profile
-        </a>
-        <a class="dropdown-item" href="VSetting">
-          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-          Settings
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Logout
-        </a>
-      </div>
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+            aria-labelledby="searchDropdown">
+            <form class="form-inline mr-auto w-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small"
+                    placeholder="Search for..." aria-label="Search"
+                    aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </li>
 
-  </ul>
+
+
+
+    <div class="topbar-divider d-none d-sm-block"></div>
+
+    <!-- Nav Item - User Information -->
+   <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <?php $foto_profile = $data1['foto_profile']; ?>
+        <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+        <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
+    </a>
+    <!-- Dropdown - User Information -->
+    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+    aria-labelledby="userDropdown">
+    <a class="dropdown-item" href="VProfile">
+        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+        Profile
+    </a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+        Logout
+    </a>
+  </div>
+ </li>
+
+</ul>
 
 </nav>
 <!-- End of Topbar -->

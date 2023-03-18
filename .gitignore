@@ -18,6 +18,8 @@
 /DirekturUtama/view/koneksi.php
 /DirekturUtama/view/BatuBara/view/koneksi.php
 /DirekturUtama/view/BatuBara/view/VRincianLR/koneksi.php
+/DirekturUtama/view/BatuBara/view/VRincianLRKen/koneksi.php
+/DirekturUtama/view/BatuBara/view/VRincianLRKen/logout.php
 /DirekturUtama/view/PERTASHOP/view/koneksi.php
 /DirekturUtama/view/PERTASHOP/view/logout.php
 /DirekturUtama/view/PERTASHOP/view/VRincianLRPs/koneksi.php
@@ -50,6 +52,43 @@
 /DirekturUtama/view/PT.STRE/proses/koneksi.php
 /DirekturUtama/view/PT.STRE/view/logout.php
 
+/DirekturUtama/view/BALSRI_JBB/view/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverBA/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverBA/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverPA/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverPA/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverPL/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverPL/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverTG/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverTG/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverTG8KL/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverTG8KL/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverUB/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRDriverUB/koneksi.php
+
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRBA/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRBA/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRPA/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRPA/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRPL/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRPL/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRTG/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRTG/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRTG8KL/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRTG8KL/koneksi.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRUB/logout.php
+/DirekturUtama/view/BALSRI_JBB/view/VRincianLRUB/koneksi.php
+
+
+/DirekturUtama/view/PT.BALSRI/view/VRDriverBK/koneksi.php
+/DirekturUtama/view/PT.BALSRI/view/VRDriverLx/koneksi.php
+/DirekturUtama/view/PT.BALSRI/view/VRincianLRBK/koneksi.php
+/DirekturUtama/view/PT.BALSRI/view/VRincianLRLx/koneksi.php
+/DirekturUtama/view/PT.STRE/view/VRDriverBKU/koneksi.php
+/DirekturUtama/view/PT.STRE/view/VRincianLRBKU/koneksi.php
+
+	
 /PERTASHOP/Administrasi/file_administrasi
 /PERTASHOP/Administrasi/proses/koneksi.php
 /PERTASHOP/Administrasi/view/koneksi.php
@@ -95,10 +134,12 @@
 /PT.CBM/StaffHRD/file_staff_HRD
 /PT.CBM/StaffHRD/proses/koneksi.php
 /PT.CBM/StaffHRD/view/koneksi.php
+/PT.CBM/Workshop/gambar/
 /PT.CBM/Workshop/file_workshop
 /PT.CBM/Workshop/proses/koneksi.php
 /PT.CBM/Workshop/view/koneksi.php
 
+/PT.PBR/KasirToko/gambar/
 /PT.PBR/KasirToko/file_toko
 /PT.PBR/KasirToko/proses/koneksi.php
 /PT.PBR/KasirToko/view/koneksi.php
@@ -122,8 +163,9 @@
 
 /BALSRI_JBB/Administrasi/view/koneksi.php
 /BALSRI_JBB/Administrasi/proses/koneksi.php
+/BALSRI_JBB/Administrasi/view/logout.php
+/BALSRI_JBB/Administrasi/proses/logout.php
 /BALSRI_JBB/Administrasi/file_administrasi
-
-
+/BALSRI_JBB/Administrasi/gambar/kasir_toko.svg
 
 
