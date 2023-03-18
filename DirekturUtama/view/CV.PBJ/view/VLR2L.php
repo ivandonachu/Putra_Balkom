@@ -651,6 +651,7 @@ else {
         $gaji_karyawan = 0;
     }
 }
+
 $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
 $laba_kotor = $total_pendapatan - $pembelian_kadek;
 $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om +$jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
