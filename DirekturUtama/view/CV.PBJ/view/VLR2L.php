@@ -83,7 +83,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' ");
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, SUM(qty) as total_qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' ");
     $total_angkutan_edy = 0;
     $total_angkutan_rama = 0;
     $total_angkutan_aril = 0;
@@ -91,9 +91,10 @@ if ($tanggal_awal == $tanggal_akhir) {
     while($data1 = mysqli_fetch_array($table1)){
         $no_polisi = trim($data1["no_polisi"]);
         $no_polisi_ts = str_replace(" ", "" , $no_polisi);
-        $kota = $data1['kota'];
-        $qty = $data1['qty'];
         
+        $kota = $data1['kota'];
+        $qty = $data1['total_qty'];
+      
         //kak nyoman
         if($kota == 'Kab Ogn Kmrg Ulu Tim'){
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
@@ -352,7 +353,10 @@ if ($tanggal_awal == $tanggal_akhir) {
     if (!isset($data8['jumlah'])) {
         $gaji_karyawan = 0;
     }
-} else {
+}
+
+
+else {
 
     // Penjualan kadek dan etty
     $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' ");
@@ -388,23 +392,25 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' ");
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ");
     $total_angkutan_edy = 0;
     $total_angkutan_rama = 0;
     $total_angkutan_aril = 0;
     $total_angkutan_reni = 0;
     while($data1 = mysqli_fetch_array($table1)){
-        $no_polisi = trim($data1["no_polisi"]);
-        $no_polisi_ts = str_replace(" ", "" , $no_polisi);
+      
+       
         $kota = $data1['kota'];
         $qty = $data1['qty'];
-        
+       
         //kak nyoman
         if($kota == 'Kab Ogn Kmrg Ulu Tim'){
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "" , $no_polisi);
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
             if(isset($data2p['status_kendaraan'])){
@@ -414,9 +420,11 @@ if ($tanggal_awal == $tanggal_akhir) {
             
             if($pemilik == 'Bapak Nyoman Edi' ){
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+                
             }
             else if($pemilik == 'Bapak Rama'){
                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+                
             }
             else if($pemilik == 'Bapak Aril'){
                 $total_angkutan_aril = $total_angkutan_aril + $total_angkut;
@@ -426,11 +434,14 @@ if ($tanggal_awal == $tanggal_akhir) {
             }
           
         }
-        else if ($kota == 'Mesuji'){
+        else if ($kota == 'Kab Mesuji'){
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "" , $no_polisi);
+
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
             if(isset($data2p['status_kendaraan'])){
@@ -439,6 +450,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             
             if($pemilik == 'Bapak Nyoman Edi' ){
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+               
             }
         }
         else if ($kota == 'Kab Tlg Bwg'){
@@ -1019,7 +1031,7 @@ aria-labelledby="userDropdown">
                                                     <td><strong>Total Harga Pokok Penjualan</strong></td>
                                                     <td class="thick-line"></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($pembelian_ety + $pembelian_kadek); ?></td>
+                                                    <td class="text-left"><?= formatuang( $pembelian_kadek); ?></td>
                                                     <td class="thick-line"></td>
                                                 </tr>
                                                 <tr style="background-color: navy;  color:white;">
