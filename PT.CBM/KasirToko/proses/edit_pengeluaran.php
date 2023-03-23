@@ -117,6 +117,8 @@ elseif ($akun == 'Pengeluaran Lainnya') {
 
 }
 
+
+
 	if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE riwayat_pengeluaran SET tanggal = '$tanggal',referensi = '$referensi' , kode_akun = '$kode_akun' , keterangan = '$keterangan' ,jumlah_pengeluaran = '$jumlah'  WHERE no_pengeluaran = 
 		'$no_pengeluaran'");

@@ -247,11 +247,14 @@ else{
     <br>
     <br>
     <div class="row" >
-      <div class="col-md-11" align="right" >
+   <div class="col-md-10" align="right" >
          <?php echo "<a href='VRPemasaranTF?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Transfer</button></a>"; ?>
       </div>
       <div class="col-md-1"  align="right">
          <?php echo "<a href='VRPemasaranOP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kas Armada</button></a>"; ?>
+      </div>
+      <div class="col-md-1"  align="right">
+         <?php echo "<a href='VRPemasaranKs?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kasir</button></a>"; ?>
       </div>
     </div>
 <br>

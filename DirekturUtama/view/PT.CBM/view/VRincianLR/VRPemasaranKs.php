@@ -31,13 +31,12 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
 }  
 
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal = '$tanggal_awal'");
+if ($tanggal_akhir == $tanggal_awal) {
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-580' ");
 }
 else{
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-580' ");
 }
-
 
  ?>
  <!DOCTYPE html>
@@ -51,7 +50,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Penjualan & Pemasaran Transfer</title>
+  <title>Rincian Biaya Usaha Lainnya Kasir Toko</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -190,7 +189,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRPemasaranTF?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Penjualan & Pemasaran Transfer</h5></a>"; ?>
+  <?php echo "<a href='VRUsahaLainnyaTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Usaha Lainnya Kasir Toko</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -208,8 +207,8 @@ else{
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
-         <!-- Nav Item - User Information -->
-         <li class="nav-item dropdown no-arrow">
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
                 <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
@@ -246,7 +245,7 @@ else{
     </div>
     <br>
     <br>
-    <div class="row" >
+   <div class="row" >
    <div class="col-md-10" align="right" >
          <?php echo "<a href='VRPemasaranTF?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Transfer</button></a>"; ?>
       </div>
@@ -266,17 +265,18 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Nama Driver</th>
-      <th>No Polisi</th>
-      <th>Posisi Bongkar</th>
-      <th>Tujuan Berangkat</th>
-      <th>Uang Jalan</th>
+      <th>REF</th>
+      <th>Akun</th>
       <th>Keterangan</th>
-      <th>File LO</th>
-    
+      <th>Jumlah Pengeluaran</th>
+      <th>Total</th>
+      <th>File</th>
+
+    </tr>
   </thead>
   <tbody>
     <?php
+    $total = 0 ;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -285,42 +285,39 @@ else{
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_keberangkatan = $data['no_keberangkatan'];
+      $no_transaksi = $data['no_pengeluaran'];
       $tanggal =$data['tanggal'];
-      $nama_driver = $data['nama_driver'];
-      $no_polisi = $data['no_polisi'];
-      $posisi_bongkar = $data['posisi_bongkar'];
-      $tujuan_keberangkatan = $data['tujuan_berangkat'];
-      $uang_jalan = $data['uang_jalan'];
+      $referensi = $data['referensi'];
+      $nama_akun = $data['nama_akun'];
       $keterangan = $data['keterangan'];
+      $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
       $file_bukti = $data['file_bukti'];
-
+      $total = $total + $jumlah_pengeluaran;
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_keberangkatan</td>
+      <td style='font-size: 14px'>$no_transaksi</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_driver</td>
-      <td style='font-size: 14px'>$no_polisi</td>
-      <td style='font-size: 14px'>$posisi_bongkar</td>
-      <td style='font-size: 14px'>$tujuan_keberangkatan</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($uang_jalan); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KepalaGudang/file_gudang/<?= $file_bukti ?>" href="/PT.CBM/KepalaGudang/file_gudang/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_pengeluaran); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
+      
 
-    <?php echo  " </td>  </tr>";
+    <?php echo  " </td> </tr>";
   }
   ?>
 
 </tbody>
 </table>
-
-  </div>
-</div>
 </div>
 
 
+</div>
 
+</div>
 <!-- End of Main Content -->
 
 <!-- Footer -->
