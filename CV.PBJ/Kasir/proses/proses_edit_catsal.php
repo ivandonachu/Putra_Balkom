@@ -23,6 +23,7 @@ $tanggal_akhir = $_POST['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $rekening = $_POST['rekening'];
 $bank = $_POST['bank'];
+$akun = $_POST['akun'];
 $jenis_transaksi = $_POST['jenis_transaksi'];
 $biaya_transfer =$_POST['biaya_transfer'];
 $jumlah = $_POST['jumlah'];
@@ -71,11 +72,11 @@ else{
 }
 
 if ($file == '') {
-				$query3 = mysqli_query($koneksi,"UPDATE riwayat_pencatatan_saldo SET tanggal = '$tanggal' , rekening = '$rekening' , bank = '$bank' , jenis_transaksi = '$jenis_transaksi' , biaya_transfer = '$biaya_transfer'
+				$query3 = mysqli_query($koneksi,"UPDATE riwayat_pencatatan_saldo SET tanggal = '$tanggal' , rekening = '$rekening' , bank = '$bank', akun = '$akun' , jenis_transaksi = '$jenis_transaksi' , biaya_transfer = '$biaya_transfer'
 	, status_saldo = '$status_saldo', jumlah = '$jumlah' , keterangan = '$keterangan' WHERE no_transaksi = '$no_transaksi'");
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE riwayat_pencatatan_saldo SET tanggal = '$tanggal' , rekening = '$rekening' , bank = '$bank' , jenis_transaksi = '$jenis_transaksi' , biaya_transfer = '$biaya_transfer'
+			$query3 = mysqli_query($koneksi,"UPDATE riwayat_pencatatan_saldo SET tanggal = '$tanggal' , rekening = '$rekening' , bank = '$bank', akun = '$akun' , jenis_transaksi = '$jenis_transaksi' , biaya_transfer = '$biaya_transfer'
 	, status_saldo = '$status_saldo', jumlah = '$jumlah' , keterangan = '$keterangan', file_bukti = '$file' WHERE no_transaksi = '$no_transaksi'");	
 	}
 

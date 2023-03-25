@@ -2655,6 +2655,42 @@ if (!isset($data_brangkat_b12_rtr['brangkat_b12_rtr'])) {
       <td style='font-size: 14px'>"; ?> <a download="../file_toko/<?= $file_bukti ?>" href="../file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Input Nota</button>
+
+<!-- Form EDIT DATA -->
+
+<div class="modal fade" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role ="document">
+    <div class="modal-content"> 
+      <div class="modal-header">Form Input Nota </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+
+
+      <!-- Form Edit Data -->
+      <div class="modal-body">
+        <form action="../proses/edit_penjualan" enctype="multipart/form-data" method="POST">
+
+       <input type="hidden" name="no_transaksi" value="<?php echo $no_transaksi;?>">
+       <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+      <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+        <div>
+        <label>Upload File</label> 
+        <input type="file" name="file"> 
+        </div> 
+                
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Ubah </button>
+            <button type="reset" class="btn btn-danger"> RESET</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
       <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_transaksi']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
 
