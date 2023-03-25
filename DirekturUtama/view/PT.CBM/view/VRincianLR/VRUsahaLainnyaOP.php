@@ -34,10 +34,11 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
   
-$table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal = '$tanggal_awal' AND nama_akun ='Biaya Usaha Lainnya' AND referensi = 'CBM'");
+$table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal = '$tanggal_awal' AND nama_akun ='Pengeluaran Lainnya' AND referensi = 'CBM'");
 }
 else{
-
+  /*
+  // biaya usaha lainnya
   $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun ='Biaya Usaha Lainnya' AND referensi = 'CBM'");
 
   $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'CBM'  ");
@@ -88,57 +89,167 @@ else{
   if (!isset($data_mt['jumlah_mt'])) {
     $total_mt = 0;
   }
+*/
+   // pengeluaran lainnya
 
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun ='Biaya Lainnya' AND referensi = 'CBM'");
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun ='Pengeluaran Lainnya' AND referensi = 'CBM'");
 
-  $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Lainnya' AND referensi = 'CBM'  ");
+  $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'CBM'  ");
   $data_cbm = mysqli_fetch_array($table2);
   $total_cbm = $data_cbm['jumlah_cbm'];
   if (!isset($data_cbm['jumlah_cbm'])) {
     $total_cbm = 0;
   }
   
-  $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Lainnya' AND referensi = 'CBM'  ");
+  $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'CBM'  ");
   $data_cbm = mysqli_fetch_array($table2);
   $total_cbm = $data_cbm['jumlah_cbm'];
   if (!isset($data_cbm['jumlah_cbm'])) {
     $total_cbm = 0;
   }
   
-  $table3 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kl FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Lainnya' AND referensi = 'Kebun Lengkiti'  ");
+  $table3 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kl FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'Kebun Lengkiti'  ");
   $data_kl = mysqli_fetch_array($table3);
   $total_kl = $data_kl['jumlah_kl'];
   if (!isset($data_kl['jumlah_kl'])) {
     $total_kl = 0;
   }
   
-  $table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mes FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Lainnya' AND referensi = 'MES/PBR'  ");
+  $table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mes FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'MES/PBR'  ");
   $data_mes = mysqli_fetch_array($table4);
   $total_mes = $data_mes['jumlah_mes'];
   if (!isset($data_mes['jumlah_mes'])) {
     $total_mes = 0;
   }
   
-  $table5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_bl FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Lainnya' AND referensi = 'BALSRI'  ");
+  $table5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_bl FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'BALSRI'  ");
   $data_bl = mysqli_fetch_array($table5);
   $total_bl = $data_bl['jumlah_bl'];
   if (!isset($data_bl['jumlah_bl'])) {
     $total_bl = 0;
   }
   
-  $table6 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_pbj FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Lainnya' AND referensi = 'PBJ'  ");
+  $table6 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_pbj FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'PBJ'  ");
   $data_pbj = mysqli_fetch_array($table6);
   $total_pbj = $data_pbj['jumlah_pbj'];
   if (!isset($data_pbj['jumlah_pbj'])) {
     $total_pbj = 0;
   }
   
-  $table7 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mt FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'Melodi Tani'  ");
+  $table7 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mt FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'Melodi Tani'  ");
   $data_mt = mysqli_fetch_array($table7);
   $total_mt = $data_mt['jumlah_mt'];
   if (!isset($data_mt['jumlah_mt'])) {
     $total_mt = 0;
   }
+/*
+  // Bayar Pajak
+
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun ='Bayar Pajak' AND referensi = 'CBM'");
+
+  $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Pajak' AND referensi = 'CBM'  ");
+  $data_cbm = mysqli_fetch_array($table2);
+  $total_cbm = $data_cbm['jumlah_cbm'];
+  if (!isset($data_cbm['jumlah_cbm'])) {
+    $total_cbm = 0;
+  }
+  
+  $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Pajak' AND referensi = 'CBM'  ");
+  $data_cbm = mysqli_fetch_array($table2);
+  $total_cbm = $data_cbm['jumlah_cbm'];
+  if (!isset($data_cbm['jumlah_cbm'])) {
+    $total_cbm = 0;
+  }
+  
+  $table3 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kl FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Pajak' AND referensi = 'Kebun Lengkiti'  ");
+  $data_kl = mysqli_fetch_array($table3);
+  $total_kl = $data_kl['jumlah_kl'];
+  if (!isset($data_kl['jumlah_kl'])) {
+    $total_kl = 0;
+  }
+  
+  $table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mes FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Pajak' AND referensi = 'MES/PBR'  ");
+  $data_mes = mysqli_fetch_array($table4);
+  $total_mes = $data_mes['jumlah_mes'];
+  if (!isset($data_mes['jumlah_mes'])) {
+    $total_mes = 0;
+  }
+  
+  $table5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_bl FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Pajak' AND referensi = 'BALSRI'  ");
+  $data_bl = mysqli_fetch_array($table5);
+  $total_bl = $data_bl['jumlah_bl'];
+  if (!isset($data_bl['jumlah_bl'])) {
+    $total_bl = 0;
+  }
+  
+  $table6 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_pbj FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Pajak' AND referensi = 'PBJ'  ");
+  $data_pbj = mysqli_fetch_array($table6);
+  $total_pbj = $data_pbj['jumlah_pbj'];
+  if (!isset($data_pbj['jumlah_pbj'])) {
+    $total_pbj = 0;
+  }
+  
+  $table7 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mt FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Pajak' AND referensi = 'Melodi Tani'  ");
+  $data_mt = mysqli_fetch_array($table7);
+  $total_mt = $data_mt['jumlah_mt'];
+  if (!isset($data_mt['jumlah_mt'])) {
+    $total_mt = 0;
+  }
+
+  // bayar KIR
+
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun ='Bayar Kir' AND referensi = 'CBM'");
+
+  $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'CBM'  ");
+  $data_cbm = mysqli_fetch_array($table2);
+  $total_cbm = $data_cbm['jumlah_cbm'];
+  if (!isset($data_cbm['jumlah_cbm'])) {
+    $total_cbm = 0;
+  }
+  
+  $table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_cbm FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'CBM'  ");
+  $data_cbm = mysqli_fetch_array($table2);
+  $total_cbm = $data_cbm['jumlah_cbm'];
+  if (!isset($data_cbm['jumlah_cbm'])) {
+    $total_cbm = 0;
+  }
+  
+  $table3 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_kl FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'Kebun Lengkiti'  ");
+  $data_kl = mysqli_fetch_array($table3);
+  $total_kl = $data_kl['jumlah_kl'];
+  if (!isset($data_kl['jumlah_kl'])) {
+    $total_kl = 0;
+  }
+  
+  $table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mes FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'MES/PBR'  ");
+  $data_mes = mysqli_fetch_array($table4);
+  $total_mes = $data_mes['jumlah_mes'];
+  if (!isset($data_mes['jumlah_mes'])) {
+    $total_mes = 0;
+  }
+  
+  $table5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_bl FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'BALSRI'  ");
+  $data_bl = mysqli_fetch_array($table5);
+  $total_bl = $data_bl['jumlah_bl'];
+  if (!isset($data_bl['jumlah_bl'])) {
+    $total_bl = 0;
+  }
+  
+  $table6 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_pbj FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'PBJ'  ");
+  $data_pbj = mysqli_fetch_array($table6);
+  $total_pbj = $data_pbj['jumlah_pbj'];
+  if (!isset($data_pbj['jumlah_pbj'])) {
+    $total_pbj = 0;
+  }
+  
+  $table7 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jumlah_mt FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'Melodi Tani'  ");
+  $data_mt = mysqli_fetch_array($table7);
+  $total_mt = $data_mt['jumlah_mt'];
+  if (!isset($data_mt['jumlah_mt'])) {
+    $total_mt = 0;
+  }
+
+  */
 }
 
  ?>
