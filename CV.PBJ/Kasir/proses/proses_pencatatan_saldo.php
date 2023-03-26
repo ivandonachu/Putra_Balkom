@@ -23,6 +23,7 @@ $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $rekening = $_POST['rekening'];
 $bank = $_POST['bank'];
+$akun = $_POST['akun'];
 $jenis_transaksi = $_POST['jenis_transaksi'];
 $biaya_transfer =$_POST['biaya_transfer'];
 $jumlah = $_POST['jumlah'];
@@ -66,7 +67,7 @@ else if ( $nama_file != "" ) {
 
 if ($jenis_transaksi == 'Sisa Saldo Bulan Lalu') {
 
-	$query = mysqli_query($koneksi,"INSERT INTO riwayat_pencatatan_saldo VALUES ('','$tanggal','$rekening','$bank','Masuk','$jenis_transaksi','$biaya_transfer','$jumlah','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO riwayat_pencatatan_saldo VALUES ('','$tanggal','$rekening','$bank','$akun','Masuk','$jenis_transaksi','$biaya_transfer','$jumlah','$keterangan','$file')");
 
 			
 			if ($query != "") {
@@ -74,7 +75,7 @@ if ($jenis_transaksi == 'Sisa Saldo Bulan Lalu') {
 			}
 }
 elseif ($jenis_transaksi == 'Penambahan Saldo') {
-		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pencatatan_saldo VALUES ('','$tanggal','$rekening','$bank','Masuk','$jenis_transaksi','$biaya_transfer','$jumlah','$keterangan','$file')");
+		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pencatatan_saldo VALUES ('','$tanggal','$rekening','$bank','$akun','Masuk','$jenis_transaksi','$biaya_transfer','$jumlah','$keterangan','$file')");
 
 			
 			if ($query != "") {
@@ -82,7 +83,7 @@ elseif ($jenis_transaksi == 'Penambahan Saldo') {
 			}
 }
 elseif ($jenis_transaksi == 'Pengeluaran Saldo') {
-		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pencatatan_saldo VALUES ('','$tanggal','$rekening','$bank','Keluar','$jenis_transaksi','$biaya_transfer','$jumlah','$keterangan','$file')");
+		$query = mysqli_query($koneksi,"INSERT INTO riwayat_pencatatan_saldo VALUES ('','$tanggal','$rekening','$bank','$akun','Keluar','$jenis_transaksi','$biaya_transfer','$jumlah','$keterangan','$file')");
 
 			
 			if ($query != "") {

@@ -34,12 +34,12 @@ $tanggal_akhir = date('Y-m-31');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksibalsri,"SELECT * FROM kredit_kendaraan  WHERE tanggal ='$tanggal_awal' ");
+  $table = mysqli_query($koneksibalsri_jbb,"SELECT * FROM kredit_kendaraan  WHERE tanggal ='$tanggal_awal' ");
 
 }
 
 else{
-  $table = mysqli_query($koneksibalsri,"SELECT * FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksibalsri_jbb,"SELECT * FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 }
 
@@ -370,7 +370,6 @@ else{
  <br>
 
  
-</div>
 
 
 
@@ -418,6 +417,7 @@ else{
 </div>
 </div>
 </div>
+
 <!-- End of Main Content -->
 
 <!-- Footer -->

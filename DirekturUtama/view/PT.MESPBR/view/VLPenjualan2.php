@@ -52,6 +52,23 @@ if ($tanggal_awal == $tanggal_akhir) {
     if (!isset($data_penjualan_3_gd['penjualan_3_gd'])) {
         $total_penjualan_3_gd = 0;
     }
+
+    //baja isi LPG 3kg MES
+    $table36mes = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3_gd_mes FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L03K01' AND referensi = 'MES'");
+    $data_penjualan_3_gd_mes = mysqli_fetch_array($table36mes);
+    $total_penjualan_3_gd_mes = $data_penjualan_3_gd_mes['penjualan_3_gd_mes'];
+    if (!isset($data_penjualan_3_gd_mes['penjualan_3_gd_mes'])) {
+        $total_penjualan_3_gd_mes = 0;
+    }
+
+    //baja isi LPG 3kg PBR
+    $table36pbr = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3_gd_pbr FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L03K01' AND referensi = 'PBR'");
+    $data_penjualan_3_gd_pbr = mysqli_fetch_array($table36pbr);
+    $total_penjualan_3_gd_pbr = $data_penjualan_3_gd_pbr['penjualan_3_gd_pbr'];
+    if (!isset($data_penjualan_3_gd_pbr['penjualan_3_gd_pbr'])) {
+        $total_penjualan_3_gd_pbr = 0;
+    }
+
 //3KG isi Masuk
 //baja isi LPG 3kg
     $table37 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_3_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal' AND kode_baja = 'L03K01' ");
@@ -146,6 +163,20 @@ if ($tanggal_awal == $tanggal_akhir) {
     if (!isset($data_penjualan_12_gd['penjualan_12_gd'])) {
         $total_penjualan_12_gd = 0;
     }
+    //baja isi LPG 12kg Keluar MES
+    $table44mes = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_12_gd_mes FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K01' AND referensi = 'MES' ");
+    $data_penjualan_12_gd_mes = mysqli_fetch_array($table44mes);
+    $total_penjualan_12_gd_mes = $data_penjualan_12_gd_mes['penjualan_12_gd_mes'];
+    if (!isset($data_penjualan_12_gd_mes['penjualan_12_gd_mes'])) {
+        $total_penjualan_12_gd_mes = 0;
+    }
+    //baja isi LPG 12kg Keluar PBR
+    $table44pbr = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_12_gd_pbr FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K01' AND referensi = 'PBR'  ");
+    $data_penjualan_12_gd_pbr = mysqli_fetch_array($table44pbr);
+    $total_penjualan_12_gd_pbr = $data_penjualan_12_gd_pbr['penjualan_12_gd_pbr'];
+    if (!isset($data_penjualan_12_gd_pbr['penjualan_12_gd_pbr'])) {
+        $total_penjualan_12_gd_pbr = 0;
+    }
 //baja isi LPG 12kg Masuk
     $table45 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_12_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'L12K01' ");
     $data_pembelian_12_gd = mysqli_fetch_array($table45);
@@ -236,6 +267,20 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_penjualan_b05_gd= $data_penjualan_b05_gd['penjualan_b05_gd'];
     if (!isset($data_penjualan_b05_gd['penjualan_b05_gd'])) {
         $total_penjualan_b05_gd = 0;
+    }
+    //baja isi BG 5,5kg Keluar mes
+    $table52mes = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b05_gd_mes FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K01' AND referensi = 'MES' ");
+    $data_penjualan_b05_gd_mes = mysqli_fetch_array($table52mes);
+    $total_penjualan_b05_gd_mes = $data_penjualan_b05_gd_mes['penjualan_b05_gd_mes'];
+    if (!isset($data_penjualan_b05_gd_mes['penjualan_b05_gd_mes'])) {
+        $total_penjualan_b05_gd_mes = 0;
+    }
+    //baja isi BG 5,5kg Keluar pbr
+    $table52pbr = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b05_gd_pbr FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K01' AND referensi = 'PBR'  ");
+    $data_penjualan_b05_gd_pbr = mysqli_fetch_array($table52pbr);
+    $total_penjualan_b05_gd_pbr = $data_penjualan_b05_gd_pbr['penjualan_b05_gd_pbr'];
+    if (!isset($data_penjualan_b05_gd_pbr['penjualan_b05_gd_pbr'])) {
+        $total_penjualan_b05_gd_pbr = 0;
     }
 //baja isi BG 5,5kg Masuk
     $table53 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b05_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B05K01'  ");
@@ -328,6 +373,20 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_penjualan_b12_gd= $data_penjualan_b12_gd['penjualan_b12_gd'];
     if (!isset($data_penjualan_b12_gd['penjualan_b12_gd'])) {
         $total_penjualan_b12_gd = 0;
+    }
+    //baja isi BG 12kg keluar MES
+    $table60mes = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b12_gd_mes FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K01' AND referensi = 'MES' ");
+    $data_penjualan_b12_gd_mes = mysqli_fetch_array($table60mes);
+    $total_penjualan_b12_gd_mes = $data_penjualan_b12_gd_mes['penjualan_b12_gd_mes'];
+    if (!isset($data_penjualan_b12_gd_mes['penjualan_b12_gd_mes'])) {
+        $total_penjualan_b12_gd_mes = 0;
+    }
+    //baja isi BG 12kg keluar PBR
+    $table60pbr = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b12_gd_pbr FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K01' AND referensi = 'PBR' ");
+    $data_penjualan_b12_gd_pbr = mysqli_fetch_array($table60pbr);
+    $total_penjualan_b12_gd_pbr = $data_penjualan_b12_gd_pbr['penjualan_b12_gd_pbr'];
+    if (!isset($data_penjualan_b12_gd_pbr['penjualan_b12_gd_pbr'])) {
+        $total_penjualan_b12_gd_pbr = 0;
     }
 //baja isi BG 12kg Masuk
     $table61 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b12_gd FROM riwayat_pembelian WHERE tanggal = '$tanggal_awal'  AND kode_baja = 'B12K01' ");
@@ -440,12 +499,27 @@ else{
 
 //3KG ISI TK
 //3KG isi keluar
-//baja isi LPG 3kg
-    $table36 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K01'  ");
+//baja isi LPG 3kg MES
+    $table36 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3_gd FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K01' AND referensi = 'MES'  ");
     $data_penjualan_3_gd = mysqli_fetch_array($table36);
     $total_penjualan_3_gd= $data_penjualan_3_gd['penjualan_3_gd'];
     if (!isset($data_penjualan_3_gd['penjualan_3_gd'])) {
         $total_penjualan_3_gd = 0;
+    }
+    //baja isi LPG 3kg MES
+    $table36mes = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3_gd_mes FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K01' AND referensi = 'MES'");
+    $data_penjualan_3_gd_mes = mysqli_fetch_array($table36mes);
+    $total_penjualan_3_gd_mes = $data_penjualan_3_gd_mes['penjualan_3_gd_mes'];
+    if (!isset($data_penjualan_3_gd_mes['penjualan_3_gd_mes'])) {
+        $total_penjualan_3_gd_mes = 0;
+    }
+
+    //baja isi LPG 3kg PBR
+    $table36pbr = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_3_gd_pbr FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L03K01' AND referensi = 'PBR'");
+    $data_penjualan_3_gd_pbr = mysqli_fetch_array($table36pbr);
+    $total_penjualan_3_gd_pbr = $data_penjualan_3_gd_pbr['penjualan_3_gd_pbr'];
+    if (!isset($data_penjualan_3_gd_pbr['penjualan_3_gd_pbr'])) {
+        $total_penjualan_3_gd_pbr = 0;
     }
 //3KG isi Masuk
 //baja isi LPG 3kg
@@ -540,6 +614,20 @@ else{
     if (!isset($data_penjualan_12_gd['penjualan_12_gd'])) {
         $total_penjualan_12_gd = 0;
     }
+    //baja isi LPG 12kg Keluar MES
+    $table44mes = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_12_gd_mes FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L12K01' AND referensi = 'MES' ");
+    $data_penjualan_12_gd_mes = mysqli_fetch_array($table44mes);
+    $total_penjualan_12_gd_mes = $data_penjualan_12_gd_mes['penjualan_12_gd_mes'];
+    if (!isset($data_penjualan_12_gd_mes['penjualan_12_gd_mes'])) {
+        $total_penjualan_12_gd_mes = 0;
+    }
+    //baja isi LPG 12kg Keluar PBR
+    $table44pbr = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_12_gd_pbr FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L12K01' AND referensi = 'PBR'  ");
+    $data_penjualan_12_gd_pbr = mysqli_fetch_array($table44pbr);
+    $total_penjualan_12_gd_pbr = $data_penjualan_12_gd_pbr['penjualan_12_gd_pbr'];
+    if (!isset($data_penjualan_12_gd_pbr['penjualan_12_gd_pbr'])) {
+        $total_penjualan_12_gd_pbr = 0;
+    }
 //baja isi LPG 12kg Masuk
     $table45 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_12_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'L12K01' ");
     $data_pembelian_12_gd = mysqli_fetch_array($table45);
@@ -630,6 +718,20 @@ else{
     $total_penjualan_b05_gd= $data_penjualan_b05_gd['penjualan_b05_gd'];
     if (!isset($data_penjualan_b05_gd['penjualan_b05_gd'])) {
         $total_penjualan_b05_gd = 0;
+    }
+    //baja isi BG 5,5kg Keluar mes
+    $table52mes = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b05_gd_mes FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B05K01' AND referensi = 'MES' ");
+    $data_penjualan_b05_gd_mes = mysqli_fetch_array($table52mes);
+    $total_penjualan_b05_gd_mes = $data_penjualan_b05_gd_mes['penjualan_b05_gd_mes'];
+    if (!isset($data_penjualan_b05_gd_mes['penjualan_b05_gd_mes'])) {
+        $total_penjualan_b05_gd_mes = 0;
+    }
+    //baja isi BG 5,5kg Keluar pbr
+    $table52pbr = mysqli_query($koneksipbr, "SELECT SUM(qty) AS penjualan_b05_gd_pbr FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND kode_baja = 'B05K01' AND referensi = 'PBR'  ");
+    $data_penjualan_b05_gd_pbr = mysqli_fetch_array($table52pbr);
+    $total_penjualan_b05_gd_pbr = $data_penjualan_b05_gd_pbr['penjualan_b05_gd_pbr'];
+    if (!isset($data_penjualan_b05_gd_pbr['penjualan_b05_gd_pbr'])) {
+        $total_penjualan_b05_gd_pbr = 0;
     }
 //baja isi BG 5,5kg Masuk
     $table53 = mysqli_query($koneksipbr, "SELECT SUM(qty) AS pembelian_b05_gd FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_baja = 'B05K01'  ");
@@ -1022,14 +1124,14 @@ else{
 <br>
 <!-- Keterangan Penjualan -->
 <!-- Penjaulan Isi -->
-        <div class="row" style="margin-right: 20px; margin-left: 20px;">
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
             <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Penjualan Elpiji 3 Kg Isi</div>
+                                                Penjualan Elpiji 3 Kg Isi Total</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=    $total_penjualan_3_gd  ?></div>
                                         </div>
                                         <div class="col-auto">
@@ -1045,7 +1147,7 @@ else{
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Penjualan Elpiji 12 Kg Isi</div>
+                                                Penjualan Elpiji 12 Kg Isi Total</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   $total_penjualan_12_gd ?></div>
                                         </div>
                                         <div class="col-auto">
@@ -1061,7 +1163,7 @@ else{
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Penjualan Bright Gas 5,5 Kg Isi</div>
+                                                Penjualan Bright Gas 5,5 Kg Isi Total</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_b05_gd ?></div>
                                         </div>
                                         <div class="col-auto">
@@ -1077,8 +1179,144 @@ else{
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Penjualan Bright Gas 12 Kg Isi</div>
+                                                Penjualan Bright Gas 12 Kg Isi Total</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   $total_penjualan_b12_gd ?> </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <br>
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+            <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Penjualan Elpiji 3 Kg Isi MES</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=    $total_penjualan_3_gd_mes  ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Penjualan Elpiji 12 Kg Isi MES</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   $total_penjualan_12_gd_mes ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Penjualan Bright Gas 5,5 Kg Isi MES</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_b05_gd_mes ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Penjualan Bright Gas 12 Kg Isi MES</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   $total_penjualan_b12_gd_mes ?> </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row" style="margin-right: 20px; margin-left: 20px;">
+                          <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Penjualan Elpiji 3 Kg Isi PBR</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=    $total_penjualan_3_gd_pbr  ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Penjualan Elpiji 12 Kg Isi PBR</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   $total_penjualan_12_gd_pbr ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Penjualan Bright Gas 5,5 Kg Isi PBR</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_b05_gd_pbr ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Penjualan Bright Gas 12 Kg Isi PBR</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   $total_penjualan_b12_gd_pbr ?> </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

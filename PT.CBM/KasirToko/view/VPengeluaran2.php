@@ -35,12 +35,12 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
   
-$table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.nama_akun != 'Biaya Penjualan & Pemasaran' ");
+$table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' ");
 
 }
 else{
 
-$table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.nama_akun != 'Biaya Penjualan & Pemasaran' ");
+$table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
 
 }
 
@@ -329,6 +329,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
             <option>Biaya Perbaikan Kendaraan</option>
             <option>Prive</option>
             <option>Pengeluaran Lainnya</option>
+            <option>Biaya Penjualan & Pemasaran</option>
           </select>
         </div>
       </div>
@@ -502,6 +503,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran a INNER JOIN 
      <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
      <option <?php echo ($dataSelect == 'Prive') ? "selected": "" ?> >Prive</option>
      <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
+     <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
 
   </select>
 

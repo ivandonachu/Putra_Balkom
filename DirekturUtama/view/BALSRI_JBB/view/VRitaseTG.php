@@ -421,7 +421,7 @@ $urut = 0;
         $total_jt_odo =$data['total_jt_odo'];
    
        $table4 = mysqli_query($koneksibalsri_jbb, "SELECT  SUM(rit) AS total_rit2 , SUM(jt_gps) AS total_jt_gps2 , SUM(jt_odo) AS total_jt_odo2 FROM kendaraan a 
-       INNER JOIN pengiriman b ON a.no=b.no WHERE tanggal BETWEEN '$tgl_perbaikan' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
+       INNER JOIN pengiriman_tg b ON a.no=b.no WHERE tanggal BETWEEN '$tgl_perbaikan' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
        $data4 = mysqli_fetch_array($table4);
 
       $total_rit2 =$data4['total_rit2'];

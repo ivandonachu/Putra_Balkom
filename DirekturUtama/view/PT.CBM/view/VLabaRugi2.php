@@ -535,14 +535,23 @@ $total_biaya_pemasaran_op = $data_pemasaran_op['total_pemasaran_op'];
 if (!isset($data_pemasaran_op['total_pemasaran_op'])) {
     $total_biaya_pemasaran_op = 0;
 }
-$total_biaya_pemasaran = $total_biaya_pemasaran_op + $total_biaya_pemasaran_tk;
+//pemasaran kasir
+$table155x = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_pemasaran_tkz FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-580' ");
+$data_pemasaran_tk = mysqli_fetch_array($table155x);
+$total_biaya_pemasaran_tkz = $data_pemasaran_tk['total_pemasaran_tkz'];
+if (!isset($data_pemasaran_tk['total_pemasaran_tkz'])) {
+    $total_biaya_pemasaran_tkz = 0;
+}
+
+
+$total_biaya_pemasaran = $total_biaya_pemasaran_op + $total_biaya_pemasaran_tk + $total_biaya_pemasaran_tkz;
 
 
 
 
 //BIAYA USAHA LAINNYATK
 //kasir
-$table16 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_usaha_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590'");
+$table16 = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS total_biaya_usaha_tk FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-590' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-596' ");
 $data_biaya_usaha_tk = mysqli_fetch_array($table16);
 $total_biaya_usaha_tk = $data_biaya_usaha_tk['total_biaya_usaha_tk'];
 if (!isset($data_biaya_usaha_tk['total_biaya_usaha_tk'])) {
@@ -551,7 +560,8 @@ if (!isset($data_biaya_usaha_tk['total_biaya_usaha_tk'])) {
 //oprasional
 $table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi = 'CBM' OR
                                                                                                                   tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Pajak' AND referensi = 'CBM' OR
-                                                                                                                  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'CBM'");
+                                                                                                                  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bayar Kir' AND referensi = 'CBM'  OR
+                                                                                                                  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'CBM'");
 $data_biaya_usaha_op = mysqli_fetch_array($table166);
 $total_biaya_usaha_op = $data_biaya_usaha_op['total_biaya_usaha_op'];
 if (!isset($data_biaya_usaha_op['total_biaya_usaha_op'])) {
@@ -1094,7 +1104,7 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                 </tr>
                                 <tr>
                                     <td>5-590</td>
-                                    <td class="text-left">Biaya Usaha Lainnya</td>
+                                    <td class="text-left">Pengeluaran Lainnya</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_biaya_usaha); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRUsahaLainnya?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>

@@ -67,6 +67,12 @@ else if($rekening == 'CBM' && $referensi == 'Exxa' ){
 else if($rekening == 'CBM' && $referensi == 'Kebun Seberuk' ){
 
 }
+else if($rekening == 'Kebun Seberuk' && $referensi == 'Kebun Seberuk' ){
+
+}
+else if($rekening == 'Kebun Lengkiti' && $referensi == 'Kebun Lengkiti' ){
+
+}
 else{
 	echo "<script>alert('Saldo dan referensi tidak sama :)');  window.location='../view/VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 

@@ -292,12 +292,12 @@ else{
 <br>
 
         <div class="row">
-           <div class="col-md-6">
+           <div class="col-md-4">
           <label>Rekening</label>
           <input class="form-control form-control-sm" type="text" id="rekening" name="rekening"  >
         </div>  
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label>Bank</label>
           <select id="bank" name="bank" class="form-control">
              <option></option>
@@ -310,7 +310,15 @@ else{
               <option>Bank Permata</option>
                <option>Bank Jatim</option>
           </select>
-        </div>            
+        </div>      
+        
+        <div class="col-md-4">
+          <label>Akun</label>
+          <select id="akun" name="akun" class="form-control">
+             <option></option>
+            <option>Pengeluaran Brimo</option>
+          </select>
+        </div>     
 
       </div>
 
@@ -381,6 +389,7 @@ else{
       <th>Jenis Transaksi</th>
       <th>Rekening</th>
       <th>Bank</th>
+      <th>Akun</th>
       <th>Keterangan</th>
       <th>Debit</th>
       <th>Kredit</th>
@@ -408,6 +417,7 @@ else{
       $tanggal =$data['tanggal'];
       $rekening = $data['rekening'];
       $bank = $data['bank'];
+      $akun = $data['akun'];
       $jumlah = $data['jumlah'];
       $keterangan = $data['keterangan'];
       $biaya_transfer = $data['biaya_transfer'];
@@ -428,6 +438,7 @@ else{
        <td style='font-size: 14px'>$jenis_transaksi</td>
       <td style='font-size: 14px'>$rekening</td>
       <td style='font-size: 14px'>$bank</td>
+      <td style='font-size: 14px'>$akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
 
 
@@ -492,12 +503,12 @@ else{
 <br>
 
         <div class="row">
-           <div class="col-md-6">
+           <div class="col-md-4">
           <label>Rekening</label>
           <input class="form-control form-control-sm" type="text" id="rekening" name="rekening" value="<?php echo $rekening;?>" >
         </div>  
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label>Bank</label>
           <select id="bank" name="bank" class="form-control">
           <?php $dataSelect = $data['bank']; ?>
@@ -511,7 +522,16 @@ else{
             <option <?php echo ($dataSelect == 'Bank Jatim') ? "selected": "" ?> >Bank Jatim</option>
 
           </select>
-        </div>            
+        </div>    
+        
+        <div class="col-md-4">
+          <label>Akun</label>
+          <select id="akun" name="akun" class="form-control">
+          <?php $dataSelect = $data['akun']; ?>
+          <option <?php echo ($dataSelect == '') ? "selected": "" ?> ></option>
+            <option <?php echo ($dataSelect == 'Pengeluaran Brimo') ? "selected": "" ?> >Pengeluaran Brimo</option>
+          </select>
+        </div>    
 
       </div>
 

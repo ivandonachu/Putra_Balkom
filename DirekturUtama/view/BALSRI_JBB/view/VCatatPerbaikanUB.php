@@ -387,7 +387,7 @@ else{
       <th>Total</th>
       <th>Keterangan</th>
       <th>File</th>
-      <th>Aksi</th>
+
     </tr>
   </thead>
   <tbody>

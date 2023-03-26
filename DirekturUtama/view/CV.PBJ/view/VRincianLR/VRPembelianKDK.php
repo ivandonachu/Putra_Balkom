@@ -310,6 +310,7 @@ Logout
       <th>Tanggal</th>
       <th>NO DO</th>
       <th>Tujuan</th>
+      <th>Tipe</th>
       <th>Kota</th>
       <th>Material</th>
       <th>QTY</th>
@@ -344,7 +345,7 @@ Logout
  
         $no_pembelian = $data['no_pembelian'];
       $tanggal =$data['tanggal'];
-     
+     $tipe_semen = $data['tipe_semen'];
       $tujuan = $data['tujuan'];
       $kota = $data['kota'];
       $material = $data['material'];
@@ -364,6 +365,7 @@ Logout
         <td style='font-size: 14px'>$tanggal</td>
         <td style='font-size: 14px'>$no_do</td>
         <td style='font-size: 14px'>$tujuan</td>
+        <td style='font-size: 14px'>$tipe_semen</td>
         <td style='font-size: 14px'>$kota</td>
         <td style='font-size: 14px'>$material</td>
         <td style='font-size: 14px'>$qty</td>

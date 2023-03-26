@@ -22,7 +22,7 @@ $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_polisi = $_POST['no_polisi'];
 $tanggal = $_POST['tanggal'];
-$lokasi = $_POST['lokasi'];
+$wilayah_operasi = $_POST['wilayah_operasi'];
 
 
 	
@@ -31,7 +31,22 @@ $lokasi = $_POST['lokasi'];
 		$query2 = mysqli_query($koneksi,"UPDATE kendaraan SET tgl_perbaikan = '$tanggal' WHERE no_polisi = '$no_polisi'");
 
 
-			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitase?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		if($wilayah_operasi == 'Balongan'){
+			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitaseBA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			
+		}
+		elseif($wilayah_operasi == 'Padalarang'){
+			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitasePA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		}
+		elseif($wilayah_operasi == 'Plumpang'){
+			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitasePL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		}
+		elseif($wilayah_operasi == 'Tanjung Gerem'){
+			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitaseTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		}
+		elseif($wilayah_operasi == 'Ujung Berung'){
+			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VRitaseUB?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		}
 
 			
 
