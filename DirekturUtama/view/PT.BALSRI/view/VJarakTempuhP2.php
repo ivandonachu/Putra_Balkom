@@ -643,6 +643,17 @@ else{
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
+            
+              <!-- Nav Item - Dashboard -->
+            <li class="nav-item active" >
+                <a class="nav-link" href="DsPTBALSRI">
+                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+                    <span style="font-size: 16px;" >Dashboard</span></a>
+                </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
                 <a class="nav-link" href="DsPTBALSRI">
