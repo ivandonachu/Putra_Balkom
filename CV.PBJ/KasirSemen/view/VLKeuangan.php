@@ -295,6 +295,7 @@ else{
             <option>Alat Tulis Kantor</option>
             <option>Perbaikan Kendaraan</option>
             <option>Gaji Karyawan</option>
+            <option>Kembalikan Deposit</option>
 
             </select>
           </div>    
@@ -445,6 +446,7 @@ else{
                     <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                     <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?> >Perbaikan Kendaraan</option>
                     <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected": "" ?> >Gaji Karyawan</option>
+                    <option <?php echo ($dataSelect == 'Kembalikan Deposit') ? "selected": "" ?> >Kembalikan Deposit</option>
                   </select>
                 </div>    
                 <div class="col-md-6">
