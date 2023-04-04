@@ -88,6 +88,7 @@ else{
 
   <!-- Sidebar -->
   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Perbaikan Padalarang</h5></a>"; ?>
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">

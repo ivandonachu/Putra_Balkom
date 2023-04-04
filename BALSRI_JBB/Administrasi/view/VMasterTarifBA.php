@@ -216,6 +216,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_ba ");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
+    <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Master Tarif Balongan</h5></a>"; ?>
 
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
