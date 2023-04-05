@@ -935,7 +935,7 @@ aria-labelledby="userDropdown">
                                                 </tr>
                                                 <tr>
                                                     <td>4-100</td>
-                                                    <td class="text-left">Penjualan Kadek</td>
+                                                    <td class="text-left">Penjualan Dani</td>
                                                     <td class="text-left"><?= formatuang($pendapatan_penjualan_kadek); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPenjualanKDK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
@@ -949,14 +949,14 @@ aria-labelledby="userDropdown">
                                                 </tr>
                                                 <tr>
                                                     <td>4-100</td>
-                                                    <td class="text-left">Piutang Penjualan As Kadek</td>
+                                                    <td class="text-left">Piutang Penjualan Dani</td>
                                                     <td class="text-left"><?= formatuang($piutang_penjualan_kadek); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPiutangKDK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-101</td>
-                                                    <td class="text-left">Piutang Penjualan As Ety</td>
+                                                    <td class="text-left">Piutang Penjualan Ety</td>
                                                     <td class="text-left"><?= formatuang($piutang_penjualan_ety); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPiutangETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
