@@ -570,15 +570,13 @@ else{
 
 
     //totalkreditGLOBAL
-    $tablee_bku = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-    $dataa_bku = mysqli_fetch_array($tablee_bku);
-    $total_kredit_bku = $dataa_bku['total_kredit'];
 
-        $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+
+        $tablee = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
         $dataa = mysqli_fetch_array($tablee);
         $total_kredit= $dataa['total_kredit'];
 
-        $total_kredit = $total_kredit + $total_kredit_bku;
+        $total_kredit = $total_kredit;
         
         
  

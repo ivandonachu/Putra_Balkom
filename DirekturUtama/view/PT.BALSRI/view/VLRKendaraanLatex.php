@@ -156,30 +156,30 @@ else{
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <!-- Sidebar -->
-       <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
-    <div class="sidebar-brand-icon rotate-n-15">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
+                <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-</a>
+                </div>
+                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+            </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
             
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active" >
-  <a class="nav-link" href="DsPTBALSRI">
-      <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-      <span style="font-size: 16px;" >Dashboard</span></a>
-  </li>
+              <!-- Nav Item - Dashboard -->
+            <li class="nav-item active" >
+                <a class="nav-link" href="DsPTBALSRI">
+                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+                    <span style="font-size: 16px;" >Dashboard</span></a>
+                </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
+            <!-- Divider -->
+                <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
                      Menu PT BALSRI
@@ -219,10 +219,13 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Laba Rugi</h6>
                         
                         <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOP'>Lap uang Oprasional</a>";
+                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOPJBB'>Operasional Balsri JBB</a>";
+                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOP'>Operasional Balsri</a>";
+                         
                         } ?>
                         <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo" <a class='collapse-item' style='font-size: 15px;' href='VLrGlobal'>Laba Rugi Global</a>
+                          echo" <a class='collapse-item' style='font-size: 15px;' href='VLrBalsriJBB'>LR Global Balsri JBB</a>
+                                <a class='collapse-item' style='font-size: 15px;' href='VLrGlobal'>LR Global Balsri</a>
                                 <a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi Lampung</a>
                                 <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiP'>Laba Rugi Palembang</a>
                                 <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiBr'>Laba Rugi Baturaja</a>

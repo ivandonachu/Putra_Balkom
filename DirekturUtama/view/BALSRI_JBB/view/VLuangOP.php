@@ -642,8 +642,8 @@ function formatuang($angka){
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-      <!-- Sidebar -->
-      <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
@@ -656,230 +656,164 @@ function formatuang($angka){
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
-            
-<!-- Nav Item - Dashboard -->
+
+  <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
-  <a class="nav-link" href="DsPTBALSRI">
-      <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-      <span style="font-size: 16px;" >Dashboard</span></a>
-  </li>
+    <a class="nav-link" href="DsBALSRIJBB">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
 
 <!-- Divider -->
-<hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu PT BALSRI
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Company</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="DsPTBALSRI">PT.BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
-                    </div>
-                </div>
-            </li>
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu PT BALSRI JBB
+    </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >List Company</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+            <a class="collapse-item" style="font-size: 15px;" href="DsBALSRIJBB">BALSRI JBB</a>
+        </div>
+    </div>
+</li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                  15  aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laba Rugi</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laba Rugi</h6>
-                        
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOP'>Lap uang Oprasional</a>";
-                        } ?>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo" <a class='collapse-item' style='font-size: 15px;' href='VLrGlobal'>Laba Rugi Global</a>
-                                <a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi Lampung</a>
-                                <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiP'>Laba Rugi Palembang</a>
-                                <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiBr'>Laba Rugi Baturaja</a>
-                                <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiBl'>Laba Rugi Belitung</a>
-                                <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiBk'>Laba Rugi Bangka</a>";
-                        } ?>
-                    </div>
-                </div>
-            </li>
-
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                  15  aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Tagihan</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanL8">Tagihan Lampung 8KL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanP">Tagihan Pelembang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBr">Tagihan Baturaja</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBl">Tagihan Belitung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBk">Tagihan Bangka</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarif">Master Tarif LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifL8">Master Tarif LMG 8KL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifP">Master Tarif PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBl">Master Tarif BL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBk">Master Tarif BK</a>
-                    </div>
-                </div>
-            </li>
-      
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOnex1"
-                  15  aria-expanded="true" aria-controls="collapseOnex1">
-                    <i class="fas fa-trailer" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan Latex</span>
-                </a>
-                <div id="collapseOnex1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Latex</h6>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLRLatex'>Laba Rugi Latex</a>";
-                        } ?>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanLatex">Tagihan Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanLx">Pengiriman Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseLx">Ritase Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhLx">Jarak Tempuh Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiLx">Gaji Driver Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawanLx">Gaji Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanLx">Catat Perbaikan Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranLx">Catat Pengluaran Latex</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBayarKreditLx">Kredit Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAMTLx">AMT</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMTLx">MT</a>
-                    </div>
-                </div>
-            </li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+      15  aria-expanded="true" aria-controls="collapseThree">
+        <i class="fas fa-chart-line" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Laba Rugi</span>
+    </a>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Laba Rugi</h6>
             
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
-                  15  aria-expanded="true" aria-controls="collapseTwox">
-                    <i class="fas fa-truck-loading" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengiriman</span>
-                </a>
-                <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL8">Pengiriman LMG 8KL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaP">Pengiriman PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBr">Pengiriman BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBl">Pengiriman BL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanaBk">Pengiriman BK</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitase">Ritase LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseL8">Ritase LMG 8KL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseP">Ritase PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBr">Ritase BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBl">Ritase BL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseBk">Ritase BK</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhL8">Jarak Tempuh LMG 8KL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBl">Jarak Tempuh BL</a> 
-                        <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBk">Jarak Tempuh BK</a> 
-                        
-                    </div>
-                </div>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
-                  15  aria-expanded="true" aria-controls="collapseTwo22">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengeluaran</span>
-                </a>
-                <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBr">Catat Perbaikan BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBl">Catat Perbaikan BL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBk">Catat Perbaikan BK</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPul">Pengeluaran Pul LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulP">Pengeluaran Pul PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBl">Pengeluaran Pul BL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBk">Pengeluaran Pul BK</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiL8">Gaji LMG 8KL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBr">Gaji BTA</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBl">Gaji BL</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiBk">Gaji BK</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
-                    </div>
-                </div>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo13"
-                  15  aria-expanded="true" aria-controls="collapseTwo1">
-                    <i class="fa fa-id-card" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >SDM</span>
-                </a>
-                <div id="collapseTwo13" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOnex"
-                  15  aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-folder-open" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Data Backup</span>
-                </a>
-                <div id="collapseOnex" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Data Backup</h6>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOPx'>Lap uang Oprasional</a>";
-                        } ?>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanx">Tagihan Lampung</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanPx">Tagihan Pelembang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTagihanBrx">Tagihan Baturaja</a>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo" <a class='collapse-item' style='font-size: 15px;' href='VLrGlobalx'>Laba Rugi Global</a>
-                                <a class='collapse-item' style='font-size: 15px;' href='VLabaRugix'>Laba Rugi Lampung</a>
-                                <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiPx'>Laba Rugi Palembang</a>
-                                <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiBrx'>Laba Rugi Baturaja</a>";
-                        } ?>
+            <?php if($nama == 'Nyoman Edy Susanto'){
+              echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOP'>Lap uang Oprasional</a>";
+            } ?>
+            <?php if($nama == 'Nyoman Edy Susanto'){
+              echo" <a class='collapse-item' style='font-size: 15px;' href='VLrGlobalJBB'>LR Global JBB</a>
+              <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiTG'>LR Tj Gerem</a>
+              <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiPA'>LR Padalarang</a>
+              <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiPL'>LR Plumpang</a>
+              <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiUB'>LR Ujung Berung</a>
+              <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiBA'>LR Balongan</a>";
+            } ?>
+        </div>
+    </div>
+</li>
 
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifx">Master Tarif LMG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPx">Master Tarif PLG</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBrx">Master Tarif BTA</a>
-                    </div>
-                </div>
-            </li>
+ <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+      15  aria-expanded="true" aria-controls="collapseOne">
+        <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Tagihan</span>
+    </a>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanTG">Tagihan Tj Gerem</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanPA">Tagihan Padalarang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanPL">Tagihan Plumpang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanUB">Tagihan Ujung Berung</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBA">Tagihan Balongan</a>
+        </div>
+    </div>
+</li>
+
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
+      15  aria-expanded="true" aria-controls="collapseTwox">
+        <i class="fas fa-truck-loading" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Pengiriman</span>
+    </a>
+    <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanTG">Pengiriman TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPA">Pengiriman PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPL">Pengiriman PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanUB">Pengiriman UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanBA">Pengiriman BA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseTG">Ritase TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitasePA">Ritase PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitasePL">Ritase PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseUB">Ritase UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBA">Ritase BA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhTG">Jarak Tempuh TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPA">Jarak Tempuh PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPL">Jarak Tempuh PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhUB">Jarak Tempuh UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBA">Jarak Tempuh BA</a>
+
+            
+        </div>
+    </div>
+</li>
+ <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
+      15  aria-expanded="true" aria-controls="collapseTwo22">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Pengeluaran</span>
+    </a>
+    <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanTG">Perbaikan TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPA">Perbaikan PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPL">Perbaikan PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanUB">Perbaikan UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBA">Perbaikan BA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulTG">Pengeluaran Pul TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPA">Pengeluaran Pul PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPL">Pengeluaran Pul PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulUB">Pengeluaran Pul UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBA">Pengeluaran Pul BA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiTG">Gaji TG</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiPA">Gaji PA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiPL">Gaji PL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiUB">Gaji UB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiBA">Gaji BA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+        </div>
+    </div>
+</li>
+ <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo13"
+      15  aria-expanded="true" aria-controls="collapseTwo1">
+        <i class="fa fa-id-card" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >SDM</span>
+    </a>
+    <div id="collapseTwo13" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
+        </div>
+    </div>
+</li>
 
 
 <!-- Divider -->
@@ -1086,7 +1020,7 @@ function formatuang($angka){
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Lampung</strong></h3>
+            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Balongan</strong></h3>
         </div>
 
         <div>
@@ -1107,59 +1041,59 @@ function formatuang($angka){
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
     							<tr>
     								<td>Total Tagihan</td>
-    								<td class="text-center"><?php echo formatuang($total_tagihan_lmg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_tagihan_ba);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td> <strong>Potongan Oprasional 10%</strong> </td>
-    								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_lmg);  ?></strong></td>
+    								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_ba);  ?></strong></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 
                                 <tr>
         							<td>Biaya Kantor</td>
-    								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_lmg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_ba);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Telepon & Listrik</td>
-    								<td class="text-center"><?php echo formatuang($jml_listrik_lmg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_listrik_ba);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Biaya Sewa</td>
-    								<td class="text-center"><?php echo formatuang($jml_sewa_lmg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_sewa_ba);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Alat Tulis Kantor</td>
-    								<td class="text-center"><?php echo formatuang($jml_atk_lmg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_atk_ba);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
-    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_lmg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_ba);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Transport / Perjalanan Dinas</td>
-    								<td class="text-center"><?php echo formatuang($jml_transport_lmg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_transport_ba);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Konsumsi</td>
-    								<td class="text-center"><?php echo formatuang($jml_konsumsi_lmg); ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_konsumsi_ba); ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td><strong>Biaya Oprasional</strong> </td>
-    								<td class="text-center"><strong><?php echo formatuang($total_oprasional_lmg); ?></strong></td>
+    								<td class="text-center"><strong><?php echo formatuang($total_oprasional_ba); ?></strong></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                               
     							<tr style="background-color: navy;  color:white;" >
     								<td><strong>Total Sisa Potongan </strong></td>
-    								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_lmg - $total_oprasional_lmg ); ?></td>
+    								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_ba - $total_oprasional_ba ); ?></td>
     								<td class="thick-line"></td>
     							</tr>
     						</tbody>
@@ -1179,7 +1113,7 @@ function formatuang($angka){
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Palembang</strong></h3>
+            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Padalarang</strong></h3>
         </div>
 
         <div>
@@ -1200,59 +1134,59 @@ function formatuang($angka){
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
     							<tr>
     								<td>Total Tagihan</td>
-    								<td class="text-center"><?php echo formatuang($total_tagihan_plg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_tagihan_pa);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td> <strong>Potongan Oprasional 10%</strong> </td>
-    								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_plg);  ?></strong></td>
+    								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_pa);  ?></strong></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 
                                 <tr>
         							<td>Biaya Kantor</td>
-    								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_plg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_pa);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Telepon & Listrik</td>
-    								<td class="text-center"><?php echo formatuang($jml_listrik_plg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_listrik_pa);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Biaya Sewa</td>
-    								<td class="text-center"><?php echo formatuang($jml_sewa_plg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_sewa_pa);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Alat Tulis Kantor</td>
-    								<td class="text-center"><?php echo formatuang($jml_atk_plg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_atk_pa);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
-    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_plg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_pa);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Transport / Perjalanan Dinas</td>
-    								<td class="text-center"><?php echo formatuang($jml_transport_plg);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_transport_pa);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Konsumsi</td>
-    								<td class="text-center"><?php echo formatuang($jml_konsumsi_plg); ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_konsumsi_pa); ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td><strong>Biaya Oprasional</strong> </td>
-    								<td class="text-center"><strong><?php echo formatuang($total_oprasional_plg); ?></strong></td>
+    								<td class="text-center"><strong><?php echo formatuang($total_oprasional_pa); ?></strong></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                               
     							<tr style="background-color: navy;  color:white;" >
     								<td><strong>Total Sisa Potongan </strong></td>
-    								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_plg - $total_oprasional_plg ); ?></td>
+    								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_pa - $total_oprasional_pa); ?></td>
     								<td class="thick-line"></td>
     							</tr>
     						</tbody>
@@ -1272,7 +1206,7 @@ function formatuang($angka){
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Baturaja</strong></h3>
+            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Plumpang</strong></h3>
         </div>
 
         <div>
@@ -1293,59 +1227,59 @@ function formatuang($angka){
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
     							<tr>
     								<td>Total Tagihan</td>
-    								<td class="text-center"><?php echo formatuang($total_tagihan_bta);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_tagihan_pl);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td> <strong>Potongan Oprasional 10%</strong> </td>
-    								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_bta);  ?></strong></td>
+    								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_pl);  ?></strong></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 
                                 <tr>
         							<td>Biaya Kantor</td>
-    								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_bta);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_pl);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Telepon & Listrik</td>
-    								<td class="text-center"><?php echo formatuang($jml_listrik_bta);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_listrik_pl);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Biaya Sewa</td>
-    								<td class="text-center"><?php echo formatuang($jml_sewa_bta);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_sewa_pl);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Alat Tulis Kantor</td>
-    								<td class="text-center"><?php echo formatuang($jml_atk_bta);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_atk_pl);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
-    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_bta);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_pl);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Transport / Perjalanan Dinas</td>
-    								<td class="text-center"><?php echo formatuang($jml_transport_bta);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_transport_pl);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Konsumsi</td>
-    								<td class="text-center"><?php echo formatuang($jml_konsumsi_bta); ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_konsumsi_pl); ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td><strong>Biaya Oprasional</strong> </td>
-    								<td class="text-center"><strong><?php echo formatuang($total_oprasional_bta); ?></strong></td>
+    								<td class="text-center"><strong><?php echo formatuang($total_oprasional_pl); ?></strong></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                               
     							<tr style="background-color: navy;  color:white;" >
     								<td><strong>Total Sisa Potongan </strong></td>
-    								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_bta - $total_oprasional_bta ); ?></td>
+    								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_pl - $total_oprasional_pl ); ?></td>
     								<td class="thick-line"></td>
     							</tr>
     						</tbody>
@@ -1365,7 +1299,7 @@ function formatuang($angka){
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Belitung</strong></h3>
+            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Tanjung Gerem</strong></h3>
         </div>
 
         <div>
@@ -1386,59 +1320,59 @@ function formatuang($angka){
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
     							<tr>
     								<td>Total Tagihan</td>
-    								<td class="text-center"><?php echo formatuang($total_tagihan_bb);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_tagihan_tg);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td> <strong>Potongan Oprasional 10%</strong> </td>
-    								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_bb);  ?></strong></td>
+    								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_tg);  ?></strong></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 
                                 <tr>
         							<td>Biaya Kantor</td>
-    								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_bb);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_tg);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Telepon & Listrik</td>
-    								<td class="text-center"><?php echo formatuang($jml_listrik_bb);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_listrik_tg);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Biaya Sewa</td>
-    								<td class="text-center"><?php echo formatuang($jml_sewa_bb);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_sewa_tg);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Alat Tulis Kantor</td>
-    								<td class="text-center"><?php echo formatuang($jml_atk_bb);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_atk_tg);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
-    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_bb);  ?></td>
+    								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_tg);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Transport / Perjalanan Dinas</td>
-    								<td class="text-center"><?php echo formatuang($jml_transport_bb);  ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_transport_tg);  ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Konsumsi</td>
-    								<td class="text-center"><?php echo formatuang($jml_konsumsi_bb); ?></td>
+    								<td class="text-center"><?php echo formatuang($jml_konsumsi_tg); ?></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td><strong>Biaya Oprasional</strong> </td>
-    								<td class="text-center"><strong><?php echo formatuang($total_oprasional_bb); ?></strong></td>
+    								<td class="text-center"><strong><?php echo formatuang($total_oprasional_tg); ?></strong></td>
     								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                               
     							<tr style="background-color: navy;  color:white;" >
     								<td><strong>Total Sisa Potongan </strong></td>
-    								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_bb - $total_oprasional_bb ); ?></td>
+    								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_tg - $total_oprasional_tg ); ?></td>
     								<td class="thick-line"></td>
     							</tr>
     						</tbody>
@@ -1458,7 +1392,7 @@ function formatuang($angka){
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Bangka</strong></h3>
+            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Ujung Berung</strong></h3>
         </div>
 
         <div>
@@ -1479,59 +1413,59 @@ function formatuang($angka){
                   <!-- foreach ($order->lineItems as $line) or some such thing here -->
                   <tr>
                     <td>Total Tagihan</td>
-                    <td class="text-center"><?php echo formatuang($total_tagihan_bk);  ?></td>
+                    <td class="text-center"><?php echo formatuang($total_tagihan_ub);  ?></td>
                     <?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr  style="background-color:    #F0F8FF; ">
                       <td> <strong>Potongan Oprasional 10%</strong> </td>
-                    <td class="text-center"><strong><?php echo formatuang($jumlah_potongan_bk);  ?></strong></td>
+                    <td class="text-center"><strong><?php echo formatuang($jumlah_potongan_ub);  ?></strong></td>
                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 
                                 <tr>
                       <td>Biaya Kantor</td>
-                    <td class="text-center"><?php echo formatuang($jml_biaya_kantor_bk);  ?></td>
+                    <td class="text-center"><?php echo formatuang($jml_biaya_kantor_ub);  ?></td>
                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Telepon & Listrik</td>
-                    <td class="text-center"><?php echo formatuang($jml_listrik_bk);  ?></td>
+                    <td class="text-center"><?php echo formatuang($jml_listrik_ub);  ?></td>
                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Biaya Sewa</td>
-                    <td class="text-center"><?php echo formatuang($jml_sewa_bk);  ?></td>
+                    <td class="text-center"><?php echo formatuang($jml_sewa_ub);  ?></td>
                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Alat Tulis Kantor</td>
-                    <td class="text-center"><?php echo formatuang($jml_atk_bk);  ?></td>
+                    <td class="text-center"><?php echo formatuang($jml_atk_ub);  ?></td>
                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Gaji Karyawan</td>
-                    <td class="text-center"><?php echo formatuang($total_gaji_karyawan_bk);  ?></td>
+                    <td class="text-center"><?php echo formatuang($total_gaji_karyawan_ub);  ?></td>
                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Transport / Perjalanan Dinas</td>
-                    <td class="text-center"><?php echo formatuang($jml_transport_bk);  ?></td>
+                    <td class="text-center"><?php echo formatuang($jml_transport_ub);  ?></td>
                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Konsumsi</td>
-                    <td class="text-center"><?php echo formatuang($jml_konsumsi_bk); ?></td>
+                    <td class="text-center"><?php echo formatuang($jml_konsumsi_ub); ?></td>
                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr  style="background-color:    #F0F8FF; ">
                       <td><strong>Biaya Oprasional</strong> </td>
-                    <td class="text-center"><strong><?php echo formatuang($total_oprasional_bk); ?></strong></td>
+                    <td class="text-center"><strong><?php echo formatuang($total_oprasional_ub); ?></strong></td>
                     <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                               
                   <tr style="background-color: navy;  color:white;" >
                     <td><strong>Total Sisa Potongan </strong></td>
-                    <td class="no-line text-center"><?php echo formatuang($jumlah_potongan_bk - $total_oprasional_bk ); ?></td>
+                    <td class="no-line text-center"><?php echo formatuang($jumlah_potongan_ub - $total_oprasional_ub ); ?></td>
                     <td class="thick-line"></td>
                   </tr>
                 </tbody>
@@ -1546,189 +1480,6 @@ function formatuang($angka){
 
 <br>
 <br>
-
-<div class="row">
-   <div class="col-md-12">
-      <div class="panel panel-default">
-         <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Bengkulu</strong></h3>
-        </div>
-
-        <div>
-
-        </div>
-
-        <div class="panel-body">
-            <div class="table-responsive">
-              <table class="table table-condensed"  style="color : black;">
-                <thead>
-                                <tr>
-                      <td><strong>Akun</strong></td>
-                      <td class="text-center"><strong>Jumlah</strong></td>
-                      <td class="text-right"><strong>Aksi</strong></td>
-                                </tr>
-                </thead>
-                <tbody>
-                  <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                  <tr>
-                    <td>Total Tagihan</td>
-                    <td class="text-center"><?php echo formatuang($total_tagihan_bkl);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr  style="background-color:    #F0F8FF; ">
-                      <td> <strong>Potongan Oprasional 10%</strong> </td>
-                    <td class="text-center"><strong><?php echo formatuang($jumlah_potongan_bkl);  ?></strong></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                
-                                <tr>
-                      <td>Biaya Kantor</td>
-                    <td class="text-center"><?php echo formatuang($jml_biaya_kantor_bkl);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Telepon & Listrik</td>
-                    <td class="text-center"><?php echo formatuang($jml_listrik_bkl);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Biaya Sewa</td>
-                    <td class="text-center"><?php echo formatuang($jml_sewa_bkl);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Alat Tulis Kantor</td>
-                    <td class="text-center"><?php echo formatuang($jml_atk_bkl);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Gaji Karyawan</td>
-                    <td class="text-center"><?php echo formatuang($total_gaji_karyawan_bkl);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Transport / Perjalanan Dinas</td>
-                    <td class="text-center"><?php echo formatuang($jml_transport_bkl);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Konsumsi</td>
-                    <td class="text-center"><?php echo formatuang($jml_konsumsi_bkl); ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr  style="background-color:    #F0F8FF; ">
-                      <td><strong>Biaya Oprasional</strong> </td>
-                    <td class="text-center"><strong><?php echo formatuang($total_oprasional_bkl); ?></strong></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                              
-                  <tr style="background-color: navy;  color:white;" >
-                    <td><strong>Total Sisa Potongan </strong></td>
-                    <td class="no-line text-center"><?php echo formatuang($jumlah_potongan_bkl - $total_oprasional_bkl ); ?></td>
-                    <td class="thick-line"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-      
-</div>
-</div>
-</div>
-
-<br>
-<br>
-
-<div class="row">
-   <div class="col-md-12">
-      <div class="panel panel-default">
-         <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Latex</strong></h3>
-        </div>
-
-        <div>
-
-        </div>
-
-        <div class="panel-body">
-            <div class="table-responsive">
-              <table class="table table-condensed"  style="color : black;">
-                <thead>
-                                <tr>
-                      <td><strong>Akun</strong></td>
-                      <td class="text-center"><strong>Jumlah</strong></td>
-                      <td class="text-right"><strong>Aksi</strong></td>
-                                </tr>
-                </thead>
-                <tbody>
-                  <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                  <tr>
-                    <td>Total Tagihan</td>
-                    <td class="text-center"><?php echo formatuang($total_tagihan_latex);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr  style="background-color:    #F0F8FF; ">
-                      <td> <strong>Potongan Oprasional 10%</strong> </td>
-                    <td class="text-center"><strong><?php echo formatuang($jumlah_potongan_latex);  ?></strong></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                
-                                <tr>
-                      <td>Biaya Kantor</td>
-                    <td class="text-center"><?php echo formatuang($jml_biaya_kantor_lx);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Telepon & Listrik</td>
-                    <td class="text-center"><?php echo formatuang($jml_listrik_lx);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Biaya Sewa</td>
-                    <td class="text-center"><?php echo formatuang($jml_sewa_lx);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Alat Tulis Kantor</td>
-                    <td class="text-center"><?php echo formatuang($jml_atk_lx);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Gaji Karyawan</td>
-                    <td class="text-center"><?php echo formatuang($total_gaji_karyawan_lx);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Transport / Perjalanan Dinas</td>
-                    <td class="text-center"><?php echo formatuang($jml_transport_lx);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr>
-                      <td>Konsumsi</td>
-                    <td class="text-center"><?php echo formatuang($jml_konsumsi_lx); ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                                <tr  style="background-color:    #F0F8FF; ">
-                      <td><strong>Biaya Oprasional</strong> </td>
-                    <td class="text-center"><strong><?php echo formatuang($total_oprasional_lx); ?></strong></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                  </tr>
-                              
-                  <tr style="background-color: navy;  color:white;" >
-                    <td><strong>Total Sisa Potongan </strong></td>
-                    <td class="no-line text-center"><?php echo formatuang($jumlah_potongan_latex - $total_oprasional_lx ); ?></td>
-                    <td class="thick-line"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-      
-</div>
-</div>
-</div>
 
 </div>
 </div>

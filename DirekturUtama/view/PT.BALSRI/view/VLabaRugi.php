@@ -72,7 +72,7 @@ exit;
                 </li>
 
             <!-- Divider -->
-<hr class="sidebar-divider">
+                <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
                      Menu PT BALSRI
@@ -112,10 +112,13 @@ exit;
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Laba Rugi</h6>
                         
                         <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOP'>Lap uang Oprasional</a>";
+                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOPJBB'>Operasional Balsri JBB</a>";
+                          echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOP'>Operasional Balsri</a>";
+                         
                         } ?>
                         <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo" <a class='collapse-item' style='font-size: 15px;' href='VLrGlobal'>Laba Rugi Global</a>
+                          echo" <a class='collapse-item' style='font-size: 15px;' href='VLrBalsriJBB'>LR Global Balsri JBB</a>
+                                <a class='collapse-item' style='font-size: 15px;' href='VLrGlobal'>LR Global Balsri</a>
                                 <a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi Lampung</a>
                                 <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiP'>Laba Rugi Palembang</a>
                                 <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiBr'>Laba Rugi Baturaja</a>
@@ -287,7 +290,6 @@ exit;
                     </div>
                 </div>
             </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider">
 
