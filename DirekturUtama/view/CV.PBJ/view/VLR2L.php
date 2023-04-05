@@ -359,7 +359,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 else {
 
     // Penjualan kadek dan etty
-    $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' ");
+    $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' ");
     $pendapatan_penjualan_kadek =0;
     //kadek
     while($data = mysqli_fetch_array($tablex)){
@@ -373,7 +373,7 @@ else {
     }
     
     //ety
-    $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash' ");
+    $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash' ");
     $pendapatan_penjualan_ety = 0; 
 
     while($datae = mysqli_fetch_array($tablex2)){
@@ -935,14 +935,14 @@ aria-labelledby="userDropdown">
                                                 </tr>
                                                 <tr>
                                                     <td>4-100</td>
-                                                    <td class="text-left">Penjualan As Kadek</td>
+                                                    <td class="text-left">Penjualan Kadek</td>
                                                     <td class="text-left"><?= formatuang($pendapatan_penjualan_kadek); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPenjualanKDK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-101</td>
-                                                    <td class="text-left">Penjualan As Ety</td>
+                                                    <td class="text-left">Penjualan Ety</td>
                                                     <td class="text-left"><?= formatuang($pendapatan_penjualan_ety); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPenjualanETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
