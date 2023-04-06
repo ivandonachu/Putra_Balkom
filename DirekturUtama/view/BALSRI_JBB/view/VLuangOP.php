@@ -927,7 +927,7 @@ function formatuang($angka){
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Global</strong></h3>
+            <h3 class="panel-title" align="Center"><strong>Laporan Uang Oprasional Global Region Jawa</strong></h3>
         </div>
 
         <div>

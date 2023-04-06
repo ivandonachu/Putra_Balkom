@@ -1038,7 +1038,7 @@ else{
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title" align="Center"><strong>Laba Rugi Balsri Global</strong></h3>
+            <h3 class="panel-title" align="Center"><strong>Laba Rugi Balsri Global Region Sumatera</strong></h3>
         </div>
 
         <div>
