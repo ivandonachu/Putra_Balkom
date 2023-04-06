@@ -359,17 +359,17 @@ else{
       <th>Akun</th>
       <th></th>
       <th>Keterangan</th>
-      <th>Masuk</th>
-      <th>Keluar</th>
+      <th>Jumlah</th>
+      <th>Total</th>
       <th>file</th>
       
     </tr>
   </thead>
   <tbody>
     <?php
-    $total_kredit = 0;
+
     $no_urut = 0;
-    $total_debit = 0;
+    $total = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -383,12 +383,7 @@ else{
       $status_saldo = $data['status_saldo'];
       $jumlah = $data['jumlah'];
       $keterangan = $data['keterangan'];
-      if ($status_saldo == 'Masuk') {
-        $total_debit = $total_debit + $jumlah;
-      }
-      elseif($status_saldo == 'Keluar'){
-        $total_kredit = $total_kredit + $jumlah;
-      }
+      $total = $total + $jumlah ;
       $no_urut = $no_urut + 1;
       $file_bukti = $data['file_bukti'];
       echo "<tr>
@@ -518,28 +513,9 @@ else{
 </div>
 
 <?php echo  " </td>"; ?> <?php echo "
-      <td style='font-size: 14px'>$keterangan</td>";
+       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "
 
-
-      if ($status_saldo == 'Masuk') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-
-      if ($status_saldo == 'Keluar') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-      ?>
-      <?php echo "
       <td style='font-size: 14px'>"; ?> <a download="../file_semen/<?= $file_bukti ?>" href="../file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
     "?>
 <?php echo  "</tr>";
@@ -553,31 +529,7 @@ else{
 <br>
 <br>
 <br>
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-  <!-- Tabel -->    
-  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-    <thead>
-      <tr>
-        <th>Total Debit</th>
-        <th>Total Kredit</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      <?php 
-      echo "<tr>
-      <td style='font-size: 14px'>";?> <?= formatuang($total_debit); ?> <?php echo "</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($total_kredit); ?> <?php echo "</td>
-      </tr>";
-
-      ?>
-
-    </tbody>
-  </table>
-</div>
-<br>
-<br>
 
 
 </div>
