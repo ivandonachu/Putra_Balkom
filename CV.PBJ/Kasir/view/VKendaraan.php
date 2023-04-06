@@ -65,89 +65,90 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
   <div id="wrapper">
 
     <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.PNG" ></div>
-            </a>
-            <br>
-            
-            <br>
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.PNG" ></div>
+</a>
+<br>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsKasir">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+<br>
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsKasir">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
 
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Kasir
-                </div>
-                  <?php if ($nama =='Mbak Titin') {
-                   ?> <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Kasir</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPencatatanSaldo">Pencatatan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Pencatatan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
-                    </div>
-                </div>
-           </li> <?php
-                }
-            
-                else{ ?>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Kasir</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Pencatatan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
-                    </div>
-                </div>
-            </li>
-            <?php } ?>
-            <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo1">
-                    <i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >SDM</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLokasiKirim">Lokasi Kirim</a>
-                    </div>
-                </div>
-            </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu Kasir
+    </div>
+      <?php if ($nama =='Mbak Titin') {
+       ?> <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Kasir</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPencatatanSaldo">Pencatatan Saldo</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Pencatatan CMS</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Pencatatan Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
+        </div>
+    </div>
+</li> <?php
+    }
+
+    else{ ?>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Kasir</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Pencatatan Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+        </div>
+    </div>
+</li>
+<?php } ?>
+<li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+      15  aria-expanded="true" aria-controls="collapseTwo1">
+        <i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >SDM</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLokasiKirim">Lokasi Kirim</a>
+        </div>
+    </div>
+</li>
 
   <!-- Divider -->
   <hr class="sidebar-divider">

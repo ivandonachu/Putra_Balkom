@@ -106,8 +106,8 @@ $status_karyawan = $data['status_karyawan'];
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
@@ -148,6 +148,7 @@ $status_karyawan = $data['status_karyawan'];
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPencatatanSaldo">Pencatatan Saldo</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Pencatatan CMS</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Pencatatan Pengiriman</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>

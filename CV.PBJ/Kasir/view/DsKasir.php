@@ -115,6 +115,7 @@ $nama = $data['nama_karyawan'];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPencatatanSaldo">Pencatatan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Pencatatan CMS</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VCatatPengiriman">Pencatatan Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPerbaikan">Beban Kendaraan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VOperasional">Beban Operasional</a>
