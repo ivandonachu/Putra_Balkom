@@ -41,7 +41,7 @@ function formatuang($angka){
   // Balongan
 
   // Tagihan
-  $table_ba = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_ba a INNER JOIN master_tarif_ba b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_ba a INNER JOIN master_tarif_ba b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data_ba = mysqli_fetch_array($table_ba);
   $total_tagihan_ba = $data_ba['total_tagihan'];
 
@@ -49,7 +49,7 @@ function formatuang($angka){
   $jumlah_potongan_ba = (($total_tagihan_ba * 10) / 100);
 
    //pengiriman lampung
-   $table2_ba = mysqli_query($koneksibalsri, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   $table2_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
    $total_dexlite_ba =0;
    $data2_ba = mysqli_fetch_array($table2_ba);
    $total_uj_ba = $data2_ba['total_uj'];
@@ -59,7 +59,7 @@ function formatuang($angka){
 
     
   //pengeluran Pul Biaya Kantor
-   $table3_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+   $table3_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
    $data3_ba = mysqli_fetch_array($table3_ba);
    $jml_biaya_kantor_ba = $data3_ba['jumlah_biaya_kantor'];
     if (!isset($data3_ba['jumlah_biaya_kantor'])) {
@@ -67,7 +67,7 @@ function formatuang($angka){
     }
 
    //pengeluran Pul Listrik & Telepon
-   $table4_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
+   $table4_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
    $data4_ba = mysqli_fetch_array($table4_ba);
    $jml_listrik_ba = $data4_ba['jumlah_listrik'];
     if (!isset($data4_ba['jumlah_listrik'])) {
@@ -75,7 +75,7 @@ function formatuang($angka){
     }
 
    //pengeluran Biaya Sewa
-   $table5_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
+   $table5_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
    $data5_ba = mysqli_fetch_array($table5_ba);
    $jml_sewa_ba = $data5_ba['jumlah_sewa'];
     if (!isset($data5_ba['jumlah_sewa'])) {
@@ -83,7 +83,7 @@ function formatuang($angka){
     }
 
    //pengeluran Alat Tulis Kantor
-   $table6_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+   $table6_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
    $data6_ba = mysqli_fetch_array($table6_ba);
    $jml_atk_ba = $data6_ba['jumlah_atk'];
     if (!isset($data6_ba['jumlah_atk'])) {
@@ -91,14 +91,14 @@ function formatuang($angka){
     }
 
     //pengeluran Transnport / Perjalanan Dinas
-   $table61_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $table61_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
    $data61_ba = mysqli_fetch_array($table61_ba);
    $jml_transport_ba = $data61_ba['jumlah_transport'];
     if (!isset($data61_ba['jumlah_transport'])) {
     $jml_transport_ba = 0;
     }
     //pengeluran Biaya Konsumsi
-   $table62_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $table62_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
    $data62_ba = mysqli_fetch_array($table62_ba);
    $jml_konsumsi_ba = $data62_ba['jumlah_konsumsi'];
     if (!isset($data62_ba['jumlah_konsumsi'])) {
@@ -106,7 +106,7 @@ function formatuang($angka){
     }
 
     //pengeluran perbaikan
-   $table7_ba = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $table7_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
    $data7_ba = mysqli_fetch_array($table7_ba);
    $jml_perbaikan_ba = $data7_ba['jumlah_perbaikan'];
     if (!isset($data7_ba['jumlah_perbaikan'])) {
@@ -115,14 +115,14 @@ function formatuang($angka){
     
     
      //Gaji karyawan
-   $table8_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BA' ");
+   $table8_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BA' ");
    $data8_ba = mysqli_fetch_array($table8_ba);
    $gaji_karyawan_ba = $data8_ba['jumlah_gaji'];
     if (!isset($data8_ba['jumlah_gaji'])) {
     $gaji_karyawan_ba = 0;
     }
     //Gaji dRIVER
-   $table9_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BA' ");
+   $table9_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BA' ");
    $data9_ba = mysqli_fetch_array($table9_ba);
    $gaji_driver_ba = $data9_ba['jumlah_gaji'];
     if (!isset($data9_ba['jumlah_gaji'])) {
@@ -132,12 +132,12 @@ function formatuang($angka){
     $total_gaji_karyawan_ba = $gaji_karyawan_ba;
 
 
-    $table101_ba =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    $table101_ba =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
     //totalkredit
     $total_kredit_ba = 0;
     while($data_ba = mysqli_fetch_array($table101_ba)){
         $mt_ba = $data_ba['mt'];
-        $tablee_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_ba'");
+        $tablee_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_ba'");
         $dataa_ba = mysqli_fetch_array($tablee_ba);
         $jml_kredit_ba = $dataa_ba['total_kredit'];
         if(isset($total_kredit_ba)){
@@ -152,15 +152,15 @@ function formatuang($angka){
     //Padalarang 
 
   // Tagihan
-  $table_pa = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_pa a INNER JOIN master_tarif_pa b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_pa a INNER JOIN master_tarif_pa b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data_pa = mysqli_fetch_array($table_pa);
   $total_tagihan_pa = $data_pa['total_tagihan'];
 
   // Potongan 10%
-  $jumlah_potongan_bta = (($total_tagihan_bta * 10) / 100);
+  $jumlah_potongan_pa = (($total_tagihan_pa * 10) / 100);
 
   //pengiriman
-  $table2_pa = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2_pa = mysqli_fetch_array($table2_pa);
   $jml_dex_pa = $data2_pa['total_dex'];
   $total_um_pa = $data2_pa['uang_makan'];
@@ -170,7 +170,7 @@ function formatuang($angka){
 
     
   //pengeluran Pul Biaya Kantor
-   $table3_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+   $table3_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
    $data3_pa = mysqli_fetch_array($table3_pa);
    $jml_biaya_kantor_pa = $data3_pa['jumlah_biaya_kantor'];
     if (!isset($data3_pa['jumlah_biaya_kantor'])) {
@@ -178,7 +178,7 @@ function formatuang($angka){
     }
 
    //pengeluran Pul Listrik & Telepon
-   $table4_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
+   $table4_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
    $data4_pa = mysqli_fetch_array($table4_pa);
    $jml_listrik_pa = $data4_pa['jumlah_listrik'];
     if (!isset($data4_pa['jumlah_listrik'])) {
@@ -186,7 +186,7 @@ function formatuang($angka){
     }
 
    //pengeluran Biaya Sewa
-   $table5_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
+   $table5_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
    $data5_pa = mysqli_fetch_array($table5_pa);
    $jml_sewa_pa = $data5_pa['jumlah_sewa'];
     if (!isset($data5_pa['jumlah_sewa'])) {
@@ -194,7 +194,7 @@ function formatuang($angka){
     }
 
    //pengeluran Alat Tulis Kantor
-   $table6_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+   $table6_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
    $data6_pa = mysqli_fetch_array($table6_pa);
    $jml_atk_pa = $data6_pa['jumlah_atk'];
     if (!isset($data6_pa['jumlah_atk'])) {
@@ -202,14 +202,14 @@ function formatuang($angka){
     }
 
     //pengeluran Transnport / Perjalanan Dinas
-   $table61_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $table61_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
    $data61_pa = mysqli_fetch_array($table61_pa);
    $jml_transport_pa = $data61_pa['jumlah_transport'];
     if (!isset($data61_pa['jumlah_transport'])) {
     $jml_transport_pa = 0;
     }
     //pengeluran Biaya Konsumsi
-   $table62_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $table62_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
    $data62_pa = mysqli_fetch_array($table62_pa);
    $jml_konsumsi_pa = $data62_pa['jumlah_konsumsi'];
     if (!isset($data62_pa['jumlah_konsumsi'])) {
@@ -217,7 +217,7 @@ function formatuang($angka){
     }
 
     //pengeluran perbaikan
-   $table7_bta = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $table7_bta = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
    $data7_bta = mysqli_fetch_array($table7_bta);
    $jml_perbaikan_bta = $data7_bta['jumlah_perbaikan'];
     if (!isset($data7_bta['jumlah_perbaikan'])) {
@@ -226,14 +226,14 @@ function formatuang($angka){
     
     
      //Gaji karyawan
-   $table8_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI PA' ");
+   $table8_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI PA' ");
    $data8_pa = mysqli_fetch_array($table8_pa);
    $gaji_karyawan_pa = $data8_pa['jumlah_gaji'];
     if (!isset($data8_pa['jumlah_gaji'])) {
     $gaji_karyawan_pa = 0;
     }
     //Gaji dRIVER
-   $table9_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver PA' ");
+   $table9_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver PA' ");
    $data9_pa = mysqli_fetch_array($table9_pa);
    $gaji_driver_pa = $data9_pa['jumlah_gaji'];
     if (!isset($data9_pa['jumlah_gaji'])) {
@@ -244,12 +244,12 @@ function formatuang($angka){
 
    
 
-    $table101_pa =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    $table101_pa =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
     //totalkredit
     $total_kredit_pa = 0;
     while($data_pa = mysqli_fetch_array($table101_pa)){
         $mt_pa = $data_pa['mt'];
-        $tablee_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_pa'");
+        $tablee_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_pa'");
         $dataa_pa = mysqli_fetch_array($tablee_pa);
         $jml_kredit_pa = $dataa_pa['total_kredit'];
         if(isset($total_kredit_pa)){
@@ -264,7 +264,7 @@ function formatuang($angka){
 
     //Plumpang
      // Tagihan
-  $table_pl = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_pl a INNER JOIN master_tarif_pl b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_pl a INNER JOIN master_tarif_pl b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data_pl = mysqli_fetch_array($table_pl);
   $total_tagihan_pl = $data_pl['total_tagihan'];
 
@@ -272,7 +272,7 @@ function formatuang($angka){
     $jumlah_potongan_pl = (($total_tagihan_pl * 10) / 100);
 
   //pengiriman
-  $table2_pl = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2_pl = mysqli_fetch_array($table2_pl);
   $jml_dex_pl = $data2_pl['total_dex'];
   $total_um_pl = $data2_pl['uang_makan'];
@@ -280,7 +280,7 @@ function formatuang($angka){
   
 
   //pengeluran Pul Biaya Kantor
-   $table3_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+   $table3_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
    $data3_pl = mysqli_fetch_array($table3_pl);
    $jml_biaya_kantor_pl = $data3_pl['jumlah_biaya_kantor'];
     if (!isset($data3_pl['jumlah_biaya_kantor'])) {
@@ -288,7 +288,7 @@ function formatuang($angka){
     }
 
    //pengeluran Pul Listrik & Telepon
-   $table4_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
+   $table4_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
    $data4_pl = mysqli_fetch_array($table4_pl);
    $jml_listrik_pl = $data4_pl['jumlah_listrik'];
     if (!isset($data4_pl['jumlah_listrik'])) {
@@ -296,7 +296,7 @@ function formatuang($angka){
     }
 
    //pengeluran Biaya Sewa
-   $table5_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
+   $table5_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
    $data5_pl = mysqli_fetch_array($table5_pl);
    $jml_sewa_pl = $data5_pl['jumlah_sewa'];
     if (!isset($data5_pl['jumlah_sewa'])) {
@@ -304,7 +304,7 @@ function formatuang($angka){
     }
 
    //pengeluran Alat Tulis Kantor
-   $table6_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+   $table6_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
    $data6_pl = mysqli_fetch_array($table6_pl);
    $jml_atk_pl = $data6_pl['jumlah_atk'];
     if (!isset($data6_pl['jumlah_atk'])) {
@@ -312,14 +312,14 @@ function formatuang($angka){
     }
 
      //pengeluran Transnport / Perjalanan Dinas
-   $table61_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $table61_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
    $data61_pl = mysqli_fetch_array($table61_pl);
    $jml_transport_pl = $data61_pl['jumlah_transport'];
     if (!isset($data61_pl['jumlah_transport'])) {
     $jml_transport_pl = 0;
     }
     //pengeluran Biaya Konsumsi
-   $table62_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $table62_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
    $data62_pl = mysqli_fetch_array($table62_pl);
    $jml_konsumsi_pl = $data62_pl['jumlah_konsumsi'];
     if (!isset($data62_pl['jumlah_konsumsi'])) {
@@ -327,21 +327,21 @@ function formatuang($angka){
     }
 
     //pengeluran perbaikan
-   $table7_pl = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $table7_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
    $data7_pl = mysqli_fetch_array($table7_pl);
    $jml_perbaikan_pl = $data7_pl['jumlah_perbaikan'];
     if (!isset($data7_pl['jumlah_perbaikan'])) {
     $jml_perbaikan_pl = 0;
     }
  //Gaji karyawan
-   $table8_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI PL' ");
+   $table8_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI PL' ");
    $data8_pl = mysqli_fetch_array($table8_pl);
    $gaji_karyawan_pl = $data8_pl['jumlah_gaji'];
     if (!isset($data8_pl['jumlah_gaji'])) {
     $gaji_karyawan_pl = 0;
     }
     //Gaji dRIVER
-   $table9_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver PL' ");
+   $table9_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver PL' ");
    $data9_pl = mysqli_fetch_array($table9_pl);
    $gaji_driver_pl = $data9_pl['jumlah_gaji'];
     if (!isset($data9_pl['jumlah_gaji'])) {
@@ -351,11 +351,11 @@ function formatuang($angka){
     $total_gaji_karyawan_pl = $gaji_karyawan_pl;
       
          //totalkredit
-         $table101_pl =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+         $table101_pl =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
     $total_kredit_pl = 0;
     while($data_pl = mysqli_fetch_array($table101_pl)){
         $mt_lmg = $data_pl['mt'];
-        $tablee_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_lmg'");
+        $tablee_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_lmg'");
         $dataa_pl = mysqli_fetch_array($tablee_pl);
         $jml_kredit_pl = $dataa_pl['total_kredit'];
         if(isset($total_kredi_pl)){
@@ -370,7 +370,7 @@ function formatuang($angka){
     // tanjung gerem
 
        // Tagihan
-  $table_tg = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_tg a INNER JOIN master_tarif_tg b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_tg a INNER JOIN master_tarif_tg b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data_tg = mysqli_fetch_array($table_tg);
   $total_tagihan_tg = $data_tg['total_tagihan'];
 
@@ -378,7 +378,7 @@ function formatuang($angka){
   $jumlah_potongan_tg = (($total_tagihan_tg * 10) / 100);
 
   //pengiriman
-  $table2_tg = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2_tg = mysqli_fetch_array($table2_tg);
   $jml_dex_tg = $data2_tg['total_dex'];
   $total_um_tg = $data2_tg['uang_makan'];
@@ -388,7 +388,7 @@ function formatuang($angka){
 
     
   //pengeluran Pul Biaya Kantor
-   $table3_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+   $table3_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
    $data3_tg = mysqli_fetch_array($table3_tg);
    $jml_biaya_kantor_tg = $data3_tg['jumlah_biaya_kantor'];
     if (!isset($data3_tg['jumlah_biaya_kantor'])) {
@@ -396,7 +396,7 @@ function formatuang($angka){
     }
 
    //pengeluran Pul Listrik & Telepon
-   $table4_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
+   $table4_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
    $data4_tg = mysqli_fetch_array($table4_tg);
    $jml_listrik_tg = $data4_tg['jumlah_listrik'];
     if (!isset($data4_tg['jumlah_listrik'])) {
@@ -404,7 +404,7 @@ function formatuang($angka){
     }
 
    //pengeluran Biaya Sewa
-   $table5_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
+   $table5_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
    $data5_tg = mysqli_fetch_array($table5_tg);
    $jml_sewa_tg = $data5_tg['jumlah_sewa'];
     if (!isset($data5_tg['jumlah_sewa'])) {
@@ -412,7 +412,7 @@ function formatuang($angka){
     }
 
    //pengeluran Alat Tulis Kantor
-   $table6_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+   $table6_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
    $data6_tg = mysqli_fetch_array($table6_tg);
    $jml_atk_tg = $data6_tg['jumlah_atk'];
     if (!isset($data6_tg['jumlah_atk'])) {
@@ -420,14 +420,14 @@ function formatuang($angka){
     }
 
     //pengeluran Transnport / Perjalanan Dinas
-   $table61_bb = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
-   $data61_bb = mysqli_fetch_array($table61_bb);
-   $jml_transport_bb = $data61_bb['jumlah_transport'];
-    if (!isset($data61_bb['jumlah_transport'])) {
-    $jml_transport_bb = 0;
+   $table61_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $data61_tg = mysqli_fetch_array($table61_tg);
+   $jml_transport_tg = $data61_tg['jumlah_transport'];
+    if (!isset($data61_tg['jumlah_transport'])) {
+    $jml_transport_tg = 0;
     }
     //pengeluran Biaya Konsumsi
-   $table62_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $table62_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
    $data62_tg = mysqli_fetch_array($table62_tg);
    $jml_konsumsi_tg = $data62_tg['jumlah_konsumsi'];
     if (!isset($data62_tg['jumlah_konsumsi'])) {
@@ -435,7 +435,7 @@ function formatuang($angka){
     }
 
     //pengeluran perbaikan
-   $table7_tg = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $table7_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
    $data7_tg = mysqli_fetch_array($table7_tg);
    $jml_perbaikan_tg = $data7_tg['jumlah_perbaikan'];
     if (!isset($data7_tg['jumlah_perbaikan'])) {
@@ -444,14 +444,14 @@ function formatuang($angka){
     
     
      //Gaji karyawan
-   $table8_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI TG' ");
+   $table8_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI TG' ");
    $data8_tg = mysqli_fetch_array($table8_tg);
    $gaji_karyawan_tg = $data8_tg['jumlah_gaji'];
     if (!isset($data8_tg['jumlah_gaji'])) {
     $gaji_karyawan_tg = 0;
     }
     //Gaji dRIVER
-   $table9_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver TG' ");
+   $table9_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver TG' ");
    $data9_tg = mysqli_fetch_array($table9_tg);
    $gaji_driver_tg = $data9_tg['jumlah_gaji'];
     if (!isset($data9_tg['jumlah_gaji'])) {
@@ -462,12 +462,12 @@ function formatuang($angka){
 
    
 
-    $table101_tg =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    $table101_tg =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
     //totalkredit
     $total_kredit_tg = 0;
     while($data_tg = mysqli_fetch_array($table101_tg)){
         $mt_tg = $data_tg['mt'];
-        $tablee_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_tg'");
+        $tablee_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_tg'");
         $dataa_tg = mysqli_fetch_array($tablee_tg);
         $jml_kredit_tg = $dataa_tg['total_kredit'];
         if(isset($total_kredit_tg)){
@@ -483,7 +483,7 @@ function formatuang($angka){
      // Ujung Berung
 
        // Tagihan
-  $table_ub = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_ub a INNER JOIN master_tarif_ub b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_ub a INNER JOIN master_tarif_ub b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data_ub = mysqli_fetch_array($table_ub);
   $total_tagihan_ub = $data_ub['total_tagihan'];
 
@@ -491,7 +491,7 @@ function formatuang($angka){
   $jumlah_potongan_ub = (($total_tagihan_ub * 10) / 100);
 
   //pengiriman
-  $table2_ub = mysqli_query($koneksibalsri, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2_ub = mysqli_fetch_array($table2_ub);
   $jml_dex_ub = $data2_ub['total_dex'];
   $total_um_ub = $data2_ub['uang_makan'];
@@ -501,7 +501,7 @@ function formatuang($angka){
 
     
   //pengeluran Pul Biaya Kantor
-   $table3_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+   $table3_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
    $data3_ub = mysqli_fetch_array($table3_ub);
    $jml_biaya_kantor_ub = $data3_ub['jumlah_biaya_kantor'];
     if (!isset($data3_ub['jumlah_biaya_kantor'])) {
@@ -509,7 +509,7 @@ function formatuang($angka){
     }
 
    //pengeluran Pul Listrik & Telepon
-   $table4_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
+   $table4_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
    $data4_ub = mysqli_fetch_array($table4_ub);
    $jml_listrik_ub = $data4_ub['jumlah_listrik'];
     if (!isset($data4_ub['jumlah_listrik'])) {
@@ -517,7 +517,7 @@ function formatuang($angka){
     }
 
    //pengeluran Biaya Sewa
-   $table5_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
+   $table5_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
    $data5_ub = mysqli_fetch_array($table5_ub);
    $jml_sewa_ub = $data5_ub['jumlah_sewa'];
     if (!isset($data5_ub['jumlah_sewa'])) {
@@ -525,7 +525,7 @@ function formatuang($angka){
     }
 
    //pengeluran Alat Tulis Kantor
-   $table6_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
+   $table6_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
    $data6_ub = mysqli_fetch_array($table6_ub);
    $jml_atk_ub = $data6_ub['jumlah_atk'];
     if (!isset($data6_ub['jumlah_atk'])) {
@@ -533,14 +533,14 @@ function formatuang($angka){
     }
 
     //pengeluran Transnport / Perjalanan Dinas
-   $table61_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+   $table61_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
    $data61_ub = mysqli_fetch_array($table61_ub);
    $jml_transport_ub = $data61_ub['jumlah_transport'];
     if (!isset($data61_ub['jumlah_transport'])) {
     $jml_transport_ub = 0;
     }
     //pengeluran Biaya Konsumsi
-   $table62_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+   $table62_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
    $data62_ub = mysqli_fetch_array($table62_ub);
    $jml_konsumsi_ub = $data62_ub['jumlah_konsumsi'];
     if (!isset($data62_ub['jumlah_konsumsi'])) {
@@ -548,7 +548,7 @@ function formatuang($angka){
     }
 
     //pengeluran perbaikan
-   $table7_ub = mysqli_query($koneksibalsri, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $table7_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
    $data7_ub = mysqli_fetch_array($table7_ub);
    $jml_perbaikan_ub = $data7_ub['jumlah_perbaikan'];
     if (!isset($data7_ub['jumlah_perbaikan'])) {
@@ -557,14 +557,14 @@ function formatuang($angka){
     
     
      //Gaji karyawan
-   $table8_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI UB' ");
+   $table8_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI UB' ");
    $data8_ub = mysqli_fetch_array($table8_ub);
    $gaji_karyawan_ub = $data8_ub['jumlah_gaji'];
     if (!isset($data8_ub['jumlah_gaji'])) {
     $gaji_karyawan_ub = 0;
     }
     //Gaji dRIVER
-   $table9_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver UB' ");
+   $table9_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver UB' ");
    $data9_ub = mysqli_fetch_array($table9_ub);
    $gaji_driver_ub = $data9_ub['jumlah_gaji'];
     if (!isset($data9_ub['jumlah_gaji'])) {
@@ -575,12 +575,12 @@ function formatuang($angka){
 
    
 
-    $table101_ub =  mysqli_query($koneksibalsri, "SELECT mt FROM tagihan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    $table101_ub =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
     //totalkredit
     $total_kredit_ub = 0;
     while($data_ub = mysqli_fetch_array($table101_ub)){
         $mt_ub = $data_ub['mt'];
-        $tablee_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_ub'");
+        $tablee_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_ub'");
         $dataa_ub = mysqli_fetch_array($tablee_ub);
         $jml_kredit_bk = $dataa_ub['total_kredit'];
         if(isset($total_kredit_ub)){
