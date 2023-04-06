@@ -361,7 +361,6 @@ else{
       <th>Keterangan</th>
       <th>Masuk</th>
       <th>Keluar</th>
-      <th>Saldo</th>
       <th>file</th>
       
     </tr>
@@ -541,7 +540,6 @@ else{
       }
       ?>
       <?php echo "
-      <td style='font-size: 14px'>"?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
       <td style='font-size: 14px'>"; ?> <a download="../file_semen/<?= $file_bukti ?>" href="../file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
     "?>
 <?php echo  "</tr>";
