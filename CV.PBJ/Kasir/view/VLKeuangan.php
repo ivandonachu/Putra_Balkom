@@ -513,6 +513,7 @@ else{
 </div>
 
 <?php echo  " </td>"; ?> <?php echo "
+ <td style='font-size: 14px'>$keterangan</td>
        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "
         <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "
 
