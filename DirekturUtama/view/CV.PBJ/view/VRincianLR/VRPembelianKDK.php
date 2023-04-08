@@ -44,7 +44,24 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
+  $tabel = mysqli_query($koneksipbj, "SELECT MAX(no_penjualan) AS no_penjualan_max , MIN(no_penjualan) AS no_penjualan_min FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $datal = mysqli_fetch_array($tabel);
+  $no_penjualan_max = $datal['no_penjualan_max'];
+  $no_penjualan_min = $datal['no_penjualan_min'];
+  
+  $tabel1 = mysqli_query($koneksipbj, "SELECT tanggal_do FROM penjualan_sl WHERE no_penjualan = '$no_penjualan_max' ");
+  $datal1 = mysqli_fetch_array($tabel1);
+  $tanggal_do_max = $datal1['tanggal_do'];
+  $tabel2 = mysqli_query($koneksipbj, "SELECT tanggal_do FROM penjualan_sl WHERE no_penjualan = '$no_penjualan_min' ");
+  $datal2 = mysqli_fetch_array($tabel2);
+  $tanggal_do_min = $datal2['tanggal_do'];
+
+
+
+  $tablex = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_do_min' AND '$tanggal_do_max' ");
+
+
+
 
 
 
@@ -336,7 +353,7 @@ Logout
 
     ?>
 
-    <?php while($data = mysqli_fetch_array($table)){
+    <?php while($data = mysqli_fetch_array($tablex)){
       
       $no_do =$data['no_do'];
 

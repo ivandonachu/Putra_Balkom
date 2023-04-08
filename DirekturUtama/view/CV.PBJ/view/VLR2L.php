@@ -491,36 +491,27 @@ else {
 
      // pembelian kadek dan etty
 
-     $table = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-     $pembelian_kadek =0;
-     //kadek
-     while($data = mysqli_fetch_array($table)){
-         $no_do_pembelian = $data['no_do'];
-         $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal_pembelian' AND '$tanggal_akhir_pembelian' AND no_do = '$no_do_pembelian' ");
-         $datax = mysqli_fetch_array($tablex);
-         if(isset($datax['jumlah'])){
-             $jumlah = $datax['jumlah'];
-             $pembelian_kadek = $pembelian_kadek + $jumlah;
-         }
- 
-        
-     }
+     $tabel = mysqli_query($koneksipbj, "SELECT MAX(no_penjualan) AS no_penjualan_max , MIN(no_penjualan) AS no_penjualan_min FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+     $datal = mysqli_fetch_array($tabel);
+     $no_penjualan_max = $datal['no_penjualan_max'];
+     $no_penjualan_min = $datal['no_penjualan_min'];
      
-     //ety
-     $tabell = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-     $pembelian_ety = 0;
-     while($datae = mysqli_fetch_array($tabell)){
-         $no_do_pembelian = $datae['no_do'];
-         $tablell2 = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal_pembelian' AND '$tanggal_akhir_pembelian' AND no_do = '$no_do_pembelian' ");
-         $datax2 = mysqli_fetch_array($tablell2);
-         if(isset($datax2['jumlah'])){
-             $jumlahx = $datax2['jumlah'];
-             $pembelian_ety = $pembelian_ety + $jumlahx;
-         }
- 
-         
-     }
-     $pembelian_total = $pembelian_kadek + $pembelian_ety;
+     $tabel1 = mysqli_query($koneksipbj, "SELECT tanggal_do FROM penjualan_sl WHERE no_penjualan = '$no_penjualan_max' ");
+     $datal1 = mysqli_fetch_array($tabel1);
+     $tanggal_do_max = $datal1['tanggal_do'];
+     $tabel2 = mysqli_query($koneksipbj, "SELECT tanggal_do FROM penjualan_sl WHERE no_penjualan = '$no_penjualan_min' ");
+     $datal2 = mysqli_fetch_array($tabel2);
+     $tanggal_do_min = $datal2['tanggal_do'];
+
+
+
+     $tablex = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_do_min' AND '$tanggal_do_max' ");
+     $datax = mysqli_fetch_array($tablex);
+  
+         $pembelian_total = $datax['total_pembelian'];
+
+
+
     
 
 
@@ -1043,17 +1034,10 @@ aria-labelledby="userDropdown">
                                                 </tr>
                                                 <tr>
                                                     <td>5-100</td>
-                                                    <td class="text-left">Pembelian Barang Dani</td>
+                                                    <td class="text-left">Pembelian Barang</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($pembelian_kadek); ?></td>
+                                                    <td class="text-left"><?= formatuang($pembelian_total); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelianKDK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr>
-                                                <tr>
-                                                    <td>5-200</td>
-                                                    <td class="text-left">Pembelian Barang Ety</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($pembelian_ety); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelianETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color:    #F0F8FF;  ">
                                                     <td><strong>Total Harga Pokok Penjualan</strong></td>
