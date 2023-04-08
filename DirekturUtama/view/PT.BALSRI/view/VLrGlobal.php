@@ -22,16 +22,22 @@ exit;
 if (isset($_GET['tanggal1'])) {
    $tanggal_awal = $_GET['tanggal1'];
    $tanggal_akhir = $_GET['tanggal2'];
+   $tahun = date("Y");
+   $bulan = date("m");
 } 
 
 elseif (isset($_POST['tanggal1'])) {
    $tanggal_awal = $_POST['tanggal1'];
    $tanggal_akhir = $_POST['tanggal2'];
+   $tahun = date("Y");
+   $bulan = date("m");
 }  
 
 else{
     $tanggal_awal = date('Y-m-1');
   $tanggal_akhir = date('Y-m-31');
+  $tahun = date("Y");
+  $bulan = date("m");
   }
 function formatuang($angka){
   $uang = "Rp " . number_format($angka,2,',','.');
@@ -635,8 +641,20 @@ else{
 
 
 
-}
-    $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
+}   
+
+    if($tahun > 2022){
+        if($bulan > 1){
+            $total_laba_kotor = ($total_tagihan_global ) - $jumlah_potongan_global;  
+        }
+        else{
+            $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
+        }
+    }
+    else{
+        $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
+    }
+   
 
     $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit;
 
