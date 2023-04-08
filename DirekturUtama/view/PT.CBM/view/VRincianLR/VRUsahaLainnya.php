@@ -32,6 +32,12 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_akhir = $_POST['tanggal2'];
 }  
 
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi != 'CBM' AND nama_rekening = 'CBM' ");
+}
+else{
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi != 'CBM' AND nama_rekening = 'CBM' ");
+}
 
 
  ?>
@@ -240,15 +246,104 @@ elseif (isset($_POST['tanggal1'])) {
       <?php echo "<a href='../VLabaRugi2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     <br>
-    <br>
-    <div class="row" >
-      <div class="col-md-11" align="right" >
-         <?php echo "<a href='VRUsahaLainnyaTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kasir Toko</button></a>"; ?>
-      </div>
-      <div class="col-md-1"  align="right">
-         <?php echo "<a href='VRUsahaLainnyaOP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kas Armada</button></a>"; ?>
-      </div>
-    </div>
+<br>
+<hr>
+<br>
+<br>
+
+  <h3 align = 'center'>Rincian Biaya Usaha Lainnya Operasional CBM</h3>
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>REF</th>
+      <th>Akun</th>
+      <th>Rekening</th>
+      <th>Debit</th>
+      <th>Kredit</th>
+      <th>Total</th>
+      <th>Keterangan</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total_kredit = 0;
+    $total_debit = 0;
+    $total_uang = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
+    ?>
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $referensi = $data['referensi'];
+      $nama_akun = $data['nama_akun'];
+      $nama_rekening = $data['nama_rekening'];
+      $jumlah = $data['jumlah'];
+      $file_bukti = $data['file_bukti'];
+      $keterangan = $data['keterangan'];
+      $status_saldo = $data['status_saldo'];
+
+      if ($status_saldo == 'Masuk') {
+        $total_debit = $total_debit + $jumlah;
+      }
+      elseif($status_saldo == 'Keluar'){
+        $total_kredit = $total_kredit + $jumlah;
+        $total_uang = $total_uang + $jumlah;
+      }
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_laporan</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$nama_rekening</td>";
+
+
+      if ($status_saldo == 'Masuk') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+
+      if ($status_saldo == 'Keluar') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+      ; ?>
+      <td style='font-size: 14px'>  <?= formatuang($total_uang); ?> <?php echo "</td>
+    
+      
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+
+    <?php echo  " </td> </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+</div>
+
+<br>
+<br>
+<hr>
 <br>
 <br>
    

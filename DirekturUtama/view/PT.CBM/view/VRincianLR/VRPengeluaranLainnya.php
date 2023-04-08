@@ -21,6 +21,7 @@ exit;
 
 
 
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -32,10 +33,10 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'CBM' ");
 }
 else{
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'CBM'  ");
 }
 
 
@@ -51,7 +52,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Penjualan & Pemasaran Transfer</title>
+  <title>Rincian Pengeluaran Lainnya</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -101,8 +102,8 @@ else{
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
 
-               <!-- Divider -->
-               <hr class="sidebar-divider">
+                <!-- Divider -->
+                <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
                      Menu PT. CBM
@@ -190,7 +191,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRPemasaranTF?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Penjualan & Pemasaran Transfer</h5></a>"; ?>
+  <?php echo "<a href='VRUsahaLainnya?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Usaha Lainnya</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -245,82 +246,114 @@ else{
       <?php echo "<a href='../VLabaRugi2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     <br>
-    <br>
-    <div class="row" >
-   <div class="col-md-10" align="right" >
-         <?php echo "<a href='VRPemasaranTF?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Transfer</button></a>"; ?>
-      </div>
-      <div class="col-md-1"  align="right">
-         <?php echo "<a href='VRPemasaranOP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kas Armada</button></a>"; ?>
-      </div>
-      <div class="col-md-1"  align="right">
-         <?php echo "<a href='VRPemasaranKs?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kasir</button></a>"; ?>
-      </div>
-    </div>
+<br>
+<hr>
 <br>
 <br>
-   
+
+  <h3 align = 'center'>Rincian Biaya Pengeluaran Lainnya Operasional CBM</h3>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Nama Driver</th>
-      <th>No Polisi</th>
-      <th>Posisi Bongkar</th>
-      <th>Tujuan Berangkat</th>
-      <th>Uang Jalan</th>
+      <th>REF</th>
+      <th>Akun</th>
+      <th>Rekening</th>
+      <th>Debit</th>
+      <th>Kredit</th>
+      <th>Total</th>
       <th>Keterangan</th>
-      <th>File LO</th>
-    
+      <th>File</th>
+    </tr>
   </thead>
   <tbody>
     <?php
+    $total_kredit = 0;
+    $total_debit = 0;
+    $total_uang = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
-
     <?php while($data = mysqli_fetch_array($table)){
-      $no_keberangkatan = $data['no_keberangkatan'];
+      $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
-      $nama_driver = $data['nama_driver'];
-      $no_polisi = $data['no_polisi'];
-      $posisi_bongkar = $data['posisi_bongkar'];
-      $tujuan_keberangkatan = $data['tujuan_berangkat'];
-      $uang_jalan = $data['uang_jalan'];
-      $keterangan = $data['keterangan'];
+      $referensi = $data['referensi'];
+      $nama_akun = $data['nama_akun'];
+      $nama_rekening = $data['nama_rekening'];
+      $jumlah = $data['jumlah'];
       $file_bukti = $data['file_bukti'];
+      $keterangan = $data['keterangan'];
+      $status_saldo = $data['status_saldo'];
+
+      if ($status_saldo == 'Masuk') {
+        $total_debit = $total_debit + $jumlah;
+      }
+      elseif($status_saldo == 'Keluar'){
+        $total_kredit = $total_kredit + $jumlah;
+        $total_uang = $total_uang + $jumlah;
+      }
 
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_keberangkatan</td>
+      <td style='font-size: 14px'>$no_laporan</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_driver</td>
-      <td style='font-size: 14px'>$no_polisi</td>
-      <td style='font-size: 14px'>$posisi_bongkar</td>
-      <td style='font-size: 14px'>$tujuan_keberangkatan</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($uang_jalan); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$nama_rekening</td>";
+
+
+      if ($status_saldo == 'Masuk') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+
+      if ($status_saldo == 'Keluar') {
+        echo "
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      else{
+        echo "
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+      }
+      ; ?>
+      <td style='font-size: 14px'>  <?= formatuang($total_uang); ?> <?php echo "</td>
+    
+      
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KepalaGudang/file_gudang/<?= $file_bukti ?>" href="/PT.CBM/KepalaGudang/file_gudang/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
 
-    <?php echo  " </td>  </tr>";
+    <?php echo  " </td> </tr>";
   }
   ?>
 
 </tbody>
 </table>
-
-  </div>
-</div>
 </div>
 
+<br>
+<br>
+<hr>
+<br>
+<br>
+   
+
+</div>
 
 
+</div>
+
+</div>
 <!-- End of Main Content -->
 
 <!-- Footer -->
