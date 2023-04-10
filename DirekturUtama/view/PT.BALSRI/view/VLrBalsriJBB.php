@@ -20,19 +20,31 @@ exit;
 }
 
 if (isset($_GET['tanggal1'])) {
-   $tanggal_awal = $_GET['tanggal1'];
-   $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
-   $tanggal_awal = $_POST['tanggal1'];
-   $tanggal_akhir = $_POST['tanggal2'];
-}  
-
-else{
-    $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-  }
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+    $tahun = date('Y', strtotime($tanggal_awal)); 
+    $bulanx = date('m', strtotime($tanggal_awal)); 
+    $bulan = ltrim($bulanx, '0');
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+    $tahun = date('Y', strtotime($tanggal_awal)); 
+ 
+    $bulanx = date('m', strtotime($tanggal_awal)); 
+    $bulan = ltrim($bulanx, '0');
+  
+ }  
+ 
+ else{
+     $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+   $tahun = date('Y', strtotime($tanggal_awal)); 
+   $bulanx = date('m', strtotime($tanggal_awal)); 
+   $bulan = ltrim($bulanx, '0');
+   }
+   
 function formatuang($angka){
   $uang = "Rp " . number_format($angka,2,',','.');
   return $uang;
@@ -1185,7 +1197,30 @@ else{
 
 
 }
+
+$kredit_8401 = 21220500;
+$kredit_8403 = 21220500;
+    
+if($tahun == 2023){
+    if($bulan == 1 || $bulan == 2){
+        $total_laba_kotor = ($total_tagihan_global + $total_tagihan_global_jbb) - ($jumlah_potongan_global + $jumlah_potongan_global_jbb);  
+    }
+    else if($bulan == 3 || $bulan == 4 || $bulan == 5 || $bulan == 6 || $bulan == 7 || $bulan == 8 || $bulan == 9 || $bulan ==  10 || $bulan == 11 || $bulan == 12 ) {
+        
+        $total_laba_kotor = ($total_tagihan_global + $total_tagihan_global_jbb + $kredit_8401 + $kredit_8403) - ($jumlah_potongan_global + $jumlah_potongan_global_jbb);  
+        
+    }
+}
+else if ($tahun >2023){
+
+    $total_laba_kotor = ($total_tagihan_global + $total_tagihan_global_jbb + $kredit_8401 + $kredit_8403) - ($jumlah_potongan_global + $jumlah_potongan_global_jbb);  
+
+}
+else{
     $total_laba_kotor = ($total_tagihan_global + $total_tagihan_global_jbb) - ($jumlah_potongan_global + $jumlah_potongan_global_jbb);  
+}
+
+ 
 
     $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +
                                 $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
@@ -1625,6 +1660,53 @@ else{
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
              </tr>
+             <?php
+
+if($tahun == 2023){
+    if($bulan == 1 || $bulan == 2){ ?> 
+  
+     
+    <?php }
+    else if($bulan == 3 || $bulan == 4 || $bulan == 5 || $bulan == 6 || $bulan == 7 || $bulan == 8 || $bulan == 9 || $bulan ==  10 || $bulan == 11 || $bulan == 12 ) {
+        ?>
+         <tr>
+           <td>4-110</td>
+           <td class="text-left">Sewa MT BG 8401 NM</td>
+           <td class="text-left"><?= formatuang($kredit_8401); ?></td>
+           <td class="text-left"><?= formatuang(0); ?></td>
+           <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+       </tr>
+       <tr>
+           <td>4-120</td>
+           <td class="text-left">Sewa MT BG 8403 NM</td>
+           <td class="text-left"><?= formatuang($kredit_8403); ?></td>
+           <td class="text-left"><?= formatuang(0); ?></td>
+           <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+       </tr>
+       <?php }
+     }
+
+     else if ($tahun >2023){ ?> 
+        <tr>
+           <td>4-110</td>
+           <td class="text-left">Sewa MT BG 8401 NM</td>
+           <td class="text-left"><?= formatuang($kredit_8401); ?></td>
+           <td class="text-left"><?= formatuang(0); ?></td>
+           <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+       </tr>
+       <tr>
+           <td>4-120</td>
+           <td class="text-left">Sewa MT BG 8403 NM</td>
+           <td class="text-left"><?= formatuang($kredit_8403); ?></td>
+           <td class="text-left"><?= formatuang(0); ?></td>
+           <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+       </tr>
+
+<?php }
+     else{
+    
+}
+?>
              <tr>
                  <td>4-101</td>
                  <td class="text-left">Potongan Biaya Oprasional 10%</td>

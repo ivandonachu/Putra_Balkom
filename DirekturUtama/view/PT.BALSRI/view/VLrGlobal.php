@@ -22,27 +22,34 @@ exit;
 if (isset($_GET['tanggal1'])) {
    $tanggal_awal = $_GET['tanggal1'];
    $tanggal_akhir = $_GET['tanggal2'];
-   $tahun = date("Y");
-   $bulan = date("m");
+   $tahun = date('Y', strtotime($tanggal_awal)); 
+   $bulanx = date('m', strtotime($tanggal_awal)); 
+   $bulan = ltrim($bulanx, '0');
 } 
 
 elseif (isset($_POST['tanggal1'])) {
    $tanggal_awal = $_POST['tanggal1'];
    $tanggal_akhir = $_POST['tanggal2'];
-   $tahun = date("Y");
-   $bulan = date("m");
+   $tahun = date('Y', strtotime($tanggal_awal)); 
+
+   $bulanx = date('m', strtotime($tanggal_awal)); 
+   $bulan = ltrim($bulanx, '0');
+ 
 }  
 
 else{
     $tanggal_awal = date('Y-m-1');
   $tanggal_akhir = date('Y-m-31');
-  $tahun = date("Y");
-  $bulan = date("m");
+  $tahun = date('Y', strtotime($tanggal_awal)); 
+  $bulanx = date('m', strtotime($tanggal_awal)); 
+  $bulan = ltrim($bulanx, '0');
   }
+  
 function formatuang($angka){
   $uang = "Rp " . number_format($angka,2,',','.');
   return $uang;
 }
+
 
 if ($tanggal_awal == $tanggal_akhir) {
 
@@ -100,7 +107,7 @@ else{
    $total_jt_gps_br = $data2_br['total_jt_gps'];
    $total_um_br= $data2_br['uang_makan'];
    $total_dexlite_br = $total_uj_br - ($total_jt_gps_br*625);
-
+   $total_bbm_br = 0;
    $table222_br = mysqli_query($koneksibalsri, "SELECT jt_gps, uj , dexlite FROM pengiriman_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     while($data = mysqli_fetch_array($table222_br)){
  
@@ -119,7 +126,7 @@ else{
    $total_jt_gps_lmg = $data2_lmg['total_jt_gps'];
    $total_um_lmg = $data2_lmg['uang_makan'];
    $total_dexlite_lmg = $total_uj_lmg - ($total_jt_gps_lmg*625);
-
+$total_bbm_lpg = 0;
    $table222_lpg = mysqli_query($koneksibalsri, "SELECT dexlite FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     while($data = mysqli_fetch_array($table222_lpg)){
 
@@ -137,7 +144,7 @@ else{
    $total_jt_gps_spbu = $data2_spbu['total_jt_gps'];
    $total_um_spbu= $data2_spbu['uang_makan'];
    $total_dexlite_spbu = $total_uj_spbu - ($total_jt_gps_spbu*625);
-
+   $total_bbm_spbu =0;
    $table222_spbu = mysqli_query($koneksibalsri, "SELECT dexlite FROM pengiriman_spbu WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     while($data = mysqli_fetch_array($table222_spbu)){
 
@@ -155,7 +162,7 @@ else{
    $total_jt_gps_plg = $data2_plg['total_jt_gps'];
    $total_um_plg= $data2_plg['uang_makan'];
    $total_dexlite_plg = $total_uj_plg - ($total_jt_gps_plg*625);
-
+   $total_bbm_plg =0;
    $table222_plg = mysqli_query($koneksibalsri, "SELECT jt_gps, uj , dexlite FROM pengiriman_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     while($data = mysqli_fetch_array($table222_plg)){
 
@@ -191,7 +198,7 @@ else{
    $total_jt_gps_bkl = $data2_bkl['total_jt_gps'];
    $total_um_bkl = $data2_bkl['uang_makan'];
    $total_dexlite_bkl = $total_uj_bkl - ($total_jt_gps_bkl*625);
-
+   $total_bbm_bku = 0;
    $table222_bku = mysqli_query($koneksistre, "SELECT jt_gps, uj , dexlite FROM pengiriman WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     while($data = mysqli_fetch_array($table222_bku)){
 
@@ -643,19 +650,8 @@ else{
 
 }   
 
-    if($tahun > 2022){
-        if($bulan > 1){
-            $total_laba_kotor = ($total_tagihan_global ) - $jumlah_potongan_global;  
-        }
-        else{
-            $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
-        }
-    }
-    else{
-        $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
-    }
-   
 
+    $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
     $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit;
 
     $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit;
@@ -1100,6 +1096,8 @@ else{
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <td class="text-left"></td>
              </tr>
+           
+
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
