@@ -791,6 +791,8 @@ $beruk = 'Kebun Seberuk';
             <option <?php echo($dataSelect == 'Listrik & Telepon')?"selected": ""?>>Listrik & Telepon</option>
             <option <?php echo($dataSelect == 'Mocash')?"selected": ""?>>Mocash</option>
             <option <?php echo($dataSelect == 'Prive')?"selected": ""?>>Prive</option>
+            <option <?php echo($dataSelect == 'Pengeluaran Lainnya')?"selected": ""?>>Pengeluaran Lainnya</option>
+            
 
           </select>
 
