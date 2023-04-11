@@ -193,10 +193,11 @@ else{
 else{
 
   // Penjualan Pertamax
-  $table = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+  $table = mysqli_query($koneksiperta, "SELECT qty , harga, uang_diskon FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
   
   $total_pertamax=0;
   $pertamax_terjual=0;
+
   while($data = mysqli_fetch_array($table)){
     $qty = $data['qty'];
     $harga = $data['harga'];
@@ -208,14 +209,15 @@ else{
   }
 
    // Penjualan Dexlite
-  $table2 = mysqli_query($koneksiperta, "SELECT qty , harga FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+  $table2 = mysqli_query($koneksiperta, "SELECT qty , harga, uang_diskon FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
   
   $total_dexlite=0;
   $dexlite_terjual = 0;
+
   while($data2 = mysqli_fetch_array($table2)){
     $qty = $data2['qty'];
     $harga = $data2['harga'];
-    $uang_diskon = $data['uang_diskon'];
+    $uang_diskon = $data2['uang_diskon'];
     $dexlite_terjual = $dexlite_terjual + $qty;
     $total_dexlite = ($total_dexlite + ($qty * $harga)) - $uang_diskon ;
   }
@@ -276,7 +278,7 @@ else{
    $datay22 = mysqli_fetch_array($tabley22);
    $sonding_akhir_dex = $datay22['sonding_akhir'];
    $stok_akhir_dex = $datay22['stok_akhir'];
-   $harga_stok_akhir_dex = $datay22z['harga'];
+   $harga_stok_akhir_dex = $datay22['harga'];
    $total_uang_stok_dex = $sonding_akhir_dex * $harga_stok_akhir_dex;
 
 
@@ -321,7 +323,7 @@ else{
    $datay22x = mysqli_fetch_array($tabley22x);
    $sonding_awal_dex = $datay22x['sonding_awal'];
    $stok_awal_dex = $datay22x['stok_awal'];
-   $harga_stok_awal_dex = $datay22zx['harga'];
+   $harga_stok_awal_dex = $datay22x['harga'];
    $total_uang_stok_awal_dex = $sonding_awal_dex * $harga_stok_awal_dex;
 
    
@@ -373,6 +375,7 @@ else{
   
   $total_pertamax_b=0;
   $pembelian_pertamax =0;
+  $pertamax_b =0;
   while($data3 = mysqli_fetch_array($table3)){
     $qty = $data3['qty'];
     $harga = $data3['harga'];
@@ -389,6 +392,7 @@ else{
   
   $total_dexlite_b=0;
   $pembelian_dexlite =0;
+  $dexlite_b = 0;
   while($data4 = mysqli_fetch_array($table4)){
     $qty = $data4['qty'];
     $harga = $data4['harga'];
@@ -476,7 +480,7 @@ else{
     $jml_konsumsi = 0;
     }
 
-    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa + $jml_gaji + $jumlah_transport + $jumlah_konsumsi;
+    $total_biaya_usaha_final = $jml_biaya_kantor + $jml_listrik + $jml_atk + $jml_sewa + $jml_gaji + $jml_transport + $jml_konsumsi;
 
 
     $laba_bersih_sebelum_pajak = $laba_kotor_dex + $laba_kotor_max - $total_biaya_usaha_final;

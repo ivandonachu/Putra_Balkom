@@ -22,19 +22,67 @@ if ($jabatan_valid == 'Direktur Utama') {
 if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
     $tanggal_akhir = $_GET['tanggal2'];
-    $tanggal_awal_pembelian = date('Y-m-d', strtotime('-2 month', strtotime($tanggal_awal))); 
-    $tanggal_akhir_pembelian =  date('Y-m-d', strtotime('+2 month', strtotime($tanggal_akhir))); 
-} elseif (isset($_POST['tanggal1'])) {
+    $tahun1 = date('Y', strtotime($tanggal_awal));
+    $tahun2 = date('Y', strtotime($tanggal_akhir)); 
+    $bulanx1 = date('m', strtotime($tanggal_awal)); 
+    $bulan1 = ltrim($bulanx1, '0');
+    $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+    $bulan2 = ltrim($bulanx2, '0');
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
     $tanggal_awal = $_POST['tanggal1'];
     $tanggal_akhir = $_POST['tanggal2'];
-    $tanggal_awal_pembelian = date('Y-m-d', strtotime('-2 month', strtotime($tanggal_awal))); 
-    $tanggal_akhir_pembelian =  date('Y-m-d', strtotime('+2 month', strtotime($tanggal_akhir))); 
-} else {
-    $tanggal_awal = date('Y-m-1');
-    $tanggal_akhir = date('Y-m-31');
-    $tanggal_awal_pembelian = date('Y-m-d', strtotime('-2 month', strtotime($tanggal_awal))); 
-    $tanggal_akhir_pembelian =  date('Y-m-d', strtotime('+2 month', strtotime($tanggal_akhir))); 
-}
+    $tahun1 = date('Y', strtotime($tanggal_awal));
+    $tahun2 = date('Y', strtotime($tanggal_akhir)); 
+    $bulanx1 = date('m', strtotime($tanggal_awal)); 
+    $bulan1 = ltrim($bulanx1, '0');
+    $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+    $bulan2 = ltrim($bulanx2, '0');
+ }  
+ 
+ else{
+     $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+   $tahun1 = date('Y', strtotime($tanggal_awal));
+    $tahun2 = date('Y', strtotime($tanggal_akhir)); 
+    $bulanx1 = date('m', strtotime($tanggal_awal)); 
+    $bulan1 = ltrim($bulanx1, '0');
+    $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+    $bulan2 = ltrim($bulanx2, '0');
+   }
+
+
+   if($tahun1 == $tahun2){
+
+        if($bulan1 == 1){
+            $bulan_bunga = $bulan2;
+        }
+        else{
+            $bulan_bunga=0;
+            for ($x = $bulan1; $x <= $bulan2; $x++) {
+                $bulan_bunga = $bulan_bunga + 1;
+              }
+              
+        }
+       
+
+   }
+   else if($tahun1 < $tahun2){
+
+    if($bulan1 == 1){
+        $bulan_bunga = $bulan2 + 12;
+    }
+    else{
+        $bulan_bunga=0;
+        $bulan2 = $bulan2 + 12;
+        for ($x = $bulan1; $x <= $bulan2; $x++) {
+            $bulan_bunga = $bulan_bunga + 1;
+          }
+          
+    }
+
+   }
 
 function formatuang($angka)
 {
@@ -662,10 +710,12 @@ else {
 
 }
 
+$total_bunga_bank = 50000000 * $bulan_bunga;
+
 $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
 $laba_kotor = $total_pendapatan - $pembelian_total;
 $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om +$jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
-                            $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan;
+                            $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_bunga_bank;
 $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 
 ?>
@@ -1136,6 +1186,13 @@ aria-labelledby="userDropdown">
                                                     <td class="text-left">Pembelian Sparepart</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jml_pembelian_sparepart); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-597</td>
+                                                    <td class="text-left">Bunga Bank</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_bunga_bank); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
 
