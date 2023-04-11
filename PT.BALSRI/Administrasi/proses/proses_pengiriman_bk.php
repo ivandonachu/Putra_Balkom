@@ -139,11 +139,11 @@ $no_driver = $data_driver['no_driver'];
 
 
 if ($jns_trans == 'Lost') {
-	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_bk VALUES('','$tanggal','$no','$no_driver','$muatan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$jns_trans','$total_lost','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_bk VALUES('','$tanggal','$no','$no_driver','$muatan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$jns_trans','$total_lost','$keterangan','$file','$id1')");
 
 }
 else {
-	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_bk VALUES('','$tanggal','$no','$no_driver','$muatan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$jns_trans','$jml_trans','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_bk VALUES('','$tanggal','$no','$no_driver','$muatan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$jns_trans','$jml_trans','$keterangan','$file','$id1')");
 
 }
 

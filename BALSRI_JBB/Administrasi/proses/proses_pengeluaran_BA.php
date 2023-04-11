@@ -61,7 +61,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pengeluaran_pul_ba VALUES ('','$tanggal','$akun','Keluar','$jumlah','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengeluaran_pul_ba VALUES ('','$tanggal','$akun','Keluar','$jumlah','$keterangan','$file','$id1')");
 
 
 			if ($query != "") {

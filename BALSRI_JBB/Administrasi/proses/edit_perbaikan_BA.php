@@ -64,10 +64,10 @@ else if ( $nama_file != "" ) {
 
 
 	if ($file == '') {
-			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_ba SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan'  WHERE no_laporan = '$no_laporan'");
+			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_ba SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan', kode_input = '$id1'   WHERE no_laporan = '$no_laporan'");
 	}
 	else{
-			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_ba SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
+			$query = mysqli_query($koneksi,"UPDATE riwayat_perbaikan_ba SET  tanggal = '$tanggal', akun = '$akun' ,nama_driver = '$amt' , no_polisi = '$mt' , jml_pengeluaran = '$jml_pengeluaran' , keterangan = '$keterangan' , file_bukti = '$file', kode_input = '$id1'   WHERE no_laporan = '$no_laporan'");
 	}
 
 if ($query != "") {

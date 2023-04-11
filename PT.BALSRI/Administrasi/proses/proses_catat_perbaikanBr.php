@@ -62,7 +62,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-$query = mysqli_query($koneksi,"INSERT INTO riwayat_perbaikan_br VALUES('','$tanggal','$akun','$amt','$mt','$jml_pengeluaran','$keterangan','$file')");
+$query = mysqli_query($koneksi,"INSERT INTO riwayat_perbaikan_br VALUES('','$tanggal','$akun','$amt','$mt','$jml_pengeluaran','$keterangan','$file','$id1')");
 
 if ($query != "") {
 	echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VCatatPerbaikanBr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

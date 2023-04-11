@@ -61,11 +61,11 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_pul_pl SET tanggal = '$tanggal' , nama_akun = '$akun' , status_saldo = '$status_saldo' , keterangan = '$keterangan' ,jumlah = '$jumlah'  WHERE no_transaksi = 
+		$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_pul_pl SET tanggal = '$tanggal' , nama_akun = '$akun' , status_saldo = '$status_saldo' , keterangan = '$keterangan' ,jumlah = '$jumlah' , kode_input = '$id1'  WHERE no_transaksi = 
 		'$no_transaksi'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_pul_pl SET tanggal = '$tanggal' , nama_akun = '$akun' , status_saldo = '$status_saldo' , keterangan = '$keterangan' ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_transaksi = 
+		$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_pul_pl SET tanggal = '$tanggal' , nama_akun = '$akun' , status_saldo = '$status_saldo' , keterangan = '$keterangan' ,jumlah = '$jumlah' ,  file_bukti = '$file' , kode_input = '$id1' WHERE no_transaksi = 
 		'$no_transaksi'");
 	}
 	

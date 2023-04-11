@@ -1202,10 +1202,10 @@ $kredit_8401 = 21220500;
 $kredit_8403 = 21220500;
     
 if($tahun == 2023){
-    if($bulan == 1 || $bulan == 2){
+    if($bulan == 1 || $bulan == 2 || $bulan == 3){
         $total_laba_kotor = ($total_tagihan_global + $total_tagihan_global_jbb) - ($jumlah_potongan_global + $jumlah_potongan_global_jbb);  
     }
-    else if($bulan == 3 || $bulan == 4 || $bulan == 5 || $bulan == 6 || $bulan == 7 || $bulan == 8 || $bulan == 9 || $bulan ==  10 || $bulan == 11 || $bulan == 12 ) {
+    else if($bulan == 4 || $bulan == 5 || $bulan == 6 || $bulan == 7 || $bulan == 8 || $bulan == 9 || $bulan ==  10 || $bulan == 11 || $bulan == 12 ) {
         
         $total_laba_kotor = ($total_tagihan_global + $total_tagihan_global_jbb + $kredit_8401 + $kredit_8403) - ($jumlah_potongan_global + $jumlah_potongan_global_jbb);  
         
@@ -1663,11 +1663,11 @@ else{
              <?php
 
 if($tahun == 2023){
-    if($bulan == 1 || $bulan == 2){ ?> 
+    if($bulan == 1 || $bulan == 2 || $bulan == 3  ){ ?> 
   
      
     <?php }
-    else if($bulan == 3 || $bulan == 4 || $bulan == 5 || $bulan == 6 || $bulan == 7 || $bulan == 8 || $bulan == 9 || $bulan ==  10 || $bulan == 11 || $bulan == 12 ) {
+    else if($bulan == 4 || $bulan == 5 || $bulan == 6 || $bulan == 7 || $bulan == 8 || $bulan == 9 || $bulan ==  10 || $bulan == 11 || $bulan == 12 ) {
         ?>
          <tr>
            <td>4-110</td>
