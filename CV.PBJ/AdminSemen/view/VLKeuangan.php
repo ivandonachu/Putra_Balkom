@@ -293,6 +293,7 @@ else{
               <option>Setor Uang</option>
               <option>Bayar Tarikan</option>
               <option>Ongkos Kuli</option>
+
             
               <option>Biaya Kantor</option>
             <option>Transport / Perjalanan Dinas</option>
@@ -301,6 +302,8 @@ else{
             <option>Perbaikan Kendaraan</option>
             <option>Kembalikan Lebih Bayar</option>
             <option>Deposit</option>
+            <option>Pengeluaran Lainnya</option>
+            <option>Ongkos Mobil</option>
             </select>
           </div>    
           <div class="col-md-6">
@@ -449,6 +452,9 @@ else{
                     <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                     <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Kembalikan Lebih Bayar</option>
                     <option <?php echo ($dataSelect == 'Deposit') ? "selected": "" ?> >Deposit</option>
+                    <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
+                    <option <?php echo ($dataSelect == 'Ongkos Mobil') ? "selected": "" ?> >Ongkos Mobil</option>
+
                   </select>
                 </div>    
                 <div class="col-md-6">
