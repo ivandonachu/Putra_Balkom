@@ -569,6 +569,7 @@ $beruk = 'Kebun Seberuk';
             <option>Dana Masuk</option>
             <option>Biaya Usaha Lainnya</option>
             <option>Biaya Perbaikan Kendaraan</option>
+            <option>Biaya Perbaikan Kendaraan Pribadi</option>
             <option>Biaya Penjualan & Pemasaran</option>
             <option>Alat Tulis Kantor</option>
             <option>Biaya Kantor</option>
@@ -577,8 +578,8 @@ $beruk = 'Kebun Seberuk';
             <option>Listrik & Telepon</option>
             <option>Bon Karyawan</option>
             <option>Mocash</option>
-            <option>Prive</option>
             <option>Pengeluaran Lainnya</option>
+            <option>Uang Jalan</option>
           </select>
         </div>            
         <div class="col-md-6">
@@ -782,6 +783,7 @@ $beruk = 'Kebun Seberuk';
             <option <?php echo ($dataSelect == 'Dana Masuk') ? "selected": "" ?> >Dana Masuk</option>
             <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
             <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
+            <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan Pribadi') ? "selected": "" ?> >Biaya Perbaikan Kendaraan Pribadi</option>
             <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
             <option <?php echo ($dataSelect == 'Bon Karyawan') ? "selected": "" ?> >Bon Karyawan</option>
             <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
@@ -792,8 +794,7 @@ $beruk = 'Kebun Seberuk';
             <option <?php echo($dataSelect == 'Mocash')?"selected": ""?>>Mocash</option>
             <option <?php echo($dataSelect == 'Prive')?"selected": ""?>>Prive</option>
             <option <?php echo($dataSelect == 'Pengeluaran Lainnya')?"selected": ""?>>Pengeluaran Lainnya</option>
-            
-
+            <option <?php echo($dataSelect == 'Uang Jalan')?"selected": ""?>>Uang Jalan</option>
           </select>
 
         </div>
