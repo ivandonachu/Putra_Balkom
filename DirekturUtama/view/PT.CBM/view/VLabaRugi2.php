@@ -23,12 +23,62 @@ exit;
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
+ $tahun1 = date('Y', strtotime($tanggal_awal));
+ $tahun2 = date('Y', strtotime($tanggal_akhir)); 
+ $bulanx1 = date('m', strtotime($tanggal_awal)); 
+ $bulan1 = ltrim($bulanx1, '0');
+ $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+ $bulan2 = ltrim($bulanx2, '0');
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
+ $tahun1 = date('Y', strtotime($tanggal_awal));
+ $tahun2 = date('Y', strtotime($tanggal_akhir)); 
+ $bulanx1 = date('m', strtotime($tanggal_awal)); 
+ $bulan1 = ltrim($bulanx1, '0');
+ $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+ $bulan2 = ltrim($bulanx2, '0');
 }  
+
+
+if($tahun1 == $tahun2){
+
+    if($bulan1 == 1){
+        $bulan_bunga_bni = $bulan2;
+        $bulan_bunga_bri = $bulan2;
+    }
+    else{
+        $bulan_bunga_bni=0;
+        $bulan_bunga_bri=0;
+        for ($x = $bulan1; $x <= $bulan2; $x++) {
+            $bulan_bunga_bni = $bulan_bunga_bni + 1;
+            $bulan_bunga_bri = $bulan_bunga_bri + 1;
+          }
+          
+    }
+   
+
+}
+else if($tahun1 < $tahun2){
+
+if($bulan1 == 1){
+    $bulan_bunga_bni = $bulan2 + 12;
+    $bulan_bunga_bri = $bulan2 + 12;
+}
+else{
+    $bulan_bunga_bni=0;
+        $bulan_bunga_bri=0;
+    $bulan2 = $bulan2 + 12;
+    for ($x = $bulan1; $x <= $bulan2; $x++) {
+        $bulan_bunga_bni = $bulan_bunga_bni + 1;
+            $bulan_bunga_bri = $bulan_bunga_bri + 1;
+      }
+      
+}
+
+}
 
 
     function formatuang($angka){
@@ -352,7 +402,15 @@ if (!isset($data_pendapatan_bajakosong['penjualan_bajakosong'])) {
     $total_pendapatan_bajakosong = 0;
 }
 
-$total_pendapatan = $total_pendapatan_refill ;
+//transport_fee
+$table18 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jml_transport_fee FROM transport_fee WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM'");
+$data_transport_fee = mysqli_fetch_array($table18);
+$total_transport_fee = $data_transport_fee['jml_transport_fee'];
+if (!isset($data_transport_fee['jml_transport_fee'])) {
+    $total_transport_fee = 0;
+}
+
+$total_pendapatan = $total_pendapatan_refill + $total_transport_fee ;
 
 
 //HARGA POKOK PENJUALAN
@@ -406,6 +464,9 @@ $total_pembelian_bajakosong_tk = $data_pembelian_bajakosong_tk['pembelian_bajako
 if (!isset($data_pembelian_bajakosong_tk['pembelian_bajakosong_tk'])) {
     $total_pembelian_bajakosong_tk = 0;
 }
+
+
+
 
 $total_pembelian_bajakosong = $total_pembelian_bajakosong_cbm + $total_pembelian_bajakosong_tk;
 
@@ -603,10 +664,15 @@ if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
     $total_perbaikan_ken3 = 0;
 }
 
+
+
+$total_bunga_bank_bni = 25000000 * $bulan_bunga_bni;
+$total_bunga_bank_bri = 23000000 * $bulan_bunga_bri;
+
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni + $total_bunga_bank_bri;
 
 $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_biaya_usaha_final;
 }
@@ -903,6 +969,7 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRRefillLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
+                                
                                 <tr>
                                     <td>4-120</td>
                                     <td class="text-left">Penjualan Baja + Isi</td>
@@ -918,6 +985,13 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRBajaKosongLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
+                                    <td>4-140</td>
+                                    <td class="text-left">Transport Fee</td>
+                                    <td class="text-left"><?= formatuang($total_transport_fee); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
                                     <td>4-200</td>
                                     <td class="text-left">Retur Penjualan</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
@@ -931,6 +1005,7 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
+                                
                             
                                 <tr style="background-color:     #F0F8FF; ">
                                     <td><strong>Total Pendapatan</strong></td>
@@ -1132,6 +1207,20 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_perbaikan_kendaraan); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPerbaikanKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-596</td>
+                                    <td class="text-left">Bunga Bank BRI</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_bunga_bank_bri); ?></td>
+                                    <?php echo "<td class='text-right'><a href=''></a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-596</td>
+                                    <td class="text-left">Bunga Bank BNI</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_bunga_bank_bni); ?></td>
+                                    <?php echo "<td class='text-right'><a href=''></a></td>"; ?>
                                 </tr>
                                 <tr style="background-color:    #F0F8FF; ">
                                     <td><strong>Total Biaya Usaha</strong></td>

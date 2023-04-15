@@ -580,6 +580,7 @@ $beruk = 'Kebun Seberuk';
             <option>Mocash</option>
             <option>Pengeluaran Lainnya</option>
             <option>Uang Jalan</option>
+            <option>Saldo Brankas</option>
           </select>
         </div>            
         <div class="col-md-6">
@@ -795,6 +796,7 @@ $beruk = 'Kebun Seberuk';
             <option <?php echo($dataSelect == 'Prive')?"selected": ""?>>Prive</option>
             <option <?php echo($dataSelect == 'Pengeluaran Lainnya')?"selected": ""?>>Pengeluaran Lainnya</option>
             <option <?php echo($dataSelect == 'Uang Jalan')?"selected": ""?>>Uang Jalan</option>
+            <option <?php echo($dataSelect == 'Saldo Brankas')?"selected": ""?>>Saldo Brankas</option>
           </select>
 
         </div>
