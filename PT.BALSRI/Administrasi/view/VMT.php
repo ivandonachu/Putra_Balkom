@@ -340,13 +340,22 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
 </div>
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center';>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
       <th>No Polisi</th>
       <th>Jenis Kendaraan</th>
       <th>Wilayah Operasi</th>
+      <th>File STNK</th>
+      <th>Tanggal STNK</th>
+      <th>File Tera Tangki</th>
+      <th>Tanggal Tera Tangki</th>
+      <th>File Tera FlowMeter</th>
+      <th>Tanggal Tera FlowMeter</th>
+      <th>File KIR</th>
+      <th>Tanggal KIR</th>
       <th></th>
     </tr>
   </thead>
@@ -357,12 +366,28 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
      $no_polisi = $data['no_polisi'];
      $jenis_kendaraan =$data['jenis_kendaraan'];
      $wilayah_operasi =$data['wilayah_operasi'];
+     $file_stnk = $data['file_stnk'];
+     $tanggal_stnk = $data['tanggal_stnk'];
+     $file_tera_tangki = $data['file_tera_tangki'];
+     $tanggal_tera_tangki = $data['tanggal_tera_tangki'];
+     $file_tera_flowmeter = $data['file_tera_flowmeter'];
+     $tanggal_tera_flowmeter = $data['tanggal_tera_flowmeter'];
+     $file_kir = $data['file_kir'];
+     $tanggal_kir = $data['tanggal_kir'];
 
      echo "<tr>
      <td style='font-size: 14px' align = 'center'>$no</td>
      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
      <td style='font-size: 14px' align = 'center'>$jenis_kendaraan</td>
      <td style='font-size: 14px' align = 'center'>$wilayah_operasi</td>
+     <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_stnk ?>" href="../file_administrasi/<?= $file_stnk ?>"> <?php echo "$file_stnk </a> </td>
+     <td style='font-size: 14px' align = 'center'>$tanggal_stnk</td>
+     <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_tera_tangki ?>" href="../file_administrasi/<?= $file_tera_tangki ?>"> <?php echo "$file_tera_tangki </a> </td>
+     <td style='font-size: 14px' align = 'center'>$tanggal_tera_tangki</td>
+     <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_tera_flowmeter ?>" href="../file_administrasi/<?= $file_tera_flowmeter ?>"> <?php echo "$file_tera_flowmeter </a> </td>
+     <td style='font-size: 14px' align = 'center'>$tanggal_tera_flowmeter</td>
+     <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_kir ?>" href="../file_administrasi/<?= $file_kir ?>"> <?php echo "$file_kir </a> </td>
+     <td style='font-size: 14px' align = 'center'>$tanggal_kir</td>
      "; ?>
      <?php echo "<td style='font-size: 12px'>"; ?>
      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no']; ?>">Edit</button>
@@ -385,23 +410,81 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
               <input type="hidden" name="no" value="<?php echo $no;?>">
               <input type="hidden" name="no_polisi" value="<?php echo $no_polisi;?>">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <label>No Polisi</label>
                   <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required=""  value="<?php echo $no_polisi;?>" disabled>
                 </div>    
 
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <label>Jenis Kendaraan</label>
                   <input class="form-control form-control-sm" type="text" id="jenis_kendaraan" name="jenis_kendaraan"  value="<?php echo $jenis_kendaraan;?>">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <label>Wilayah Operasi</label>
                   <input class="form-control form-control-sm" type="text" id="wilayah_operasi" name="wilayah_operasi"  value="<?php echo $wilayah_operasi;?>">
                 </div>
               </div>
 
+              <br>
 
+              <div class="row">
+                <div class="col-md-12">
+                   <label>Upload File STNK</label> 
+                   <input type="file" name="file_stnk"> 
+                </div>    
+                <div class="col-md-12">
+                  <label>Tanggal STNK</label>
+                  <input type="date" id="tanggal_stnk" name="tanggal_stnk"  value="<?php echo $tanggal_stnk;?>">
+                </div>
+              </div>
+
+              <br>
+              
+              <div class="row">
+                <div class="col-md-12">
+                    <label>Upload File Tera Tangki</label> 
+                    <input type="file" name="file_tera_tangki"> 
+                </div>    
+                <div class="col-md-12">
+                    <label>Tanggal Tera Tangki</label>
+                    <input type="date" id="tanggal_tera_tangki" name="tanggal_tera_tangki"  value="<?php echo $tanggal_tera_tangki;?>">
+                </div>
+              </div>
+
+              <br>
+              
+              <div class="row">
+                <div class="col-md-12">
+                    <label>Upload File Tera Flowmeter</label> 
+                    <input type="file" name="file_tera_flowmeter"> 
+                </div>    
+                <div class="col-md-12">
+                  <label>Tanggal Tera Flowmeter</label>
+                  <input type="date" id="tanggal_tera_flowmeter" name="tanggal_tera_flowmeter"  value="<?php echo $tanggal_tera_flowmeter;?>">
+                </div>
+              </div>
+
+              <br>
+              
+              <div class="row">
+                <div class="col-md-12">
+                   <label>Upload File KIR</label> 
+                   <input type="file" name="file_kir"> 
+                </div>    
+                <div class="col-md-12">
+                  <label>Tanggal KIR</label>
+                  <input type="date" id="tanggal_kir" name="tanggal_kir"  value="<?php echo $tanggal_kir;?>">
+                </div>
+              </div>
+              <small>
+          <ul>
+             <li style="color: red;" >UTNUK FILE MASUKAN SATU PERSATU</li>
+          </ul>
+        </small>   
+
+                        
+                    
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary"> Ubah </button>
                 <button type="reset" class="btn btn-danger"> RESET</button>
@@ -411,6 +494,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
         </div>
       </div>
     </div>
+
+   
 
     <!-- Button Hapus -->
     <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
@@ -447,6 +532,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan");
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
 <br>

@@ -29,7 +29,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE no_polisi = '$no
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO kendaraan VALUES('','$no_polisi','','$jenis_kendaraan','$wilayah_operasi')");
+	$query = mysqli_query($koneksi,"INSERT INTO kendaraan VALUES('','$no_polisi','','$jenis_kendaraan','$wilayah_operasi','','','','','','','','')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMT';</script>";exit;
