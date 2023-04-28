@@ -34,9 +34,11 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'CBM' ");
+  $table2 = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-596' ");
 }
 else{
   $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'CBM'  ");
+  $table2 = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-596' ");
 }
 
 
@@ -191,7 +193,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRUsahaLainnya?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Usaha Lainnya</h5></a>"; ?>
+  <?php echo "<a href='VRUsahaLainnya?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Pengeluaran Lainnya</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -346,6 +348,65 @@ else{
 <hr>
 <br>
 <br>
+
+<h3 align = 'center'>Rincian Pengeluaran Lainnya Kasir CBM</h3>
+  
+  <!-- Tabel -->    
+  <div style="overflow-x: auto" align = 'center'>
+    <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Tanggal</th>
+        <th>REF</th>
+        <th>Akun</th>
+        <th>Keterangan</th>
+        <th>Jumlah Pengeluaran</th>
+        <th>Total</th>
+        <th>File</th>
+  
+      </tr>
+    </thead>
+    <tbody>
+      <?php 
+        $total = 0;
+      ?>
+  
+      <?php while($data = mysqli_fetch_array($table2)){
+        $no_transaksi = $data['no_pengeluaran'];
+        $tanggal =$data['tanggal'];
+        $referensi = $data['referensi'];
+        $nama_akun = $data['nama_akun'];
+        $keterangan = $data['keterangan'];
+        $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
+        $file_bukti = $data['file_bukti'];
+        $total = $total + $jumlah_pengeluaran;
+  
+        echo "<tr>
+        <td style='font-size: 14px'>$no_transaksi</td>
+        <td style='font-size: 14px'>$tanggal</td>
+        <td style='font-size: 14px'>$referensi</td>
+        <td style='font-size: 14px'>$nama_akun</td>
+        <td style='font-size: 14px'>$keterangan</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_pengeluaran); ?> <?php echo "</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+        <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+        "; ?>
+        
+  
+      <?php echo  " </td> </tr>";
+    }
+    ?>
+  
+  </tbody>
+  </table>
+  </div>
+  <br>
+  <br>
+  <hr>
+  <br>
+  <br>
+  
    
 
 </div>
@@ -427,7 +488,18 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: [ ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+      buttons: [ ]
     } );
 
     table.buttons().container()

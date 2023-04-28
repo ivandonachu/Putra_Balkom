@@ -622,7 +622,7 @@ $total_biaya_pemasaran = $total_biaya_pemasaran_op + $total_biaya_pemasaran_tk +
 //BIAYA USAHA LAINNYATK
 
 //oprasional
-$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi  != 'CBM' AND nama_rekening = 'CBM'");
+$table166 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_biaya_usaha_op FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Usaha Lainnya' AND referensi  = 'CBM' AND nama_rekening = 'CBM'");
 $data_biaya_usaha_op = mysqli_fetch_array($table166);
 $total_biaya_usaha_op = $data_biaya_usaha_op['total_biaya_usaha_op'];
 if (!isset($data_biaya_usaha_op['total_biaya_usaha_op'])) {
@@ -635,11 +635,21 @@ $total_biaya_usaha = $total_biaya_usaha_op;
 //oprasional
 $table166x = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pengeluaran_lainnya FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'CBM'");
 $data_pengeluaran_lainnya = mysqli_fetch_array($table166x);
-$total_pengeluaran_lainnya = $data_pengeluaran_lainnya['pengeluaran_lainnya'];
+$total_pengeluaran_lainnya_op = $data_pengeluaran_lainnya['pengeluaran_lainnya'];
 if (!isset($data_pengeluaran_lainnya['pengeluaran_lainnya'])) {
-    $total_pengeluaran_lainnya = 0;
+    $total_pengeluaran_lainnya_op = 0;
 }
-$total_pengeluaran_lainnya = $total_pengeluaran_lainnya;
+
+
+//kasir
+$table167x = mysqli_query($koneksicbm, "SELECT SUM(jumlah_pengeluaran) AS pengeluaran_lain_ksr FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-596' ");
+$data_pelainya_tk = mysqli_fetch_array($table167x);
+$total_pengeluaran_lainnya_tk = $data_pelainya_tk['pengeluaran_lain_ksr'];
+if (!isset($data_pelainya_tk['pengeluaran_lain_ksr'])) {
+    $total_pengeluaran_lainnya_tk = 0;
+}
+
+$total_pengeluaran_lainnya = $total_pengeluaran_lainnya_op + $total_pengeluaran_lainnya_tk;
 
 //BIAYA Perbaikan Kendaraan
 //bengkel
@@ -663,13 +673,21 @@ $total_perbaikan_ken3 = $data_perbaikan_ken3['total_perbaikan_ken3'];
 if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
     $total_perbaikan_ken3 = 0;
 }
+//biaya perbaikan pribadi
+$table178 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS perbaikan_pribadi FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Perbaikan Kendaraan Pribadi' AND referensi = 'CBM'");
+$data_perbaikan_pribadi = mysqli_fetch_array($table178);
+$total_perbaikan_pribadi = $data_perbaikan_pribadi['perbaikan_pribadi'];
+if (!isset($data_perbaikan_pribadi['perbaikan_pribadi'])) {
+    $total_perbaikan_pribadi = 0;
+}
+
 
 
 
 $total_bunga_bank_bni = 25000000 * $bulan_bunga_bni;
 $total_bunga_bank_bri = 23000000 * $bulan_bunga_bri;
 
-$total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
+$total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3 + $total_perbaikan_pribadi;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
                             $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni + $total_bunga_bank_bri;

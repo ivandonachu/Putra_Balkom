@@ -317,7 +317,7 @@ else{
     <h3 align = 'center'>Rincian Biaya Penjualan & Pemasaran Kasir</h3>
     <!-- Tabel -->    
     <div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -382,7 +382,7 @@ else{
 <h3 align = 'center'>Rincian Biaya Penjualan & Pemasaran Oprasional</h3>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -559,7 +559,7 @@ aria-hidden="true">
 </script>
 <script>
   $(document).ready(function() {
-    var table = $('#example1').DataTable( {
+    var table = $('#example2').DataTable( {
       lengthChange: false,
       buttons: [  ]
     } );

@@ -252,7 +252,7 @@ else{
 <h3 align = 'center'>Rincian Transport / Perjalanan Dinas Operasional CBM</h3>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -391,7 +391,11 @@ else{
 </table>
 </div>
 </div>
-
+<br>
+<br>
+<hr>
+<br>
+<br>
 
 </div>
 

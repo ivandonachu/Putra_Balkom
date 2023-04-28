@@ -242,7 +242,8 @@ else{
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -253,7 +254,6 @@ else{
       <th>No Rek</th>
       <th>Jumlah</th>
       <th>file</th>
-      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
@@ -322,6 +322,7 @@ else{
 <br>
 
 
+</div>
 </div>
 
 </div>

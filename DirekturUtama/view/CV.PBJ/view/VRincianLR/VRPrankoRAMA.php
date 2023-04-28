@@ -388,7 +388,7 @@ Logout
             $tagihan = $qty * $tarif;
             $total_tagihan_angkut = $total_tagihan_angkut + $tagihan;
         }
-        else if($kota == 'Mesuji'){
+        else if($kota == 'Kab Mesuji'){
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];

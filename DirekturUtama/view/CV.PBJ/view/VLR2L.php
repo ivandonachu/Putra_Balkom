@@ -1193,7 +1193,7 @@ aria-labelledby="userDropdown">
                                                     <td class="text-left">Bunga Bank</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_bunga_bank); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href=''></a></td>"; ?>
                                                 </tr>
 
                                                 <tr style="background-color:    #F0F8FF; ">
