@@ -941,7 +941,6 @@ function formatuang($angka){
                                 <tr>
         							<td><strong>Akun</strong></td>
         							<td class="text-center"><strong>Jumlah</strong></td>
-        							<td class="text-right"><strong>Aksi</strong></td>
                                 </tr>
     						</thead>
     						<tbody>
@@ -949,59 +948,48 @@ function formatuang($angka){
     							<tr>
     								<td>Total Tagihan</td>
     								<td class="text-center"><?php echo formatuang($total_tagihan_global);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td> <strong>Potongan Oprasional 10%</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_global);  ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 
                                 <tr>
         							<td>Biaya Kantor</td>
     								<td class="text-center"><?php echo formatuang($biaya_kantor_global);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Telepon & Listrik</td>
     								<td class="text-center"><?php echo formatuang($listrik_global);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Biaya Sewa</td>
     								<td class="text-center"><?php echo formatuang($sewa_global);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Alat Tulis Kantor</td>
     								<td class="text-center"><?php echo formatuang($atk_global);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
     								<td class="text-center"><?php echo formatuang($gaji_karyawan_global);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Transport / Perjalanan Dinas</td>
     								<td class="text-center"><?php echo formatuang($transport_global);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Konsumsi</td>
     								<td class="text-center"><?php echo formatuang($konsumsi_global); ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td><strong>Biaya Oprasional</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($total_oprasional_global); ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                               
     							<tr style="background-color: navy;  color:white;" >
     								<td><strong>Total Sisa Potongan </strong></td>
     								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_global - $total_oprasional_global ); ?></td>
-    								<td class="thick-line"></td>
     							</tr>
     						</tbody>
     					</table>
@@ -1034,7 +1022,6 @@ function formatuang($angka){
                                 <tr>
         							<td><strong>Akun</strong></td>
         							<td class="text-center"><strong>Jumlah</strong></td>
-        							<td class="text-right"><strong>Aksi</strong></td>
                                 </tr>
     						</thead>
     						<tbody>
@@ -1042,59 +1029,48 @@ function formatuang($angka){
     							<tr>
     								<td>Total Tagihan</td>
     								<td class="text-center"><?php echo formatuang($total_tagihan_ba);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td> <strong>Potongan Oprasional 10%</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_ba);  ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 
                                 <tr>
         							<td>Biaya Kantor</td>
     								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_ba);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Telepon & Listrik</td>
     								<td class="text-center"><?php echo formatuang($jml_listrik_ba);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Biaya Sewa</td>
     								<td class="text-center"><?php echo formatuang($jml_sewa_ba);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Alat Tulis Kantor</td>
     								<td class="text-center"><?php echo formatuang($jml_atk_ba);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
     								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_ba);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Transport / Perjalanan Dinas</td>
     								<td class="text-center"><?php echo formatuang($jml_transport_ba);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Konsumsi</td>
     								<td class="text-center"><?php echo formatuang($jml_konsumsi_ba); ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td><strong>Biaya Oprasional</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($total_oprasional_ba); ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                               
     							<tr style="background-color: navy;  color:white;" >
     								<td><strong>Total Sisa Potongan </strong></td>
     								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_ba - $total_oprasional_ba ); ?></td>
-    								<td class="thick-line"></td>
     							</tr>
     						</tbody>
     					</table>
@@ -1127,7 +1103,6 @@ function formatuang($angka){
                                 <tr>
         							<td><strong>Akun</strong></td>
         							<td class="text-center"><strong>Jumlah</strong></td>
-        							<td class="text-right"><strong>Aksi</strong></td>
                                 </tr>
     						</thead>
     						<tbody>
@@ -1135,59 +1110,48 @@ function formatuang($angka){
     							<tr>
     								<td>Total Tagihan</td>
     								<td class="text-center"><?php echo formatuang($total_tagihan_pa);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td> <strong>Potongan Oprasional 10%</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_pa);  ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 
                                 <tr>
         							<td>Biaya Kantor</td>
     								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_pa);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Telepon & Listrik</td>
     								<td class="text-center"><?php echo formatuang($jml_listrik_pa);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Biaya Sewa</td>
     								<td class="text-center"><?php echo formatuang($jml_sewa_pa);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Alat Tulis Kantor</td>
     								<td class="text-center"><?php echo formatuang($jml_atk_pa);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
     								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_pa);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Transport / Perjalanan Dinas</td>
     								<td class="text-center"><?php echo formatuang($jml_transport_pa);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Konsumsi</td>
     								<td class="text-center"><?php echo formatuang($jml_konsumsi_pa); ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td><strong>Biaya Oprasional</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($total_oprasional_pa); ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                               
     							<tr style="background-color: navy;  color:white;" >
     								<td><strong>Total Sisa Potongan </strong></td>
     								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_pa - $total_oprasional_pa); ?></td>
-    								<td class="thick-line"></td>
     							</tr>
     						</tbody>
     					</table>
@@ -1220,7 +1184,6 @@ function formatuang($angka){
                                 <tr>
         							<td><strong>Akun</strong></td>
         							<td class="text-center"><strong>Jumlah</strong></td>
-        							<td class="text-right"><strong>Aksi</strong></td>
                                 </tr>
     						</thead>
     						<tbody>
@@ -1228,59 +1191,48 @@ function formatuang($angka){
     							<tr>
     								<td>Total Tagihan</td>
     								<td class="text-center"><?php echo formatuang($total_tagihan_pl);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td> <strong>Potongan Oprasional 10%</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_pl);  ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 
                                 <tr>
         							<td>Biaya Kantor</td>
     								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_pl);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Telepon & Listrik</td>
     								<td class="text-center"><?php echo formatuang($jml_listrik_pl);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Biaya Sewa</td>
     								<td class="text-center"><?php echo formatuang($jml_sewa_pl);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Alat Tulis Kantor</td>
     								<td class="text-center"><?php echo formatuang($jml_atk_pl);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
     								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_pl);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Transport / Perjalanan Dinas</td>
     								<td class="text-center"><?php echo formatuang($jml_transport_pl);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Konsumsi</td>
     								<td class="text-center"><?php echo formatuang($jml_konsumsi_pl); ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td><strong>Biaya Oprasional</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($total_oprasional_pl); ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                               
     							<tr style="background-color: navy;  color:white;" >
     								<td><strong>Total Sisa Potongan </strong></td>
     								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_pl - $total_oprasional_pl ); ?></td>
-    								<td class="thick-line"></td>
     							</tr>
     						</tbody>
     					</table>
@@ -1313,7 +1265,6 @@ function formatuang($angka){
                                 <tr>
         							<td><strong>Akun</strong></td>
         							<td class="text-center"><strong>Jumlah</strong></td>
-        							<td class="text-right"><strong>Aksi</strong></td>
                                 </tr>
     						</thead>
     						<tbody>
@@ -1321,59 +1272,48 @@ function formatuang($angka){
     							<tr>
     								<td>Total Tagihan</td>
     								<td class="text-center"><?php echo formatuang($total_tagihan_tg);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td> <strong>Potongan Oprasional 10%</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($jumlah_potongan_tg);  ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 
                                 <tr>
         							<td>Biaya Kantor</td>
     								<td class="text-center"><?php echo formatuang($jml_biaya_kantor_tg);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Telepon & Listrik</td>
     								<td class="text-center"><?php echo formatuang($jml_listrik_tg);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Biaya Sewa</td>
     								<td class="text-center"><?php echo formatuang($jml_sewa_tg);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Alat Tulis Kantor</td>
     								<td class="text-center"><?php echo formatuang($jml_atk_tg);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Gaji Karyawan</td>
     								<td class="text-center"><?php echo formatuang($total_gaji_karyawan_tg);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Transport / Perjalanan Dinas</td>
     								<td class="text-center"><?php echo formatuang($jml_transport_tg);  ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr>
         							<td>Konsumsi</td>
     								<td class="text-center"><?php echo formatuang($jml_konsumsi_tg); ?></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                                 <tr  style="background-color:    #F0F8FF; ">
         							<td><strong>Biaya Oprasional</strong> </td>
     								<td class="text-center"><strong><?php echo formatuang($total_oprasional_tg); ?></strong></td>
-    								<?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
     							</tr>
                               
     							<tr style="background-color: navy;  color:white;" >
     								<td><strong>Total Sisa Potongan </strong></td>
     								<td class="no-line text-center"><?php echo formatuang($jumlah_potongan_tg - $total_oprasional_tg ); ?></td>
-    								<td class="thick-line"></td>
     							</tr>
     						</tbody>
     					</table>
@@ -1406,7 +1346,6 @@ function formatuang($angka){
                                 <tr>
                       <td><strong>Akun</strong></td>
                       <td class="text-center"><strong>Jumlah</strong></td>
-                      <td class="text-right"><strong>Aksi</strong></td>
                                 </tr>
                 </thead>
                 <tbody>
@@ -1414,59 +1353,48 @@ function formatuang($angka){
                   <tr>
                     <td>Total Tagihan</td>
                     <td class="text-center"><?php echo formatuang($total_tagihan_ub);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRuangOPT?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr  style="background-color:    #F0F8FF; ">
                       <td> <strong>Potongan Oprasional 10%</strong> </td>
                     <td class="text-center"><strong><?php echo formatuang($jumlah_potongan_ub);  ?></strong></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 
                                 <tr>
                       <td>Biaya Kantor</td>
                     <td class="text-center"><?php echo formatuang($jml_biaya_kantor_ub);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Telepon & Listrik</td>
                     <td class="text-center"><?php echo formatuang($jml_listrik_ub);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Biaya Sewa</td>
                     <td class="text-center"><?php echo formatuang($jml_sewa_ub);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Alat Tulis Kantor</td>
                     <td class="text-center"><?php echo formatuang($jml_atk_ub);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Gaji Karyawan</td>
                     <td class="text-center"><?php echo formatuang($total_gaji_karyawan_ub);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Transport / Perjalanan Dinas</td>
                     <td class="text-center"><?php echo formatuang($jml_transport_ub);  ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr>
                       <td>Konsumsi</td>
                     <td class="text-center"><?php echo formatuang($jml_konsumsi_ub); ?></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                                 <tr  style="background-color:    #F0F8FF; ">
                       <td><strong>Biaya Oprasional</strong> </td>
                     <td class="text-center"><strong><?php echo formatuang($total_oprasional_ub); ?></strong></td>
-                    <?php echo "<td class='text-right'><a href='VRincianPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                   </tr>
                               
                   <tr style="background-color: navy;  color:white;" >
                     <td><strong>Total Sisa Potongan </strong></td>
                     <td class="no-line text-center"><?php echo formatuang($jumlah_potongan_ub - $total_oprasional_ub ); ?></td>
-                    <td class="thick-line"></td>
                   </tr>
                 </tbody>
               </table>
