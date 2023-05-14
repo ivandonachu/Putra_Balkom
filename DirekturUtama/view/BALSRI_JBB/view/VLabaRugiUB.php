@@ -200,7 +200,7 @@ else{
     $table10 =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
 
     //akses kredit
-    $table101 =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    $table101 =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
     //totalkredit
     $total_kredit = 0;
     while($data = mysqli_fetch_array($table101)){

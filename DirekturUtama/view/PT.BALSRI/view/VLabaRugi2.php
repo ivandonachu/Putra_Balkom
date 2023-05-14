@@ -223,6 +223,7 @@ $uang_bbm_spbu = $total_bbm_spbu * 10000;
     $total_kredit = 0;
     while($data = mysqli_fetch_array($table101)){
         $mt = $data['mt'];
+        var_dump($mt);
         $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
         $dataa = mysqli_fetch_array($tablee);
         $jml_kredit= $dataa['total_kredit'];
