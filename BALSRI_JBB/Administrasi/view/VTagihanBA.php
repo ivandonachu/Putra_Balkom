@@ -686,7 +686,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php
                                     $dataSelect = $data['amt'];
                                     include 'koneksi.php';
-                                    $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Padalarang'");
+                                    $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Balongan'");
 
                                     while ($data2 = mysqli_fetch_array($result)) {
                                       $nama_driver = $data2['nama_driver'];
@@ -705,7 +705,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php
                                     $dataSelect = $data['mt'];
                                     include 'koneksi.php';
-                                    $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Padalarang'");
+                                    $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Balongan'");
 
                                     while ($data2 = mysqli_fetch_array($result)) {
                                       $no_polisi = $data2['no_polisi'];
