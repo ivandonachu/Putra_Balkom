@@ -1643,7 +1643,7 @@ data-parent="#accordionSidebar">
     }
         }
     else if ($pembayaran == 'Bon') {
-        $sql_bon = mysqli_query($koneksipbr, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
+        $sql_bon = mysqli_query($koneksi, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
         $data_bon = mysqli_fetch_array($sql_bon);
         $jumlah_bon = $data_bon['jumlah_bayar'];
         if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
@@ -1702,7 +1702,7 @@ data-parent="#accordionSidebar">
     }
         }
     else if ($pembayaran == 'Bon') {
-        $sql_bon = mysqli_query($koneksipbr, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
+        $sql_bon = mysqli_query($koneksi, "SELECT * FROM piutang_dagang WHERE no_transaksi = '$no_transaksi' ");
         $data_bon = mysqli_fetch_array($sql_bon);
         $jumlah_bon = $data_bon['jumlah_bayar'];
         if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
