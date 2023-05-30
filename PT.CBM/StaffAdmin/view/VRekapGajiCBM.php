@@ -55,7 +55,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rekap Gaji Karyawan</title>
+  <title>Rekap Gaji Karyawan CBM</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -240,7 +240,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRekapGajiCBM'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Karyawan</h5></a>"; ?>
+      <?php echo "<a href='VRekapGajiCBM'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Karyawan CBM</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -310,7 +310,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
       <div align="right">
-      <?php echo "<a href='VPrintSlipGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' target='_blank'><button style='color:black;
+      <?php echo "<a href='VPrintSlipGajiCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' target='_blank'><button style='color:black;
                                              '  type='submit' class=' btn btn-secondary' >  <i class='fa-solid fa-print'></i> Print Slip Gaji</button></a>";
                                                 
                                              ?>
@@ -341,7 +341,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <div class="row">
               <div class="col-md-6">
                  <label>Tanggal</label>
-                 <input type="date" id="tanggal" name="tanggal" required="">
+                 <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
               </div>
               <div class="col-md-6">
              
@@ -387,7 +387,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <div class="row">
               <div class="col-md-4">
                  <label>Tanggal</label>
-                 <input type="date" id="tanggal" name="tanggal" required="">
+                 <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
               </div>
               <div class="col-md-4">
                <label>Nama Karyawan</label>
@@ -593,7 +593,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <div class="row">
               <div class="col-md-4">
                  <label>Tanggal</label>
-                 <input type="date" name="tanggal" required="" value="<?php echo $tanggal;?>">
+                 <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>">
               </div>
               <div class="col-md-4">
                <label>Nama Karyawan</label>
