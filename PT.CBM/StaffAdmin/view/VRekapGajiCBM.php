@@ -458,7 +458,7 @@ if ($tanggal_awal == $tanggal_akhir) {
              </div>
              <div class="col-md-3">
                 <label>Keterangan</label>
-                <select id="keterangan" name="keterangan" class="form-control">
+                <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                   <option>Transfer</option>
                   <option>Cash</option>
                 </select>
@@ -664,7 +664,7 @@ if ($tanggal_awal == $tanggal_akhir) {
              </div>
              <div class="col-md-3">
                 <label>Keterangan</label>
-                <select name="keterangan" class="form-control">
+                <select class="form-control form-control-sm" name="keterangan" class="form-control">
                   <?php
                   $dataSelect = $data['keterangan']; ?>
                   <option <?php echo ($dataSelect == 'Transfer') ? "selected" : "" ?>>Transfer</option>

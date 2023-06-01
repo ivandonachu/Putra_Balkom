@@ -221,7 +221,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_cbm");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VListGajiCBM'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Gaji Driver CBM</h5></a>"; ?>
+      <?php echo "<a href='VListGajiDriverCBM'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Gaji Driver CBM</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -386,7 +386,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_cbm");
              </div>
              <div class="col-md-4">
                 <label>Keterangan</label>
-                <select id="keterangan" name="keterangan" class="form-control">
+                <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                   <option>Transfer</option>
                   <option>Cash</option>
                 </select>
@@ -417,7 +417,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_cbm");
   <thead>
     <tr>  
           <th style="font-size: 14px" scope="col">No</th>
-          <th style="font-size: 14px" scope="col">Nama Karyawan</th>
+          <th style="font-size: 14px" scope="col">Nama Driver</th>
           <th style="font-size: 14px" scope="col">Jabatan</th>
           <th style="font-size: 14px" scope="col">Rit NJE</th>
           <th style="font-size: 14px" scope="col">Upah NJE</th>
@@ -548,7 +548,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_cbm");
              </div>
              <div class="col-md-4">
                  <label>Keterangan</label>
-                <select name="keterangan" class="form-control">
+                <select class="form-control form-control-sm" name="keterangan" class="form-control">
                   <?php
                   $dataSelect = $data['keterangan']; ?>
                   <option <?php echo ($dataSelect == 'Transfer') ? "selected" : "" ?>>Transfer</option>

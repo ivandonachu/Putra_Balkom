@@ -389,6 +389,8 @@ $beruk = 'Kebun Seberuk';
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR/MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapUang">Rekap Uang Masuk</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapTF">Rekap TF ke Bank</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VInventorySparepart">Inventory Sparepart</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRiwayatSparepart">Riwayat Sparepart</a>
                     </div>
                 </div>
             </li>

@@ -293,7 +293,7 @@ if (isset($_GET['tanggal1'])) {
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-  <?php echo "<form  method='POST' action='VRekapGajiCBM' style='margin-bottom: 15px;'>" ?>
+  <?php echo "<form  method='POST' action='VRekapGajiDriverCBM' style='margin-bottom: 15px;'>" ?>
             <div>
               <div align="left" style="margin-left: 20px;">
                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -431,7 +431,7 @@ if (isset($_GET['tanggal1'])) {
              </div>
              <div class="col-md-4">
                 <label>Keterangan</label>
-                <select id="keterangan" name="keterangan" class="form-control">
+                <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                   <option>Transfer</option>
                   <option>Cash</option>
                 </select>
@@ -601,7 +601,7 @@ if (isset($_GET['tanggal1'])) {
              </div>
              <div class="col-md-4">
                  <label>Keterangan</label>
-                <select name="keterangan" class="form-control">
+                <select class="form-control form-control-sm" name="keterangan" class="form-control">
                   <?php
                   $dataSelect = $data['keterangan']; ?>
                   <option <?php echo ($dataSelect == 'Transfer') ? "selected" : "" ?>>Transfer</option>

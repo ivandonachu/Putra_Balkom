@@ -100,13 +100,13 @@ $nama = $data['nama_karyawan'];
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Oprasional</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VListDriver">List Driver</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VListRute">List Rute</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Penggunaan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo Baru</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Pembelian BBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR/MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapUang">Rekap Uang Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapTF">Rekap TF ke Bank</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VInventorySparepart">Inventory Sparepart</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRiwayatSparepart">Riwayat Sparepart</a>
                     </div>
                 </div>
             </li>

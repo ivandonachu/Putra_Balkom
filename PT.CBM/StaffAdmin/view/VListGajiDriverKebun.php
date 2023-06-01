@@ -22,7 +22,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-$table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
+$table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_kebun");
 
 ?>
  <!DOCTYPE html>
@@ -36,7 +36,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>List Gaji Karyawan CBM</title>
+  <title>List Gaji Driver Kebun</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -221,7 +221,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VListGajiDriverCBM'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Gaji Karyawan CBM</h5></a>"; ?>
+      <?php echo "<a href='VListGajiDriverKebun'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Gaji Driver Kebun</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -295,7 +295,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_rekap_gaji_cbm' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_rekap_gaji_driver_kebun' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
@@ -333,7 +333,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
        <div class="modal-dialog modal-lg" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h5 class="modal-title"> Form Gaji Karyawan</h5>
+            <h5 class="modal-title"> Form List Gaji Karyawan</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -341,14 +341,14 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_list_gaji_cbm' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_list_gaji_driver_kebun' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
             <div class="row">
               <div class="col-md-6">
-               <label>Nama Karyawan</label>
-               <input class="form-control form-control-sm" type="text" name="nama_karyawan" required="">
+               <label>Nama Driver</label>
+               <input class="form-control form-control-sm" type="text" name="nama_driver" required="">
              </div>
              <div class="col-md-6">
                <label>Jabatan</label>
@@ -359,61 +359,32 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
            <br>
 
            <div class="row">
-              <div class="col-md-3">
-               <label>Gaji Pokok</label>
-               <input class="form-control form-control-sm" type="number" name="gaji_pokok" required="" value="0">
+              <div class="col-md-4">
+               <label>Rit Muat Sawit Dabuk</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_sawit_dabuk" required="" value="0">
              </div>
-             <div class="col-md-3">
-               <label>Tunjangan Jabatan</label>
-               <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="0">
+             <div class="col-md-4">
+               <label>Rit Muat Getah Palembang</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_getah_palembang" required="" value="0">
              </div>
-             <div class="col-md-3">
-               <label>Tunjangan Operasional</label>
-               <input class="form-control form-control-sm" type="number" name="tunjangan_operasional" required="" value="0">
-             </div>
-             <div class="col-md-3">
-               <label>Tunjangan Asuransi</label>
-               <input class="form-control form-control-sm" type="number" name="tunjangan_asuransi" required="" value="0">
+             <div class="col-md-4">
+               <label>Rit Muat Pupuk ke Gudang</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_pupuk_ke_gudang" required="" value="0">
              </div>
            </div>
 
            <br>
 
            <div class="row">
-              <div class="col-md-3">
-               <label>Uang Makan / Bulan</label>
-               <input class="form-control form-control-sm" type="number" name="uang_makan_bulan" required="" value="0">
+              <div class="col-md-4">
+               <label>Rit Muat Nipah</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_nipah" required="" value="0">
              </div>
-             <div class="col-md-3">
-               <label>Fee Kehadiran</label>
-               <input class="form-control form-control-sm" type="number" name="fee_kehadiran" required="" value="0">
+             <div class="col-md-4">
+               <label>Rit Kampas Pupuk Kebun Lenkiti</label>
+               <input class="form-control form-control-sm" type="number" name="rit_kampas_pupuk_kebun_lengkiti" required="" value="0">
              </div>
-             <div class="col-md-3">
-               <label>Lembur</label>
-               <input class="form-control form-control-sm" type="number" name="lembur" required="" value="0">
-             </div>
-             <div class="col-md-3">
-               <label>Absen Terlambat</label>
-               <input class="form-control form-control-sm" type="number" name="absen_terlambat" required="" value="0">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-              <div class="col-md-3">
-               <label>Denda Absen</label>
-               <input class="form-control form-control-sm" type="number" name="denda_absen" required="" value="0">
-             </div>
-             <div class="col-md-3">
-               <label>Angsuran Bon Bulanan</label>
-               <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="0">
-             </div>
-             <div class="col-md-3">
-               <label>Bonus</label>
-               <input class="form-control form-control-sm" type="number" name="bonus" required="" value="0">
-             </div>
-             <div class="col-md-3">
+             <div class="col-md-4">
                 <label>Keterangan</label>
                 <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                   <option>Transfer</option>
@@ -421,7 +392,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
                 </select>
            </div>
            </div>
-
 
            <br>
 
@@ -447,19 +417,19 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
   <thead>
     <tr>  
           <th style="font-size: 14px" scope="col">No</th>
-          <th style="font-size: 14px" scope="col">Nama Karyawan</th>
+          <th style="font-size: 14px" scope="col">Nama Driver</th>
           <th style="font-size: 14px" scope="col">Jabatan</th>
-          <th style="font-size: 14px" scope="col">Gaji Pokok</th>
-          <th style="font-size: 14px" scope="col">Tunjangan Jabatan</th>
-          <th style="font-size: 14px" scope="col">Tunjangan Oprasional</th>
-          <th style="font-size: 14px" scope="col">Tunjangan Asuransi</th>
-          <th style="font-size: 14px" scope="col">Uang Makan / Bulan</th>
-          <th style="font-size: 14px" scope="col">Fee Kehadiran</th>
-          <th style="font-size: 14px" scope="col">Lembur</th>
-          <th style="font-size: 14px" scope="col">Absen Terlambat</th>
-          <th style="font-size: 14px" scope="col">Denda Absen</th>
-          <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan</th>
-          <th style="font-size: 14px" scope="col">Bonus</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Sawit Dabuk</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Sawit Dabuk</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Getah Palembang</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Getah Palembang</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Pupuk ke Gudang</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Pupuk ke Gudang</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Nipah</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Nipah</th>
+          <th style="font-size: 14px" scope="col">Rit Kampas Pupuk Kebun Lenkiti</th>
+          <th style="font-size: 14px" scope="col">Upah Kampas Pupuk Kebun Lenkiti</th>
+          <th style="font-size: 14px" scope="col">Total Gaji </th>
           <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
           <th style="font-size: 14px" scope="col">Keterangan </th>
           <th style="font-size: 14px" scope="col"></th>
@@ -480,19 +450,19 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
 
         <?php while($data2 = mysqli_fetch_array($table)){
           $no_karyawan = $data2['no_karyawan'];
-          $nama_karyawan =$data2['nama_karyawan'];
+          $nama_driver =$data2['nama_driver'];
           $jabatan = $data2['jabatan'];
-          $gaji_pokok = $data2['gaji_pokok'];
-          $tunjangan_jabatan = $data2['tunjangan_jabatan'];
-          $tunjangan_operasional = $data2['tunjangan_operasional'];
-          $tunjangan_asuransi = $data2['tunjangan_asuransi'];
-          $uang_makan_bulan = $data2['uang_makan_bulan'];
-          $fee_kehadiran = $data2['fee_kehadiran'];
-          $lembur = $data2['lembur'];
-          $absen_terlambat = $data2['absen_terlambat'];
-          $denda_absen = $data2['denda_absen'];
-          $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
-          $bonus = $data2['bonus'];
+          $rit_muat_sawit_dabuk = $data2['rit_muat_sawit_dabuk'];
+          $upah_muat_sawit_dabuk = $data2['upah_muat_sawit_dabuk'];
+          $rit_muat_getah_palembang = $data2['rit_muat_getah_palembang'];
+          $upah_muat_getah_palembang = $data2['upah_muat_getah_palembang'];
+          $rit_muat_pupuk_ke_gudang = $data2['rit_muat_pupuk_ke_gudang'];
+          $upah_muat_pupuk_ke_gudang = $data2['upah_muat_pupuk_ke_gudang'];
+          $rit_muat_nipah = $data2['rit_muat_nipah'];
+          $upah_muat_nipah = $data2['upah_muat_nipah'];
+          $rit_kampas_pupuk_kebun_lengkiti = $data2['rit_kampas_pupuk_kebun_lengkiti'];
+          $upah_kampas_pupuk_kebun_lengkiti = $data2['upah_kampas_pupuk_kebun_lengkiti'];
+          $total_gaji = $data2['total_gaji'];
           $total_gaji_diterima = $data2['total_gaji_diterima'];
           $keterangan = $data2['keterangan'];
           $no_urut = $no_urut + 1 ;
@@ -507,19 +477,19 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
           }
           echo "<tr>
           <td style='font-size: 14px'>$no_urut</td>
-          <td style='font-size: 14px'>$nama_karyawan</td>
+          <td style='font-size: 14px'>$nama_driver</td>
           <td style='font-size: 14px'>$jabatan</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($gaji_pokok); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_jabatan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_operasional); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_asuransi); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan_bulan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($fee_kehadiran); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($lembur); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($absen_terlambat); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($denda_absen); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_muat_sawit_dabuk</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_sawit_dabuk); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_muat_getah_palembang</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_getah_palembang); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_muat_pupuk_ke_gudang</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_pupuk_ke_gudang); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_muat_nipah</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_nipah); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_kampas_pupuk_kebun_lengkiti</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_kampas_pupuk_kebun_lengkiti); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
           <td style='font-size: 14px'>$keterangan</td>
           <td style='font-size: 14px'>"; ?>
@@ -532,7 +502,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
            <div class="modal-dialog modal-lg" role ="document">
              <div class="modal-content"> 
               <div class="modal-header">
-                <h5 class="modal-title"> Form Edit Gaji Karyawan </h5>
+                <h5 class="modal-title"> Form Edit List Gaji Karyawan </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                   <span aria-hidden="true"> &times; </span>
                 </button>
@@ -540,14 +510,16 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
 
           <!-- Form Edit Data -->
           <div class="modal-body">
-              <form action="../proses/edit_list_gaji_cbm" enctype="multipart/form-data" method="POST">
+              <form action="../proses/edit_list_gaji_driver_kebun" enctype="multipart/form-data" method="POST">
                 
             <input type="hidden" name="no_karyawan" value="<?php echo $no_karyawan;?>"> 
 
+           <br>
+
             <div class="row">
               <div class="col-md-6">
-               <label>Nama Karyawan</label>
-               <input class="form-control form-control-sm" type="text" name="nama_karyawan" required="" value="<?php echo $nama_karyawan;?>">
+               <label>Nama Driver</label>
+               <input class="form-control form-control-sm" type="text" name="nama_driver" required="" value="<?php echo $nama_driver;?>">
              </div>
              <div class="col-md-6">
                <label>Jabatan</label>
@@ -558,62 +530,33 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
            <br>
 
            <div class="row">
-              <div class="col-md-3">
-               <label>Gaji Pokok</label>
-               <input class="form-control form-control-sm" type="number" name="gaji_pokok" required="" value="<?php echo $gaji_pokok;?>">
+              <div class="col-md-4">
+               <label>Rit Muat Sawit Dabuk</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_sawit_dabuk" required="" value="<?php echo $rit_muat_sawit_dabuk;?>">
              </div>
-             <div class="col-md-3">
-               <label>Tunjangan Jabatan</label>
-               <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="<?php echo $tunjangan_jabatan;?>">
+             <div class="col-md-4">
+               <label>Rit Muat Getah Palembang</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_getah_palembang" required="" value="<?php echo $rit_muat_getah_palembang;?>">
              </div>
-             <div class="col-md-3">
-               <label>Tunjangan Operasional</label>
-               <input class="form-control form-control-sm" type="number" name="tunjangan_operasional" required="" value="<?php echo $tunjangan_operasional;?>">
-             </div>
-             <div class="col-md-3">
-               <label>Tunjangan Asuransi</label>
-               <input class="form-control form-control-sm" type="number" name="tunjangan_asuransi" required="" value="<?php echo $tunjangan_asuransi;?>">
+             <div class="col-md-4">
+               <label>Rit Muat Pupuk ke Gudang</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_pupuk_ke_gudang" required="" value="<?php echo $rit_muat_pupuk_ke_gudang;?>">
              </div>
            </div>
 
            <br>
 
            <div class="row">
-              <div class="col-md-3">
-               <label>Uang Makan / Bulan</label>
-               <input class="form-control form-control-sm" type="number" name="uang_makan_bulan" required="" value="<?php echo $uang_makan_bulan;?>">
+              <div class="col-md-4">
+               <label>Rit Muat Nipah</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_nipah" required="" value="<?php echo $rit_muat_nipah;?>">
              </div>
-             <div class="col-md-3">
-               <label>Fee Kehadiran</label>
-               <input class="form-control form-control-sm" type="number" name="fee_kehadiran" required="" value="<?php echo $fee_kehadiran;?>">
+             <div class="col-md-4">
+               <label>Rit Kampas Pupuk Kebun Lenkiti</label>
+               <input class="form-control form-control-sm" type="number" name="rit_kampas_pupuk_kebun_lengkiti" required="" value="<?php echo $rit_kampas_pupuk_kebun_lengkiti;?>">
              </div>
-             <div class="col-md-3">
-               <label>Lembur</label>
-               <input class="form-control form-control-sm" type="number" name="lembur" required="" value="<?php echo $lembur;?>">
-             </div>
-             <div class="col-md-3">
-               <label>Absen Terlambat</label>
-               <input class="form-control form-control-sm" type="number" name="absen_terlambat" required="" value="<?php echo $absen_terlambat;?>">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-              <div class="col-md-3">
-               <label>Denda Absen</label>
-               <input class="form-control form-control-sm" type="number" name="denda_absen" required="" value="<?php echo $denda_absen;?>">
-             </div>
-             <div class="col-md-3">
-               <label>Angsuran Bon Bulanan</label>
-               <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="<?php echo $angsuran_bon_bulanan;?>">
-             </div>
-             <div class="col-md-3">
-               <label>Bonus</label>
-               <input class="form-control form-control-sm" type="number" name="bonus" required="" value="<?php echo $bonus;?>">
-             </div>
-             <div class="col-md-3">
-                <label>Keterangan</label>
+             <div class="col-md-4">
+             <label>Keterangan</label>
                 <select class="form-control form-control-sm" name="keterangan" class="form-control">
                   <?php
                   $dataSelect = $data['keterangan']; ?>
@@ -623,9 +566,9 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
            </div>
            </div>
 
+         
 
            <br>
-
 
 
 
@@ -646,14 +589,14 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Gaji Karyawan </b> </h4>
+      <h4 class="modal-title"> <b> Hapus List Gaji Karyawan </b> </h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="close">
         <span aria-hidden="true"> &times; </span>
       </button>
     </div>
 
     <div class="modal-body">
-      <form action="../proses/hapus_list_gaji_cbm" method="POST">
+      <form action="../proses/hapus_list_gaji_driver_kebun" method="POST">
         <input type="hidden" name="no_karyawan" value="<?php echo $no_karyawan;?>">
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             
