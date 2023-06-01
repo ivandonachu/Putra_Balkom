@@ -584,6 +584,7 @@ $beruk = 'Kebun Seberuk';
             <option>Uang Jalan</option>
             <option>Saldo Brankas</option>
             <option>Sparepart</option>
+            <option>Stok Sparepart Gudang</option>
           </select>
         </div>            
         <div class="col-md-6">
@@ -801,6 +802,7 @@ $beruk = 'Kebun Seberuk';
             <option <?php echo($dataSelect == 'Uang Jalan')?"selected": ""?>>Uang Jalan</option>
             <option <?php echo($dataSelect == 'Saldo Brankas')?"selected": ""?>>Saldo Brankas</option>
             <option <?php echo($dataSelect == 'Sparepart')?"selected": ""?>>Sparepart</option>
+            <option <?php echo($dataSelect == 'Stok Sparepart Gudang')?"selected": ""?>>Stok Sparepart Gudang</option>
           </select>
 
         </div>
