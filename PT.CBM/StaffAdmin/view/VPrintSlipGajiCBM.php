@@ -72,7 +72,7 @@ $html = '
         $denda_absen = $data['denda_absen'];
         $angsuran_bon_bulanan = $data['angsuran_bon_bulanan'];
         $bonus = $data['bonus'];
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur +$bonus;
+        $total_gaji_diterima = $data['total_gaji_diterima'];
         $keterangan = $data['keterangan'];
 
         $html .= '
