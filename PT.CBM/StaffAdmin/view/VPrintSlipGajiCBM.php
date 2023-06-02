@@ -62,7 +62,9 @@ $html = '
         $gaji_pokok = $data['gaji_pokok'];
         $tunjangan_jabatan = $data['tunjangan_jabatan'];
         $tunjangan_operasional = $data['tunjangan_operasional'];
-        $tunjangan_asuransi = $data['tunjangan_asuransi'];
+        $bpjs_kesehatan = $data['bpjs_kesehatan'];
+        $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
+        $asuransi = $bpjs_kesehatan + $bpjs_ketenagakerjaan;
         $uang_makan_bulan = $data['uang_makan_bulan'];
         $fee_kehadiran = $data['fee_kehadiran'];
         $lembur = $data['lembur'];
@@ -111,8 +113,8 @@ $html = '
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($tunjangan_operasional) .'</td>
         </tr>
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Tunjangan Asuransi</td>
-        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($tunjangan_asuransi) .'</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Asuransi</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($asuransi) .'</td>
         </tr>
         <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Uang Makan per Bulan</td>

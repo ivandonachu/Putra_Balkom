@@ -29,8 +29,8 @@ $rit_nje = $_POST['rit_nje'];
 $upah_nje = 100000 * $rit_nje;
 $rit_gas_palembang = $_POST['rit_gas_palembang'];
 $upah_gas_palembang = 150000 * $rit_gas_palembang;
-$tunjangan_asuransi = $_POST['tunjangan_asuransi'];
-$lain_lain = $_POST['lain_lain'];
+$bpjs_kesehatan = $_POST['bpjs_kesehatan'];
+$bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
 $angsuran_bon_bulanan = $_POST['angsuran_bon_bulanan'];
 $total_gaji = $upah_nje + $upah_gas_palembang + $tunjangan_asuransi;
 $total_gaji_diterima =  $upah_nje + $upah_gas_palembang ;
@@ -42,7 +42,7 @@ $keterangan = $_POST['keterangan'];
 
 
 	$query = mysqli_query($koneksi,"UPDATE rekap_gaji_driver_cbm SET tanggal = '$tanggal', nama_driver = '$nama_driver', jabatan = '$jabatan' , rit_nje = '$rit_nje' , upah_nje = '$upah_nje' , rit_gas_palembang = '$rit_gas_palembang' , 
-                                                             upah_gas_palembang = '$upah_gas_palembang', lain_lain = '$lain_lain', angsuran_bon_bulanan = '$angsuran_bon_bulanan', total_gaji = '$total_gaji' , 
+                                                             upah_gas_palembang = '$upah_gas_palembang', bpjs_kesehatan = '$bpjs_kesehatan' , bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan', angsuran_bon_bulanan = '$angsuran_bon_bulanan', total_gaji = '$total_gaji' , 
                                                              total_gaji_diterima = '$total_gaji_diterima' , keterangan = '$keterangan'   WHERE no_riwayat = '$no_riwayat'");
 
 

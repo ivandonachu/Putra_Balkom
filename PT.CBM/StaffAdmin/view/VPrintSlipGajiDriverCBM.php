@@ -64,8 +64,9 @@ $html = '
         $upah_nje = $data['upah_nje'];
         $rit_gas_palembang = $data['rit_gas_palembang'];
         $upah_gas_palembang = $data['upah_gas_palembang'];
-        $tunjangan_asuransi = $data['tunjangan_asuransi'];
-        $lain_lain = $data['lain_lain'];
+        $bpjs_kesehatan = $data['bpjs_kesehatan'];
+        $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
+        $asuransi = $bpjs_kesehatan + $bpjs_ketenagakerjaan;
         $angsuran_bon_bulanan = $data['angsuran_bon_bulanan'];
         $total_gaji = $data['total_gaji'];
         $total_gaji_diterima = $data['total_gaji_diterima'];
@@ -113,12 +114,8 @@ $html = '
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_gas_palembang) .'</td>
         </tr>
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Tunjangan Asuransi</td>
-        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($tunjangan_asuransi) .'</td>
-        </tr>
-        <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Lain - Lain</td>
-        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($lain_lain) .'</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Asuransi</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($asuransi) .'</td>
         </tr>
     
         </table>
