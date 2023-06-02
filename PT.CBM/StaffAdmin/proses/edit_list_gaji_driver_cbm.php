@@ -29,7 +29,7 @@ $upah_gas_palembang = 150000 * $rit_gas_palembang;
 $bpjs_kesehatan = $_POST['bpjs_kesehatan'];
 $bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
 $angsuran_bon_bulanan = $_POST['angsuran_bon_bulanan'];
-$total_gaji = $upah_nje + $upah_gas_palembang + $tunjangan_asuransi;
+$total_gaji = $upah_nje + $upah_gas_palembang + $bpjs_kesehatan + $bpjs_ketenagakerjaan;
 $total_gaji_diterima =  $upah_nje + $upah_gas_palembang ;
 $keterangan = $_POST['keterangan'];
 
