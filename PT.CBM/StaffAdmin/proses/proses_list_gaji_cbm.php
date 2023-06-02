@@ -25,7 +25,8 @@ exit;
     $gaji_pokok = $_POST['gaji_pokok'];
     $tunjangan_jabatan = $_POST['tunjangan_jabatan'];
     $tunjangan_operasional = $_POST['tunjangan_operasional'];
-    $tunjangan_asuransi = $_POST['tunjangan_asuransi'];
+    $bpjs_kesehatan = $_POST['bpjs_kesehatan'];
+    $bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
     $uang_makan_bulan = $_POST['uang_makan_bulan'];
     $fee_kehadiran = $_POST['fee_kehadiran'];
     $lembur = $_POST['lembur'];
@@ -33,11 +34,18 @@ exit;
     $denda_absen = $_POST['denda_absen'];
     $angsuran_bon_bulanan = $_POST['angsuran_bon_bulanan'];
     $bonus = $_POST['bonus'];
-    $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur +$bonus;
+    if($nama_karyawan == 'Septian Andriansyah' ){
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
+        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus  ;
+    }
+    else{
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_ketenagakerjaan;
+        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus;
+    }
     $keterangan = $_POST['keterangan'];
 
-$query = mysqli_query($koneksi,"INSERT INTO list_gaji_cbm VALUES('','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_operasional','$tunjangan_asuransi','$uang_makan_bulan','$fee_kehadiran','$lembur'
-                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$total_gaji_diterima','$keterangan')");
+$query = mysqli_query($koneksi,"INSERT INTO list_gaji_cbm VALUES('','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_operasional','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$uang_makan_bulan','$fee_kehadiran','$lembur'
+                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 
 if ($query != "") {

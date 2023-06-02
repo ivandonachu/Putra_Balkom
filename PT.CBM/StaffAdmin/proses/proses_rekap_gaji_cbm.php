@@ -29,7 +29,8 @@ while($data2 = mysqli_fetch_array($table)){
     $gaji_pokok = $data2['gaji_pokok'];
     $tunjangan_jabatan = $data2['tunjangan_jabatan'];
     $tunjangan_operasional = $data2['tunjangan_operasional'];
-    $tunjangan_asuransi = $data2['tunjangan_asuransi'];
+    $bpjs_kesehatan = $data2['bpjs_kesehatan'];
+    $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
     $uang_makan_bulan = $data2['uang_makan_bulan'];
     $fee_kehadiran = $data2['fee_kehadiran'];
     $lembur = $data2['lembur'];
@@ -37,11 +38,18 @@ while($data2 = mysqli_fetch_array($table)){
     $denda_absen = $data2['denda_absen'];
     $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
     $bonus = $data2['bonus'];
-    $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur +$bonus;
+    if($nama_karyawan == 'Septian Andriansyah' ){
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
+        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus  ;
+    }
+    else{
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_ketenagakerjaan;
+        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus;
+    }
     $keterangan = $data2['keterangan'];
 
-$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_cbm VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_operasional','$tunjangan_asuransi','$uang_makan_bulan','$fee_kehadiran','$lembur'
-                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$total_gaji_diterima','$keterangan')");
+$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_cbm VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_operasional','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$uang_makan_bulan','$fee_kehadiran','$lembur'
+                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 }
 
