@@ -23,26 +23,25 @@ $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
-
 if (isset($_GET['tanggal1'])) {
-    $tanggal_awal = $_GET['tanggal1'];
-    $tanggal_akhir = $_GET['tanggal2'];
-  } elseif (isset($_POST['tanggal1'])) {
-    $tanggal_awal = $_POST['tanggal1'];
-    $tanggal_akhir = $_POST['tanggal2'];
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+} elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+}
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
   }
-  else{
-      $tanggal_awal = date('Y-m-1');
-    $tanggal_akhir = date('Y-m-31');
-    }
-  
-  if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_mes WHERE tanggal = '$tanggal_awal'");
-  
-  } else {
-    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_mes WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  
-  }
+
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_pbr WHERE tanggal = '$tanggal_awal'");
+
+} else {
+  $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_pbr WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+
+}
 
 ?>
  <!DOCTYPE html>
@@ -56,7 +55,7 @@ if (isset($_GET['tanggal1'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rekap Gaji Driver MES</title>
+  <title>Rekap Gaji Karyawan PBR</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -241,7 +240,7 @@ if (isset($_GET['tanggal1'])) {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRekapGajiDriverMES'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Driver MES</h5></a>"; ?>
+      <?php echo "<a href='VRekapGajiPBR'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Karyawan PBR</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -289,11 +288,11 @@ if (isset($_GET['tanggal1'])) {
 <!-- Top content -->
 <div>   
 
-
+  <h1></h1>
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-  <?php echo "<form  method='POST' action='VRekapGajiDriverMES' style='margin-bottom: 15px;'>" ?>
+  <?php echo "<form  method='POST' action='VRekapGajiPBR' style='margin-bottom: 15px;'>" ?>
             <div>
               <div align="left" style="margin-left: 20px;">
                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -308,17 +307,16 @@ if (isset($_GET['tanggal1'])) {
     <div class="col-md-6">
     <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
     </div>
-
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
       <div align="right">
-      <?php echo "<a href='VPrintSlipGajiDriverMES?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' target='_blank'><button style='color:black;
+      <?php echo "<a href='VPrintSlipGajiPBR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' target='_blank'><button style='color:black;
                                              '  type='submit' class=' btn btn-secondary' >  <i class='fa-solid fa-print'></i> Print Slip Gaji</button></a>";
                                                 
                                              ?>
       </div>
 </div>
-<div class="col-md-2">
+    <div class="col-md-2">
       <!-- Button Input Data Bayar -->
       <div align="right">
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#inputx"> <i class="fas fa-trash-alt mr-2"></i>HAPUS REKAP GAJI</button>
@@ -336,14 +334,14 @@ if (isset($_GET['tanggal1'])) {
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/hapus_seluruh_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/hapus_seluruh_rekap_gaji_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
             <div class="row">
               <div class="col-md-6">
                  <label>Tanggal</label>
-                 <input  class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
+                 <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
               </div>
               <div class="col-md-6">
              
@@ -363,6 +361,7 @@ if (isset($_GET['tanggal1'])) {
 </div>
 </div>
 
+
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
       <div align="right">
@@ -373,7 +372,7 @@ if (isset($_GET['tanggal1'])) {
        <div class="modal-dialog modal-lg" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h5 class="modal-title"> Form Rekap Gaji Karyawan</h5>
+            <h5 class="modal-title"> Form Gaji Karyawan</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -381,57 +380,88 @@ if (isset($_GET['tanggal1'])) {
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-  
-            <?php  echo "<form action='../proses/proses_tambah_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_tambah_rekap_gaji_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
             <div class="row">
-             <div class="col-md-4">
+              <div class="col-md-3">
                  <label>Tanggal</label>
                  <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
               </div>
-              <div class="col-md-4">
-               <label>Nama Driver</label>
-               <input class="form-control form-control-sm" type="text" name="nama_driver" required="">
+              <div class="col-md-3">
+               <label>Nama Karyawan</label>
+               <input class="form-control form-control-sm" type="text" name="nama_karyawan" required="">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>Jabatan</label>
                <input class="form-control form-control-sm" type="text" name="jabatan" required="" >
              </div>
-
+             <div class="col-md-3">
+               <label>Gaji Pokok</label>
+               <input class="form-control form-control-sm" type="number" name="gaji_pokok" required="" value="0">
+             </div>
            </div>
 
            <br>
 
            <div class="row">
-           <div class="col-md-4">
-               <label>Rit PPE</label>
-               <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="0">
+              
+             <div class="col-md-3">
+               <label>Tunjangan Jabatan</label>
+               <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="0">
              </div>
-             <div class="col-md-4">
-               <label>Rit PEP</label>
-               <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="0">
+             <div class="col-md-3">
+               <label>Tunjangan Operasional</label>
+               <input class="form-control form-control-sm" type="number" name="tunjangan_operasional" required="" value="0">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>BPJS Kesehatan</label>
                <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="0">
              </div>
-
+             <div class="col-md-3">
+               <label>BPJS Ketenagakerjaan</label>
+               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="0">
+             </div>
            </div>
 
            <br>
 
            <div class="row">
-           <div class="col-md-4">
-               <label>BPJS Ketenagakerjaan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="0">
+              <div class="col-md-3">
+               <label>Uang Makan / Bulan</label>
+               <input class="form-control form-control-sm" type="number" name="uang_makan_bulan" required="" value="0">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
+               <label>Fee Kehadiran</label>
+               <input class="form-control form-control-sm" type="number" name="fee_kehadiran" required="" value="0">
+             </div>
+             <div class="col-md-3">
+               <label>Lembur</label>
+               <input class="form-control form-control-sm" type="number" name="lembur" required="" value="0">
+             </div>
+             <div class="col-md-3">
+               <label>Absen Terlambat</label>
+               <input class="form-control form-control-sm" type="number" name="absen_terlambat" required="" value="0">
+             </div>
+           </div>
+
+           <br>
+
+           <div class="row">
+              <div class="col-md-3">
+               <label>Denda Absen</label>
+               <input class="form-control form-control-sm" type="number" name="denda_absen" required="" value="0">
+             </div>
+             <div class="col-md-3">
                <label>Angsuran Bon Bulanan</label>
                <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="0">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
+               <label>Bonus</label>
+               <input class="form-control form-control-sm" type="number" name="bonus" required="" value="0">
+             </div>
+             <div class="col-md-3">
                 <label>Keterangan</label>
                 <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                   <option>Transfer</option>
@@ -439,6 +469,7 @@ if (isset($_GET['tanggal1'])) {
                 </select>
            </div>
            </div>
+
 
            <br>
 
@@ -467,14 +498,19 @@ if (isset($_GET['tanggal1'])) {
           <th style="font-size: 14px" scope="col">Tanggal</th>
           <th style="font-size: 14px" scope="col">Nama Karyawan</th>
           <th style="font-size: 14px" scope="col">Jabatan</th>
-          <th style="font-size: 14px" scope="col">Rit PPE</th>
-          <th style="font-size: 14px" scope="col">Upah PPE</th>
-          <th style="font-size: 14px" scope="col">Rit PEP</th>
-          <th style="font-size: 14px" scope="col">Upah PEP</th>
+          <th style="font-size: 14px" scope="col">Gaji Pokok</th>
+          <th style="font-size: 14px" scope="col">Tunjangan Jabatan</th>
+          <th style="font-size: 14px" scope="col">Tunjangan Oprasional</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
-          <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan </th>
-          <th style="font-size: 14px" scope="col">Total Gaji </th>
+          <th style="font-size: 14px" scope="col">Uang Makan / Bulan</th>
+          <th style="font-size: 14px" scope="col">Fee Kehadiran</th>
+          <th style="font-size: 14px" scope="col">Lembur</th>
+          <th style="font-size: 14px" scope="col">Absen Terlambat</th>
+          <th style="font-size: 14px" scope="col">Denda Absen</th>
+          <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan</th>
+          <th style="font-size: 14px" scope="col">Bonus</th>
+          <th style="font-size: 14px" scope="col">Total Gaji</th>
           <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
           <th style="font-size: 14px" scope="col">Keterangan </th>
           <th style="font-size: 14px" scope="col"></th>
@@ -495,16 +531,21 @@ if (isset($_GET['tanggal1'])) {
 
         <?php while($data2 = mysqli_fetch_array($table)){
           $no_riwayat = $data2['no_riwayat'];
-          $tanggal =$data2['tanggal'];
-          $nama_driver =$data2['nama_driver'];
+          $tanggal = $data2['tanggal'];
+          $nama_karyawan =$data2['nama_karyawan'];
           $jabatan = $data2['jabatan'];
-          $rit_nje = $data2['rit_nje'];
-          $upah_nje = $data2['upah_nje'];
-          $rit_gas_palembang = $data2['rit_gas_palembang'];
-          $upah_gas_palembang = $data2['upah_gas_palembang'];
+          $gaji_pokok = $data2['gaji_pokok'];
+          $tunjangan_jabatan = $data2['tunjangan_jabatan'];
+          $tunjangan_operasional = $data2['tunjangan_operasional'];
           $bpjs_kesehatan = $data2['bpjs_kesehatan'];
           $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
+          $uang_makan_bulan = $data2['uang_makan_bulan'];
+          $fee_kehadiran = $data2['fee_kehadiran'];
+          $lembur = $data2['lembur'];
+          $absen_terlambat = $data2['absen_terlambat'];
+          $denda_absen = $data2['denda_absen'];
           $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+          $bonus = $data2['bonus'];
           $total_gaji = $data2['total_gaji'];
           $total_gaji_diterima = $data2['total_gaji_diterima'];
           $keterangan = $data2['keterangan'];
@@ -521,15 +562,20 @@ if (isset($_GET['tanggal1'])) {
           echo "<tr>
           <td style='font-size: 14px'>$no_urut</td>
           <td style='font-size: 14px'>$tanggal</td>
-          <td style='font-size: 14px'>$nama_driver</td>
+          <td style='font-size: 14px'>$nama_karyawan</td>
           <td style='font-size: 14px'>$jabatan</td>
-          <td style='font-size: 14px'>$rit_nje</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_nje); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$rit_gas_palembang</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_gas_palembang); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($gaji_pokok); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_jabatan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_operasional); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan_bulan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($fee_kehadiran); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($lembur); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($absen_terlambat); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($denda_absen); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
           <td style='font-size: 14px'>$keterangan</td>
@@ -543,7 +589,7 @@ if (isset($_GET['tanggal1'])) {
            <div class="modal-dialog modal-lg" role ="document">
              <div class="modal-content"> 
               <div class="modal-header">
-                <h5 class="modal-title"> Form Edit Rekap Gaji Karyawan </h5>
+                <h5 class="modal-title"> Form Edit Gaji Karyawan </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                   <span aria-hidden="true"> &times; </span>
                 </button>
@@ -551,59 +597,89 @@ if (isset($_GET['tanggal1'])) {
 
           <!-- Form Edit Data -->
           <div class="modal-body">
-
-              <?php  echo "<form action='../proses/edit_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+              <?php  echo "<form action='../proses/edit_rekap_gaji_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                
             <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat;?>"> 
 
-           <br>
-
             <div class="row">
-            <div class="col-md-4">
-               <label>Tanggal</label>
-               <input class="form-control form-control-sm" type="text" name="tanggal" required="" value="<?php echo $tanggal;?>">
-             </div>
-              <div class="col-md-4">
-               <label>Nama Driver</label>
-               <input class="form-control form-control-sm" type="text" name="nama_driver" required="" value="<?php echo $nama_driver;?>">
-             </div>
-             <div class="col-md-4">
+              <div class="col-md-3">
+                 <label>Tanggal</label>
+                 <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>">
+              </div>
+              <div class="col-md-3">
+               <label>Nama Karyawan</label>
+               <input class="form-control form-control-sm" type="text" name="nama_karyawan" required="" value="<?php echo $nama_karyawan;?>">
+              </div>
+              <div class="col-md-3">
                <label>Jabatan</label>
                <input class="form-control form-control-sm" type="text" name="jabatan" required="" value="<?php echo $jabatan;?>">
              </div>
-
+             <div class="col-md-3">
+               <label>Gaji Pokok</label>
+               <input class="form-control form-control-sm" type="number" name="gaji_pokok" required="" value="<?php echo $gaji_pokok;?>">
+             </div>
            </div>
 
            <br>
 
            <div class="row">
-           <div class="col-md-4">
-               <label>Rit PPE</label>
-               <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="<?php echo $rit_nje;?>">
+
+             <div class="col-md-3">
+               <label>Tunjangan Jabatan</label>
+               <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="<?php echo $tunjangan_jabatan;?>">
              </div>
-             <div class="col-md-4">
-               <label>Rit PEP</label>
-               <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="<?php echo $rit_gas_palembang;?>">
+             <div class="col-md-3">
+               <label>Tunjangan Operasional</label>
+               <input class="form-control form-control-sm" type="number" name="tunjangan_operasional" required="" value="<?php echo $tunjangan_operasional;?>">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>BPJS Kesehatan</label>
                <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="<?php echo $bpjs_kesehatan;?>">
              </div>
-
+             <div class="col-md-3">
+               <label>BPJS Ketenagakerjaan</label>
+               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="<?php echo $bpjs_ketenagakerjaan;?>">
+             </div>
            </div>
 
            <br>
 
            <div class="row">
-            <div class="col-md-4">
-               <label>BPJS Ketenagakerjaan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="<?php echo $bpjs_ketenagakerjaan;?>">
+              <div class="col-md-3">
+               <label>Uang Makan / Bulan</label>
+               <input class="form-control form-control-sm" type="number" name="uang_makan_bulan" required="" value="<?php echo $uang_makan_bulan;?>">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
+               <label>Fee Kehadiran</label>
+               <input class="form-control form-control-sm" type="number" name="fee_kehadiran" required="" value="<?php echo $fee_kehadiran;?>">
+             </div>
+             <div class="col-md-3">
+               <label>Lembur</label>
+               <input class="form-control form-control-sm" type="number" name="lembur" required="" value="<?php echo $lembur;?>">
+             </div>
+             <div class="col-md-3">
+               <label>Absen Terlambat</label>
+               <input class="form-control form-control-sm" type="number" name="absen_terlambat" required="" value="<?php echo $absen_terlambat;?>">
+             </div>
+           </div>
+
+           <br>
+
+           <div class="row">
+              <div class="col-md-3">
+               <label>Denda Absen</label>
+               <input class="form-control form-control-sm" type="number" name="denda_absen" required="" value="<?php echo $denda_absen;?>">
+             </div>
+             <div class="col-md-3">
                <label>Angsuran Bon Bulanan</label>
                <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="<?php echo $angsuran_bon_bulanan;?>">
              </div>
-             <div class="col-md-4">
-                 <label>Keterangan</label>
+             <div class="col-md-3">
+               <label>Bonus</label>
+               <input class="form-control form-control-sm" type="number" name="bonus" required="" value="<?php echo $bonus;?>">
+             </div>
+             <div class="col-md-3">
+                <label>Keterangan</label>
                 <select class="form-control form-control-sm" name="keterangan" class="form-control">
                   <?php
                   $dataSelect = $data['keterangan']; ?>
@@ -613,7 +689,9 @@ if (isset($_GET['tanggal1'])) {
            </div>
            </div>
 
+
            <br>
+
 
 
 
@@ -641,8 +719,8 @@ if (isset($_GET['tanggal1'])) {
     </div>
 
     <div class="modal-body">
-
-      <?php  echo "<form action='../proses/hapus_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' method='POST'>";  ?>
+  
+      <?php  echo "<form action='../proses/hapus_rekap_gaji_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' method='POST'>";  ?>
         <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat;?>">
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             

@@ -19,10 +19,7 @@ exit;
 }
 
 
-$tanggal_awal = $_GET['tanggal1'];
-$tanggal_akhir = $_GET['tanggal2'];
-$no_riwayat = $_POST['no_riwayat'];
-$tanggal = $_POST['tanggal'];
+$no_karyawan = $_POST['no_karyawan'];
 $nama_driver =$_POST['nama_driver'];
 $jabatan = $_POST['jabatan'];
 $rit_nje = $_POST['rit_nje'];
@@ -41,13 +38,13 @@ $keterangan = $_POST['keterangan'];
 
 
 
-	$query = mysqli_query($koneksi,"UPDATE rekap_gaji_driver_mes SET tanggal = '$tanggal', nama_driver = '$nama_driver', jabatan = '$jabatan' , rit_nje = '$rit_nje' , upah_nje = '$upah_nje' , rit_gas_palembang = '$rit_gas_palembang' , 
+	$query = mysqli_query($koneksi,"UPDATE list_gaji_driver_pbr SET nama_driver = '$nama_driver', jabatan = '$jabatan' , rit_nje = '$rit_nje' , upah_nje = '$upah_nje' , rit_gas_palembang = '$rit_gas_palembang' , 
                                                              upah_gas_palembang = '$upah_gas_palembang', bpjs_kesehatan = '$bpjs_kesehatan' , bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan', angsuran_bon_bulanan = '$angsuran_bon_bulanan', total_gaji = '$total_gaji' , 
-                                                             total_gaji_diterima = '$total_gaji_diterima' , keterangan = '$keterangan'   WHERE no_riwayat = '$no_riwayat'");
+                                                             total_gaji_diterima = '$total_gaji_diterima' , keterangan = '$keterangan'   WHERE no_karyawan = '$no_karyawan'");
 
 
 if ($query != "") {
-	echo "<script>alert('Data Berhasil di Ubah :)'); window.location='../view/VRekapGajiDriverMES?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	echo "<script>alert('Data Berhasil di Ubah :)'); window.location='../view/VListGajiDriverPBR';</script>";exit;
 
 }
 

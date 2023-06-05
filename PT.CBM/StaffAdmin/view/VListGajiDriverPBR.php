@@ -22,27 +22,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-
-
-if (isset($_GET['tanggal1'])) {
-    $tanggal_awal = $_GET['tanggal1'];
-    $tanggal_akhir = $_GET['tanggal2'];
-  } elseif (isset($_POST['tanggal1'])) {
-    $tanggal_awal = $_POST['tanggal1'];
-    $tanggal_akhir = $_POST['tanggal2'];
-  }
-  else{
-      $tanggal_awal = date('Y-m-1');
-    $tanggal_akhir = date('Y-m-31');
-    }
-  
-  if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_mes WHERE tanggal = '$tanggal_awal'");
-  
-  } else {
-    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_mes WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  
-  }
+$table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_pbr");
 
 ?>
  <!DOCTYPE html>
@@ -56,7 +36,7 @@ if (isset($_GET['tanggal1'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rekap Gaji Driver MES</title>
+  <title>List Gaji Driver PBR</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -241,7 +221,7 @@ if (isset($_GET['tanggal1'])) {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRekapGajiDriverMES'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Driver MES</h5></a>"; ?>
+      <?php echo "<a href='VListGajiDriverPBR'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Gaji Driver PBR</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -293,42 +273,21 @@ if (isset($_GET['tanggal1'])) {
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-  <?php echo "<form  method='POST' action='VRekapGajiDriverMES' style='margin-bottom: 15px;'>" ?>
-            <div>
-              <div align="left" style="margin-left: 20px;">
-                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
-                <span>-</span>
-                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
-              </div>
-            </div>
-            </form>
-
   <div class="row">
-    <div class="col-md-6">
-    <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-    </div>
+    <div class="col-md-8">
 
+    </div>
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
       <div align="right">
-      <?php echo "<a href='VPrintSlipGajiDriverMES?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' target='_blank'><button style='color:black;
-                                             '  type='submit' class=' btn btn-secondary' >  <i class='fa-solid fa-print'></i> Print Slip Gaji</button></a>";
-                                                
-                                             ?>
-      </div>
-</div>
-<div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#inputx"> <i class="fas fa-trash-alt mr-2"></i>HAPUS REKAP GAJI</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputx"> <i class="fas fa-plus-square mr-2"></i>REKAP GAJI</button> <br> <br>
       </div>
       <!-- Form Modal  -->
       <div class="modal fade bd-example-modal-lg" id="inputx" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-lg" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h5 class="modal-title">Persetujuan Hapus Rekap Gaji</h5>
+            <h5 class="modal-title">Persetujuan Rekap Gaji</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -336,14 +295,14 @@ if (isset($_GET['tanggal1'])) {
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/hapus_seluruh_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_rekap_gaji_driver_pbr' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
             <div class="row">
               <div class="col-md-6">
                  <label>Tanggal</label>
-                 <input  class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
+                 <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
               </div>
               <div class="col-md-6">
              
@@ -353,7 +312,7 @@ if (isset($_GET['tanggal1'])) {
            <br>
            
       <div class="modal-footer">
-        <button type="submit" class="btn btn-danger">Hapus</button>
+        <button type="submit" class="btn btn-primary">REKAP</button>
 
       </div>
     </form>
@@ -363,17 +322,18 @@ if (isset($_GET['tanggal1'])) {
 </div>
 </div>
 
+
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
       <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah Rekap Gaji</button> <br> <br>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah List Gaji</button> <br> <br>
       </div>
       <!-- Form Modal  -->
       <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-lg" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h5 class="modal-title"> Form Rekap Gaji Karyawan</h5>
+            <h5 class="modal-title"> Form List Gaji Karyawan</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -381,16 +341,11 @@ if (isset($_GET['tanggal1'])) {
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-  
-            <?php  echo "<form action='../proses/proses_tambah_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_list_gaji_driver_pbr' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
             <div class="row">
-             <div class="col-md-4">
-                 <label>Tanggal</label>
-                 <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
-              </div>
               <div class="col-md-4">
                <label>Nama Driver</label>
                <input class="form-control form-control-sm" type="text" name="nama_driver" required="">
@@ -399,16 +354,16 @@ if (isset($_GET['tanggal1'])) {
                <label>Jabatan</label>
                <input class="form-control form-control-sm" type="text" name="jabatan" required="" >
              </div>
-
+             <div class="col-md-4">
+               <label>Rit PPE</label>
+               <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="0">
+             </div>
            </div>
 
            <br>
 
            <div class="row">
-           <div class="col-md-4">
-               <label>Rit PPE</label>
-               <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="0">
-             </div>
+
              <div class="col-md-4">
                <label>Rit PEP</label>
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="0">
@@ -417,16 +372,15 @@ if (isset($_GET['tanggal1'])) {
                <label>BPJS Kesehatan</label>
                <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="0">
              </div>
-
+             <div class="col-md-4">
+               <label>BPJS Ketenagakerjaan</label>
+               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="0">
+             </div>
            </div>
 
            <br>
 
            <div class="row">
-           <div class="col-md-4">
-               <label>BPJS Ketenagakerjaan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="0">
-             </div>
              <div class="col-md-4">
                <label>Angsuran Bon Bulanan</label>
                <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="0">
@@ -464,8 +418,7 @@ if (isset($_GET['tanggal1'])) {
   <thead>
     <tr>  
           <th style="font-size: 14px" scope="col">No</th>
-          <th style="font-size: 14px" scope="col">Tanggal</th>
-          <th style="font-size: 14px" scope="col">Nama Karyawan</th>
+          <th style="font-size: 14px" scope="col">Nama Driver</th>
           <th style="font-size: 14px" scope="col">Jabatan</th>
           <th style="font-size: 14px" scope="col">Rit PPE</th>
           <th style="font-size: 14px" scope="col">Upah PPE</th>
@@ -494,8 +447,7 @@ if (isset($_GET['tanggal1'])) {
       ?>
 
         <?php while($data2 = mysqli_fetch_array($table)){
-          $no_riwayat = $data2['no_riwayat'];
-          $tanggal =$data2['tanggal'];
+          $no_karyawan = $data2['no_karyawan'];
           $nama_driver =$data2['nama_driver'];
           $jabatan = $data2['jabatan'];
           $rit_nje = $data2['rit_nje'];
@@ -520,7 +472,6 @@ if (isset($_GET['tanggal1'])) {
           }
           echo "<tr>
           <td style='font-size: 14px'>$no_urut</td>
-          <td style='font-size: 14px'>$tanggal</td>
           <td style='font-size: 14px'>$nama_driver</td>
           <td style='font-size: 14px'>$jabatan</td>
           <td style='font-size: 14px'>$rit_nje</td>
@@ -535,15 +486,15 @@ if (isset($_GET['tanggal1'])) {
           <td style='font-size: 14px'>$keterangan</td>
           <td style='font-size: 14px'>"; ?>
 
-          <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data2['no_riwayat']; ?>">Edit</button>
+          <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data2['no_karyawan']; ?>">Edit</button>
 
           <!-- Form EDIT DATA -->
 
-          <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data2['no_riwayat']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+          <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data2['no_karyawan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
            <div class="modal-dialog modal-lg" role ="document">
              <div class="modal-content"> 
               <div class="modal-header">
-                <h5 class="modal-title"> Form Edit Rekap Gaji Karyawan </h5>
+                <h5 class="modal-title"> Form Edit List Gaji Karyawan </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                   <span aria-hidden="true"> &times; </span>
                 </button>
@@ -551,17 +502,13 @@ if (isset($_GET['tanggal1'])) {
 
           <!-- Form Edit Data -->
           <div class="modal-body">
-
-              <?php  echo "<form action='../proses/edit_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-            <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat;?>"> 
+              <form action="../proses/edit_list_gaji_driver_pbr" enctype="multipart/form-data" method="POST">
+                
+            <input type="hidden" name="no_karyawan" value="<?php echo $no_karyawan;?>"> 
 
            <br>
 
             <div class="row">
-            <div class="col-md-4">
-               <label>Tanggal</label>
-               <input class="form-control form-control-sm" type="text" name="tanggal" required="" value="<?php echo $tanggal;?>">
-             </div>
               <div class="col-md-4">
                <label>Nama Driver</label>
                <input class="form-control form-control-sm" type="text" name="nama_driver" required="" value="<?php echo $nama_driver;?>">
@@ -570,16 +517,15 @@ if (isset($_GET['tanggal1'])) {
                <label>Jabatan</label>
                <input class="form-control form-control-sm" type="text" name="jabatan" required="" value="<?php echo $jabatan;?>">
              </div>
-
+             <div class="col-md-4">
+               <label>Rit PPE</label>
+               <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="<?php echo $rit_nje;?>">
+             </div>
            </div>
 
            <br>
 
            <div class="row">
-           <div class="col-md-4">
-               <label>Rit PPE</label>
-               <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="<?php echo $rit_nje;?>">
-             </div>
              <div class="col-md-4">
                <label>Rit PEP</label>
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="<?php echo $rit_gas_palembang;?>">
@@ -588,16 +534,15 @@ if (isset($_GET['tanggal1'])) {
                <label>BPJS Kesehatan</label>
                <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="<?php echo $bpjs_kesehatan;?>">
              </div>
-
+             <div class="col-md-4">
+               <label>BPJS Ketenagakerjaan</label>
+               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="<?php echo $bpjs_ketenagakerjaan;?>">
+             </div>
            </div>
 
            <br>
 
            <div class="row">
-            <div class="col-md-4">
-               <label>BPJS Ketenagakerjaan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="<?php echo $bpjs_ketenagakerjaan;?>">
-             </div>
              <div class="col-md-4">
                <label>Angsuran Bon Bulanan</label>
                <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="<?php echo $angsuran_bon_bulanan;?>">
@@ -629,21 +574,20 @@ if (isset($_GET['tanggal1'])) {
 </div>
 
 <!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $no_riwayat;?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $no_riwayat; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $no_karyawan;?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $no_karyawan; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Rekap Gaji Karyawan </b> </h4>
+      <h4 class="modal-title"> <b> Hapus List Gaji Karyawan </b> </h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="close">
         <span aria-hidden="true"> &times; </span>
       </button>
     </div>
 
     <div class="modal-body">
-
-      <?php  echo "<form action='../proses/hapus_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' method='POST'>";  ?>
-        <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat;?>">
+      <form action="../proses/hapus_list_gaji_driver_pbr" method="POST">
+        <input type="hidden" name="no_karyawan" value="<?php echo $no_karyawan;?>">
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             
         </div>

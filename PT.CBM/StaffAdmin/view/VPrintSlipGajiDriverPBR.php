@@ -53,7 +53,7 @@ $html = '
 
 
 ';
-    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_mes WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_PBR WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     
     while($data = mysqli_fetch_array($table)){
 
@@ -74,7 +74,7 @@ $html = '
 
         $html .= '
         
-        <h3 class="panel-title" align="Center" style = "margin-bottom: 1px; margin-top: 1px;"><img style=" max-height: 70px; width: 100%; text-align:center; " src="../gambar/Kop MES.jpg"> </h3>
+        <h3 class="panel-title" align="Center" style = "margin-bottom: 1px; margin-top: 1px;"><img style=" max-height: 70px; width: 100%; text-align:center; " src="../gambar/Kop PBR.jpg"> </h3>
         <hr style = "margin-bottom: 1px; margin-top: 1px;">
         <h5 class="panel-title" align="Center" style = "margin-bottom: 1px; margin-top: 1px;"><u><strong>Slip Gaji Karyawan</strong></u></h5>
         <pre class="panel-title" align="center"  style="font-size: 10px; margin-bottom: 10px; margin-top: 1px;">'. $bulan .' '. $tahun .'</pre>

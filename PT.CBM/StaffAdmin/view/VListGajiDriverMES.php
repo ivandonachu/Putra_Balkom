@@ -355,7 +355,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
                <input class="form-control form-control-sm" type="text" name="jabatan" required="" >
              </div>
              <div class="col-md-4">
-               <label>Rit NJE</label>
+               <label>Rit PPE</label>
                <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="0">
              </div>
            </div>
@@ -365,7 +365,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
            <div class="row">
 
              <div class="col-md-4">
-               <label>Rit Gas Palembang</label>
+               <label>Rit PEP</label>
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="0">
              </div>
              <div class="col-md-4">
@@ -420,10 +420,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
           <th style="font-size: 14px" scope="col">No</th>
           <th style="font-size: 14px" scope="col">Nama Driver</th>
           <th style="font-size: 14px" scope="col">Jabatan</th>
-          <th style="font-size: 14px" scope="col">Rit NJE</th>
-          <th style="font-size: 14px" scope="col">Upah NJE</th>
-          <th style="font-size: 14px" scope="col">Rit Gas Palembang</th>
-          <th style="font-size: 14px" scope="col">Upah Gas Palembang</th>
+          <th style="font-size: 14px" scope="col">Rit PPE</th>
+          <th style="font-size: 14px" scope="col">Upah PPE</th>
+          <th style="font-size: 14px" scope="col">Rit PEP</th>
+          <th style="font-size: 14px" scope="col">Upah PEP</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
           <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan </th>
@@ -518,7 +518,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
                <input class="form-control form-control-sm" type="text" name="jabatan" required="" value="<?php echo $jabatan;?>">
              </div>
              <div class="col-md-4">
-               <label>Rit NJE</label>
+               <label>Rit PPE</label>
                <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="<?php echo $rit_nje;?>">
              </div>
            </div>
@@ -527,7 +527,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
 
            <div class="row">
              <div class="col-md-4">
-               <label>Rit Gas Palembang</label>
+               <label>Rit PEP</label>
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="<?php echo $rit_gas_palembang;?>">
              </div>
              <div class="col-md-4">

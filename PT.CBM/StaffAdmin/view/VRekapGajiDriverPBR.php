@@ -37,10 +37,10 @@ if (isset($_GET['tanggal1'])) {
     }
   
   if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_mes WHERE tanggal = '$tanggal_awal'");
+    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_pbr WHERE tanggal = '$tanggal_awal'");
   
   } else {
-    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_mes WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_pbr WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   
   }
 
@@ -56,7 +56,7 @@ if (isset($_GET['tanggal1'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rekap Gaji Driver MES</title>
+  <title>Rekap Gaji Driver PBR</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -241,7 +241,7 @@ if (isset($_GET['tanggal1'])) {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRekapGajiDriverMES'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Driver MES</h5></a>"; ?>
+      <?php echo "<a href='VRekapGajiDriverPBR'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Driver PBR</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -293,7 +293,7 @@ if (isset($_GET['tanggal1'])) {
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-  <?php echo "<form  method='POST' action='VRekapGajiDriverMES' style='margin-bottom: 15px;'>" ?>
+  <?php echo "<form  method='POST' action='VRekapGajiDriverPBR' style='margin-bottom: 15px;'>" ?>
             <div>
               <div align="left" style="margin-left: 20px;">
                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -312,7 +312,7 @@ if (isset($_GET['tanggal1'])) {
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
       <div align="right">
-      <?php echo "<a href='VPrintSlipGajiDriverMES?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' target='_blank'><button style='color:black;
+      <?php echo "<a href='VPrintSlipGajiDriverPBR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' target='_blank'><button style='color:black;
                                              '  type='submit' class=' btn btn-secondary' >  <i class='fa-solid fa-print'></i> Print Slip Gaji</button></a>";
                                                 
                                              ?>
@@ -336,7 +336,7 @@ if (isset($_GET['tanggal1'])) {
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/hapus_seluruh_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/hapus_seluruh_rekap_gaji_driver_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
@@ -382,7 +382,7 @@ if (isset($_GET['tanggal1'])) {
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
   
-            <?php  echo "<form action='../proses/proses_tambah_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_tambah_rekap_gaji_driver_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
@@ -552,7 +552,7 @@ if (isset($_GET['tanggal1'])) {
           <!-- Form Edit Data -->
           <div class="modal-body">
 
-              <?php  echo "<form action='../proses/edit_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+              <?php  echo "<form action='../proses/edit_rekap_gaji_driver_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
             <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat;?>"> 
 
            <br>
@@ -642,7 +642,7 @@ if (isset($_GET['tanggal1'])) {
 
     <div class="modal-body">
 
-      <?php  echo "<form action='../proses/hapus_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' method='POST'>";  ?>
+      <?php  echo "<form action='../proses/hapus_rekap_gaji_driver_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' method='POST'>";  ?>
         <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat;?>">
         <div class="form-group">
           <h6> Yakin Ingin Hapus Data? </h6>             

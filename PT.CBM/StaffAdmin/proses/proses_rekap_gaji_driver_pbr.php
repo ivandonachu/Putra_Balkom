@@ -19,7 +19,7 @@ exit;
 }
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
+$table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_pbr");
 $tanggal =$_POST['tanggal'];
 
 while($data2 = mysqli_fetch_array($table)){
@@ -37,13 +37,13 @@ while($data2 = mysqli_fetch_array($table)){
     $total_gaji_diterima =  $upah_nje + $upah_gas_palembang ;
     $keterangan = $data2['keterangan'];
 
-$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_mes VALUES('','$tanggal','$nama_driver','$jabatan','$rit_nje','$upah_nje','$rit_gas_palembang','$upah_gas_palembang','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan','$total_gaji',
+$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbr VALUES('','$tanggal','$nama_driver','$jabatan','$rit_nje','$upah_nje','$rit_gas_palembang','$upah_gas_palembang','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan','$total_gaji',
                                                                         '$total_gaji_diterima','$keterangan')");
 
 }
 
 if ($query != "") {
-	echo "<script>alert('Proses Rekap Gaji Berhasil :)'); window.location='../view/VRekapGajiDriverMES';</script>";exit;
+	echo "<script>alert('Proses Rekap Gaji Berhasil :)'); window.location='../view/VRekapGajiDriverPBR';</script>";exit;
 
 }
 
