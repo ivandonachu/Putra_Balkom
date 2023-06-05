@@ -53,7 +53,7 @@ $html = '
 
 
 ';
-    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_PBR WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_driver_pbr WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     
     while($data = mysqli_fetch_array($table)){
 
