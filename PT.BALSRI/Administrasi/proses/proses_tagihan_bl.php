@@ -59,21 +59,6 @@ $data_tarif = mysqli_fetch_array($result3);
 $harga = $data_tarif[$kode_pesanan];
 
 
-if ($jumlah_pesanan == '1000 L') {
-	$total = 1000 * $harga;
-}
-else if ($jumlah_pesanan == '2000 L') {
-	$total = 2000 * $harga;
-}
-else if ($jumlah_pesanan == '3000 L') {
-	$total = 3000 * $harga;
-}
-else if ($jumlah_pesanan == '4000 L') {
-	$total = 4000 * $harga;
-}
-else if ($jumlah_pesanan == '5000 L') {
-	$total = 5000 * $harga;
-}
 
 
 

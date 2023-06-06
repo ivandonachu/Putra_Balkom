@@ -61,21 +61,6 @@ $total = $data_tarif[$kode_pesanan];
 
 
 
-if ($jumlah_pesanan == '1000 L') {
-	$harga = $total/1000 ;
-}
-else if ($jumlah_pesanan == '2000 L') {
-	$harga = $total/2000 ;
-}
-else if ($jumlah_pesanan == '3000 L') {
-	$harga = $total/3000 ;
-}
-else if ($jumlah_pesanan == '4000 L') {
-	$harga = $total/4000 ;
-}
-
-
-
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
