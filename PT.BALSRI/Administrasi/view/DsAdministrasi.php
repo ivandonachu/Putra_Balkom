@@ -37,14 +37,22 @@ $nama = $data['nama_karyawan'];
 
     <title>Dashboard Administrasi</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+  href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+  rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/sbadmin/vendor/bootstrap/css/bootstrap.min.css">
+  <!-- Custom styles for this template-->
+  <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Link Tabel -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Custom styles for this template-->
-    <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Link datepicker -->
     <script type="text/javascript">
     window.setTimeout("waktu()",1000);
     function waktu() {
@@ -330,7 +338,159 @@ $nama = $data['nama_karyawan'];
     </div>
 
     <div class="container">
-        <img style="margin-top: 60px; margin-left: 100px; height: 450px; width: 700px;" src="../gambar/kasir_toko.svg">
+    <?php 
+    $table = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi != 'Keluar'  ORDER BY wilayah_operasi ");
+    $no_urut = 0;
+    ?>
+    
+    <div style="overflow-x: auto" align = 'center';>
+    <h3 align = 'center'>Region SUMBAGSEL & JAWA</h3>
+ <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>No Polisi</th>
+      <th>Jenis Kendaraan</th>
+      <th>Wilayah Operasi</th>
+      <th>File STNK</th>
+      <th>Tanggal STNK</th>
+      <th>File Tera Tangki</th>
+      <th>Tanggal Tera Tangki</th>
+      <th>File Tera FlowMeter</th>
+      <th>Tanggal Tera FlowMeter</th>
+      <th>File KIR</th>
+      <th>Tanggal KIR</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table)){
+     $no_urut = $no_urut+1;
+     $no_polisi = $data['no_polisi'];
+     $jenis_kendaraan =$data['jenis_kendaraan'];
+     $wilayah_operasi =$data['wilayah_operasi'];
+     $file_stnk = $data['file_stnk'];
+     $tanggal_stnk = $data['tanggal_stnk'];
+     $file_tera_tangki = $data['file_tera_tangki'];
+     $tanggal_tera_tangki = $data['tanggal_tera_tangki'];
+     $file_tera_flowmeter = $data['file_tera_flowmeter'];
+     $tanggal_tera_flowmeter = $data['tanggal_tera_flowmeter'];
+     $file_kir = $data['file_kir'];
+     $tanggal_kir = $data['tanggal_kir'];
+
+     $bulan_acuanx = date('m');
+     $bulan_acuan = ltrim($bulan_acuanx, '0');
+     $bulan_acuan = $bulan_acuan + 1;
+     if($bulan_acuan == 13){
+        $bulan_acuan = $bulan_acuan + 1;
+        $tahun_acuan = $tahun_acuan + 1;
+     }
+     $tahun_acuan = date('Y');
+
+
+     $bulan_stnkx = date('m', strtotime($tanggal_stnk)); 
+     $bulan_stnk = ltrim($bulan_stnkx, '0');
+
+
+
+     $tahun_stnk = date('Y', strtotime($tanggal_stnk)); 
+
+
+     $bulan_tera_tangkix = date('m', strtotime($tanggal_tera_tangki)); 
+     $bulan_tera_tangki = ltrim($bulan_tera_tangkix, '0');
+
+     $tahun_tera_tangki = date('Y', strtotime($tanggal_tera_tangki)); 
+
+
+     $bulan_flowmeterx = date('m', strtotime($tanggal_tera_flowmeter)); 
+     $bulan_flowmeter = ltrim($bulan_flowmeterx , '0');
+
+     $tahun_flowmeter = date('Y', strtotime($tanggal_tera_flowmeter)); 
+
+
+     $bulan_kirx = date('m', strtotime($tanggal_kir)); 
+     $bulan_kir = ltrim($bulan_kirx , '0');
+
+     $tahun_kir = date('Y', strtotime($tanggal_kir)); 
+
+
+     echo " <tr>
+            <td style='font-size: 14px' align = 'center'>$no_urut</td>
+            <td style='font-size: 14px' align = 'center'>$no_polisi </td>     
+            <td style='font-size: 14px' align = 'center'>$jenis_kendaraan</td>
+            <td style='font-size: 14px' align = 'center'>$wilayah_operasi</td>
+            <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_stnk ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_stnk ?>"> <?php echo "$file_stnk </a> </td>";
+
+
+            if($bulan_stnk < $bulan_acuan && $tahun_acuan == $tahun_stnk ){
+
+                echo"<td style='font-size: clamp(12px, 1vw, 15px); color: #FF0000; font-weight: bold;' align = 'center'>$tanggal_stnk</td>";
+            }
+            else if($bulan_stnk == $bulan_acuan && $tahun_acuan == $tahun_stnk ){
+
+                echo"<td style='font-size: clamp(12px, 1vw, 15px); color: #FF0000; font-weight: bold;' align = 'center'>$tanggal_stnk</td>";
+            }
+            else{
+                echo"<td style='font-size: 14px' align = 'center'>$tanggal_stnk</td>";
+            }
+
+
+            echo" <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_tera_tangki ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_tera_tangki ?>"> <?php echo "$file_tera_tangki </a> </td>";
+            
+            if($bulan_tera_tangki < $bulan_acuan && $tahun_acuan == $tahun_tera_tangki ){
+
+                echo"<td style='font-size: clamp(12px, 1vw, 15px); color: #FF0000; font-weight: bold;' align = 'center'>$tanggal_tera_tangki</td>";
+            }
+            else if($bulan_tera_tangki == $bulan_acuan && $tahun_acuan == $tahun_tera_tangki ){
+
+                echo"<td style='font-size: clamp(12px, 1vw, 15px); color: #FF0000; font-weight: bold;' align = 'center'>$tanggal_tera_tangki</td>";
+            }
+            else{
+                echo"<td style='font-size: 14px' align = 'center'>$tanggal_tera_tangki</td>";
+            }
+
+
+            echo" <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_tera_flowmeter ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_tera_flowmeter ?>"> <?php echo "$file_tera_flowmeter </a> </td>";
+
+            if($bulan_flowmeter < $bulan_acuan && $tahun_acuan == $tahun_flowmeter ){
+
+                echo"<td style='font-size: clamp(12px, 1vw, 15px); color: #FF0000; font-weight: bold;' align = 'center'>$tanggal_tera_flowmeter</td>";
+            }
+            else if($bulan_flowmeter == $bulan_acuan && $tahun_acuan == $tahun_flowmeter ){
+
+                echo"<td style='font-size: clamp(12px, 1vw, 15px); color: #FF0000; font-weight: bold;' align = 'center'>$tanggal_tera_flowmeter</td>";
+            }
+            else{
+                echo"<td style='font-size: 14px' align = 'center'>$tanggal_tera_flowmeter</td>";
+            }
+
+           
+            echo" <td style='font-size: 14px'>"; ?> <a download="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_kir ?>" href="/PT.BALSRI/Administrasi/file_administrasi/<?= $file_kir ?>"> <?php echo "$file_kir </a> </td>";
+
+            if($bulan_kir < $bulan_acuan && $tahun_acuan == $tahun_kir ){
+
+                echo"<td style='font-size: clamp(12px, 1vw, 15px); color: #FF0000; font-weight: bold;' align = 'center'>$tanggal_kir</td>";
+            }
+            else if($bulan_kir == $bulan_acuan && $tahun_acuan == $tahun_kir ){
+
+                echo"<td style='font-size: clamp(12px, 1vw, 15px); color: #FF0000; font-weight: bold;' align = 'center'>$tanggal_kir</td>";
+            }
+            else{
+                echo"<td style='font-size: 14px' align = 'center'>$tanggal_kir</td>";
+            }
+
+         echo"  </tr>";
+         } 
+
+?>
+
+</tbody>
+</table>
+</div>
+
+<br>
+<hr>
+<br>
     </div>
 
 
@@ -378,15 +538,64 @@ aria-hidden="true">
 </div>
 </div>
 
+
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
+
+<!-- Tabel -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example').DataTable( {
+      lengthChange: true,
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: true,
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example3').DataTable( {
+      lengthChange: true,
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
 
 </body>
 
