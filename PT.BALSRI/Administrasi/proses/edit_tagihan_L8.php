@@ -33,12 +33,12 @@ $kode_pesanan = 'kl8';
 
 $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu WHERE delivery_point = '$delivery_point' ");
 $data_tarif = mysqli_fetch_array($result);
-$harga = $data_tarif[$kode_pesanan];
+$total = $data_tarif[$kode_pesanan];
 
 
 
 
-	$total = $harga;
+
 
 
 

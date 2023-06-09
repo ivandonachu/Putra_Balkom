@@ -56,7 +56,7 @@ else if ($jumlah_pesanan == '5000 L') {
 
 $result3 = mysqli_query($koneksi, "SELECT * FROM master_tarif WHERE delivery_point = '$delivery_point' ");
 $data_tarif = mysqli_fetch_array($result3);
-$harga = $data_tarif[$kode_pesanan];
+$total = $data_tarif[$kode_pesanan];
 
 
 

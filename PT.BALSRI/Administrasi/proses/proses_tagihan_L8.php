@@ -45,7 +45,7 @@ $result2 = mysqli_query($koneksi, "SELECT * FROM tagihan_spbu WHERE lo = '$lo' A
 
 $result3 = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu WHERE delivery_point = '$delivery_point' ");
 $data_tarif = mysqli_fetch_array($result3);
-$harga = $data_tarif[$kode_pesanan];
+$total = $data_tarif[$kode_pesanan];
 
 
 	$total = $harga;
