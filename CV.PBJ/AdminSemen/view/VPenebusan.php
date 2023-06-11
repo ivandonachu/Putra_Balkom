@@ -570,17 +570,6 @@ else{
       </div>
 
       <br>
-      <script>
-
-function sum() {
-  var banyak_barang = document.getElementById('qty').value;
-  var harga = document.getElementById('harga').value;
-  var result = parseFloat(banyak_barang) * parseFloat(harga);
-  if (!isNaN(result)) {
-   document.getElementById('jumlah').value = result;
- }
-}
-</script>
       <div class="row">
         <div class="col-md-4">
           <label>QTY</label>
@@ -590,11 +579,7 @@ function sum() {
       <div class="col-md-4">
         <label>Harga</label>
         <input class="form-control form-control-sm" type="float" id="harga" name="harga" onkeyup="sum();" required="">
-      </div>    
-      <div class="col-md-4">
-       <label>Jumlah</label>
-       <input class="form-control form-control-sm" type="float" id="jumlah" name="jumlah" required=""> 
-     </div>                
+      </div>                
    </div>
 
    <br>
