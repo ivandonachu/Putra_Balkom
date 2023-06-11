@@ -335,7 +335,7 @@ else{
         }
       }
 
-      if($nama_baja == 'Elpiji 3 Kg Isi' && $referensi == 'GD' && $nama_akun == 'Penjualan Refill'){
+      if($nama_baja == 'Elpiji 3 Kg Isi'  && $nama_akun == 'Penjualan Refill'){
         $qty_L03 = $qty_L03 + $qty;
       }
       else if($nama_baja == 'Elpiji 12 Kg Isi' && $referensi == 'GD' && $nama_akun == 'Penjualan Refill'){
