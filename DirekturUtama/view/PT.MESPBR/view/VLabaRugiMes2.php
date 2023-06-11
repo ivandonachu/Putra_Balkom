@@ -330,7 +330,7 @@ if (!isset($data_pendapatan_bajakosong['penjualan_bajakosong'])) {
     $total_pendapatan_bajakosong = 0;
 }
 
-$total_pendapatan = $total_pendapatan_refill;
+
 
 //transport_fee
 $table18 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jml_transport_fee FROM transport_fee WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM'");
@@ -873,7 +873,7 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left">Transport Fee</td>
                                     <td class="text-left"><?= formatuang($total_transport_fee); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>4-200</td>
