@@ -335,16 +335,16 @@ else{
         }
       }
 
-      if($nama_baja == 'Elpiji 3 Kg Isi'  && $nama_akun == 'Penjualan Refill'){
+      if($nama_baja == 'Elpiji 3 Kg Isi' && $penyaluran == 'Pangkalan' && $nama_akun == 'Penjualan Refill'){
         $qty_L03 = $qty_L03 + $qty;
       }
-      else if($nama_baja == 'Elpiji 12 Kg Isi' && $referensi == 'GD' && $nama_akun == 'Penjualan Refill'){
+      else if($nama_baja == 'Elpiji 12 Kg Isi' && $penyaluran == 'Pangkalan' && $nama_akun == 'Penjualan Refill'){
         $qty_B05 = $qty_B05 + $qty;
       }
-      else if($nama_baja == 'Bright Gas 5,5 Kg Isi' && $referensi == 'GD' && $nama_akun == 'Penjualan Refill' ){
+      else if($nama_baja == 'Bright Gas 5,5 Kg Isi' && $penyaluran == 'Pangkalan' && $nama_akun == 'Penjualan Refill' ){
         $qty_B12 = $qty_B12 + $qty;
       }
-      else if($nama_baja == 'Bright Gas 12 Kg Isi' && $referensi == 'GD' && $nama_akun == 'Penjualan Refill'){
+      else if($nama_baja == 'Bright Gas 12 Kg Isi' && $penyaluran == 'Pangkalan' && $nama_akun == 'Penjualan Refill'){
         $qty_L12 = $qty_L12 + $qty;
       }
 
