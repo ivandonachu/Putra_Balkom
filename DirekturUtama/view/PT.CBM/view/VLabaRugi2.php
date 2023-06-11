@@ -40,6 +40,8 @@ elseif (isset($_POST['tanggal1'])) {
  $bulan1 = ltrim($bulanx1, '0');
  $bulanx2 = date('m', strtotime($tanggal_akhir)); 
  $bulan2 = ltrim($bulanx2, '0');
+ $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+ $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
 
 }  
 
