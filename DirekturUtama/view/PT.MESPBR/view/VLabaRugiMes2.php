@@ -22,11 +22,17 @@ exit;
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
+ $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+ $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
+
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
+ $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+ $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
+
 }  
 
 
@@ -299,7 +305,7 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 else{
     //PENDAPATAN
 // TOTAL PENJUALAN REFILL
-$table = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '4-110' AND referensi = 'MES'");
+$table = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal_x' AND '$tanggal_akhir_x'AND kode_akun = '4-110' AND referensi = 'MES'");
 $data_pendapatan_refill = mysqli_fetch_array($table);
 $total_pendapatan_refill = $data_pendapatan_refill['penjualan_refill'];
 if (!isset($data_pendapatan_refill['penjualan_refill'])) {
@@ -326,6 +332,15 @@ if (!isset($data_pendapatan_bajakosong['penjualan_bajakosong'])) {
 
 $total_pendapatan = $total_pendapatan_refill;
 
+//transport_fee
+$table18 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jml_transport_fee FROM transport_fee WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM'");
+$data_transport_fee = mysqli_fetch_array($table18);
+$total_transport_fee = $data_transport_fee['jml_transport_fee'];
+if (!isset($data_transport_fee['jml_transport_fee'])) {
+    $total_transport_fee = 0;
+}
+
+$total_pendapatan = $total_pendapatan_refill + $total_transport_fee ;
 
 //HARGA POKOK PENJUALAN
 //TOTAL PEMBELIAN REFILL CBM
@@ -852,6 +867,13 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left"><?= formatuang($total_pendapatan_bajakosong); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLRMES/VRBajaKosongLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-140</td>
+                                    <td class="text-left">Transport Fee</td>
+                                    <td class="text-left"><?= formatuang($total_transport_fee); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>4-200</td>
