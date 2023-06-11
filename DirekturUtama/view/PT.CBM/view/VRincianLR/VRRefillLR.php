@@ -280,6 +280,10 @@ else{
     $B05_cash = 0;
     $B12_cash = 0;
     $L12_cash = 0;
+    $qty_L03 = 0;
+    $qty_B05 = 0;
+    $qty_B12 = 0;
+    $qty_L12 = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -331,8 +335,18 @@ else{
         }
       }
 
-
-
+      if($nama_baja == 'Elpiji 3 Kg Isi' && $referensi == 'GD' && $nama_akun == 'Penjualan Refill'){
+        $qty_L03 = $qty_L03 + $qty;
+      }
+      else if($nama_baja == 'Elpiji 12 Kg Isi' && $referensi == 'GD' && $nama_akun == 'Penjualan Refill'){
+        $qty_B05 = $qty_B05 + $qty;
+      }
+      else if($nama_baja == 'Bright Gas 5,5 Kg Isi' && $referensi == 'GD' && $nama_akun == 'Penjualan Refill' ){
+        $qty_B12 = $qty_B12 + $qty;
+      }
+      else if($nama_baja == 'Bright Gas 12 Kg Isi' && $referensi == 'GD' && $nama_akun == 'Penjualan Refill'){
+        $qty_L12 = $qty_L12 + $qty;
+      }
 
       echo "<tr>
       <td style='font-size: 14px'>$no_transaksi</td>
@@ -386,6 +400,41 @@ else{
       <td style='font-size: 14px'>";?> <?= formatuang($B05_cash); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($B12_cash); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($L12_cash); ?> <?php echo "</td>
+
+        </tr>";
+  
+  ?>
+
+</tbody>
+</table>
+</div>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+
+<!-- Tabel -->    
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Elpiji 3 KG</th>
+      <th>Bright Gas 5,5 KG</th>
+      <th>Bright Gas 12 KG</th>
+      <th>Elpiji 12 KG</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= $qty_L03; ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= $qty_B05; ?>  <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= $qty_B12; ?>  <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= $qty_L12; ?>  <?php echo "</td>
+
 
         </tr>";
   
