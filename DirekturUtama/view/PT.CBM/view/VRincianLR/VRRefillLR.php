@@ -434,8 +434,6 @@ else{
       <td style='font-size: 14px'>";?> <?= $qty_B05; ?>  <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= $qty_B12; ?>  <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= $qty_L12; ?>  <?php echo "</td>
-
-
         </tr>";
   
   ?>

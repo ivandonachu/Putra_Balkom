@@ -50,6 +50,10 @@ if (isset($_GET['tanggal1'])) {
     $bulan1 = ltrim($bulanx1, '0');
     $bulanx2 = date('m', strtotime($tanggal_akhir)); 
     $bulan2 = ltrim($bulanx2, '0');
+
+
+
+
    }
 
 

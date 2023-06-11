@@ -40,7 +40,11 @@ elseif (isset($_POST['tanggal1'])) {
  $bulan1 = ltrim($bulanx1, '0');
  $bulanx2 = date('m', strtotime($tanggal_akhir)); 
  $bulan2 = ltrim($bulanx2, '0');
+ $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+ $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
+ var_dump($tanggalx);
 }  
+
 
 
 if($tahun1 == $tahun2){
@@ -367,7 +371,7 @@ $laba_bersih_sebelum_pajak =  ($laba_kotor + $total_pendapatan_lain)  - $total_b
 else{
     //PENDAPATAN
 // TOTAL PENJUALAN REFILL
-$table = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '4-110' ");
+$table = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal_x' AND '$tanggal_akhir_x'AND kode_akun = '4-110' ");
 $data_pendapatan_refill = mysqli_fetch_array($table);
 $total_pendapatan_refill = $data_pendapatan_refill['penjualan_refill'];
 if (!isset($data_pendapatan_refill['penjualan_refill'])) {
