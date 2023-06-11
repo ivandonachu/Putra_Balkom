@@ -335,7 +335,7 @@ else{
         }
       }
 
-      if($nama_baja == 'Elpiji 3 Kg Isi' && $penyaluran == 'Pangkalan' && $nama_akun == 'Penjualan Refill'){
+      if($nama_baja == 'Elpiji 3 Kg Isi' && $nama_akun == 'Penjualan Refill' && $nama != 'Eceran Toko' && $nama != 'Eceran Gudang' && $nama != 'Khusus' && $nama != 'Karyawan' ){
         $qty_L03 = $qty_L03 + $qty;
       }
       else if($nama_baja == 'Elpiji 12 Kg Isi' && $penyaluran == 'Pangkalan' && $nama_akun == 'Penjualan Refill'){
