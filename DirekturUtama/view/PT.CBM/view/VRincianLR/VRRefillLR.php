@@ -25,11 +25,15 @@ exit;
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
+ $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+ $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
+ $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+ $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
 }  
 
 if ($tanggal_awal == $tanggal_akhir) {
