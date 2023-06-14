@@ -382,7 +382,7 @@ if (!isset($data_pendapatan_bajakosong['penjualan_bajakosong'])) {
 
 
 //transport_fee
-$table18 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jml_transport_fee FROM transport_fee WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM'");
+$table18 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jml_transport_fee FROM transport_fee WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR'");
 $data_transport_fee = mysqli_fetch_array($table18);
 $total_transport_fee = $data_transport_fee['jml_transport_fee'];
 if (!isset($data_transport_fee['jml_transport_fee'])) {
