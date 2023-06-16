@@ -137,7 +137,7 @@ Menu Kepala Oprasional
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Penageluaran</span>
+                    <span style="font-size: 15px; color:white;" >Pengeluaran</span>
                 </a>
                 <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">

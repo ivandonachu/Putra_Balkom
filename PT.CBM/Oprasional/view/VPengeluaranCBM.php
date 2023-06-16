@@ -144,7 +144,7 @@ Menu Kepala Oprasional
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Penageluaran</span>
+                    <span style="font-size: 15px; color:white;" >Pengeluaran</span>
                 </a>
                 <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -295,6 +295,7 @@ Menu Kepala Oprasional
                         <option>Biaya Kantor</option>
                         <option>Biaya Penyusutan</option>
                         <option>Biaya Konsumsi</option>
+                        <option>Biaya Administrasi</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -453,6 +454,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Biaya Penyusutan') ? "selected": "" ?> >Biaya Penyusutan</option>
                         <option <?php echo ($dataSelect == 'Biaya Penyusutan') ? "selected": "" ?> >Biaya Penyusutan</option>
                         <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+                        <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -547,30 +549,49 @@ Menu Kepala Oprasional
   </thead>
   <tbody>
   <?php 
-    $total_seluruh = 0;
+    $sisa_saldo = 0;
+    $total_pengeluaran = 0;
+    $total_saldo = 0;
   ?>
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['jumlah'];
 
       if ($nama_akun == 'Saldo Cek Masuk') {
-    
+        $sisa_saldo  = $sisa_saldo + $jumlah;
+        $total_saldo = $total_saldo + $jumlah;
       }
       else{
-        $total_seluruh = $total_seluruh + $jumlah;
+        $sisa_saldo  = $sisa_saldo - $jumlah;
+        $total_pengeluaran = $total_pengeluaran + $jumlah;
       }
      
 
 
       echo "<tr>
-      <td style='font-size: 14px' >$nama_akun</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
 
-      </tr>";
+       <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      
+     
+
+  </tr>";
 }
-?>
-<td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
+?>    <tr>
+<td style='font-size: 14px; ' ><strong>Total Sakdo</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_saldo); ?></strong> </td>
+      </tr>
+      <tr>
+      <td style='font-size: 14px; ' ><strong>Total Pengeluaran</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_pengeluaran); ?></strong> </td>
+      </tr>
+      <tr>
+      <td style='font-size: 14px; ' ><strong>Sisa Saldo</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($sisa_saldo); ?></strong> </td>
+      </tr>
+      
+     
+      
 
       </tr>
 </tbody>
@@ -604,10 +625,17 @@ Menu Kepala Oprasional
       }
 
       echo "<tr>
-      <td style='font-size: 14px' >$nama_akun</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      " ;
+      if ($nama_akun == 'Saldo Cek Masuk') {
+    
+      }
+      else{
+        echo" <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+     
 
-      </tr>";
+    echo" </tr>";
 }
 ?>
 <td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
@@ -645,10 +673,17 @@ Menu Kepala Oprasional
       }
 
       echo "<tr>
-      <td style='font-size: 14px' >$nama_akun</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      " ;
+      if ($nama_akun == 'Saldo Cek Masuk') {
+    
+      }
+      else{
+        echo" <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+     
 
-      </tr>";
+    echo" </tr>";
 }
 
 ?>
