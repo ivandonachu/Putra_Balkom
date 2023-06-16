@@ -512,7 +512,7 @@ Menu Kepala Oprasional
 
           <div class="modal-body">
             <form action="../proses/hapus_pengeluaran_cbm" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $dataE['no_pengeluaran'];?>">
+              <input type="hidden" name="no_pengeluaran" value="<?php echo $dataE['no_pengeluaran'];?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
 
