@@ -34,5 +34,5 @@ $no_pengeluaran = $_POST['no_pengeluaran'];
 
 
 	
-			//	echo "<script> window.location='../view/VPengeluaranCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			echo "<script> window.location='../view/VPengeluaranCBM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 	
