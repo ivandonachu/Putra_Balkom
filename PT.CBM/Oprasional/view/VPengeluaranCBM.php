@@ -503,16 +503,11 @@ Menu Kepala Oprasional
             </button>
           </div>
 
-          <?php
-          include 'koneksi.php';
-          $no_laporan = $data['no_pengeluaran'];
-          $queryE = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran where no_pengeluaran = '$no_laporan'");
-          $dataE = mysqli_fetch_array($queryE);
-          ?> 
+    
 
           <div class="modal-body">
             <form action="../proses/hapus_pengeluaran_cbm" method="POST">
-              <input type="hidden" name="no_pengeluaran" value="<?php echo $dataE['no_pengeluaran'];?>">
+              <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran; ?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
 
