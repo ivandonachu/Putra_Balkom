@@ -39,17 +39,17 @@ else{
   }
 if ($tanggal_awal == $tanggal_akhir) {
   
-  $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr a  WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr a  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr a  WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR' GROUP BY nama_akun");
+  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun a  WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun a  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun a  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun' GROUP BY nama_akun");
 
 
 }
 else{
 
-  $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' GROUP BY nama_akun");
+  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun' GROUP BY nama_akun");
 
 }
 
@@ -65,7 +65,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran PBR</title>
+  <title>Pengeluaran Kebun</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -180,7 +180,7 @@ Menu Kepala Oprasional
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengeluaranPBR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pengeluaran PBR</h5></a>"; ?>
+      <?php echo "<a href='VPengeluaranKebun?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pengeluaran Kebun</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -229,7 +229,7 @@ Menu Kepala Oprasional
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VPengeluaranPBR' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VPengeluaranKebun' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -263,7 +263,7 @@ Menu Kepala Oprasional
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_pengeluaran_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_pengeluaran_kebun?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-6">
@@ -273,7 +273,7 @@ Menu Kepala Oprasional
           <div class="col-md-6">
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
-              <option>PBR</option>
+              <option>Kebun</option>
             </select>
           </div>
         </div>
@@ -418,7 +418,7 @@ Menu Kepala Oprasional
 
       <!-- Form Edit Data -->
       <div class="modal-body">
-        <form action="../proses/edit_pengeluaran_pbr" enctype="multipart/form-data" method="POST">
+        <form action="../proses/edit_pengeluaran_kebun" enctype="multipart/form-data" method="POST">
         <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
         <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran;?>">
@@ -431,7 +431,7 @@ Menu Kepala Oprasional
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <?php $dataSelect = $data['referensi']; ?>
-              <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+              <option <?php echo ($dataSelect == 'Kebun') ? "selected": "" ?> >Kebun</option>
             </select>
           </div>
         </div>
@@ -506,7 +506,7 @@ Menu Kepala Oprasional
     
 
           <div class="modal-body">
-            <form action="../proses/hapus_pengeluaran_pbr" method="POST">
+            <form action="../proses/hapus_pengeluaran_kebun" method="POST">
               <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran; ?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
