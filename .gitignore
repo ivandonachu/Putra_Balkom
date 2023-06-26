@@ -152,6 +152,9 @@
 /Kebun/AdminKebun/file_kebun
 /Kebun/AdminKebun/proses/koneksi.php
 /Kebun/AdminKebun/view/koneksi.php
+/Kebun/AdminSeberuk/file_admin_seberuk
+/Kebun/AdminSeberuk/proses/koneksi.php
+/Kebun/AdminSeberuk/view/koneksi.php
 
 /PT.STRE/Administrasi/file_administrasi
 /PT.STRE/Administrasi/proses/koneksi.php
