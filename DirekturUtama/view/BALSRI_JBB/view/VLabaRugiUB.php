@@ -214,10 +214,10 @@ else{
         $dataax = mysqli_fetch_array($tableex);
         $jml_kreditx= $dataax['total_kreditx'];
 
-        if(isset($jml_kredit)){
+        if(!isset($jml_kredit)){
             $total_kredit += $jml_kredit;
         }
-        else if(isset($jml_kreditx)){
+        else if(!isset($jml_kreditx)){
             $total_kredit += $jml_kreditx;
         }
         
@@ -228,11 +228,11 @@ else{
 
     $total_laba_kotor = $total_tagihan;
     $sisa_oprasional = $jumlah_potongan - ($jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport );
-    $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport;
+    $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi + $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport;
     $laba_bersih_sebelum_pajak = $total_laba_kotor  - $total_biaya_usaha_final;
 
     $total_biaya_usaha_final_bbm = $uang_bbm + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport ;
-$laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
+    $laba_bersih_bbm = 0;
 ?>
 
 
@@ -736,7 +736,7 @@ $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
                 <td><strong>Selisih BBM</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($selisih_bbm); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="thick-line"></td>
             </tr>
             <tr>
