@@ -214,10 +214,10 @@ else{
         $dataax = mysqli_fetch_array($tableex);
         $jml_kreditx= $dataax['total_kreditx'];
 
-        if(!isset($jml_kredit)){
+        if(isset($jml_kredit)){
             $total_kredit += $jml_kredit;
         }
-        else if(!isset($jml_kreditx)){
+        else if(isset($jml_kreditx)){
             $total_kredit += $jml_kreditx;
         }
         
