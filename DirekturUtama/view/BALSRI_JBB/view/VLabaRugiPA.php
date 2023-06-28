@@ -228,10 +228,10 @@ else{
 
     $total_laba_kotor = $total_tagihan ;
     $sisa_oprasional = $jumlah_potongan - ($jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport );
-    $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport;
+    $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik  +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport;
     $laba_bersih_sebelum_pajak = $total_laba_kotor  - $total_biaya_usaha_final;
 
-    $total_biaya_usaha_final_bbm = $uang_bbm + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport ;
+    $total_biaya_usaha_final_bbm = $uang_bbm + $jml_biaya_kantor + $jml_listrik  +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport ;
 $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
 ?>
 
@@ -729,14 +729,14 @@ $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
                 <td>5-5971</td>
                 <td class="text-left">Uang BBM</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($uang_bbm); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
                 <?php echo "<td class='text-right'><a href=''></a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Selisih BBM</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($selisih_bbm); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="thick-line"></td>
             </tr>
             <tr>
@@ -812,13 +812,13 @@ $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
 
                 if ($laba_bersih_bbm > 0) { ?>
 
-                    <td class="no-line text-left"><?= formatuang($laba_bersih_bbm); ?> </td>
+                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
                     <td class="no-line text-left"><?= formatuang(0); ?> </td>
                 <?php }
                 else if ($laba_bersih_bbm < 0) { ?>
 
                     <td class="no-line text-left"><?= formatuang(0); ?></td>
-                    <td class="no-line text-left"><?= formatuang($laba_bersih_bbm); ?></td>
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
 
                 <?php }
                 else if ($laba_bersih_bbm == 0) { ?>

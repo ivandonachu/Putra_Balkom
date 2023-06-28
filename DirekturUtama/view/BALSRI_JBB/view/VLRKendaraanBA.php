@@ -565,14 +565,14 @@ else{
                 <td>5-5971</td>
                 <td class="text-left">Uang BBM</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($uang_bbm); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
                 <?php echo "<td class='text-right'><a href=''></a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Selisih BBM</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($selisih_bbm); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="thick-line"></td>
             </tr>
             <tr>
@@ -648,13 +648,13 @@ else{
 
                 if ($laba_bersih_bbm > 0) { ?>
 
-                    <td class="no-line text-left"><?= formatuang($laba_bersih_bbm); ?> </td>
+                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
                     <td class="no-line text-left"><?= formatuang(0); ?> </td>
                 <?php }
                 else if ($laba_bersih_bbm < 0) { ?>
 
                     <td class="no-line text-left"><?= formatuang(0); ?></td>
-                    <td class="no-line text-left"><?= formatuang($laba_bersih_bbm); ?></td>
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
 
                 <?php }
                 else if ($laba_bersih_bbm == 0) { ?>
