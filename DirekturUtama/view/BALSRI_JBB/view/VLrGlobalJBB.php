@@ -501,6 +501,7 @@ else{
     
     $total_gaji_karaywan_global = $gaji_karyawan_global + $gaji_driver_global ;
 
+    $total_kredit = 0;
 
     //akses kredit ub
     $table101_ub =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
