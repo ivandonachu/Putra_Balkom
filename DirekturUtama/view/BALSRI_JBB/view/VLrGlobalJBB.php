@@ -63,11 +63,6 @@ else{
     $data_tg = mysqli_fetch_array($table_tg);
     $total_tagihan_tg = $data_tg['total_tagihan'];
 
-    // Tagihan tanjung gerem 8kl
-    $table_tg8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_tg_8kl a INNER JOIN master_tarif_tg_8kl b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-    $data_tg8kl = mysqli_fetch_array($table_tg8kl);
-    $total_tagihan_tg8kl = $data_tg8kl['total_tagihan'];
-
     // Tagihan ujung berung
     $table_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_ub a INNER JOIN master_tarif_ub b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data_ub = mysqli_fetch_array($table_ub);
@@ -75,7 +70,7 @@ else{
 
 
 
-  $total_tagihan_global = $total_tagihan_ba + $total_tagihan_pa + $total_tagihan_pl + $total_tagihan_tg + $total_tagihan_tg8kl + $total_tagihan_ub ;
+  $total_tagihan_global = $total_tagihan_ba + $total_tagihan_pa + $total_tagihan_pl + $total_tagihan_tg  + $total_tagihan_ub ;
 
   // Potongan global 10%
   $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
@@ -118,15 +113,6 @@ else{
    $total_um_tg = $data2_tg['uang_makan'];
    $total_dexlite_tg = $total_uj_tg - ($total_jt_gps_tg*625);
 
-   //pengiriman tanjung gerem 8kl
-   $table2_tg8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_tg_8kl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-   $total_dexlite_tg8kl =0;
-    $data2_tg8kl = mysqli_fetch_array($table2_tg8kl);
-   $total_uj_tg8kl = $data2_tg8kl['total_uj'];
-   $total_jt_gps_tg8kl = $data2_tg8kl['total_jt_gps'];
-   $total_um_tg8kl = $data2_tg8kl['uang_makan'];
-   $total_dexlite_tg8kl = $total_uj_tg8kl - ($total_jt_gps_tg8kl*625);
-
    //pengiriman ujung berung
    $table2_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(um) AS uang_makan , SUM(jt_gps) as total_jt_gps , SUM(uj) AS total_uj  FROM pengiriman_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
    $total_dexlite_ub =0;
@@ -138,8 +124,8 @@ else{
 
   
     
-   $total_dexlite_global = $total_dexlite_ba + $total_dexlite_pa  + $total_dexlite_pl + $total_dexlite_tg + $total_dexlite_tg8kl + $total_dexlite_ub;
-    $total_um_global = $total_um_ba + $total_um_pa + $total_um_pl + $total_um_tg + $total_um_tg8kl +  $total_um_ub;
+   $total_dexlite_global = $total_dexlite_ba + $total_dexlite_pa  + $total_dexlite_pl + $total_dexlite_tg  + $total_dexlite_ub;
+    $total_um_global = $total_um_ba + $total_um_pa + $total_um_pl + $total_um_tg  +  $total_um_ub;
     $total_bbm_global = 0;
 
     //BIAYA KANTOR
@@ -171,13 +157,7 @@ else{
      if (!isset($data3_tg['jumlah_biaya_kantor'])) {
      $jml_biaya_kantor_tg = 0;
      }
-     //pengeluran Pul Biaya Kantor tanjung gerem 8kl
-    $table3_tg8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_tg_8kl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
-    $data3_tg8kl = mysqli_fetch_array($table3_tg8kl);
-    $jml_biaya_kantor_tg8kl = $data3_tg8kl['jumlah_biaya_kantor'];
-     if (!isset($data3_tg8kl['jumlah_biaya_kantor'])) {
-     $jml_biaya_kantor_tg8kl = 0;
-     }
+
      //pengeluran Pul Biaya Kantor ujung berung
    $table3_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
    $data3_ub = mysqli_fetch_array($table3_ub);
@@ -186,7 +166,7 @@ else{
     $jml_biaya_kantor_ub = 0;
     }
 
-     $biaya_kantor_global = $jml_biaya_kantor_ba + $jml_biaya_kantor_pa + $jml_biaya_kantor_pl + $jml_biaya_kantor_tg + $jml_biaya_kantor_tg8kl + $jml_biaya_kantor_ub;
+     $biaya_kantor_global = $jml_biaya_kantor_ba + $jml_biaya_kantor_pa + $jml_biaya_kantor_pl + $jml_biaya_kantor_tg  + $jml_biaya_kantor_ub;
 
     // LISTRIK & TELEPON
    //pengeluran Pul Listrik & Telepon balongan
@@ -218,13 +198,7 @@ else{
      if (!isset($data4_tg['jumlah_listrik'])) {
      $jml_listrik_tg = 0;
      }
-     //pengeluran Pul Listrik & Telepon tanjung gerem 8kl
-    $table4_tg8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_tg_8kl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
-    $data4_tg8kl = mysqli_fetch_array($table4_tg8kl);
-    $jml_listrik_tg8kl = $data4_tg8kl['jumlah_listrik'];
-     if (!isset($data4_tg8kl['jumlah_listrik'])) {
-     $jml_listrik_tg8kl = 0;
-     }
+
      //pengeluran Pul Listrik & Telepon ujung berung
    $table4_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_listrik FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon' ");
    $data4_ub = mysqli_fetch_array($table4_ub);
@@ -233,7 +207,7 @@ else{
     $jml_listrik_ub = 0;
     }
 
-     $listrik_global = $jml_listrik_ba + $jml_listrik_pa + $jml_listrik_pl + $jml_listrik_tg + $jml_listrik_tg8kl + $jml_listrik_ub;
+     $listrik_global = $jml_listrik_ba + $jml_listrik_pa + $jml_listrik_pl + $jml_listrik_tg  + $jml_listrik_ub;
 
     // BIAYA SEWA
    //pengeluran Biaya Sewa balongan
@@ -265,13 +239,7 @@ else{
      $jml_sewa_tg = 0;
      }
 
-     //pengeluran Biaya Sewa tanjung gerem 8kl
-    $table5_tg8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_tg_8kl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
-    $data5_tg8kl = mysqli_fetch_array($table5_tg8kl);
-    $jml_sewa_tg8kl = $data5_tg8kl['jumlah_sewa'];
-     if (!isset($data5_tg8kl['jumlah_sewa'])) {
-     $jml_sewa_tg8kl = 0;
-     }
+
      //pengeluran Biaya Sewa ujung berung
    $table5_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_sewa FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Sewa' ");
    $data5_ub = mysqli_fetch_array($table5_ub);
@@ -280,7 +248,7 @@ else{
     $jml_sewa_ub = 0;
     }
 
-     $biaya_sewa_global = $jml_sewa_ba + $jml_sewa_pa + $jml_sewa_pl + $jml_sewa_tg + $jml_sewa_tg8kl + $jml_sewa_ub;
+     $biaya_sewa_global = $jml_sewa_ba + $jml_sewa_pa + $jml_sewa_pl + $jml_sewa_tg  + $jml_sewa_ub;
 
     // ATK
    //pengeluran Alat Tulis Kantor balongan
@@ -311,13 +279,7 @@ else{
     if (!isset($data6_tg['jumlah_atk'])) {
     $jml_atk_tg = 0;
     }
-    //pengeluran Alat Tulis Kantor tanjung gerem 8kl
-   $table6_tg8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_tg_8kl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
-   $data6_tg8kl = mysqli_fetch_array($table6_tg8kl);
-   $jml_atk_tg8kl = $data6_tg8kl['jumlah_atk'];
-    if (!isset($data6_tg8kl['jumlah_atk'])) {
-    $jml_atk_tg8kl = 0;
-    }
+
     //pengeluran Alat Tulis Kantor ujung berung
    $table6_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_atk FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
    $data6_ub = mysqli_fetch_array($table6_ub);
@@ -326,7 +288,7 @@ else{
     $jml_atk_ub = 0;
     }
 
-    $atk_global = $jml_atk_ba + $jml_atk_pa + $jml_atk_pl + $jml_atk_tg + $jml_atk_tg8kl + $jml_atk_ub;
+    $atk_global = $jml_atk_ba + $jml_atk_pa + $jml_atk_pl + $jml_atk_tg  + $jml_atk_ub;
 
     //TRANSPORT DAN PERJALANAN DINAS
     //pengeluran Transnport / Perjalanan Dinas balongan
@@ -358,13 +320,6 @@ else{
     $jml_transport_tg = 0;
     }
 
-    //pengeluran Transnport / Perjalanan Dinas tanjung gerem 8kl
-   $table61_tg8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_tg_8kl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
-   $data61_tg8kl = mysqli_fetch_array($table61_tg8kl);
-   $jml_transport_tg8kl = $data61_tg8kl['jumlah_transport'];
-    if (!isset($data61_tg8kl['jumlah_transport'])) {
-    $jml_transport_tg8kl = 0;
-    }
     //pengeluran Transnport / Perjalanan Dinas ujung berung
    $table61_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
    $data61_ub = mysqli_fetch_array($table61_ub);
@@ -374,7 +329,7 @@ else{
     }
 
 
-    $transport_global = $jml_transport_ba + $jml_transport_pa + $jml_transport_pl + $jml_transport_tg + $jml_transport_tg8kl + $jml_transport_ub;
+    $transport_global = $jml_transport_ba + $jml_transport_pa + $jml_transport_pl + $jml_transport_tg  + $jml_transport_ub;
     
     // BIAYA KONSUMSI
     //pengeluran Biaya Konsumsi balongan
@@ -406,13 +361,6 @@ else{
     $jml_konsumsi_tg = 0;
     }
 
-        //pengeluran Biaya Konsumsi tanjung gerem 8kl
-   $table62_tg8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_tg_8kl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
-   $data62_tg8kl = mysqli_fetch_array($table62_tg8kl);
-   $jml_konsumsi_tg8kl = $data62_tg8kl['jumlah_konsumsi'];
-    if (!isset($data62_tg8kl['jumlah_konsumsi'])) {
-    $jml_konsumsi_tg8kl = 0;
-    }
     //pengeluran Biaya Konsumsi ujung berung
    $table62_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_konsumsi FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
    $data62_ub = mysqli_fetch_array($table62_ub);
@@ -421,7 +369,7 @@ else{
     $jml_konsumsi_ub = 0;
     }
 
-     $konsumsi_global = $jml_konsumsi_ba + $jml_konsumsi_pa + $jml_konsumsi_pl + $jml_konsumsi_tg + $jml_konsumsi_tg8kl + $jml_konsumsi_ub;
+     $konsumsi_global = $jml_konsumsi_ba + $jml_konsumsi_pa + $jml_konsumsi_pl + $jml_konsumsi_tg + $jml_konsumsi_ub;
 
     //PERBAIKAN
     //pengeluran perbaikan balongan
@@ -453,13 +401,6 @@ else{
     $jml_perbaikan_tg = 0;
     }
     
-        //pengeluran perbaikan tanjung gerem 8kl
-   $table7_tg8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_tg_8kl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-   $data7_tg8kl = mysqli_fetch_array($table7_tg8kl);
-   $jml_perbaikan_tg8kl = $data7_tg8kl['jumlah_perbaikan'];
-    if (!isset($data7_tg8kl['jumlah_perbaikan'])) {
-    $jml_perbaikan_tg8kl = 0;
-    }
 
     //pengeluran perbaikan ujung berung
    $table7_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jml_pengeluaran) AS jumlah_perbaikan FROM riwayat_perbaikan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
@@ -469,7 +410,7 @@ else{
     $jml_perbaikan_ub= 0;
     }
     
-    $perbaikan_global = $jml_perbaikan_ba + $jml_perbaikan_pa + $jml_perbaikan_pl + $jml_perbaikan_tg + $jml_perbaikan_tg8kl + $jml_perbaikan_ub;
+    $perbaikan_global = $jml_perbaikan_ba + $jml_perbaikan_pa + $jml_perbaikan_pl + $jml_perbaikan_tg  + $jml_perbaikan_ub;
     
     // GAJI KARYAWAN
      //Gaji karyawan balongan
@@ -501,14 +442,6 @@ else{
     $gaji_karyawan_tg = 0;
     }
 
-    //Gaji karyawan tanjung gerem 8kl
-   $table8_tg_8kl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI TG 8KL' ");
-   $data8_tg_8kl = mysqli_fetch_array($table8_tg_8kl);
-   $gaji_karyawan_tg_8kl = $data8_tg_8kl['jumlah_gaji'];
-    if (!isset($data8_tg_8kl['jumlah_gaji'])) {
-    $gaji_karyawan_tg_8kl = 0;
-    }
-
     //Gaji karyawan Ujung berung
    $table8_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI UB' ");
    $data8_ub = mysqli_fetch_array($table8_ub);
@@ -517,7 +450,7 @@ else{
     $gaji_karyawan_ub = 0;
     }
 
-    $gaji_karyawan_global = $gaji_karyawan_ba + $gaji_karyawan_pa + $gaji_karyawan_pl + $gaji_karyawan_tg + $gaji_karyawan_tg_8kl + $gaji_karyawan_ub;
+    $gaji_karyawan_global = $gaji_karyawan_ba + $gaji_karyawan_pa + $gaji_karyawan_pl + $gaji_karyawan_tg  + $gaji_karyawan_ub;
 
     // GAJI DRIVER
     //Gaji dRIVER balongan
