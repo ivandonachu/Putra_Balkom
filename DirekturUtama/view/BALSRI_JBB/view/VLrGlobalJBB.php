@@ -502,15 +502,125 @@ else{
     $total_gaji_karaywan_global = $gaji_karyawan_global + $gaji_driver_global ;
 
 
-    //totalkreditGLOBAL
+    //akses kredit ub
+    $table101_ub =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    //totalkredit ub
+    $total_kredit_ub = 0;
+    while($data_ub = mysqli_fetch_array($table101_ub)){
+        $mt_ub = $data_ub['mt'];
 
+        $tablee_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_ub'");
+        $dataa_ub = mysqli_fetch_array($tablee_ub);
+        $jml_kredit_ub = $dataa_ub['total_kredit'];
 
-        $tablee = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-        $dataa = mysqli_fetch_array($tablee);
-        $total_kredit= $dataa['total_kredit'];
+        $tableex_ub  = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_ub '");
+        $dataax_ub  = mysqli_fetch_array($tableex_ub);
+        $jml_kreditx_ub  = $dataax_ub['total_kreditx'];
 
-        $total_kredit = $total_kredit;
+        if(isset($jml_kredit_ub)){
+            $total_kredit += $jml_kredit_ub;
+        }
+        else if(isset($jml_kreditx_ub)){
+            $total_kredit += $jml_kreditx_ub;
+        }
         
+    }
+
+        //akses kredit tg
+        $table101_tg =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+        //totalkredit tg
+        $total_kredit_tg = 0;
+        while($data_tg = mysqli_fetch_array($table101_tg)){
+            $mt_ub = $data_tg['mt'];
+    
+            $tablee_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_tg'");
+            $dataa_tg = mysqli_fetch_array($tablee_tg);
+            $jml_kredit_tg = $dataa_tg['total_kredit'];
+    
+            $tableex_tg  = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_tg'");
+            $dataax_tg  = mysqli_fetch_array($tableex_tg);
+            $jml_kreditx_tg  = $dataax_tg['total_kreditx'];
+    
+            if(isset($jml_kredit_tg)){
+                $total_kredit += $jml_kredit_tg;
+            }
+            else if(isset($jml_kreditx_tg)){
+                $total_kredit += $jml_kreditx_tg;
+            }
+            
+        }
+
+            //akses kredit pl
+            $table101_pl =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+            //totalkredit pl
+            $total_kredit_pl = 0;
+            while($data_pl = mysqli_fetch_array($table101_pl)){
+                $mt_pl = $data_pl['mt'];
+
+                $tablee_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_pl'");
+                $dataa_pl = mysqli_fetch_array($tablee_pl);
+                $jml_kredit_pl = $dataa_pl['total_kredit'];
+
+                $tableex_pl = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_pl'");
+                $dataax_pl = mysqli_fetch_array($tableex_pl);
+                $jml_kreditx_pl  = $dataax_pl['total_kreditx'];
+
+                if(isset($jml_kredit_pl)){
+                    $total_kredit += $jml_kredit_pl;
+                }
+                else if(isset($jml_kreditx_pl)){
+                    $total_kredit += $jml_kreditx_pl;
+                }
+                
+            }
+
+            //akses kredit pa
+            $table101_pa =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+            //totalkredit pa
+            $total_kredit_pa = 0;
+            while($data_pa = mysqli_fetch_array($table101_pa)){
+                $mt_pa = $data_pa['mt'];
+
+                $tablee_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_pa'");
+                $dataa_pa = mysqli_fetch_array($tablee_pa);
+                $jml_kredit_pa = $dataa_pa['total_kredit'];
+
+                $tableex_pa = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_pa'");
+                $dataax_pa = mysqli_fetch_array($tableex_pa);
+                $jml_kreditx_pa  = $dataax_pa['total_kreditx'];
+
+                if(isset($jml_kredit_pa)){
+                    $total_kredit += $jml_kredit_pa;
+                }
+                else if(isset($jml_kreditx_pa)){
+                    $total_kredit += $jml_kreditx_pa;
+                }
+                
+            }
+                //akses kredit ba
+                $table101_ba =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+                //totalkredit ba
+                $total_kredit_ba = 0;
+                while($data_ba = mysqli_fetch_array($table101_ba)){
+                    $mt_ba= $data_ba['mt'];
+            
+                    $tablee_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_ba'");
+                    $dataa_ba = mysqli_fetch_array($tablee_ba);
+                    $jml_kredit_ba = $dataa_ba['total_kredit'];
+            
+                    $tableex_ba  = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_ba'");
+                    $dataax_ba = mysqli_fetch_array($tableex_ba);
+                    $jml_kreditx_ba = $dataax_ba['total_kreditx'];
+            
+                    if(isset($jml_kredit_ba)){
+                        $total_kredit += $jml_kredit_ba;
+                    }
+                    else if(isset($jml_kreditx_ba)){
+                        $total_kredit += $jml_kreditx_ba;
+                    }
+                    
+                }
+
         
  
 
