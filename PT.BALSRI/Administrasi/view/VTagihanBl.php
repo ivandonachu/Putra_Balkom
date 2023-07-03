@@ -754,6 +754,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         </tbody>
         </table>
         </div>
+        </div>
         <br>
         <div class="row" style="margin-right: 20px; margin-left: 20px;">
           <div class="col-xl-3 col-md-6 mb-4">
