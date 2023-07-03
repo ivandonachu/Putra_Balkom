@@ -45,15 +45,15 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 else{
 
-  $tabel = mysqli_query($koneksipbj, "SELECT tanggal_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim DESC LIMIT 1 ");
+  $tabel = mysqli_query($koneksipbj, "SELECT tanggal_kirim FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim DESC LIMIT 1 ");
   $datal = mysqli_fetch_array($tabel);
 
-  $tanggal_do_max = $datal['tanggal_do'];
+  $tanggal_do_max = $datal['tanggal_kirim'];
 
-  $tabel2 = mysqli_query($koneksipbj, "SELECT tanggal_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim ASC LIMIT 1 ");
+  $tabel2 = mysqli_query($koneksipbj, "SELECT tanggal_kirim FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim ASC LIMIT 1 ");
   $data2 = mysqli_fetch_array($tabel2);
 
-  $tanggal_do_min = $data2['tanggal_do'];
+  $tanggal_do_min = $data2['tanggal_kirim'];
 
 
 
