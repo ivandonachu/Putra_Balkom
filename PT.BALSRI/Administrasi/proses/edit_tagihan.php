@@ -51,8 +51,6 @@ $data_tarif = mysqli_fetch_array($result);
 $total = $data_tarif[$kode_pesanan];
 
 
-var_dump($total);
-var_dump($kode_pesanan);
 
 
 
