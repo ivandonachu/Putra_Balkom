@@ -51,6 +51,8 @@ $data_tarif = mysqli_fetch_array($result);
 $total = $data_tarif[$kode_pesanan];
 
 
+var_dump($total);
+var_dump($kode_pesanan);
 
 
 
@@ -101,6 +103,6 @@ else if ( $nama_file != "" ) {
 	}
 
 
-	//echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VTagihan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+	echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VTagihan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 ?>
