@@ -21,10 +21,9 @@ $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_laporan = $_POST['no_laporan'];
 $tanggal = $_POST['tanggal'];
-$nama_akun = $_POST['nama_akun'];
 $kg = $_POST['kg'];
 $harga = $_POST['harga'];
-$jumlah = $_POST['jumlah'];
+$jumlah = $kg * $harga;
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -62,38 +61,14 @@ else if ( $nama_file != "" ) {
 }
 
 
+        if ($file == '') {
+            $query3 = mysqli_query($koneksi,"UPDATE timbangan_baturaja SET tanggal = '$tanggal' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_laporan = '$no_laporan'");
+        }
+        else{
+            $query3 = mysqli_query($koneksi,"UPDATE timbangan_baturaja SET tanggal = '$tanggal'  , keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_laporan = '$no_laporan'");
+        }
+        echo "<script>window.location='../view/VTimbanganBTA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
-            if($nama_akun == "Sisa Saldo" || $nama_akun == "Pengeluaran" ){
-           
-
-                    if ($file == '') {
-                        $query3 = mysqli_query($koneksi,"UPDATE timbangan_baturaja SET tanggal = '$tanggal' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_laporan = 
-                        '$no_laporan'");
-                    }
-                    else{
-                        $query3 = mysqli_query($koneksi,"UPDATE timbangan_baturaja SET tanggal = '$tanggal'  , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_laporan = 
-                        '$no_laporan'");
-                    }
-                    echo "<script>window.location='../view/VTimbanganBTA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-                
-                    
-                
-            }
-            else{
-
-                        $jumlah_baru = 0;
-                        $jumlah_baru = $harga * $kg;
-                        	if ($file == '') {
-                                $query3 = mysqli_query($koneksi,"UPDATE timbangan_baturaja SET tanggal = '$tanggal' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah_baru'   WHERE no_laporan = 
-                                '$no_laporan'");
-                            }
-                            else{
-                                $query3 = mysqli_query($koneksi,"UPDATE timbangan_baturaja SET tanggal = '$tanggal'  , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah_baru' ,  file_bukti = '$file' WHERE no_laporan = 
-                                '$no_laporan'");
-                            }
-                            echo "<script>window.location='../view/VTimbanganBTA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-       
-            }
             
 
   ?>

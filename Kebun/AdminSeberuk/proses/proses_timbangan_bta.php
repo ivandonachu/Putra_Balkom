@@ -21,10 +21,9 @@ exit;
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
-$nama_akun = $_POST['nama_akun'];
 $kg = $_POST['kg'];
 $harga = $_POST['harga'];
-$jumlah = $_POST['jumlah'];
+$jumlah = $harga * $kg;
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -60,35 +59,16 @@ else if ( $nama_file != "" ) {
 	}
 
 }
-if($nama_akun == "Sisa Saldo" || $nama_akun == "Pengeluaran" ){
-	if($kg =="" && $harga == ""){
-		$query = mysqli_query($koneksi,"INSERT INTO timbangan_baturaja VALUES ('','$tanggal','$nama_akun','$kg','$harga','$jumlah','$keterangan','$file')");
-		if ($query != "") {
-			echo "<script> window.location='../view/VTimbanganBTA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-		}
-	}
-	else{
 
-		echo "<script>alert('Sisa Saldo atau Pengeluaran KG dan HARGA HARUS DIKOSONGKAN'); window.location='../view/VTimbanganBTA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-	}
-}
-else{
-
-	if($jumlah != ""){
-		echo "<script>alert('Pendapatan Jumlah harus dikosongkan, isi KG dan Harga Saja'); window.location='../view/VTimbanganBTA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-	}
-	else{
-			$jumlah_baru = 0;
-			$jumlah_baru = $harga * $kg;
-			$query = mysqli_query($koneksi,"INSERT INTO timbangan_baturaja VALUES ('','$tanggal','$nama_akun','$kg','$harga','$jumlah_baru','$keterangan','$file')");
+			$query = mysqli_query($koneksi,"INSERT INTO timbangan_baturaja VALUES ('','$tanggal','$kg','$harga','$jumlah','$keterangan','$file')");
 
 
 			if ($query != "") {
 				echo "<script> window.location='../view/VTimbanganBTA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
-	}
 
-}
+
+
 
 
 

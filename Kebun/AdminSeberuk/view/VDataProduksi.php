@@ -270,9 +270,53 @@ else{
   </form>
 
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8">
      <?php echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
+   <div class="col-md-2">
+      <!-- Button Input Data Bayar -->
+      <div align="right">
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#inputxa"> <i class="fas fa-trash-alt mr-2"></i>Hapus Seluh Data</button>
+      </div>
+      <!-- Form Modal  -->
+      <div class="modal fade bd-example-modal-lg" id="inputxa" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-lg" role ="document">
+         <div class="modal-content"> 
+          <div class="modal-header">
+            <h5 class="modal-title">Persetujuan Hapus Absen</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+
+          <!-- Form Input Data -->
+          <div class="modal-body" align="left">
+            <?php  echo "<form action='../proses/hapus_seluruh_data_produksi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+
+            <br>
+
+            <div class="row">
+              <div class="col-md-6">
+                 <label>Tanggal</label>
+                 <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
+              </div>
+              <div class="col-md-6">
+             
+              </div>
+           </div>
+
+           <br>
+           
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger">Hapus</button>
+
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
 
    <div class="col-md-2">
 

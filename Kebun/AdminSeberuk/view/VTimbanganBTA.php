@@ -296,14 +296,6 @@ else{
               <label>Tanggal</label>
                <input class="form-control form-control-sm" type="date" name="tanggal" required="">
           </div> 
-          <div class="col-md-6">
-                 <label>Akun</label>
-                    <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
-                        <option>Pemasukan</option>
-                        <option>Pengeluaran</option>
-                        <option>Sisa Saldo</option>
-                    </select>
-            </div>
         </div>
 
         <br>
@@ -316,10 +308,6 @@ else{
             <div class="col-md-4">
                 <label>Harga</label>
                 <input class="form-control form-control-sm" type="number" name="harga" >          
-            </div>
-            <div class="col-md-4">
-                <label>Jumlah</label>
-                <input class="form-control form-control-sm" type="number"  name="jumlah" >          
             </div>
         </div>
 
@@ -364,13 +352,11 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Akun</th>
       <th>Keterangan</th>
       <th>KG</th>
       <th>Harga</th>
-      <th>Debit</th>
-      <th>Kredit</th>
-      <th>Sisa</th>
+      <th>Jumlah</th>
+      <th>Total</th>
       <th>File</th>
       <th>Aksi</th>
     </tr>
@@ -388,7 +374,6 @@ else{
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
-      $nama_akun = $data['nama_akun'];
       $keterangan = $data['keterangan'];
       $kg = $data['kg'];
       $harga = $data['harga'];
@@ -396,30 +381,18 @@ else{
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Sisa Saldo' || $nama_akun == 'Pemasukan') {
         $total = $total + $jumlah;
-      }
-      else{
-        $total = $total - $jumlah;
-      }
+
 
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>$kg</td>
       <td style='font-size: 14px'>$harga</td>";
+      echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
       
-      if ($nama_akun == 'Sisa Saldo' || $nama_akun = 'Pemasukan') { 
-       echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-       echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
-      }
-      else{
-        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
-        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <a download="/Kebun/AdminSeberuk/file_admin_seberuk/<?= $file_bukti ?>" href="/Kebun/AdminSeberuk/file_admin_seberuk/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
@@ -449,15 +422,6 @@ else{
               <label>Tanggal</label>
                <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>" >
           </div>
-          <div class="col-md-6">
-                 <label>Akun</label>
-                    <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
-                        <?php $dataSelect = $data['nama_akun']; ?>
-                        <option <?php echo ($dataSelect == 'Pemasukan') ? "selected": "" ?> >Pemasukan</option>
-                        <option <?php echo ($dataSelect == 'Pengeluaran') ? "selected": "" ?> >Pengeluaran</option>
-                        <option <?php echo ($dataSelect == 'Sisa Saldo') ? "selected": "" ?> >Sisa Saldo</option>
-                    </select>
-            </div>
         </div>
       <br>
 
@@ -469,10 +433,6 @@ else{
             <div class="col-md-4">
                 <label>Harga</label>
                 <input class="form-control form-control-sm" type="number" value="<?php echo $harga;?>" name="harga"  >          
-            </div>
-            <div class="col-md-4">
-                <label>Jumlah</label>
-                <input class="form-control form-control-sm" type="number" value="<?php echo $jumlah;?>" name="jumlah"  >           
             </div>
         </div>
 
