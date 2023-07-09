@@ -284,6 +284,8 @@ Menu Kepala Oprasional
             <div class="col-md-6">
                  <label>Akun</label>
                     <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
+                        <option></option>
+                        <option>Saldo Sebelumnya</option>
                         <option>Saldo Cek Masuk</option>
                         <option>Transport / Perjalanan Dinas</option>
                         <option>Biaya Penjualan & Pemasaran</option>
@@ -441,6 +443,7 @@ Menu Kepala Oprasional
                  <label>Akun</label>
                     <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
                         <?php $dataSelect = $data['nama_akun']; ?>
+                        <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
                         <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
