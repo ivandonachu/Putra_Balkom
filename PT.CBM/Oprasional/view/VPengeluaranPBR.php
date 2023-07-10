@@ -376,7 +376,7 @@ Menu Kepala Oprasional
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Saldo Cek Masuk') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
         $total = $total + $jumlah;
       }
       else{
@@ -391,7 +391,7 @@ Menu Kepala Oprasional
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Saldo Cek Masuk') { 
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -558,7 +558,7 @@ Menu Kepala Oprasional
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['jumlah'];
 
-      if ($nama_akun == 'Saldo Cek Masuk') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
         $sisa_saldo  = $sisa_saldo + $jumlah;
         $total_saldo = $total_saldo + $jumlah;
       }
