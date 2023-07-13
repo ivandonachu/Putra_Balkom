@@ -49,10 +49,10 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM' GROUP BY nama_akun");
-  $table4 = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Melodi Tani' GROUP BY nama_akun");
-  $table5 = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM' GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Melodi Tani' GROUP BY nama_akun");
+  $table5 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
   
 }
 
@@ -571,7 +571,7 @@ Menu Kepala Oprasional
   ?>
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_akun = $data['nama_akun'];
-      $jumlah =$data['jumlah'];
+      $jumlah =$data['total_jumlah'];
 
       if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
         $sisa_saldo  = $sisa_saldo + $jumlah;
@@ -632,7 +632,7 @@ Menu Kepala Oprasional
   ?>
     <?php while($data = mysqli_fetch_array($table3)){
       $nama_akun = $data['nama_akun'];
-      $jumlah =$data['jumlah'];
+      $jumlah =$data['total_jumlah'];
       if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
        
       }
@@ -680,7 +680,7 @@ Menu Kepala Oprasional
   ?>
     <?php while($data = mysqli_fetch_array($table4)){
       $nama_akun = $data['nama_akun'];
-      $jumlah =$data['jumlah'];
+      $jumlah =$data['total_jumlah'];
       if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
     
       }
@@ -730,7 +730,7 @@ Menu Kepala Oprasional
   ?>
     <?php while($data = mysqli_fetch_array($table5)){
       $nama_akun = $data['nama_akun'];
-      $jumlah =$data['jumlah'];
+      $jumlah =$data['total_jumlah'];
       if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
     
       }
