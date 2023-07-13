@@ -287,6 +287,7 @@ Menu Kepala Oprasional
                         <option></option>
                         <option>Saldo Sebelumnya</option>
                         <option>Saldo Cek Masuk</option>
+                        <option>Saldo Brankas Muara Dua</option>
                         <option>Transport / Perjalanan Dinas</option>
                         <option>Biaya Penjualan & Pemasaran</option>
                         <option>Biaya Usaha Lainnya</option>
@@ -445,6 +446,7 @@ Menu Kepala Oprasional
                         <?php $dataSelect = $data['nama_akun']; ?>
                         <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
                         <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
+                        <option <?php echo ($dataSelect == 'Saldo Brankas Muara Dua') ? "selected": "" ?> >Saldo Brankas Muara Dua</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
                         <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
