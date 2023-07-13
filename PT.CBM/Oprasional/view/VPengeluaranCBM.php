@@ -293,6 +293,7 @@ Menu Kepala Oprasional
                         <option>Saldo Sebelumnya</option>
                         <option>Saldo Cek Masuk</option>
                         <option>Saldo Brimo Masuk</option>
+                        <option>Saldo Brankas Muara Dua</option>
                         <option>Transport / Perjalanan Dinas</option>
                         <option>Biaya Penjualan & Pemasaran</option>
                         <option>Uang Jalan</option>  
@@ -307,6 +308,7 @@ Menu Kepala Oprasional
                         <option>Biaya Administrasi</option>
                         <option>Pengeluaran Lainnya</option>
                         <option>Karyawan Kasbon</option>
+                        <option>Stok Sparepart Gudang</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -458,6 +460,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
                         <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
                         <option <?php echo ($dataSelect == 'Saldo Brimo Masuk') ? "selected": "" ?> >Saldo Brimo Masuk</option>
+                        <option <?php echo ($dataSelect == 'Saldo Brankas Muara Dua') ? "selected": "" ?> >Saldo Brankas Muara Dua</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
                         <option <?php echo ($dataSelect == 'Uang Jalan') ? "selected": "" ?> >Uang Jalan</option>
@@ -471,6 +474,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
                         <option <?php echo ($dataSelect == 'Karyawan Kasbon') ? "selected": "" ?> >Karyawan Kasbon</option>
+                        <option <?php echo ($dataSelect == 'Stok Sparepart Gudang') ? "selected": "" ?> >Stok Sparepart Gudang</option>
                     </select>
             </div>
             <div class="col-md-6">
