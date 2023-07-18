@@ -125,6 +125,9 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Bulanan Karyawan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBonPribadi">Bon Pribadi Karyawan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBungaBank">Bunga Bank</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
         </div>
     </div>
 </li>
