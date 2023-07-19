@@ -1756,6 +1756,139 @@ echo "
 <td style='font-size: 14px'>$keterangan</td>
 <td style='font-size: 14px'>"; ?> <a download="../file_toko/<?= $file_bukti ?>" href="../file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
 "; ?>
+
+<?php echo "<td style='font-size: 12px'>"; ?>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Edit</button>
+
+<!-- Form EDIT DATA -->
+
+<div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role ="document">
+    <div class="modal-content"> 
+      <div class="modal-header">Form Edit </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+
+
+      <!-- Form Edit Data -->
+      <div class="modal-body">
+        <form action="../proses/edit_penjualan" enctype="multipart/form-data" method="POST">
+
+       <input type="hidden" name="no_transaksi" value="<?php echo $no_transaksi;?>">
+       <input type="hidden" name="nama_baja" value="<?php echo $nama_baja;?>">
+       <input type="hidden" name="penyaluran" value="<?php echo $penyaluran;?>">
+       <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+      <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+
+      <div class="row">
+      <div class="col-md-6">
+
+       <label>Tanggal</label>
+       <div class="col-sm-10">
+         <input type="date" id="tanggal5" name="tanggal" required="" value="<?php echo $tanggal; ?>">
+     </div>
+   
+
+</div>
+<div class="col-md-6">
+  <label>REF</label>
+  <?php
+         $dataSelect = $data['referensi']; ?>  
+  <select id="referensi" name="referensi" class="form-control">
+    <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+    <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+</select>
+</div>
+</div>
+
+
+
+<br>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <?php
+         $dataSelect = $data['nama']; ?>  
+    <div>
+    <label>Nama</label>
+    </div>
+    <select id="tokens" class="selectpicker form-control" name="nama" multiple data-live-search="true">
+      <option <?php echo ($dataSelect == 'Eceran Outlet') ? "selected": "" ?> >Eceran Outlet</option>
+      <option <?php echo ($dataSelect == 'Karyawan') ? "selected": "" ?> >Karyawan</option>
+      <option <?php echo ($dataSelect == 'Khusus') ? "selected": "" ?> >Khusus</option>
+      <?php
+      include 'koneksi.php';
+      $result = mysqli_query($koneksi, "SELECT * FROM pangkalan");   
+
+      while ($data2 = mysqli_fetch_array($result)){
+        $data_pangakalan = $data2['sub_penyalur'];
+
+        echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>";
+
+      
+  }
+  ?>
+</select>
+</div>    
+
+<div class="col-md-6">
+    <label>Pembayaran</label>
+    <?php
+         $dataSelect = $data['pembayaran']; ?>  
+    <select id="pembayaran" name="pembayaran" class="form-control">
+    <option <?php echo ($dataSelect == 'Cash') ? "selected": "" ?> >Cash</option>
+    <option <?php echo ($dataSelect == 'Transfer') ? "selected": "" ?> >Transfer</option>
+    <option <?php echo ($dataSelect == 'Bon') ? "selected": "" ?> >Bon</option>
+    <option <?php echo ($dataSelect == '-') ? "selected": "" ?> >-</option>
+  </select>
+</div>                
+
+</div>
+
+<br>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <label>QTY</label>
+    <input class="form-control form-control-sm" type="number" id="qty1" name="qty" onkeyup="sum1();" required="" value="<?php echo $qty; ?>">
+</div>    
+
+<div class="col-md-6">
+    <label>Harga</label>
+    <input class="form-control form-control-sm" type="number" id="harga1" name="harga" onkeyup="sum1();" required="" value="<?php echo $harga; ?>">
+</div>                
+
+</div>
+
+<br>
+
+<div>
+     <label>Keterangan</label>
+     <div class="form-group">
+       <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+     </div>
+   </div>
+
+        <div>
+        <label>Upload File</label> 
+        <input type="file" name="file"> 
+        </div> 
+                
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Ubah </button>
+            <button type="reset" class="btn btn-danger"> RESET</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php echo "<td style='font-size: 12px'>"; ?>
 
 <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_transaksi']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
@@ -1804,45 +1937,7 @@ echo "
 </table>
 </div>
   </div>
-<br>
-<br>
-<br>
-<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-  <!-- Tabel -->    
-  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-    <thead>
-      <tr>
-        <th>Elpiji 3 KG</th>
-        <th>Bright Gas 5,5 KG</th>
-        <th>Bright Gas 12 KG</th>
-        <th>Elpiji 12 KG</th>
-        <th>Cash Elpiji 3 KG</th>
-        <th>Cash Bright Gas 5,5 KG</th>
-        <th>Cash Bright Gas 12 KG</th>
-        <th>Cash Elpiji 12 KG</th>
-    </tr>
-</thead>
-<tbody>
-
-  <?php 
-  echo "<tr>
-  <td style='font-size: 14px'>";?> <?= formatuang($L03); ?> <?php echo "</td>
-  <td style='font-size: 14px'>";?> <?= formatuang($B05); ?> <?php echo "</td>
-  <td style='font-size: 14px'>";?> <?= formatuang($B12); ?> <?php echo "</td>
-  <td style='font-size: 14px'>";?> <?= formatuang($L12); ?> <?php echo "</td>
-  <td style='font-size: 14px'>";?> <?= formatuang($L03_cash); ?> <?php echo "</td>
-  <td style='font-size: 14px'>";?> <?= formatuang($B05_cash); ?> <?php echo "</td>
-  <td style='font-size: 14px'>";?> <?= formatuang($B12_cash); ?> <?php echo "</td>
-  <td style='font-size: 14px'>";?> <?= formatuang($L12_cash); ?> <?php echo "</td>
-
-  </tr>";
-
-  ?>
-
-</tbody>
-</table>
-</div>
 <br>
 <br>
 <br>
