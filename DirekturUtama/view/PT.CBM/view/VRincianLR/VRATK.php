@@ -35,7 +35,7 @@ elseif (isset($_POST['tanggal1'])) {
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Alat Tulis Kantor'  AND referensi = 'CBM' ");
   $table2 = mysqli_query($koneksicbm, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-520' ");
-  $table3 = mysqli_query($koneksicbm, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'AND nama_akun = 'Transport / Perjalanan Dinas'AND referensi = 'CBM'");
+  $table3 = mysqli_query($koneksicbm, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'AND nama_akun = 'Alat Tulis Kantor'AND referensi = 'CBM'");
 }
 else{
   $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' AND referensi = 'CBM' ");
