@@ -823,7 +823,7 @@ if (!isset($data_pelainya_tk['pengeluaran_lain_ksr'])) {
     $total_pengeluaran_lainnya_tk = 0;
 }
 
-//pemasaran new
+//pengeluaran lainnya new
 $table167xx = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pengeluaran_lainnya_new FROM pengeluaran_cbm WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' AND referensi = 'CBM' ");
 $data_pengeluaran_lainnya_new = mysqli_fetch_array($table167xx);
 $total_pengeluaran_lainnya_new = $data_pengeluaran_lainnya_new['pengeluaran_lainnya_new'];
@@ -873,6 +873,14 @@ if (!isset($data_perbaikan_pribadi_new['perbaikan_pribadi_new'])) {
     $total_perbaikan_pribadi_new = 0;
 }
 
+//biaya administrasi new
+$table179x = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS biaya_administrasi_new FROM pengeluaran_cbm WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Administrasi' AND referensi = 'CBM' ");
+$data_biaya_administrasi_new = mysqli_fetch_array($table179x);
+$total_biaya_administrasi_new = $data_biaya_administrasi_new['biaya_administrasi_new'];
+if (!isset($data_biaya_administrasi_new['biaya_administrasi_new'])) {
+    $total_biaya_administrasi_new = 0;
+}
+
 
 
 
@@ -882,7 +890,7 @@ $total_bunga_bank_bri = 23000000 * $bulan_bunga_bri;
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3 + $total_perbaikan_pribadi + $total_perbaikan_pribadi_new;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni + $total_bunga_bank_bri;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni + $total_bunga_bank_bri +  $total_biaya_administrasi_new;
 
 $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_biaya_usaha_final;
 }
@@ -1406,6 +1414,13 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                 </tr>
                                 <tr>
                                     <td>5-591</td>
+                                    <td class="text-left">Biaya Administrasi</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_biaya_administrasi_new); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRBAdministrasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-592</td>
                                     <td class="text-left">Biaya Usaha Lainnya</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_biaya_usaha); ?></td>

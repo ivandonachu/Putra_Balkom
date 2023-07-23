@@ -291,7 +291,6 @@ Menu Kepala Oprasional
                         <option>Saldo Brimo Masuk</option>
                         <option>Transport / Perjalanan Dinas</option>
                         <option>Biaya Penjualan & Pemasaran</option>
-                        <option>Biaya Usaha Lainnya</option>
                         <option>Biaya Perbaikan Kendaraan</option>
                         <option>Alat Tulis Kantor</option>
                         <option>Listrik & Telepon</option>
@@ -452,7 +451,6 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Saldo Brimo Masuk') ? "selected": "" ?> >Saldo Brimo Masuk</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
-                        <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
                         <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
                         <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                         <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>

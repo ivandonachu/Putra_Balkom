@@ -33,10 +33,12 @@ elseif (isset($_POST['tanggal1'])) {
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal = '$tanggal_awal' AND referensi = 'MES'");
   $table2 = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-580' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND b.kode_akun = '5-580' AND referensi = 'ME' ");
+  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal = '$tanggal_awal'  AND nama_akun = 'Biaya Penjualan & Pemasaran' ");
 }
 else{
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES'");
   $table2 = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-580' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-580' AND referensi = 'ME' ");
+  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Penjualan & Pemasaran' ");
 }
 
 
@@ -296,6 +298,9 @@ else{
 </table>
 <br>
 <br>
+<hr>
+<br>
+<br>
 <!-- Tabel -->    
 <h4 align = 'center'>Pengeluaran Penunjang Pemasaran ke Pangkalan</h4>
 <table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
@@ -341,6 +346,79 @@ else{
 </tbody>
 </table>
 
+<br>
+<br>
+<hr>
+<br>
+<br>
+
+<h3 align = 'center'>Rincian Biaya Pemasaran</h3>
+
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>REF</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Debit</th>
+      <th>Kredit</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+
+    $urut = 0;
+    $total = 0;
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table3)){
+      $no_pengeluaran = $data['no_pengeluaran'];
+      $tanggal =$data['tanggal'];
+      $referensi = $data['referensi'];
+      $nama_akun = $data['nama_akun'];
+      $keterangan = $data['keterangan'];
+      $jumlah = $data['jumlah'];
+      $file_bukti = $data['file_bukti'];
+      $urut  = $urut + 1;
+
+
+        $total = $total + $jumlah;
+
+
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$keterangan</td>";
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+       echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+       echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
+      }
+      else{
+        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
+        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+    </td> </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<br>
   </div>
 </div>
 </div>
@@ -431,6 +509,17 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example2').DataTable( {
       lengthChange: false,
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example3').DataTable( {
+      lengthChange: false,
+      buttons: [  ]
     } );
 
     table.buttons().container()

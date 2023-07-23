@@ -31,12 +31,12 @@ elseif (isset($_POST['tanggal1'])) {
 }  
 
 if ($tanggal_akhir == $tanggal_awal) {
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal = '$tanggal_awal' AND b.kode_akun = '5-590' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND b.kode_akun = '5-590' AND referensi = 'ME' ");
-  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal = '$tanggal_awal'  AND nama_akun = 'Pengeluaran Lainnya' ");
+  
+  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal = '$tanggal_awal'  AND nama_akun = 'Biaya Administrasi' ");
 }
 else{
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-590' AND referensi = 'MES' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-590' AND referensi = 'ME' ");
-  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND nama_akun = 'Pengeluaran Lainnya' ");
+ 
+  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Administrasi' ");
 }
 
  ?>
@@ -51,7 +51,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Biaya Usaha Lainnya Kasir MES</title>
+  <title>Rincian Biaya Administrasi PBR</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -125,7 +125,7 @@ else{
                          <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
                          <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
                          <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-                         
+                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
                     </div>
                 </div>
             </li>
@@ -173,7 +173,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRUsahaLainnyaTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Usaha Lainnya Kasir MES</h5></a>"; ?>
+  <?php echo "<a href='VRUsahaLainnyaTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Administrasi MES</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -236,64 +236,8 @@ else{
 <br>
 <br>
    
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>REF</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Jumlah Pengeluaran</th>
-      <th>File</th>
 
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
-
-    <?php while($data = mysqli_fetch_array($table)){
-      $no_transaksi = $data['no_pengeluaran'];
-      $tanggal =$data['tanggal'];
-      $referensi = $data['referensi'];
-      $nama_akun = $data['nama_akun'];
-      $keterangan = $data['keterangan'];
-      $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
-      $file_bukti = $data['file_bukti'];
-
-
-      echo "<tr>
-      <td style='font-size: 14px'>$no_transaksi</td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_pengeluaran); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
-      
-
-    <?php echo  " </td> </tr>";
-  }
-  ?>
-
-</tbody>
-</table>
-
-<br>
-<br>
-<hr>
-<br>
-<br>
-
-<h3 align = 'center'>Rincian Transport / Perjalanan Dinas Baru</h3>
+<h3 align = 'center'>Rincian Biaya Administrasi</h3>
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
@@ -315,6 +259,13 @@ else{
 
     $urut = 0;
     $total = 0;
+    ?>
+     <?php
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
+
     ?>
 
     <?php while($data = mysqli_fetch_array($table3)){
@@ -435,17 +386,7 @@ aria-hidden="true">
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-<script>
-  $(document).ready(function() {
-    var table = $('#example').DataTable( {
-      lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
-    } );
 
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
 <script>
   $(document).ready(function() {
     var table = $('#example3').DataTable( {
