@@ -22,7 +22,31 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-$table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+ } 
+ else{
+   $tanggal_awal = date('Y-m-1');
+ $tanggal_akhir = date('Y-m-31');
+ }
+ 
+ if ($tanggal_awal == $tanggal_akhir) {
+
+   $table2 = mysqli_query($koneksipbr,"SELECT * FROM laporan_rit_mes  WHERE tanggal ='$tanggal_awal' GROUP BY nama_driver ");
+ 
+ }
+ 
+ else{
+
+   $table2 = mysqli_query($koneksipbr,"SELECT * FROM laporan_rit_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_driver");
+ 
+ }
 
 ?>
  <!DOCTYPE html>
@@ -276,9 +300,19 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
+  <?php echo "<form  method='POST' action='VListGajiDriverMES' style='margin-bottom: 15px;'>" ?>
+            <div>
+              <div align="left" style="margin-left: 20px;">
+                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                <span>-</span>
+                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
+              </div>
+            </div>
+            </form>
   <div class="row">
-    <div class="col-md-8">
-
+    <div class="col-md-10">
+    <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
     </div>
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
@@ -298,7 +332,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_rekap_gaji_driver_mes' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_rekap_gaji_driver_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
@@ -325,356 +359,80 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_mes");
 </div>
 </div>
 
-
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah List Gaji</button> <br> <br>
-      </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form List Gaji Karyawan</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_list_gaji_driver_mes' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
-
-            <div class="row">
-              <div class="col-md-4">
-               <label>Nama Driver</label>
-               <input class="form-control form-control-sm" type="text" name="nama_driver" required="">
-             </div>
-             <div class="col-md-4">
-               <label>Jabatan</label>
-               <input class="form-control form-control-sm" type="text" name="jabatan" required="" >
-             </div>
-             <div class="col-md-4">
-               <label>Rit PPE</label>
-               <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="0">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-
-             <div class="col-md-4">
-               <label>Rit PEP</label>
-               <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="0">
-             </div>
-             <div class="col-md-4">
-               <label>BPJS Kesehatan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="0">
-             </div>
-             <div class="col-md-4">
-               <label>BPJS Ketenagakerjaan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="0">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-             <div class="col-md-4">
-               <label>Angsuran Bon Bulanan</label>
-               <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="0">
-             </div>
-             <div class="col-md-4">
-                <label>Keterangan</label>
-                <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
-                  <option>Transfer</option>
-                  <option>Cash</option>
-                </select>
-           </div>
-           </div>
-
-           <br>
-
-           
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"> CATAT</button>
-        <button type="reset" class="btn btn-danger"> RESET</button>
-      </div>
-    </form>
-  </div>
-
-</div>
-</div>
 </div>
 
-</div>
-</div>
-
-
+<h5 align="center" >Rincian Gaji Driver MES</h5>
 <!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center';>
-              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
-    <tr>  
-          <th style="font-size: 14px" scope="col">No</th>
-          <th style="font-size: 14px" scope="col">Nama Driver</th>
-          <th style="font-size: 14px" scope="col">Jabatan</th>
-          <th style="font-size: 14px" scope="col">Rit PPE</th>
-          <th style="font-size: 14px" scope="col">Upah PPE</th>
-          <th style="font-size: 14px" scope="col">Rit PEP</th>
-          <th style="font-size: 14px" scope="col">Upah PEP</th>
-          <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
-          <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
-          <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan </th>
-          <th style="font-size: 14px" scope="col">Total Gaji </th>
-          <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
-          <th style="font-size: 14px" scope="col">Keterangan </th>
-          <th style="font-size: 14px" scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-      <?php
-      $no_urut = 0;
-      $total_tf = 0;
-      $total_cash = 0;
-      $total_seluruh = 0;
-          function formatuang($angka)
-          {
-            $uang = "Rp " . number_format($angka, 0, ',', '.');
-            return $uang;
-          }
-      ?>
-
-        <?php while($data2 = mysqli_fetch_array($table)){
-          $no_karyawan = $data2['no_karyawan'];
-          $nama_driver =$data2['nama_driver'];
-          $jabatan = $data2['jabatan'];
-          $rit_nje = $data2['rit_nje'];
-          $upah_nje = $data2['upah_nje'];
-          $rit_gas_palembang = $data2['rit_gas_palembang'];
-          $upah_gas_palembang = $data2['upah_gas_palembang'];
-          $bpjs_kesehatan = $data2['bpjs_kesehatan'];
-          $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
-          $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
-          $total_gaji = $data2['total_gaji'];
-          $total_gaji_diterima = $data2['total_gaji_diterima'];
-          $keterangan = $data2['keterangan'];
-          $no_urut = $no_urut + 1 ;
-
-          $total_seluruh = $total_seluruh + $total_gaji_diterima;
-          if($keterangan == 'Transfer'){
-            $total_tf = $total_tf + $total_gaji_diterima;
-          }
-          else if ($keterangan == 'Cash'){
-            $total_cash = $total_cash + $total_gaji_diterima;
-
-          }
-          echo "<tr>
-          <td style='font-size: 14px'>$no_urut</td>
-          <td style='font-size: 14px'>$nama_driver</td>
-          <td style='font-size: 14px'>$jabatan</td>
-          <td style='font-size: 14px'>$rit_nje</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_nje); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$rit_gas_palembang</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_gas_palembang); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$keterangan</td>
-          <td style='font-size: 14px'>"; ?>
-
-          <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data2['no_karyawan']; ?>">Edit</button>
-
-          <!-- Form EDIT DATA -->
-
-          <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data2['no_karyawan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-           <div class="modal-dialog modal-lg" role ="document">
-             <div class="modal-content"> 
-              <div class="modal-header">
-                <h5 class="modal-title"> Form Edit List Gaji Karyawan </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
-
-          <!-- Form Edit Data -->
-          <div class="modal-body">
-              <form action="../proses/edit_list_gaji_driver_mes" enctype="multipart/form-data" method="POST">
-                
-            <input type="hidden" name="no_karyawan" value="<?php echo $no_karyawan;?>"> 
-
-           <br>
-
-            <div class="row">
-              <div class="col-md-4">
-               <label>Nama Driver</label>
-               <input class="form-control form-control-sm" type="text" name="nama_driver" required="" value="<?php echo $nama_driver;?>">
-             </div>
-             <div class="col-md-4">
-               <label>Jabatan</label>
-               <input class="form-control form-control-sm" type="text" name="jabatan" required="" value="<?php echo $jabatan;?>">
-             </div>
-             <div class="col-md-4">
-               <label>Rit PPE</label>
-               <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="<?php echo $rit_nje;?>">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-             <div class="col-md-4">
-               <label>Rit PEP</label>
-               <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="<?php echo $rit_gas_palembang;?>">
-             </div>
-             <div class="col-md-4">
-               <label>BPJS Kesehatan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="<?php echo $bpjs_kesehatan;?>">
-             </div>
-             <div class="col-md-4">
-               <label>BPJS Ketenagakerjaan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="<?php echo $bpjs_ketenagakerjaan;?>">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-             <div class="col-md-4">
-               <label>Angsuran Bon Bulanan</label>
-               <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="<?php echo $angsuran_bon_bulanan;?>">
-             </div>
-             <div class="col-md-4">
-                 <label>Keterangan</label>
-                <select class="form-control form-control-sm" name="keterangan" class="form-control">
-                  <?php
-                  $dataSelect = $data['keterangan']; ?>
-                  <option <?php echo ($dataSelect == 'Transfer') ? "selected" : "" ?>>Transfer</option>
-                  <option <?php echo ($dataSelect == 'Cash') ? "selected" : "" ?>>Cash</option>
-                </select>
-           </div>
-           </div>
-
-           <br>
-
-
-
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Ubah </button>
-          <button type="reset" class="btn btn-danger"> RESET</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $no_karyawan;?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $no_karyawan; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
- <div class="modal-dialog" role ="document">
-   <div class="modal-content"> 
-    <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus List Gaji Karyawan </b> </h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-        <span aria-hidden="true"> &times; </span>
-      </button>
-    </div>
-
-    <div class="modal-body">
-      <form action="../proses/hapus_list_gaji_driver_mes" method="POST">
-        <input type="hidden" name="no_karyawan" value="<?php echo $no_karyawan;?>">
-        <div class="form-group">
-          <h6> Yakin Ingin Hapus Data? </h6>             
-        </div>
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Hapus </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
-     
-
-
-      <?php echo "</td> 
-      </tr>";
-  }
+    <tr>
+      <th>Nama Driver</th>
+      <th>Jabatan</th>
+      <th>Rit NJE</th>
+      <th>Upah NJE</th>
+      <th>Rit PEP</th>
+      <th>Upah PEP</th>
+      <th>Upah Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $total_gaji_nje = 0;
+    $total_gaji_pep = 0;
+    $total_rit_nje = 0;
+    $total_rit_pep = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
   ?>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_driver = $data['nama_driver'];
+      $nama_rute =$data['nama_rute'];
+      $table3 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_nje, SUM(rit) AS rit_nje FROM laporan_rit_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'NJE'");
+      $data3 = mysqli_fetch_array($table3);
+      $total_gaji_nje = $data3['uang_gaji_nje'];
+      if (  $total_gaji_nje == ""  ) {
+        $total_gaji_nje = 0;
+      }
+      $total_rit_nje = $data3['rit_nje'];
+      if (  $total_rit_nje == ""  ) {
+        $total_rit_nje = 0;
+      }
+      
 
+      $table4 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_pep , SUM(rit) AS rit_pep FROM laporan_rit_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PEP'");
+      $data4 = mysqli_fetch_array($table4);
+
+      $total_gaji_pep = $data4['uang_gaji_pep'];
+      if (  $total_gaji_pep == ""  ) {
+        $total_gaji_pep = 0;
+      }
+
+      $total_rit_pep = $data4['rit_pep'];
+      if (  $total_rit_pep == ""  ) {
+        $total_rit_pep = 0;
+      }
+
+      echo "<tr>
+
+    <td style='font-size: 14px' >$nama_driver</td>
+    <td style='font-size: 14px' >Driver</td>
+    <td style='font-size: 14px' >$total_rit_nje</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_nje); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_pep</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pep); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pep + $total_gaji_nje); ?> <?php echo "</td>
+
+
+ </tr>";
+}
+
+?>
 </tbody>
 </table>
 </div>
-  </div>
-<br>
-<br>
-<br>
-        <div class="row" style="margin-right: 20px; margin-left: 20px;">
-          <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Gaji Transfer</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_tf)  ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Gaji Cash</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_cash)  ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class=" fas fa-dollar-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Seluruh Gaji</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_seluruh)  ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <br>
-<br>
-
-
 </div>
-
 </div>
 <!-- End of Main Content -->
 

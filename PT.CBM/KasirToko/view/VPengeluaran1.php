@@ -99,7 +99,7 @@ $nama = $data['nama_karyawan'];
                         <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPenjualan">Riwayat Bon Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
-                        
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
                     </div>
                 </div>
             </li>

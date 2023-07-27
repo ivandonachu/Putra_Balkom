@@ -19,29 +19,94 @@ exit;
 }
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_kebun");
+
+
+$tanggal_awal = $_GET['tanggal1'];
+$tanggal_akhir = $_GET['tanggal2'];
+$table2 = mysqli_query($koneksikebun,"SELECT * FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_driver");
+
 $tanggal =$_POST['tanggal'];
 
-while($data2 = mysqli_fetch_array($table)){
+while($data2 = mysqli_fetch_array($table2)){
 
-    $nama_driver =$data2['nama_driver'];
-    $jabatan = $data2['jabatan'];
-    $rit_muat_sawit_dabuk = $data2['rit_muat_sawit_dabuk'];
-    $upah_muat_sawit_dabuk = $rit_muat_sawit_dabuk * 200000;
-    $rit_muat_getah_palembang = $data2['rit_muat_getah_palembang'];
-    $upah_muat_getah_palembang = $rit_muat_getah_palembang * 150000;
-    $rit_muat_pupuk_ke_gudang = $data2['rit_muat_pupuk_ke_gudang'];
-    $upah_muat_pupuk_ke_gudang = $rit_muat_pupuk_ke_gudang * 100000;
-    $rit_muat_nipah = $data2['rit_muat_nipah'];
-    $upah_muat_nipah = $rit_muat_nipah * 250000;
-    $rit_kampas_pupuk_kebun_lengkiti = $data2['rit_kampas_pupuk_kebun_lengkiti'];
-    $upah_kampas_pupuk_kebun_lengkiti = $rit_kampas_pupuk_kebun_lengkiti * 100000;
-    $total_gaji = $upah_muat_sawit_dabuk + $upah_muat_getah_palembang + $upah_muat_pupuk_ke_gudang + $upah_muat_nipah + $upah_kampas_pupuk_kebun_lengkiti;
-    $total_gaji_diterima = $upah_muat_sawit_dabuk + $upah_muat_getah_palembang + $upah_muat_pupuk_ke_gudang + $upah_muat_nipah + $upah_kampas_pupuk_kebun_lengkiti;
-    $keterangan = $data2['keterangan'];
+    $nama_driver = $data2['nama_driver'];
+    $nama_rute =$data2['nama_rute'];
+    //sawit dabuk
+    $table3 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_sawit_dabuk, SUM(rit) AS rit_sawit_dabuk FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'Muat Sawit Dabuk'");
+    $data3 = mysqli_fetch_array($table3);
+    $total_gaji_sawit_dabuk = $data3['uang_gaji_sawit_dabuk'];
+    if (  $total_gaji_sawit_dabuk == ""  ) {
+      $total_gaji_sawit_dabuk = 0;
+    }
+    $total_rit_sawit_dabuk = $data3['rit_sawit_dabuk'];
+    if (  $total_rit_sawit_dabuk == ""  ) {
+      $total_rit_sawit_dabuk = 0;
+    }
+    
+    //pupuk_kepalembang
 
-$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_kebun VALUES('','$tanggal','$nama_driver','$jabatan','$rit_muat_sawit_dabuk','$upah_muat_sawit_dabuk','$rit_muat_getah_palembang','$upah_muat_getah_palembang','$rit_muat_pupuk_ke_gudang','$upah_muat_pupuk_ke_gudang',
-                                                                        '$rit_muat_nipah','$upah_muat_nipah','$rit_kampas_pupuk_kebun_lengkiti','$upah_kampas_pupuk_kebun_lengkiti','$total_gaji','$total_gaji_diterima','$keterangan')");
+    $table4 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_pupuk_gudang , SUM(rit) AS rit_pupuk_gudang FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Pupuk Ke Gudang'");
+    $data4 = mysqli_fetch_array($table4);
+
+    $total_gaji_pupuk_kegudang = $data4['uang_gaji_pupuk_gudang'];
+    if (  $total_gaji_pupuk_kegudang == ""  ) {
+      $total_gaji_pupuk_kegudang = 0;
+    }
+
+    $total_rit_pupuk_kegudang = $data4['rit_pupuk_gudang'];
+    if (  $total_rit_pupuk_kegudang == ""  ) {
+      $total_rit_pupuk_kegudang = 0;
+    }
+
+
+    //getah palembang
+    $table5 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_getah_palembang , SUM(rit) AS rit_getah_palembang FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Getah Palembang'");
+    $data5 = mysqli_fetch_array($table5);
+
+    $total_gaji_getah_palembang = $data5['uang_gaji_getah_palembang'];
+    if (  $total_gaji_getah_palembang == ""  ) {
+      $total_gaji_getah_palembang = 0;
+    }
+
+    $total_rit_getah_palembang = $data5['rit_getah_palembang'];
+    if (  $total_rit_getah_palembang == ""  ) {
+      $total_rit_getah_palembang = 0;
+    }
+
+    //muat nipah
+    $table6 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_muat_nipah , SUM(rit) AS rit_muat_nipah FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Nipah'");
+    $data6 = mysqli_fetch_array($table6);
+
+    $total_gaji_muat_nipah = $data6['uang_gaji_muat_nipah'];
+    if (  $total_gaji_muat_nipah == ""  ) {
+      $total_gaji_muat_nipah = 0;
+    }
+
+    $total_rit_muat_nipah = $data6['rit_muat_nipah'];
+    if (  $total_rit_muat_nipah == ""  ) {
+      $total_rit_muat_nipah = 0;
+    }
+
+    // kebun lengkiti
+    $table7 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_kebun_lengkiti , SUM(rit) AS rit_kebun_lengkiti FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Pupuk Kebun Lengkiti'");
+    $data7 = mysqli_fetch_array($table7);
+
+    $total_gaji_kebun_lengkiti = $data7['uang_gaji_kebun_lengkiti'];
+    if (  $total_gaji_kebun_lengkiti == ""  ) {
+      $total_gaji_kebun_lengkiti = 0;
+    }
+
+    $total_rit_kebun_lengkiti = $data7['rit_kebun_lengkiti'];
+    if (  $total_rit_kebun_lengkiti == ""  ) {
+      $total_rit_kebun_lengkiti = 0;
+    }
+
+    $total_gaji = $total_gaji_sawit_dabuk + $total_gaji_getah_palembang + $total_gaji_pupuk_kegudang + $total_gaji_muat_nipah + $total_gaji_kebun_lengkiti;
+    $total_gaji_diterima = $total_gaji_sawit_dabuk + $total_gaji_getah_palembang + $total_gaji_pupuk_kegudang + $total_gaji_muat_nipah + $total_gaji_kebun_lengkiti;
+
+
+$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_kebun VALUES('','$tanggal','$nama_driver','Driver','$total_rit_sawit_dabuk','$total_gaji_sawit_dabuk','$total_rit_getah_palembang','$total_gaji_getah_palembang','$total_rit_pupuk_kegudang','$total_gaji_pupuk_kegudang',
+                                                                        '$total_rit_muat_nipah','$total_gaji_muat_nipah','$total_rit_kebun_lengkiti','$total_gaji_kebun_lengkiti','$total_gaji','$total_gaji_diterima','Transfer')");
 
 }
 

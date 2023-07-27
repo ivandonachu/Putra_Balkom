@@ -22,7 +22,32 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-$table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_kebun");
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+ } 
+ else{
+   $tanggal_awal = date('Y-m-1');
+ $tanggal_akhir = date('Y-m-31');
+ }
+ 
+ if ($tanggal_awal == $tanggal_akhir) {
+   $table = mysqli_query($koneksikebun,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' ");
+   $table2 = mysqli_query($koneksikebun,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' GROUP BY nama_driver ");
+ 
+ }
+ 
+ else{
+   $table = mysqli_query($koneksikebun,"SELECT * FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+   $table2 = mysqli_query($koneksikebun,"SELECT * FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_driver");
+ 
+ }
+ 
 
 ?>
  <!DOCTYPE html>
@@ -276,9 +301,19 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_kebun");
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
+  <?php echo "<form  method='POST' action='VListGajiDriverCBM' style='margin-bottom: 15px;'>" ?>
+            <div>
+              <div align="left" style="margin-left: 20px;">
+                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                <span>-</span>
+                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
+              </div>
+            </div>
+            </form>
   <div class="row">
-    <div class="col-md-8">
-
+    <div class="col-md-10">
+    <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
     </div>
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
@@ -298,7 +333,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_kebun");
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_rekap_gaji_driver_kebun' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_rekap_gaji_driver_kebun?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
@@ -324,368 +359,154 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_driver_kebun");
 </div>
 </div>
 </div>
-
-
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah List Gaji</button> <br> <br>
-      </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form List Gaji Karyawan</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_list_gaji_driver_kebun' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
-
-            <div class="row">
-              <div class="col-md-6">
-               <label>Nama Driver</label>
-               <input class="form-control form-control-sm" type="text" name="nama_driver" required="">
-             </div>
-             <div class="col-md-6">
-               <label>Jabatan</label>
-               <input class="form-control form-control-sm" type="text" name="jabatan" required="" >
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-              <div class="col-md-4">
-               <label>Rit Muat Sawit Dabuk</label>
-               <input class="form-control form-control-sm" type="number" name="rit_muat_sawit_dabuk" required="" value="0">
-             </div>
-             <div class="col-md-4">
-               <label>Rit Muat Getah Palembang</label>
-               <input class="form-control form-control-sm" type="number" name="rit_muat_getah_palembang" required="" value="0">
-             </div>
-             <div class="col-md-4">
-               <label>Rit Muat Pupuk ke Gudang</label>
-               <input class="form-control form-control-sm" type="number" name="rit_muat_pupuk_ke_gudang" required="" value="0">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-              <div class="col-md-4">
-               <label>Rit Muat Nipah</label>
-               <input class="form-control form-control-sm" type="number" name="rit_muat_nipah" required="" value="0">
-             </div>
-             <div class="col-md-4">
-               <label>Rit Kampas Pupuk Kebun Lenkiti</label>
-               <input class="form-control form-control-sm" type="number" name="rit_kampas_pupuk_kebun_lengkiti" required="" value="0">
-             </div>
-             <div class="col-md-4">
-                <label>Keterangan</label>
-                <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
-                  <option>Transfer</option>
-                  <option>Cash</option>
-                </select>
-           </div>
-           </div>
-
-           <br>
-
-           
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"> CATAT</button>
-        <button type="reset" class="btn btn-danger"> RESET</button>
-      </div>
-    </form>
-  </div>
-
-</div>
-</div>
-</div>
-
-</div>
 </div>
 
 
+<h5 align="center" >Rincian Gaji Driver Kebun</h5>
 <!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center';>
-              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
-    <tr>  
-          <th style="font-size: 14px" scope="col">No</th>
-          <th style="font-size: 14px" scope="col">Nama Driver</th>
-          <th style="font-size: 14px" scope="col">Jabatan</th>
-          <th style="font-size: 14px" scope="col">Rit Muat Sawit Dabuk</th>
-          <th style="font-size: 14px" scope="col">Upah Muat Sawit Dabuk</th>
-          <th style="font-size: 14px" scope="col">Rit Muat Getah Palembang</th>
-          <th style="font-size: 14px" scope="col">Upah Muat Getah Palembang</th>
-          <th style="font-size: 14px" scope="col">Rit Muat Pupuk ke Gudang</th>
-          <th style="font-size: 14px" scope="col">Upah Muat Pupuk ke Gudang</th>
-          <th style="font-size: 14px" scope="col">Rit Muat Nipah</th>
-          <th style="font-size: 14px" scope="col">Upah Muat Nipah</th>
-          <th style="font-size: 14px" scope="col">Rit Kampas Pupuk Kebun Lenkiti</th>
-          <th style="font-size: 14px" scope="col">Upah Kampas Pupuk Kebun Lenkiti</th>
-          <th style="font-size: 14px" scope="col">Total Gaji </th>
-          <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
-          <th style="font-size: 14px" scope="col">Keterangan </th>
-          <th style="font-size: 14px" scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-      <?php
-      $no_urut = 0;
-      $total_tf = 0;
-      $total_cash = 0;
-      $total_seluruh = 0;
-          function formatuang($angka)
-          {
-            $uang = "Rp " . number_format($angka, 0, ',', '.');
-            return $uang;
-          }
-      ?>
+    <tr>
+      <th>Nama Driver</th>
+      <th>Jabatan</th>
+      <th>Rit Muat Sawit Dabuk</th>
+      <th>Upah Muat Sawit Dabuk</th>
+      <th>Rit Muat Getah Palembang</th>
+      <th>Upah Muat Getah Palembang</th>
+      <th>Rit Muat Pupuk ke Gudang</th>
+      <th>Upah Muat Pupuk ke Gudang</th>
+      <th>Rit Muat Nipah</th>
+      <th>Upah Muat Nipah</th>
+      <th>Rit Kampas Pupuk Kebun Lenkiti</th>
+      <th>Upah Kampas Pupuk Kebun Lenkiti</th>
+      <th>Upah Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $total_gaji_sawit_dabuk = 0;
+    $total_gaji_pupuk_kegudang = 0;
+    $total_gaji_getah_palembang = 0;
+    $total_gaji_muat_nipah = 0;
+    $total_gaji_kebun_lengkiti = 0;
 
-        <?php while($data2 = mysqli_fetch_array($table)){
-          $no_karyawan = $data2['no_karyawan'];
-          $nama_driver =$data2['nama_driver'];
-          $jabatan = $data2['jabatan'];
-          $rit_muat_sawit_dabuk = $data2['rit_muat_sawit_dabuk'];
-          $upah_muat_sawit_dabuk = $data2['upah_muat_sawit_dabuk'];
-          $rit_muat_getah_palembang = $data2['rit_muat_getah_palembang'];
-          $upah_muat_getah_palembang = $data2['upah_muat_getah_palembang'];
-          $rit_muat_pupuk_ke_gudang = $data2['rit_muat_pupuk_ke_gudang'];
-          $upah_muat_pupuk_ke_gudang = $data2['upah_muat_pupuk_ke_gudang'];
-          $rit_muat_nipah = $data2['rit_muat_nipah'];
-          $upah_muat_nipah = $data2['upah_muat_nipah'];
-          $rit_kampas_pupuk_kebun_lengkiti = $data2['rit_kampas_pupuk_kebun_lengkiti'];
-          $upah_kampas_pupuk_kebun_lengkiti = $data2['upah_kampas_pupuk_kebun_lengkiti'];
-          $total_gaji = $data2['total_gaji'];
-          $total_gaji_diterima = $data2['total_gaji_diterima'];
-          $keterangan = $data2['keterangan'];
-          $no_urut = $no_urut + 1 ;
+    $total_rit_sawit_dabuk = 0;
+    $total_rit_pupuk_kegudang = 0;
+    $total_rit_getah_palembang = 0;
+    $total_rit_muat_nipah = 0;
+    $total_rit_kebun_lengkiti = 0;
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
 
-          $total_seluruh = $total_seluruh + $total_gaji_diterima;
-          if($keterangan == 'Transfer'){
-            $total_tf = $total_tf + $total_gaji_diterima;
-          }
-          else if ($keterangan == 'Cash'){
-            $total_cash = $total_cash + $total_gaji_diterima;
-
-          }
-          echo "<tr>
-          <td style='font-size: 14px'>$no_urut</td>
-          <td style='font-size: 14px'>$nama_driver</td>
-          <td style='font-size: 14px'>$jabatan</td>
-          <td style='font-size: 14px'>$rit_muat_sawit_dabuk</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_sawit_dabuk); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$rit_muat_getah_palembang</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_getah_palembang); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$rit_muat_pupuk_ke_gudang</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_pupuk_ke_gudang); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$rit_muat_nipah</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_nipah); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$rit_kampas_pupuk_kebun_lengkiti</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_kampas_pupuk_kebun_lengkiti); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$keterangan</td>
-          <td style='font-size: 14px'>"; ?>
-
-          <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data2['no_karyawan']; ?>">Edit</button>
-
-          <!-- Form EDIT DATA -->
-
-          <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data2['no_karyawan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-           <div class="modal-dialog modal-lg" role ="document">
-             <div class="modal-content"> 
-              <div class="modal-header">
-                <h5 class="modal-title"> Form Edit List Gaji Karyawan </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
-
-          <!-- Form Edit Data -->
-          <div class="modal-body">
-              <form action="../proses/edit_list_gaji_driver_kebun" enctype="multipart/form-data" method="POST">
-                
-            <input type="hidden" name="no_karyawan" value="<?php echo $no_karyawan;?>"> 
-
-           <br>
-
-            <div class="row">
-              <div class="col-md-6">
-               <label>Nama Driver</label>
-               <input class="form-control form-control-sm" type="text" name="nama_driver" required="" value="<?php echo $nama_driver;?>">
-             </div>
-             <div class="col-md-6">
-               <label>Jabatan</label>
-               <input class="form-control form-control-sm" type="text" name="jabatan" required="" value="<?php echo $jabatan;?>">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-              <div class="col-md-4">
-               <label>Rit Muat Sawit Dabuk</label>
-               <input class="form-control form-control-sm" type="number" name="rit_muat_sawit_dabuk" required="" value="<?php echo $rit_muat_sawit_dabuk;?>">
-             </div>
-             <div class="col-md-4">
-               <label>Rit Muat Getah Palembang</label>
-               <input class="form-control form-control-sm" type="number" name="rit_muat_getah_palembang" required="" value="<?php echo $rit_muat_getah_palembang;?>">
-             </div>
-             <div class="col-md-4">
-               <label>Rit Muat Pupuk ke Gudang</label>
-               <input class="form-control form-control-sm" type="number" name="rit_muat_pupuk_ke_gudang" required="" value="<?php echo $rit_muat_pupuk_ke_gudang;?>">
-             </div>
-           </div>
-
-           <br>
-
-           <div class="row">
-              <div class="col-md-4">
-               <label>Rit Muat Nipah</label>
-               <input class="form-control form-control-sm" type="number" name="rit_muat_nipah" required="" value="<?php echo $rit_muat_nipah;?>">
-             </div>
-             <div class="col-md-4">
-               <label>Rit Kampas Pupuk Kebun Lenkiti</label>
-               <input class="form-control form-control-sm" type="number" name="rit_kampas_pupuk_kebun_lengkiti" required="" value="<?php echo $rit_kampas_pupuk_kebun_lengkiti;?>">
-             </div>
-             <div class="col-md-4">
-             <label>Keterangan</label>
-                <select class="form-control form-control-sm" name="keterangan" class="form-control">
-                  <?php
-                  $dataSelect = $data['keterangan']; ?>
-                  <option <?php echo ($dataSelect == 'Transfer') ? "selected" : "" ?>>Transfer</option>
-                  <option <?php echo ($dataSelect == 'Cash') ? "selected" : "" ?>>Cash</option>
-                </select>
-           </div>
-           </div>
-
-         
-
-           <br>
-
-
-
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Ubah </button>
-          <button type="reset" class="btn btn-danger"> RESET</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $no_karyawan;?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $no_karyawan; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
- <div class="modal-dialog" role ="document">
-   <div class="modal-content"> 
-    <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus List Gaji Karyawan </b> </h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-        <span aria-hidden="true"> &times; </span>
-      </button>
-    </div>
-
-    <div class="modal-body">
-      <form action="../proses/hapus_list_gaji_driver_kebun" method="POST">
-        <input type="hidden" name="no_karyawan" value="<?php echo $no_karyawan;?>">
-        <div class="form-group">
-          <h6> Yakin Ingin Hapus Data? </h6>             
-        </div>
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Hapus </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
-     
-
-
-      <?php echo "</td> 
-      </tr>";
-  }
   ?>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_driver = $data['nama_driver'];
+      $nama_rute =$data['nama_rute'];
+      //sawit dabuk
+      $table3 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_sawit_dabuk, SUM(rit) AS rit_sawit_dabuk FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'Muat Sawit Dabuk'");
+      $data3 = mysqli_fetch_array($table3);
+      $total_gaji_sawit_dabuk = $data3['uang_gaji_sawit_dabuk'];
+      if (  $total_gaji_sawit_dabuk == ""  ) {
+        $total_gaji_sawit_dabuk = 0;
+      }
+      $total_rit_sawit_dabuk = $data3['rit_sawit_dabuk'];
+      if (  $total_rit_sawit_dabuk == ""  ) {
+        $total_rit_sawit_dabuk = 0;
+      }
+      
+      //pupuk_kepalembang
 
+      $table4 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_pupuk_gudang , SUM(rit) AS rit_pupuk_gudang FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Pupuk Ke Gudang'");
+      $data4 = mysqli_fetch_array($table4);
+
+      $total_gaji_pupuk_kegudang = $data4['uang_gaji_pupuk_gudang'];
+      if (  $total_gaji_pupuk_kegudang == ""  ) {
+        $total_gaji_pupuk_kegudang = 0;
+      }
+
+      $total_rit_pupuk_kegudang = $data4['rit_pupuk_gudang'];
+      if (  $total_rit_pupuk_kegudang == ""  ) {
+        $total_rit_pupuk_kegudang = 0;
+      }
+
+
+      //getah palembang
+      $table5 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_getah_palembang , SUM(rit) AS rit_getah_palembang FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Getah Palembang'");
+      $data5 = mysqli_fetch_array($table5);
+
+      $total_gaji_getah_palembang = $data5['uang_gaji_getah_palembang'];
+      if (  $total_gaji_getah_palembang == ""  ) {
+        $total_gaji_getah_palembang = 0;
+      }
+
+      $total_rit_getah_palembang = $data5['rit_getah_palembang'];
+      if (  $total_rit_getah_palembang == ""  ) {
+        $total_rit_getah_palembang = 0;
+      }
+
+      //muat nipah
+      $table6 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_muat_nipah , SUM(rit) AS rit_muat_nipah FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Nipah'");
+      $data6 = mysqli_fetch_array($table6);
+
+      $total_gaji_muat_nipah = $data6['uang_gaji_muat_nipah'];
+      if (  $total_gaji_muat_nipah == ""  ) {
+        $total_gaji_muat_nipah = 0;
+      }
+
+      $total_rit_muat_nipah = $data6['rit_muat_nipah'];
+      if (  $total_rit_muat_nipah == ""  ) {
+        $total_rit_muat_nipah = 0;
+      }
+
+      // kebun lengkiti
+      $table7 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_kebun_lengkiti , SUM(rit) AS rit_kebun_lengkiti FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Pupuk Kebun Lengkiti'");
+      $data7 = mysqli_fetch_array($table7);
+
+      $total_gaji_kebun_lengkiti = $data7['uang_gaji_kebun_lengkiti'];
+      if (  $total_gaji_kebun_lengkiti == ""  ) {
+        $total_gaji_kebun_lengkiti = 0;
+      }
+
+      $total_rit_kebun_lengkiti = $data7['rit_kebun_lengkiti'];
+      if (  $total_rit_kebun_lengkiti == ""  ) {
+        $total_rit_kebun_lengkiti = 0;
+      }
+
+      echo "<tr>
+    <td style='font-size: 14px' >$nama_driver</td>
+    <td style='font-size: 14px' >Driver</td>
+    <td style='font-size: 14px' >$total_rit_sawit_dabuk</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_sawit_dabuk); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_getah_palembang</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_getah_palembang); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_pupuk_kegudang</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pupuk_kegudang); ?> <?php echo "</td>
+
+    <td style='font-size: 14px' >$total_rit_muat_nipah</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_muat_nipah); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_kebun_lengkiti</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_kebun_lengkiti); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_sawit_dabuk + $total_gaji_pupuk_kegudang + $total_gaji_getah_palembang + $total_gaji_muat_nipah + $total_gaji_kebun_lengkiti); ?> <?php echo "</td>
+
+
+ </tr>";
+}
+
+?>
 </tbody>
 </table>
 </div>
+<br>
+<br>
+
+</div>
   </div>
-<br>
-<br>
-<br>
-        <div class="row" style="margin-right: 20px; margin-left: 20px;">
-          <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Gaji Transfer</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_tf)  ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Gaji Cash</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_cash)  ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class=" fas fa-dollar-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Seluruh Gaji</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_seluruh)  ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <br>
-<br>
-
 
 </div>
 
-</div>
 <!-- End of Main Content -->
 
 <!-- Footer -->
@@ -756,7 +577,7 @@ aria-hidden="true">
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 <script>
   $(document).ready(function() {
-    var table = $('#example').DataTable( {
+    var table = $('#example2').DataTable( {
       lengthChange: true,
       buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
