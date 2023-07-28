@@ -134,6 +134,8 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPenjualan">Riwayat Bon Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitDriverMES">Laporan Rit MES</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitDriverPBR">Laporan Rit PBR</a>
         </div>
     </div>
 </li>

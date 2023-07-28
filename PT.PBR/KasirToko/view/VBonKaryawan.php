@@ -157,6 +157,8 @@ data-parent="#accordionSidebar">
     <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
     <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
     <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
+    <a class="collapse-item" style="font-size: 15px;" href="VRitDriverMES">Laporan Rit MES</a>
+    <a class="collapse-item" style="font-size: 15px;" href="VRitDriverPBR">Laporan Rit PBR</a>
 </div>
 </div>
 </li>

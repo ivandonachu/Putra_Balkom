@@ -113,6 +113,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_retur_pangkalan a INNER J
             <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPembelian1">Riwayat Bon </a>
             <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitDriverMES">Laporan Rit MES</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitDriverPBR">Laporan Rit PBR</a>
         </div>
     </div>
 </li>
