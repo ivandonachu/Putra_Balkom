@@ -364,7 +364,7 @@ if (isset($_GET['tanggal1'])) {
 
 <h5 align="center" >Rincian Gaji PBJ</h5>
 <!-- Tabel -->    
-<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>Nama Driver</th>
