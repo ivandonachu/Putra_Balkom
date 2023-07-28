@@ -57,7 +57,7 @@ while($data = mysqli_fetch_array($table2)){
     $total_gaji_diterima =  $total_gaji_nje + $total_uang_gaji_gas_palembang ;
 
     $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_cbm VALUES('','$tanggal','$nama_driver','Driver','$total_rit_nje','$total_gaji_nje','$total_rit_gas_palembang','$total_uang_gaji_gas_palembang',173215,203560,0,'$total_gaji',
-                                                                        '$total_gaji_diterima',)");
+                                                                        '$total_gaji_diterima','Transfer')");
 
 }
 

@@ -509,7 +509,7 @@ data-parent="#accordionSidebar">
 <hr>
 <br>
 
-<h5 align="center" >Rincian Gaji Driver CBM</h5>
+<h5 align="center" >Rincian Gaji Driver MES</h5>
 <!-- Tabel -->    
 <table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>

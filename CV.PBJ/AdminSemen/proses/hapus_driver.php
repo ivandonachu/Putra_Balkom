@@ -26,10 +26,10 @@ $no_driver = $_POST['no_driver'];
 		
 
 		//Hapusriwayat keberangkatan
-		$query = mysqli_query($koneksi,"DELETE FROM driver_sl WHERE no_driver = '$no_driver'");
+		$query = mysqli_query($koneksi,"DELETE FROM driver_semen WHERE no_driver = '$no_driver'");
 
 
 
 	
-				echo "<script> window.location='../view/VDriver';</script>";exit;
+				echo "<script> window.location='../view/VDriverSemen';</script>";exit;
 	

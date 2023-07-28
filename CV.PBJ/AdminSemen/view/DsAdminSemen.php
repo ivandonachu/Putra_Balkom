@@ -122,6 +122,7 @@ $nama = $data['nama_karyawan'];
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualanL">Rekap DO Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPotonganHarga">Potongan Harga</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
                     </div>
                 </div>
             </li>
@@ -135,7 +136,7 @@ $nama = $data['nama_karyawan'];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>  
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriverSemen">List Driver</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
                     </div>

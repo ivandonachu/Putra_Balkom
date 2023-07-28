@@ -11,7 +11,7 @@ $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Kasir') {
+if ($jabatan_valid == 'Kasir Semen') {
 
 }
 
@@ -21,6 +21,7 @@ exit;
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
+
 
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
@@ -37,14 +38,14 @@ $tanggal_akhir = date('Y-m-31');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit_pbr  WHERE tanggal ='$tanggal_awal' ");
-  $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit_pbr  WHERE tanggal ='$tanggal_awal' GROUP BY nama_driver ");
+  $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' ");
+  $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' GROUP BY nama_driver ");
 
 }
 
 else{
-  $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-  $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_driver");
+  $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_driver");
 
 }
 
@@ -61,7 +62,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rit Driver PBR</title>
+  <title>Rit Driver</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -87,23 +88,25 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirSemen">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+    <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.PNG" ></div>
 </a>
+<br>
 
+<br>
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
-    <a class="nav-link" href="DsKasirToko.php">
+    <a class="nav-link" href="DsKasirSemen">
         <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
@@ -113,7 +116,7 @@ else{
 
     <!-- Heading -->
     <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Kasir Toko
+         KASIR SEMEN
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -121,46 +124,34 @@ else{
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
       15  aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Transaksi</span>
+        <span style="font-size: 15px; color:white;" >Kasir</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatDeposit1">Riwayat Deposit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatBonPenjualan">Riwayat Bon Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Kasir</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap Do Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitDriverMES">Laporan Rit MES</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitDriverPBR">Laporan Rit PBR</a>
         </div>
     </div>
 </li>
-
-<!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-    aria-expanded="true" aria-controls="collapseUtilities">
-    <i class="far fa-calendar-alt" style="font-size: 15px; color:white;"></i>
-    <span style="font-size: 15px; color:white;">Pencatatan Inventory</span>
-</a>
-<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-data-parent="#accordionSidebar">
-<div class="bg-white py-2 collapse-inner rounded">
-    <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
-    <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
-    <a class="collapse-item" href="VPerpindahanBaja1" style="font-size: 15px;">Perpindahan Baja</a>
-    <a class="collapse-item" href="VPerpindahanSaldo" style="font-size: 15px;">Perpindahan Saldo</a>
-    <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
-    <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
-    <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
-</div>
-</div>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+      15  aria-expanded="true" aria-controls="collapseTwo1">
+        <i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Menu SDM</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VDriverSemen">List Driver</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
+        </div>
+    </div>
 </li>
-
 
 
 <!-- Divider -->
@@ -187,7 +178,7 @@ data-parent="#accordionSidebar">
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-    <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rit Driver PBR</h5></a>"; ?>
+    <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rit Driver</h5></a>"; ?>
 
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -261,7 +252,7 @@ data-parent="#accordionSidebar">
 
  <div style="margin-right: 100px; margin-left: 100px;">
 
-  <?php  echo "<form  method='POST' action='VRitDriverPBR'>" ?>
+  <?php  echo "<form  method='POST' action='VRitDriver'>" ?>
   <div>
     <div align="left" style="margin-left: 20px;"> 
       <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -299,7 +290,7 @@ data-parent="#accordionSidebar">
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_rit_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_rit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <br>
           <div class="row">
@@ -309,17 +300,12 @@ data-parent="#accordionSidebar">
                      <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
                     </div>      
             </div>
-          </div>
-          
-         <br>
-
-         <div class="row">
-             <div class="col-md-6">
+            <div class="col-md-6">
                 <label>Nama Driver</label>
                 <select id="nama_driver" name="nama_driver" class="form-control form-control-sm">
                 <?php
                 include 'koneksi.php';
-                $result = mysqli_query($koneksi, "SELECT * FROM driver");   
+                $result = mysqli_query($koneksi, "SELECT * FROM driver_semen");   
 
                 while ($data2 = mysqli_fetch_array($result)){
                 $nama_driver = $data2['nama_driver'];
@@ -331,14 +317,22 @@ data-parent="#accordionSidebar">
                 ?>
              </select>
              </div>
+          </div>
+          
+         <br>
+
+         <div class="row">
              <div class="col-md-6">
                 <label>Nama Rute</label>
                 <select id="nama_rute" name="nama_rute" class="form-control">
-                    <option>NJE</option>
-                    <option>PEP</option>
-
+                    <option>Muat Semen</option>
+                    <option>Muat Batu</option>
                 </select>
              </div>  
+             <div class="col-md-6">
+                <label>Uang Gaji</label>
+                <input class="form-control form-control-sm" type="number" id="uang_gaji" name="uang_gaji" required="" >
+              </div>    
          </div>
 
 
@@ -411,7 +405,7 @@ data-parent="#accordionSidebar">
 
       <!-- Form Edit Data -->
       <div class="modal-body">
-        <form action="../proses/edit_rit_pbr" enctype="multipart/form-data" method="POST">
+        <form action="../proses/edit_rit" enctype="multipart/form-data" method="POST">
 
           <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>"> 
           <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
@@ -422,20 +416,13 @@ data-parent="#accordionSidebar">
               <label>Tanggal</label>
               <input  class="form-control" type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>">
           </div>
- 
-          </div>
-
-         <br>
-
-         <div class="row">
-
-                <div class="col-md-6">
+          <div class="col-md-6">
                 <label>Nama Driver</label>
                 <select id="nama_driver" name="nama_driver" class="form-control ">
                     <?php
                     $dataSelect = $data['nama_driver']; 
                     include 'koneksi.php';
-                    $result = mysqli_query($koneksi, "SELECT * FROM driver ");   
+                    $result = mysqli_query($koneksi, "SELECT * FROM driver_semen ");   
 
                     while ($data2 = mysqli_fetch_array($result)){
                     $nama_driver = $data2['nama_driver'];
@@ -446,15 +433,26 @@ data-parent="#accordionSidebar">
                     ?>
                 </select>
                 </div>
+          </div>
+
+         <br>
+
+         <div class="row">
+
+
 
                 <div class="col-md-6">
                 <label>Nama Rute</label>
                 <select id="nama_rute" name="nama_rute" class="form-control">
                     <?php $dataSelect = $data['nama_rute']; ?>
-                    <option <?php echo ($dataSelect == 'NJE') ? "selected": "" ?>>NJE</option>
-                    <option <?php echo ($dataSelect == 'PEP') ? "selected": "" ?>>PEP</option>
+                    <option <?php echo ($dataSelect == 'Muat Semen') ? "selected": "" ?>>Muat Semen</option>
+                    <option <?php echo ($dataSelect == 'Muat Batu') ? "selected": "" ?>>Muat Batu</option>
                 </select>
-                </div>          
+                </div>    
+                <div class="col-md-6">
+                <label>Uang Gaji</label>
+                <input class="form-control form-control-sm" type="text" id="uang_gaji" name="uang_gaji" required="" value="<?php echo $uang_gaji;?>">
+              </div>          
       </div>
 
     <div class="modal-footer">
@@ -481,7 +479,7 @@ data-parent="#accordionSidebar">
     </div>
 
     <div class="modal-body">
-      <form action="../proses/hapus_rit_pbr" method="POST">
+      <form action="../proses/hapus_rit" method="POST">
         <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
         <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
@@ -509,64 +507,65 @@ data-parent="#accordionSidebar">
 <hr>
 <br>
 
-<h5 align="center" >Rincian Gaji Driver PBR</h5>
+<h5 align="center" >Rincian Gaji PBJ</h5>
 <!-- Tabel -->    
 <table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>Nama Driver</th>
       <th>Jabatan</th>
-      <th>Rit NJE</th>
-      <th>Upah NJE</th>
-      <th>Rit PEP</th>
-      <th>Upah PEP</th>
+      <th>Rit Muat Semen</th>
+      <th>Upah Muat Semen</th>
+      <th>Rit Muat Batu</th>
+      <th>Upah Muat Batu</th>
       <th>Upah Total</th>
     </tr>
   </thead>
   <tbody>
   <?php 
     $total_gaji_nje = 0;
-    $total_gaji_pep = 0;
-    $total_rit_nje = 0;
-    $total_rit_pep = 0;
+    $total_gaji_gas_palembang = 0;
+
   ?>
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_driver = $data['nama_driver'];
       $nama_rute =$data['nama_rute'];
-      $table3 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_nje, SUM(rit) AS rit_nje FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'NJE'");
+
+      $table3 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_semen, SUM(rit) AS rit_semen FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'Muat Semen'");
       $data3 = mysqli_fetch_array($table3);
-      $total_gaji_nje = $data3['uang_gaji_nje'];
-      if (  $total_gaji_nje == ""  ) {
-        $total_gaji_nje = 0;
+
+      $total_gaji_semen = $data3['uang_gaji_semen'];
+      if (  $total_gaji_semen == ""  ) {
+        $total_gaji_semen = 0;
       }
-      $total_rit_nje = $data3['rit_nje'];
-      if (  $total_rit_nje == ""  ) {
-        $total_rit_nje = 0;
+      $total_rit_semen = $data3['rit_semen'];
+      if (  $total_rit_semen == ""  ) {
+        $total_rit_semen = 0;
       }
       
 
-      $table4 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_pep , SUM(rit) AS rit_pep FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PEP'");
+      $table4 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_batu , SUM(rit) AS rit_batu FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Batu'");
       $data4 = mysqli_fetch_array($table4);
 
-      $total_gaji_pep = $data4['uang_gaji_pep'];
-      if (  $total_gaji_pep == ""  ) {
-        $total_gaji_pep = 0;
+      $total_gaji_batu = $data4['uang_gaji_batu'];
+      if (  $total_gaji_batu == ""  ) {
+        $total_gaji_batu = 0;
       }
 
-      $total_rit_pep = $data4['rit_pep'];
-      if (  $total_rit_pep == ""  ) {
-        $total_rit_pep = 0;
+      $total_rit_batu = $data4['rit_batu'];
+      if (  $total_rit_batu == ""  ) {
+        $total_rit_batu = 0;
       }
 
       echo "<tr>
 
     <td style='font-size: 14px' >$nama_driver</td>
     <td style='font-size: 14px' >Driver</td>
-    <td style='font-size: 14px' >$total_rit_nje</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_nje); ?> <?php echo "</td>
-    <td style='font-size: 14px' >$total_rit_pep</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pep); ?> <?php echo "</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pep + $total_gaji_nje); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_semen</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_semen); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_batu</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_batu); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_batu + $total_gaji_semen); ?> <?php echo "</td>
 
 
  </tr>";
@@ -661,6 +660,7 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+
 <script>
   $(document).ready(function() {
     var table = $('#example2').DataTable( {

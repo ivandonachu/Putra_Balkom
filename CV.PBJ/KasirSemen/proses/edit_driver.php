@@ -20,17 +20,16 @@ exit;
 
 $no_driver = $_POST['no_driver'];
 $nm_driver = $_POST['nm_driver'];
-$no_hp = $_POST['no_hp'];
-$status_driver = $_POST['status_driver'];
+
 
 
 
 	
 
-		$query = mysqli_query($koneksi,"UPDATE driver_s SET nama_driver = '$nm_driver' , no_hp = '$no_hp', status_driver = '$status_driver'  WHERE no_driver = '$no_driver'");
+		$query = mysqli_query($koneksi,"UPDATE driver_semen SET nama_driver = '$nm_driver'  WHERE no_driver = '$no_driver'");
 	
 	
-			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VDriver';</script>";exit;
+			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VDriverSemen';</script>";exit;
 
 
 

@@ -63,16 +63,15 @@ $nama = $data['nama_karyawan'];
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+<!-- Sidebar -->
+<ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirSemen">
- <div class="sidebar-brand-icon rotate-n-15">
+    <div class="sidebar-brand-icon rotate-n-15">
 
- </div>
- <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.PNG" ></div>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.PNG" ></div>
 </a>
 <br>
 
@@ -82,53 +81,52 @@ $nama = $data['nama_karyawan'];
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
- <a class="nav-link" href="DsKasirSemen">
-   <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-   <span style="font-size: 16px;" >Dashboard</span></a>
- </li>
+    <a class="nav-link" href="DsKasirSemen">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
 
- <!-- Divider -->
- <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
- <!-- Heading -->
- <div class="sidebar-heading" style="font-size: 15px; color:white;">
- KASIR SEMEN
-</div>
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         KASIR SEMEN
+    </div>
 
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
- 15  aria-expanded="true" aria-controls="collapseTwo">
- <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
- <span style="font-size: 15px; color:white;" >Menu Kasir</span>
-</a>
-<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
- <div class="bg-white py-2 collapse-inner rounded">
-   <h6 class="collapse-header" style="font-size: 15px;">Kasir</h6>
-   <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
-   <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
-   <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
-   <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap Do Penjualan</a>
- </div>
-</div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Kasir</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Kasir</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap Do Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
+        </div>
+    </div>
 </li>
 <li class="nav-item">
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-15  aria-expanded="true" aria-controls="collapseTwo1">
-<i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
-<span style="font-size: 15px; color:white;" >Menu SDM</span>
-</a>
-<div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-<div class="bg-white py-2 collapse-inner rounded">
- <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
- <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
- <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
- 
- <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
-</div>
-</div>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+      15  aria-expanded="true" aria-controls="collapseTwo1">
+        <i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >Menu SDM</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VDriverSemen">List Driver</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
+        </div>
+    </div>
 </li>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 

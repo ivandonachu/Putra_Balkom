@@ -98,7 +98,7 @@ $html = '
             <td align="left" style="font-size: 10px; width:79%;">'. $jabatan .'</td>
         </tr>
         </table>
-        <br>
+  
         <table align="center" style="width:100%" border="1" cellspacing="0">
 
         <tr>
@@ -175,7 +175,7 @@ $html = '
         </table>
 
 
-        <pre class="panel-title" align="left"  style="font-size: 10px; margin-bottom: 5px; margin-top: 5px;"><u>Gaji '. $keterangan .' </u></pre>
+        <pre class="panel-title" align="left"  style="font-size: 9px; margin-bottom: 2px; margin-top: 2px;"><u>Gaji '. $keterangan .' </u></pre>
 
 
         <table align="center" style="width:100%">
