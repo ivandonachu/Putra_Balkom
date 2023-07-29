@@ -332,6 +332,7 @@ else{
                     <option>Muat Getah Palembang</option>
                     <option>Muat Nipah</option>
                     <option>Muat Pupuk Kebun Lengkiti</option>
+                    <option>Muat Batu</option>
                 </select>
              </div>  
          </div>
@@ -451,6 +452,7 @@ else{
                     <option <?php echo ($dataSelect == 'Muat Getah Palembang') ? "selected": "" ?>>Muat Getah Palembang</option>
                     <option <?php echo ($dataSelect == 'Muat Nipah') ? "selected": "" ?>>Muat Nipah</option>
                     <option <?php echo ($dataSelect == 'Muat Pupuk Kebun Lengkiti') ? "selected": "" ?>>Muat Pupuk Kebun Lengkiti</option>
+                    <option <?php echo ($dataSelect == 'Muat Batu') ? "selected": "" ?>>Muat Batu</option>
                 </select>
                 </div>          
       </div>
@@ -524,6 +526,8 @@ else{
       <th>Upah Muat Nipah</th>
       <th>Rit Kampas Pupuk Kebun Lenkiti</th>
       <th>Upah Kampas Pupuk Kebun Lenkiti</th>
+      <th>Rit Muat Batu</th>
+      <th>Upah Muat Batu</th>
       <th>Upah Total</th>
     </tr>
   </thead>
@@ -614,6 +618,20 @@ else{
         $total_rit_kebun_lengkiti = 0;
       }
 
+      // muat batu
+      $table8 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_batu , SUM(rit) AS rit_batu FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Batu'");
+      $data8 = mysqli_fetch_array($table7);
+
+      $total_gaji_batu = $data7['uang_gaji_batu'];
+      if (  $total_gaji_batu == ""  ) {
+        $total_gaji_batu = 0;
+      }
+
+      $total_rit_batu = $data7['rit_batu'];
+      if (  $total_rit_batu == ""  ) {
+        $total_rit_batu = 0;
+      }
+
       echo "<tr>
     <td style='font-size: 14px' >$nama_driver</td>
     <td style='font-size: 14px' >Driver</td>
@@ -628,7 +646,9 @@ else{
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_muat_nipah); ?> <?php echo "</td>
     <td style='font-size: 14px' >$total_rit_kebun_lengkiti</td>
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_kebun_lengkiti); ?> <?php echo "</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_sawit_dabuk + $total_gaji_pupuk_kegudang + $total_gaji_getah_palembang + $total_gaji_muat_nipah + $total_gaji_kebun_lengkiti); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_batu</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_batu); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_sawit_dabuk + $total_gaji_pupuk_kegudang + $total_gaji_getah_palembang + $total_gaji_muat_nipah + $total_gaji_kebun_lengkiti + $total_gaji_batu); ?> <?php echo "</td>
 
 
  </tr>";

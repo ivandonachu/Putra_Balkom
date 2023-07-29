@@ -419,15 +419,19 @@ if (isset($_GET['tanggal1'])) {
            <br>
 
            <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                <label>Rit Muat Nipah</label>
                <input class="form-control form-control-sm" type="number" name="rit_muat_nipah" required="" value="0">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>Rit Kampas Pupuk Kebun Lenkiti</label>
                <input class="form-control form-control-sm" type="number" name="rit_kampas_pupuk_kebun_lengkiti" required="" value="0">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
+               <label>Rit Muat Batu</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_batu" required="" value="0">
+             </div>
+             <div class="col-md-3">
                 <label>Keterangan</label>
                 <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                   <option>Transfer</option>
@@ -473,6 +477,8 @@ if (isset($_GET['tanggal1'])) {
           <th style="font-size: 14px" scope="col">Upah Muat Nipah</th>
           <th style="font-size: 14px" scope="col">Rit Kampas Pupuk Kebun Lenkiti</th>
           <th style="font-size: 14px" scope="col">Upah Kampas Pupuk Kebun Lenkiti</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Batu</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Batu</th>
           <th style="font-size: 14px" scope="col">Total Gaji </th>
           <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
           <th style="font-size: 14px" scope="col">Keterangan </th>
@@ -507,6 +513,8 @@ if (isset($_GET['tanggal1'])) {
           $upah_muat_nipah = $data2['upah_muat_nipah'];
           $rit_kampas_pupuk_kebun_lengkiti = $data2['rit_kampas_pupuk_kebun_lengkiti'];
           $upah_kampas_pupuk_kebun_lengkiti = $data2['upah_kampas_pupuk_kebun_lengkiti'];
+          $rit_muat_batu = $data['rit_muat_batu'];
+          $upah_muat_batu = $data['upah_muat_batu'];
           $total_gaji = $data2['total_gaji'];
           $total_gaji_diterima = $data2['total_gaji_diterima'];
           $keterangan = $data2['keterangan'];
@@ -535,6 +543,8 @@ if (isset($_GET['tanggal1'])) {
           <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_nipah); ?> <?php echo "</td>
           <td style='font-size: 14px'>$rit_kampas_pupuk_kebun_lengkiti</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($upah_kampas_pupuk_kebun_lengkiti); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_muat_batu</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_batu); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
           <td style='font-size: 14px'>$keterangan</td>
@@ -605,6 +615,10 @@ if (isset($_GET['tanggal1'])) {
              <div class="col-md-4">
                <label>Rit Kampas Pupuk Kebun Lenkiti</label>
                <input class="form-control form-control-sm" type="number" name="rit_kampas_pupuk_kebun_lengkiti" required="" value="<?php echo $rit_kampas_pupuk_kebun_lengkiti;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Rit Muat Batu</label>
+               <input class="form-control form-control-sm" type="number" name="rit_muat_batu" required="" value="<?php echo $rit_muat_batu;?>">
              </div>
              <div class="col-md-4">
              <label>Keterangan</label>

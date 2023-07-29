@@ -35,12 +35,14 @@ $tanggal =$_POST['tanggal'];
     $upah_muat_nipah = $rit_muat_nipah * 250000;
     $rit_kampas_pupuk_kebun_lengkiti = $_POST['rit_kampas_pupuk_kebun_lengkiti'];
     $upah_kampas_pupuk_kebun_lengkiti = $rit_kampas_pupuk_kebun_lengkiti * 100000;
-    $total_gaji = $upah_muat_sawit_dabuk + $upah_muat_getah_palembang + $upah_muat_pupuk_ke_gudang + $upah_muat_nipah + $upah_kampas_pupuk_kebun_lengkiti;
-    $total_gaji_diterima = $upah_muat_sawit_dabuk + $upah_muat_getah_palembang + $upah_muat_pupuk_ke_gudang + $upah_muat_nipah + $upah_kampas_pupuk_kebun_lengkiti;
+    $rit_muat_batu = $_POST['rit_muat_batu'];
+    $upah_muat_batu = $upah_muat_batu * 100000;
+    $total_gaji = $upah_muat_sawit_dabuk + $upah_muat_getah_palembang + $upah_muat_pupuk_ke_gudang + $upah_muat_nipah + $upah_kampas_pupuk_kebun_lengkiti + $upah_muat_batu;
+    $total_gaji_diterima = $upah_muat_sawit_dabuk + $upah_muat_getah_palembang + $upah_muat_pupuk_ke_gudang + $upah_muat_nipah + $upah_kampas_pupuk_kebun_lengkiti + $upah_muat_batu;
     $keterangan = $_POST['keterangan'];
 
 $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_kebun VALUES('','$tanggal','$nama_driver','$jabatan','$rit_muat_sawit_dabuk','$upah_muat_sawit_dabuk','$rit_muat_getah_palembang','$upah_muat_getah_palembang','$rit_muat_pupuk_ke_gudang','$upah_muat_pupuk_ke_gudang',
-                                                                        '$rit_muat_nipah','$upah_muat_nipah','$rit_kampas_pupuk_kebun_lengkiti','$upah_kampas_pupuk_kebun_lengkiti','$total_gaji','$total_gaji_diterima','$keterangan')");
+                                                                        '$rit_muat_nipah','$upah_muat_nipah','$rit_kampas_pupuk_kebun_lengkiti','$upah_kampas_pupuk_kebun_lengkiti','$rit_muat_batu','$upah_muat_batu','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 
 

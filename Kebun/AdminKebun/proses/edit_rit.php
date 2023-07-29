@@ -39,6 +39,9 @@ else if($nama_rute == 'Muat Nipah'){
 else if($nama_rute == 'Muat Pupuk Kebun Lengkiti'){
     $uang_gaji = 100000;
 }
+else if($nama_rute == 'Muat Batu'){
+    $uang_gaji = 100000;
+}
 
 
 

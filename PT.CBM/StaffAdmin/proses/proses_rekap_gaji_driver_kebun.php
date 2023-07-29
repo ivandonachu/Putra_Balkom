@@ -100,13 +100,26 @@ while($data2 = mysqli_fetch_array($table2)){
     if (  $total_rit_kebun_lengkiti == ""  ) {
       $total_rit_kebun_lengkiti = 0;
     }
+          // muat batu
+          $table8 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_batu , SUM(rit) AS rit_batu FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Batu'");
+          $data8 = mysqli_fetch_array($table7);
+    
+          $total_gaji_batu = $data7['uang_gaji_batu'];
+          if (  $total_gaji_batu == ""  ) {
+            $total_gaji_batu = 0;
+          }
+    
+          $total_rit_batu = $data7['rit_batu'];
+          if (  $total_rit_batu == ""  ) {
+            $total_rit_batu = 0;
+          }
 
-    $total_gaji = $total_gaji_sawit_dabuk + $total_gaji_getah_palembang + $total_gaji_pupuk_kegudang + $total_gaji_muat_nipah + $total_gaji_kebun_lengkiti;
-    $total_gaji_diterima = $total_gaji_sawit_dabuk + $total_gaji_getah_palembang + $total_gaji_pupuk_kegudang + $total_gaji_muat_nipah + $total_gaji_kebun_lengkiti;
+    $total_gaji = $total_gaji_sawit_dabuk + $total_gaji_getah_palembang + $total_gaji_pupuk_kegudang + $total_gaji_muat_nipah + $total_gaji_kebun_lengkiti + $total_gaji_batu;
+    $total_gaji_diterima = $total_gaji_sawit_dabuk + $total_gaji_getah_palembang + $total_gaji_pupuk_kegudang + $total_gaji_muat_nipah + $total_gaji_kebun_lengkiti + $total_gaji_batu;
 
 
 $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_kebun VALUES('','$tanggal','$nama_driver','Driver','$total_rit_sawit_dabuk','$total_gaji_sawit_dabuk','$total_rit_getah_palembang','$total_gaji_getah_palembang','$total_rit_pupuk_kegudang','$total_gaji_pupuk_kegudang',
-                                                                        '$total_rit_muat_nipah','$total_gaji_muat_nipah','$total_rit_kebun_lengkiti','$total_gaji_kebun_lengkiti','$total_gaji','$total_gaji_diterima','Transfer')");
+                                                                        '$total_rit_muat_nipah','$total_gaji_muat_nipah','$total_rit_kebun_lengkiti','$total_gaji_kebun_lengkiti','$total_rit_batu','$total_gaji_batu','$total_gaji','$total_gaji_diterima','Transfer')");
 
 }
 
