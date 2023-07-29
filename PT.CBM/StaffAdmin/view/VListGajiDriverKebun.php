@@ -479,14 +479,14 @@ if (isset($_GET['tanggal1'])) {
 
       // muat batu
       $table8 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_batu , SUM(rit) AS rit_batu FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Batu'");
-      $data8 = mysqli_fetch_array($table7);
+      $data8 = mysqli_fetch_array($table8);
 
-      $total_gaji_batu = $data7['uang_gaji_batu'];
+      $total_gaji_batu = $data8['uang_gaji_batu'];
       if (  $total_gaji_batu == ""  ) {
         $total_gaji_batu = 0;
       }
 
-      $total_rit_batu = $data7['rit_batu'];
+      $total_rit_batu = $data8['rit_batu'];
       if (  $total_rit_batu == ""  ) {
         $total_rit_batu = 0;
       }
