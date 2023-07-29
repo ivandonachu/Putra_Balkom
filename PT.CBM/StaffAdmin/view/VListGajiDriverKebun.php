@@ -392,12 +392,14 @@ if (isset($_GET['tanggal1'])) {
     $total_gaji_getah_palembang = 0;
     $total_gaji_muat_nipah = 0;
     $total_gaji_kebun_lengkiti = 0;
+    $total_gaji_batu =0;
 
     $total_rit_sawit_dabuk = 0;
     $total_rit_pupuk_kegudang = 0;
     $total_rit_getah_palembang = 0;
     $total_rit_muat_nipah = 0;
     $total_rit_kebun_lengkiti = 0;
+    $total_rit_batu = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
