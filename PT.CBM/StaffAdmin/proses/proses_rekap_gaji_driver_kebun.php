@@ -101,7 +101,7 @@ while($data2 = mysqli_fetch_array($table2)){
       $total_rit_kebun_lengkiti = 0;
     }
           // muat batu
-          $table8 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_batu , SUM(rit) AS rit_batu FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Batu'");
+          $table8 = mysqli_query($koneksikebun,"SELECT SUM(uang_gaji) AS uang_gaji_batu , SUM(rit) AS rit_batu FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Muat Batu'");
           $data8 = mysqli_fetch_array($table8);
     
           $total_gaji_batu = $data8['uang_gaji_batu'];
