@@ -37,7 +37,7 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM pembelian_sl WHERE tanggal = '$tanggal_akhir' ");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM pembelian_sl WHERE tanggal_kirim = '$tanggal_akhir' ");
 
 
 
@@ -45,7 +45,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 else{
   
-  $table = mysqli_query($koneksipbj,"SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ORDER BY tanggal ASC");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM pembelian_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ORDER BY tanggal_kirim ASC");
   
 
 
