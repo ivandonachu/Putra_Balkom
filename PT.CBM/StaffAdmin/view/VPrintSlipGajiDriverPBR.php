@@ -103,11 +103,11 @@ $html = '
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_nje) .'</td>
         </tr>
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Ritase PEP</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Ritase PPE</td>
         <td align="right" style="font-size: 10px; width:79%;">'. $rit_gas_palembang .' Rit</td>
         </tr>
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Upah PEP</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Upah PPE</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_gas_palembang) .'</td>
         </tr>
         <tr>

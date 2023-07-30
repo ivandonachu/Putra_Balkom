@@ -355,7 +355,7 @@ data-parent="#accordionSidebar">
                 <label>Nama Rute</label>
                 <select id="nama_rute" name="nama_rute" class="form-control">
                     <option>NJE</option>
-                    <option>PEP</option>
+                    <option>PPE</option>
 
                 </select>
              </div>  
@@ -472,7 +472,7 @@ data-parent="#accordionSidebar">
                 <select id="nama_rute" name="nama_rute" class="form-control">
                     <?php $dataSelect = $data['nama_rute']; ?>
                     <option <?php echo ($dataSelect == 'NJE') ? "selected": "" ?>>NJE</option>
-                    <option <?php echo ($dataSelect == 'PEP') ? "selected": "" ?>>PEP</option>
+                    <option <?php echo ($dataSelect == 'PPE') ? "selected": "" ?>>PPE</option>
                 </select>
                 </div>          
       </div>
@@ -538,8 +538,8 @@ data-parent="#accordionSidebar">
       <th>Jabatan</th>
       <th>Rit NJE</th>
       <th>Upah NJE</th>
-      <th>Rit PEP</th>
-      <th>Upah PEP</th>
+      <th>Rit PPE</th>
+      <th>Upah PPE</th>
       <th>Upah Total</th>
     </tr>
   </thead>
@@ -565,7 +565,7 @@ data-parent="#accordionSidebar">
       }
       
 
-      $table4 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_pep , SUM(rit) AS rit_pep FROM laporan_rit_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PEP'");
+      $table4 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_pep , SUM(rit) AS rit_pep FROM laporan_rit_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PPE'");
       $data4 = mysqli_fetch_array($table4);
 
       $total_gaji_pep = $data4['uang_gaji_pep'];

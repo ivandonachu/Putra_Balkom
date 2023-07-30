@@ -413,7 +413,7 @@ if (isset($_GET['tanggal1'])) {
                <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="0">
              </div>
              <div class="col-md-4">
-               <label>Rit PEP</label>
+               <label>Rit PPE</label>
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="0">
              </div>
              <div class="col-md-4">
@@ -472,8 +472,8 @@ if (isset($_GET['tanggal1'])) {
           <th style="font-size: 14px" scope="col">Jabatan</th>
           <th style="font-size: 14px" scope="col">Rit PPE</th>
           <th style="font-size: 14px" scope="col">Upah PPE</th>
-          <th style="font-size: 14px" scope="col">Rit PEP</th>
-          <th style="font-size: 14px" scope="col">Upah PEP</th>
+          <th style="font-size: 14px" scope="col">Rit PPE</th>
+          <th style="font-size: 14px" scope="col">Upah PPE</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
           <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan </th>
@@ -584,7 +584,7 @@ if (isset($_GET['tanggal1'])) {
                <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="<?php echo $rit_nje;?>">
              </div>
              <div class="col-md-4">
-               <label>Rit PEP</label>
+               <label>Rit PPE</label>
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="<?php echo $rit_gas_palembang;?>">
              </div>
              <div class="col-md-4">

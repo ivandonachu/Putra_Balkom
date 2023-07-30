@@ -26,7 +26,7 @@ $nama_rute = $_POST['nama_rute'];
 if($nama_rute == 'NJE'){
     $uang_gaji = 100000;
 }
-else if($nama_rute == 'PEP'){
+else if($nama_rute == 'PPE'){
     $uang_gaji = 200000;
 }
 
