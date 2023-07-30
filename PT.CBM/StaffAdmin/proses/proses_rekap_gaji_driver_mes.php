@@ -53,7 +53,7 @@ while($data = mysqli_fetch_array($table2)){
       if (  $total_rit_pep == ""  ) {
         $total_rit_pep = 0;
       }
-    $total_gaji = $total_gaji_nje + $total_gaji_pep - 203560;
+    $total_gaji = $total_gaji_nje + $total_gaji_pep;
     $total_gaji_diterima =  $total_gaji_nje + $total_gaji_pep - 203560;
 
     $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_mes VALUES('','$tanggal','$nama_driver','Driver','$total_rit_nje','$total_gaji_nje','$total_rit_pep','$total_gaji_pep',173215,203560,0,'$total_gaji',

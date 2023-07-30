@@ -55,7 +55,7 @@ while($data = mysqli_fetch_array($table2)){
         $total_rit_batu = 0;
       }
 
-    $total_gaji = $total_gaji_semen + $total_gaji_batu - 174480;
+    $total_gaji = $total_gaji_semen + $total_gaji_batu ;
     $total_gaji_diterima =  $total_gaji_semen + $total_gaji_batu - 174480;
 
     $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbj VALUES('','$tanggal','$nama_driver','$total_rit_semen','$total_gaji_semen','$total_rit_batu','$total_gaji_batu',0,174480,173215,'$total_gaji',
