@@ -45,7 +45,11 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 else{
   
-  $table = mysqli_query($koneksipbj,"SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ORDER BY tanggal ASC");
+  $table1 = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ");
+  $total_angkutan_edy = 0;
+  $total_angkutan_rama = 0;
+  $total_angkutan_aril = 0;
+  $total_angkutan_reni = 0;
   
 
 
@@ -126,12 +130,12 @@ else{
         </div>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+            <a class="nav-link collapsed" href="#" data1-toggle="collapse" data1-target="#collapseTwo1"
           15  aria-expanded="true" aria-controls="collapseTwo">
             <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
             <span style="font-size: 15px; color:white;" >List Company</span>
         </a>
-        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data1-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
                 <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
@@ -148,12 +152,12 @@ else{
     </li>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            <a class="nav-link collapsed" href="#" data1-toggle="collapse" data1-target="#collapseTwo"
           15  aria-expanded="true" aria-controls="collapseTwo">
             <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
             <span style="font-size: 15px; color:white;" >Report Etty</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data1-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
                 <a class="collapse-item" style="font-size: 15px;" href="../VPenjualan">Laporan Penjualan</a>
@@ -166,12 +170,12 @@ else{
     </li>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+            <a class="nav-link collapsed" href="#" data1-toggle="collapse" data1-target="#collapseTwo3"
           15  aria-expanded="true" aria-controls="collapseTwo3">
             <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
             <span style="font-size: 15px; color:white;" >Report Made Dani</span>
         </a>
-        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data1-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
                 
@@ -231,7 +235,7 @@ else{
                 <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                 <li class="nav-item dropdown no-arrow d-sm-none">
                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    data1-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-search fa-fw"></i>
                 </a>
                 <!-- Dropdown - Messages -->
@@ -260,7 +264,7 @@ else{
 <!-- Nav Item - User Information -->
 <li class="nav-item dropdown no-arrow">
 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+data1-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
 <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
 </a>
@@ -272,7 +276,7 @@ aria-labelledby="userDropdown">
 Profile
 </a>
 <div class="dropdown-divider"></div>
-<a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+<a class="dropdown-item" href="logout" data1-toggle="modal" data1-target="#logoutModal">
 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 Logout
 </a>
@@ -334,6 +338,7 @@ Logout
     $no_urut = 0;
     $total_qty = 0;
     $total_tagihan_angkut = 0 ;
+    $pemilik = "" ;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -341,102 +346,83 @@ Logout
 
     ?>
 
-    <?php while($data = mysqli_fetch_array($table)){
+    <?php while($data1 = mysqli_fetch_array($table1)){
       
       
 
-      $no_polisi = $data['no_polisi'];
-
-             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi' ");
-           
-    
-                
-                if(mysqli_num_rows($table2p) === 1 ){
-                    $data2p = mysqli_fetch_array($table2p);
-                    $pemilikx = $data2p['status_kendaraan'];
-                      }
-                      else{
-                        $pemilikx = "";
-                      }
-           
-
-      if($pemilikx == 'Bapak Rama' ){
-
-        $no_pembelian = $data['no_pembelian'];
-        $tanggal =$data['tanggal'];
-        $no_do =$data['no_do'];
-        $tipe_semen =$data['tipe_semen'];
-        $tujuan = $data['tujuan'];
-        $kota = $data['kota'];
-        $material = $data['material'];
-        $qty = $data['qty'];
-        $harga = $data['harga'];
-        $jumlah = $data['jumlah'];
-        $driver = $data['driver'];
-        $no_polisi = $data['no_polisi'];
-        $tipe_bayar = $data['tipe_bayar'];
-        $tempo = $data['tempo'];
-        $keterangan = $data['keterangan'];
-        $file_bukti = $data['file_bukti'];
-        $no_urut = $no_urut + 1;
-        $total_qty = $total_qty + $qty;
-          
+             
+      $kota = $data1['kota'];
+      $qty = $data1['qty'];
+ 
+        //kak nyoman
         if($kota == 'Kab Ogn Kmrg Ulu Tim'){
-            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
-            $data1p = mysqli_fetch_array($table1p);
-            $tarif = $data1p['tarif_pranko'];
-            $tagihan = $qty * $tarif;
-            $total_tagihan_angkut = $total_tagihan_angkut + $tagihan;
-        }
-        else if($kota == 'Kab Mesuji'){
-            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
-            $data1p = mysqli_fetch_array($table1p);
-            $tarif = $data1p['tarif_pranko'];
-            $tagihan = $qty * $tarif;
-            $total_tagihan_angkut = $total_tagihan_angkut + $tagihan;
-        }
-        else if($kota == 'Kab Tlg Bwg'){
-            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
-            $data1p = mysqli_fetch_array($table1p);
-            $tarif = $data1p['tarif_pranko'];
-            $tagihan = $qty * $tarif;
-            $total_tagihan_angkut = $total_tagihan_angkut + $tagihan;
-        }
-        else if($kota == 'Kab Tlg Bwg Barat'){
-            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
-            $data1p = mysqli_fetch_array($table1p);
-            $tarif = $data1p['tarif_pranko'];
-            $tagihan = $qty * $tarif;
-            $total_tagihan_angkut = $total_tagihan_angkut + $tagihan;
-        }
+          $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+          $data1p = mysqli_fetch_array($table1p);
+          $tarif = $data1p['tarif_pranko'];
+          $total_angkut = $qty * $tarif;
+          $no_polisi = trim($data1["no_polisi"]);
+          $no_polisi_ts = str_replace(" ", "" , $no_polisi);
+          $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+          $data2p = mysqli_fetch_array($table2p);
+          if(isset($data2p['status_kendaraan'])){
+              $pemilik = $data2p['status_kendaraan'];
+          }
+          
+          
+          if($pemilik == 'Bapak Rama' ){
+              $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+              $no_pembelian = $data1['no_pembelian'];
+              $tanggal =$data1['tanggal'];
+              $no_do =$data1['no_do'];
+              $tipe_semen =$data1['tipe_semen'];
+              $tujuan = $data1['tujuan'];
+              $kota = $data1['kota'];
+              $material = $data1['material'];
+              $qty = $data1['qty'];
+              $harga = $data1['harga'];
+              $jumlah = $data1['jumlah'];
+              $driver = $data1['driver'];
+              $no_polisi = $data1['no_polisi'];
+              $tipe_bayar = $data1['tipe_bayar'];
+              $tempo = $data1['tempo'];
+              $keterangan = $data1['keterangan'];
+              $file_bukti = $data1['file_bukti'];
+              $no_urut = $no_urut + 1;
+              $total_qty = $total_qty + $qty;
 
+              
         echo "<tr>
       
-      <td style='font-size: 14px'>$no_urut</td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$no_do</td>
-      <td style='font-size: 14px'>$tipe_semen</td>
-      <td style='font-size: 14px'>$tujuan</td>
-      <td style='font-size: 14px'>$kota</td>
-      <td style='font-size: 14px'>$material</td>
-      <td style='font-size: 14px'>$qty</td>
-      <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 14px'>$driver</td>
-      <td style='font-size: 14px'>$no_polisi</td>
-      <td style='font-size: 14px'>$tipe_bayar</td>
-      <td style='font-size: 14px'>$tempo</td>
-      <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
-   
+        <td style='font-size: 14px'>$no_urut</td>
+        <td style='font-size: 14px'>$tanggal</td>
+        <td style='font-size: 14px'>$no_do</td>
+        <td style='font-size: 14px'>$tipe_semen</td>
+        <td style='font-size: 14px'>$tujuan</td>
+        <td style='font-size: 14px'>$kota</td>
+        <td style='font-size: 14px'>$material</td>
+        <td style='font-size: 14px'>$qty</td>
+        <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+        <td style='font-size: 14px'>$driver</td>
+        <td style='font-size: 14px'>$no_polisi</td>
+        <td style='font-size: 14px'>$tipe_bayar</td>
+        <td style='font-size: 14px'>$tempo</td>
+        <td style='font-size: 14px'>$keterangan</td>
+        <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+        "; ?>
+     
+  
+  
+  
+  <?php echo  " </tr>";
+          }
 
+      }
+  
 
-
-<?php echo  " </tr>";
       }
 
-}
+
 ?>
 
 </tbody>
@@ -468,7 +454,7 @@ Logout
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Tagihan Angkut</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_tagihan_angkut) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_edy) ?></div>
           </div>
           <div class="col-auto">
             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -515,13 +501,13 @@ aria-hidden="true">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+      <button class="close" type="button" data1-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">×</span>
       </button>
     </div>
     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
     <div class="modal-footer">
-      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+      <button class="btn btn-secondary" type="button" data1-dismiss="modal">Cancel</button>
       <a class="btn btn-primary" href="logout">Logout</a>
     </div>
   </div>
