@@ -1417,7 +1417,7 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                     <td class="text-left">Biaya Administrasi</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_biaya_administrasi_new); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRBAdministrasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRAdministrasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-592</td>
