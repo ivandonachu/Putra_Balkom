@@ -40,10 +40,10 @@ else{
 if ($tanggal_awal == $tanggal_akhir) {
   
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal' AND referensi = 'CBM' GROUP BY nama_akun");
-  $table4 = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'AND referensi = 'Melodi Tani' GROUP BY nama_akun");
-  $table5 = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a WHERE tanggal = '$tanggal_awal' AND referensi = 'CBM' GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal' AND referensi = 'Melodi Tani' GROUP BY nama_akun");
+  $table5 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
 
 }
 else{

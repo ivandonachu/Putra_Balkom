@@ -40,16 +40,16 @@ else{
 if ($tanggal_awal == $tanggal_akhir) {
   
   $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes a  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes a  WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' GROUP BY nama_akun");
 
 
 }
 else{
 
   $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES' GROUP BY nama_akun");
 
 }
 
