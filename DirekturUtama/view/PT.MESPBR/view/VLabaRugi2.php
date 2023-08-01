@@ -190,7 +190,20 @@ $total_gaji_karyawan = $data_gaji['total_gaji'];
 if (!isset($data_gaji['total_gaji'])) {
     $total_gaji_karyawan = 0;
 }
-
+//GAJI karyawan new
+$table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_pbr  WHERE tanggal = '$tanggal_awal' ");
+$data_gaji_x = mysqli_fetch_array($table10x);
+$total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
+if (!isset($data_gaji_x['total_gaji_new'])) {
+    $total_gaji_karyawan_new = 0;
+}
+//GAJI Drivver new
+$table101x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_driverx FROM rekap_gaji_driver_pbr WHERE tanggal = '$tanggal_awal' ");
+$data_gaji_driver = mysqli_fetch_array($table101x);
+$total_gaji_driver = $data_gaji_driver['total_gaji_driverx'];
+if (!isset($data_gaji_driver['total_gaji_driverx'])) {
+    $total_gaji_driver = 0;
+}
 
 //ALAT TULIS KANTOR TK
 $table11 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_atk_tk FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-520' AND referensi = 'PB' OR tanggal = '$tanggal_awal' AND kode_akun = '5-520' AND referensi = 'PBR' ");
