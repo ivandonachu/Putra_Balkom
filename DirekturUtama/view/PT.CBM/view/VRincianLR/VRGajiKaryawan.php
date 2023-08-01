@@ -295,8 +295,6 @@ else{
 <hr>
 <br>
 
-<h3>Rincian Gaji Karyawan</h3>
-
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center';>
               <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
