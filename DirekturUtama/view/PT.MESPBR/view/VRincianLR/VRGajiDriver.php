@@ -400,7 +400,7 @@ aria-hidden="true">
 
 <script>
   $(document).ready(function() {
-    var table = $('#example').DataTable( {
+    var table = $('#example2').DataTable( {
       lengthChange: false,
       buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
