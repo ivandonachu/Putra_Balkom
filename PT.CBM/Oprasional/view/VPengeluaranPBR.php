@@ -560,7 +560,7 @@ Menu Kepala Oprasional
   ?>
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_akun = $data['nama_akun'];
-      $jumlah =$data['jumlah'];
+      $jumlah =$data['total_jumlah'];
 
       if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
         $sisa_saldo  = $sisa_saldo + $jumlah;
