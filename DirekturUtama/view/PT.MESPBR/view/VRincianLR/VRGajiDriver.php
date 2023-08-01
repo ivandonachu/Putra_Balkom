@@ -35,8 +35,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penggajian WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR'  ");
 }
 else{
-  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' ");
-  $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekap_gaji_pbr WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksicbm, "SELECT * FROM rekap_gaji_driver_pbr WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 }
 
 
@@ -239,51 +238,6 @@ else{
     <br>
  
 
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Tanggal</th>
-      <th>Jumlah</th>
-      <th>File</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $total_pendapatan = 0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
-
-    <?php while($data = mysqli_fetch_array($table)){
-      $no_laporan = $data['no_laporan'];
-      $tanggal =$data['tanggal'];
-      $jumlah = $data['jumlah'];
-      $file_bukti = $data['file_bukti'];
-
-
-
-      echo "<tr>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
-    
-    <?php echo  " </td> </tr>";
-  }
-  ?>
-
-</tbody>
-</table>
-
-
-<br>
-<hr>
-<br>
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center';>
@@ -294,21 +248,17 @@ else{
           <th style="font-size: 14px" scope="col">Tanggal</th>
           <th style="font-size: 14px" scope="col">Nama Karyawan</th>
           <th style="font-size: 14px" scope="col">Jabatan</th>
-          <th style="font-size: 14px" scope="col">Gaji Pokok</th>
-          <th style="font-size: 14px" scope="col">Tunjangan Jabatan</th>
-          <th style="font-size: 14px" scope="col">Tunjangan Oprasional</th>
+          <th style="font-size: 14px" scope="col">Rit NJE</th>
+          <th style="font-size: 14px" scope="col">Upah NJE</th>
+          <th style="font-size: 14px" scope="col">Rit PPE</th>
+          <th style="font-size: 14px" scope="col">Upah PPE</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
-          <th style="font-size: 14px" scope="col">Uang Makan / Bulan</th>
-          <th style="font-size: 14px" scope="col">Fee Kehadiran</th>
-          <th style="font-size: 14px" scope="col">Lembur</th>
-          <th style="font-size: 14px" scope="col">Absen Terlambat</th>
-          <th style="font-size: 14px" scope="col">Denda Absen</th>
-          <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan</th>
-          <th style="font-size: 14px" scope="col">Bonus</th>
-          <th style="font-size: 14px" scope="col">Total Gaji</th>
+          <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan </th>
+          <th style="font-size: 14px" scope="col">Total Gaji </th>
           <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
           <th style="font-size: 14px" scope="col">Keterangan </th>
+
         </tr>
       </thead>
       <tbody>
@@ -317,25 +267,25 @@ else{
       $total_tf = 0;
       $total_cash = 0;
       $total_seluruh = 0;
+          function formatuang($angka)
+          {
+            $uang = "Rp " . number_format($angka, 0, ',', '.');
+            return $uang;
+          }
       ?>
 
         <?php while($data2 = mysqli_fetch_array($table2)){
           $no_riwayat = $data2['no_riwayat'];
-          $tanggal = $data2['tanggal'];
-          $nama_karyawan =$data2['nama_karyawan'];
+          $tanggal =$data2['tanggal'];
+          $nama_driver =$data2['nama_driver'];
           $jabatan = $data2['jabatan'];
-          $gaji_pokok = $data2['gaji_pokok'];
-          $tunjangan_jabatan = $data2['tunjangan_jabatan'];
-          $tunjangan_operasional = $data2['tunjangan_operasional'];
+          $rit_nje = $data2['rit_nje'];
+          $upah_nje = $data2['upah_nje'];
+          $rit_gas_palembang = $data2['rit_gas_palembang'];
+          $upah_gas_palembang = $data2['upah_gas_palembang'];
           $bpjs_kesehatan = $data2['bpjs_kesehatan'];
           $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
-          $uang_makan_bulan = $data2['uang_makan_bulan'];
-          $fee_kehadiran = $data2['fee_kehadiran'];
-          $lembur = $data2['lembur'];
-          $absen_terlambat = $data2['absen_terlambat'];
-          $denda_absen = $data2['denda_absen'];
           $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
-          $bonus = $data2['bonus'];
           $total_gaji = $data2['total_gaji'];
           $total_gaji_diterima = $data2['total_gaji_diterima'];
           $keterangan = $data2['keterangan'];
@@ -352,24 +302,19 @@ else{
           echo "<tr>
           <td style='font-size: 14px'>$no_urut</td>
           <td style='font-size: 14px'>$tanggal</td>
-          <td style='font-size: 14px'>$nama_karyawan</td>
+          <td style='font-size: 14px'>$nama_driver</td>
           <td style='font-size: 14px'>$jabatan</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($gaji_pokok); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_jabatan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_operasional); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_nje</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_nje); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_gas_palembang</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_gas_palembang); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan_bulan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($fee_kehadiran); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($lembur); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($absen_terlambat); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($denda_absen); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
           <td style='font-size: 14px'>$keterangan</td>
-          
+       
       </tr>";
   }
   ?>
@@ -457,18 +402,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ ]
-    } );
-
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
-<script>
-  $(document).ready(function() {
-    var table = $('#example2').DataTable( {
-      lengthChange: false,
-      buttons: [ ]
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
     table.buttons().container()
