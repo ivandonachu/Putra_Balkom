@@ -1280,7 +1280,7 @@ else{
                                     <td class="text-left"></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($jml_transport); ?></td>
-                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRTransport?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                   
                                 </tr>
                                 <tr>
@@ -1289,7 +1289,7 @@ else{
                                     <td class="text-left"></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($jml_konsumsi); ?></td>
-                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='thick-line'><a href='VRincianLRPs/VRKonsumsi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi'>Rincian</a></td>"; ?>
                                   
                                 </tr>
                                 <tr style="background-color:    #F0F8FF; ">
