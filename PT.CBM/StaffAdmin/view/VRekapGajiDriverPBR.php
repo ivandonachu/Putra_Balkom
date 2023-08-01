@@ -470,8 +470,8 @@ if (isset($_GET['tanggal1'])) {
           <th style="font-size: 14px" scope="col">Tanggal</th>
           <th style="font-size: 14px" scope="col">Nama Karyawan</th>
           <th style="font-size: 14px" scope="col">Jabatan</th>
-          <th style="font-size: 14px" scope="col">Rit PPE</th>
-          <th style="font-size: 14px" scope="col">Upah PPE</th>
+          <th style="font-size: 14px" scope="col">Rit NJE</th>
+          <th style="font-size: 14px" scope="col">Upah NJE</th>
           <th style="font-size: 14px" scope="col">Rit PPE</th>
           <th style="font-size: 14px" scope="col">Upah PPE</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
