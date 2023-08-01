@@ -140,7 +140,20 @@ $total_gaji_karyawan = $data_gaji['total_gaji'];
 if (!isset($data_gaji['total_gaji'])) {
     $total_gaji_karyawan = 0;
 }
-
+//GAJI karyawan new
+$table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_mes  WHERE tanggal = '$tanggal_awal' ");
+$data_gaji_x = mysqli_fetch_array($table10x);
+$total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
+if (!isset($data_gaji_x['total_gaji_new'])) {
+    $total_gaji_karyawan_new = 0;
+}
+//GAJI Drivver new
+$table101x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_driverx FROM rekap_gaji_driver_mes WHERE tanggal = '$tanggal_awal' ");
+$data_gaji_driver = mysqli_fetch_array($table101x);
+$total_gaji_driver = $data_gaji_driver['total_gaji_driverx'];
+if (!isset($data_gaji_driver['total_gaji_driverx'])) {
+    $total_gaji_driver = 0;
+}
 
 //ALAT TULIS KANTOR TK
 $table11 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_atk_tk FROM riwayat_pengeluaran WHERE tanggal = '$tanggal_awal' AND kode_akun = '5-520' AND referensi = 'MES' OR tanggal = '$tanggal_awal' AND kode_akun = '5-520' AND referensi = 'ME'");
@@ -292,7 +305,7 @@ if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
 }
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
-$total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
+$total_biaya_usaha_final =$total_gaji_karyawan + $total_gaji_karyawan_new + $total_gaji_driver + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
                             $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
@@ -408,6 +421,21 @@ $data_gaji = mysqli_fetch_array($table10);
 $total_gaji_karyawan = $data_gaji['total_gaji'];
 if (!isset($data_gaji['total_gaji'])) {
     $total_gaji_karyawan = 0;
+}
+//GAJI karyawan new
+$table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+$data_gaji_x = mysqli_fetch_array($table10x);
+$total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
+if (!isset($data_gaji_x['total_gaji_new'])) {
+    $total_gaji_karyawan_new = 0;
+}
+
+//GAJI Drivver new
+$table101x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_driverx FROM rekap_gaji_driver_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+$data_gaji_driver = mysqli_fetch_array($table101x);
+$total_gaji_driver = $data_gaji_driver['total_gaji_driverx'];
+if (!isset($data_gaji_driver['total_gaji_driverx'])) {
+    $total_gaji_driver = 0;
 }
 
 
@@ -638,7 +666,7 @@ $total_pengeluaran_lainnya = $total_pengeluaran_lainnya_new;
 
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
-$total_biaya_usaha_final = $total_gaji_karyawan + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha + $total_pengeluaran_lainnya +
+$total_biaya_usaha_final = $total_gaji_karyawan + $total_gaji_karyawan_new + $total_gaji_driver + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha + $total_pengeluaran_lainnya +
                             $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan +  $total_biaya_administrasi_new;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
@@ -1085,10 +1113,17 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                 </tr>
                                 <tr>
                                     <td>5-510</td>
-                                    <td class="text-left">GAJI</td>
+                                    <td class="text-left">Gaji Karyawan</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_gaji_karyawan); ?></td>
+                                    <td class="text-left"><?= formatuang($total_gaji_karyawan + $total_gaji_karyawan_new); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLRMES/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-511</td>
+                                    <td class="text-left">Gaji Driver</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_gaji_driver); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRGajiDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-511</td>
