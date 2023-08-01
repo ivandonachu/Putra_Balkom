@@ -326,7 +326,7 @@ else{
       $total_seluruh = 0;
       ?>
 
-        <?php while($data2 = mysqli_fetch_array($table)){
+        <?php while($data2 = mysqli_fetch_array($table2)){
           $no_riwayat = $data2['no_riwayat'];
           $tanggal = $data2['tanggal'];
           $nama_karyawan =$data2['nama_karyawan'];
