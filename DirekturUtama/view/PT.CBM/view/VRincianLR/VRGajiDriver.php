@@ -52,7 +52,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Gaji Karyawan</title>
+  <title>Rincian Gaji Driver</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -191,7 +191,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Gaji Karyawan</h5></a>"; ?>
+  <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Gaji Driver</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -269,7 +269,6 @@ else{
           <th style="font-size: 14px" scope="col">Total Gaji </th>
           <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
           <th style="font-size: 14px" scope="col">Keterangan </th>
-          <th style="font-size: 14px" scope="col"></th>
         </tr>
       </thead>
       <tbody>
