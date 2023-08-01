@@ -291,6 +291,11 @@ else{
 </tbody>
 </table>
 
+<br>
+<hr>
+<br>
+
+<h3>Rincian Gaji Karyawan</h3>
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center';>
