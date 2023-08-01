@@ -409,7 +409,7 @@ if (isset($_GET['tanggal1'])) {
 
            <div class="row">
            <div class="col-md-4">
-               <label>Rit PPE</label>
+               <label>Rit NJE</label>
                <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="0">
              </div>
              <div class="col-md-4">
@@ -580,7 +580,7 @@ if (isset($_GET['tanggal1'])) {
 
            <div class="row">
            <div class="col-md-4">
-               <label>Rit PPE</label>
+               <label>Rit NJE</label>
                <input class="form-control form-control-sm" type="number" name="rit_nje" required="" value="<?php echo $rit_nje;?>">
              </div>
              <div class="col-md-4">
