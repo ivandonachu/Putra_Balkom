@@ -303,7 +303,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
              </div>
              <div class="col-md-6">
              <label>Pemilik</label>
-             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik" required="">
+             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik">
            </div>
            </div>
 
@@ -315,10 +315,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
             <label>Jarak Tempuh</label>
             <input class="form-control form-control-sm" type="number" id="jt" name="jt" required="">
           </div>    
-          <div class="col-md-6">
-            <label>Harga BBM</label>
-            <input class="form-control form-control-sm" type="number" id="hrg_bbm" name="hrg_bbm" required="">
-          </div>
             
         </div>
 
@@ -374,7 +370,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
       <th>Delivery Point</th>   
       <th>Pemilik</th>
       <th>JT</th>
-      <th>Harga BBM</th>
       <th>KL 1</th>
       <th>KL 2</th>
       <th>KL 3</th>
@@ -390,7 +385,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
       $delivery_point =$data['delivery_point'];
       $pemilik = $data['pemilik'];
       $jt = $data['jt'];
-      $hrg_bbm = $data['hrg_bbm'];
       $kl1 = $data['kl1'];
       $kl2 = $data['kl2'];
       $kl3 = $data['kl3'];
@@ -404,7 +398,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
       <td style='font-size: 14px' align = 'center'>$delivery_point</td>
       <td style='font-size: 14px' align = 'center'>$pemilik</td>
       <td style='font-size: 14px' align = 'center'>$jt/KM</td>
-      <td style='font-size: 14px' align = 'center'>$hrg_bbm</td>
       <td style='font-size: 14px' align = 'center'>$kl1/L</td>
       <td style='font-size: 14px' align = 'center'>$kl2/L</td>
       <td style='font-size: 14px' align = 'center'>$kl3/L</td>
@@ -441,7 +434,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
              </div>
              <div class="col-md-6">
              <label>pemilik</label>
-             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik" required=""  value="<?php echo $pemilik;?>" >
+             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik"   value="<?php echo $pemilik;?>" >
            </div>
            </div>
 
@@ -453,10 +446,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
             <label>Jarak Tempuh</label>
             <input class="form-control form-control-sm" type="number" id="jt" name="jt" required=""  value="<?php echo $jt;?>">
           </div>    
-          <div class="col-md-4">
-            <label>Harga BBM</label>
-            <input class="form-control form-control-sm" type="number" id="hrg_bbm" name="hrg_bbm" required=""  value="<?php echo $hrg_bbm;?>">
-          </div>
         
         </div>
 

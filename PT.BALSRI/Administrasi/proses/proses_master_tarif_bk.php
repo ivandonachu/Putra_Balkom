@@ -21,7 +21,6 @@ exit;
 $delivery_point = $_POST['delivery_point'];
 $pemilik = $_POST['pemilik'];
 $jt = $_POST['jt'];
-$hrg_bbm = $_POST['hrg_bbm'];
 $kl1 = $_POST['kl1'];
 $kl2 = $_POST['kl2'];
 $kl3 = $_POST['kl3'];
@@ -37,7 +36,7 @@ if(mysqli_num_rows($result) == 1 ){
 	 }
 	
 
-	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_bk VALUES('$delivery_point','$pemilik','$jt','$hrg_bbm','$kl1','$kl2','$kl3','$kl4','$kl5')");
+	$query = mysqli_query($koneksi,"INSERT INTO master_tarif_bk VALUES('$delivery_point','$pemilik','$jt','$kl1','$kl2','$kl3','$kl4','$kl5')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VMasterTarifBk';</script>";exit;
