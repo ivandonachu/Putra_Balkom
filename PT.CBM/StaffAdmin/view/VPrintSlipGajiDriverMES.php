@@ -95,11 +95,11 @@ $html = '
         <table align="center" style="width:100%" border="1" cellspacing="0">
 
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Ritase PAP</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Ritase PPE</td>
         <td align="right" style="font-size: 10px; width:79%;">'. $rit_nje .' Rit</td>
         </tr>
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Upah PAP</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Upah PPE</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_nje) .'</td>
         </tr>
         <tr>

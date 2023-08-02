@@ -29,7 +29,7 @@ while($data = mysqli_fetch_array($table2)){
 
     $nama_driver = $data['nama_driver'];
     $nama_rute =$data['nama_rute'];
-    $table3 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_nje, SUM(rit) AS rit_nje FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'NJE'");
+    $table3 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_nje, SUM(rit) AS rit_nje FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'PPE'");
       $data3 = mysqli_fetch_array($table3);
       $total_gaji_nje = $data3['uang_gaji_nje'];
       if (  $total_gaji_nje == ""  ) {
