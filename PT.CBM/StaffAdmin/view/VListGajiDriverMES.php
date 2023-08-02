@@ -370,8 +370,8 @@ if (isset($_GET['tanggal1'])) {
       <th>Jabatan</th>
       <th>Rit NJE</th>
       <th>Upah NJE</th>
-      <th>Rit PPE</th>
-      <th>Upah PPE</th>
+      <th>Rit PAP</th>
+      <th>Upah PAP</th>
       <th>Upah Total</th>
     </tr>
   </thead>
@@ -401,7 +401,7 @@ if (isset($_GET['tanggal1'])) {
       }
       
 
-      $table4 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_pep , SUM(rit) AS rit_pep FROM laporan_rit_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PPE'");
+      $table4 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_pep , SUM(rit) AS rit_pep FROM laporan_rit_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PAP'");
       $data4 = mysqli_fetch_array($table4);
 
       $total_gaji_pep = $data4['uang_gaji_pep'];

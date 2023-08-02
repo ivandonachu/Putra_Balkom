@@ -23,10 +23,10 @@ $no_laporan = $_POST['no_laporan'];
 $tanggal = $_POST['tanggal'];
 $nama_driver = $_POST['nama_driver'];
 $nama_rute = $_POST['nama_rute'];
-if($nama_rute == 'NJE'){
+if($nama_rute == 'PPE'){
     $uang_gaji = 100000;
 }
-else if($nama_rute == 'PPE'){
+else if($nama_rute == 'PAP'){
     $uang_gaji = 200000;
 }
 
