@@ -1774,7 +1774,7 @@ function formatuang($angka){
 </nav>
 <!-- End of Topbar -->
 <div class="container" style="color : black;">
-   <?php  echo "<form  method='POST' action='VLuangOP' style='margin-bottom: 15px;'>" ?>
+   <?php  echo "<form  method='POST' action='VLuangOPJBB' style='margin-bottom: 15px;'>" ?>
    <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
