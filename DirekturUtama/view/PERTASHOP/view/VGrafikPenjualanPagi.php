@@ -312,7 +312,7 @@ while($data21 = mysqli_fetch_array($table21)){
 
 </nav>
 <!-- End of Topbar -->
-<?php  echo "<form  method='POST' action='VGrafikPenjualan'>" ?>
+<?php  echo "<form  method='POST' action='VGrafikPenjualanPagi'>" ?>
   <div>
     <div align="left" style="margin-left: 20px;"> 
       <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
