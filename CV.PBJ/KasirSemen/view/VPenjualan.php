@@ -490,7 +490,7 @@ else{
       <th>Tujuan Pengiriman</th>
       <th>QTY</th>
       <th>Satuan</th>
-      <th>Harga Beli</th>
+      <th>Harga Beli x</th>
       <th>Harga Jual</th>
       <th>Jumlah</th>    
       <th>Nama Toko di DO</th>
@@ -929,7 +929,7 @@ function sum2() {
       "; ?>
    
 
-   
+
 
 
 <?php echo  " </tr>";
