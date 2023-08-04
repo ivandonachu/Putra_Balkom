@@ -29,6 +29,7 @@ $no_polisi = $_POST['no_polisi'];
 $tujuan_pengiriman = $_POST['tujuan_pengiriman'];
 $qty = $_POST['qty'];
 $satuan = $_POST['satuan'];
+$harga_beli = $_POST['harga_beli'];
 $harga = $_POST['harga'];
 $jumlah = $qty * $harga;
 $toko_do = $_POST['toko_do'];
@@ -83,7 +84,7 @@ $no_pengiriman = $data_perta['no_pengiriman'];
 
 	if ($file == '') {
 			$query3 = mysqli_query($koneksi,"UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
-			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
+			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga_beli = '$harga_beli' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
 			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' WHERE no_penjualan = '$no_penjualan'");
 
 			$query4 = mysqli_query($koneksi,"UPDATE pengiriman_s SET no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi', 
@@ -91,7 +92,7 @@ $no_pengiriman = $data_perta['no_pengiriman'];
 	}
 	else{
 			$query3 = mysqli_query($koneksi,"UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver', no_polisi = '$no_polisi' , 
-			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
+			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga_beli = '$harga_beli' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
 			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' , file_bukti = '$file'  WHERE no_penjualan = '$no_penjualan'");
 
 			$query4 = mysqli_query($koneksi,"UPDATE pengiriman_s SET  no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi',

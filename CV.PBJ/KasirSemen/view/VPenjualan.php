@@ -383,11 +383,15 @@ else{
      <br>
 
      <div class="row">
-      <div class="col-md-6">
-        <label>Harga</label>
+     <div class="col-md-4">
+        <label>Harga Beli</label>
+        <input class="form-control form-control-sm" type="number" id="harga_beli" name="harga_beli" required="">
+      </div>    
+      <div class="col-md-4">
+        <label>Harga Jual</label>
         <input class="form-control form-control-sm" type="number" id="harga" name="harga" onkeyup="sum();" required="">
       </div>    
-      <div class="col-md-6">
+      <div class="col-md-">
        <label>Jumlah</label>
        <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required=""> 
      </div>                
@@ -486,7 +490,8 @@ else{
       <th>Tujuan Pengiriman</th>
       <th>QTY</th>
       <th>Satuan</th>
-      <th>Harga</th>
+      <th>Harga Beli</th>
+      <th>Harga Jual</th>
       <th>Jumlah</th>    
       <th>Nama Toko di DO</th>
       <th>TGL Bayar</th>
@@ -517,6 +522,7 @@ else{
       $tujuan_pengiriman = $data['tujuan_pengiriman'];
       $qty = $data['qty'];
       $satuan = $data['satuan'];
+      $harga_beli = $data['harga_beli'];
       $harga = $data['harga'];
       $jumlah = $data['jumlah'];
       $toko_do = $data['toko_do'];
@@ -640,13 +646,14 @@ function sum2() {
          <br>
 
          <div class="row">
+         <div class="col-md-6">
+            <label>Harga Beli</label>
+            <input class="form-control form-control-sm" type="number" name="harga_beli" required=""value="<?php echo $harga_beli;?>" >
+          </div>   
           <div class="col-md-6">
-            <label>Harga</label>
+            <label>Harga Jual</label>
             <input class="form-control form-control-sm" type="number" id="harga2" name="harga" onkeyup="sum2();" required=""value="<?php echo $harga;?>" >
-          </div>    
-          <div class="col-md-6">
-          
-         </div>                
+          </div>                  
        </div>
 
        <br>
@@ -910,6 +917,7 @@ function sum2() {
       <td style='font-size: 14px'>$tujuan_pengiriman</td>
       <td style='font-size: 14px'>$qty</td>
       <td style='font-size: 14px'>$satuan</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($harga_beli); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>$toko_do</td>
