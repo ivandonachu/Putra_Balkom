@@ -543,19 +543,17 @@ else {
 
      // pembelian kadek dan etty
 
-     $tabel = mysqli_query($koneksipbj, "SELECT tanggal_kirim FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim DESC LIMIT 1 ");
+     $tabel = mysqli_query($koneksipbj, "SELECT tanggal_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim DESC LIMIT 1 ");
      $datal = mysqli_fetch_array($tabel);
 
-     $tanggal_do_max = $datal['tanggal_kirim'];
+     $tanggal_do_max = $datal['tanggal_do'];
 
-     $tabel2 = mysqli_query($koneksipbj, "SELECT tanggal_kirim FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim ASC LIMIT 1 ");
+     $tabel2 = mysqli_query($koneksipbj, "SELECT tanggal_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim ASC LIMIT 1 ");
      $data2 = mysqli_fetch_array($tabel2);
 
-     $tanggal_do_min = $data2['tanggal_kirim'];
+     $tanggal_do_min = $data2['tanggal_do']; 
 
-     $tanggal_do_min_x = date('Y-m-d', strtotime('-1 days', strtotime($tanggal_do_min)));
-
-     $tablex = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_do_min_x' AND '$tanggal_do_max' ");
+     $tablex = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_do_min' AND '$tanggal_do_max' ");
      $datax = mysqli_fetch_array($tablex);
     
          $pembelian_total = $datax['total_pembelian'];
