@@ -122,7 +122,7 @@ $nama = $data['nama_karyawan'];
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualanL">Rekap DO Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPotonganHarga">Potongan Harga</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a> 
                     </div>
                 </div>
             </li>

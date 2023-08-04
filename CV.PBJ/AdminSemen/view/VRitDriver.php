@@ -88,11 +88,11 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirSemen">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
@@ -106,7 +106,7 @@ else{
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
-    <a class="nav-link" href="DsKasirSemen">
+    <a class="nav-link" href="DsAdminSemen">
         <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
@@ -116,7 +116,7 @@ else{
 
     <!-- Heading -->
     <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         KASIR SEMEN
+         ADMIN SEMEN
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -124,16 +124,20 @@ else{
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
       15  aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Kasir</span>
+        <span style="font-size: 15px; color:white;">Kasir</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Kasir</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan Semen</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenebusan">Penebusan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap Do Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualanL">Rekap DO Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPotonganHarga">Potongan Harga</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a> 
         </div>
     </div>
 </li>
@@ -141,14 +145,15 @@ else{
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
       15  aria-expanded="true" aria-controls="collapseTwo1">
         <i class="fas fa-truck-moving" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Menu SDM</span>
+        <span style="font-size: 15px; color:white;" >SDM</span>
     </a>
     <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+            <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VDriverSemen">List Driver</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
         </div>
     </div>
 </li>

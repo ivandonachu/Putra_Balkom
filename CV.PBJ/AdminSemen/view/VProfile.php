@@ -106,8 +106,8 @@ $status_karyawan = $data['status_karyawan'];
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+ <!-- Sidebar -->
+ <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
@@ -155,6 +155,7 @@ $status_karyawan = $data['status_karyawan'];
             <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualanL">Rekap DO Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPotonganHarga">Potongan Harga</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a> 
         </div>
     </div>
 </li>
@@ -168,7 +169,7 @@ $status_karyawan = $data['status_karyawan'];
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VKendaraan">Kendaraan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>  
+            <a class="collapse-item" style="font-size: 15px;" href="VDriverSemen">List Driver</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
         </div>
