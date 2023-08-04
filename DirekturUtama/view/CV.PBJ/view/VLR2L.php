@@ -555,7 +555,7 @@ else {
 
      $tanggal_do_min_x = date('Y-m-d', strtotime('-1 days', strtotime($tanggal_do_min)));
 
-     $tablex = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal_do_min_x BETWEEN '$tanggal_do_min' AND '$tanggal_do_max' ");
+     $tablex = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_do_min_x' AND '$tanggal_do_max' ");
      $datax = mysqli_fetch_array($tablex);
     
          $pembelian_total = $datax['total_pembelian'];
