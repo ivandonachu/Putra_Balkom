@@ -115,6 +115,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
             <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPembelian">Rekap DO Pembelian</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPotonganHarga">Potongan Harga</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a> 
+            <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Uang Sewa Hi Blow</a> 
         </div>
     </div>
 </li>
