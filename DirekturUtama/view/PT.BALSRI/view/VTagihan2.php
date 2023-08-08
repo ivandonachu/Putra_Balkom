@@ -155,12 +155,12 @@ else{
             <h6 class="collapse-header" style="font-size: 15px;">Menu Laba Rugi</h6>
             
             <?php if($nama == 'Nyoman Edy Susanto'){
-              echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOPJBB'>Operasional Balsri JBB</a>";
+              echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOPJBB'>Operasional Balsri ALL</a>";
               echo"<a class='collapse-item' style='font-size: 15px;' href='VLuangOP'>Operasional Balsri</a>";
              
             } ?>
             <?php if($nama == 'Nyoman Edy Susanto'){
-              echo" <a class='collapse-item' style='font-size: 15px;' href='VLrBalsriJBB'>LR Global Balsri JBB</a>
+              echo" <a class='collapse-item' style='font-size: 15px;' href='VLrBalsriJBB'>LR Global Balsri ALL</a>
                     <a class='collapse-item' style='font-size: 15px;' href='VLrGlobal'>LR Global Balsri</a>
                     <a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi Lampung</a>
                     <a class='collapse-item' style='font-size: 15px;' href='VLabaRugiP'>Laba Rugi Palembang</a>
