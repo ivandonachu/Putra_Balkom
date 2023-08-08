@@ -123,7 +123,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VSetoran">Setoran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCorPertamax">Cor Pertamax</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Cor Dexlite</a>                   
+            <a class="collapse-item" style="font-size: 15px;" href="VCorDexlite">Cor Dexlite</a>      
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPagi">Penjualan Pagi</a>             
         </div>
     </div>
 </li>

@@ -643,7 +643,15 @@ $total_bbm_lpg = 0;
 
         $total_kredit = $total_kredit + $total_kredit_bku;
         
-        
+         //Kredit Kendaraan Pribadi
+$table180x = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+$data_kredit = mysqli_fetch_array($table180x);
+$total_kredit_kendaraan_pribadi = $data_kredit['total_kredit'];
+if (!isset($data_kredit['total_kredit'])) {
+    $total_kredit_kendaraan_pribadi = 0;
+}
+
+
  
 
 
@@ -652,9 +660,9 @@ $total_bbm_lpg = 0;
 
 
     $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
-    $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit;
+    $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $total_kredit_kendaraan_pribadi;
 
-    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit;
+    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $total_kredit_kendaraan_pribadi;
            
     $laba_bersih_sebelum_pajak = $total_tagihan_global - $total_biaya_usaha_final;
     $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_final_bbm;
@@ -1201,7 +1209,7 @@ $total_bbm_lpg = 0;
                 <td>5-598</td>
                 <td class="text-left">Bayar Kredit</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($total_kredit); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit + $total_kredit_kendaraan_pribadi); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">

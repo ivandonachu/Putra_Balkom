@@ -1116,8 +1116,6 @@ else{
 
 
     //totalkreditGLOBAL
-
-
         $tablee_jbb = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
         $dataae = mysqli_fetch_array($tablee_jbb);
         $total_kredit_jbb= $dataae['total_kredit'];
@@ -1125,7 +1123,13 @@ else{
         $total_kredit_jbb = $total_kredit_jbb;
         
         
- 
+ //Kredit Kendaraan Pribadi
+$table180x = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+$data_kredit = mysqli_fetch_array($table180x);
+$total_kredit_kendaraan_pribadi = $data_kredit['total_kredit'];
+if (!isset($data_kredit['total_kredit'])) {
+    $total_kredit_kendaraan_pribadi = 0;
+}
 
 
 
@@ -1155,15 +1159,16 @@ else{
 
  
 
-    $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +
+    $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
                                 $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
 
-    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + 
+    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
                                     $total_bbm_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
            
     $laba_bersih_sebelum_pajak = ($total_tagihan_global + $total_tagihan_global_jbb) - $total_biaya_usaha_final;
     $laba_bersih_sebelum_pajak_bbm = ($total_tagihan_global + $total_tagihan_global_jbb) - $total_biaya_usaha_final_bbm;
-            
+
+
 ?>
 
 
@@ -1748,9 +1753,9 @@ if($tahun == 2023){
             </tr>
             <tr>
                 <td>5-598</td>
-                <td class="text-left">Bayar Kredit</td>
+                <td class="text-left">Bayar Kredit Kendaraan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($total_kredit + $total_kredit_jbb); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit + $total_kredit_kendaraan_pribadi); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">

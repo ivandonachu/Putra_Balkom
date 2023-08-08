@@ -542,23 +542,33 @@ else {
 
 
      // pembelian kadek dan etty
+$total_penebusan_dani = 0;
+$total_penebusan_ety = 0;
+     $tabel = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
-     $tabel = mysqli_query($koneksipbj, "SELECT tanggal_kirim FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim DESC LIMIT 1 ");
-     $datal = mysqli_fetch_array($tabel);
-
-     $tanggal_do_max = $datal['tanggal_kirim'];
-
-     $tabel2 = mysqli_query($koneksipbj, "SELECT tanggal_kirim FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal_kirim ASC LIMIT 1 ");
-     $data2 = mysqli_fetch_array($tabel2);
-
-     $tanggal_do_min = $data2['tanggal_kirim'];
-
-
-
-     $tablex = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_do_min' AND '$tanggal_do_max' ");
-     $datax = mysqli_fetch_array($tablex);
+   while($datal = mysqli_fetch_array($tabel)){
+        $no_do_penjualan = $datal['no_do'];
+        $tablexj = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
     
-         $pembelian_total = $datax['total_pembelian'];
+        $data1x = mysqli_fetch_array($tablexj);
+        $jumlah_dani = $data1x['jumlah'];
+            
+        $total_penebusan_dani = $total_penebusan_dani + $jumlah_dani;
+      }
+
+      $tabel2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+      while($data2 = mysqli_fetch_array($tabel2)){
+           $no_do_penjualan = $data2['no_do'];
+           $tablexjx = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
+       
+           $data2x = mysqli_fetch_array($tablexjx);
+           $jumlah_ety = $data2x['jumlah'];
+               
+           $total_penebusan_ety = $total_penebusan_ety + $jumlah_ety;
+         }
+   
+         $pembelian_total = $total_penebusan_dani + $total_penebusan_ety;
 
 
 

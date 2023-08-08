@@ -303,10 +303,17 @@ $total_perbaikan_ken3 = $data_perbaikan_ken3['total_perbaikan_ken3'];
 if (!isset($data_perbaikan_ken3['total_perbaikan_ken3'])) {
     $total_perbaikan_ken3 = 0;
 }
+$table180x = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_kredit FROM kredit WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' ");
+$data_kredit = mysqli_fetch_array($table180x);
+$total_kredit_kendaraan = $data_kredit['total_kredit'];
+if (!isset($data_kredit['total_kredit'])) {
+    $total_kredit_kendaraan = 0;
+}
+
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final =$total_gaji_karyawan + $total_gaji_karyawan_new + $total_gaji_driver + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan + $total_kredit_kendaraan;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 }
@@ -661,13 +668,22 @@ if (!isset($data_biaya_administrasi_new['biaya_administrasi_new'])) {
     $total_biaya_administrasi_new = 0;
 }
 
+//biaya administrasi new
+$table180x = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS total_kredit FROM kredit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES' ");
+$data_kredit = mysqli_fetch_array($table180x);
+$total_kredit_kendaraan = $data_kredit['total_kredit'];
+if (!isset($data_kredit['total_kredit'])) {
+    $total_kredit_kendaraan = 0;
+}
+
+
 
 $total_pengeluaran_lainnya = $total_pengeluaran_lainnya_new;
 
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_gaji_karyawan_new + $total_gaji_driver + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha + $total_pengeluaran_lainnya +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan +  $total_biaya_administrasi_new;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan +  $total_biaya_administrasi_new + $total_kredit_kendaraan;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 }
@@ -1222,6 +1238,13 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_perbaikan_kendaraan); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLRMES/VRPerbaikanKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-596</td>
+                                    <td class="text-left">Kredit Kendaraan</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_kredit_kendaraan); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRKreditKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr style="background-color:    #F0F8FF; ">
                                     <td><strong>Total Biaya Usaha</strong></td>
