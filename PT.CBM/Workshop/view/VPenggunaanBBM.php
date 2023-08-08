@@ -134,6 +134,8 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM stok_bbm ");
             <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBR">Workshop Balsri BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBB">Workshop Batu Bara</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Penggunaan BBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VInventorySparepart">Inventory Sparepart</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatSparepart">Riwayat Sparepart</a>
         </div>
     </div>
 </li>
