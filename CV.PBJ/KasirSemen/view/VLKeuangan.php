@@ -447,6 +447,8 @@ else{
                     <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?> >Perbaikan Kendaraan</option>
                     <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected": "" ?> >Gaji Karyawan</option>
                     <option <?php echo ($dataSelect == 'Kembalikan Deposit') ? "selected": "" ?> >Kembalikan Deposit</option>
+                    <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
+     
                   </select>
                 </div>    
                 <div class="col-md-6">
@@ -479,6 +481,7 @@ else{
   </div>
 
 
+  
   <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_transaksi']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'>Hapus</button>
 
   <div class="modal fade" id="PopUpHapus<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
