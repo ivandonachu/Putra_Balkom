@@ -91,12 +91,11 @@ else{
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
  <!-- Sidebar -->
  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTBALSRI">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="../DsPTBALSRI">
     <div class="sidebar-brand-icon rotate-n-15">
 
     </div>
@@ -109,7 +108,7 @@ else{
 
   <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
-    <a class="nav-link" href="DsPTBALSRI">
+    <a class="nav-link" href="../DsPTBALSRI">
         <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
@@ -131,7 +130,7 @@ else{
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">PT.PBJ</a>
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BL</a>
             <a class="collapse-item" style="font-size: 15px;" href="../DsPTBALSRI">PT.BALSRI</a>
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
@@ -155,12 +154,12 @@ else{
             <h6 class="collapse-header" style="font-size: 15px;">Menu Laba Rugi</h6>
             
             <?php if($nama == 'Nyoman Edy Susanto'){
-              echo"<a class='collapse-item' style='font-size: 15px;' href='../VLuangOPJBB'>Operasional Balsri JBB</a>";
+              echo"<a class='collapse-item' style='font-size: 15px;' href='../VLuangOPJBB'>Operasional Balsri ALL</a>";
               echo"<a class='collapse-item' style='font-size: 15px;' href='../VLuangOP'>Operasional Balsri</a>";
              
             } ?>
             <?php if($nama == 'Nyoman Edy Susanto'){
-              echo" <a class='collapse-item' style='font-size: 15px;' href='../VLrBalsriJBB'>LR Global Balsri JBB</a>
+              echo" <a class='collapse-item' style='font-size: 15px;' href='../VLrBalsriJBB'>LR Global Balsri ALL</a>
                     <a class='collapse-item' style='font-size: 15px;' href='../VLrGlobal'>LR Global Balsri</a>
                     <a class='collapse-item' style='font-size: 15px;' href='../VLabaRugi'>Laba Rugi Lampung</a>
                     <a class='collapse-item' style='font-size: 15px;' href='../VLabaRugiP'>Laba Rugi Palembang</a>
@@ -171,7 +170,6 @@ else{
         </div>
     </div>
 </li>
-
  <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
