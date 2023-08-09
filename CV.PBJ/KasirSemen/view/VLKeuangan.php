@@ -296,7 +296,7 @@ else{
               <option>Perbaikan Kendaraan</option>
               <option>Gaji Karyawan</option>
               <option>Kembalikan Deposit</option>
-
+              <option>Pengeluaran Lainnya</option>
             </select>
           </div>    
           <div class="col-md-6">

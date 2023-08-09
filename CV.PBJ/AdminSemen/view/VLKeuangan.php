@@ -294,17 +294,15 @@ else{
               <option>Setor Uang</option>
               <option>Bayar Tarikan</option>
               <option>Ongkos Kuli</option>
-
-            
+              <option>Kembalikan Saldo Brankas</option>
               <option>Biaya Kantor</option>
-            <option>Transport / Perjalanan Dinas</option>
-            <option>Listrik & Telepon</option>
-            <option>Alat Tulis Kantor</option>
-            <option>Perbaikan Kendaraan</option>
-            <option>Kembalikan Lebih Bayar</option>
-            <option>Deposit</option>
-            <option>Pengeluaran Lainnya</option>
-            <option>Ongkos Mobil</option>
+              <option>Transport / Perjalanan Dinas</option>
+              <option>Listrik & Telepon</option>
+              <option>Alat Tulis Kantor</option>
+              <option>Perbaikan Kendaraan</option>
+              <option>Gaji Karyawan</option>
+              <option>Kembalikan Deposit</option>
+              <option>Pengeluaran Lainnya</option>
             </select>
           </div>    
           <div class="col-md-6">
@@ -447,14 +445,15 @@ else{
                     <option <?php echo ($dataSelect == 'Setor Uang') ? "selected": "" ?> >Setor Uang</option>
                     <option <?php echo ($dataSelect == 'Bayar Tarikan') ? "selected": "" ?> >Bayar Tarikan</option>
                     <option <?php echo ($dataSelect == 'Ongkos Kuli') ? "selected": "" ?> >Ongkos Kuli</option>
+                    <option <?php echo ($dataSelect == 'Kembalikan Saldo Brankas') ? "selected": "" ?> >Kembalikan Saldo Brankas</option>
                     <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
                     <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                     <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
                     <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
-                    <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Kembalikan Lebih Bayar</option>
-                    <option <?php echo ($dataSelect == 'Deposit') ? "selected": "" ?> >Deposit</option>
+                    <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?> >Perbaikan Kendaraan</option>
+                    <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected": "" ?> >Gaji Karyawan</option>
+                    <option <?php echo ($dataSelect == 'Kembalikan Deposit') ? "selected": "" ?> >Kembalikan Deposit</option>
                     <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
-                    <option <?php echo ($dataSelect == 'Ongkos Mobil') ? "selected": "" ?> >Ongkos Mobil</option>
 
                   </select>
                 </div>    
