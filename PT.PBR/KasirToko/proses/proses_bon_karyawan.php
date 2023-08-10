@@ -64,10 +64,11 @@ else if ( $nama_file != "" ) {
 		$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE nama_karyawan = '$nama' ");
 		$data_karyawan = mysqli_fetch_array($result);
 		$id_karyawan = $data_karyawan['id_karyawan'];
+		$nama_karyawan = $data_karyawan['nama_karyawan'];
 
 if ($pembayaran == 'Cash') {
 	//riwayat pengeluran
-	$query = mysqli_query($koneksi,"INSERT INTO bon_karyawan VALUES ('','$tanggal',0000-00-00,'$kode_akun','$id_karyawan','$referensi','$jumlah',0,'$status_bon','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO bon_karyawan VALUES ('','$tanggal',0000-00-00,'$kode_akun','$id_karyawan','$nama_karyawan','$referensi','$jumlah',0,'$status_bon','$keterangan','$file')");
 	//aktivitas rekening
 	$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
 	$data_rekening = mysqli_fetch_array($akses_rekening);
