@@ -18,6 +18,8 @@ else{  header("Location: logout.php");
 exit;
 }
 
+$tanggal_awal = $_GET['tanggal1'];
+$tanggal_akhir = $_GET['tanggal2'];
 
 $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_pbr");
 $tanggal =$_POST['tanggal'];
@@ -36,7 +38,14 @@ while($data2 = mysqli_fetch_array($table)){
     $lembur = $data2['lembur'];
     $absen_terlambat = $data2['absen_terlambat'];
     $denda_absen = $data2['denda_absen'];
-    $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+    $table2 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_karyawan' ");
+    $data3 = mysqli_fetch_array($table2);
+    if (!isset($data3['total_bon'])) {
+        $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+      }
+      else{
+        $angsuran_bon_bulanan = $data3['total_bon'];
+      }
     $bonus = $data2['bonus'];
     if($nama_karyawan == 'Septian Andriansyah' ){
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_kesehatan - $bpjs_ketenagakerjaan;

@@ -21,7 +21,19 @@ exit;
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
-
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+ } 
+ else{
+   $tanggal_awal = date('Y-m-1');
+ $tanggal_akhir = date('Y-m-31');
+ }
 $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_mes");
 
 ?>
@@ -275,10 +287,19 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_mes");
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
+  <?php echo "<form  method='POST' action='VListGajiMES' style='margin-bottom: 15px;'>" ?>
+            <div>
+              <div align="left" style="margin-left: 20px;">
+                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                <span>-</span>
+                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
+              </div>
+            </div>
+            </form>
   <div class="row">
     <div class="col-md-8">
-
+    <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
     </div>
     <div class="col-md-2">
       <!-- Button Input Data Bayar -->
@@ -298,7 +319,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_mes");
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_rekap_gaji_mes' enctype='multipart/form-data' method='POST'>";  ?>
+            <?php  echo "<form action='../proses/proses_rekap_gaji_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
             <br>
 
@@ -502,7 +523,14 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_mes");
           $lembur = $data2['lembur'];
           $absen_terlambat = $data2['absen_terlambat'];
           $denda_absen = $data2['denda_absen'];
-          $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+          $table2 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_karyawan' ");
+          $data3 = mysqli_fetch_array($table2);
+          if (!isset($data3['total_bon'])) {
+              $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+            }
+            else{
+              $angsuran_bon_bulanan = $data3['total_bon'];
+            }
           $bonus = $data2['bonus'];
           $total_gaji = $data2['total_gaji'];
           $total_gaji_diterima = $data2['total_gaji_diterima'];
