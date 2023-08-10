@@ -42,82 +42,13 @@ else{
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM penggunaan_bbm WHERE tanggal = '$tanggal_awal' ");
-  
-  $table2 = mysqli_query($koneksi, "SELECT stock_awal FROM penggunaan_bbm  WHERE tanggal = '$tanggal_awal' ASC LIMIT 1 ");
-  $data2 = mysqli_fetch_array($table2);
-  if (!isset($data2['stock_awal'])) {
-    $stock_awal_x = 0;
-  }
-  else{
-    $stock_awal_x = $data2['stock_awal'];
-  }
-
-  $table3 = mysqli_query($koneksi, "SELECT stock_akhir FROM penggunaan_bbm  WHERE tanggal = '$tanggal_awal' DESC LIMIT 1 ");
-  $data3 = mysqli_fetch_array($table3);
-  if (!isset($data3['stock_akhir'])) {
-    $stock_akhir_x = 0;
-  }
-  else{
-    $stock_akhir_x = $data3['stock_akhir'];
-  }
-
-  $table4 = mysqli_query($koneksi, "SELECT SUM(refill) AS total_refill FROM penggunaan_bbm  WHERE tanggal = '$tanggal_awal' ");
-  $data4 = mysqli_fetch_array($table4);
-  if (!isset($data4['total_refill'])) {
-    $total_refill_x = 0;
-  }
-  else{
-    $total_refill_x = $data4['total_refill'];
-  }
-
-  $table5 = mysqli_query($koneksi, "SELECT SUM(restock) AS total_restock FROM penggunaan_bbm  WHERE tanggal = '$tanggal_awal' ");
-  $data5 = mysqli_fetch_array($table5);
-  if (!isset($data5['total_restock'])) {
-    $total_restock_x = 0;
-  }
-  else{
-    $total_restock_x = $data5['total_restock'];
-  }
+  $table2 = mysqli_query($koneksi, "SELECT * FROM penggunaan_bbm WHERE tanggal = '$tanggal_awal' ");
 
 }
 else{
 $table = mysqli_query($koneksi, "SELECT * FROM penggunaan_bbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
+$tabl2 = mysqli_query($koneksi, "SELECT * FROM penggunaan_bbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
 
-$table2 = mysqli_query($koneksi, "SELECT  stock_awal FROM penggunaan_bbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY no_laporan ASC LIMIT 1 ");
-$data2 = mysqli_fetch_array($table2);
-if (!isset($data2['stock_awal'])) {
-  $stock_awal_x = 0;
-}
-else{
-  $stock_awal_x = $data2['stock_awal'];
-}
-
-$table3 = mysqli_query($koneksi, "SELECT stock_akhir FROM penggunaan_bbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY no_laporan DESC LIMIT 1 ");
-$data3 = mysqli_fetch_array($table3);
-if (!isset($data3['stock_akhir'])) {
-  $stock_akhir_x = 0;
-}
-else{
-  $stock_akhir_x = $data3['stock_akhir'];
-}
-
-$table4 = mysqli_query($koneksi, "SELECT SUM(refill) AS total_refill FROM penggunaan_bbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-$data4 = mysqli_fetch_array($table4);
-if (!isset($data4['total_refill'])) {
-  $total_refill_x = 0;
-}
-else{
-  $total_refill_x = $data4['total_refill'];
-}
-
-$table5 = mysqli_query($koneksi, "SELECT SUM(restock) AS total_restock FROM penggunaan_bbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-$data5 = mysqli_fetch_array($table5);
-if (!isset($data5['total_restock'])) {
-  $total_restock_x = 0;
-}
-else{
-  $total_restock_x = $data5['total_restock'];
-}
 
 }
  ?>
@@ -335,21 +266,34 @@ else{
               <label>Kendaraan</label>
                 <input class="form-control form-control-sm" type="text" id="kendaraan" name="kendaraan" required=""> 
               </div>
+              <div class="col-md-3">
+               <label>Jenis Bahan Bakar</label>
+              <select id="jenis_bbm" name="jenis_bb" class="form-control form-control-sm">
+                <option>Dexlite</option>
+                <option>Pertamax</option>
+                <option>Pertalite</option>
+                <option>Solar</option>
+              </select>
+             </div>
            </div>
 
             <br>
         <div class="row">
             <div class="col-md-3">
               <label>Stock Awal</label>
-              <input class="form-control form-control-sm" type="float" id="stock_awal" name="stock_awal"  required="">
+              <input class="form-control form-control-sm" type="float" id="stock_awal" name="jumlah" onkeyup="sum();" required="">
             </div>    
             <div class="col-md-3">
               <label>Refill</label>
-              <input class="form-control form-control-sm" type="float" id="refill" name="refill"  required="">
+              <input class="form-control form-control-sm" type="float" id="refill" name="jumlah" onkeyup="sum();" required="">
             </div>   
             <div class="col-md-3">
               <label>Restock</label>
-              <input class="form-control form-control-sm" type="float" id="restock" name="restock"  required="">
+              <input class="form-control form-control-sm" type="float" id="restock" name="jumlah" onkeyup="sum();" required="">
+            </div>   
+            <div class="col-md-3">
+              <label>Stock Akhir</label>
+              <input class="form-control form-control-sm" type="float" id="stock_akhir" name="jumlah" onkeyup="sum();" required="">
             </div>   
          </div>
 
@@ -378,12 +322,12 @@ else{
     <tr>
       <th>No</th>
       <th>Tanggal</th>
+      <th>Jenis Penggunaan</th>
       <th>Nama Driver</th>
-      <th>Kendaraan</th>
-      <th>Stock Awal</th>
-      <th>Refill</th>
-      <th>Restock</th>
-      <th>Stock Akhir</th>
+      <th>No Polisi</th>
+      <th>Tujuan</th>
+      <th>Jenis BBM</th>
+      <th>Jumlah / L</th>
       <th>Aksi</th>
     </tr>
   </thead>
@@ -399,14 +343,14 @@ else{
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
-      $no_laporan = $data['no_laporan'];
+      $no_penggunaan = $data['no_penggunaan'];
       $tanggal =$data['tanggal'];
-      $nama_driver =$data['nama_driver'];
-      $kendaraan = $data['kendaraan'];
-      $stock_awal = $data['stock_awal'];
-      $refill = $data['refill'];
-      $restock = $data['restock'];
-      $stock_akhir = $data['stock_akhir'];
+      $jenis_penggunaan =$data['jenis_penggunaan'];
+      $nama_driver = $data['nama_driver'];
+      $no_polisi = $data['no_polisi'];
+      $jenis_bbm = $data['jenis_bbm'];
+      $jumlah = $data['jumlah'];
+      $tujuan = $data['tujuan'];
 
 
 
@@ -414,19 +358,19 @@ else{
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$jenis_penggunaan</td>
       <td style='font-size: 14px'>$nama_driver</td>
-      <td style='font-size: 14px'>$kendaraan</td>
-      <td style='font-size: 14px'>$stock_awal /L</td>
-      <td style='font-size: 14px'>$refill /L</td>
-      <td style='font-size: 14px'>$restock /L</td>
-      <td style='font-size: 14px'>$stock_akhir /L</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$tujuan</td>
+      <td style='font-size: 14px'>$jenis_bbm</td>
+      <td style='font-size: 14px'>$jumlah /L </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penggunaan']; ?>">Edit</button>
 
         <!-- Form EDIT DATA -->
 
-        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="formedit<?php echo $data['no_penggunaan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
             <div class="modal-content"> 
               <div class="modal-header">Form Edit Penggunaan BBM </h5>
@@ -441,38 +385,94 @@ else{
                 <form action="../proses/edit_penggunaan_bbm" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-
-                <div class="row">
-                  <div class="col-md-4">
-                    <label>Tanggal</label>
-                    <input class="form-control form-control-sm" t type="date" id="tanggal" name="tanggal" required="" value="<?php echo $tanggal;?>" >
-                  </div>
-                  <div class="col-md-4">
-                    <label>Nama Driver</label>
-                    <input class="form-control form-control-sm" type="text" id="nama_driver" name="nama_driver" required="" value="<?php echo $nama_driver;?>" > 
-                    </div>
-                    <div class="col-md-4">
-                    <label>Kendaraan</label>
-                      <input class="form-control form-control-sm" type="text" id="kendaraan" name="kendaraan" required="" value="<?php echo $kendaraan;?>" > 
-                    </div>
-                </div>
-                
-                <br>
+                <input type="hidden" name="no_penggunaan" value="<?php echo $no_penggunaan;?>">
                   <div class="row">
-                      <div class="col-md-3">
-                        <label>Stock Awal</label>
-                        <input class="form-control form-control-sm" type="float" id="stock_awal" name="stock_awal"  required="" value="<?php echo $stock_awal;?>" >
-                      </div>    
-                      <div class="col-md-3">
-                        <label>Refill</label>
-                        <input class="form-control form-control-sm" type="float" id="refill" name="refill"  required="" value="<?php echo $refill;?>" >
-                      </div>   
-                      <div class="col-md-3">
-                        <label>Restock</label>
-                        <input class="form-control form-control-sm" type="float" id="restock" name="restock"  required="" value="<?php echo $restock;?>" >
-                      </div>   
-                  </div>
+            <div class="col-md-4">
+
+              <label>Tanggal</label>
+              <div class="col-sm-10">
+               <input  class="form-control form-control-sm" type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
+             </div>
+   
+
+          </div>
+          <div class="col-md-4">
+          <label>Nama Driver</label>
+       
+
+            <select id="nama_driver" name="nama_driver" class="form-control form-control-sm ">
+            <?php
+            $dataSelect = $data['nama_driver']; 
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM driver");      
+
+            while ($data2 = mysqli_fetch_array($result)){
+            $nama_driver = $data2['nama_driver'];
+
+            echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>" ;
+
+            }
+            ?>
+            </select>
+          </div>
+          <div class="col-md-4">
+          <label>No Polisi</label>
+          <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi"  value="<?php echo $no_polisi;?>" required="">
+          </div>
+        </div>
+
+
+        <div class="row">
+        <div class="col-md-6">
+          <label>Tujuan</label>
+       
+
+            <select id="tujuan" name="tujuan" class="form-control form-control-sm ">
+            <?php
+            $dataSelect = $data['tujuan']; 
+            include 'koneksi.php';
+            $result = mysqli_query($koneksi, "SELECT * FROM rute_driver");   
+
+            while ($data2 = mysqli_fetch_array($result)){
+            $posisi_bongkar = $data2['posisi_bongkar'];
+
+            echo "<option" ?> <?php echo ($dataSelect == $posisi_bongkar) ? "selected" : "" ?>> <?php echo $posisi_bongkar; ?> <?php echo "</option>" ;
+
+            }
+            ?>
+            </select>
+          </div>
+        
+        <div class="col-md-6">
+
+          <label>Jenis BBM</label>
+          <select id="jenis_bbm" name="jenis_bbm" class="form-control form-control-sm">
+            <?php $dataSelect = $data['jenis_bbm']; ?>
+            <option <?php echo ($dataSelect == 'Dexlite') ? "selected": "" ?> >Dexlite</option>
+            <option <?php echo ($dataSelect == 'Pertamax') ? "selected": "" ?> >Pertamax</option>
+            <option <?php echo ($dataSelect == 'Pertalite') ? "selected": "" ?> >Pertalite</option>
+            <option <?php echo ($dataSelect == 'Solar') ? "selected": "" ?> >Solar</option>
+          </select>
+
+        </div>            
+        
+        <div class="col-md-6">
+        <label>Jumlah Liter</label>
+          <input class="form-control form-control-sm" type="float" id="qty" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
+        </div>  
+      
+      <div class="col-md-6">
+
+          <label>Jenis Penggunaan</label>
+          <select id="jenis_penggunaan" name="jenis_penggunaan" class="form-control form-control-sm">
+            <?php $dataSelect = $data['jenis_penggunaan']; ?>
+            <option <?php echo ($dataSelect == 'Non Pribadi') ? "selected": "" ?> >Non Pribadi</option>
+            <option <?php echo ($dataSelect == 'Pribadi') ? "selected": "" ?> >Pribadi</option>
+          </select>
+
+        </div>    
+        </div>
+      <br>
 
      
 
@@ -487,8 +487,8 @@ else{
         </div>
 
 
-        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_penggunaan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
+      <div class="modal fade" id="PopUpHapus<?php echo $data['no_penggunaan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
        <div class="modal-dialog" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
@@ -502,7 +502,9 @@ else{
 
           <div class="modal-body">
             <form action="../proses/hapus_penggunaan_bbm" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+              <input type="hidden" name="no_penggunaan" value="<?php echo $no_penggunaan; ?>">
+              <input type="hidden" name="jumlah" value="<?php echo $jumlah; ?>">
+              <input type="hidden" name="jenis_bbm" value="<?php echo $jenis_bbm;?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
 
@@ -531,31 +533,31 @@ else{
   </div>
   <br>
   <br>
+
   <div style="margin-right: 100px; margin-left: 100px;">
-<div style="overflow-x: auto" align = 'center'>
-<table  class="table-lg table-striped table-bordered  nowrap" style="width:700px">
-<thead>
-      <th style='font-size: 13px'>Stock Awal</th>
-      <th style='font-size: 13px'>Keluar</th>
-      <th style='font-size: 13px'>Restock</th>
-      <th style='font-size: 13px'>Stock Akhir</th>
+  <h6 align="Center">Stok BBM</h6>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th>Nama BBM</th>
+      <th>STOK</th>
     </tr>
   </thead>
   <tbody>
+    <?php while($data = mysqli_fetch_array($table2)){
+      $nama_barang =$data['nama_bbm'];
+      $stok = $data['stok'];
 
-  
-  <tr>
-      <td style='font-size: 13px' align = 'center'><?=  ($stock_awal_x); ?></td>
-      <td style='font-size: 13px' align = 'center'><?=  ($total_refill_x); ?></td>
-      <td style='font-size: 13px' align = 'center'><?=  ($total_restock_x); ?></td>
-      <td style='font-size: 13px' align = 'center'><?=  ($stock_akhir_x); ?></td>
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$nama_barang</td>
+      <td style='font-size: 14px' align = 'center'>$stok</td>
      
-  </tr>
-
+  </tr>";
+}
+?>
 
 </tbody>
 </table>
-</div>
 </div>
 
  <br>
