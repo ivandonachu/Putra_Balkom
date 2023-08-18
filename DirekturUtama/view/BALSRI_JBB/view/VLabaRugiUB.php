@@ -552,7 +552,7 @@ else{
 <br>
 <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
 <br>
-<br>
+<hr>
 <br>
 <div class="row">
    <div class="col-md-12">

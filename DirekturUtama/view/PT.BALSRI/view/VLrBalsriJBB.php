@@ -1326,6 +1326,162 @@ else{
 
     $total_biaya_usaha_final_bbm_bkl = $uang_bbm_bku + $jml_biaya_kantor_bkl + $jml_listrik_bkl + $jml_sewa_bkl +  $jml_perbaikan_bkl + $total_um_bkl + $gaji_driver_bkl  +  $jml_konsumsi_bkl + $total_kredit_bkl + $jml_atk_bkl + $gaji_karyawan_bk + $jml_transport_bkl;
     $laba_bersih_bbm_bkl = $total_laba_kotor_bkl  - $total_biaya_usaha_final_bbm_bkl;
+
+
+    // LR Tanjung Gerem 
+
+    //akses kredit
+    $table101_tg =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    //totalkredit
+    $total_kredit_tg = 0;
+    while($data = mysqli_fetch_array($table101_tg)){
+        $mt = $data['mt'];
+
+        $tablee_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataa_tg = mysqli_fetch_array($tablee_tg);
+        $jml_kredit_tg = $dataa_tg['total_kredit'];
+
+        $tableex_tg = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataax_tg = mysqli_fetch_array($tableex_tg);
+        $jml_kreditx_tg = $dataax_tg ['total_kreditx'];
+
+        if(isset($jml_kredit_tg)){
+            $total_kredit_tg += $jml_kredit_tg;
+        }
+        else if(isset($jml_kreditx_tg)){
+            $total_kredit_tg += $jml_kreditx_tg;
+        }
+        
+    }
+    $total_laba_kotor_tg = $total_tagihan_tg;
+    $jumlah_potongan_tg = (($total_tagihan_tg * 10) / 100);
+    $sisa_oprasional_tg = $jumlah_potongan_tg - ($jml_atk_tg + $gaji_karyawan_tg + $jml_sewa_tg + $jml_transport_tg );
+    $total_biaya_usaha_final_tg = $total_dexlite_tg + $jml_biaya_kantor_tg + $jml_listrik_tg  +  $jml_perbaikan_tg + $total_um_tg + $gaji_driver_tg  +  $jml_konsumsi_tg + $total_kredit_tg + $jml_atk_tg + $gaji_karyawan_tg + $jml_sewa_tg + $jml_transport_tg;
+    $laba_bersih_sebelum_pajak_tg = $total_laba_kotor_tg  - $total_biaya_usaha_final_tg;
+
+    // LR Padalarang
+    //akses kredit
+    $table101_pa =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    //totalkredit
+    $total_kredit_pa = 0;
+    while($data = mysqli_fetch_array($table101_pa)){
+        $mt = $data['mt'];
+
+        $tablee_pa = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataa_pa = mysqli_fetch_array($tablee_pa);
+        $jml_kredit_pa = $dataa_pa['total_kredit'];
+
+        $tableex_pa = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataax_pa = mysqli_fetch_array($tableex_pa);
+        $jml_kreditx_pa = $dataax_pa['total_kreditx'];
+
+        if(isset($jml_kredit_pa)){
+            $total_kredit_pa += $jml_kredit_pa;
+        }
+        else if(isset($jml_kreditx_pa)){
+            $total_kredit_pa += $jml_kreditx_pa;
+        }
+        
+    }
+    $total_laba_kotor_pa = $total_tagihan_pa ;
+    $jumlah_potongan_pa = (($total_tagihan_pa * 10) / 100);
+    $sisa_oprasional_pa = $jumlah_potongan_pa - ($jml_atk_pa + $gaji_karyawan_pa + $jml_sewa_pa + $jml_transport_pa );
+    $total_biaya_usaha_final_pa = $total_dexlite_pa + $jml_biaya_kantor_pa + $jml_listrik_pa  +  $jml_perbaikan_pa + $total_um_pa + $gaji_driver_pa + $jml_konsumsi_pa + $total_kredit_pa + $jml_atk_pa + $gaji_karyawan_pa + $jml_sewa_pa + $jml_transport_pa;
+    $laba_bersih_sebelum_pajak_pa = $total_laba_kotor_pa  - $total_biaya_usaha_final_pa;
+
+
+    //LR PLUMPNAG
+    //akses kredit
+    $table101_pl =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    //totalkredit
+    $total_kredit_pl = 0;
+    while($data = mysqli_fetch_array($table101_pl)){
+        $mt = $data['mt'];
+
+        $tablee_pl = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataa_pl = mysqli_fetch_array($tablee_pl);
+        $jml_kredit_pl = $dataa_pl['total_kredit'];
+
+        $tableex_pl = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataax_pl = mysqli_fetch_array($tableex_pl);
+        $jml_kreditx_pl = $dataax_pl['total_kreditx'];
+
+        if(isset($jml_kredit_pl)){
+            $total_kredit_pl += $jml_kredit_pl;
+        }
+        else if(isset($jml_kreditx_pl)){
+            $total_kredit_pl += $jml_kreditx_pl;
+        }
+        
+    }
+
+    $total_laba_kotor_pl = $total_tagihan_pl ;
+    $jumlah_potongan_pl = (($total_tagihan_pl * 10) / 100);
+    $sisa_oprasional_pl = $jumlah_potongan_pl - ($jml_atk_pl + $gaji_karyawan_pl + $jml_sewa_pl + $jml_transport_pl );
+    $total_biaya_usaha_final_pl = $total_dexlite_pl + $jml_biaya_kantor_pl + $jml_listrik_pl  +  $jml_perbaikan_pl + $total_um_pl + $gaji_driver_pl  +  $jml_konsumsi_pl + $total_kredit_pl + $jml_atk_pl + $gaji_karyawan_pl + $jml_sewa_pl + $jml_transport_pl;
+    $laba_bersih_sebelum_pajak_pl = $total_laba_kotor_pl  - $total_biaya_usaha_final_pl;
+
+
+    //LR UJUNG BERUNG
+    //akses kredit
+    $table101_ub =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    //totalkredit
+    $total_kredit_ub = 0;
+    while($data = mysqli_fetch_array($table101_ub)){
+        $mt = $data['mt'];
+
+        $tablee_ub = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataa_ub = mysqli_fetch_array($tablee_ub);
+        $jml_kredit_ub = $dataa_ub['total_kredit'];
+
+        $tableex_ub = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataax_ub = mysqli_fetch_array($tableex_ub);
+        $jml_kreditx_ub = $dataax_ub['total_kreditx'];
+
+        if(isset($jml_kredit_ub)){
+            $total_kredit_ub += $jml_kredit_ub;
+        }
+        else if(isset($jml_kreditx_ub)){
+            $total_kredit_ub += $jml_kreditx_ub;
+        }
+        
+    }
+    $total_laba_kotor_ub = $total_tagihan_ub;
+    $jumlah_potongan_ub = (($total_tagihan_ub * 10) / 100);
+    $sisa_oprasional_ub = $jumlah_potongan_ub - ($jml_atk_ub + $gaji_karyawan_ub + $jml_sewa_ub + $jml_transport_ub );
+    $total_biaya_usaha_final_ub = $total_dexlite_ub + $jml_biaya_kantor_ub + $jml_listrik_ub  +  $jml_perbaikan_ub + $total_um_ub + $gaji_driver_ub  +  $jml_konsumsi_ub + $total_kredit_ub + $jml_atk_ub + $gaji_karyawan_ub + $jml_sewa_ub + $jml_transport_ub;
+    $laba_bersih_sebelum_pajak_ub = $total_laba_kotor_ub - $total_biaya_usaha_final_ub;
+
+
+    //LR BALONGAN
+    //akses kredit
+    $table101_ba =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
+    //totalkredit
+    $total_kredit_ba = 0;
+    while($data = mysqli_fetch_array($table101_ba)){
+        $mt = $data['mt'];
+
+        $tablee_ba = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataa_ba = mysqli_fetch_array($tablee_ba);
+        $jml_kredit_ba = $dataa_ba['total_kredit'];
+
+        $tableex_ba = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $dataax_ba = mysqli_fetch_array($tableex_ba);
+        $jml_kreditx_ba = $dataax_ba['total_kreditx'];
+
+        if(isset($jml_kredit_ba)){
+            $total_kredit_ba += $jml_kredit_ba;
+        }
+        else if(isset($jml_kreditx_ba)){
+            $total_kredit_ba += $jml_kreditx_ba;
+        }
+        
+    }
+    $total_laba_kotor_ba = $total_tagihan_ba ;
+    $jumlah_potongan_ba = (($total_tagihan_ba * 10) / 100);
+    $sisa_oprasional_ba = $jumlah_potongan_ba - ($jml_atk_ba + $gaji_karyawan_ba + $jml_sewa_ba + $jml_transport_ba );
+    $total_biaya_usaha_final_ba = $total_dexlite_ba + $jml_biaya_kantor_ba + $jml_listrik_ba  +  $jml_perbaikan_ba + $total_um_ba + $gaji_driver_ba  +  $jml_konsumsi_ba + $total_kredit_ba + $jml_atk_ba + $gaji_karyawan_ba + $jml_sewa_ba + $jml_transport_ba;
+    $laba_bersih_sebelum_pajak_ba = $total_laba_kotor_ba  - $total_biaya_usaha_final_ba;
 ?>
 
 
@@ -3345,7 +3501,1104 @@ if($tahun == 2023){
 </div>
 </div>
 <br>
+<hr>
 <br>
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title" align="Center"><strong>Laba Rugi Tj Gerem</strong></h3>
+        </div>
+
+        <div>
+
+        </div>
+
+
+
+        <div class="panel-body">
+            <div class="table-responsive">
+               <table class="table table-condensed"  style="color : black;">
+                  <thead>
+                    <tr>
+                     <td><strong>Akun</strong></td>
+                     <td class="text-left"><strong>Nama Akun</strong></td>
+                     <td class="text-left"><strong>Debit</strong></td>
+                     <td class="text-left"><strong>Kredit</strong></td>
+                 </tr>
+             </thead>
+             <tbody>
+                 <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                 <tr>
+                    <td><strong>4-000</strong></td>
+                    <td class="text-left"><strong>PENDAPATAN</strong></td>
+                    <td class="text-left"></td>
+                    <td class="text-left"></td>
+                </tr>
+                <tr>
+                 <td>4-100</td>
+                 <td class="text-left">Tagihan Patra</td>
+                 <td class="text-left"><?= formatuang($total_tagihan_tg); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+           
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA KOTOR</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($total_laba_kotor_tg); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>4-101</strong></td>
+                <td class="text-left"><strong>PEMOTONGAN BIAYA OPRASIONAL</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Karyawan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_karyawan_tg); ?></td>
+            </tr>
+            <tr>
+                <td>5-520</td>
+                <td class="text-left">Alat Tulis Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_atk_tg); ?></td>
+
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_tg); ?></td>
+            </tr>
+            <tr>
+                <td>5-530</td>
+                <td class="text-left">Transport & Perjalanan Dinas</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_transport_tg); ?></td>
+            </tr>
+            <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Biaya Oprasional 10%</td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_tg); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>Sisa Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($sisa_oprasional_tg); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>5-500</strong></td>
+                <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Driver</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_driver_tg); ?></td>
+            </tr>
+            <tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_tg); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_tg); ?></td>
+            </tr>
+            <tr>
+                <td>5-560</td>
+                <td class="text-left">Biaya Konsumsi</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_konsumsi_tg); ?></td>
+            </tr>
+            
+            
+            <tr>
+                <td>5-595</td>
+                <td class="text-left">Biaya Perbaikan Kendaraan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_perbaikan_tg); ?></td>
+            </tr>
+            <tr>
+                <td>5-596</td>
+                <td class="text-left">Uang Makan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_um_tg); ?></td>
+            </tr>
+            <tr>
+                <td>5-597</td>
+                <td class="text-left">Uang Dexlite</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_dexlite_tg); ?></td>
+            </tr>
+            <tr>
+                <td>5-5971</td>
+                <td class="text-left">Uang BBM</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="thick-line"></td>
+            </tr>
+            <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit_tg); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_tg); ?></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td class="thick-line"></td>
+                <?php
+
+                if ($laba_bersih_sebelum_pajak_tg > 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_tg); ?> </td>
+                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_tg < 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_tg); ?></td>
+
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_tg == 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                <?php }
+                ?>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title" align="Center"><strong>Laba Rugi Padalarang</strong></h3>
+        </div>
+
+        <div>
+
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+               <table class="table table-condensed"  style="color : black;">
+                  <thead>
+                    <tr>
+                     <td><strong>Akun</strong></td>
+                     <td class="text-left"><strong>Nama Akun</strong></td>
+                     <td class="text-left"><strong>Debit</strong></td>
+                     <td class="text-left"><strong>Kredit</strong></td>
+                 </tr>
+             </thead>
+             <tbody>
+                 <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                 <tr>
+                    <td><strong>4-000</strong></td>
+                    <td class="text-left"><strong>PENDAPATAN</strong></td>
+                    <td class="text-left"></td>
+                    <td class="text-left"></td>
+                </tr>
+                <tr>
+                 <td>4-100</td>
+                 <td class="text-left">Tagihan Patra</td>
+                 <td class="text-left"><?= formatuang($total_tagihan_pa); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+           
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA KOTOR</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($total_laba_kotor_pa); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>4-101</strong></td>
+                <td class="text-left"><strong>PEMOTONGAN BIAYA OPRASIONAL</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Karyawan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_karyawan_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-520</td>
+                <td class="text-left">Alat Tulis Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_atk_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-530</td>
+                <td class="text-left">Transport & Perjalanan Dinas</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_transport_pa); ?></td>
+            </tr>
+            <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Biaya Oprasional 10%</td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_pa); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>Sisa Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($sisa_oprasional_pa); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>5-500</strong></td>
+                <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Driver</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_driver_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-560</td>
+                <td class="text-left">Biaya Konsumsi</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_konsumsi_pa); ?></td>
+            </tr>
+            
+            
+            <tr>
+                <td>5-595</td>
+                <td class="text-left">Biaya Perbaikan Kendaraan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_perbaikan_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-596</td>
+                <td class="text-left">Uang Makan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_um_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-597</td>
+                <td class="text-left">Uang Dexlite</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_dexlite_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-5971</td>
+                <td class="text-left">Uang BBM</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+            <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit_pa); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_pa); ?></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td class="thick-line"></td>
+                <?php
+
+                if ($laba_bersih_sebelum_pajak_pa > 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_pa); ?> </td>
+                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_pa < 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_pa); ?></td>
+
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_pa == 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                <?php }
+                ?>
+            </tr>
+          
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title" align="Center"><strong>Laba Rugi Plumpang</strong></h3>
+        </div>
+
+        <div>
+
+        </div>
+
+
+
+        <div class="panel-body">
+            <div class="table-responsive">
+               <table class="table table-condensed"  style="color : black;">
+                  <thead>
+                    <tr>
+                     <td><strong>Akun</strong></td>
+                     <td class="text-left"><strong>Nama Akun</strong></td>
+                     <td class="text-left"><strong>Debit</strong></td>
+                     <td class="text-left"><strong>Kredit</strong></td>
+                 </tr>
+             </thead>
+             <tbody>
+                 <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                 <tr>
+                    <td><strong>4-000</strong></td>
+                    <td class="text-left"><strong>PENDAPATAN</strong></td>
+                    <td class="text-left"></td>
+                    <td class="text-left"></td>
+                </tr>
+                <tr>
+                 <td>4-100</td>
+                 <td class="text-left">Tagihan Patra</td>
+                 <td class="text-left"><?= formatuang($total_tagihan_pl); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+           
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA KOTOR</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($total_laba_kotor_pl); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>4-101</strong></td>
+                <td class="text-left"><strong>PEMOTONGAN BIAYA OPRASIONAL</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Karyawan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_karyawan_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-520</td>
+                <td class="text-left">Alat Tulis Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_atk_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-530</td>
+                <td class="text-left">Transport & Perjalanan Dinas</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_transport_pl); ?></td>
+            </tr>
+            <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Biaya Oprasional 10%</td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_pl); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>Sisa Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($sisa_oprasional_pl); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>5-500</strong></td>
+                <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Driver</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_driver_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-560</td>
+                <td class="text-left">Biaya Konsumsi</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_konsumsi_pl); ?></td>
+            </tr>
+            
+            
+            <tr>
+                <td>5-595</td>
+                <td class="text-left">Biaya Perbaikan Kendaraan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_perbaikan_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-596</td>
+                <td class="text-left">Uang Makan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_um_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-597</td>
+                <td class="text-left">Uang Dexlite</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_dexlite_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-5971</td>
+                <td class="text-left">Uang BBM</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+            <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit_pl); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_pl); ?></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td class="thick-line"></td>
+                <?php
+
+                if ($laba_bersih_sebelum_pajak_pl > 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_pl); ?> </td>
+                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_pl < 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_pl); ?></td>
+
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_pl == 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                <?php }
+                ?>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<br>
+<hr>
+<br>
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title" align="Center"><strong>Laba Rugi Ujung Berung</strong></h3>
+        </div>
+
+        <div>
+
+        </div>
+
+
+
+        <div class="panel-body">
+            <div class="table-responsive">
+               <table class="table table-condensed"  style="color : black;">
+                  <thead>
+                    <tr>
+                     <td><strong>Akun</strong></td>
+                     <td class="text-left"><strong>Nama Akun</strong></td>
+                     <td class="text-left"><strong>Debit</strong></td>
+                     <td class="text-left"><strong>Kredit</strong></td>
+                 </tr>
+             </thead>
+             <tbody>
+                 <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                 <tr>
+                    <td><strong>4-000</strong></td>
+                    <td class="text-left"><strong>PENDAPATAN</strong></td>
+                    <td class="text-left"></td>
+                    <td class="text-left"></td>
+                </tr>
+                <tr>
+                 <td>4-100</td>
+                 <td class="text-left">Tagihan Patra</td>
+                 <td class="text-left"><?= formatuang($total_tagihan_ub); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+           
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA KOTOR</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($total_laba_kotor_ub); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>4-101</strong></td>
+                <td class="text-left"><strong>PEMOTONGAN BIAYA OPRASIONAL</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Karyawan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_karyawan_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-520</td>
+                <td class="text-left">Alat Tulis Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_atk_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-530</td>
+                <td class="text-left">Transport & Perjalanan Dinas</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_transport_ub); ?></td>
+            </tr>
+            <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Biaya Oprasional 10%</td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_ub); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>Sisa Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($sisa_oprasional_ub); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>5-500</strong></td>
+                <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Driver</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_driver_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-560</td>
+                <td class="text-left">Biaya Konsumsi</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_konsumsi_ub); ?></td>
+            </tr>
+            
+            
+            <tr>
+                <td>5-595</td>
+                <td class="text-left">Biaya Perbaikan Kendaraan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_perbaikan_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-596</td>
+                <td class="text-left">Uang Makan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_um_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-597</td>
+                <td class="text-left">Uang Dexlite</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_dexlite_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-5971</td>
+                <td class="text-left">Uang BBM</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+            <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit_ub); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_ub); ?></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td class="thick-line"></td>
+                <?php
+
+                if ($laba_bersih_sebelum_pajak_ub > 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_ub); ?> </td>
+                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_ub < 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_ub); ?></td>
+
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_ub == 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                <?php }
+                ?>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title" align="Center"><strong>Laba Rugi Balongan</strong></h3>
+        </div>
+
+        <div>
+
+        </div>
+
+
+
+        <div class="panel-body">
+            <div class="table-responsive">
+               <table class="table table-condensed"  style="color : black;">
+                  <thead>
+                    <tr>
+                     <td><strong>Akun</strong></td>
+                     <td class="text-left"><strong>Nama Akun</strong></td>
+                     <td class="text-left"><strong>Debit</strong></td>
+                     <td class="text-left"><strong>Kredit</strong></td>
+                 </tr>
+             </thead>
+             <tbody>
+                 <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                 <tr>
+                    <td><strong>4-000</strong></td>
+                    <td class="text-left"><strong>PENDAPATAN</strong></td>
+                    <td class="text-left"></td>
+                    <td class="text-left"></td>
+                </tr>
+                <tr>
+                 <td>4-100</td>
+                 <td class="text-left">Tagihan Patra</td>
+                 <td class="text-left"><?= formatuang($total_tagihan_ba); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+           
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA KOTOR</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($total_laba_kotor_ba); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>4-101</strong></td>
+                <td class="text-left"><strong>PEMOTONGAN BIAYA OPRASIONAL</strong></td>
+                <td class="text-left"></td>
+            </tr>
+            
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Karyawan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_karyawan_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-520</td>
+                <td class="text-left">Alat Tulis Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_atk_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-530</td>
+                <td class="text-left">Transport & Perjalanan Dinas</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_transport_ba); ?></td>
+            </tr>
+            <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Biaya Oprasional 10%</td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_ba); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+             </tr>
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>Sisa Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($sisa_oprasional_ba); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>5-500</strong></td>
+                <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Driver</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_driver_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-560</td>
+                <td class="text-left">Biaya Konsumsi</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_konsumsi_ba); ?></td>
+            </tr>
+            
+            
+            <tr>
+                <td>5-595</td>
+                <td class="text-left">Biaya Perbaikan Kendaraan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_perbaikan_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-596</td>
+                <td class="text-left">Uang Makan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_um_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-597</td>
+                <td class="text-left">Uang Dexlite</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_dexlite_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-5971</td>
+                <td class="text-left">Uang BBM</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+            <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_kredit_ba); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_ba); ?></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr style="background-color: navy;  color:white;">
+                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td class="thick-line"></td>
+                <?php
+
+                if ($laba_bersih_sebelum_pajak_ba > 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_ba); ?> </td>
+                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_ba < 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak_ba); ?></td>
+
+                <?php }
+                else if ($laba_bersih_sebelum_pajak_ba == 0) { ?>
+
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                    <td class="no-line text-left"><?= formatuang(0); ?></td>
+                <?php }
+                ?>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<br>
+
 </div>
 </div>
 <!-- End of Main Content -->
