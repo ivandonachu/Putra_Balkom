@@ -23,80 +23,125 @@ exit;
 
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
- $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
-  $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir))); 
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
- $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
-  $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir))); 
-} 
-else{
-  $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
   $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
-  $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir))); 
-}
-
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ORDER BY no_penjualan ASC");
-
-
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak'");
-  $data2 = mysqli_fetch_array($table2);
-  $penjualan_zak = $data2['penjualan_zak'];
-  $uang_zak= $data2['uang_zak'];
-
-  $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Bon'AND satuan = 'Zak' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Nyicil'AND satuan = 'Zak'");
-  $data3 = mysqli_fetch_array($table3);
-  $penjualan_zak_bon = $data3['penjualan_zak_bon'];
-  $uang_zak_bon = $data3['uang_zak_bon'];
-
-  $table4 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
-  $data4 = mysqli_fetch_array($table4);
-  $penjualan_bag = $data4['penjualan_bag'];
-  $uang_bag= $data4['uang_bag'];
-
-  $table5 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Bon'AND satuan = 'Bag' OR tanggal_kirim = '$tanggal_awal' AND status_bayar = 'Nyicil'AND satuan = 'Bag'");
-  $data5 = mysqli_fetch_array($table5);
-  $penjualan_bag_bon = $data5['penjualan_bag_bon'];
-  $uang_bag_bon = $data5['uang_bag_bon'];
+   $bulan_sesudah =  date('Y-m-d', strtotime('+3 day', strtotime($tanggal_akhir))); 
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
+   $bulan_sesudah =  date('Y-m-d', strtotime('+3 day', strtotime($tanggal_akhir))); 
+ } 
+ else{
+   $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+ 
+   $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
+   $bulan_sesudah =  date('Y-m-d', strtotime('+3 day', strtotime($tanggal_akhir))); 
+ }
 
 
+ if ($tanggal_awal == $tanggal_akhir) {
+    $table = mysqli_query($koneksipbj,"SELECT * FROM pembelian_sl WHERE tanggal = '$tanggal_akhir' ");
+  
+    
+    //Tonase OKUT
+    $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okut FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'Kab Ogn Kmrg Ulu Tim'");
+    $data2 = mysqli_fetch_array($table2);
+    $total_qty_okut = $data2['qty_okut'];
+    $total_tonase_okut = $total_qty_okut/20;
 
-}
+    //Tonase OKUS
+    $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okus FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'Kab Ogn Kmrg Ulu Sel'");
+    $data3 = mysqli_fetch_array($table3);
+    $total_qty_okus = $data3['qty_okus'];
+    $total_tonase_okus = $total_qty_okus/20;
 
-else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
+    //Tonase Mesuji
+    $table4 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_mesuji FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'Kab Mesuji'");
+    $data4 = mysqli_fetch_array($table4);
+    $total_qty_mesuji = $data4['qty_mesuji'];
+    $total_tonase_mesuji = $total_qty_mesuji/20;
 
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' ");
-  $data2 = mysqli_fetch_array($table2);
-  $penjualan_zak = $data2['penjualan_zak'];
-  $uang_zak= $data2['uang_zak'];
+    //Tonase WAY KANAN
+    $table5 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_way_kanan FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'KAB WAY KANAN'");
+    $data5 = mysqli_fetch_array($table5);
+    $total_qty_way_kanan = $data5['qty_way_kanan'];
+    $total_tonase_way_kanan = $total_qty_way_kanan/20;
+    
+    //Tonase Tuba
+    $table6 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_tuba FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'Kab Tlg Bwg'");
+    $data6 = mysqli_fetch_array($table6);
+    $total_qty_tuba = $data6['qty_tuba'];
+    $total_tonase_tuba = $total_qty_tuba/20;
 
-  $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak'");
-  $data3 = mysqli_fetch_array($table3);
-  $penjualan_zak_bon = $data3['penjualan_zak_bon'];
-  $uang_zak_bon = $data3['uang_zak_bon'];
+    //Tonase Bag
+    $table7 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_bag FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND material = 'Big Bag OPC Type 1'");
+    $data7 = mysqli_fetch_array($table7);
+    $total_tonase_bag = $data7['qty_bag'];
 
-  $table4 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' ");
-  $data4 = mysqli_fetch_array($table4);
-  $penjualan_bag = $data4['penjualan_bag'];
-  $uang_bag= $data4['uang_bag'];
-
-  $table5 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag'");
-  $data5 = mysqli_fetch_array($table5);
-  $penjualan_bag_bon = $data5['penjualan_bag_bon'];
-  $uang_bag_bon = $data5['uang_bag_bon'];
-
-}
+    //Tonase Curah
+    $table8 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_curah FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND material = 'Curah OPC Type 1'");
+    $data8 = mysqli_fetch_array($table8);
+    $total_tonase_curah = $data8['qty_curah'];
 
 
+    
+  
+  
+  
+  }
+  
+  else{
+    $table = mysqli_query($koneksipbj,"SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
+    
+     //Tonase OKUT
+     $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okut FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'Kab Ogn Kmrg Ulu Tim'");
+     $data2 = mysqli_fetch_array($table2);
+     $total_qty_okut = $data2['qty_okut'];
+     $total_tonase_okut = $total_qty_okut/20;
+ 
+     //Tonase OKUS
+     $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okus FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'Kab Ogn Kmrg Ulu Sel'");
+     $data3 = mysqli_fetch_array($table3);
+     $total_qty_okus = $data3['qty_okus'];
+     $total_tonase_okus = $total_qty_okus/20;
+ 
+     //Tonase Mesuji
+     $table4 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_mesuji FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'Kab Mesuji'");
+     $data4 = mysqli_fetch_array($table4);
+     $total_qty_mesuji = $data4['qty_mesuji'];
+     $total_tonase_mesuji = $total_qty_mesuji/20;
+ 
+     //Tonase WAY KANAN
+     $table5 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_way_kanan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB WAY KANAN'");
+     $data5 = mysqli_fetch_array($table5);
+     $total_qty_way_kanan = $data5['qty_way_kanan'];
+     $total_tonase_way_kanan = $total_qty_way_kanan/20;
+     
+     //Tonase Tuba
+     $table6 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_tuba FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'Kab Tlg Bwg'");
+     $data6 = mysqli_fetch_array($table6);
+     $total_qty_tuba = $data6['qty_tuba'];
+     $total_tonase_tuba = $total_qty_tuba/20;
+ 
+     //Tonase Bag
+     $table7 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_bag FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND material = 'Big Bag OPC Type 1'");
+     $data7 = mysqli_fetch_array($table7);
+     $total_tonase_bag = $data7['qty_bag'];
+ 
+     //Tonase Curah
+     $table8 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_curah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND material = 'Curah OPC Type 1'");
+     $data8 = mysqli_fetch_array($table8);
+     $total_tonase_curah = $data8['qty_curah'];
+
+    
+  
+  }
+  
 
 
 ?>
@@ -111,7 +156,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penjualan Semen</title>
+  <title>Tonase Penebusan Semen</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -338,7 +383,7 @@ Logout
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VPenjualan' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VTonasePembelian' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -349,38 +394,31 @@ Logout
     </div>
   </form>
 
-  <br>
-  <br>
-  <div class="row">
-    <div class="col-md-6">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-   </div>
-</div>
-
-
+  <div class="col-md-8">
+   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+ </div>
+ <br>
 
 
 <!-- Tabel -->    
-<div style="overflow-x: auto">
+<div style="overflow-x: auto" align = 'center'>
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
-      <th>TGL DO</th>
-      <th>TGL Kirim</th>
+      <th>Tanggal</th>
       <th>NO DO</th>
-      <th>Driver</th>
-      <th>NO Polisi</th>
-      <th>Tujuan Pengiriman</th>
+      <th>Tujuan</th>
+      <th>Kota</th>
+      <th>Material</th>
       <th>QTY</th>
-      <th>Satuan</th>
       <th>Harga</th>
       <th>Jumlah</th>    
-      <th>Nama Toko di DO</th>
-      <th>TGL Bayar</th>
-      <th>Status Bayar</th>
+      <th>Driver</th>
+      <th>No Polisi</th>
+      <th>Tipe Pembayaran</th>
+      <th>Tempo</th>
       <th>Ket</th>
-      <th>Catatan</th>
       <th>File</th>
       
     </tr>
@@ -396,46 +434,40 @@ Logout
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_penjualan = $data['no_penjualan'];
-      $tanggal_do =$data['tanggal_do'];
-      $tanggal_kirim = $data['tanggal_kirim'];
-      $no_do = $data['no_do'];
-      $driver = $data['driver'];
-      $no_polisi = $data['no_polisi'];
-      $tujuan_pengiriman = $data['tujuan_pengiriman'];
+      $no_pembelian = $data['no_pembelian'];
+      $tanggal =$data['tanggal'];
+      $no_do =$data['no_do'];
+      $tujuan = $data['tujuan'];
+      $kota = $data['kota'];
+      $material = $data['material'];
       $qty = $data['qty'];
-      $satuan = $data['satuan'];
       $harga = $data['harga'];
       $jumlah = $data['jumlah'];
-      $toko_do = $data['toko_do'];
+      $driver = $data['driver'];
+      $no_polisi = $data['no_polisi'];
+      $tipe_bayar = $data['tipe_bayar'];
       $tempo = $data['tempo'];
-      $tanggal_bayar = $data['tanggal_bayar'];
-      $status_bayar = $data['status_bayar'];
       $keterangan = $data['keterangan'];
-      $catatan = $data['catatan'];
-      $bulan = $data['bulan'];
       $file_bukti = $data['file_bukti'];
       $no_urut = $no_urut + 1;
 
 
       echo "<tr>
       <td style='font-size: 14px'>$no_urut</td>
-      <td style='font-size: 14px'>$tanggal_do</td>
-      <td style='font-size: 14px'>$tanggal_kirim</td>
+      <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$no_do</td>
-      <td style='font-size: 14px'>$driver</td>
-      <td style='font-size: 14px'>$no_polisi</td>
-      <td style='font-size: 14px'>$tujuan_pengiriman</td>
+      <td style='font-size: 14px'>$tujuan</td>
+      <td style='font-size: 14px'>$kota</td>
+      <td style='font-size: 14px'>$material</td>
       <td style='font-size: 14px'>$qty</td>
-      <td style='font-size: 14px'>$satuan</td>
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 14px'>$toko_do</td>
-      <td style='font-size: 14px'>$tanggal_bayar</td>
-      <td style='font-size: 14px'>$status_bayar</td>
+      <td style='font-size: 14px'>$driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$tipe_bayar</td>
+      <td style='font-size: 14px'>$tempo</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>$catatan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
    
 
@@ -449,6 +481,7 @@ Logout
 </table>
 </div>
 <br>
+
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
@@ -456,8 +489,8 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Penjualan ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $penjualan_zak ?></div>
+            Tonase OKUT</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $total_tonase_okut ?>/Ton</div>
           </div>
           <div class="col-auto">
            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -472,11 +505,11 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang ZAK</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_zak) ?></div>
+            Tonase OKUS</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_tonase_okus ?>/Ton</div>
           </div>
           <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
           </div>
         </div>
       </div>
@@ -488,8 +521,8 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total ZAK BON</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_zak_bon  ?></div>
+            Tonase Mesuji</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_tonase_mesuji  ?>/Ton</div>
           </div>
           <div class="col-auto">
            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -504,115 +537,11 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang ZAK BON</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=formatuang($uang_zak_bon)?></div>
+            Tonase Way Kanan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_tonase_way_kanan?>/Ton</div>
           </div>
           <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Penjualan BAG</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=    $penjualan_bag ?></div>
-          </div>
-          <div class="col-auto">
-             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang BAG</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bag) ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total BAG BON</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bag_bon  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang BAG BON</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bag_bon)?></div>
-          </div>
-          <div class="col-auto">
-             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-6 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Seluruh QTY </div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=    $penjualan_bag + $penjualan_bag_bon + $penjualan_zak + $penjualan_zak_bon ?></div>
-          </div>
-          <div class="col-auto">
-             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-6 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Seluruh Uang</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($uang_bag+$uang_bag_bon+$uang_zak + $uang_zak_bon) ?></div>
-          </div>
-          <div class="col-auto">
-             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
           </div>
         </div>
       </div>
@@ -621,9 +550,62 @@ Logout
 </div>
 
 <br>
-<hr>
 <br>
 
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Tonase Tuba</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $total_tonase_tuba ?>/Ton</div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Tonase Big Bag</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= round($total_tonase_bag,3) ?>/Ton</div>
+          </div>
+          <div class="col-auto">
+          <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Tonase Curah</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= round($total_tonase_curah,3)   ?>/Ton</div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
 
 </div>
 </div>
@@ -745,20 +727,6 @@ aria-hidden="true">
     maxOptions: 1
   });
 </script>
-
-<script>
-
-            function sum() {
-              var banyak_barang = document.getElementById('qty').value;
-              var harga = document.getElementById('harga').value;
-              var result = parseInt(banyak_barang) * parseInt(harga);
-              if (!isNaN(result)) {
-               document.getElementById('jumlah').value = result;
-             }
-           }
-         </script>
-
-         
 </body>
 
 </html>
