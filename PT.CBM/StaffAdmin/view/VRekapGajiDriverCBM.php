@@ -507,7 +507,15 @@ if (isset($_GET['tanggal1'])) {
           $upah_gas_palembang = $data2['upah_gas_palembang'];
           $bpjs_kesehatan = $data2['bpjs_kesehatan'];
           $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
-          $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+          $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_karyawan' ");
+          $data3 = mysqli_fetch_array($table2);
+          if (!isset($data3['total_bon'])) {
+              $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+            }
+            else{
+              $angsuran_bon_bulanan = $data3['total_bon'];
+            }
+      
           $total_gaji = $data2['total_gaji'];
           $total_gaji_diterima = $data2['total_gaji_diterima'];
           $keterangan = $data2['keterangan'];
