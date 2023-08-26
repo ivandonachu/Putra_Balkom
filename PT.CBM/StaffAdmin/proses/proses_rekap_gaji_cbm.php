@@ -41,7 +41,7 @@ while($data2 = mysqli_fetch_array($table)){
     $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_karyawan' ");
     $data3 = mysqli_fetch_array($table2);
     if (!isset($data3['total_bon'])) {
-        $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+        $angsuran_bon_bulanan = $data3['angsuran_bon_bulanan'];
       }
       else{
         $angsuran_bon_bulanan = $data3['total_bon'];
