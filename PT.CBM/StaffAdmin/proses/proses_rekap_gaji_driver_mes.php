@@ -56,7 +56,17 @@ while($data = mysqli_fetch_array($table2)){
     $total_gaji = $total_gaji_nje + $total_gaji_pep;
     $total_gaji_diterima =  $total_gaji_nje + $total_gaji_pep - 203560;
 
-    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_mes VALUES('','$tanggal','$nama_driver','Driver','$total_rit_nje','$total_gaji_nje','$total_rit_pep','$total_gaji_pep',173215,203560,0,'$total_gaji',
+    $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
+    $data5 = mysqli_fetch_array($table5);
+    if (!isset($data5['total_bon'])) {
+        $angsuran_bon_bulanan = 0;
+      }
+      else{
+        $angsuran_bon_bulanan = $data5['total_bon'];
+      }
+
+
+    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_mes VALUES('','$tanggal','$nama_driver','Driver','$total_rit_nje','$total_gaji_nje','$total_rit_pep','$total_gaji_pep',173215,203560,'$angsuran_bon_bulanan','$total_gaji',
                                                                         '$total_gaji_diterima','Transfer')");
 
 }
