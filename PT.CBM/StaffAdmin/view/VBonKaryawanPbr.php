@@ -25,34 +25,36 @@ $nama = $data['nama_karyawan'];
 if (isset($_GET['tanggal1'])) {
   $tanggal_awal = $_GET['tanggal1'];
   $tanggal_akhir = $_GET['tanggal2'];
- } 
- 
- elseif (isset($_POST['tanggal1'])) {
+} elseif (isset($_POST['tanggal1'])) {
   $tanggal_awal = $_POST['tanggal1'];
   $tanggal_akhir = $_POST['tanggal2'];
- } 
- else{
-   $tanggal_awal = date('Y-m-1');
- $tanggal_akhir = date('Y-m-31');
- }
- 
- if ($tanggal_awal == $tanggal_akhir) {
+}
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
 
-   $table2 = mysqli_query($koneksipbr,"SELECT * FROM laporan_rit_pbr  WHERE tanggal ='$tanggal_awal' GROUP BY nama_driver ");
- 
- }
- 
- else{
+  if ($tanggal_awal == $tanggal_akhir) {
+    $table = mysqli_query($koneksipbr, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal = '$tanggal_awal'");
+    
 
-   $table2 = mysqli_query($koneksipbr,"SELECT * FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_driver");
  
- }
+  } else {
+    $table = mysqli_query($koneksipbr, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+   
+ 
+    
+  }
+
+
+
+
 
 ?>
- <!DOCTYPE html>
- <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
- <head>
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,7 +62,7 @@ if (isset($_GET['tanggal1'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>List Gaji Driver PBR</title>
+  <title>Bon Karyawan MES PBR</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -225,6 +227,8 @@ if (isset($_GET['tanggal1'])) {
         </div>
     </div>
 </li>
+
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -249,7 +253,7 @@ if (isset($_GET['tanggal1'])) {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VListGajiDriverMES'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Gaji Driver PBR</h5></a>"; ?>
+      <?php echo "<a href='VBonKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Bon Karyawan MES PBR</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -259,10 +263,6 @@ if (isset($_GET['tanggal1'])) {
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
-
-          
-        
-
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -301,7 +301,7 @@ if (isset($_GET['tanggal1'])) {
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-  <?php echo "<form  method='POST' action='VListGajiDriverPBR' style='margin-bottom: 15px;'>" ?>
+  <?php echo "<form  method='POST' action='VBonKaryawanPbr' style='margin-bottom: 15px;'>" ?>
             <div>
               <div align="left" style="margin-left: 20px;">
                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -311,141 +311,73 @@ if (isset($_GET['tanggal1'])) {
               </div>
             </div>
             </form>
-  <div class="row">
-    <div class="col-md-10">
-    <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-    </div>
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputx"> <i class="fas fa-plus-square mr-2"></i>REKAP GAJI</button> <br> <br>
-      </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="inputx" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title">Persetujuan Rekap Gaji</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_rekap_gaji_driver_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
 
             <div class="row">
               <div class="col-md-6">
-                 <label>Tanggal</label>
-                 <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
+                <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
               </div>
-              <div class="col-md-6">
-             
-              </div>
-           </div>
+            </div>
 
-           <br>
-           
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">REKAP</button>
 
-      </div>
-    </form>
-  </div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-
-<h5 align="center" >Rincian Gaji Driver PBR</h5>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
-      <th>Nama Driver</th>
-      <th>Jabatan</th>
-      <th>Rit PPE</th>
-      <th>Upah PPE</th>
-      <th>Rit PAP</th>
-      <th>Upah PAP</th>
-      <th>Bon Bulanan</th>
-      <th>Upah Total</th>
+       <th>No</th>
+      <th>Tanggal</th>
+      <th>Tanggal Bayar</th>
+      <th>Akun</th>
+      <th>Nama Karyawan</th>
+      <th>REF</th>
+      <th>Jumlah Bon</th>
+      <th>Jumlah Bayar</th>
+      <th>Status Hutang</th>
+      <th>Keterangan</th>
     </tr>
   </thead>
   <tbody>
-  <?php 
-    $total_gaji_nje = 0;
-    $total_gaji_pep = 0;
-    $total_rit_nje = 0;
-    $total_rit_pep = 0;
+    <?php
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-  ?>
-    <?php while($data = mysqli_fetch_array($table2)){
-      $nama_driver = $data['nama_driver'];
-      $nama_rute =$data['nama_rute'];
-      $table3 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_nje, SUM(rit) AS rit_nje FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'PPE'");
-      $data3 = mysqli_fetch_array($table3);
-      $total_gaji_nje = $data3['uang_gaji_nje'];
-      if (  $total_gaji_nje == ""  ) {
-        $total_gaji_nje = 0;
-      }
-      $total_rit_nje = $data3['rit_nje'];
-      if (  $total_rit_nje == ""  ) {
-        $total_rit_nje = 0;
-      }
-      
 
-      $table4 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_pep , SUM(rit) AS rit_pep FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PAP'");
-      $data4 = mysqli_fetch_array($table4);
+    ?>
 
-      $total_gaji_pep = $data4['uang_gaji_pep'];
-      if (  $total_gaji_pep == ""  ) {
-        $total_gaji_pep = 0;
-      }
-
-      $total_rit_pep = $data4['rit_pep'];
-      if (  $total_rit_pep == ""  ) {
-        $total_rit_pep = 0;
-      }
-
-
-      $table5 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
-      $data5 = mysqli_fetch_array($table5);
-      if (!isset($data5['total_bon'])) {
-          $angsuran_bon_bulanan = 0;
-        }
-        else{
-          $angsuran_bon_bulanan = $data5['total_bon'];
-        }
-
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_bon = $data['no_bon'];
+      $tanggal =$data['tanggal'];
+      $tanggal_bayar = $data['tanggal_bayar'];
+      $jumlah_bayar = $data['jumlah_bayar'];
+      $nama_akun = $data['nama_akun'];
+      $referensi = $data['referensi'];
+      $nama_karyawan = $data['nama_karyawan'];
+      $keterangan = $data['keterangan'];
+      $jumlah_bon = $data['jumlah_bon'];
+      $file_bukti = $data['file_bukti'];
+      $status_hutang = $data['status_bayar'];
       echo "<tr>
+      <td style='font-size: 14px'>$no_bon </td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$tanggal_bayar</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$nama_karyawan</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bon); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bayar); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$status_hutang</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      </tr>";
+  }
+  ?>
 
-    <td style='font-size: 14px' >$nama_driver</td>
-    <td style='font-size: 14px' >Driver</td>
-    <td style='font-size: 14px' >$total_rit_nje</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_nje); ?> <?php echo "</td>
-    <td style='font-size: 14px' >$total_rit_pep</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pep); ?> <?php echo "</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pep + $total_gaji_nje); ?> <?php echo "</td>
-
-
- </tr>";
-}
-
-?>
 </tbody>
 </table>
 </div>
+  </div>
 </div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -515,10 +447,11 @@ aria-hidden="true">
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
 <script>
   $(document).ready(function() {
     var table = $('#example').DataTable( {
-      lengthChange: true,
+      lengthChange: false,
       buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
