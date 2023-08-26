@@ -56,7 +56,7 @@ while($data = mysqli_fetch_array($table2)){
     $total_gaji = $total_gaji_nje + $total_uang_gaji_gas_palembang;
     $total_gaji_diterima =  $total_gaji_nje + $total_uang_gaji_gas_palembang - 203560;
 
-    $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_karyawan' ");
+    $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
     $data5 = mysqli_fetch_array($table5);
     if (!isset($data3['total_bon'])) {
         $angsuran_bon_bulanan = $data5['angsuran_bon_bulanan'];
