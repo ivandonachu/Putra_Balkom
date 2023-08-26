@@ -373,6 +373,7 @@ if (isset($_GET['tanggal1'])) {
       <th>Upah NJE</th>
       <th>Rit Gas Palembang</th>
       <th>Upah Gas Palembang</th>
+      <th>Bon Bulanan</th>
       <th>Upah Total</th>
     </tr>
   </thead>
@@ -412,7 +413,15 @@ if (isset($_GET['tanggal1'])) {
       if (  $total_rit_gas_palembang == ""  ) {
         $total_rit_gas_palembang = 0;
       }
-
+      
+    $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
+    $data5 = mysqli_fetch_array($table5);
+    if (!isset($data3['total_bon'])) {
+        $angsuran_bon_bulanan = $data5['angsuran_bon_bulanan'];
+      }
+      else{
+        $angsuran_bon_bulanan = $data5['total_bon'];
+      }
       echo "<tr>
 
     <td style='font-size: 14px' >$nama_driver</td>
@@ -421,6 +430,7 @@ if (isset($_GET['tanggal1'])) {
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_nje); ?> <?php echo "</td>
     <td style='font-size: 14px' >$total_rit_gas_palembang</td>
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang + $total_gaji_nje); ?> <?php echo "</td>
 
 
