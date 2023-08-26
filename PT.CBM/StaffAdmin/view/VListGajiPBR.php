@@ -523,7 +523,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_pbr");
           $lembur = $data2['lembur'];
           $absen_terlambat = $data2['absen_terlambat'];
           $denda_absen = $data2['denda_absen'];
-          $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_karyawan' ");
+          $table5 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_karyawan' ");
           $data5 = mysqli_fetch_array($table5);
           if (!isset($data5['total_bon'])) {
               $angsuran_bon_bulanan = 0;
