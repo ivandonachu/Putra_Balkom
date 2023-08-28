@@ -417,7 +417,7 @@ if (isset($_GET['tanggal1'])) {
       }
 
 
-      $table5 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
+      $table5 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES' AND nama_karyawan = '$nama_driver' ");
       $data5 = mysqli_fetch_array($table5);
       if (!isset($data5['total_bon'])) {
           $angsuran_bon_bulanan = 0;
