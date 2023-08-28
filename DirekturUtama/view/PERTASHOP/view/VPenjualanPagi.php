@@ -18,9 +18,6 @@ else{ header("Location: logout.php");
 exit;
 }
 
-$result2 = mysqli_query($koneksiperta, "SELECT * FROM pertashop WHERE kode_perta = '$kode_perta'");
-$data2 = mysqli_fetch_array($result2);
-$lokasi = $data2['lokasi'];
 
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
@@ -37,18 +34,11 @@ $tanggal_akhir = date('Y-m-31');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' AND b.lokasi = '$lokasi'");
-    $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
-$data_perta = mysqli_fetch_array($result);
-$kode_perta = $data_perta['kode_perta'];
-
+  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' ");
 }
 
 else{
-  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'");
-  $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
-$data_perta = mysqli_fetch_array($result);
-$kode_perta = $data_perta['kode_perta'];
+  $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
 
 }
