@@ -146,6 +146,7 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualanPagi">Grafik Jual Pagi</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPagi">Penjualan Pagi</a>
         </div>
     </div>
 </li>

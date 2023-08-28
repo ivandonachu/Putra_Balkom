@@ -98,24 +98,6 @@ while($data21 = mysqli_fetch_array($table21)){
 }
 
 
-if ($tanggal_awal == $tanggal_akhir) {
-    $tablex = mysqli_query($koneksiperta,"SELECT * FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal ='$tanggal_awal' AND b.lokasi = '$lokasi'");
-      $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
-  $data_perta = mysqli_fetch_array($result);
-  $kode_perta = $data_perta['kode_perta'];
-  
-  }
-  
-  else{
-    $tablex = mysqli_query($koneksiperta,"SELECT * FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.lokasi = '$lokasi'");
-    $result = mysqli_query($koneksiperta, "SELECT * FROM pertashop WHERE lokasi = '$lokasi' ");
-  $data_perta = mysqli_fetch_array($result);
-  $kode_perta = $data_perta['kode_perta'];
-  
-  
-  }
-  
-
 ?>
 
 <!DOCTYPE html>
@@ -230,6 +212,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsensi">Absensi</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualan">Grafik Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGrafikPenjualanPagi">Grafik Jual Pagi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPagi">Penjualan Pagi</a>
                     </div>
                 </div>
             </li>
@@ -342,61 +325,6 @@ if ($tanggal_awal == $tanggal_akhir) {
   <div class="col-md-8">
    <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
  </div>
- <br>
- 
-
-<!-- Tabel -->    
-<table id='example' class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%;  ">
-  <thead>
-    <tr>
-      <th  style="font-size: 11px" >No</th>
-      <th  style="font-size: 11px">Tanggal</th>
-      <th  style="font-size: 11px">Kode Pertashop</th>   
-      <th  style="font-size: 11px">Lokasi</th>
-      <th  style="font-size: 11px">Penjual</th>
-      <th  style="font-size: 11px">Barang</th>
-      <th  style="font-size: 11px">QTY</th>
-      <th  style="font-size: 11px">Harga</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $urut = 0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
-    <?php while($data = mysqli_fetch_array($tablex)){
-      $no_penjualan = $data['no_penjualan'];
-      $tanggal =$data['tanggal'];
-      $kode_perta =$data['kode_perta'];
-      $lokasi = $data['lokasi'];
-      $nama_barang = $data['nama_barang'];
-      $nama_karyawan = $data['nama_karyawan'];
-      $qty = $data['qty'];
-      $harga = $data['harga'];
-      $jumlah = $qty * $harga;
-      $urut = $urut + 1;
-
-      echo "<tr>
-      <td style='font-size: 11px' align = 'center'>$urut</td>
-      <td style='font-size: 11px' align = 'center'>$tanggal</td>
-      <td style='font-size: 11px' align = 'center'>$kode_perta</td>
-      <td style='font-size: 11px' align = 'center'>$lokasi</td>
-      <td style='font-size: 11px' align = 'center'>$nama_karyawan</td>
-      <td style='font-size: 11px' align = 'center'>$nama_barang</td>
-      <td style='font-size: 11px' align = 'center'>$qty/L</td>
-      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     </tr>";
-}
-?>
-
-</tbody>
-</table>
  <br>
 </form>
     <div id="chart_penjualan_pertamax" >
