@@ -18,7 +18,7 @@ else{ header("Location: logout.php");
 exit;
 }
 
-$result2 = mysqli_query($koneksi, "SELECT * FROM pertashop WHERE kode_perta = '$kode_perta'");
+$result2 = mysqli_query($koneksiperta, "SELECT * FROM pertashop WHERE kode_perta = '$kode_perta'");
 $data2 = mysqli_fetch_array($result2);
 $lokasi = $data2['lokasi'];
 
