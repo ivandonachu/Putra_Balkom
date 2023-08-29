@@ -1223,14 +1223,14 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td class="text-left">Pengeluaran Lainnya</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_pengeluaran_lainnya + $total_biaya_usaha); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRUsahaLainnyaTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRUsahaLainnyaTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-591</td>
                                     <td class="text-left">Biaya Administrasi</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_biaya_administrasi_new); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRBAdministrasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLRMES/VRBAdministrasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-595</td>
