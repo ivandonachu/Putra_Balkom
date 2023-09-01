@@ -514,8 +514,8 @@ if (isset($_GET['tanggal1'])) {
           $upah_muat_nipah = $data2['upah_muat_nipah'];
           $rit_kampas_pupuk_kebun_lengkiti = $data2['rit_kampas_pupuk_kebun_lengkiti'];
           $upah_kampas_pupuk_kebun_lengkiti = $data2['upah_kampas_pupuk_kebun_lengkiti'];
-          $rit_muat_batu = $data['rit_muat_batu'];
-          $upah_muat_batu = $data['upah_muat_batu'];
+          $rit_muat_batu = $data2['rit_muat_batu'];
+          $upah_muat_batu = $data2['upah_muat_batu'];
           $total_gaji = $data2['total_gaji'];
           $total_gaji_diterima = $data2['total_gaji_diterima'];
           $keterangan = $data2['keterangan'];
