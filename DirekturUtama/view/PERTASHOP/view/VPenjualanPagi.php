@@ -39,6 +39,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 else{
   $table = mysqli_query($koneksiperta,"SELECT * FROM penjualan_pagi a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  
 
 
 }
@@ -174,7 +175,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPenjualanPagi'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pagi Pertashop $lokasi</h5></a>"; ?>
+      <?php echo "<a href='VPenjualanPagi'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penjualan Pagi Pertashop</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -196,7 +197,7 @@ else{
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama_karyawan"; ?></span>
+          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
           <img class="img-profile rounded-circle"
           src="img/undraw_profile.svg">
         </a>
@@ -257,7 +258,6 @@ else{
       <th  style="font-size: 11px">Tanggal</th>
       <th  style="font-size: 11px">Kode Pertashop</th>   
       <th  style="font-size: 11px">Lokasi</th>
-      <th  style="font-size: 11px">Penjual</th>
       <th  style="font-size: 11px">Barang</th>
       <th  style="font-size: 11px">QTY</th>
       <th  style="font-size: 11px">Harga</th>
@@ -272,6 +272,21 @@ else{
       return $uang;
     }
 
+    $urut = 0;
+    $uang_nb_max = 0;
+    $terjual_nb_max = 0;
+    $uang_nb_dex = 0;
+    $terjual_nb_dex = 0 ;
+    $uang_be =0;
+    $terjual_be = 0;
+    $uang_md = 0;
+    $terjual_md = 0;
+    $uang_sj = 0 ;
+    $terjual_sj = 0;
+    $total_uang_diskon_nb_max = 0 ;
+    $total_uang_diskon_be = 0 ;
+    $total_losis_penjualan = 0;
+    $total_losis_penyimpanan = 0;
     ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no_penjualan = $data['no_penjualan'];
@@ -279,18 +294,48 @@ else{
       $kode_perta =$data['kode_perta'];
       $lokasi = $data['lokasi'];
       $nama_barang = $data['nama_barang'];
-      $nama_karyawan = $data['nama_karyawan'];
       $qty = $data['qty'];
       $harga = $data['harga'];
       $jumlah = $qty * $harga;
       $urut = $urut + 1;
+
+      
+      if($kode_perta == 'nusabakti'){
+        if($nama_barang == 'Pertamax'){
+          $uang_nb_max = $uang_nb_max + $jumlah ; 
+          $terjual_nb_max =  $terjual_nb_max + $qty;
+   
+        }
+        else{
+          $uang_nb_dex =  $uang_nb_dex + $jumlah; 
+          $terjual_nb_dex = $terjual_nb_dex + $qty;
+     
+        }
+        
+      }
+      else if($kode_perta == 'bedilan'){
+        $uang_be = $uang_be + $jumlah; 
+        $terjual_be = $terjual_be + $qty;
+    
+    
+      }
+      else if($kode_perta == 'muaradua'){
+        $uang_md = $uang_md + $jumlah; 
+        $terjual_md = $terjual_md + $qty;
+
+       
+      }
+      else if($kode_perta == 'sumberjaya'){
+        $uang_sj = $uang_sj + $jumlah; 
+        $terjual_sj = $terjual_sj + $qty;
+     
+      }
 
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
       <td style='font-size: 11px' align = 'center'>$tanggal</td>
       <td style='font-size: 11px' align = 'center'>$kode_perta</td>
       <td style='font-size: 11px' align = 'center'>$lokasi</td>
-      <td style='font-size: 11px' align = 'center'>$nama_karyawan</td>
       <td style='font-size: 11px' align = 'center'>$nama_barang</td>
       <td style='font-size: 11px' align = 'center'>$qty/L</td>
       <td style='font-size: 11px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
@@ -301,56 +346,69 @@ else{
 
 </tbody>
 </table>
+
+
+
+
 </div>
+
+
+<br>
+<hr>
 <br>
 <div style="margin-right: 100px; margin-left: 100px;">
-Chart
-</div>
-</div>
-</div>
-<!-- End of Main Content -->
+<h6 align="Center">Laporan Barang Terjual</h6>
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+      <th style='font-size: 11px'>Pertashop</th>
+      <th style='font-size: 11px'>Nama Barang</th>
+      <th style='font-size: 11px'>Total Terjual</th>
+    </tr>
+  </thead>
+  <tbody>
 
-<!-- Footer -->
-<footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-  <div class="container my-auto">
-    <div class="copyright text-center my-auto">
-      <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
-    </div>
+  
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); ?> Liter</td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_max); ?> Liter</td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sj); ?> Liter</td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Bedilan</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_be); ?> Liter</td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?> Liter</td>
+     
+  </tr>
+
+
+</tbody>
+</table>
+
+</div>
+
+<br>
+
+</div>
   </div>
-</footer>
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
-    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-      <a class="btn btn-primary" href="logout">Logout</a>
-    </div>
-  </div>
-</div>
-</div>
-</div>
 <!-- End of Main Content -->
 
 <!-- Footer -->
