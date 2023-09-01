@@ -39,20 +39,20 @@ else{
   }
 if ($tanggal_awal == $tanggal_akhir) {
   
-  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a WHERE tanggal = '$tanggal_awal' AND referensi = 'CBM' GROUP BY nama_akun");
-  $table4 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal' AND referensi = 'Melodi Tani' GROUP BY nama_akun");
-  $table5 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal = '$tanggal_awal'AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal'GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm WHERE tanggal = '$tanggal_awal' AND referensi = 'CBM' GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal' AND referensi = 'Melodi Tani' GROUP BY nama_akun");
+  $table5 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal'AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM' GROUP BY nama_akun");
-  $table4 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Melodi Tani' GROUP BY nama_akun");
-  $table5 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_cbm   WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm   WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM' GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Melodi Tani' GROUP BY nama_akun");
+  $table5 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
   
 }
 
@@ -156,6 +156,22 @@ Menu Kepala Oprasional
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranMES">Pengeluaran MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Kebun</a>
+                    </div>
+                </div>
+            </li>
+              <!-- Nav Item - Pages Collapse Menu -->
+              <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoxx"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Mocash</span>
+                </a>
+                <div id="collapseTwoxx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Mocash</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
                     </div>
                 </div>
             </li>

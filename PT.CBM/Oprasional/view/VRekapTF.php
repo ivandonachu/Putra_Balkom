@@ -149,7 +149,22 @@ Menu Kepala Oprasional
                     </div>
                 </div>
             </li>
-
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoxx"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Mocash</span>
+                </a>
+                <div id="collapseTwoxx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Mocash</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
+                    </div>
+                </div>
+            </li>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
