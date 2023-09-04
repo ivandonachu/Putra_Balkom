@@ -300,6 +300,7 @@ Menu Kepala Oprasional
                  <label>Akun</label>
                     <select class="form-control form-control-sm" name="akun_mocash" class="form-control ">
                         <option>Koder</option>
+                        <option>Baharuddin</option>
                         <option>Saldo Cek Masuk</option>
                         
                     </select>
@@ -451,6 +452,7 @@ Menu Kepala Oprasional
                         <?php $dataSelect = $data['akun_mocash']; ?>
                         <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
                         <option <?php echo ($dataSelect == 'Koder') ? "selected": "" ?> >Koder</option>
+                        <option <?php echo ($dataSelect == 'Baharuddin') ? "selected": "" ?> >Baharuddin</option>
                         
                     </select>
             </div>
