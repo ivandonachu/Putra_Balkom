@@ -422,7 +422,7 @@ else{
 
 <!-- Tabel -->    
 <h5 class="text-center" >Uang Makan Berdasarkan Kendaraan</h5>
-<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table  id="example"  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -460,7 +460,7 @@ else{
 <br>
 <br>
 <h5 class="text-center" >Uang Makan Berdasarkan Driver</h5>
-<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example1"  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>Nama Driver</th>
@@ -571,13 +571,26 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: ['excel']
     } );
 
     table.buttons().container()
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example1').DataTable( {
+      lengthChange: false,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
 <script>
   function createOptions(number) {
     var options = [], _options;
