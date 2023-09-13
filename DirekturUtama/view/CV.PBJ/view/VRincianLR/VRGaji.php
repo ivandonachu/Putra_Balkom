@@ -436,7 +436,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ ]
+      buttons: ['excel']
     } );
 
     table.buttons().container()
@@ -447,7 +447,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example1').DataTable( {
       lengthChange: false,
-      buttons: [  ]
+      buttons: ['excel']
     } );
 
     table.buttons().container()
