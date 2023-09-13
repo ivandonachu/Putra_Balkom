@@ -274,6 +274,11 @@ else{
     $total_kredit = 0;
     $total_debit = 0;
     $total_uang = 0;
+  
+
+    $urut = 0;
+
+    
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -298,10 +303,10 @@ else{
         $total_kredit = $total_kredit + $jumlah;
         $total_uang = $total_uang + $jumlah;
       }
-
+      $urut  = $urut + 1;
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_laporan</td>
+      <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>

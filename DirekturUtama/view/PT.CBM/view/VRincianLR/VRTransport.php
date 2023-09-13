@@ -254,7 +254,7 @@ else{
 <h3 align = 'center'>Rincian Transport / Perjalanan Dinas Operasional CBM</h3>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
-  <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -349,7 +349,7 @@ else{
 <h3 align = 'center'>Rincian Transport / Perjalanan Dinas Kasir CBM</h3>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -542,7 +542,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ ]
+      buttons: [ 'excel' ]
     } );
 
     table.buttons().container()
@@ -554,7 +554,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example2').DataTable( {
       lengthChange: false,
-      buttons: []
+      buttons: ['excel']
     } );
 
     table.buttons().container()
@@ -565,7 +565,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example3').DataTable( {
       lengthChange: false,
-      buttons: [  ]
+      buttons: [ 'excel' ]
     } );
 
     table.buttons().container()

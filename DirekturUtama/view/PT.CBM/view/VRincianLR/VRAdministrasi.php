@@ -241,7 +241,7 @@ else{
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
-  <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
@@ -389,9 +389,9 @@ aria-hidden="true">
 
 <script>
   $(document).ready(function() {
-    var table = $('#example3').DataTable( {
-      lengthChange: false,
-      buttons: [  ]
+    var table = $('#example').DataTable( {
+      lengthChange: true,
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
     table.buttons().container()

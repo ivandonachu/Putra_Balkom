@@ -278,6 +278,7 @@ else{
     $total_kredit = 0;
     $total_debit = 0;
     $total_uang = 0;
+    $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -302,10 +303,11 @@ else{
         $total_kredit = $total_kredit + $jumlah;
         $total_uang = $total_uang + $jumlah;
       }
+      $urut  = $urut + 1;
 
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_laporan</td>
+      <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
@@ -372,6 +374,7 @@ else{
     <tbody>
       <?php 
         $total = 0;
+        $urut = 0;
       ?>
   
       <?php while($data = mysqli_fetch_array($table2)){
@@ -383,9 +386,10 @@ else{
         $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
         $file_bukti = $data['file_bukti'];
         $total = $total + $jumlah_pengeluaran;
-  
+        $urut  = $urut + 1;
+
         echo "<tr>
-        <td style='font-size: 14px'>$no_transaksi</td>
+        <td style='font-size: 14px'>$urut</td>
         <td style='font-size: 14px'>$tanggal</td>
         <td style='font-size: 14px'>$referensi</td>
         <td style='font-size: 14px'>$nama_akun</td>
@@ -557,7 +561,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ ]
+      buttons: ['excel']
     } );
 
     table.buttons().container()
@@ -568,7 +572,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example2').DataTable( {
       lengthChange: false,
-      buttons: [ ]
+      buttons: ['excel']
     } );
 
     table.buttons().container()
@@ -579,7 +583,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example3').DataTable( {
       lengthChange: false,
-      buttons: [  ]
+      buttons: ['excel']
     } );
 
     table.buttons().container()

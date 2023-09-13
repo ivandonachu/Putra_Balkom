@@ -274,6 +274,7 @@ else{
   <tbody>
     <?php
     $total = 0 ;
+    $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -290,9 +291,10 @@ else{
       $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
       $file_bukti = $data['file_bukti'];
       $total = $total + $jumlah_pengeluaran;
+      $urut  = $urut + 1;
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_transaksi</td>
+      <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>

@@ -284,7 +284,7 @@ else{
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
+    $urut = 0;
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
@@ -331,11 +331,11 @@ else{
         }
       }
 
-
+      $urut = $urut + 1;
 
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_transaksi</td>
+      <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
