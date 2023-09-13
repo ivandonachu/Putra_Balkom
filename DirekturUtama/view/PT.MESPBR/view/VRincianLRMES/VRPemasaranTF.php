@@ -263,7 +263,10 @@ else{
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
+    
+    $urut = 0;
+    $total = 0;
+    
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
@@ -276,10 +279,10 @@ else{
       $uang_jalan = $data['uang_jalan'];
       $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
-
+      $urut  = $urut + 1;
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_keberangkatan</td>
+      <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$nama_driver</td>
       <td style='font-size: 14px'>$no_polisi</td>
@@ -317,7 +320,11 @@ else{
     </tr>
   </thead>
   <tbody>
+  <?php
 
+$urut = 0;
+$total = 0;
+?>
     <?php while($data = mysqli_fetch_array($table2)){
       $no_transaksi = $data['no_pengeluaran'];
       $tanggal =$data['tanggal'];
@@ -326,10 +333,10 @@ else{
       $keterangan = $data['keterangan'];
       $jumlah_pengeluaran = $data['jumlah_pengeluaran'];
       $file_bukti = $data['file_bukti'];
-
+      $urut  = $urut + 1;
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_transaksi</td>
+      <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
@@ -498,7 +505,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: ['excel']
     } );
 
     table.buttons().container()
@@ -509,6 +516,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example2').DataTable( {
       lengthChange: false,
+      buttons: ['excel']
     } );
 
     table.buttons().container()
@@ -519,7 +527,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example3').DataTable( {
       lengthChange: false,
-      buttons: [  ]
+      buttons: ['excel']
     } );
 
     table.buttons().container()
