@@ -285,7 +285,7 @@ Menu Kepala Oprasional
                <input class="form-control form-control-sm" type="date" name="tanggal" required="">
           </div>
           <div class="col-md-6">
-            <label>Akun</label>
+            <label>Nama Akun</label>
             <select class="form-control form-control-sm"  name="nama_akun" class="form-control">
               <option>Mocash</option>
               <option>Saldo Cek Masuk</option>
@@ -297,7 +297,7 @@ Menu Kepala Oprasional
 
         <div class="row">
             <div class="col-md-6">
-                 <label>Akun</label>
+                 <label>Akun Mocash</label>
                     <select class="form-control form-control-sm" name="akun_mocash" class="form-control ">
                         <option>Koder</option>
                         <option>Baharuddin</option>
@@ -436,7 +436,7 @@ Menu Kepala Oprasional
                <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>" >
           </div>
           <div class="col-md-6">
-            <label>REF</label>
+            <label>Nama Akun</label>
             <select class="form-control form-control-sm"  name="nama_akun" class="form-control">
               <?php $dataSelect = $data['nama_akun']; ?>
               <option <?php echo ($dataSelect == 'Mocash') ? "selected": "" ?> >Mocash</option>
@@ -447,7 +447,7 @@ Menu Kepala Oprasional
       <br>
         <div class="row">
             <div class="col-md-6">
-                 <label>Akun</label>
+                 <label>Akun Mocash</label>
                     <select class="form-control form-control-sm" name="akun_mocash" class="form-control ">
                         <?php $dataSelect = $data['akun_mocash']; ?>
                         <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
