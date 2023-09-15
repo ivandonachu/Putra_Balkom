@@ -64,6 +64,13 @@ $html = '
         $upah_nje = $data['upah_nje'];
         $rit_gas_palembang = $data['rit_gas_palembang'];
         $upah_gas_palembang = $data['upah_gas_palembang'];
+        $rit_nikan = $data['rit_nikan'];
+        $upah_nikan = $data['upah_nikan'];
+        $rit_kota_baru = $data['rit_kota_baru'];
+        $upah_kota_baru = $data['upah_kota_baru'];
+        $rit_batu_marta = $data['rit_batu_marta'];
+        $upah_batu_marta = $data['upah_batu_marta'];
+        $uang_makan = $data['uang_makan'];
         $bpjs_kesehatan = $data['bpjs_kesehatan'];
         $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
         $asuransi = $bpjs_kesehatan + $bpjs_ketenagakerjaan;
@@ -112,6 +119,34 @@ $html = '
         <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Upah Gas Palembang</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_gas_palembang) .'</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Ritase Nikan</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. $rit_nikan .' Rit</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Upah Nikan</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_nikan) .'</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Ritase Kota Baru</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. $rit_kota_baru .' Rit</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Upah Kota Baru</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_kota_baru) .'</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Ritase Batu Marta</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. $rit_batu_marta .' Rit</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Upah Batu Marta</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_batu_marta) .'</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Uang Makan</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($uang_makan) .'</td>
         </tr>
         <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Asuransi</td>
@@ -171,6 +206,26 @@ $html = '
 
 
         <hr style = "margin-bottom: 5px; margin-top: 1px;">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>
