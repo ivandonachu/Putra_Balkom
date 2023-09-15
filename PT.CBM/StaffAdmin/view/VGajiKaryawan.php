@@ -125,13 +125,14 @@ $tanggal_akhir = date('Y-m-31');
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Penggajian dan Rekap</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Pencatatan Kas Kecil</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan CBM</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawanPbr">Bon Karyawan PBR MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawanPbr">Bon Karyawan PBR MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonPribadi">Bon Pribadi Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VBungaBank">Bunga Bank</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBungaBank">Bunga Bank</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBPJSDriver">BPJS Driver</a>
                     </div>
                 </div>
             </li>
