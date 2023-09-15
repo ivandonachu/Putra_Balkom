@@ -68,7 +68,7 @@ while($data = mysqli_fetch_array($table2)){
       $total_rit_nikan = 0;
     }
 
-    $table6 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_kota_baru , SUM(rit) AS rit_kota_baru FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Nikan'");
+    $table6 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_kota_baru , SUM(rit) AS rit_kota_baru FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Kota Baru'");
     $data6 = mysqli_fetch_array($table6);
 
     $total_uang_gaji_kota_baru = $data6['uang_gaji_kota_baru'];
@@ -81,7 +81,7 @@ while($data = mysqli_fetch_array($table2)){
       $total_rit_kota_baru = 0;
     }
 
-    $table7 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_batu_marta , SUM(rit) AS rit_batu_marta FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Nikan'");
+    $table7 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_batu_marta , SUM(rit) AS rit_batu_marta FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Batu Marta'");
     $data7 = mysqli_fetch_array($table7);
 
     $total_uang_gaji_batu_marta = $data7['uang_gaji_batu_marta'];
