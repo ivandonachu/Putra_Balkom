@@ -53,20 +53,63 @@ while($data = mysqli_fetch_array($table2)){
     if (  $total_rit_gas_palembang == ""  ) {
       $total_rit_gas_palembang = 0;
     }
-    $total_gaji = $total_gaji_nje + $total_uang_gaji_gas_palembang;
-    $total_gaji_diterima =  $total_gaji_nje + $total_uang_gaji_gas_palembang - 203560;
 
-    $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
+    
+    $table5 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_nikan , SUM(rit) AS rit_nikan FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Nikan'");
     $data5 = mysqli_fetch_array($table5);
-    if (!isset($data5['total_bon'])) {
+
+    $total_uang_gaji_nikan = $data5['uang_gaji_nikan'];
+    if (  $total_uang_gaji_nikan == ""  ) {
+      $total_uang_gaji_nikan = 0;
+    }
+
+    $total_rit_nikan = $data5['rit_nikan'];
+    if (  $total_rit_nikan == ""  ) {
+      $total_rit_nikan = 0;
+    }
+
+    $table6 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_kota_baru , SUM(rit) AS rit_kota_baru FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Nikan'");
+    $data6 = mysqli_fetch_array($table6);
+
+    $total_uang_gaji_kota_baru = $data6['uang_gaji_kota_baru'];
+    if (  $total_uang_gaji_kota_baru == ""  ) {
+      $total_uang_gaji_kota_baru = 0;
+    }
+
+    $total_rit_kota_baru = $data6['rit_kota_baru'];
+    if (  $total_rit_kota_baru == ""  ) {
+      $total_rit_kota_baru = 0;
+    }
+
+    $table7 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_batu_marta , SUM(rit) AS rit_batu_marta FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Nikan'");
+    $data7 = mysqli_fetch_array($table7);
+
+    $total_uang_gaji_batu_marta = $data7['uang_gaji_batu_marta'];
+    if (  $total_uang_gaji_batu_marta == ""  ) {
+      $total_uang_gaji_batu_marta = 0;
+    }
+
+    $total_rit_batu_marta = $data7['rit_batu_marta'];
+    if (  $total_rit_batu_marta == ""  ) {
+      $total_rit_batu_marta = 0;
+    }
+    
+
+    $total_gaji = $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta;
+    $total_gaji_diterima =  $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta - 203560;
+
+    $table8 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
+    $data8 = mysqli_fetch_array($table8);
+    if (!isset($data8['total_bon'])) {
         $angsuran_bon_bulanan = 0;
       }
       else{
-        $angsuran_bon_bulanan = $data5['total_bon'];
+        $angsuran_bon_bulanan = $data8['total_bon'];
       }
 
-    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_cbm VALUES('','$tanggal','$nama_driver','Driver','$total_rit_nje','$total_gaji_nje','$total_rit_gas_palembang','$total_uang_gaji_gas_palembang',173215,203560,'$angsuran_bon_bulanan','$total_gaji',
-                                                                        '$total_gaji_diterima','Transfer')");
+    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_cbm VALUES('','$tanggal','$nama_driver','Driver','$total_rit_nje','$total_gaji_nje','$total_rit_gas_palembang','$total_uang_gaji_gas_palembang'
+                                                                             ,'$total_rit_nikan','$total_uang_gaji_nikan','$total_rit_kota_baru','$total_uang_gaji_kota_baru','$total_rit_batu_marta'
+                                                                             ,'$total_uang_gaji_batu_marta',0,173215,203560,'$angsuran_bon_bulanan','$total_gaji','$total_gaji_diterima','Transfer')");
 
 }
 

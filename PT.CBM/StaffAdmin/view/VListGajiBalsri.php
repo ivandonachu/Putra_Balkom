@@ -110,6 +110,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_balsri");
             <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBungaBank">Bunga Bank</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
         </div>
     </div>
 </li>

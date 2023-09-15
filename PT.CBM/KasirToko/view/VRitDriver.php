@@ -509,7 +509,8 @@ data-parent="#accordionSidebar">
 
 <h5 align="center" >Rincian Gaji Driver CBM</h5>
 <!-- Tabel -->    
-<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center';>
+              <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>Nama Driver</th>
@@ -518,6 +519,12 @@ data-parent="#accordionSidebar">
       <th>Upah NJE</th>
       <th>Rit Gas Palembang</th>
       <th>Upah Gas Palembang</th>
+      <th>Rit Nikan</th>
+      <th>Upah Nikan</th>
+      <th>Rit Kota Baru</th>
+      <th>Upah Kota Baru</th>
+      <th>Rit Batu Marta</th>
+      <th>Upah Batu Marta</th>
       <th>Upah Total</th>
     </tr>
   </thead>
@@ -528,6 +535,7 @@ data-parent="#accordionSidebar">
 
   ?>
     <?php while($data = mysqli_fetch_array($table2)){
+
       $nama_driver = $data['nama_driver'];
       $nama_rute =$data['nama_rute'];
       $table3 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_nje, SUM(rit) AS rit_nje FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'NJE'");
@@ -555,6 +563,46 @@ data-parent="#accordionSidebar">
         $total_rit_gas_palembang = 0;
       }
 
+
+      $table5 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_nikan , SUM(rit) AS rit_nikan FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Nikan'");
+      $data5 = mysqli_fetch_array($table5);
+
+      $total_uang_gaji_nikan = $data5['uang_gaji_nikan'];
+      if (  $total_uang_gaji_nikan == ""  ) {
+        $total_uang_gaji_nikan = 0;
+      }
+
+      $total_rit_nikan = $data5['rit_nikan'];
+      if (  $total_rit_nikan == ""  ) {
+        $total_rit_nikan = 0;
+      }
+
+      $table6 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_kota_baru , SUM(rit) AS rit_kota_baru FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Nikan'");
+      $data6 = mysqli_fetch_array($table6);
+
+      $total_uang_gaji_kota_baru = $data6['uang_gaji_kota_baru'];
+      if (  $total_uang_gaji_kota_baru == ""  ) {
+        $total_uang_gaji_kota_baru = 0;
+      }
+
+      $total_rit_kota_baru = $data6['rit_kota_baru'];
+      if (  $total_rit_kota_baru == ""  ) {
+        $total_rit_kota_baru = 0;
+      }
+
+      $table7 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_batu_marta , SUM(rit) AS rit_batu_marta FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Nikan'");
+      $data7 = mysqli_fetch_array($table7);
+
+      $total_uang_gaji_batu_marta = $data7['uang_gaji_batu_marta'];
+      if (  $total_uang_gaji_batu_marta == ""  ) {
+        $total_uang_gaji_batu_marta = 0;
+      }
+
+      $total_rit_batu_marta = $data7['rit_batu_marta'];
+      if (  $total_rit_batu_marta == ""  ) {
+        $total_rit_batu_marta = 0;
+      }
+
       echo "<tr>
 
     <td style='font-size: 14px' >$nama_driver</td>
@@ -563,7 +611,13 @@ data-parent="#accordionSidebar">
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_nje); ?> <?php echo "</td>
     <td style='font-size: 14px' >$total_rit_gas_palembang</td>
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang); ?> <?php echo "</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang + $total_gaji_nje); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_nikan</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_nikan); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_kota_baru</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_kota_baru); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_batu_marta</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_batu_marta); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta); ?> <?php echo "</td>
 
 
  </tr>";
@@ -572,7 +626,7 @@ data-parent="#accordionSidebar">
 ?>
 </tbody>
 </table>
-
+</div>
 <br>
 <br>
 </div>

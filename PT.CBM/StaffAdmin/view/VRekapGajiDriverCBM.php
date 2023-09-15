@@ -130,6 +130,7 @@ if (isset($_GET['tanggal1'])) {
             <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBungaBank">Bunga Bank</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
         </div>
     </div>
 </li>
@@ -418,8 +419,8 @@ if (isset($_GET['tanggal1'])) {
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="0">
              </div>
              <div class="col-md-4">
-               <label>BPJS Kesehatan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="0">
+               <label>Rit Nikan</label>
+               <input class="form-control form-control-sm" type="number" name="rit_nikan" required="" value="0">
              </div>
 
            </div>
@@ -428,14 +429,36 @@ if (isset($_GET['tanggal1'])) {
 
            <div class="row">
            <div class="col-md-4">
+               <label>Rit Kota Baru</label>
+               <input class="form-control form-control-sm" type="number" name="rit_kota_baru" required="" value="0">
+             </div>
+             <div class="col-md-4">
+               <label>Rit Batu Marta</label>
+               <input class="form-control form-control-sm" type="number" name="rit_batu_marta" required="" value="0">
+             </div>
+             <div class="col-md-4">
+               <label>Uang Makan</label>
+               <input class="form-control form-control-sm" type="number" name="uang_makan" required="" value="0">
+             </div>
+
+           </div>
+
+           <br>
+
+           <div class="row">
+           <div class="col-md-3">
+               <label>BPJS Kesehatan</label>
+               <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="0">
+             </div>
+           <div class="col-md-3">
                <label>BPJS Ketenagakerjaan</label>
                <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="0">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>Angsuran Bon Bulanan</label>
                <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="0">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                 <label>Keterangan</label>
                 <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                   <option>Transfer</option>
@@ -475,6 +498,13 @@ if (isset($_GET['tanggal1'])) {
           <th style="font-size: 14px" scope="col">Upah NJE</th>
           <th style="font-size: 14px" scope="col">Rit Gas Palembang</th>
           <th style="font-size: 14px" scope="col">Upah Gas Palembang</th>
+          <th style="font-size: 14px" scope="col">Rit Nikan</th>
+          <th style="font-size: 14px" scope="col">Upah Nikan</th>
+          <th style="font-size: 14px" scope="col">Rit Kota Baru</th>
+          <th style="font-size: 14px" scope="col">Upah Kota Baru</th>
+          <th style="font-size: 14px" scope="col">Rit Batu Marta</th>
+          <th style="font-size: 14px" scope="col">Upah Batu Marta</th>
+          <th style="font-size: 14px" scope="col">Uang Makan</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
           <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan </th>
@@ -506,6 +536,13 @@ if (isset($_GET['tanggal1'])) {
           $upah_nje = $data2['upah_nje'];
           $rit_gas_palembang = $data2['rit_gas_palembang'];
           $upah_gas_palembang = $data2['upah_gas_palembang'];
+          $rit_nikan = $data2['rit_nikan'];
+          $upah_nikan = $data2['upah_nikan'];
+          $rit_kota_baru = $data2['rit_kota_baru'];
+          $upah_kota_baru = $data2['upah_kota_baru'];
+          $rit_batu_marta = $data2['rit_batu_marta'];
+          $upah_batu_marta = $data2['upah_batu_marta'];
+          $uang_makan = $data2['uang_makan'];
           $bpjs_kesehatan = $data2['bpjs_kesehatan'];
           $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
           $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
@@ -531,6 +568,13 @@ if (isset($_GET['tanggal1'])) {
           <td style='font-size: 14px'>"; ?> <?= formatuang($upah_nje); ?> <?php echo "</td>
           <td style='font-size: 14px'>$rit_gas_palembang</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($upah_gas_palembang); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_nikan</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_nikan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_kota_baru</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_kota_baru); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_batu_marta</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_batu_marta); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
@@ -589,8 +633,8 @@ if (isset($_GET['tanggal1'])) {
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="<?php echo $rit_gas_palembang;?>">
              </div>
              <div class="col-md-4">
-               <label>BPJS Kesehatan</label>
-               <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="<?php echo $bpjs_kesehatan;?>">
+               <label>Rit Nikan</label>
+               <input class="form-control form-control-sm" type="number" name="rit_nikan" required="" value="<?php echo $rit_nikan;?>">
              </div>
 
            </div>
@@ -598,15 +642,37 @@ if (isset($_GET['tanggal1'])) {
            <br>
 
            <div class="row">
-            <div class="col-md-4">
+           <div class="col-md-4">
+               <label>Rit Kota Baru</label>
+               <input class="form-control form-control-sm" type="number" name="rit_kota_baru" required="" value="<?php echo $rit_kota_baru;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Rit Batu Marta</label>
+               <input class="form-control form-control-sm" type="number" name="rit_batu_marta" required="" value="<?php echo $rit_batu_marta;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Uang Makan</label>
+               <input class="form-control form-control-sm" type="number" name="uang_makan" required="" value="<?php echo $uang_makan;?>">
+             </div>
+
+           </div>
+
+           <br>
+
+           <div class="row">
+           <div class="col-md-3">
+               <label>BPJS Kesehatan</label>
+               <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="<?php echo $bpjs_kesehatan;?>">
+             </div>
+            <div class="col-md-3">
                <label>BPJS Ketenagakerjaan</label>
                <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="<?php echo $bpjs_ketenagakerjaan;?>">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>Angsuran Bon Bulanan</label>
                <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="<?php echo $angsuran_bon_bulanan;?>">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                  <label>Keterangan</label>
                 <select class="form-control form-control-sm" name="keterangan" class="form-control">
                   <?php
