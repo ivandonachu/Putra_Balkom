@@ -36,8 +36,16 @@ exit;
     $potongan_absen = $_POST['potongan_absen'];
     $angsuran_pinjaman = $_POST['angsuran_pinjaman'];
     $potongan_bon = $_POST['potongan_bon'];
-    $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 - ($potongan_absen + $potongan_bon);
-    $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $bpjs_kesehatan + $bpjs_ketenagakerjaan;
+    $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3;
+    if($total_gaji >= 3400000){
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $bpjs_kesehatan);
+    }
+    else if($total_gaji < 3400000){
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 - ($potongan_absen + $potongan_bon + $bpjs_kesehatan);
+
+    }
+    
+    
     $keterangan = $_POST['keterangan'];
 
 $query = mysqli_query($koneksi,"INSERT INTO list_gaji_pbj VALUES('','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_akomodasi','$uang_makan','$bpjs_ketenagakerjaan','$bpjs_kesehatan','$lembur','$premi_kehadiran'

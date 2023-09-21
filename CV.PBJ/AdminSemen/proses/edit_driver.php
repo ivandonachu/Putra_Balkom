@@ -20,17 +20,18 @@ exit;
 
 $no_driver = $_POST['no_driver'];
 $nm_driver = $_POST['nm_driver'];
-
+$bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
+$bpjs_kesehatan = $_POST['bpjs_kesehatan'];
 
 
 
 	
 
-		$query = mysqli_query($koneksi,"UPDATE driver_semen SET nama_driver = '$nm_driver'  WHERE no_driver = '$no_driver'");
+		$query = mysqli_query($koneksi,"UPDATE driver_semen SET nama_driver = '$nm_driver', bpjs_kesehatan = '$bpjs_kesehatan', bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan'  WHERE no_driver = '$no_driver'");
 	
 	
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VDriverSemen';</script>";exit;
 
 
 
-  ?>s
+  ?>

@@ -234,7 +234,21 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_semen");
                 <label>Nama Driver</label>
                 <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="">
               </div>    
-            <div>
+        </div>
+              
+
+
+              <br>
+            <div class="row">
+              <div class="col-md-6">
+                <label>BPJS Ketenagakerjaan</label>
+                <input class="form-control form-control-sm" type="text" id="bpjs_ketenagakerjaan" name="bpjs_ketenagakerjaan" required="" value="0">
+              </div>   
+              <div class="col-md-6">
+                <label>BPJS Kesehatan</label>
+                <input class="form-control form-control-sm" type="text" id="bpjs_kesehatan" name="bpjs_kesehatan" required="" value="0">
+              </div>    
+          </div>
 
            <div class="modal-footer">
             <button type="submit" class="btn btn-primary"> CATAT</button>
@@ -249,8 +263,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_semen");
 
 </div>
 </div>
-    </div>
-   </div>
+
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
@@ -258,6 +271,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_semen");
     <tr>
       <th>No</th>
       <th>Nama Driver</th>
+      <th>BPJS Ketenagakerjaan</th>
+      <th>BPJS Kesehatan</th>
       <th></th>
     </tr>
   </thead>
@@ -266,10 +281,14 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_semen");
     <?php while($data = mysqli_fetch_array($table)){
       $no_driver = $data['no_driver'];
       $nama_driver =$data['nama_driver'];
+      $bpjs_ketenagakerjaan =$data['bpjs_ketenagakerjaan'];
+      $bpjs_kesehatan =$data['bpjs_kesehatan'];
 
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$no_driver</td>
       <td style='font-size: 14px' align = 'center'>$nama_driver</td>
+      <td style='font-size: 14px' align = 'center'>$bpjs_ketenagakerjaan</td>
+      <td style='font-size: 14px' align = 'center'>$bpjs_kesehatan</td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_driver']; ?>">Edit</button>
@@ -298,6 +317,18 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver_semen");
                 <input class="form-control form-control-sm" type="text" id="nm_driver" name="nm_driver" required="" value="<?php echo $nama_driver;?>">
               </div>    
             </div>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <label>BPJS Ketenagakerjaan</label>
+                <input class="form-control form-control-sm" type="text" id="bpjs_ketenagakerjaan" name="bpjs_ketenagakerjaan" required="" value="<?php echo $bpjs_ketenagakerjaan;?>">
+              </div>   
+              <div class="col-md-6">
+                <label>BPJS Kesehatan</label>
+                <input class="form-control form-control-sm" type="text" id="bpjs_kesehatan" name="bpjs_kesehatan" required="" value="<?php echo $bpjs_kesehatan;?>">
+              </div>    
+          </div>
+
 
 
     <div class="modal-footer">

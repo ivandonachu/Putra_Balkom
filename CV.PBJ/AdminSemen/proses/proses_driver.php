@@ -18,17 +18,17 @@ else{  header("Location: logout.php");
 exit;
 }
 
-
 $nama_driver = $_POST['nm_driver'];
+$bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
+$bpjs_kesehatan = $_POST['bpjs_kesehatan'];
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO driver_semen VALUES('','$nama_driver')");
+	$query = mysqli_query($koneksi,"INSERT INTO driver_semen VALUES('','$nama_driver','$bpjs_kesehatan ','$bpjs_ketenagakerjaan')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VDriverSemen';</script>";exit;
 
 }
-
 
   ?>

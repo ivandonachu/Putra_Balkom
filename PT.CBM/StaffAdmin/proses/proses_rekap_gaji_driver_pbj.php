@@ -55,10 +55,16 @@ while($data = mysqli_fetch_array($table2)){
         $total_rit_batu = 0;
       }
 
-    $total_gaji = $total_gaji_semen + $total_gaji_batu ;
-    $total_gaji_diterima =  $total_gaji_semen + $total_gaji_batu - 174480;
+      $table8 = mysqli_query($koneksipbj,"SELECT bpjs_kesehatan , bpjs_ketenagakerjaan FROM driver_semen WHERE nama_driver = '$nama_driver' ");
+      $data8 = mysqli_fetch_array($table8);
+  
+      $bpjs_kesehatan = $data8['bpjs_kesehatan'];
+      $bpjs_ketenagakerjaan = $data8['bpjs_ketenagakerjaan'];
 
-    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbj VALUES('','$tanggal','$nama_driver','$total_rit_semen','$total_gaji_semen','$total_rit_batu','$total_gaji_batu',0,174480,173215,'$total_gaji',
+    $total_gaji = $total_gaji_semen + $total_gaji_batu;
+    $total_gaji_diterima =  $total_gaji_semen + $total_gaji_batu - $bpjs_ketenagakerjaan - $bpjs_kesehatan;
+
+    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbj VALUES('','$tanggal','$nama_driver','$total_rit_semen','$total_gaji_semen','$total_rit_batu','$total_gaji_batu',0,'$bpjs_ketenagakerjaan','$bpjs_kesehatan','$total_gaji',
                                                                         '$total_gaji_diterima','Transfer')");
 
 }
