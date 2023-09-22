@@ -523,7 +523,7 @@ if (isset($_GET['tanggal1'])) {
           if($keterangan == 'Sudah di Transfer'){
             $total_sdh_di_tf = $total_sdh_di_tf + $total_gaji_diterima;
           }
-          else if ($keterangan == 'Belum di Transfer'){
+          else{
             $total_blm_di_tf = $total_blm_di_tf + $total_gaji_diterima;
 
           }
