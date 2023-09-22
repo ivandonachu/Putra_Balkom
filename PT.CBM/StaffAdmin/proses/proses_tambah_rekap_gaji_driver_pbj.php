@@ -30,8 +30,10 @@ exit;
     $bon = $_POST['bon'];
     $bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
     $bpjs_kesehatan = $_POST['bpjs_kesehatan'];
-    $total_gaji = $upah_semen + $upah_batu + $bpjs_kesehatan + $bpjs_ketenagakerjaan;
-    $total_gaji_diterima =  $upah_semen + $upah_batu - $bon;
+
+    $total_gaji = $total_gaji_semen + $total_gaji_batu;
+    $total_gaji_diterima =  $total_gaji_semen + $total_gaji_batu - $bpjs_ketenagakerjaan - $bpjs_kesehatan- $bon;
+
     $keterangan = $_POST['keterangan'];
 
     $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbj VALUES('','$tanggal','$nama_driver','$rit_semen','$upah_semen','$rit_batu','$upah_batu','$bon','$bpjs_ketenagakerjaan','$bpjs_kesehatan','$total_gaji',
