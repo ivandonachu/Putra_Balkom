@@ -445,8 +445,8 @@ if (isset($_GET['tanggal1'])) {
              <div class="col-md-3">
                 <label>Keterangan</label>
                 <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
-                  <option>Transfer</option>
-                  <option>Cash</option>
+                  <option>Sudah di Transfer</option>
+                  <option>Belum di Trnasfer</option>
                 </select>
            </div>
            </div>
@@ -618,8 +618,8 @@ if (isset($_GET['tanggal1'])) {
                 <select class="form-control form-control-sm" name="keterangan" class="form-control">
                   <?php
                   $dataSelect = $data['keterangan']; ?>
-                  <option <?php echo ($dataSelect == 'Transfer') ? "selected" : "" ?>>Transfer</option>
-                  <option <?php echo ($dataSelect == 'Cash') ? "selected" : "" ?>>Cash</option>
+                  <option <?php echo ($dataSelect == 'Sudah di Transfer') ? "selected" : "" ?>>Sudah di Transfer</option>
+                  <option <?php echo ($dataSelect == 'Belum di Trnasfer') ? "selected" : "" ?>>Belum di Trnasfer</option>
                 </select>
            </div>
            </div>
