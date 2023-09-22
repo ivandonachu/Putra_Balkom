@@ -32,7 +32,12 @@ exit;
     $bpjs_kesehatan = $_POST['bpjs_kesehatan'];
 
     $total_gaji = $upah_semen + $upah_batu;
-    $total_gaji_diterima =  $upah_semen + $upah_batu - $bpjs_ketenagakerjaan - $bpjs_kesehatan - $bon;
+    if($nama_driver == 'WAYAN ARDANA'){
+        $total_gaji_diterima =  $upah_semen + $upah_batu - $bon - $bpjs_ketenagakerjaan - $bpjs_kesehatan;
+    }
+    else{
+        $total_gaji_diterima =  $upah_semen + $upah_batu - $bon - $bpjs_ketenagakerjaan;
+    }
 
     $keterangan = $_POST['keterangan'];
 
