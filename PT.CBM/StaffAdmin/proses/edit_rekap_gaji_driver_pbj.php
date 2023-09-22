@@ -31,8 +31,8 @@ $upah_batu = $_POST['upah_batu'];
 $bon = $_POST['bon'];
 $bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
 $bpjs_kesehatan = $_POST['bpjs_kesehatan'];
-$total_gaji = $total_gaji_semen + $total_gaji_batu;
-$total_gaji_diterima =  $total_gaji_semen + $total_gaji_batu - $bpjs_ketenagakerjaan - $bpjs_kesehatan- $bon;
+$total_gaji = $upah_semen + $upah_batu;
+$total_gaji_diterima =  $upah_semen + $upah_batu - $bon - $bpjs_ketenagakerjaan - $bpjs_kesehatan;
 $keterangan = $_POST['keterangan'];
 
 
