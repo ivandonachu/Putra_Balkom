@@ -493,8 +493,8 @@ if (isset($_GET['tanggal1'])) {
       <tbody>
       <?php
       $no_urut = 0;
-      $total_tf = 0;
-      $total_cash = 0;
+      $total_sdh_di_tf = 0;
+      $total_blm_di_tf = 0;
       $total_seluruh = 0;
           function formatuang($angka)
           {
@@ -518,13 +518,13 @@ if (isset($_GET['tanggal1'])) {
           $total_gaji_diterima = $data2['total_gaji_diterima'];
           $keterangan = $data2['keterangan'];
           $no_urut = $no_urut + 1 ;
-
           $total_seluruh = $total_seluruh + $total_gaji_diterima;
-          if($keterangan == 'Transfer'){
-            $total_tf = $total_tf + $total_gaji_diterima;
+
+          if($keterangan == 'Sudah di Transfer'){
+            $total_sdh_di_tf = $total_sdh_di_tf + $total_gaji_diterima;
           }
-          else if ($keterangan == 'Cash'){
-            $total_cash = $total_cash + $total_gaji_diterima;
+          else if ($keterangan == 'Belum di Transfer'){
+            $total_blm_di_tf = $total_blm_di_tf + $total_gaji_diterima;
 
           }
           echo "<tr>
@@ -689,8 +689,8 @@ if (isset($_GET['tanggal1'])) {
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Gaji Transfer</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_tf)  ?></div>
+                      Total Gaji Sudah Transfer</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_sdh_di_tf)  ?></div>
                   </div>
                   <div class="col-auto">
                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -705,8 +705,8 @@ if (isset($_GET['tanggal1'])) {
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Gaji Cash</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_cash)  ?></div>
+                      Total Gaji Belum di Transfer</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_blm_di_tf)  ?></div>
                   </div>
                   <div class="col-auto">
                     <i class=" fas fa-dollar-sign fa-2x text-gray-300"></i>
