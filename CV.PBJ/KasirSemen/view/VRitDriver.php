@@ -509,7 +509,7 @@ else{
 
 <h5 align="center" >Rincian Gaji PBJ</h5>
 <!-- Tabel -->    
-<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>Nama Driver</th>
@@ -652,7 +652,7 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example').DataTable( {
-      lengthChange: false,
+      lengthChange: true,
       buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
@@ -664,9 +664,12 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example2').DataTable( {
+      lengthChange: true,
+      buttons: [ ]
     } );
 
-
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
 
