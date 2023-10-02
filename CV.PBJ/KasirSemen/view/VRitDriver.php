@@ -664,12 +664,9 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example2').DataTable( {
-      lengthChange: false,
-      buttons: [ ]
     } );
 
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+
   } );
 </script>
 
