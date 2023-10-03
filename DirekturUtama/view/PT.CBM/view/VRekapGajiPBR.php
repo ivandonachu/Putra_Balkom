@@ -315,7 +315,6 @@ if ($tanggal_awal == $tanggal_akhir) {
           <th style="font-size: 14px" scope="col">Total Gaji</th>
           <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
           <th style="font-size: 14px" scope="col">Keterangan </th>
-          <th style="font-size: 14px" scope="col"></th>
         </tr>
       </thead>
       <tbody>
