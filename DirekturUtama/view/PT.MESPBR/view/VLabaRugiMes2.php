@@ -20,20 +20,32 @@ exit;
 
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
- $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
- $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
-
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
- $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
- $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
-
-}  
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+    $tahun1 = date('Y', strtotime($tanggal_awal));
+    $tahun2 = date('Y', strtotime($tanggal_akhir)); 
+    $bulanx1 = date('m', strtotime($tanggal_awal)); 
+    $bulan1 = ltrim($bulanx1, '0');
+    $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+    $bulan2 = ltrim($bulanx2, '0');
+    $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+    $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
+   } 
+   
+   elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+    $tahun1 = date('Y', strtotime($tanggal_awal));
+    $tahun2 = date('Y', strtotime($tanggal_akhir)); 
+    $bulanx1 = date('m', strtotime($tanggal_awal)); 
+    $bulan1 = ltrim($bulanx1, '0');
+    $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+    $bulan2 = ltrim($bulanx2, '0');
+    $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+    $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
+   
+   }  
+   
 
 
     function formatuang($angka){
@@ -45,7 +57,7 @@ elseif (isset($_POST['tanggal1'])) {
 if ($tanggal_awal == $tanggal_akhir ) {
     //PENDAPATAN
 // TOTAL PENJUALAN REFILL
-$table = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND kode_akun = '4-110' AND referensi = 'MES' ");
+$table = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal_x' AND kode_akun = '4-110' AND referensi = 'MES' ");
 $data_pendapatan_refill = mysqli_fetch_array($table);
 $total_pendapatan_refill = $data_pendapatan_refill['penjualan_refill'];
 if (!isset($data_pendapatan_refill['penjualan_refill'])) {

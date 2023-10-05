@@ -95,7 +95,7 @@ if (isset($_GET['tanggal1'])) {
 if ($tanggal_awal == $tanggal_akhir ) {
     //PENDAPATAN
 // TOTAL PENJUALAN REFILL
-$table = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND kode_akun = '4-110' AND referensi = 'PBR' ");
+$table = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal_x' AND kode_akun = '4-110' AND referensi = 'PBR' ");
 $data_pendapatan_refill = mysqli_fetch_array($table);
 $total_pendapatan_refill = $data_pendapatan_refill['penjualan_refill'];
 if (!isset($data_pendapatan_refill['penjualan_refill'])) {
