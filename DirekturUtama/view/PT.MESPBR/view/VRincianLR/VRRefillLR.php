@@ -22,22 +22,26 @@ exit;
 
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+  $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+  $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
+  $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
+ }  
+ 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
- WHERE tanggal = '$tanggal_awal' AND  a.kode_akun ='4-110' AND a.referensi='PBR'  ");
+ WHERE tanggal = '$tanggal_awal_x' AND  a.kode_akun ='4-110' AND a.referensi='PBR'  ");
 }
 else{
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
- WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  a.kode_akun ='4-110' AND a.referensi='PBR' ");
+ WHERE tanggal BETWEEN '$tanggal_awal_x' AND '$tanggal_akhir_x' AND  a.kode_akun ='4-110' AND a.referensi='PBR' ");
 }
 
 
