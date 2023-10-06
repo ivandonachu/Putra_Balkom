@@ -1160,7 +1160,7 @@ aria-labelledby="userDropdown">
                                                     <td>5-5111</td>
                                                     <td class="text-left">Gaji Karyawan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($gaji_karyawan); ?></td>
+                                                    <td class="text-left"><?= formatuang($gaji_karyawan + $total_gaji_karyawan_new); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
