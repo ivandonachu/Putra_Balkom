@@ -549,12 +549,12 @@ else {
 
 
 
-     // pembelian kadek dan etty
-$total_penebusan_dani = 0;
-$total_penebusan_ety = 0;
+   /*  // pembelian kadek dan etty
+    $total_penebusan_dani = 0;
+    $total_penebusan_ety = 0;
      $tabel = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
-   while($datal = mysqli_fetch_array($tabel)){
+     while($datal = mysqli_fetch_array($tabel)){
         $no_do_penjualan = $datal['no_do'];
         $tablexj = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
     
@@ -578,7 +578,11 @@ $total_penebusan_ety = 0;
    
          $pembelian_total = $total_penebusan_dani + $total_penebusan_ety;
 
+*/
 
+$tablex = mysqli_query($koneksipbj, "SELECT SUM(jumlah) as penebusan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_do_min' AND '$tanggal_do_max' ");
+$data2x = mysqli_fetch_array($tablex);
+           $pembelian_total = $data2x['penebusan'];
 
     
 

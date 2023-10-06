@@ -46,7 +46,7 @@ else{
     
     $gaji_karyawan = $data8['total_pengeluaran'];
     }
-    else{
+    else if (!isset($data8['total_pengeluaran'])) {
       $table3 = mysqli_query($koneksicbm, "SELECT * FROM rekap_gaji_pbj WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
     }
