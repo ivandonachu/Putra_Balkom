@@ -748,7 +748,9 @@ $data_gaji_driver = mysqli_fetch_array($table101x);
 $total_gaji_driver = $data_gaji_driver['total_gaji_driverx'];
 if (!isset($data_gaji_driver['total_gaji_driverx'])) {
     $total_gaji_driver = 0;
+}
 
+if($total_gaji_driver == 0){
     $total_bunga_bank = 50000000 * $bulan_bunga;
 
     $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
@@ -758,7 +760,6 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 }
 else{
-
     $total_bunga_bank = 50000000 * $bulan_bunga;
 
     $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
@@ -766,7 +767,6 @@ else{
     $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
                                 $total_uj_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawa + $total_gaji_karyawan_new + $total_bunga_bank;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
-
 }
 
 
@@ -1173,7 +1173,21 @@ aria-labelledby="userDropdown">
                                                     <td>5-511</td>
                                                     <td class="text-left">Gaji Driver</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl); ?></td>
+                                            
+
+                                                        <?php
+
+                                                        if ($total_gaji_driver == 0) { ?>
+
+                                                        <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl); ?></td>
+
+                                                        <?php } else { ?>
+
+                                                            <td class="text-left"><?= formatuang($total_gaji_driver); ?></td>
+
+                                                        <?php }?>
+
+                                                            
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
