@@ -738,7 +738,7 @@ $total_penebusan_ety = 0;
     $total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
     if (!isset($data_gaji_x['total_gaji_new'])) {
         $total_gaji_karyawan_new = 0;
-}
+    }
 
     }
 }
@@ -747,8 +747,8 @@ $total_bunga_bank = 50000000 * $bulan_bunga;
 
 $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
 $laba_kotor = $total_pendapatan - $pembelian_total;
-$total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om +$jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
-                            $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_bunga_bank;
+$total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
+                            $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawa + $total_gaji_karyawan_new + $total_bunga_bank;
 $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 
 ?>
