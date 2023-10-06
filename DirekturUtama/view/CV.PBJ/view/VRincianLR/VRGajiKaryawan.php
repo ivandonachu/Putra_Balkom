@@ -46,17 +46,8 @@ else{
     
     $gaji_karyawan = $data8['total_pengeluaran'];
     }
-    else if (!isset($data8['total_pengeluaran'])) {
+    else{
       $table3 = mysqli_query($koneksicbm, "SELECT * FROM rekap_gaji_pbj WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-
-        $gaji_karyawan = 0;
-        //GAJI karyawan new
-    $table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_pbj WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-    $data_gaji_x = mysqli_fetch_array($table10x);
-    $total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
-    if (!isset($data_gaji_x['total_gaji_new'])) {
-        $total_gaji_karyawan_new = 0;
-    }
 
     }
 
