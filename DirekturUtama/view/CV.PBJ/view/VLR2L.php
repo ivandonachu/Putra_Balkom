@@ -580,9 +580,9 @@ else {
 
 */
 
-$tablex = mysqli_query($koneksipbj, "SELECT SUM(jumlah) as penebusan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_do_min' AND '$tanggal_do_max' ");
-$data2x = mysqli_fetch_array($tablex);
-           $pembelian_total = $data2x['penebusan'];
+$tableh = mysqli_query($koneksipbj, "SELECT SUM(jumlah) as penebusan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+$datah = mysqli_fetch_array($tableh);
+           $pembelian_total = $datah['penebusan'];
 
     
 
