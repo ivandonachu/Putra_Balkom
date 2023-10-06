@@ -404,6 +404,14 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
     if (!isset($data8['jumlah'])) {
         $gaji_karyawan = 0;
+        //GAJI karyawan new
+    $table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_pbj WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $data_gaji_x = mysqli_fetch_array($table10x);
+    $total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
+    if (!isset($data_gaji_x['total_gaji_new'])) {
+        $total_gaji_karyawan_new = 0;
+}
+
     }
 }
 
@@ -717,9 +725,22 @@ $total_penebusan_ety = 0;
     //gaji karaywan
     $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Gaji Karyawan' ");
     $data8 = mysqli_fetch_array($table8);
-    $gaji_karyawan = $data8['total_pengeluaran'];
-    
 
+    if(isset($data8['total_pengeluaran'])){
+  
+        $gaji_karyawan = $data8['total_pengeluaran'];
+    }
+    else if (!isset($data8['total_pengeluaran'])) {
+        $gaji_karyawan = 0;
+        //GAJI karyawan new
+    $table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_pbj WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $data_gaji_x = mysqli_fetch_array($table10x);
+    $total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
+    if (!isset($data_gaji_x['total_gaji_new'])) {
+        $total_gaji_karyawan_new = 0;
+}
+
+    }
 }
 
 $total_bunga_bank = 50000000 * $bulan_bunga;
