@@ -36,7 +36,7 @@ if($nama_driver == 'WAYAN ARDANA'){
 	$total_gaji_diterima =  $upah_semen + $upah_batu - $bon - $bpjs_ketenagakerjaan - $bpjs_kesehatan;
 }
 else{
-	$total_gaji_diterima =  $upah_semen + $upah_batu - $bon - $bpjs_ketenagakerjaan;
+	$total_gaji_diterima =  $upah_semen + $upah_batu - $bon - $bpjs_ketenagakerjaan - $bpjs_kesehatan;
 }
 	
 

@@ -404,6 +404,14 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
     if (!isset($data8['jumlah'])) {
         $gaji_karyawan = 0;
+        //GAJI karyawan new
+    $table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_pbj WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $data_gaji_x = mysqli_fetch_array($table10x);
+    $total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
+    if (!isset($data_gaji_x['total_gaji_new'])) {
+        $total_gaji_karyawan_new = 0;
+}
+
     }
 }
 
@@ -540,13 +548,12 @@ else {
     }
 
 
-
-     // pembelian kadek dan etty
-$total_penebusan_dani = 0;
-$total_penebusan_ety = 0;
+// pembelian kadek dan etty
+    $total_penebusan_dani = 0;
+    $total_penebusan_ety = 0;
      $tabel = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
-   while($datal = mysqli_fetch_array($tabel)){
+     while($datal = mysqli_fetch_array($tabel)){
         $no_do_penjualan = $datal['no_do'];
         $tablexj = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
     
@@ -718,17 +725,56 @@ $total_penebusan_ety = 0;
     $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Gaji Karyawan' ");
     $data8 = mysqli_fetch_array($table8);
     $gaji_karyawan = $data8['total_pengeluaran'];
-    
+    if($gaji_karyawan > 0){
+  
+        $gaji_karyawan = $data8['total_pengeluaran'];
+        $total_gaji_karyawan_new = 0;
+    }
 
+    else  {
+        $gaji_karyawan = 0;
+        //GAJI karyawan new
+        $table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_pbj WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+        $data_gaji_x = mysqli_fetch_array($table10x);
+        $total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
+        if (!isset($data_gaji_x['total_gaji_new'])) {
+            $total_gaji_karyawan_new = 0;
+        }
+
+        }
 }
 
-$total_bunga_bank = 50000000 * $bulan_bunga;
+//GAJI Drivver new
+$table101x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_driverx FROM rekap_gaji_driver_pbj WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+$data_gaji_driver = mysqli_fetch_array($table101x);
+$total_gaji_driver = $data_gaji_driver['total_gaji_driverx'];
+if (!isset($data_gaji_driver['total_gaji_driverx'])) {
+    $total_gaji_driver = 0;
+}
 
-$total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
-$laba_kotor = $total_pendapatan - $pembelian_total;
-$total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om +$jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + 
-                            $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_bunga_bank;
-$laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
+if($total_gaji_driver > 0){
+    $total_bunga_bank = 50000000 * $bulan_bunga;
+
+    $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
+    $laba_kotor = $total_pendapatan - $pembelian_total;
+    $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
+                                $total_uj_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank;
+    $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
+
+    
+}
+else{
+    
+    $total_bunga_bank = 50000000 * $bulan_bunga;
+
+    $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
+    $laba_kotor = $total_pendapatan - $pembelian_total;
+    $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
+                                $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank;
+    $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
+}
+
+
 
 ?>
 
@@ -979,7 +1025,7 @@ aria-labelledby="userDropdown">
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi CV PBJ</strong></h3>
+                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi PT PBJ</strong></h3>
                                 </div>
 
                                 <div>
@@ -1132,14 +1178,28 @@ aria-labelledby="userDropdown">
                                                     <td>5-511</td>
                                                     <td class="text-left">Gaji Driver</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl); ?></td>
+                                            
+
+                                                        <?php
+
+                                                        if ($total_gaji_driver > 0) { ?>
+                                                        <td class="text-left"><?= formatuang($total_gaji_driver); ?></td>
+                                                        
+
+                                                        <?php } else { ?>
+
+                                                            <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl); ?></td>
+
+                                                        <?php }?>
+
+                                                            
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-5111</td>
                                                     <td class="text-left">Gaji Karyawan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($gaji_karyawan); ?></td>
+                                                    <td class="text-left"><?= formatuang($gaji_karyawan + $total_gaji_karyawan_new); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>

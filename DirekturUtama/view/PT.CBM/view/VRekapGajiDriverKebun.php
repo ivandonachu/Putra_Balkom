@@ -15,32 +15,31 @@ if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-else{  header("Location: logout.php");
+else{ header("Location: logout.php");
 exit;
 }
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
- $referensi1 = $_GET['referensi'];
- $rekening1 = $_GET['rekening'];
- $status_saldo1 = $_GET['status_saldo'];
-} 
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+  } elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+  }
+  else{
+      $tanggal_awal = date('Y-m-1');
+    $tanggal_akhir = date('Y-m-31');
+    }
+  
+  if ($tanggal_awal == $tanggal_akhir) {
+    $table = mysqli_query($koneksicbm, "SELECT * FROM rekap_gaji_driver_kebun WHERE tanggal = '$tanggal_awal'");
+  
+  } else {
+    $table = mysqli_query($koneksicbm, "SELECT * FROM rekap_gaji_driver_kebun WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  
+  }
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-} 
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' ");
-
-}
-else{
-$table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = '$referensi1' AND nama_rekening = '$rekening1' AND status_saldo = '$status_saldo1'  ");
-
-
-}
- ?>
+?>
  <!DOCTYPE html>
  <html lang="en">
 
@@ -52,7 +51,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penggunaan Uang</title>
+  <title>Rekap Gaji Driver Kebun</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,8 +77,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+      <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
@@ -172,104 +171,82 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
                     </div>
                 </div>
             </li>
-           <!-- Nav Item - Pages Collapse Menu -->
-           <li class="nav-item">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
-                              15  aria-expanded="true" aria-controls="collapseTwo4">
-                                <i class="fas fa-file-alt" style="font-size: 15px; color:white;" ></i>
-                                <span style="font-size: 15px; color:white;" >Rekap Gaji</span>
-                            </a>
-                            <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                                <div class="bg-white py-2 collapse-inner rounded">
-                                    <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiCBM">Rekap Gaji CBM</a>
-                                    <a class="collapse-item" style="font-size: 12pxx;" href="VRekapGajiDriverCBM">Rekap Gaji Driver CBM</a>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverKebun">Rekap Gaji Driver Kebun</a>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiMES">Rekap Gaji MES</a>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverMES">Rekap Gaji Driver MES</a>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiPBR">Rekap Gaji PBR</a>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverPBR">Rekap Gaji Driver PBR</a>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiPBJ">Rekap Gaji PBJ</a>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverPBJ">Rekap Gaji Driver PBJ</a>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiBalsri">Rekap Gaji Balsri</a>
-                                    <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverBalsri">Rekap Gaji Driver Balsri</a>
-                                </div>
-                            </div>
-                        </li>
-    
-           
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    
-         
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                  15  aria-expanded="true" aria-controls="collapseTwo4">
+                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Rekap Gaji</span>
+                </a>
+                <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiCBM">Rekap Gaji CBM</a>
+                        <a class="collapse-item" style="font-size: 12pxx;" href="VRekapGajiDriverCBM">Rekap Gaji Driver CBM</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverKebun">Rekap Gaji Driver Kebun</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiMES">Rekap Gaji MES</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverMES">Rekap Gaji Driver MES</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiPBR">Rekap Gaji PBR</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverPBR">Rekap Gaji Driver PBR</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiPBJ">Rekap Gaji PBJ</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverPBJ">Rekap Gaji Driver PBJ</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiBalsri">Rekap Gaji Balsri</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverBalsri">Rekap Gaji Driver Balsri</a>
+                    </div>
+                </div>
+            </li>
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
 
-        </ul>
-        <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
-            <!-- Main Content -->
-            <div id="content">
 
-                 <!-- Topbar -->
+
+</ul>
+<!-- End of Sidebar -->
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+  <!-- Main Content -->
+  <div id="content">
+
+    <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VRincianSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Penggunaan Saldo Perusahaan</h5></a>"; ?>
+      <?php echo "<a href='VRekaptGajiKebun'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Driver Kebun</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
       </button>
 
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                        aria-labelledby="searchDropdown">
-                        <form class="form-inline mr-auto w-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search"
-                                aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
+      <!-- Topbar Navbar -->
+      <ul class="navbar-nav ml-auto">
+
+          
+        
 
 
 
+        <div class="topbar-divider d-none d-sm-block"></div>
 
-                <div class="topbar-divider d-none d-sm-block"></div>
-
-                <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
                 <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
@@ -279,8 +256,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-                </div>
-                </li>
+              </div>
+             </li>
 
   </ul>
 
@@ -293,99 +270,180 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-  <div>
-    <div align="left">
-    <?php echo "<a href='VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
-    
-    </div>
-    </div>
   
-  
+  <?php echo "<form  method='POST' action='VRekapGajiDriverKebun' style='margin-bottom: 15px;'>" ?>
+            <div>
+              <div align="left" style="margin-left: 20px;">
+                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                <span>-</span>
+                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
+              </div>
+            </div>
+            </form>
+
   <div class="row">
     <div class="col-md-6">
-     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-   </div>
-   
+    <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+    </div>
 </div>
- <br>
+
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center';>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
-    <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>Rekening</th>
-      <th>REF/Digunakan</th>
-      <th>Akun</th>
-      <th>Debit</th>
-      <th>Kredit</th>
-      <th>Keterangan</th>
-      <th>File</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
+    <tr>  
+          <th style="font-size: 14px" scope="col">No</th>
+          <th style="font-size: 14px" scope="col">Tanggal</th>
+          <th style="font-size: 14px" scope="col">Nama Driver</th>
+          <th style="font-size: 14px" scope="col">Jabatan</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Sawit Dabuk</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Sawit Dabuk</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Getah Palembang</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Getah Palembang</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Pupuk ke Gudang</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Pupuk ke Gudang</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Nipah</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Nipah</th>
+          <th style="font-size: 14px" scope="col">Rit Kampas Pupuk Kebun Lenkiti</th>
+          <th style="font-size: 14px" scope="col">Upah Kampas Pupuk Kebun Lenkiti</th>
+          <th style="font-size: 14px" scope="col">Rit Muat Batu</th>
+          <th style="font-size: 14px" scope="col">Upah Muat Batu</th>
+          <th style="font-size: 14px" scope="col">Total Gaji </th>
+          <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
+          <th style="font-size: 14px" scope="col">Keterangan </th>
 
-    
-    $urut = 0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
+        </tr>
+      </thead>
+      <tbody>
+      <?php
+      $no_urut = 0;
+      $total_tf = 0;
+      $total_cash = 0;
+      $total_seluruh = 0;
+          function formatuang($angka)
+          {
+            $uang = "Rp " . number_format($angka, 0, ',', '.');
+            return $uang;
+          }
+      ?>
 
-    ?>
-    <?php while($data = mysqli_fetch_array($table)){
-      $no_laporan = $data['no_laporan'];
-      $tanggal =$data['tanggal'];
-      $nama_rekening = $data['nama_rekening'];
-      $referensi = $data['referensi'];
-      $nama_akun = $data['nama_akun'];
-      $jumlah = $data['jumlah'];
-      $file_bukti = $data['file_bukti'];
-      $keterangan = $data['keterangan'];
-      $status_saldo = $data['status_saldo'];
+        <?php while($data2 = mysqli_fetch_array($table)){
+          $no_riwayat = $data2['no_riwayat'];
+          $tanggal = $data2['tanggal'];
+          $nama_driver =$data2['nama_driver'];
+          $jabatan = $data2['jabatan'];
+          $rit_muat_sawit_dabuk = $data2['rit_muat_sawit_dabuk'];
+          $upah_muat_sawit_dabuk = $data2['upah_muat_sawit_dabuk'];
+          $rit_muat_getah_palembang = $data2['rit_muat_getah_palembang'];
+          $upah_muat_getah_palembang = $data2['upah_muat_getah_palembang'];
+          $rit_muat_pupuk_ke_gudang = $data2['rit_muat_pupuk_ke_gudang'];
+          $upah_muat_pupuk_ke_gudang = $data2['upah_muat_pupuk_ke_gudang'];
+          $rit_muat_nipah = $data2['rit_muat_nipah'];
+          $upah_muat_nipah = $data2['upah_muat_nipah'];
+          $rit_kampas_pupuk_kebun_lengkiti = $data2['rit_kampas_pupuk_kebun_lengkiti'];
+          $upah_kampas_pupuk_kebun_lengkiti = $data2['upah_kampas_pupuk_kebun_lengkiti'];
+          $rit_muat_batu = $data2['rit_muat_batu'];
+          $upah_muat_batu = $data2['upah_muat_batu'];
+          $total_gaji = $data2['total_gaji'];
+          $total_gaji_diterima = $data2['total_gaji_diterima'];
+          $keterangan = $data2['keterangan'];
+          $no_urut = $no_urut + 1 ;
 
-        $urut = $urut + 1;
-      echo "<tr>
-      <td style='font-size: 14px'>$urut</td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_rekening</td>
-      <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      
-     ";
+          $total_seluruh = $total_seluruh + $total_gaji_diterima;
+          if($keterangan == 'Transfer'){
+            $total_tf = $total_tf + $total_gaji_diterima;
+          }
+          else if ($keterangan == 'Cash'){
+            $total_cash = $total_cash + $total_gaji_diterima;
 
-
-      if ($status_saldo == 'Masuk') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-
-      if ($status_saldo == 'Keluar') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
-        
-      echo "
-      <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      
-    </tr>";
+          }
+          echo "<tr>
+          <td style='font-size: 14px'>$no_urut</td>
+          <td style='font-size: 14px'>$tanggal</td>
+          <td style='font-size: 14px'>$nama_driver</td>
+          <td style='font-size: 14px'>$jabatan</td>
+          <td style='font-size: 14px'>$rit_muat_sawit_dabuk</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_sawit_dabuk); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_muat_getah_palembang</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_getah_palembang); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_muat_pupuk_ke_gudang</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_pupuk_ke_gudang); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_muat_nipah</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_nipah); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_kampas_pupuk_kebun_lengkiti</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_kampas_pupuk_kebun_lengkiti); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_muat_batu</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_muat_batu); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$keterangan</td>
+         
+      </tr>";
   }
   ?>
 
 </tbody>
 </table>
 </div>
+  </div>
+<br>
+<br>
+<br>
+        <div class="row" style="margin-right: 20px; margin-left: 20px;">
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Total Gaji Transfer</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_tf)  ?></div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Total Gaji Cash</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_cash)  ?></div>
+                  </div>
+                  <div class="col-auto">
+                    <i class=" fas fa-dollar-sign fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Total Seluruh Gaji</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_seluruh)  ?></div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+<br>
 
 
 </div>
@@ -438,6 +496,7 @@ aria-hidden="true">
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- Core plugin JavaScript-->
 <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -458,11 +517,10 @@ aria-hidden="true">
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-
 <script>
   $(document).ready(function() {
     var table = $('#example').DataTable( {
-      lengthChange: false,
+      lengthChange: true,
       buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
