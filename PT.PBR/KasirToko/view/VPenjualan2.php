@@ -1844,6 +1844,7 @@ echo "
     <option <?php echo ($dataSelect == 'Cash') ? "selected": "" ?> >Cash</option>
     <option <?php echo ($dataSelect == 'Transfer') ? "selected": "" ?> >Transfer</option>
     <option <?php echo ($dataSelect == 'Bon') ? "selected": "" ?> >Bon</option>
+    <option <?php echo ($dataSelect == 'Briva') ? "selected": "" ?> >Briva</option>
     <option <?php echo ($dataSelect == '-') ? "selected": "" ?> >-</option>
   </select>
 </div>                
