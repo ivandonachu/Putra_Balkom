@@ -262,7 +262,8 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
             <select id="referensi" name="referensi"  enctype="multipart/form-data" class="form-control">
               <option>TK</option>
               <option>GD</option>
-       
+              <option>Di Pinjam</option>
+              <option>Passive</option>
             </select>
           </div>
         </div>

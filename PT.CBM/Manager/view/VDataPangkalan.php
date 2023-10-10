@@ -66,103 +66,48 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-            </a>
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsManager">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Manager
-                </div>
-
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Transaksi</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian Barang Jual</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBungaBank">Bunga Bank</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
-                    </div>
-                </div>
-            </li>
-
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-                  15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan CBM</span>
-                </a>
-                <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan CBM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Lap Pembelian BBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Lap Penggunaan BBM</a>
-                    </div>
-                </div>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-                  15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan MES/PBR</span>
-                </a>
-                <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualanpbr1">L Penjualan MES/PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuanganpbr1">L Keuangan MES/PBR</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-id-card-alt" style="font-size: 15px; color:white;"></i>
-                <span style="font-size: 15px; color:white;">SDM</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-                <a class="collapse-item" href="VLaporanInventory1" style="font-size: 15px;">Laporan Inventory</a>
-                <a class="collapse-item" href="VDataPangkalan" style="font-size: 15px;">Data Pangkalan</a>
-                <a class="collapse-item" href="VDataRute" style="font-size: 15px;">Data Rute</a>
-                <a class="collapse-item" href="VDataKaryawan" style="font-size: 15px;">Data Karyawan</a>
-                <a class="collapse-item" href="VAset" style="font-size: 15px;">Daftar Aset</a>
-                <a class="collapse-item" href="VDokumen" style="font-size: 15px;">Daftar Dokumen</a>
-                <a class="collapse-item" href="VAbsensiPerta" style="font-size: 15px;">Absensi Pertashop</a>
-            </div>
-        </div>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsAdministrasi">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading" style="font-size: 15px; color:white;">
+         Menu Administrasi
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+      15  aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fa fa-address-book" style="font-size: 18px; color:white;" ></i>
+        <span style="font-size: 15px; color:white;" >SDM</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListRute">Rute</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
+        </div>
+    </div>
+</li>
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -187,7 +132,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VDataPangkalan'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Pangkalan</h5></a>"; ?>
+      <?php echo "<a href='VListPangkalan'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Pangkalan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -199,16 +144,20 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
       <ul class="navbar-nav ml-auto">
 
         
+        
+
+
+
         <div class="topbar-divider d-none d-sm-block"></div>
 
-         <!-- Nav Item - User Information -->
-         <li class="nav-item dropdown no-arrow">
+        <<!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
                     <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
-                <!-- Dropdown - User Information -->
+        <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
@@ -235,11 +184,136 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
+    <div class="row">
+      <div class="col-md-10">
+       
+      </div>
+      <div class="col-md-2">
+        <!-- Button Input Data -->
+        <div align="right">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Input Pangkalan </button> <br> <br>
+        </div>
+        <div class="modal fade" id="input" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+         <div class="modal-dialog" role ="document">
+           <div class="modal-content"> 
+            <div class="modal-header">
+              <h5 class="modal-title"> Form Input Pangkalan </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> 
 
+            <!-- Form Input Data -->
+            <div class="modal-body" align="left">
+              <form action="../proses/proses_input_pangkalan.php" method="POST">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>No Registrasi</label>
+                    <input type="text" name="no_reg" class="form-control" placeholder="Masukkan No Registrasi..." required="" >       
+                  </div>
+                  <div class="col-md-6">
+                    <label>Sub Penyalur</label>
+                    <input type="text" name="sub_penyalur" class="form-control" placeholder="Masukkan Nama..." required="">      
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Type</label>
+                    <input type="text" name="type" class="form-control" placeholder="Masukkan Jabatan..." required=""> 
+                  </div>
+                  <div class="col-md-6">
+                   <label>Pemilik</label>
+                   <input type="text" name="pemilik" class="form-control" placeholder="Masukkan Nama..." required="">
+                 </div>
+               </div>
+               <br>
+               <div class="row">
+                <div class="col-md-6">
+                 <label>No HP Pemilik</label>
+                 <input type="text" name="no_hp_pemilik" class="form-control" placeholder="Masukkan Jabatan..." required=""> 
+               </div>
+               <div class="col-md-6">
+                 <label>No KTP</label>
+                 <input type="text" name="no_ktp" class="form-control" placeholder="Masukkan Nama..." required="">        
+               </div>
+             </div>
+             <br>
+             <div class="row">
+              <div class="col-md-6">
+                <label>Alamat</label>
+                <input type="text" name="alamat" class="form-control" placeholder="Masukkan Jabatan..." required=""> 
+              </div>
+              <div class="col-md-6">
+               <label>No Kantor</label>
+               <input type="text" name="no_kantor" class="form-control" placeholder="Masukkan Nama..." required=""> 
+             </div>
+           </div>
+           <br>
+           <div class="row">
+            <div class="col-md-6">
+              <label>SP Agen</label>
+              <input type="text" name="sp_agen" class="form-control" placeholder="Masukkan Jabatan..." required=""> 
+            </div>
+            <div class="col-md-6">
+              <label>Se LPG</label>
+              <input type="text" name="se_lpg" class="form-control" placeholder="Masukkan Nama..." required="">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <label>QTY Kontrak</label>
+              <input type="text" name="qty_kontrak" class="form-control" placeholder="Masukkan Jabatan..." required=""> 
+            </div>
+            <div class="col-md-6">
+             <label>Kode Pos</label>
+             <input type="text" name="kode_pos" class="form-control" placeholder="Masukkan Nama..." required="">    
+           </div>
+         </div>
+         <br>
+         <div class="row">
+          <div class="col-md-6">
+            <label>Latitude</label>
+            <input type="text" name="latitude" class="form-control" placeholder="Masukkan Jabatan..." required=""> 
+          </div>
+          <div class="col-md-6">
+            <label>Longtitude</label>
+            <input type="text" name="longtitude" class="form-control" placeholder="Masukkan Nama..." required="">    
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+           <label>Status</label>
+           <input type="text" name="status" class="form-control" placeholder="Masukkan Jabatan..." required=""> 
+         </div>
+         <div class="col-md-6">
+           <label>Tipe Pembayaran</label>
+           <input type="text" name="tipe_pembayaran" class="form-control" placeholder="Masukkan Nama..." required="">
+         </div>
+       </div>
+       <br>
+       
+       
+
+       <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"> SUBMIT</button>
+        <button type="reset" class="btn btn-danger"> RESET</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 <!-- Tabel -->    
-<table id="example"  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto">
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th style="font-size: 11px" scope="col">No Registrasi Agen</th>
@@ -258,7 +332,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
       <th style="font-size: 11px" scope="col">Longtitude</th>
       <th style="font-size: 11px" scope="col">Status</th>
       <th style="font-size: 11px" scope="col">Tipe Pembayaran</th>
-
+      <th style="font-size: 11px" scope="col"></th>
 
 
     </tr>
@@ -301,8 +375,140 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
       <td style='font-size: 12px'>$longtitude</td>
       <td style='font-size: 12px'>$status</td>
       <td style='font-size: 12px'>$tipe_pembayaran</td>
+      <td style='font-size: 12px'>"; ?>
 
-   
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_registrasi']; ?>">Edit</button>
+
+      <!-- Form EDIT DATA -->
+
+      <div class="modal fade" id="formedit<?php echo $data['no_registrasi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+       <div class="modal-dialog" role ="document">
+         <div class="modal-content"> 
+          <div class="modal-header">
+            <h5 class="modal-title"> Form Edit Pangkalan </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true"> &times; </span>
+            </button>
+          </div>
+
+          <?php
+          include 'koneksi.php';
+          $id_edit = $data['no_registrasi'];
+          $queryE = mysqli_query($koneksi, "SELECT * FROM pangkalan where no_registrasi = '$id_edit'");
+          $dataE = mysqli_fetch_array($queryE);
+          ?> 
+
+          <!-- Form Edit Data -->
+          <div class="modal-body">
+            <form action="../proses/proses_edit_pangkalan.php" method="POST">
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <label> ID Karyawan </label>
+                  <input type="text" name="no_reg" class="form-control" value="<?php echo $dataE['no_registrasi'] ?>" disabled=""> 
+                  <input type="hidden" name="no_reg" value="<?php echo $dataE['no_registrasi'];?>">
+                </div>
+                <div class="col-md-6">
+                  <label>Sub Penyalur</label>
+                  <input type="text" name="sub_penyalur" class="form-control" value="<?php echo $dataE['sub_penyalur'] ?>" required="" > 
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Type</label>
+                  <input type="text" name="type" class="form-control" value="<?php echo $dataE['type'] ?>" disabled=""> 
+                  <input type="hidden" name="type" value="<?php echo $dataE['type'];?>">         
+                </div>
+                <div class="col-md-6">
+                 <label>Nama Pemilik</label>
+                 <input type="text" name="pemilik" class="form-control" value="<?php echo $dataE['pemilik'] ?>" required=""> 
+               </div>
+             </div>
+             <br>
+             <div class="row">
+              <div class="col-md-6">
+               <label>No HP Pemilik</label>
+               <input type="text" name="no_hp_pemilik" class="form-control" value="<?php echo $dataE['no_hp_pemilik'] ?>" required=""> 
+             </div>
+             <div class="col-md-6">
+               <label>No KTP</label>
+               <input type="text" name="no_ktp" class="form-control" value="<?php echo $dataE['no_ktp'] ?>" required=""> 
+             </div>
+           </div>
+           <br>
+           <div class="row">
+            <div class="col-md-6">
+              <label>Alamat</label>
+              <input type="text" name="alamat" class="form-control" value="<?php echo $dataE['alamat'] ?>" required=""> 
+            </div>
+            <div class="col-md-6">
+             <label>No Kantor</label>
+             <input type="text" name="no_kantor" class="form-control" value="<?php echo $dataE['no_kantor'] ?>" required=""> 
+           </div>
+         </div>
+         <br>
+         <div class="row">
+          <div class="col-md-6">
+           <label>SP Agen</label>
+           <input type="text" name="sp_agen" class="form-control" value="<?php echo $dataE['sp_agen'] ?>" disabled=""> 
+           <input type="hidden" name="sp_agen" value="<?php echo $dataE['sp_agen'];?>">    
+         </div>
+         <div class="col-md-6">
+           <label>Se LPG</label>
+           <input type="text" name="se_lpg" class="form-control" value="<?php echo $dataE['se_lpg'] ?>" disabled=""> 
+           <input type="hidden" name="se_lpg" value="<?php echo $dataE['se_lpg'];?>">  
+         </div>
+       </div>
+       <br>
+       <div class="row">
+        <div class="col-md-6">
+         <label>QTY Kontrak</label>
+         <input type="text" name="qty_kontrak" class="form-control" value="<?php echo $dataE['qty_kontrak'] ?>" required=""> 
+       </div>
+       <div class="col-md-6">
+         <label>Kode Pos</label>
+         <input type="text" name="kode_pos" class="form-control" value="<?php echo $dataE['kode_pos'] ?>" required=""> 
+       </div>
+     </div>
+     <br>
+     <div class="row">
+      <div class="col-md-6">
+       <label>Latitude</label>
+       <input type="text" name="latitude" class="form-control" value="<?php echo $dataE['latitude'] ?>" required=""> 
+     </div>
+     <div class="col-md-6">
+      <label>Longtitude</label>
+      <input type="text" name="longtitude" class="form-control" value="<?php echo $dataE['longtitude'] ?>" required=""> 
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+     <label>Status</label>
+     <input type="text" name="status" class="form-control" value="<?php echo $dataE['status'] ?>" required=""> 
+   </div>
+   <div class="col-md-6">
+     <label>Tipe Pembayaran</label>
+     <input type="text" name="tipe_pembayaran" class="form-control" value="<?php echo $dataE['tipe_pembayaran'] ?>" required=""> 
+   </div>
+ </div>
+ <br>
+ 
+
+ <div class="modal-footer">
+  <button type="submit" class="btn btn-primary"> Ubah </button>
+  <button type="reset" class="btn btn-danger"> RESET</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+<?php echo "
+</td>
 </tr>";
 }
 ?>
@@ -310,6 +516,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
 </tbody>
 </table>
 </div>
+  </div>
 <br>
 <br>
 <br>

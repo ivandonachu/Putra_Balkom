@@ -14,7 +14,6 @@ $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Manager') {
   
 }
-
 else{  header("Location: logout.php");
         exit;
 }
@@ -40,10 +39,11 @@ $tipe_pembayaran = $_POST['tipe_pembayaran'];
 
 
 
-	$query3 = mysqli_query($koneksi,"INSERT INTO pangkalan VALUES('$no_reg','$sub_penyalur','$type','$pemilik','$no_hp_pemilik','$no_ktp','$alamat','$no_kantor','$sp_agen','$se_lpg','$qty_kontrak','$kode_pos','$latitude','$longtitude','$status','$tipe_pembayaran')");
+
+	$query3 = mysqli_query($koneksi,"UPDATE pangkalan SET no_registrasi = '$no_reg' , sub_penyalur = '$sub_penyalur' , type = '$type' , pemilik = '$pemilik' , no_hp_pemilik = '$no_hp_pemilik' , no_ktp = '$no_ktp' , alamat = '$alamat' , no_kantor = '$no_kantor' , sp_agen = '$sp_agen' , se_lpg = '$se_lpg' , qty_kontrak = '$qty_kontrak' , kode_pos = '$kode_pos' , latitude = '$latitude' , longtitude = '$longtitude' , status = '$status' , tipe_pembayaran = '$tipe_pembayaran' WHERE no_registrasi = '$no_reg'");
 
 		if ($query3!= "") {
-			echo "<script>alert('Data Berhasil Di Tambah :)'); window.location='../view/VPangkalan.php';</script>";exit;
+			echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VPangkalan.php';</script>";exit;
 }
 
   ?>
