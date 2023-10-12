@@ -140,6 +140,9 @@
 /PT.CBM/Workshop/file_workshop
 /PT.CBM/Workshop/proses/koneksi.php
 /PT.CBM/Workshop/view/koneksi.php
+/PT.CBM/CCTV/proses/koneksi.php
+/PT.CBM/CCTV/view/koneksi.php
+/PT.CBM/CCTV/file_cctv
 
 /PT.PBR/KasirToko/gambar/
 /PT.PBR/KasirToko/file_toko
