@@ -504,7 +504,7 @@ $no_laporan_tk = $data3['MAX(no_laporan)'];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
                         <a class="collapse-item" href="VLaporanInventory" style="font-size: 15px;">Laporan Inventory</a>
-                        <a class="collapse-item" href="VPindahBajaMD" style="font-size: 15px;">Pidah Baja CBM</a>
+       
                     </div>
                 </div>
             </li>
@@ -597,26 +597,7 @@ $no_laporan_tk = $data3['MAX(no_laporan)'];
 
 </nav>
 <!-- End of Topbar -->
-<div class="row">
-        <div class="col-sm-9">
-        </div>
-        <div class="col-sm-3" style="color: black; font-size: 18px;">
-        <script type='text/javascript'>
-            <!--
-            var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-            var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
-            var date = new Date();
-            var day = date.getDate();
-            var month = date.getMonth();
-            var thisDay = date.getDay(),
-                thisDay = myDays[thisDay];
-            var yy = date.getYear();
-            var year = (yy < 1000) ? yy + 1900 : yy;
-            document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
-            //-->
-        </script>
-    </div>
-</div> 
+
         
         <div class="row">
         <div class="col-sm-9">

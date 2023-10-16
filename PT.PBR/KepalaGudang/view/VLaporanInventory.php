@@ -104,7 +104,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
         <a class="collapse-item" href="VLaporanInventory" style="font-size: 15px;">Laporan Inventory</a>
-        <a class="collapse-item" href="VPindahBajaMD" style="font-size: 15px;">Pidah Baja CBM</a>
+      
       </div>
     </div>
   </li>

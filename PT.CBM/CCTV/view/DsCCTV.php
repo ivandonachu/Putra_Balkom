@@ -11,7 +11,7 @@ $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Kepala Oprasional') {
+if ($jabatan_valid == 'Pengawas CCTV') {
 
 }
 
