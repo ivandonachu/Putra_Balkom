@@ -22,7 +22,8 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
-$table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
+$table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan WHERE status_karyawan = 'Bekerja' ");
+$table2 = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan WHERE status_karyawan = 'Berhenti' ");
 
 ?>
  <!DOCTYPE html>
@@ -207,7 +208,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
 
           <!-- Form Input Data -->
           <div class="modal-body" align="left">
-            <form action="../proses/proses_seluruh_karyawan" method="POST">
+            <form action="../proses/proses_seluruh_karyawan" enctype='multipart/form-data'  method="POST">
 
             <div class="row">
              <div class="col-md-6">
@@ -272,6 +273,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
             </div>
 
             <br>
+            <div>
+              <label>Upload File</label> 
+              <input type="file" name="file"> 
+            </div> 
             <br>
 
 
@@ -288,7 +293,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
 
 </div>
 </div>
-
+<h3 align = 'center'; >List Karyawan Bekerja</h3>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
   <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -305,6 +310,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
           <th style="font-size: 11px" scope="col">Alamat</th>
           <th style="font-size: 11px" scope="col">No HP</th>
           <th style="font-size: 11px" scope="col">Status Karywan</th>
+          <th style="font-size: 11px" scope="col">File</th>
           <th style="font-size: 11px" scope="col"></th>
         </tr>
       </thead>
@@ -324,7 +330,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
           $alamat =$data2['alamat'];
           $no_hp =$data2['no_hp'];          
           $status_karyawan = $data2['status_karyawan'];
-          
+          $file_bukti = $data2['file_bukti'];
           $no_urut = $no_urut + 1;
         
           echo "<tr>
@@ -339,6 +345,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
           <td style='font-size: 12px'>$alamat</td>
           <td style='font-size: 12px'>$no_hp</td>
           <td style='font-size: 12px'>$status_karyawan</td>
+          <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
           <td style='font-size: 12px'>"; ?>
 
           <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data2['nik']; ?>">Edit</button>
@@ -358,7 +365,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
              
               <!-- Form Edit Data -->
               <div class="modal-body">
-                <form action="../proses/edit_seluruh_karyawan" method="POST">
+                <form action="../proses/edit_seluruh_karyawan" enctype='multipart/form-data'  method="POST">
                   
                 <input type="hidden" name="nik_pk" value="<?php echo $nik;?>">    
                             
@@ -433,13 +440,231 @@ $table = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
                     <select id="status_karyawan" name="status_karyawan" class="form-control">
                     <?php $dataSelect = $data2['status_karyawan']; ?>
                         <option <?php echo ($dataSelect == 'Bekerja') ? "selected": "" ?> >Bekerja</option>
-                        <option <?php echo ($dataSelect == 'Cuti') ? "selected": "" ?> >Cuti</option>
                         <option <?php echo ($dataSelect == 'Berhenti') ? "selected": "" ?> >Berhenti</option>
                     </select>
                     </div>
                     </div>
 
                     <br>
+                    <div>
+                      <label>Upload File</label> 
+                      <input type="file" name="file"> 
+                    </div> 
+
+                    <br>
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"> Ubah </button>
+                    <button type="reset" class="btn btn-danger"> RESET</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data2['nik']; ?>" data-toggle='tooltip' title='Hapus Transaksi'>Hapus</button>
+
+        <div class="modal fade" id="PopUpHapus<?php echo $data2['nik']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role ="document">
+        <div class="modal-content"> 
+            <div class="modal-header">
+            <h4 class="modal-title"> <b> Hapus </b> </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true"> &times; </span>
+            </button>
+            </div>
+
+
+            <div class="modal-body">
+            <form action="../proses/hapus_seluruh_karyawan" method="POST">
+                <input type="hidden" name="nik" value="<?php echo $nik; ?>">
+
+
+
+                <div class="form-group">
+                <h6> Yakin Ingin Hapus Data? </h6>             
+                </div>
+
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary"> Hapus </button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+      <?php echo "</td> 
+      </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+</div>
+<br>
+<hr>
+<br>
+<h3 align = 'center'; >List Karyawan Berhenti</h3>
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>  
+          <th style="font-size: 11px" scope="col">No Karyawan</th>
+          <th style="font-size: 11px" scope="col">Nama Karyawan</th>
+          <th style="font-size: 11px" scope="col">Perusahaaan</th>
+          <th style="font-size: 11px" scope="col">Jabatan Karywan</th>
+          <th style="font-size: 11px" scope="col">Tempat Lahir</th>
+          <th style="font-size: 11px" scope="col">Tanggal Lahir</th>
+          <th style="font-size: 11px" scope="col">NIK</th>
+          <th style="font-size: 11px" scope="col">BPJS</th>
+          <th style="font-size: 11px" scope="col">Alamat</th>
+          <th style="font-size: 11px" scope="col">No HP</th>
+          <th style="font-size: 11px" scope="col">Status Karywan</th>
+          <th style="font-size: 11px" scope="col">File</th>
+          <th style="font-size: 11px" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        $no_urut = 0;
+        ?>
+        <?php while($data2 = mysqli_fetch_array($table2)){
+
+          $nama_karyawan =$data2['nama_karyawan'];
+          $perusahaan =$data2['perusahaan'];
+          $jabatan = $data2['jabatan'];
+          $tempat_lahir =$data2['tempat_lahir'];
+          $tanggal_lahir =$data2['tanggal_lahir'];
+          $nik =$data2['nik'];
+          $bpjs =$data2['bpjs'];
+          $alamat =$data2['alamat'];
+          $no_hp =$data2['no_hp'];          
+          $status_karyawan = $data2['status_karyawan'];
+          $file_bukti = $data2['file_bukti'];
+          $no_urut = $no_urut + 1;
+        
+          echo "<tr>
+          <td style='font-size: 12px'>$no_urut</td>
+          <td style='font-size: 12px'>$nama_karyawan</td>
+          <td style='font-size: 12px'>$perusahaan</td>
+          <td style='font-size: 12px'>$jabatan</td>
+          <td style='font-size: 12px'>$tempat_lahir</td>
+          <td style='font-size: 12px'>$tanggal_lahir</td>
+          <td style='font-size: 12px'>$nik</td>
+          <td style='font-size: 12px'>$bpjs</td>
+          <td style='font-size: 12px'>$alamat</td>
+          <td style='font-size: 12px'>$no_hp</td>
+          <td style='font-size: 12px'>$status_karyawan</td>
+          <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+          <td style='font-size: 12px'>"; ?>
+
+          <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data2['nik']; ?>">Edit</button>
+
+          <!-- Form EDIT DATA -->
+
+          <div class="modal fade" id="formedit<?php echo $data2['nik']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+           <div class="modal-dialog" role ="document">
+             <div class="modal-content"> 
+              <div class="modal-header">
+                <h5 class="modal-title"> Form Edit Karyawan </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+             
+              <!-- Form Edit Data -->
+              <div class="modal-body">
+                <form action="../proses/edit_seluruh_karyawan" enctype='multipart/form-data'  method="POST">
+                  
+                <input type="hidden" name="nik_pk" value="<?php echo $nik;?>">    
+                            
+                    <div class="row">
+                    <div class="col-md-6">
+                        <label>Nama Karyawan</label>
+                        <input class="form-control form-control-sm" type="text" id="nama_karyawan" name="nama_karyawan" value="<?php echo $nama_karyawan;?>"  required="">
+                    </div>
+                    <div class="col-md-6">
+                    <label>Perusahaan</label>
+                    <select id="perusahaan" name="perusahaan" class="form-control">
+                    <?php $dataSelect = $data2['perusahaan']; ?>
+                        <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
+                        <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+                        <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+                        <option <?php echo ($dataSelect == 'BALSRI') ? "selected": "" ?> >BALSRI</option>
+                        <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
+                        <option <?php echo ($dataSelect == 'STRE') ? "selected": "" ?> >STRE</option>
+                        <option <?php echo ($dataSelect == 'KEBUN') ? "selected": "" ?> >KEBUN</option>
+                    </select>
+                    </div>
+                    </div>
+
+                    <br>
+                    
+                    <div class="row">
+                    <div class="col-md-6">
+                    <label>Jabatan</label>
+                    <input class="form-control form-control-sm" type="text" id="jabatan" name="jabatan" value="<?php echo $jabatan;?>" required="">
+                    </div>
+                    <div class="col-md-6">
+                    <label>Tempat Lahir</label>
+                    <input class="form-control form-control-sm" type="text" id="tempat_lahir" name="tempat_lahir" value="<?php echo $tempat_lahir;?>" required="">
+                    </div>
+                    </div>
+
+                    <br>
+                    
+                    <div class="row">
+                    <div class="col-md-4">
+                    <label>Tanggal Lahir</label>
+                    <input class="form-control form-control-sm" type="date" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $tanggal_lahir;?>"   required="">
+                    </div>
+                    <div class="col-md-4">
+                    <label>NIK</label>
+                    <input class="form-control form-control-sm" type="text" id="nik" name="nik" value="<?php echo $nik;?>" required="">
+                    </div>
+                    <div class="col-md-4">
+                    <label>BPJS</label>
+                    <input class="form-control form-control-sm" type="text" id="bpjs" name="bpjs" value="<?php echo $bpjs;?>" required="">
+                    </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                    <div class="col-md-6">
+                    <label>Alamat</label>
+                    <textarea class="form-control form-control-sm"  id = "alamat" name="alamat" ><?php echo $alamat;?></textarea>
+                    </div>
+                    <div class="col-md-6">
+                    <label>No HP</label>
+                    <input class="form-control form-control-sm" type="text" id="no_hp" name="no_hp" value="<?php echo $no_hp;?>"  required="">
+                    </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                    <div class="col-md-6">
+                    <label>Status Karyawan</label>
+                    <select id="status_karyawan" name="status_karyawan" class="form-control">
+                    <?php $dataSelect = $data2['status_karyawan']; ?>
+                        <option <?php echo ($dataSelect == 'Bekerja') ? "selected": "" ?> >Bekerja</option>
+                        <option <?php echo ($dataSelect == 'Berhenti') ? "selected": "" ?> >Berhenti</option>
+                    </select>
+                    </div>
+                    </div>
+
+                    <br>
+                    <div>
+                      <label>Upload File</label> 
+                      <input type="file" name="file"> 
+                    </div> 
+
                     <br>
 
                   <div class="modal-footer">
@@ -574,8 +799,19 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example').DataTable( {
-      lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      lengthChange: true,
+      buttons: [  'excel' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: true,
+      buttons: [  'excel']
     } );
 
     table.buttons().container()

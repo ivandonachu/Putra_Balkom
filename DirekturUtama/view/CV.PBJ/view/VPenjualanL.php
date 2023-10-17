@@ -482,7 +482,8 @@ Logout
       <th>Tujuan Pengiriman</th>
       <th>Material</th>
       <th>QTY</th>
-      <th>Harga</th>
+      <th>Harga Beli</th>
+      <th>Harga Jual</th>
       <th>Jumlah</th>    
       <th>Nama Toko di DO</th>
       <th>TGL Bayar</th>
@@ -512,6 +513,7 @@ Logout
       $tujuan_pengiriman = $data['tujuan_pengiriman'];
       $qty = $data['qty'];
       $satuan = $data['satuan'];
+      $harga_beli = $data['harga_beli'];
       $harga = $data['harga'];
       $jumlah = $data['jumlah'];
       $toko_do = $data['toko_do'];
@@ -534,6 +536,7 @@ Logout
       <td style='font-size: 14px'>$tujuan_pengiriman</td>
       <td style='font-size: 14px'>$satuan</td>
       <td style='font-size: 14px'>$qty</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($harga_beli); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>$toko_do</td>

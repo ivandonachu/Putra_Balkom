@@ -15,26 +15,16 @@ if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
+
 else{  header("Location: logout.php");
 exit;
 }
 
 
+$table = mysqli_query($koneksicbm, "SELECT * FROM seluruh_karyawan WHERE status_karyawan = 'Bekerja' ");
+$table2 = mysqli_query($koneksicbm, "SELECT * FROM seluruh_karyawan WHERE status_karyawan = 'Berhenti' ");
 
-
-if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-
-
-
- ?>
+?>
  <!DOCTYPE html>
  <html lang="en">
 
@@ -46,7 +36,7 @@ elseif (isset($_POST['tanggal1'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Biaya Prive</title>
+  <title>List Seluruh Karyawan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -62,8 +52,6 @@ elseif (isset($_POST['tanggal1'])) {
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
 
   <!-- Link datepicker -->
 
@@ -74,8 +62,8 @@ elseif (isset($_POST['tanggal1'])) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+     <!-- Sidebar -->
+     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
@@ -96,8 +84,8 @@ elseif (isset($_POST['tanggal1'])) {
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
 
-     <!-- Divider -->
-     <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
                      Menu PT. CBM
@@ -134,21 +122,21 @@ elseif (isset($_POST['tanggal1'])) {
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VLKeuangan1">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VLPenjualan1">Laporan Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
                         
                         <?php if($nama == 'Nyoman Edy Susanto'){
-                        echo"<a class='collapse-item' style='font-size: 15px;' href='../VLabaRugi'>Laba Rugi</a>";
+                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
                         } ?>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VSaldoBaru">Laporan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VBonKaryawan">Laporan BON </a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VRincianSA">Alokasi SA </a>
-                         <a class="collapse-item" style="font-size: 15px;" href="../VUangPBJ">Uang PBJ</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="../VKeberangkatan">Uang Jalan</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaran">Pengeluaran Kasir</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="../VKasKecil">Kas Kecil</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="../VGajiKaryawan">Gaji Karyawan</a>
-                         <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaranWorkshop">Pengeluaran Workshop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Laporan Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
                     </div>
                 </div>
             </li>
@@ -163,12 +151,12 @@ elseif (isset($_POST['tanggal1'])) {
                 <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VAset">Aset</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VDokumen">Dokumen</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VSeluruhKaryawan">List Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VSuratKeluarMasuk">Surat Keluar Masuk</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VKontrakKerja">Kontrak Kerja</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VSuratIzin">Surat Izin</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSeluruhKaryawan">List Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSuratKeluarMasuk">Surat Keluar Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKontrakKerja">Kontrak Kerja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSuratIzin">Surat Izin</a>
                     </div>
                 </div>
             </li>
@@ -182,17 +170,17 @@ elseif (isset($_POST['tanggal1'])) {
                 <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiCBM">Rekap Gaji CBM</a>
-                        <a class="collapse-item" style="font-size: 12pxx;" href="../VRekapGajiDriverCBM">Rekap Gaji Driver CBM</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiDriverKebun">Rekap Gaji Driver Kebun</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiMES">Rekap Gaji MES</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiDriverMES">Rekap Gaji Driver MES</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiPBR">Rekap Gaji PBR</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiDriverPBR">Rekap Gaji Driver PBR</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiPBJ">Rekap Gaji PBJ</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiDriverPBJ">Rekap Gaji Driver PBJ</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiBalsri">Rekap Gaji Balsri</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="../VRekapGajiDriverBalsri">Rekap Gaji Driver Balsri</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiCBM">Rekap Gaji CBM</a>
+                        <a class="collapse-item" style="font-size: 12pxx;" href="VRekapGajiDriverCBM">Rekap Gaji Driver CBM</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverKebun">Rekap Gaji Driver Kebun</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiMES">Rekap Gaji MES</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverMES">Rekap Gaji Driver MES</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiPBR">Rekap Gaji PBR</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverPBR">Rekap Gaji Driver PBR</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiPBJ">Rekap Gaji PBJ</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverPBJ">Rekap Gaji Driver PBJ</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiBalsri">Rekap Gaji Balsri</a>
+                        <a class="collapse-item" style="font-size: 12px;" href="VRekapGajiDriverBalsri">Rekap Gaji Driver Balsri</a>
                     </div>
                 </div>
             </li>
@@ -206,17 +194,16 @@ elseif (isset($_POST['tanggal1'])) {
                 <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">SDM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaranCBM">Pengeluaran CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaranMES">Pengeluaran MES</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaranPBR">Pengeluaran PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaranKebun">Pengeluaran Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VMocashCBM">Mocash CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VMocashMES">Mocash MES</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="../VMocashPBR">Mocash PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranCBM">Pengeluaran CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranMES">Pengeluaran MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
                     </div>
                 </div>
             </li>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -241,8 +228,7 @@ elseif (isset($_POST['tanggal1'])) {
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Prive</h5></a>"; ?>
-
+      <?php echo "<a href='VKaryawan'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Seluruh Karyawan</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -254,19 +240,22 @@ elseif (isset($_POST['tanggal1'])) {
       <ul class="navbar-nav ml-auto">
 
           
-      
+        
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
                 <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
@@ -276,9 +265,8 @@ elseif (isset($_POST['tanggal1'])) {
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-                </div>
-                </li>
-
+              </div>
+             </li>
 
   </ul>
 
@@ -292,24 +280,135 @@ elseif (isset($_POST['tanggal1'])) {
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-    <div align="left">
-      <?php echo "<a href='../VLabaRugi2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
-    </div>
-    <br>
-    <br>
-    <div class="row" >
-      <div class="col-md-11" align="right" >
-         <?php echo "<a href='VRPriveTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kasir Toko</button></a>"; ?>
-      </div>
-      <div class="col-md-1"  align="right">
-         <?php echo "<a href='VRPriveOP?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kas Armada</button></a>"; ?>
-      </div>
-    </div>
-<br>
-<br>
-   
+<h3 align = 'center'; >List Karyawan Bekerja</h3>
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>  
+          <th style="font-size: 11px" scope="col">No Karyawan</th>
+          <th style="font-size: 11px" scope="col">Nama Karyawan</th>
+          <th style="font-size: 11px" scope="col">Perusahaaan</th>
+          <th style="font-size: 11px" scope="col">Jabatan Karywan</th>
+          <th style="font-size: 11px" scope="col">Tempat Lahir</th>
+          <th style="font-size: 11px" scope="col">Tanggal Lahir</th>
+          <th style="font-size: 11px" scope="col">NIK</th>
+          <th style="font-size: 11px" scope="col">BPJS</th>
+          <th style="font-size: 11px" scope="col">Alamat</th>
+          <th style="font-size: 11px" scope="col">No HP</th>
+          <th style="font-size: 11px" scope="col">Status Karywan</th>
+          <th style="font-size: 11px" scope="col">File</th>
+    
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        $no_urut = 0;
+        ?>
+        <?php while($data2 = mysqli_fetch_array($table)){
 
+          $nama_karyawan =$data2['nama_karyawan'];
+          $perusahaan =$data2['perusahaan'];
+          $jabatan = $data2['jabatan'];
+          $tempat_lahir =$data2['tempat_lahir'];
+          $tanggal_lahir =$data2['tanggal_lahir'];
+          $nik =$data2['nik'];
+          $bpjs =$data2['bpjs'];
+          $alamat =$data2['alamat'];
+          $no_hp =$data2['no_hp'];          
+          $status_karyawan = $data2['status_karyawan'];
+          $file_bukti = $data2['file_bukti'];
+          $no_urut = $no_urut + 1;
+        
+          echo "<tr>
+          <td style='font-size: 12px'>$no_urut</td>
+          <td style='font-size: 12px'>$nama_karyawan</td>
+          <td style='font-size: 12px'>$perusahaan</td>
+          <td style='font-size: 12px'>$jabatan</td>
+          <td style='font-size: 12px'>$tempat_lahir</td>
+          <td style='font-size: 12px'>$tanggal_lahir</td>
+          <td style='font-size: 12px'>$nik</td>
+          <td style='font-size: 12px'>$bpjs</td>
+          <td style='font-size: 12px'>$alamat</td>
+          <td style='font-size: 12px'>$no_hp</td>
+          <td style='font-size: 12px'>$status_karyawan</td>
+          <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      
+      </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
 </div>
+<br>
+<hr>
+<br>
+<h3 align = 'center'; >List Karyawan Berhenti</h3>
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center'>
+  <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>  
+          <th style="font-size: 11px" scope="col">No Karyawan</th>
+          <th style="font-size: 11px" scope="col">Nama Karyawan</th>
+          <th style="font-size: 11px" scope="col">Perusahaaan</th>
+          <th style="font-size: 11px" scope="col">Jabatan Karywan</th>
+          <th style="font-size: 11px" scope="col">Tempat Lahir</th>
+          <th style="font-size: 11px" scope="col">Tanggal Lahir</th>
+          <th style="font-size: 11px" scope="col">NIK</th>
+          <th style="font-size: 11px" scope="col">BPJS</th>
+          <th style="font-size: 11px" scope="col">Alamat</th>
+          <th style="font-size: 11px" scope="col">No HP</th>
+          <th style="font-size: 11px" scope="col">Status Karywan</th>
+          <th style="font-size: 11px" scope="col">File</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        $no_urut = 0;
+        ?>
+        <?php while($data2 = mysqli_fetch_array($table2)){
+
+          $nama_karyawan =$data2['nama_karyawan'];
+          $perusahaan =$data2['perusahaan'];
+          $jabatan = $data2['jabatan'];
+          $tempat_lahir =$data2['tempat_lahir'];
+          $tanggal_lahir =$data2['tanggal_lahir'];
+          $nik =$data2['nik'];
+          $bpjs =$data2['bpjs'];
+          $alamat =$data2['alamat'];
+          $no_hp =$data2['no_hp'];          
+          $status_karyawan = $data2['status_karyawan'];
+          $file_bukti = $data2['file_bukti'];
+          $no_urut = $no_urut + 1;
+        
+          echo "<tr>
+          <td style='font-size: 12px'>$no_urut</td>
+          <td style='font-size: 12px'>$nama_karyawan</td>
+          <td style='font-size: 12px'>$perusahaan</td>
+          <td style='font-size: 12px'>$jabatan</td>
+          <td style='font-size: 12px'>$tempat_lahir</td>
+          <td style='font-size: 12px'>$tanggal_lahir</td>
+          <td style='font-size: 12px'>$nik</td>
+          <td style='font-size: 12px'>$bpjs</td>
+          <td style='font-size: 12px'>$alamat</td>
+          <td style='font-size: 12px'>$no_hp</td>
+          <td style='font-size: 12px'>$status_karyawan</td>
+          <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+        
+      </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+</div>
+  </div>
+<br>
+<br>
+<br>
 
 
 </div>
@@ -359,8 +458,8 @@ aria-hidden="true">
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+<script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
+<script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -368,7 +467,7 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-<script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
+
 <!-- Tabel -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -387,8 +486,19 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example').DataTable( {
-      lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      lengthChange: true,
+      buttons: [  'excel' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: true,
+      buttons: [  'excel']
     } );
 
     table.buttons().container()

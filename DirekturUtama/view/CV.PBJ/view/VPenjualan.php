@@ -374,7 +374,8 @@ Logout
       <th>Tujuan Pengiriman</th>
       <th>QTY</th>
       <th>Satuan</th>
-      <th>Harga</th>
+      <th>Harga Beli</th>
+      <th>Harga Jual</th>
       <th>Jumlah</th>    
       <th>Nama Toko di DO</th>
       <th>TGL Bayar</th>
@@ -396,26 +397,27 @@ Logout
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_penjualan = $data['no_penjualan'];
-      $tanggal_do =$data['tanggal_do'];
-      $tanggal_kirim = $data['tanggal_kirim'];
-      $no_do = $data['no_do'];
-      $driver = $data['driver'];
-      $no_polisi = $data['no_polisi'];
-      $tujuan_pengiriman = $data['tujuan_pengiriman'];
-      $qty = $data['qty'];
-      $satuan = $data['satuan'];
-      $harga = $data['harga'];
-      $jumlah = $data['jumlah'];
-      $toko_do = $data['toko_do'];
-      $tempo = $data['tempo'];
-      $tanggal_bayar = $data['tanggal_bayar'];
-      $status_bayar = $data['status_bayar'];
-      $keterangan = $data['keterangan'];
-      $catatan = $data['catatan'];
-      $bulan = $data['bulan'];
-      $file_bukti = $data['file_bukti'];
-      $no_urut = $no_urut + 1;
+  $no_penjualan = $data['no_penjualan'];
+  $tanggal_do =$data['tanggal_do'];
+  $tanggal_kirim = $data['tanggal_kirim'];
+  $no_do = $data['no_do'];
+  $driver = $data['driver'];
+  $no_polisi = $data['no_polisi'];
+  $tujuan_pengiriman = $data['tujuan_pengiriman'];
+  $qty = $data['qty'];
+  $satuan = $data['satuan'];
+  $harga_beli = $data['harga_beli'];
+  $harga = $data['harga'];
+  $jumlah = $data['jumlah'];
+  $toko_do = $data['toko_do'];
+  $tempo = $data['tempo'];
+  $tanggal_bayar = $data['tanggal_bayar'];
+  $status_bayar = $data['status_bayar'];
+  $keterangan = $data['keterangan'];
+  $catatan = $data['catatan'];
+  $bulan = $data['bulan'];
+  $file_bukti = $data['file_bukti'];
+  $no_urut = $no_urut + 1;
 
 
       echo "<tr>
@@ -428,6 +430,7 @@ Logout
       <td style='font-size: 14px'>$tujuan_pengiriman</td>
       <td style='font-size: 14px'>$qty</td>
       <td style='font-size: 14px'>$satuan</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($harga_beli); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       <td style='font-size: 14px'>$toko_do</td>
