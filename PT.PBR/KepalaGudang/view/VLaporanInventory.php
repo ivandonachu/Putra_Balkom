@@ -22,10 +22,31 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+if (isset($_GET['tanggal1'])) {
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+ }  
+ else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+ }
+ 
+ if ($tanggal_awal == $tanggal_akhir) {
+   $table = mysqli_query($koneksi, "SELECT * FROM laporan_inventory  WHERE tanggal = '$tanggal_awal' ORDER BY no_laporan");
+   $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+ }
+ else{
+   $table = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY no_laporan ");
+   $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+ }
 
 
-$table = mysqli_query($koneksi, "SELECT * FROM laporan_inventory ORDER BY no_laporan");
-$table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -179,7 +200,22 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+  <?php  echo "<form  method='POST' action='VLaporanInventory' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
+    </div>
+  </form>
 
+
+    <div class="col-md-8">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   <br>
     <div class="row">
       <div class="col-md-10">
 
@@ -202,7 +238,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
             <!-- Form Input Data -->
             <div class="modal-body" align="left">
-              <?php  echo "<form action='../proses/proses_laporan_inventory' enctype='multipart/form-data' method='POST'>";  ?>
+              <?php  echo "<form action='../proses/proses_laporan_inventory?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
               <div class="row">
                 <div class="col-md-6">
@@ -394,8 +430,10 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
           <div class="modal-body">
             <form action="../proses/hapus_laporan_inventory" method="POST">
+            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
               <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-              <input type="hidden" name="referensi" value="<?php echo $referensie; ?>">
+              <input type="hidden" name="referensi" value="<?php echo $referensi?>">
 
               <div class="form-group">
                 <h6> Yakin Ingin Hapus Data? </h6>             

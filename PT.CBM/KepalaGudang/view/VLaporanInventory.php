@@ -245,7 +245,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_laporan_inventory' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_laporan_inventory?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-6">
@@ -440,8 +440,10 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
           <div class="modal-body">
             <form action="../proses/hapus_laporan_inventory" method="POST">
+            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+           <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
               <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-              <input type="hidden" name="referensi" value="<?php echo $referensie; ?>">
+              <input type="hidden" name="referensi" value="<?php echo $referensi; ?>">
 
               <div class="form-group">
                 <h6> Yakin Ingin Hapus Data? </h6>             

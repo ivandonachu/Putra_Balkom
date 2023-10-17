@@ -17,7 +17,8 @@ if ($jabatan_valid == 'Kepala Gudang') {
 else{  header("Location: logout.php");
 exit;
 }
-
+$tanggal_awal = $_GET['tanggal1'];
+$tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $referensi = $_POST['referensi'];
 $L03K11 = $_POST['L03K11'];
@@ -151,5 +152,5 @@ else if ( $nama_file != "" ) {
 	}
 	
 	if ($query != "") {
-			echo "<script> window.location='../view/VLaporanInventory';</script>";exit;
+			echo "<script> window.location='../view/VLaporanInventory?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}

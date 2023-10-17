@@ -19,9 +19,10 @@ exit;
 }
 
 $no_laporan = $_POST['no_laporan'];
-
+$tanggal_awal = $_POST['tanggal1'];
+$tanggal_akhir = $_POST['tanggal2'];
 	$query = mysqli_query($koneksi,"DELETE FROM laporan_inventory WHERE no_laporan = '$no_laporan' ");
 
 
-			echo "<script> window.location='../view/VLaporanInventory';</script>";exit;
+			echo "<script> window.location='../view/VLaporanInventory?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 	
