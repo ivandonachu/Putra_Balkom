@@ -253,6 +253,8 @@ $tanggal_akhir = date('Y-m-31');
                 <label>REF</label>
                 <select id="referensi" name="referensi"  enctype="multipart/form-data" class="form-control">
                   <option>GD</option>
+                  <option>Di Pinjam</option>
+                  <option>Passive</option>
 
                 </select>
               </div>

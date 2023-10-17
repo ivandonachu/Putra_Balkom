@@ -150,6 +150,59 @@ else if ( $nama_file != "" ) {
 		$query15 = mysqli_query($koneksi,"UPDATE inventory SET kendaraan = '$B12K00' WHERE kode_baja = 'B12K00'");
 
 	}
+	elseif ($referensi == 'Di Pinjam') {
+		//3KG
+		$query1 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$L03K11' WHERE kode_baja = 'L03K11'");
+		$query2 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$L03K11' WHERE kode_baja = 'L03K01'");
+		$query3 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$L03K10' WHERE kode_baja = 'L03K10'");
+		$query4 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$L03K00' WHERE kode_baja = 'L03K00'");
+
+		//12KG
+		$query5 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$L12K11' WHERE kode_baja = 'L12K11'");
+		$query6 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$L12K11' WHERE kode_baja = 'L12K01'");
+		$query7 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$L12K10' WHERE kode_baja = 'L12K10'");
+		$query8 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$L12K00' WHERE kode_baja = 'L12K00'");
+
+		//5,5KG
+		$query8 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$B05K11' WHERE kode_baja = 'B05K11'");
+		$query9 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$B05K11' WHERE kode_baja = 'B05K01'");
+		$query10 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$B05K10' WHERE kode_baja = 'B05K10'");
+		$query11 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$B05K00' WHERE kode_baja = 'B05K00'");
+
+		//12BKG
+		$querY12 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$B12K11' WHERE kode_baja = 'B12K11'");
+		$query13 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$B12K11' WHERE kode_baja = 'B12K01'");
+		$query14 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$B12K10' WHERE kode_baja = 'B12K10'");
+		$query15 = mysqli_query($koneksi,"UPDATE inventory SET dipinjam = '$B12K00' WHERE kode_baja = 'B12K00'");
+
+	}
+	elseif ($referensi == 'Passive') {
+		//3KG
+		$query1 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$L03K11' WHERE kode_baja = 'L03K11'");
+		$query2 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$L03K11' WHERE kode_baja = 'L03K01'");
+		$query3 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$L03K10' WHERE kode_baja = 'L03K10'");
+		$query4 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$L03K00' WHERE kode_baja = 'L03K00'");
+
+		//12KG
+		$query5 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$L12K11' WHERE kode_baja = 'L12K11'");
+		$query6 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$L12K11' WHERE kode_baja = 'L12K01'");
+		$query7 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$L12K10' WHERE kode_baja = 'L12K10'");
+		$query8 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$L12K00' WHERE kode_baja = 'L12K00'");
+
+		//5,5KG
+		$query8 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$B05K11' WHERE kode_baja = 'B05K11'");
+		$query9 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$B05K11' WHERE kode_baja = 'B05K01'");
+		$query10 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$B05K10' WHERE kode_baja = 'B05K10'");
+		$query11 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$B05K00' WHERE kode_baja = 'B05K00'");
+
+		//12BKG
+		$querY12 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$B12K11' WHERE kode_baja = 'B12K11'");
+		$query13 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$B12K11' WHERE kode_baja = 'B12K01'");
+		$query14 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$B12K10' WHERE kode_baja = 'B12K10'");
+		$query15 = mysqli_query($koneksi,"UPDATE inventory SET passive = '$B12K00' WHERE kode_baja = 'B12K00'");
+
+	}
+	
 	
 	if ($query != "") {
 			echo "<script> window.location='../view/VLaporanInventory?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

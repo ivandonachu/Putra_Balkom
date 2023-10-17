@@ -43,9 +43,8 @@ $tanggal_akhir = date('Y-m-31');
    $table = mysqli_query($koneksi, "SELECT * FROM laporan_inventory WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY no_laporan ");
  }
 
+   $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
 
-
-$table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -464,11 +463,52 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
 
 </tbody>
 </table>
-</div>
-<br>
-<br>
-<br>
 
+<br>
+<br>
+<h5 align="center" >Inventory</h3>
+<!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+   <thead>
+    <tr>
+      <th>Baja</th>
+      <th>Toko</th>
+      <th>Gudang</th>
+      <th>Global</th>
+      <th>Di Pinjam</th>
+      <th>Pasiv</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data2 = mysqli_fetch_array($table2)){
+      $nama_baja = $data2['nama_baja'];
+      $toko =$data2['toko'];
+      $gudang = $data2['gudang'];
+      $dipinjam = $data2['dipinjam'];
+      $passive = $data2['passive'];
+      $global = $toko + $gudang;
+      $total = $toko + $gudang + $dipinjam + $passive;
+      echo "<tr>
+      <td style='font-size: 14px'>$nama_baja</td>
+      <td style='font-size: 14px'>$toko</td>
+      <td style='font-size: 14px'>$gudang</td>
+      <td style='font-size: 14px'>$global</td>
+      <td style='font-size: 14px'>$dipinjam</td> 
+      <td style='font-size: 14px'>$passive</td> 
+      <td style='font-size: 14px'>$total</td> 
+        </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+
+<br>
+<br>
+<br>
+</div>
 </div>
 
 </div>
