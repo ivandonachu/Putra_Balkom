@@ -109,6 +109,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM dokumen");
                         <a class="collapse-item" style="font-size: 15px;" href="VSuratKeluarMasuk">Surat Keluar Masuk</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKontrakKerja">Kontrak Kerja</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VSuratIzin">Surat Izin</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensiCCTV">Absensi CCTV</a>
                     </div>
                 </div>
             </li>
