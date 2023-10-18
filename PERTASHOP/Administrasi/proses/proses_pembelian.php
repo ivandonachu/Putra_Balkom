@@ -135,7 +135,7 @@ $kode_perta = $data_perta['kode_perta'];
 				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 		       	}
         }
-        else if($kode_perta == 'muaradua' && $nama_barang == 'Dexlite'){
+        else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
                 $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
                 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
