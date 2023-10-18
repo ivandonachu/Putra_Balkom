@@ -113,6 +113,7 @@ $nama = $data['nama_karyawan'];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu CCTV</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLaporanCCTV">Laporan CCTV</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensiCCTV">Absensi CCTV</a>
                     </div>
                 </div>
             </li>
