@@ -364,11 +364,11 @@ Logout
 
               <!-- Form Edit Data -->
               <div class="modal-body">
-                       <img  style="height: 100%; width: 100%;" s src="/PT.CBM/StaffHRD/file_staff_hrd/<?= $file_bukti ?>" >
+                       <img  style="height: 100%; width: 100%;" s src="/PT.CBM/CCTV/file_cctv/<?= $file_bukti ?>" >
                 </div>
 
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PT.CBM/StaffHRD/file_staff_hrd/<?= $file_bukti ?>" href="/PT.CBM/StaffHRD/file_staff_hrd/<?= $file_bukti ?>">Download</a>  </button>
+                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PT.CBM/CCTV/file_cctv/<?= $file_bukti ?>" href="/PT.CBM/CCTV/file_cctv/<?= $file_bukti ?>">Download</a>  </button>
               
                   </div>
                 </form>
