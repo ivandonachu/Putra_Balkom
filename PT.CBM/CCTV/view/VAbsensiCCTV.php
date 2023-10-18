@@ -11,7 +11,7 @@ $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Staff HRD') {
+if ($jabatan_valid == 'Pengawas CCTV') {
 
 }
 
@@ -87,14 +87,14 @@ else{
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffHRD">
-    <div class="sidebar-brand-icon rotate-n-15">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCCTV">
+   <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+   </div>
+   <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
 </a>
 
 <!-- Divider -->
@@ -102,39 +102,33 @@ else{
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active" >
-    <a class="nav-link" href="DsStaffHRD">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-    </li>
+   <a class="nav-link" href="DsKepalaOprasional">
+       <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+       <span style="font-size: 16px;" >Dashboard</span></a>
+   </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+<!-- Divider -->
+<hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Staff HRD
-    </div>
+<!-- Heading -->
+<div class="sidebar-heading" style="font-size: 15px; color:white;">
+Menu CCTV
+</div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fa fa-id-card" style="font-size: 18px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Admin HRD</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VAset">Aset</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Dokumen</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VSeluruhKaryawan">List Karyawan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VSuratKeluarMasuk">Surat Keluar Masuk</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKontrakKerja">Kontrak Kerja</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VSuratIzin">Surat Izin</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLaporanCCTV">Laporan CCTV</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VAbsensiCCTV">Absensi CCTV</a>
-        </div>
-    </div>
+<!-- Nav Item - Pages Collapse Menu -->
+   <li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+     15  aria-expanded="true" aria-controls="collapseTwo">
+       <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+       <span style="font-size: 15px; color:white;" >CCTV</span>
+   </a>
+   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header" style="font-size: 15px;">Menu CCTV</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="VLaporanCCTV">Laporan CCTV</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VAbsensiCCTV">Absensi CCTV</a>
+       </div>
+   </div>
 </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -242,6 +236,78 @@ Logout
       </div>
     </div>
   </form>
+    <div class="row">
+      <div class="col-md-10">
+        <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+      </div>
+      <div class="col-md-2">
+        <!-- Button Pindah Baja -->
+        <!-- Button Input Data -->
+        <div align="right">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputkaryawan"> <i class="fas fa-plus-square mr-2"></i> Absensi </button> <br> <br>
+        </div>
+        <div class="modal fade" id="inputkaryawan" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+         <div class="modal-dialog" role ="document">
+           <div class="modal-content"> 
+            <div class="modal-header">
+              <h5 class="modal-title"> Form Absensi </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> 
+
+            <!-- Form Input Data -->
+            <div class="modal-body" align="left">
+              
+                 <?php  echo "<form action='../proses/proses_absensi_cctv?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+
+                 <div class="row">
+                    <div class="col-md-6">
+                        <label>Tanggal</label>
+                        <input class="form-control form-control-sm" type="date" name="tanggal" required="">
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Shift Kerja</label>
+                        <select class="form-control form-control-sm"  name="shift_kerja" >
+                        <option>Shift Pagi</option>
+                        <option>Shift Siang</option>
+                        <option>Shift Malam</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Keterangan</label>
+                        <textarea class="form-control form-control-sm"  name="keterangan" style="width: 219px;"></textarea>
+                    </div>
+                </div>
+                    
+                <br>
+                    
+                <div>
+                        <label>Upload File Foto</label> 
+                        <input type="file" name="file" required> 
+                </div> 
+                
+              
+
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary"> SUBMIT</button>
+                  <button type="reset" class="btn btn-danger"> RESET</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
 
   <!-- Tabel -->    
   <div style="overflow-x: auto" align = 'center'>
@@ -254,6 +320,7 @@ Logout
         <th>Shift Kerja</th>
         <th>Keterangan</th>
         <th>Bukti Foto</th>
+        <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
@@ -297,11 +364,11 @@ Logout
 
               <!-- Form Edit Data -->
               <div class="modal-body">
-                       <img  style="height: 100%; width: 100%;" s src="/PT.CBM/CCTV/file_cctv/<?= $file_bukti ?>" >
+                       <img  style="height: 100%; width: 100%;" s src="/PT.CBM/StaffHRD/file_staff_hrd/<?= $file_bukti ?>" >
                 </div>
 
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PT.CBM/CCTV/file_cctv/<?= $file_bukti ?>" href="/PT.CBM/CCTV/file_cctv/<?= $file_bukti ?>">Download</a>  </button>
+                    <button type="submit" class="btn btn-primary"><a  style="color: black;" download="/PT.CBM/StaffHRD/file_staff_hrd/<?= $file_bukti ?>" href="/PT.CBM/StaffHRD/file_staff_hrd/<?= $file_bukti ?>">Download</a>  </button>
               
                   </div>
                 </form>
@@ -313,8 +380,109 @@ Logout
 
 
 
-        <?php echo "
-      </td> 
+        <?php echo "</td> "; ?>
+        
+        <?php echo "<td style='font-size: 12px'>"; ?>
+
+
+        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+        <!-- Form EDIT DATA -->
+
+        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role ="document">
+            <div class="modal-content"> 
+              <div class="modal-header">Form Edit Surat Izin </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+
+              <!-- Form Edit Data -->
+              <div class="modal-body">
+                <form action="../proses/edit_absensi_cctv" enctype="multipart/form-data" method="POST">
+                <input type="hidden" id="no_laporan" name="no_laporan"  value="<?php echo $no_laporan;?>">
+                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+
+                <div class="row">
+                  <div class="col-md-6">
+                        <label>Tanggal</label>
+                        <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>">
+                  </div>
+                </div>
+
+               <br>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Shift Kerja</label>
+                    <select class="form-control form-control-sm"  name="shift_kerja" class="form-control">
+                        <?php $dataSelect = $data['shift_kerja']; ?>
+                        <option <?php echo ($dataSelect == 'Shift Pagi') ? "selected": "" ?> >Shift Pagi</option>
+                        <option <?php echo ($dataSelect == 'Shift Siang') ? "selected": "" ?> >Shift Siang</option>
+                        <option <?php echo ($dataSelect == 'Shift Malam') ? "selected": "" ?> >Shift Malam</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                     <label>Keterangan</label>
+                     <textarea class="form-control form-control-sm" name="keterangan" style="width: 210px;"><?php echo $keterangan;?></textarea>
+                  </div>
+                </div>
+
+            <br>
+
+            <div>
+                <label>Upload File</label> 
+                <input type="file" name="file"> 
+            </div> 
+                            
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"> Ubah </button>
+                    <button type="reset" class="btn btn-danger"> RESET</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <!-- Button Hapus -->
+        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+        <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role ="document">
+        <div class="modal-content"> 
+            <div class="modal-header">
+            <h4 class="modal-title"> <b> Hapus Data Absensi </b> </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true"> &times; </span>
+            </button>
+            </div>
+
+            <div class="modal-body">
+            <form action="../proses/hapus_absensi_cctv" method="POST">
+                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
+                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+                <div class="form-group">
+                <h6> Yakin Ingin Hapus Data? </h6>             
+                </div>
+
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary"> Hapus </button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+
+
+        <?php echo "</td> 
         </tr>";
       }
       ?>
