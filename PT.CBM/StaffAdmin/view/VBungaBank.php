@@ -459,7 +459,7 @@ else{
      <td style='font-size: 14px'>$nama_bank</td>
      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
      <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"; ?> <a download="../file_manager/<?= $file_bukti ?>" href="../file_manager/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     <td style='font-size: 14px'>"; ?> <a download="'/PT.CBM/Manager/file_manager/'<?= $file_bukti ?>" href="'/PT.CBM/Manager/file_manager/'<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
      "; ?>
      <?php echo "<td style='font-size: 12px'>"; ?>
 
