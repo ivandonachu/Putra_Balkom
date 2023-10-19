@@ -24,30 +24,55 @@ $nama = $data['nama_karyawan'];
 
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-} 
-else{
-  $tanggal_awal = date('Y-m-1');
-$tanggal_akhir = date('Y-m-31');
-}
-
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' ");
-  $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' GROUP BY nama_driver ");
-
-}
-
-else{
-  $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-  $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_driver");
-
-}
+  if (isset($_POST['nama_driver'])) {
+   $tanggal_awal = $_GET['tanggal1'];
+   $tanggal_akhir = $_GET['tanggal2'];
+   $nama_driver_cari = $_POST['nama_driver'];
+  }
+  else{
+   $tanggal_awal = $_GET['tanggal1'];
+   $tanggal_akhir = $_GET['tanggal2'];
+   $nama_driver_cari  = '';
+  }
+ 
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $nama_driver_cari  = '';
+ } 
+ else{
+   $tanggal_awal = date('Y-m-1');
+ $tanggal_akhir = date('Y-m-31');
+ $nama_driver_cari  = '';
+ }
+ 
+ if ($tanggal_awal == $tanggal_akhir) {
+   if($nama_driver_cari == ""){
+     $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' ");
+     $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' GROUP BY nama_driver ");
+   }
+   else{
+     $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' AND nama_driver = '$nama_driver_cari' ");
+     $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal ='$tanggal_awal' GROUP BY nama_driver ");
+   }
+   
+ }
+ 
+ else{
+ 
+   if($nama_driver_cari == ""){
+     $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+     $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_driver");
+   }
+   else{
+     $table = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_driver = '$nama_driver_cari' ");
+     $table2 = mysqli_query($koneksi,"SELECT * FROM laporan_rit  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_driver ");
+   }
+ 
+ }
 
 
 ?>
@@ -354,7 +379,21 @@ else{
 </div>
 </div>
 
+<?php  echo "<form class='form-inline' action='VRitDriver?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
+    <input class="form-control mr-sm-2" name="nama_driver" type="text" placeholder="Nama Driver" aria-label="Cari">
+
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cari</button>
+  </form>
+  <small>
+          <ul>
+             <li>Nama yang di cari harus dimasukan sama persis</li>
+             <li style="color: red;" >Reset pencarian dengan cara atur ulang tanggal</li>
+          </ul>
+  </small>   
+  <br>
+
+ 
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
