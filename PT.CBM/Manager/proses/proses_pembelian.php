@@ -31,6 +31,7 @@ $nama_baja = $_POST['nama_baja'];
 $pembayaran = $_POST['pembayaran'];
 $nama_file = $_FILES['file']['name'];
 $qty_keluar = 0;
+
 if ($nama_file == "") {
 	$file = "";
 }
