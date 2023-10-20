@@ -87,7 +87,7 @@ else if ( $nama_file != "" ) {
 				else{
 					$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 					,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-					,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+					,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 				}
 
 			if ($query1!= "") {
