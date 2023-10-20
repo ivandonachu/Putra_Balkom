@@ -172,7 +172,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -208,7 +208,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -253,7 +253,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -291,7 +291,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -324,7 +324,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -370,7 +370,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -410,7 +410,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -443,7 +443,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -489,7 +489,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 		
 
@@ -528,7 +528,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -561,7 +561,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -580,7 +580,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -603,7 +603,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 
 
@@ -636,7 +636,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -695,7 +695,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -735,7 +735,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -769,7 +769,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -815,7 +815,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -854,7 +854,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -887,7 +887,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -934,7 +934,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -974,7 +974,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -1007,7 +1007,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -1053,7 +1053,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1091,7 +1091,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1123,7 +1123,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1142,7 +1142,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 			if ($query1!= "") {
 				echo "<script> window.location='../view/VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
@@ -1189,7 +1189,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -1229,7 +1229,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1262,7 +1262,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1307,7 +1307,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1345,7 +1345,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -1378,7 +1378,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1423,7 +1423,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -1461,7 +1461,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1493,7 +1493,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 
@@ -1538,7 +1538,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1576,7 +1576,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1607,7 +1607,7 @@ else if ( $nama_file != "" ) {
 			else{
 				$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 				,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-				,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+				,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 			}
 
 			if ($query1!= "") {
@@ -1632,7 +1632,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1666,7 +1666,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1700,7 +1700,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1732,7 +1732,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1765,7 +1765,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1798,7 +1798,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1831,7 +1831,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1864,7 +1864,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1897,7 +1897,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1930,7 +1930,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1963,7 +1963,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
@@ -1996,7 +1996,7 @@ else if ( $nama_file != "" ) {
 		else{
 			$query1 = mysqli_query($koneksi,"UPDATE riwayat_penjualan SET tanggal = '$tanggal',referensi = '$referensi' , kode_baja = '$kode_baja' ,penyaluran = '$penyaluran'  
 			,nama = '$nama'  ,pembayaran = '$pembayaran'  ,qty = '$qty'  ,harga = '$harga'  ,jumlah = '$jumlah'  
-			,keterangan = '$keterangan'  ,file = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			,keterangan = '$keterangan'  ,file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 		}
 		//aktivitas rekening
 			$akses_rekening = mysqli_query($koneksi, "SELECT * FROM rekening WHERE kode_akun = '1-111'");
