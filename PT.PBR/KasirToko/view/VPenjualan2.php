@@ -1565,7 +1565,8 @@ data-parent="#accordionSidebar">
       <th>Jumlah</th>    
       <th>Keterangan</th>
       <th>File</th>
-      <th>Aksi</th>
+      <th>Edit</th>
+      <th>Hapus</th>
   </tr>
 </thead>
 <tbody>
