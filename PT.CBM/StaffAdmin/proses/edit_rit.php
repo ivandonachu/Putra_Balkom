@@ -23,8 +23,14 @@ $no_laporan = $_POST['no_laporan'];
 $tanggal = $_POST['tanggal'];
 $nama_driver = $_POST['nama_driver'];
 $nama_rute = $_POST['nama_rute'];
-
+if($nama_rute == 'NJE'){
     $uang_gaji = 100000;
+}
+else if($nama_rute == 'Gas Palembang'){
+    $uang_gaji = 150000;
+}else{
+	$uang_gaji = 100000;
+}
 
 
 	
