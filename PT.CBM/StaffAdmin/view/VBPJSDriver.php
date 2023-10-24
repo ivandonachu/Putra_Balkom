@@ -25,7 +25,8 @@ $nama = $data['nama_karyawan'];
 
 
 $table = mysqli_query($koneksi, "SELECT * FROM driver");
-$table2 = mysqli_query($koneksipbr, "SELECT * FROM driver");
+$table2 = mysqli_query($koneksipbr, "SELECT * FROM driver WHERE nama_pt = 'MES' ");
+$table3 = mysqli_query($koneksipbr, "SELECT * FROM driver WHERE nama_pt = 'PBR'");
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -371,7 +372,7 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM driver");
 <hr>
 <br>
 
-<h3 align = 'center'>List Driver MES PBR</h3>
+<h3 align = 'center'>List Driver MES</h3>
 <!-- Tabel -->    
 <table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -388,6 +389,98 @@ $table2 = mysqli_query($koneksipbr, "SELECT * FROM driver");
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table2)){
+      $nama_driverx = $data['nama_driver'];
+      $no_polisi =$data['no_polisi'];
+      $status = $data['status'];
+      $bpjs_kesehatan = $data['bpjs_kesehatan'];
+      $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
+      $id_driverx = $data['id_driver'];
+      echo "<tr>
+      <td style='font-size: 14px'>$id_driverx</td>
+      <td style='font-size: 14px'>$nama_driverx</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$status</td>
+      <td style='font-size: 14px'>$bpjs_kesehatan</td>
+      <td style='font-size: 14px'>$bpjs_ketenagakerjaan</td>
+      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
+    
+        <!-- edit -->
+     <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formeditx<?php echo $data['id_driver']; ?>">Edit</button>
+
+        <!-- Form EDIT DATA -->
+
+        <div class="modal fade" id="formeditx<?php echo $data['id_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role ="document">
+            <div class="modal-content"> 
+              <div class="modal-header">
+                <h5 class="modal-title"> Form Edit Data Driver </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+
+              <!-- Form Edit Data -->
+              <div class="modal-body">
+                <form action="../proses/proses_edit_driver_pbr" method="POST">
+
+
+                  <div class="form-group">
+                    <label> Nama Driver </label>
+                    <input type="text" name="id_driver" class="form-control" value="<?php echo $nama_driverx; ?>" disabled=""> 
+                    <input type="hidden" name="id_driver" value="<?php echo $id_driverx;?>">            
+                  </div>
+                  <div class="form-group">
+                    <label>BPJS Kesehatan</label>
+                    <input type="text" name="bpjs_kesehatan" class="form-control" value="<?php echo $bpjs_kesehatan;?>" required="" >             
+                  </div>
+                  <div class="form-group">
+                    <label>BPJS Ketenagakerjaan</label>
+                    <input type="text" name="bpjs_ketenagakerjaan" class="form-control"  value="<?php echo $bpjs_ketenagakerjaan;?>" required="" >             
+                  </div>
+
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"> Ubah </button>
+                    <button type="reset" class="btn btn-danger"> RESET</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+    <?php echo  " </td> </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+<br>
+<hr>
+<br>
+
+<h3 align = 'center'>List Driver PBR</h3>
+<!-- Tabel -->    
+<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+     <th>ID Driver</th>
+     <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Status</th>
+      <th>BPJS Kesehatan</th>
+      <th>BPJS Ketenagakerjaan</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php while($data = mysqli_fetch_array($table3)){
       $nama_driverx = $data['nama_driver'];
       $no_polisi =$data['no_polisi'];
       $status = $data['status'];
