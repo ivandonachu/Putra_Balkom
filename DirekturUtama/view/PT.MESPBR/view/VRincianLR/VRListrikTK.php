@@ -52,7 +52,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Listrik & Telepon Kasir PBR</title>
+  <title>Rincian Listrik & Telepon PBR</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -174,7 +174,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRListrikTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Listrik & Telepon Kasir PBR</h5></a>"; ?>
+  <?php echo "<a href='VRListrikTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '></h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -237,7 +237,7 @@ else{
    
 <br>
 <br>
-   
+<h3 align = 'center'>Rincian Listrik & Telepon (Kasir)</h3>
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -295,7 +295,7 @@ else{
 <br>
 <br>
 
-<h3 align = 'center'>Rincian Listrik & Telepon Baru</h3>
+<h3 align = 'center'>Rincian Listrik & Telepon (Keuangan)</h3>
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
@@ -310,6 +310,7 @@ else{
       <th>Debit</th>
       <th>Kredit</th>
       <th>Total</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
@@ -350,7 +351,8 @@ else{
         echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-    </td> </tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+       </tr>";
   }
   ?>
 

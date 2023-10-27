@@ -177,7 +177,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRPemasaranTF?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Penjualan & Pemasaran Transfer MES</h5></a>"; ?>
+  <?php echo "<a href='VRPemasaranTF?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '></h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -359,7 +359,7 @@ $total = 0;
 <br>
 <br>
 
-<h3 align = 'center'>Rincian Biaya Pemasaran</h3>
+<h3 align = 'center'>Rincian Biaya Pemasaran (Keuangan)</h3>
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
@@ -374,6 +374,7 @@ $total = 0;
       <th>Debit</th>
       <th>Kredit</th>
       <th>Total</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
@@ -414,7 +415,8 @@ $total = 0;
         echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-    </td> </tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      </tr>";
   }
   ?>
 
