@@ -313,7 +313,7 @@ else{
     <br>
 
     <!-- Tabel -->    
-    <h3 align = 'center'>Rincian Biaya Perbaikan kendaraan Kasir CBM</h3>
+    <h3 align = 'center'>Rincian Biaya Perbaikan kendaraan (Kasir)</h3>
     <div style="overflow-x: auto" align = 'center'>
       <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
       <thead>
@@ -377,7 +377,7 @@ else{
     <br>
 
       <!-- Tabel -->    
-      <h3 align = 'center'>Rincian Biaya Perbaikan kendaraan Workshop CBM</h3>
+      <h3 align = 'center'>Rincian Biaya Perbaikan kendaraan (Workshop)</h3>
       <div style="overflow-x: auto" align = 'center'>
       <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
       <thead>
@@ -432,7 +432,7 @@ else{
     <br>
     <br>
 
-    <h3 align = 'center'>Rincian Perbaikan Kendaraan Pribadi CBM</h3>
+    <h3 align = 'center'>Rincian Perbaikan Kendaraan Pribadi</h3>
     <!-- Tabel -->    
     <div style="overflow-x: auto" align = 'center'>
   <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">

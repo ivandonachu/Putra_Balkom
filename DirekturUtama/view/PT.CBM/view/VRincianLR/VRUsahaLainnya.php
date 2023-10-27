@@ -307,7 +307,7 @@ else{
 <br>
 <br>
 
-  <h3 align = 'center'>Rincian Biaya Usaha Lainnya Operasional CBM</h3>
+  <h3 align = 'center'>Rincian Biaya Usaha Lainnya (Operasional)</h3>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
   <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">

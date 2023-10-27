@@ -310,7 +310,7 @@ else{
 <br>
 <br>
 
-  <h3 align = 'center'>Rincian Pengeluaran ATK Operasional CBM</h3>
+  <h3 align = 'center'>Rincian Pengeluaran ATK (Operasional)</h3>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
   <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -407,7 +407,7 @@ else{
 <br>
 <br>
 
-  <h3 align = 'center'>Rincian Pengeluaran ATK Kasir CBM</h3>
+  <h3 align = 'center'>Rincian Pengeluaran ATK (Kasir)</h3>
   
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
@@ -467,7 +467,7 @@ else{
 <br>
 <br>
 
-<h3 align = 'center'>Rincian Pengeluaran ATK Baru</h3>
+<h3 align = 'center'>Rincian Pengeluaran ATK (Keuangan)</h3>
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
@@ -482,6 +482,7 @@ else{
       <th>Debit</th>
       <th>Kredit</th>
       <th>Total</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
@@ -522,7 +523,8 @@ else{
         echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-    </td> </tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     </tr>";
   }
   ?>
 

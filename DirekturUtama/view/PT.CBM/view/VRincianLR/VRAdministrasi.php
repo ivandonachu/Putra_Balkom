@@ -324,6 +324,7 @@ else{
       <th>Debit</th>
       <th>Kredit</th>
       <th>Total</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
@@ -371,7 +372,8 @@ else{
         echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-    </td> </tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     </tr>";
   }
   ?>
 
