@@ -432,7 +432,7 @@ else{
     <br>
     <br>
 
-    <h3 align = 'center'>Rincian Perbaikan Kendaraan Pribadi</h3>
+    <h3 align = 'center'>Rincian Perbaikan Kendaraan Pribadi (Workshop)</h3>
     <!-- Tabel -->    
     <div style="overflow-x: auto" align = 'center'>
   <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -523,7 +523,7 @@ else{
     <hr>
     <br>
     <br>
-    <h3 align = 'center'>Rincian Perbaikan Kendaraan Pribadi Baru</h3>
+    <h3 align = 'center'>Rincian Perbaikan Kendaraan Pribadi (Keuangan) </h3>
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
@@ -538,6 +538,7 @@ else{
       <th>Debit</th>
       <th>Kredit</th>
       <th>Total</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
@@ -579,7 +580,8 @@ else{
         echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-    </td> </tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     </tr>";
   }
   ?>
 
