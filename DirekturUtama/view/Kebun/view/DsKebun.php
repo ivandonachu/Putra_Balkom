@@ -79,10 +79,9 @@ exit;
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;"  ></div>
+                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png" ></div>
             </a>
 
-            <br>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -103,12 +102,12 @@ exit;
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
                   15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Perusahaan</span>
+                  <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >List Company</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Perusahaan</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
                         <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
@@ -125,12 +124,12 @@ exit;
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan</span>
+                  <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Report</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiL">Absensi Lengkiti</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKegiatan">Laporan Kegiatan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKaret">Laporan Karet</a>
@@ -141,10 +140,11 @@ exit;
                     </div>
                 </div>
             </li>
-                <li class="nav-item">
+
+            <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x"
-                  15  aria-expanded="true" aria-controls="collapseTwo1x">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                15  aria-expanded="true" aria-controls="collapseTwo1x">
+                <i class="fa fa-address-card" aria-hidden="true"></i>
                     <span style="font-size: 15px; color:white;" >SDM</span>
                 </a>
                 <div id="collapseTwo1x" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -157,10 +157,9 @@ exit;
                     </div>
                 </div>
             </li>
-
         
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+            <!-- Divider -->
+  <hr class="sidebar-divider">
 
         
         
