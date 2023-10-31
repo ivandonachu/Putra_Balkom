@@ -284,7 +284,7 @@ else{
 
    //Sisa stok Awal pertamax
 
-   $tabley1x = mysqli_query($koneksiperta, "SELECT MIN(no_penjualan) AS penjualan_awal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+   $tabley1x = mysqli_query($koneksiperta, "SELECT no_penjualan AS penjualan_awal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ORDER BY tanggal ASC LIMIT 1 ");
 
    $datay1x = mysqli_fetch_array($tabley1x);
    $no_penjualan_awal_max = $datay1x['penjualan_awal'];
