@@ -93,6 +93,19 @@ while($data = mysqli_fetch_array($table2)){
     if (  $total_rit_batu_marta == ""  ) {
       $total_rit_batu_marta = 0;
     }
+
+    $table9 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_bantu_tabung_pertamina , SUM(rit) AS rit_bantu_tabung_pertamina FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Bantu Tabung Pertamina'");
+    $data9 = mysqli_fetch_array($table9);
+
+    $total_uang_gaji_bantu_tabung_pertamina= $data9['uang_gaji_bantu_tabung_pertamina'];
+    if (  $total_uang_gaji_bantu_tabung_pertamina == ""  ) {
+      $total_uang_gaji_bantu_tabung_pertamina = 0;
+    }
+
+    $total_rit_bantu_tabung_pertamina = $data9['rit_bantu_tabung_pertamina'];
+    if (  $total_rit_bantu_tabung_pertamina == ""  ) {
+      $total_rit_bantu_tabung_pertamina = 0;
+    }
     
     $table8 = mysqli_query($koneksi,"SELECT bpjs_kesehatan , bpjs_ketenagakerjaan FROM driver WHERE nama_driver = '$nama_driver' ");
     $data8 = mysqli_fetch_array($table8);
@@ -103,8 +116,8 @@ while($data = mysqli_fetch_array($table2)){
     
     
 
-    $total_gaji = $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta;
-    $total_gaji_diterima =  $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta - $bpjs_ketenagakerjaan;
+    $total_gaji = $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_bantu_tabung_pertamina;
+    $total_gaji_diterima =  $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_bantu_tabung_pertamina - $bpjs_ketenagakerjaan;
 
     $table8 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
     $data8 = mysqli_fetch_array($table8);
@@ -117,7 +130,7 @@ while($data = mysqli_fetch_array($table2)){
 
     $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_cbm VALUES('','$tanggal','$nama_driver','Driver','$total_rit_nje','$total_gaji_nje','$total_rit_gas_palembang','$total_uang_gaji_gas_palembang'
                                                                              ,'$total_rit_nikan','$total_uang_gaji_nikan','$total_rit_kota_baru','$total_uang_gaji_kota_baru','$total_rit_batu_marta'
-                                                                             ,'$total_uang_gaji_batu_marta',0,'$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan','$total_gaji','$total_gaji_diterima','Transfer')");
+                                                                             ,'$total_uang_gaji_batu_marta', '$total_rit_bantu_tabung_pertamina' ,'$total_uang_gaji_bantu_tabung_pertamina' ,0,'$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan','$total_gaji','$total_gaji_diterima','Transfer')");
 
 }
 
