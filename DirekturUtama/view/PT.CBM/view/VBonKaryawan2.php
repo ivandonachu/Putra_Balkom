@@ -336,6 +336,7 @@ else{
 
 
  <!-- Tabel -->    
+ <div style="overflow-x: auto" align = 'center';>
  <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
@@ -349,7 +350,6 @@ else{
       <th>Status Hutang</th>
       <th>Keterangan</th>
       <th>File</th>
-      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
@@ -382,71 +382,14 @@ else{
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bayar); ?> <?php echo "</td>
       <td style='font-size: 14px'>$status_hutang</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staf_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staf_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_bon']; ?>">Bayar</button>
-
-      <!-- Form EDIT DATA -->
-
-      <div class="modal fade" id="formedit<?php echo $data['no_bon']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role ="document">
-          <div class="modal-content"> 
-            <div class="modal-header">Form Bayar BON </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                <span aria-hidden="true"> &times; </span>
-              </button>
-            </div>
-
-
-            <!-- Form Edit Data -->
-            <div class="modal-body">
-              <form action="../proses/end_bon_karyawan" enctype="multipart/form-data" method="POST">
-
-
-               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-               <input type="hidden" name="no_bon" value="<?php echo $no_bon;?>">
-               <input type="hidden" name="jumlah_bon" value="<?php echo $jumlah_bon;?>">
-               <input type="hidden" name="jumlah_bayar" value="<?php echo $jumlah_bayar;?>">
-
-               <div class="row">
-                <div class="col-md-6">
-                  <label>Tanggal</label>
-                  <div class="col-sm-10">
-                   <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
-                 </div>
-               </div>
-               <div class="col-md-6">
-                <label>Jumlah</label>
-                <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="0"  required="">
-               </div>
-             </div>
-
-
-            <div>
-              <label>Upload File</label> 
-              <input type="file" name="file"> 
-            </div> 
-
-
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary"> Ubah </button>
-              <button type="reset" class="btn btn-danger"> RESET</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <?php echo  " </td> </tr>";
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+    </tr>";
 }
 ?>
 
 </tbody>
 </table>
+ </div>
 </div>
 
 </div>
