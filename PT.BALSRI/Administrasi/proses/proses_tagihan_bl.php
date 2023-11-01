@@ -24,6 +24,7 @@ $tanggal = $_POST['tanggal'];
 $delivery_point = $_POST['delivery_point'];
 $so = $_POST['so'];
 $lo = $_POST['lo'];
+$nama_barang = $_POST['nama_barang'];
 $jumlah_pesanan = $_POST['jumlah_pesanan'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
@@ -100,7 +101,7 @@ else if ( $nama_file != "" ) {
 
 
 
-$query = mysqli_query($koneksi,"INSERT INTO tagihan_bl VALUES('','$tanggal','$delivery_point','$so','$lo','$amt','$mt','$kode_pesanan','$total',1,'$file','$id1')");
+$query = mysqli_query($koneksi,"INSERT INTO tagihan_bl VALUES('','$tanggal','$delivery_point','$so','$lo','$amt','$mt','$nama_barang','$kode_pesanan','$total',1,'$file','$id1')");
 
 if ($query != "") {
 echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VTagihanBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

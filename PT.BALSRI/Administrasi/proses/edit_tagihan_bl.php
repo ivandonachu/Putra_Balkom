@@ -25,6 +25,7 @@ $tanggal = $_POST['tanggal'];
 $delivery_point = $_POST['delivery_point'];
 $so = $_POST['so'];
 $lo = $_POST['lo'];
+$nama_barang = $_POST['nama_barang'];
 $jumlah_pesanan = $_POST['jumlah_pesanan'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
@@ -93,10 +94,10 @@ else if ( $nama_file != "" ) {
 
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_bl SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , kode_input = '$id1'  WHERE no_tagihan = '$no_tagihan'");
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_bl SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , nama_barang = '$nama_barang' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , kode_input = '$id1'  WHERE no_tagihan = '$no_tagihan'");
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE tagihan_bl SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , file_bukti = '$file', kode_input = '$id1'   WHERE no_tagihan = '$no_tagihan'");
+			$query3 = mysqli_query($koneksi,"UPDATE tagihan_bl SET delivery_point = '$delivery_point' , so = '$so', lo = '$lo' , amt = '$amt' , mt = '$mt' , nama_barang = '$nama_barang' , jumlah_pesanan = '$kode_pesanan' , total = '$total' , file_bukti = '$file', kode_input = '$id1'   WHERE no_tagihan = '$no_tagihan'");
 	}
 
 

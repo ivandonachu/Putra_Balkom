@@ -345,16 +345,24 @@ if ($tanggal_awal == $tanggal_akhir) {
                         </div>
 
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                             <label>SO</label>
                             <input class="form-control form-control-sm" type="text" id="so" name="so" required="">
                           </div>
 
 
 
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                             <label>LO</label>
                             <input class="form-control form-control-sm" type="text" id="lo" name="lo" required="">
+                          </div>
+
+                          <div class="col-md-4">
+                            <label>Nama Barang</label>
+                            <select name="nama_barang" class="form-control">
+                              <option>Pertamax</option>
+                              <option>Dexlite</option>
+                            </select>
                           </div>
 
                         </div>
@@ -472,6 +480,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <th>LO</th>
                   <th>Delivery Point</th>
                   <th>Alamat</th>
+                  <th>Nama Barang</th>
                   <th>Jumlah Pemesanan</th>
                   <th>Jarak Tempuh</th>
                   <th>AMT</th>
@@ -501,6 +510,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $lo = $data['lo'];
                   $delivery_point = $data['delivery_point'];
                   $alamat = $data['alamat'];
+                  $nama_barang = $data['nama_barang'];
                   $jumlah_pesanan = $data['jumlah_pesanan'];
                   $jt = $data['jt'];
                   $amt = $data['amt'];
@@ -551,6 +561,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$lo</td>
       <td style='font-size: 14px'>$delivery_point</td>
       <td style='font-size: 14px'>$alamat</td>
+      <td style='font-size: 14px'>$nama_barang</td>
       <td style='font-size: 14px'>$total_pesanan/L</td>
       <td style='font-size: 14px'>$jt</td>
       <td style='font-size: 14px'>$amt</td>
@@ -598,16 +609,26 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <div class="row">
 
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                   <label>SO</label>
                                   <input class="form-control form-control-sm" type="text" id="so" name="so" required="" value="<?php echo $so; ?>">
                                 </div>
 
 
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                   <label>LO</label>
                                   <input class="form-control form-control-sm" type="text" id="lo" name="lo" required="" value="<?php echo $lo; ?>">
+                                </div>
+
+                                <div class="col-md-4">
+                                  <label>Nama Barang</label>
+                                  <select id="nama_barang" name="nama_barang" class="form-control">
+                                    <?php
+                                    $dataSelect = $data['nama_barang']; ?>
+                                    <option <?php echo ($dataSelect == 'Pertamax') ? "selected" : "" ?>>Pertamax</option>
+                                    <option <?php echo ($dataSelect == 'Dexlite') ? "selected" : "" ?>>Dexlite</option>
+                                  </select>
                                 </div>
 
                               </div>
