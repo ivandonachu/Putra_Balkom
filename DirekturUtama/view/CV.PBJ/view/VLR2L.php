@@ -525,7 +525,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     // pembelian kadek dan etty
 
 
-        $tablexj = mysqli_query($koneksipbj, "SELECT sum(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+        $tablexj = mysqli_query($koneksipbj, "SELECT sum(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
         $data1x = mysqli_fetch_array($tablexj);
         $pembelian_total = $data1x['total_pembelian'];
