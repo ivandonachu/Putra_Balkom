@@ -23,70 +23,54 @@ if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
     $tanggal_akhir = $_GET['tanggal2'];
     $tahun1 = date('Y', strtotime($tanggal_awal));
-    $tahun2 = date('Y', strtotime($tanggal_akhir)); 
-    $bulanx1 = date('m', strtotime($tanggal_awal)); 
+    $tahun2 = date('Y', strtotime($tanggal_akhir));
+    $bulanx1 = date('m', strtotime($tanggal_awal));
     $bulan1 = ltrim($bulanx1, '0');
-    $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+    $bulanx2 = date('m', strtotime($tanggal_akhir));
     $bulan2 = ltrim($bulanx2, '0');
- } 
- 
- elseif (isset($_POST['tanggal1'])) {
+} elseif (isset($_POST['tanggal1'])) {
     $tanggal_awal = $_POST['tanggal1'];
     $tanggal_akhir = $_POST['tanggal2'];
     $tahun1 = date('Y', strtotime($tanggal_awal));
-    $tahun2 = date('Y', strtotime($tanggal_akhir)); 
-    $bulanx1 = date('m', strtotime($tanggal_awal)); 
+    $tahun2 = date('Y', strtotime($tanggal_akhir));
+    $bulanx1 = date('m', strtotime($tanggal_awal));
     $bulan1 = ltrim($bulanx1, '0');
-    $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+    $bulanx2 = date('m', strtotime($tanggal_akhir));
     $bulan2 = ltrim($bulanx2, '0');
- }  
- 
- else{
-     $tanggal_awal = date('Y-m-1');
+} else {
+    $tanggal_awal = date('Y-m-1');
     $tanggal_akhir = date('Y-m-31');
-   $tahun1 = date('Y', strtotime($tanggal_awal));
-    $tahun2 = date('Y', strtotime($tanggal_akhir)); 
-    $bulanx1 = date('m', strtotime($tanggal_awal)); 
+    $tahun1 = date('Y', strtotime($tanggal_awal));
+    $tahun2 = date('Y', strtotime($tanggal_akhir));
+    $bulanx1 = date('m', strtotime($tanggal_awal));
     $bulan1 = ltrim($bulanx1, '0');
-    $bulanx2 = date('m', strtotime($tanggal_akhir)); 
+    $bulanx2 = date('m', strtotime($tanggal_akhir));
     $bulan2 = ltrim($bulanx2, '0');
+}
 
 
+if ($tahun1 == $tahun2) {
 
-
-   }
-
-
-   if($tahun1 == $tahun2){
-
-        if($bulan1 == 1){
-            $bulan_bunga = $bulan2;
+    if ($bulan1 == 1) {
+        $bulan_bunga = $bulan2;
+    } else {
+        $bulan_bunga = 0;
+        for ($x = $bulan1; $x <= $bulan2; $x++) {
+            $bulan_bunga = $bulan_bunga + 1;
         }
-        else{
-            $bulan_bunga=0;
-            for ($x = $bulan1; $x <= $bulan2; $x++) {
-                $bulan_bunga = $bulan_bunga + 1;
-              }
-              
-        }
-       
-
-   }
-   else if($tahun1 < $tahun2){
-
-    if($bulan1 == 1){
-        $bulan_bunga = $bulan2 + 12;
     }
-    else{
-        $bulan_bunga=0;
+} else if ($tahun1 < $tahun2) {
+
+    if ($bulan1 == 1) {
+        $bulan_bunga = $bulan2 + 12;
+    } else {
+        $bulan_bunga = 0;
         $bulan2 = $bulan2 + 12;
         for ($x = $bulan1; $x <= $bulan2; $x++) {
             $bulan_bunga = $bulan_bunga + 1;
-          }
-          
+        }
     }
-
-   }
+}
 
 function formatuang($angka)
 {
@@ -97,40 +81,38 @@ function formatuang($angka)
 if ($tanggal_awal == $tanggal_akhir) {
     // Penjualan kadek dan etty
     $table = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal = '$tanggal_awal'");
-    $pendapatan_penjualan_kadek =0;
+    $pendapatan_penjualan_kadek = 0;
     //kadek
-    while($data = mysqli_fetch_array($table)){
+    while ($data = mysqli_fetch_array($table)) {
         $no_do_pembelian = $data['no_do'];
         $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar != 'Bon' OR tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar != 'Nyicil' ");
 
-        if(mysqli_num_rows($tablex) === 1 ){
+        if (mysqli_num_rows($tablex) === 1) {
             $datax = mysqli_fetch_array($tablex);
-               $jumlah = $datax['jumlah'];
-               $pendapatan_penjualan_kadek = $pendapatan_penjualan_kadek + $jumlah;
-              }
-       
+            $jumlah = $datax['jumlah'];
+            $pendapatan_penjualan_kadek = $pendapatan_penjualan_kadek + $jumlah;
+        }
     }
-    
+
     //ety
     $tablee = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $pendapatan_penjualan_ety = 0;
-    while($datae = mysqli_fetch_array($tablee)){
+    while ($datae = mysqli_fetch_array($tablee)) {
         $no_do_pembelian = $datae['no_do'];
         $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar  != 'Bon' 
                                                                             OR tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar != 'Nyicil'
                                                                             OR tanggal_kirim = '$tanggal_awal' AND no_do = '' AND status_bayar != 'Bon'
                                                                             OR tanggal_kirim = '$tanggal_awal' AND no_do = '' AND status_bayar != 'Nyicil' ");
 
-        if(mysqli_num_rows($tablex2) === 1 ){
+        if (mysqli_num_rows($tablex2) === 1) {
             $datax2 = mysqli_fetch_array($tablex2);
             $jumlahx = $datax2['jumlah'];
             $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
-              }
-       
+        }
     }
 
-        
-    
+
+
 
 
 
@@ -140,152 +122,136 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_rama = 0;
     $total_angkutan_aril = 0;
     $total_angkutan_reni = 0;
-    while($data1 = mysqli_fetch_array($table1)){
+    while ($data1 = mysqli_fetch_array($table1)) {
         $no_polisi = trim($data1["no_polisi"]);
-        $no_polisi_ts = str_replace(" ", "" , $no_polisi);
-        
+        $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
         $kota = $data1['kota'];
         $qty = $data1['total_qty'];
-      
+
         //kak nyoman
-        if($kota == 'Kab Ogn Kmrg Ulu Tim'){
+        if ($kota == 'Kab Ogn Kmrg Ulu Tim') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
-            if(isset($data2p['status_kendaraan'])){
+            if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            
-            
-            if($pemilik == 'Bapak Nyoman Edi' ){
+
+
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
-            }
-            else if($pemilik == 'Bapak Rama'){
+            } else if ($pemilik == 'Bapak Rama') {
                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
-            }
-            else if($pemilik == 'Bapak Aril'){
+            } else if ($pemilik == 'Bapak Aril') {
                 $total_angkutan_aril = $total_angkutan_aril + $total_angkut;
-            }
-            else if($pemilik == 'Mbak Reni'){
+            } else if ($pemilik == 'Mbak Reni') {
                 $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
             }
-          
-        }
-        else if ($kota == 'Mesuji'){
+        } else if ($kota == 'Mesuji') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
-            if(isset($data2p['status_kendaraan'])){
-                $pemilik = $data2p['status_kendaraan'];
-            }
-            
-            if($pemilik == 'Bapak Nyoman Edi' ){
-                $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
-            }
-        }
-        else if ($kota == 'Kab Tlg Bwg'){
-            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
-            $data1p = mysqli_fetch_array($table1p);
-            $tarif = $data1p['tarif_pranko'];
-            $total_angkut = $qty * $tarif;
-            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
-            $data2p = mysqli_fetch_array($table2p);
-            if(isset($data2p['status_kendaraan'])){
+            if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
 
-            if($pemilik == 'Bapak Nyoman Edi' ){
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             }
-        }
-        else if ($kota == 'Kab Tlg Bwg Barat'){
+        } else if ($kota == 'Kab Tlg Bwg') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
-            if(isset($data2p['status_kendaraan'])){
+            if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            
-            if($pemilik == 'Bapak Nyoman Edi' ){
+
+            if ($pemilik == 'Bapak Nyoman Edi') {
+                $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+            }
+        } else if ($kota == 'Kab Tlg Bwg Barat') {
+            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+            $data1p = mysqli_fetch_array($table1p);
+            $tarif = $data1p['tarif_pranko'];
+            $total_angkut = $qty * $tarif;
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             }
         }
-
     }
 
     // pembelian kadek dan etty
 
     $table = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_awal'");
-    $pembelian_kadek =0;
+    $pembelian_kadek = 0;
     //kadek
-    while($data = mysqli_fetch_array($table)){
+    while ($data = mysqli_fetch_array($table)) {
         $no_do_pembelian = $data['no_do'];
         $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' ");
         $datax = mysqli_fetch_array($tablex);
-        if(isset($datax['jumlah'])){
+        if (isset($datax['jumlah'])) {
             $jumlah = $datax['jumlah'];
             $pembelian_kadek = $pembelian_kadek + $jumlah;
         }
-
-       
     }
-    
+
     //ety
     $tabell = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal'");
     $pembelian_ety = 0;
-    while($datae = mysqli_fetch_array($tabell)){
+    while ($datae = mysqli_fetch_array($tabell)) {
         $no_do_pembelian = $datae['no_do'];
         $tablell2 = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian' ");
         $datax2 = mysqli_fetch_array($tablell2);
-        if(isset($datax2['jumlah'])){
+        if (isset($datax2['jumlah'])) {
             $jumlahx = $datax2['jumlah'];
             $pembelian_ety = $pembelian_ety + $jumlahx;
         }
-
-        
     }
 
     // piutang kadek dan etty
     $tabler = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-    $piutang_penjualan_kadek =0;
+    $piutang_penjualan_kadek = 0;
     //kadek
-    while($data = mysqli_fetch_array($tabler)){
+    while ($data = mysqli_fetch_array($tabler)) {
         $no_do_pembelian = $data['no_do'];
         $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Bon' 
                                                                             OR tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil'
                                                                             OR tanggal_kirim = '$tanggal_awal' AND no_do = '' AND status_bayar = 'Bon'
                                                                             OR tanggal_kirim = '$tanggal_awal' AND no_do = '' AND status_bayar = 'Nyicil' ");
         $datax = mysqli_fetch_array($tablexr);
-        if(isset($datax['jumlah'])){
+        if (isset($datax['jumlah'])) {
             $jumlah = $datax['jumlah'];
             $piutang_penjualan_kadek = $piutang_penjualan_kadek + $jumlah;
         }
-
-       
     }
-    
+
     //ety
     $tableer = mysqli_query($koneksipbj, "SELECT no_do FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $piutang_penjualan_ety = 0;
-    while($datae = mysqli_fetch_array($tableer)){
+    while ($datae = mysqli_fetch_array($tableer)) {
         $no_do_pembelian = $datae['no_do'];
         $tablex2r = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar  = 'Bon' OR tanggal_kirim = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil' ");
         $datax2 = mysqli_fetch_array($tablex2r);
-        if(isset($datax2['jumlah'])){
+        if (isset($datax2['jumlah'])) {
             $jumlahx = $datax2['jumlah'];
             $piutang_penjualan_ety = $piutang_penjualan_ety + $jumlahx;
         }
-
-        
     }
 
     //pengiriman ety
@@ -296,8 +262,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_gaji = $data2['total_gaji'];
     $total_om = $data2['total_om'];
 
-     //pengiriman kadek
-     $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_sl WHERE 
+    //pengiriman kadek
+    $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_sl WHERE 
      tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data2sl = mysqli_fetch_array($table2sl);
     $total_uj_sl = $data2sl['total_uj'];
@@ -352,13 +318,13 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jml_transport_s = 0;
     }
 
-     //Trasnport/Perjalan Dinas kadek
-     $table5sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Transport / Perjalanan Dinas' ");
-     $data5sl = mysqli_fetch_array($table5s);
-     $jml_transport_sl = $data5s['jumlah_transport'];
-     if (!isset($data5['jumlah_transport'])) {
-         $jml_transport_sl = 0;
-     }
+    //Trasnport/Perjalan Dinas kadek
+    $table5sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+    $data5sl = mysqli_fetch_array($table5s);
+    $jml_transport_sl = $data5s['jumlah_transport'];
+    if (!isset($data5['jumlah_transport'])) {
+        $jml_transport_sl = 0;
+    }
 
     //Alat Tulis Kantor etty
     $table6s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_atk FROM keuangan_s  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Alat Tulis Kantor' ");
@@ -397,57 +363,47 @@ if ($tanggal_awal == $tanggal_akhir) {
     //gaji karaywan
     $table8 = mysqli_query($koneksipbj, "SELECT jumlah  FROM keuangan_s WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Gaji Karyawan' ");
     $data8 = mysqli_fetch_array($table8);
-    
-    if(isset($data8['jumlah'])){
-  
+
+    if (isset($data8['jumlah'])) {
+
         $gaji_karyawan = $data8['jumlah'];
     }
     if (!isset($data8['jumlah'])) {
         $gaji_karyawan = 0;
         //GAJI karyawan new
-    $table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_pbj WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-    $data_gaji_x = mysqli_fetch_array($table10x);
-    $total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
-    if (!isset($data_gaji_x['total_gaji_new'])) {
-        $total_gaji_karyawan_new = 0;
-}
-
+        $table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_pbj WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+        $data_gaji_x = mysqli_fetch_array($table10x);
+        $total_gaji_karyawan_new = $data_gaji_x['total_gaji_new'];
+        if (!isset($data_gaji_x['total_gaji_new'])) {
+            $total_gaji_karyawan_new = 0;
+        }
     }
-}
-
-
-else {
+} else {
 
     // Penjualan kadek dan etty
     $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' ");
-    $pendapatan_penjualan_kadek =0;
+    $pendapatan_penjualan_kadek = 0;
     //kadek
-    while($data = mysqli_fetch_array($tablex)){
+    while ($data = mysqli_fetch_array($tablex)) {
 
-     
-           
-               $jumlah = $data['jumlah'];
-               $pendapatan_penjualan_kadek = $pendapatan_penjualan_kadek + $jumlah;
-              
-       
+
+
+        $jumlah = $data['jumlah'];
+        $pendapatan_penjualan_kadek = $pendapatan_penjualan_kadek + $jumlah;
     }
-    
+
     //ety
     $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash' ");
-    $pendapatan_penjualan_ety = 0; 
+    $pendapatan_penjualan_ety = 0;
 
-    while($datae = mysqli_fetch_array($tablex2)){
-  
-            $jumlahx = $datae['jumlah'];
-            $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
-              
+    while ($datae = mysqli_fetch_array($tablex2)) {
 
-              
-       
+        $jumlahx = $datae['jumlah'];
+        $pendapatan_penjualan_ety = $pendapatan_penjualan_ety + $jumlahx;
     }
 
-        
-    
+
+
 
 
 
@@ -457,156 +413,152 @@ else {
     $total_angkutan_rama = 0;
     $total_angkutan_aril = 0;
     $total_angkutan_reni = 0;
-    while($data1 = mysqli_fetch_array($table1)){
-      
-       
+    while ($data1 = mysqli_fetch_array($table1)) {
+
+
         $kota = $data1['kota'];
         $qty = $data1['qty'];
-       
+
         //kak nyoman
-        if($kota == 'Kab Ogn Kmrg Ulu Tim'){
+        if ($kota == 'Kab Ogn Kmrg Ulu Tim') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
             $no_polisi = trim($data1["no_polisi"]);
-            $no_polisi_ts = str_replace(" ", "" , $no_polisi);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
-            if(isset($data2p['status_kendaraan'])){
+            if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            
-            
-            if($pemilik == 'Bapak Nyoman Edi' ){
+
+
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
-                
-            }
-            else if($pemilik == 'Bapak Rama'){
+            } else if ($pemilik == 'Bapak Rama') {
                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
-                
-            }
-            else if($pemilik == 'Bapak Aril'){
+            } else if ($pemilik == 'Bapak Aril') {
                 $total_angkutan_aril = $total_angkutan_aril + $total_angkut;
-            }
-            else if($pemilik == 'Mbak Reni'){
+            } else if ($pemilik == 'Mbak Reni') {
                 $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
             }
-          
-        }
-        else if ($kota == 'Kab Mesuji'){
+        } else if ($kota == 'Kab Mesuji') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
             $no_polisi = trim($data1["no_polisi"]);
-            $no_polisi_ts = str_replace(" ", "" , $no_polisi);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
 
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
-            $pemilik=0;
-            if(isset($data2p['status_kendaraan'])){
+            $pemilik = 0;
+            if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            
-            if($pemilik == 'Bapak Nyoman Edi' ){
+
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
-               
             }
-        }
-        else if ($kota == 'Kab Tlg Bwg'){
+        } else if ($kota == 'Kab Tlg Bwg') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
-            if(isset($data2p['status_kendaraan'])){
+            if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
 
-            if($pemilik == 'Bapak Nyoman Edi' ){
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             }
-        }
-        else if ($kota == 'Kab Tlg Bwg Barat'){
+        } else if ($kota == 'Kab Tlg Bwg Barat') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
-            if(isset($data2p['status_kendaraan'])){
+            if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            
-            if($pemilik == 'Bapak Nyoman Edi' ){
+
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             }
         }
-
     }
 
 
-// pembelian kadek dan etty
+    /*// pembelian kadek dan etty
     $total_penebusan_dani = 0;
     $total_penebusan_ety = 0;
-     $tabel = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabel = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
-     while($datal = mysqli_fetch_array($tabel)){
+    while ($datal = mysqli_fetch_array($tabel)) {
         $no_do_penjualan = $datal['no_do'];
         $tablexj = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
-    
+
         $data1x = mysqli_fetch_array($tablexj);
         $jumlah_dani = $data1x['jumlah'];
-            
+
         $total_penebusan_dani = $total_penebusan_dani + $jumlah_dani;
-      }
+    }
 
-      $tabel2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $tabel2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
-      while($data2 = mysqli_fetch_array($tabel2)){
-           $no_do_penjualan = $data2['no_do'];
-           $tablexjx = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
-       
-           $data2x = mysqli_fetch_array($tablexjx);
-           $jumlah_ety = $data2x['jumlah'];
-               
-           $total_penebusan_ety = $total_penebusan_ety + $jumlah_ety;
-         }
-   
-         $pembelian_total = $total_penebusan_dani + $total_penebusan_ety;
+    while ($data2 = mysqli_fetch_array($tabel2)) {
+        $no_do_penjualan = $data2['no_do'];
+        $tablexjx = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
+
+        $data2x = mysqli_fetch_array($tablexjx);
+        $jumlah_ety = $data2x['jumlah'];
+
+        $total_penebusan_ety = $total_penebusan_ety + $jumlah_ety;
+    }
+
+    $pembelian_total = $total_penebusan_dani + $total_penebusan_ety;*/
+
+    // pembelian kadek dan etty
 
 
+        $tablexj = mysqli_query($koneksipbj, "SELECT sum(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+        $data1x = mysqli_fetch_array($tablexj);
+        $pembelian_total = $data1x['total_pembelian'];
+
+ 
+    
 
     
+
+
+
+
 
 
     // piutang kadek dan etty
     $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' ");
-    $piutang_penjualan_kadek =0;
+    $piutang_penjualan_kadek = 0;
     //kadek
-    while($data = mysqli_fetch_array($tablexr)){
+    while ($data = mysqli_fetch_array($tablexr)) {
 
-            $jumlah = $data['jumlah'];
-            $piutang_penjualan_kadek = $piutang_penjualan_kadek + $jumlah;
-        
-
-       
+        $jumlah = $data['jumlah'];
+        $piutang_penjualan_kadek = $piutang_penjualan_kadek + $jumlah;
     }
-    
+
     //ety
     $tablex2r = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar  = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  status_bayar = 'Nyicil' ");
     $piutang_penjualan_ety = 0;
-    while($datae = mysqli_fetch_array($tablex2r)){
-      
- 
-      
-            $jumlahx = $datae['jumlah'];
-            $piutang_penjualan_ety = $piutang_penjualan_ety + $jumlahx;
-        
+    while ($datae = mysqli_fetch_array($tablex2r)) {
 
-        
+
+
+        $jumlahx = $datae['jumlah'];
+        $piutang_penjualan_ety = $piutang_penjualan_ety + $jumlahx;
     }
 
     //pengiriman ety
@@ -617,8 +569,8 @@ else {
     $total_gaji = $data2['total_gaji'];
     $total_om = $data2['total_om'];
 
-     //pengiriman kadek
-     $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_sl WHERE 
+    //pengiriman kadek
+    $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_sl WHERE 
      tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data2sl = mysqli_fetch_array($table2sl);
     $total_uj_sl = $data2sl['total_uj'];
@@ -671,13 +623,13 @@ else {
         $jml_transport_s = 0;
     }
 
-     //Trasnport/Perjalan Dinas kadek
-     $table5sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
-     $data5sl = mysqli_fetch_array($table5sl);
-     $jml_transport_sl = $data5sl['jumlah_transport'];
-     if (!isset($data5['jumlah_transport'])) {
-         $jml_transport_sl = 0;
-     }
+    //Trasnport/Perjalan Dinas kadek
+    $table5sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
+    $data5sl = mysqli_fetch_array($table5sl);
+    $jml_transport_sl = $data5sl['jumlah_transport'];
+    if (!isset($data5['jumlah_transport'])) {
+        $jml_transport_sl = 0;
+    }
 
     //Alat Tulis Kantor etty
     $table6s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_atk FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Alat Tulis Kantor' ");
@@ -725,13 +677,11 @@ else {
     $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Gaji Karyawan' ");
     $data8 = mysqli_fetch_array($table8);
     $gaji_karyawan = $data8['total_pengeluaran'];
-    if($gaji_karyawan > 0){
-  
+    if ($gaji_karyawan > 0) {
+
         $gaji_karyawan = $data8['total_pengeluaran'];
         $total_gaji_karyawan_new = 0;
-    }
-
-    else  {
+    } else {
         $gaji_karyawan = 0;
         //GAJI karyawan new
         $table10x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_new FROM rekap_gaji_pbj WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
@@ -740,8 +690,7 @@ else {
         if (!isset($data_gaji_x['total_gaji_new'])) {
             $total_gaji_karyawan_new = 0;
         }
-
-        }
+    }
 }
 
 //GAJI Drivver new
@@ -752,25 +701,22 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
     $total_gaji_driver = 0;
 }
 
-if($total_gaji_driver > 0){
+if ($total_gaji_driver > 0) {
     $total_bunga_bank = 50000000 * $bulan_bunga;
 
     $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
     $laba_kotor = $total_pendapatan - $pembelian_total;
-    $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
-                                $total_uj_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank;
+    $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
+        $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
+} else {
 
-    
-}
-else{
-    
     $total_bunga_bank = 50000000 * $bulan_bunga;
 
     $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
     $laba_kotor = $total_pendapatan - $pembelian_total;
-    $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s+ $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
-                                $total_uj_sl + $total_gaji_sl + $total_om_sl +$jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank;
+    $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
+        $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 }
 
@@ -821,33 +767,32 @@ else{
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png" ></div>
+                <div class="sidebar-brand-text mx-3"> <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png"></div>
             </a>
             <br>
-            
+
             <br>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
+            <li class="nav-item active">
                 <a class="nav-link" href="DsCVPBJ">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+                    <span style="font-size: 16px;">Dashboard</span></a>
+            </li>
 
-                 <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu CV.PBJ (Semen)
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Company</span>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                Menu CV.PBJ (Semen)
+            </div>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">List Company</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -864,12 +809,11 @@ else{
                     </div>
                 </div>
             </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Report Etty</span>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Etty</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -884,10 +828,9 @@ else{
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-                  15  aria-expanded="true" aria-controls="collapseTwo3">
-                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Report Made Dani</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo3">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Made Dani</span>
                 </a>
                 <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -902,24 +845,24 @@ else{
                 </div>
             </li>
 
-            <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"
+            <?php if ($nama == 'Nyoman Edy Susanto') {
+                echo "
                           <li class='nav-item'>
                           <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
                           <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VLR2L'> Laba Rugi </a>
                           </li>";
-                        } ?>
-           
-        
+            } ?>
 
 
 
-           
-    <!-- Divider -->
-    <hr class="sidebar-divider">
 
-    
-         
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -950,54 +893,48 @@ else{
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                        aria-labelledby="searchDropdown">
-                        <form class="form-inline mr-auto w-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search"
-                                aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                    </div>
-                </li>
+                        </li>
 
 
 
 
-                <div class="topbar-divider d-none d-sm-block"></div>
+                        <div class="topbar-divider d-none d-sm-block"></div>
 
-<!-- Nav Item - User Information -->
-<li class="nav-item dropdown no-arrow">
-    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
-</a>
-<!-- Dropdown - User Information -->
-<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-aria-labelledby="userDropdown">
-<a class="dropdown-item" href="VProfile">
-    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-    Profile
-</a>
-<div class="dropdown-divider"></div>
-<a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-    Logout
-</a>
-</div>
-</li>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline  small" style="color:white;"><?php echo "$nama"; ?></span>
+                                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile -->
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="VProfile">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
 
                     </ul>
 
@@ -1150,7 +1087,7 @@ aria-labelledby="userDropdown">
                                                     <td><strong>Total Harga Pokok Penjualan</strong></td>
                                                     <td class="thick-line"></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang( $pembelian_total); ?></td>
+                                                    <td class="text-left"><?= formatuang($pembelian_total); ?></td>
                                                     <td class="thick-line"></td>
                                                 </tr>
                                                 <tr style="background-color: navy;  color:white;">
@@ -1178,28 +1115,28 @@ aria-labelledby="userDropdown">
                                                     <td>5-511</td>
                                                     <td class="text-left">Gaji Driver</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                            
 
-                                                        <?php
 
-                                                        if ($total_gaji_driver > 0) { ?>
+                                                    <?php
+
+                                                    if ($total_gaji_driver > 0) { ?>
                                                         <td class="text-left"><?= formatuang($total_gaji_driver); ?></td>
-                                                        
 
-                                                        <?php } else { ?>
 
-                                                            <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl); ?></td>
+                                                    <?php } else { ?>
 
-                                                        <?php }?>
+                                                        <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl); ?></td>
 
-                                                            
+                                                    <?php } ?>
+
+
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-5111</td>
                                                     <td class="text-left">Gaji Karyawan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($gaji_karyawan + $total_gaji_karyawan_new); ?></td>
+                                                    <td class="text-left"><?= formatuang($gaji_karyasswan + $total_gaji_karyawan_new); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRGajiKaryawan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
