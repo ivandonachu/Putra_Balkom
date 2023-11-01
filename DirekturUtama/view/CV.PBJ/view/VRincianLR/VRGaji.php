@@ -375,12 +375,12 @@ Logout
 
  <h3 align='center' >Gaji Driver Etty</h3>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th align="center">Nama Driver</th>
-      <th align="center">Gaji Karyawan</th>
-      <th align="center">Total Gaji Karyawan</th>
+      <th align="center">Gaji Driver</th>
+      <th align="center">Total Gaji Driver</th>
 
 
     </tr>
@@ -413,12 +413,12 @@ Logout
 
 <h3 align='center' >Gaji Driver Kadek</h3>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example3" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th align="center">Nama Driver</th>
-      <th align="center">Gaji Karyawan</th>
-      <th align="center">Total Gaji Karyawan</th>
+      <th align="center">Gaji Driver</th>
+      <th align="center">Total Gaji Driver</th>
 
 
     </tr>
@@ -529,7 +529,18 @@ aria-hidden="true">
 </script>
 <script>
   $(document).ready(function() {
-    var table = $('#example1').DataTable( {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example3').DataTable( {
       lengthChange: false,
       buttons: ['excel']
     } );
