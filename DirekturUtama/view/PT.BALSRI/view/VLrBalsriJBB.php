@@ -1163,7 +1163,7 @@ else{
                                 $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
 
     $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
-                                    $total_bbm_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
+                                    $total_bbm_global_jbb+ $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
            
     $laba_bersih_sebelum_pajak = ($total_tagihan_global + $total_tagihan_global_jbb) - $total_biaya_usaha_final;
     $laba_bersih_sebelum_pajak_bbm = ($total_tagihan_global + $total_tagihan_global_jbb) - $total_biaya_usaha_final_bbm;
