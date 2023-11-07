@@ -38,13 +38,13 @@ $tanggal_akhir = date('Y-m-31');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi,"SELECT * FROM sewa_hiblow  WHERE tanggal ='$tanggal_awal' ");
+  $table = mysqli_query($koneksi,"SELECT * FROM sewa_hiblow  WHERE tanggal_do ='$tanggal_awal' ");
 
 
 }
 
 else{
-  $table = mysqli_query($koneksi,"SELECT * FROM sewa_hiblow WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi,"SELECT * FROM sewa_hiblow WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 
 }
@@ -344,10 +344,13 @@ else{
   <thead>
     <tr>
       <th>No</th>
-      <th>Tanggal</th>
-      <th>Tujuan</th>   
-      <th>Tonase</th>
-      <th>Ongkos Angkut</th>
+      <th>Tanggal DO</th>
+      <th>No DO</th>
+      <th>No Kendaraan</th> 
+      <th>Uang Jalan</th> 
+      <th>Qty/Tonase</th>
+      <th>Harga / Ton</th>
+      <th>Jumlah</th>
       <th>Biaya Sewa</th>
       <th></th>
     </tr>

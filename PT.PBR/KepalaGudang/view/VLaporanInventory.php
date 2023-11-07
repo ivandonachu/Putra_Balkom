@@ -355,6 +355,7 @@ $tanggal_akhir = date('Y-m-31');
 
 
 <!-- Tabel -->    
+<div style="overflow-x: auto">
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
@@ -496,6 +497,7 @@ $tanggal_akhir = date('Y-m-31');
 
     </tbody>
   </table>
+    </div>
 </div>
 </div>
 
