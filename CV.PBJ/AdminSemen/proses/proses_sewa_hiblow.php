@@ -22,21 +22,17 @@ exit;
 
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
-$tanggal = $_POST['tanggal'];
-$tujuan = $_POST['tujuan'];
+$tanggal_do = $_POST['tanggal_do'];
+$no_do = $_POST['no_do'];
+$no_kendaraan = $_POST['no_kendaraan'];
+$uang_jalan = $_POST['uang_jalan'];
 $tonase = $_POST['tonase'];
-if($tujuan == 'Linggau Muratara'){
-    $ongkos_angkut = 380000;
-    $total_sewa = $ongkos_angkut * $tonase;
-}
-else if($tujuan == 'Lahat' ){
-    $ongkos_angkut = 170000;
-    $total_sewa = $ongkos_angkut * $tonase;
-}
+$harga = $_POST['harga'];
+$jumlah = $tonase * $harga;
 
 
 
-$query = mysqli_query($koneksi,"INSERT INTO sewa_hiblow VALUES('','$tanggal','$tujuan','$tonase','$ongkos_angkut','$total_sewa')");
+$query = mysqli_query($koneksi,"INSERT INTO sewa_hiblow VALUES('','$tanggal_do','$no_do','$no_kendaraan','$uang_jalan','$tonase','$harga','$jumlah')");
 
 if ($query != "") {
 	echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VSewaHiBlow?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

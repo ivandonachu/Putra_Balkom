@@ -301,9 +301,9 @@ else{
           <br>
           <div class="row">
             <div class="col-md-6">
-                  <label>Tanggal</label>
+                  <label>Tanggal Do</label>
                      <div class="col-sm-10">
-                     <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
+                     <input class="form-control form-control-sm" type="date" name="tanggal_do" required="">
                     </div>      
             </div>
           </div>
@@ -311,17 +311,31 @@ else{
          <br>
 
          <div class="row">
+            <div class="col-md-4">
+                <label>No DO</label>
+                <input class="form-control form-control-sm" type="text"  name="no_do" required="" >
+             </div>
+             <div class="col-md-4">
+                <label>No Kendaraan</label>
+                <input class="form-control form-control-sm" type="text"  name="no_kendaraan" required="" >
+              </div>   
+              <div class="col-md-4">
+                <label>Uang Jalan</label>
+                <input class="form-control form-control-sm" type="float"  name="uang_jalan" required="" >
+              </div>    
+         </div>
+
+         <br>
+
+         <div class="row">
             <div class="col-md-6">
-                <label>Tujuan</label>
-                <select id="tujuan" name="tujuan" class="form-control">
-                    <option>Linggau Muratara</option>
-                    <option>Lahat</option>
-                </select>
+                <label>QTY/Tonase</label>
+                <input class="form-control form-control-sm" type="float"  name="tonase" required="" >
              </div>
              <div class="col-md-6">
-                <label>Tonase</label>
-                <input class="form-control form-control-sm" type="float" id="tonase" name="tonase" required="" >
-              </div>    
+                <label>Harga</label>
+                <input class="form-control form-control-sm" type="float"  name="harga" required="" >
+              </div>      
          </div>
 
 
@@ -352,7 +366,6 @@ else{
       <th>Qty/Tonase</th>
       <th>Harga / Ton</th>
       <th>Jumlah</th>
-      <th>Biaya Sewa</th>
       <th></th>
     </tr>
   </thead>
@@ -367,20 +380,24 @@ else{
     ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
-      $tanggal =$data['tanggal'];
-      $tujuan =$data['tujuan'];
+      $tanggal_do =$data['tanggal_do'];
+      $no_do =$data['no_do'];
+      $no_kendaraan =$data['no_kendaraan'];
+      $uang_jalan =$data['uang_jalan'];
       $tonase =$data['tonase'];
-      $ongkos_angkut =$data['ongkos_angkut'];
-      $total_sewa =$data['total_sewa'];
+      $harga =$data['harga'];
+      $jumlah =$data['jumlah'];
       $urut = $urut + 1;
 
       echo "<tr>
       <td style='font-size: 14px' align = 'center'>$urut</td>
-      <td style='font-size: 14px' align = 'center'>$tanggal</td>
-      <td style='font-size: 14px' align = 'center'>$tujuan</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal_do</td>
+      <td style='font-size: 14px' align = 'center'>$no_do</td>
+      <td style='font-size: 14px' align = 'center'>$no_kendaraan</td>
+      <td style='font-size: 14px' align = 'center'>$uang_jalan</td>
       <td style='font-size: 14px' align = 'center'>$tonase</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ongkos_angkut); ?> <?php echo "</td>
-      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_sewa); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
     
@@ -409,30 +426,40 @@ else{
 
           <div class="row">
           <div class="col-md-6">
-              <label>Tanggal</label>
-              <input  class="form-control" type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>">
+              <label>Tanggal DO</label>
+              <input  class="form-control" type="date"  name="tanggal_do"  value="<?php echo $tanggal_do;?>">
           </div>
           </div>
 
          <br>
 
+      <div class="row">
+            <div class="col-md-4">
+                <label>No DO</label>
+                <input class="form-control form-control-sm" type="text"  name="no_do" required="" value="<?php echo $no_do;?>">
+             </div>
+             <div class="col-md-4">
+                <label>No Kendaraan</label>
+                <input class="form-control form-control-sm" type="text"  name="no_kendaraan" required="" value="<?php echo $no_kendaraan;?>">
+              </div>   
+              <div class="col-md-4">
+                <label>Uang Jalan</label>
+                <input class="form-control form-control-sm" type="float"  name="uang_jalan" required="" value="<?php echo $uang_jalan;?>">
+              </div>    
+         </div>
+
+         <br>
+
          <div class="row">
-
-
-
-                <div class="col-md-6">
-                <label>Tujuan</label>
-                <select id="tujuan" name="tujuan" class="form-control">
-                    <?php $dataSelect = $data['tujuan']; ?>
-                    <option <?php echo ($dataSelect == 'Linggau Muratara') ? "selected": "" ?>>Linggau Muratara</option>
-                    <option <?php echo ($dataSelect == 'Lahat') ? "selected": "" ?>>Lahat</option>
-                </select>
-                </div>    
-                <div class="col-md-6">
-                <label>Tonase</label>
-                <input class="form-control form-control-sm" type="float" id="tonase" name="tonase" required="" value="<?php echo $tonase;?>">
-              </div>          
-      </div>
+            <div class="col-md-6">
+                <label>QTY/Tonase</label>
+                <input class="form-control form-control-sm" type="float"  name="tonase" required="" value="<?php echo $tonase;?>">
+             </div>
+             <div class="col-md-6">
+                <label>Harga</label>
+                <input class="form-control form-control-sm" type="float"  name="harga" required="" value="<?php echo $harga;?>">
+              </div>      
+         </div>
 
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary"> Ubah </button>

@@ -23,22 +23,18 @@ exit;
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_laporan = $_POST['no_laporan'];
-$tanggal = $_POST['tanggal'];
-$tujuan = $_POST['tujuan'];
+$tanggal_do = $_POST['tanggal_do'];
+$no_do = $_POST['no_do'];
+$no_kendaraan = $_POST['no_kendaraan'];
+$uang_jalan = $_POST['uang_jalan'];
 $tonase = $_POST['tonase'];
-if($tujuan == 'Linggau Muratara'){
-    $ongkos_angkut = 380000;
-    $total_sewa = $ongkos_angkut * $tonase;
-}
-else if($tujuan == 'Lahat' ){
-    $ongkos_angkut = 170000;
-    $total_sewa = $ongkos_angkut * $tonase;
-}
+$harga = $_POST['harga'];
+$jumlah = $tonase * $harga;
 
 
 
 	
-			$query = mysqli_query($koneksi,"UPDATE sewa_hiblow SET  tanggal = '$tanggal', tujuan = '$tujuan' , tonase = '$tonase' , ongkos_angkut = '$ongkos_angkut' , total_sewa = '$total_sewa'   WHERE no_laporan = '$no_laporan'");
+			$query = mysqli_query($koneksi,"UPDATE sewa_hiblow SET  tanggal_do = '$tanggal_do', no_do = '$no_do' , no_kendaraan = '$no_kendaraan' , uang_jalan = '$uang_jalan' , tonase = '$tonase', harga = '$harga', jumlah = '$jumlah'   WHERE no_laporan = '$no_laporan'");
 
 
 if ($query != "") {
