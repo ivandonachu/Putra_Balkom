@@ -292,6 +292,7 @@ else{
               <option>Bayar Piutang</option>
               <option>Karyawan Bon</option>
               <option>Setor Uang</option>
+              <option>Bayar Tarikan</option>
               <option>Pendapatan Sewa</option>
               <option>Ongkos Kuli</option>
               <option>Kembalikan Saldo Brankas</option>
@@ -443,6 +444,7 @@ else{
                     <option <?php echo ($dataSelect == 'Bayar Piutang') ? "selected": "" ?> >Bayar Piutang</option>
                     <option <?php echo ($dataSelect == 'Karyawan Bon') ? "selected": "" ?> >Karyawan Bon</option>
                     <option <?php echo ($dataSelect == 'Setor Uang') ? "selected": "" ?> >Setor Uang</option>
+                    <option <?php echo ($dataSelect == 'Bayar Tarikan') ? "selected": "" ?> >Bayar Tarikan</option>
                     <option <?php echo ($dataSelect == 'Pendapatan Sewa') ? "selected": "" ?> >Pendapatan Sewa</option>
                     <option <?php echo ($dataSelect == 'Ongkos Kuli') ? "selected": "" ?> >Ongkos Kuli</option>
                     <option <?php echo ($dataSelect == 'Kembalikan Saldo Brankas') ? "selected": "" ?> >Kembalikan Saldo Brankas</option>

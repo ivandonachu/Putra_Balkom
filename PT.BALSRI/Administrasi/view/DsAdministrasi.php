@@ -210,6 +210,7 @@ $nama = $data['nama_karyawan'];
                         <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKreditKenPribadi">Kredit Ken Pribadi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapBBM">Rekap BBM</a>
                     </div>
                 </div>
             </li>
