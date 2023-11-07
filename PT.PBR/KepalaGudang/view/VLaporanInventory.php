@@ -458,6 +458,7 @@ $tanggal_akhir = date('Y-m-31');
 </tbody>
 </table>
 </div>
+</div>
 <br>
 <br>
 <br>
@@ -497,7 +498,7 @@ $tanggal_akhir = date('Y-m-31');
 
     </tbody>
   </table>
-    </div>
+
 </div>
 </div>
 
