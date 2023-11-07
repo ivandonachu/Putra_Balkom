@@ -209,6 +209,7 @@ else{
 
     
     $total_dexlite_global = $total_dexlite_br + $total_dexlite_plg  + $total_dexlite_bb + $total_dexlite_spbu + $total_dexlite_lmg + $total_dexlite_bk + $total_dexlite_bkl;
+    $total_dexlite_global_bbm = $total_dexlite_bb + $total_dexlite_bk;
     $total_um_global = $total_um_br + $total_um_lmg + $total_um_plg + $total_um_bb + $total_um_spbu +  $total_um_bk + $total_um_bkl;
     $total_bbm_global = $uang_bbm_br + $uang_bbm_lpg + $uang_bbm_spbu + $uang_bbm_bku + $uang_bbm_plg;
 
@@ -1162,7 +1163,7 @@ else{
     $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
                                 $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
 
-    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
+    $total_biaya_usaha_final_bbm = $total_bbm_global + $total_dexlite_global_bbm + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
                                     $total_bbm_global_jbb + $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
            
     $laba_bersih_sebelum_pajak = ($total_tagihan_global + $total_tagihan_global_jbb) - $total_biaya_usaha_final;
