@@ -465,7 +465,7 @@ $tanggal_akhir = date('Y-m-31');
 <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
   <h5 align="center" >Inventory</h3>
     <!-- Tabel -->    
-    <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
      <thead>
       <tr>
         <th>Baja</th>
@@ -576,7 +576,19 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
+      buttons: [ 'excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+      buttons: [  'excel' ]
     } );
 
     table.buttons().container()
