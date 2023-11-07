@@ -493,7 +493,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
 
-    // pembelian kadek dan etty
+    /* pembelian kadek dan etty
     $total_penebusan_dani = 0;
     $total_penebusan_ety = 0;
     $tabel = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
@@ -525,7 +525,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     // pembelian kadek dan etty
 
 
-      /*  $tablexj = mysqli_query($koneksipbj, "SELECT sum(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+       $tablexj = mysqli_query($koneksipbj, "SELECT sum(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
         $data1x = mysqli_fetch_array($tablexj);
         $pembelian_total = $data1x['total_pembelian'];
@@ -533,7 +533,43 @@ if ($tanggal_awal == $tanggal_akhir) {
  
     */
 
-    
+    // pembelian kadek dan etty
+
+    //pembelian 1
+    $table_pembelian_1 = mysqli_query($koneksipbj, "SELECT harga_beli, qty FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $total_pembelian_1 = 0;
+    while ($data_pembelian_1 = mysqli_fetch_array($table_pembelian_1)) {
+
+
+
+        $harga_beli = $data_pembelian_1['harga_beli'];
+        $qty = $data_pembelian_1['qty'];
+        $pembelian_1 = $harga_beli * $qty;
+        $total_pembelian_1 = $total_pembelian_1 +$pembelian_1;
+    }
+
+    //pembelian 2
+    $table_pembelian_2 = mysqli_query($koneksipbj, "SELECT harga_beli, qty FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+ 
+    $total_pembelian_2 = 0;
+    while ($data_pembelian_2 = mysqli_fetch_array($table_pembelian_2)) {
+
+
+
+        $harga_beli = $data_pembelian_2['harga_beli'];
+        $qty = $data_pembelian_2['qty'];
+        $pembelian_2 = $harga_beli * $qty;
+
+        $total_pembelian_2 = $total_pembelian_2 +$pembelian_2;
+
+    }
+
+    $pembelian_total = $total_pembelian_1 + $total_pembelian_2;
+
+
+
+
+
 
 
 
@@ -738,7 +774,7 @@ if ($total_gaji_driver > 0) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Laba Rugi CV PBJ</title>
+    <title>Laba Rugi CV PBJ Baru</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -872,7 +908,6 @@ if ($total_gaji_driver > 0) {
 
 
 
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -956,7 +991,7 @@ if ($total_gaji_driver > 0) {
                 </nav>
                 <!-- End of Topbar -->
                 <div class="container" style="color : black;">
-                    <?php echo "<form  method='POST' action='VLR2L' style='margin-bottom: 15px;'>" ?>
+                    <?php echo "<form  method='POST' action='VLR2LBaru' style='margin-bottom: 15px;'>" ?>
                     <div>
                         <div align="left" style="margin-left: 20px;">
                             <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -977,7 +1012,7 @@ if ($total_gaji_driver > 0) {
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi PT PBJ</strong></h3>
+                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi PT PBJ Baru (Harga Jual dan Beli)</strong></h3>
                                 </div>
 
                                 <div>
