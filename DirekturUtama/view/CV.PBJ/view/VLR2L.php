@@ -566,20 +566,22 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
     //pengiriman ety
-    $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_s WHERE 
+    $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE 
                                         tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data2 = mysqli_fetch_array($table2);
     $total_uj = $data2['total_uj'];
     $total_gaji = $data2['total_gaji'];
     $total_om = $data2['total_om'];
+    $total_bs = $data2['total_bs'];
 
     //pengiriman kadek
-    $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_sl WHERE 
+    $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE 
      tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data2sl = mysqli_fetch_array($table2sl);
     $total_uj_sl = $data2sl['total_uj'];
     $total_gaji_sl = $data2sl['total_gaji'];
     $total_om_sl = $data2sl['total_om'];
+    $total_bs_sl = $data2sl['total_bs'];
 
     //Cashback
     $table_cashback = mysqli_query($koneksipbj, "SELECT SUM(potongan_harga) AS jumlah_potongan_harga FROM potongan_harga WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
@@ -760,7 +762,7 @@ if ($total_gaji_driver > 0) {
     $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
-        $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl;
+        $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 } else {
 
@@ -769,7 +771,7 @@ if ($total_gaji_driver > 0) {
     $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
-        $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl;
+        $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 }
 
@@ -1134,8 +1136,8 @@ if ($total_gaji_driver > 0) {
                                                 <tr>
                                                     <td>4-110</td>
                                                     <td class="text-left">Pemasukan Lainnya</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VPemasukanLainnya?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color:     #F0F8FF; ">
@@ -1240,8 +1242,8 @@ if ($total_gaji_driver > 0) {
                                                     <td>5-514</td>
                                                     <td class="text-left">Biaya Sewa Mobil Luar</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_om + $total_om_sl); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VROM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <td class="text-left"><?= formatuang($total_bs + $total_bs_sl); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRBS?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-520</td>
