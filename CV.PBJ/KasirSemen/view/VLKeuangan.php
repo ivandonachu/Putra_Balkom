@@ -276,6 +276,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Bayar Sewa Kendaraan Luar</option>
                               <option>Pendapatan Sewa</option>
                               <option>Ongkos Kuli</option>
+                              <option>Uang Jalan</option>
                               <option>Biaya Konsumsi</option>
                               <option>Biaya Administrasi</option>
                               <option>Biaya Kantor</option>
@@ -429,6 +430,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Setor Uang') ? "selected" : "" ?>>Setor Uang</option>
                                     <option <?php echo ($dataSelect == 'Bayar Sewa Kendaraan Luar') ? "selected" : "" ?>>Bayar Sewa Kendaraan Luar</option>
                                     <option <?php echo ($dataSelect == 'Ongkos Kuli') ? "selected" : "" ?>>Ongkos Kuli</option>
+                                    <option <?php echo ($dataSelect == 'Uang Jalan') ? "selected" : "" ?>>Uang Jalan</option>
                                     <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected" : "" ?>>Biaya Konsumsi</option>
                                     <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected" : "" ?>>Biaya Administrasi</option>
                                     <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected" : "" ?>>Biaya Kantor</option>
