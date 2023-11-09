@@ -33,7 +33,8 @@ elseif (isset($_POST['tanggal1'])) {
 else{
   $tanggal_awal = date('Y-m-1');
 $tanggal_akhir = date('Y-m-31');
-}
+} 
+
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbj,"SELECT * FROM sewa_hiblow  WHERE tanggal_do ='$tanggal_awal' ");
