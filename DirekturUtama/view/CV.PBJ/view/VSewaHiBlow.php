@@ -256,7 +256,7 @@ else{
 
  <div style="margin-right: 100px; margin-left: 100px;">
 
-  <?php  echo "<form  method='POST' action='VSewaHiBlow'>" ?>
+  <?php  echo "<form  method='POST' action='VSewaHiblow'>" ?>
   <div>
     <div align="left" style="margin-left: 20px;"> 
       <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
