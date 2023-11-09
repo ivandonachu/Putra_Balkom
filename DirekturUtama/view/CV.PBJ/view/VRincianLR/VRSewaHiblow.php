@@ -342,7 +342,7 @@ else{
       $tonase =$data['tonase'];
       $harga =$data['harga'];
       $jumlah =$data['jumlah'];
-      $total_sewa = $$total_sewa + $jumlah;
+      $total_sewa = $total_sewa + $jumlah;
       $urut = $urut + 1;
 
       echo "<tr>
