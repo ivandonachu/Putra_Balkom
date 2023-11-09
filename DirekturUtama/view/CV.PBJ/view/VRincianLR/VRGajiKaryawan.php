@@ -402,7 +402,6 @@ Logout
           <th style="font-size: 14px" scope="col">Total Gaji</th>
           <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
           <th style="font-size: 14px" scope="col">Keterangan </th>
-          <th style="font-size: 14px" scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -484,8 +483,40 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Pengeluaran</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran) ?></div>
+            Total Seluruh Gaji</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_seluruh) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Gaji Cash</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_cash) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Gaji Transfer</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_tf) ?></div>
           </div>
           <div class="col-auto">
            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

@@ -404,7 +404,12 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
+    //sewa hiblow
 
+    $sql_sewa_hiblow = mysqli_query($koneksipbj,"SELECT SUM(jumlah) AS total_sewa_hiblow FROM sewa_hiblow WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+    $data_sewa_hiblow = mysqli_fetch_array($sql_sewa_hiblow);
+    $total_sewa_hiblow = $data_sewa_hiblow['total_sewa_hiblow'];
 
 
     //Untung angkutan / pranko
@@ -740,7 +745,7 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
 if ($total_gaji_driver > 0) {
     $total_bunga_bank = 50000000 * $bulan_bunga;
 
-    $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
+    $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow;
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
         $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank;
@@ -749,7 +754,7 @@ if ($total_gaji_driver > 0) {
 
     $total_bunga_bank = 50000000 * $bulan_bunga;
 
-    $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback;
+    $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow;
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
         $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank;
@@ -873,6 +878,7 @@ if ($total_gaji_driver > 0) {
                         <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSewaHiblow">Sewa Hiblow</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
@@ -1057,53 +1063,60 @@ if ($total_gaji_driver > 0) {
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPenjualanETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>4-100</td>
+                                                    <td>4-102</td>
                                                     <td class="text-left">Piutang Penjualan Dani</td>
                                                     <td class="text-left"><?= formatuang($piutang_penjualan_kadek); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPiutangKDK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>4-101</td>
+                                                    <td>4-103</td>
                                                     <td class="text-left">Piutang Penjualan Ety</td>
                                                     <td class="text-left"><?= formatuang($piutang_penjualan_ety); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPiutangETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>4-102</td>
+                                                    <td>4-104</td>
                                                     <td class="text-left">Pranko Nyoman Edy</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_edy); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPrankoEDY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>4-103</td>
+                                                    <td>4-105</td>
                                                     <td class="text-left">Pranko Bli Rama</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_rama); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPrankoRAMA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>4-103</td>
+                                                    <td>4-106</td>
                                                     <td class="text-left">Pranko Pak Aril</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_aril); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPrankoARIL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>4-103</td>
+                                                    <td>4-107</td>
                                                     <td class="text-left">Pranko Yuk Reni</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_reni); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPrankoRENI?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>4-103</td>
+                                                    <td>4-108</td>
                                                     <td class="text-left">Cashback</td>
                                                     <td class="text-left"><?= formatuang($jml_cashback); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-109</td>
+                                                    <td class="text-left">Sewa Hiblow</td>
+                                                    <td class="text-left"><?= formatuang($$total_sewa_hiblow); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRSewaHiblow?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color:     #F0F8FF; ">
                                                     <td><strong>Total Pendapatan</strong></td>
