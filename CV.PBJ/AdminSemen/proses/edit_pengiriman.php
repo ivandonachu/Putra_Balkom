@@ -29,6 +29,7 @@ $toko_do = $_POST['toko_do'];
 $uj = $_POST['uj'];
 $ug = $_POST['ug'];
 $om = $_POST['om'];
+$bs = $_POST['bs'];
 $tanggal_gaji = $_POST['tanggal_gaji'];
 $tanggal_nota = $_POST['tanggal_nota'];
 $keterangan = $_POST['keterangan'];
@@ -75,7 +76,7 @@ else if ( $nama_file != "" ) {
 
 	if ($file == '') {
 			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET tanggal_antar = '$tanggal_antar', no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi', 
-			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan' WHERE no_pengiriman = '$no_pengiriman'");
+			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', bs = '$bs' , tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan' WHERE no_pengiriman = '$no_pengiriman'");
 
 			$query4 = mysqli_query($koneksi,"UPDATE penjualan_sl SET  no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
 			toko_do = '$toko_do' WHERE no_penjualan = '$no_penjualan'");
@@ -83,7 +84,7 @@ else if ( $nama_file != "" ) {
 	}
 	else{
 			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET tanggal_antar = '$tanggal_antar', no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi',
-			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan', file_bukti = '$file'  WHERE no_pengiriman = '$no_pengiriman'");
+			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', bs = '$bs', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan', file_bukti = '$file'  WHERE no_pengiriman = '$no_pengiriman'");
 
 			$query4 = mysqli_query($koneksi,"UPDATE penjualan_sl SET no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
 			toko_do = '$toko_do' WHERE no_penjualan = '$no_penjualan'");
