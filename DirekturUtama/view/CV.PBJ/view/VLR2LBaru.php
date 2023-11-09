@@ -1116,7 +1116,7 @@ if ($total_gaji_driver > 0) {
                                                     <td class="text-left">Sewa Hiblow</td>
                                                     <td class="text-left"><?= formatuang($total_sewa_hiblow); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRSewaHiBlow?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRSewaHiblow?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color:     #F0F8FF; ">
                                                     <td><strong>Total Pendapatan</strong></td>
