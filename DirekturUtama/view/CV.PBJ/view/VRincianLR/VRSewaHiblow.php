@@ -331,7 +331,7 @@ else{
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
+    $total_sewa = 0;
     ?>
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
@@ -342,6 +342,7 @@ else{
       $tonase =$data['tonase'];
       $harga =$data['harga'];
       $jumlah =$data['jumlah'];
+      $total_sewa = $$total_sewa + $jumlah;
       $urut = $urut + 1;
 
       echo "<tr>
@@ -360,6 +361,27 @@ else{
 </tbody>
 </table>
 </div>
+<br>
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Sewa Hiblow</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_sewa) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
 <br>
 <br>
 </div>
