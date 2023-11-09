@@ -878,7 +878,7 @@ if ($total_gaji_driver > 0) {
                         <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSewaHiblow">Sewa Hiblow</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Sewa Hiblow</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
@@ -1116,7 +1116,7 @@ if ($total_gaji_driver > 0) {
                                                     <td class="text-left">Sewa Hiblow</td>
                                                     <td class="text-left"><?= formatuang($$total_sewa_hiblow); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRSewaHiblow?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRSewaHiBlow?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color:     #F0F8FF; ">
                                                     <td><strong>Total Pendapatan</strong></td>

@@ -265,7 +265,7 @@ if (isset($_GET['tanggal1'])) {
                 <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
                 <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
                 <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VSewaHiblow">Sewa Hiblow</a>
+                <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Sewa Hiblow</a>
                 <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
                 <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
                 <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
