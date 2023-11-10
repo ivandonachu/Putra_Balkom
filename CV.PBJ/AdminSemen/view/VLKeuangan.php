@@ -294,6 +294,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Kembalikan Deposit</option>
                               <option>Pengeluaran Lainnya</option>
                               <option>Pemasukan Lainnya</option>
+                              <option>Bayar BPJS</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -448,6 +449,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Kembalikan Deposit') ? "selected" : "" ?>>Kembalikan Deposit</option>
                                     <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected" : "" ?>>Pengeluaran Lainnya</option>
                                     <option <?php echo ($dataSelect == 'Pemasukan Lainnya') ? "selected" : "" ?>>Pemasukan Lainnya</option>
+                                    <option <?php echo ($dataSelect == 'Bayar BPJS') ? "selected" : "" ?>>Bayar BPJS</option>
 
                                   </select>
                                 </div>
