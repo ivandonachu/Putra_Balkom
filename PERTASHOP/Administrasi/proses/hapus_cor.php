@@ -113,7 +113,7 @@ $no_cor = $_POST['no_cor'];
                 $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
                 $query = mysqli_query($koneksi,"DELETE FROM ngecor WHERE no_cor = '$no_cor'");
                 	if ($query != "") {
-				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
+				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 			}
         }
         else if($lokasi_cor == 'BK 3' && $nama_barang == 'Pertamax'){
