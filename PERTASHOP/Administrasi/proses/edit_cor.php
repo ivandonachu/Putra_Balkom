@@ -182,7 +182,7 @@ else if($lokasi_cor == 'Sumber Jaya' && $nama_barang == 'Pertamax'){
 		echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 
 }
-else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Dexlite'){
+else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Pertamax'){
 	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
 	$data_stok = mysqli_fetch_array($result2);
 	$stok_awal = $data_stok['stok'];

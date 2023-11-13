@@ -128,7 +128,7 @@ else if ( $nama_file != "" ) {
 				echo "<script> window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 		       	}
         }
-        else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Dexlite'){
+        else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Pertamax'){
                 $query = mysqli_query($koneksi,"INSERT INTO ngecor VALUES ('','$tanggal','$tanggal_pembayaran','$lokasi_cor','$no_polisi','$nama_driver','$nm_pt','$nama_barang','$jumlah','$harga','$total','$jenis_cor','$keterangan','$file')");
 
                 $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
