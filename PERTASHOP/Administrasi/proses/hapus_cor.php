@@ -100,7 +100,7 @@ $no_cor = $_POST['no_cor'];
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VCorPertamax?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi_cor';</script>";exit;
 			}
         }
-        else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Dexlite'){
+        else if($lokasi_cor == 'Muara Dua' && $nama_barang == 'Pertamax'){
            
 
                 
