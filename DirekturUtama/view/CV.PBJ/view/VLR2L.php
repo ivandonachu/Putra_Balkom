@@ -617,7 +617,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table4sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_listrik FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon'");
     $data4sl = mysqli_fetch_array($table4sl);
     $jml_listrik_sl = $data4sl['jumlah_listrik'];
-    if (!isset($data4sl['jumlah_listrikr'])) {
+    if (!isset($data4sl['jumlah_listrik'])) {
         $jml_listrik_sl = 0;
     }
 
