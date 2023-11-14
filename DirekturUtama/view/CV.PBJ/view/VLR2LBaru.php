@@ -652,7 +652,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table4sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_listrik FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Listrik & Telepon'");
     $data4sl = mysqli_fetch_array($table4sl);
     $jml_listrik_sl = $data4sl['jumlah_listrik'];
-    if (!isset($data4sl['jumlah_listrikr'])) {
+    if (!isset($data4sl['jumlah_listrik'])) {
         $jml_listrik_sl = 0;
     }
 
@@ -668,7 +668,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table5sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
     $data5sl = mysqli_fetch_array($table5sl);
     $jml_transport_sl = $data5sl['jumlah_transport'];
-    if (!isset($data5['jumlah_transport'])) {
+    if (!isset($data5sl['jumlah_transport'])) {
         $jml_transport_sl = 0;
     }
 
