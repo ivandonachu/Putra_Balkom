@@ -406,29 +406,29 @@ if ($tanggal_awal == $tanggal_akhir) {
     //Ongkos Kuli s
     $table_ongkos_kuli_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_ongkos_kuli_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Ongkos Kuli' ");
     $data_ongkos_kuli_s = mysqli_fetch_array($table_ongkos_kuli_s);
-    $jumlah_ongkos_kuli_s = $data_ongkos_kuli_s['jumlah_ongkos_kuli_s'];
+    $total_ongkos_kuli_s = $data_ongkos_kuli_s['jumlah_ongkos_kuli_s'];
     if (!isset($data_ongkos_kuli_s['jumlah_ongkos_kuli_s'])) {
-        $jumlah_ongkos_kuli_s = 0;
+        $total_ongkos_kuli_s = 0;
     }
 
     //Ongkos Kuli sl
-    $table_ongkos_kuli_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_ongkos_kuli_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pemasukan Lainnya' ");
+    $table_ongkos_kuli_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_ongkos_kuli_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Ongkos Kuli' ");
     $data_ongkos_kuli_sl = mysqli_fetch_array($table_ongkos_kuli_sl);
-    $jumlah_ongkos_kuli_sl = $data_ongkos_kuli_sl['jumlah_ongkos_kuli_sl'];
+    $total_ongkos_kuli_sl = $data_ongkos_kuli_sl['jumlah_ongkos_kuli_sl'];
     if (!isset($data_ongkos_kuli_sl['jumlah_ongkos_kuli_sl'])) {
-        $jumlah_ongkos_kuli_sl = 0;
+        $total_ongkos_kuli_sl = 0;
     }
 
-    //Ongkos Kuli s
-    $table_pengeluaran_lainnya_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_lainnya_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Ongkos Kuli' ");
+    //Pengeluaran Laiinya s
+    $table_pengeluaran_lainnya_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_lainnya_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' ");
     $data_pengeluaran_lainnya_s = mysqli_fetch_array($table_pengeluaran_lainnya_s);
     $jumlah_pengeluaran_lainnya_s = $data_pengeluaran_lainnya_s['jumlah_pengeluaran_lainnya_s'];
     if (!isset($data_pengeluaran_lainnya_s['jumlah_pengeluaran_lainnya_s'])) {
         $jumlah_pengeluaran_lainnya_s = 0;
     }
 
-    //Ongkos Kuli sl
-    $table_pengeluaran_lainnya_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_lainnya_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pemasukan Lainnya' ");
+    //Pengeluaran Laiinya sl
+    $table_pengeluaran_lainnya_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_lainnya_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' ");
     $data_pengeluaran_lainnya_sl = mysqli_fetch_array($table_pengeluaran_lainnya_sl);
     $jumlah_pengeluaran_lainnya_sl = $data_pengeluaran_lainnya_sl['jumlah_pengeluaran_lainnya_sl'];
     if (!isset($data_pengeluaran_lainnya_sl['jumlah_pengeluaran_lainnya_sl'])) {
@@ -978,7 +978,7 @@ if ($total_gaji_driver > 0) {
                                                     <td>5-513</td>
                                                     <td class="text-left">Ongkos Kuli</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_ongkos_kuli + $total_ongkos_kuli_sl); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_ongkos_kuli_s + $total_ongkos_kuli_sl); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VROngkosKuli?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
