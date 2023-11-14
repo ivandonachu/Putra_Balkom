@@ -64,7 +64,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran Pemasukan Lainnya</title>
+  <title>Pemasukan Lainnya</title>
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -313,7 +313,7 @@ Logout
 
 
 
-<h3 align='center' >Pengeluaran Pemasukan Lainnya Etty</h3>
+<h3 align='center' >Pemasukan Lainnya Etty</h3>
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -378,7 +378,7 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Pengeluaran</div>
+            Total Pemasukan</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran) ?></div>
           </div>
           <div class="col-auto">
@@ -393,7 +393,7 @@ Logout
 <hr>
 <br>
 
-<h3 align='center' >Pengeluaran Pemasukan Lainnya Kadek</h3>
+<h3 align='center' >Pemasukan Lainnya Kadek</h3>
 <!-- Tabel -->    
 <table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -455,7 +455,7 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Pengeluaran</div>
+            Total Pemasukan</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran_kadek) ?></div>
           </div>
           <div class="col-auto">
