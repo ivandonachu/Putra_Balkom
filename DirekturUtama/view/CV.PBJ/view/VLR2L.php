@@ -298,7 +298,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table4s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_listrik FROM keuangan_s  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Listrik & Telepon'");
     $data4s = mysqli_fetch_array($table4s);
     $jml_listrik_s = $data4s['jumlah_listrik'];
-    if (!isset($data4s['jumlah_listrikr'])) {
+    if (!isset($data4s['jumlah_listrik'])) {
         $jml_listrik_s = 0;
     }
 
@@ -306,7 +306,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table4sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_listrik FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Listrik & Telepon'");
     $data4sl = mysqli_fetch_array($table4sl);
     $jml_listrik_sl = $data4sl['jumlah_listrik'];
-    if (!isset($data4sl['jumlah_listrikr'])) {
+    if (!isset($data4sl['jumlah_listrik'])) {
         $jml_listrik_sl = 0;
     }
 
@@ -314,15 +314,15 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table5s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_s  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Transport / Perjalanan Dinas' ");
     $data5s = mysqli_fetch_array($table5s);
     $jml_transport_s = $data5s['jumlah_transport'];
-    if (!isset($data5['jumlah_transport'])) {
+    if (!isset($data5s['jumlah_transport'])) {
         $jml_transport_s = 0;
     }
 
     //Trasnport/Perjalan Dinas kadek
     $table5sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_transport FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Transport / Perjalanan Dinas' ");
-    $data5sl = mysqli_fetch_array($table5s);
-    $jml_transport_sl = $data5s['jumlah_transport'];
-    if (!isset($data5['jumlah_transport'])) {
+    $data5sl = mysqli_fetch_array($table5sl);
+    $jml_transport_sl = $data5sl['jumlah_transport'];
+    if (!isset($data5sl['jumlah_transport'])) {
         $jml_transport_sl = 0;
     }
 
