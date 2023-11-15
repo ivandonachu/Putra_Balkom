@@ -193,7 +193,22 @@ $table = mysqli_query($koneksi,"SELECT * FROM pengiriman_p ")
         </div>
     </div>
 </li>
-
+ <!-- Nav Item - Pages Collapse Menu -->
+ <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1z"
+                  15  aria-expanded="true" aria-controls="collapseTwo1z">
+                    <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >BBM</span>
+                </a>
+                <div id="collapseTwo1z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu BBM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokBBM">Lap Stok BBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBBMMasuk">Lap BBM Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBBMKeluar">Lap BBM Keluar</a>
+                    </div>
+                </div>
+            </li>
   <!-- Divider -->
   <hr class="sidebar-divider">
 
