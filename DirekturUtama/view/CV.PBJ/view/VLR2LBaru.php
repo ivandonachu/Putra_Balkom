@@ -603,20 +603,22 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
     //pengiriman ety
-    $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_s WHERE 
+    $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE 
                                         tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data2 = mysqli_fetch_array($table2);
     $total_uj = $data2['total_uj'];
     $total_gaji = $data2['total_gaji'];
     $total_om = $data2['total_om'];
+    $total_bs = $data2['total_bs'];
 
     //pengiriman kadek
-    $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om FROM pengiriman_sl WHERE 
+    $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE 
      tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data2sl = mysqli_fetch_array($table2sl);
     $total_uj_sl = $data2sl['total_uj'];
     $total_gaji_sl = $data2sl['total_gaji'];
     $total_om_sl = $data2sl['total_om'];
+    $total_bs_sl = $data2sl['total_bs'];
 
     //Cashback
     $table_cashback = mysqli_query($koneksipbj, "SELECT SUM(potongan_harga) AS jumlah_potongan_harga FROM potongan_harga WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
@@ -1113,7 +1115,7 @@ if ($total_gaji_driver > 0) {
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <table class="table table-condensed" style="color : black;">
-                                            <thead>VRincianLRBaru
+                                            <thead>
                                                 <tr>
                                                     <td><strong>Akun</strong></td>
                                                     <td class="text-left"><strong>Nama Akun</strong></td>
