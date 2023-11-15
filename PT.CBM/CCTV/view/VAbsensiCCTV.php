@@ -277,6 +277,7 @@ Logout
                         <option>Shift Pagi</option>
                         <option>Shift Siang</option>
                         <option>Shift Malam</option>
+                        <option>Shift Luar</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -423,6 +424,7 @@ Logout
                         <option <?php echo ($dataSelect == 'Shift Pagi') ? "selected": "" ?> >Shift Pagi</option>
                         <option <?php echo ($dataSelect == 'Shift Siang') ? "selected": "" ?> >Shift Siang</option>
                         <option <?php echo ($dataSelect == 'Shift Malam') ? "selected": "" ?> >Shift Malam</option>
+                        <option <?php echo ($dataSelect == 'Shift Luar') ? "selected": "" ?> >Shift Luar</option>
                     </select>
                   </div>
                   <div class="col-md-6">
