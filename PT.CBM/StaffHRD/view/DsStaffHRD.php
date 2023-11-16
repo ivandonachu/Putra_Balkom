@@ -152,6 +152,25 @@ $nama = $data['nama_karyawan'];
                     </div>
                 </div>
             </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#formPenilaianCBM"
+                  15  aria-expanded="true" aria-controls="formPenilaianCBM">
+                    <i class="fa fa-id-card" style="font-size: 18px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Form Penilaian CBM</span>
+                </a>
+                <div id="formPenilaianCBM" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Penilaian CBM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAset">Karyawan (Administrasi)</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDokumen">Karyawan (Logbook)</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSeluruhKaryawan">Karyawan (Kanvasing)</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSuratKeluarMasuk">Karyawan (CCTV)</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKontrakKerja">Karyawan (Gudang Kasir Pupuk)</a>
+                    </div>
+                </div>
+            </li>
+            
 
 
            
