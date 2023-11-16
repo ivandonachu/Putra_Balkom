@@ -405,6 +405,13 @@ else{
            $total_kredit += $jml_kredit;
        }
 
+       $tableex = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+       $dataax = mysqli_fetch_array($tableex);
+       $jml_kredit= $dataax['total_kredit'];
+       if(isset($total_kredit)){
+           $total_kredit += $jml_kredit;
+       }
+
       echo "<tr>
      
       <td style='font-size: 14px'>$mt</td>
