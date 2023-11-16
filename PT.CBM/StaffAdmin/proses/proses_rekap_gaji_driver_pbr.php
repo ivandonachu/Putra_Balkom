@@ -59,7 +59,7 @@ while($data = mysqli_fetch_array($table2)){
   
   
 
-      if($nama_driver == 'TOLIP WIJAYADI'){
+      if($nama_driver == 'TOLIP WIJAYADI' || $nama_driver == 'AZWAN' || $nama_driver == 'Wayan Edi'){
         $bpjs_kesehatan = 0;
         $bpjs_ketenagakerjaan = 0;
       }else{
