@@ -57,8 +57,15 @@ while($data = mysqli_fetch_array($table2)){
       $table8 = mysqli_query($koneksipbr,"SELECT bpjs_kesehatan , bpjs_ketenagakerjaan FROM driver WHERE nama_driver = '$nama_driver' ");
       $data8 = mysqli_fetch_array($table8);
   
-      $bpjs_kesehatan = $data8['bpjs_kesehatan'];
-      $bpjs_ketenagakerjaan = $data8['bpjs_ketenagakerjaan'];
+  
+
+      if($nama_driver == 'TOLIP WIJAYADI'){
+        $bpjs_kesehatan = 0;
+        $bpjs_ketenagakerjaan = 0;
+      }else{
+        $bpjs_kesehatan = $data8['bpjs_kesehatan'];
+        $bpjs_ketenagakerjaan = $data8['bpjs_ketenagakerjaan'];
+      }
 
     $total_gaji = $total_gaji_nje + $total_gaji_pep;
     $total_gaji_diterima =  $total_gaji_nje + $total_gaji_pep - $bpjs_ketenagakerjaan;
