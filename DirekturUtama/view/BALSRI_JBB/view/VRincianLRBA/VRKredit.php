@@ -398,17 +398,33 @@ else{
     
     <?php while($data = mysqli_fetch_array($table10)){
        $mt = $data['mt'];
-       $tablee = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+       $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
        $dataa = mysqli_fetch_array($tablee);
        $jml_kredit= $dataa['total_kredit'];
-       if(isset($total_kredit)){
+
+       $tableex= mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+       $dataax = mysqli_fetch_array($tableex);
+       $jml_kreditx= $dataax['total_kreditx'];
+
+       if(isset($jml_kredit)){
            $total_kredit += $jml_kredit;
        }
+       else if(isset($jml_kreditx)){
+           $total_kredit += $jml_kreditx;
+       }
+       
 
       echo "<tr>
      
-      <td style='font-size: 14px'>$mt</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($jml_kredit); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$mt</td>";
+      
+      if(isset($jml_kredit)){;
+        echo "<td style='font-size: 14px'>"?>  <?= formatuang($jml_kredit); ?> <?php echo "</td>";
+      }
+      else if(isset($jml_kreditx)){
+        echo "<td style='font-size: 14px'>"?>  <?= formatuang($jml_kreditx); ?> <?php echo "</td>";
+      }; echo"
+      
       <td style='font-size: 14px'>"?>  <?= formatuang($total_kredit); ?> <?php echo "</td>
       
  </tr>";
