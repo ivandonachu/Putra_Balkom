@@ -1409,14 +1409,14 @@ if ($total_gaji_driver > 0) {
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VPengeluaranLainnya?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>5-597</td>
+                                                    <td>5-598</td>
                                                     <td class="text-left">Biaya Pajak</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($biaya_pajak); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VBiayaPajak?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>5-598</td>
+                                                    <td>5-599</td>
                                                     <td class="text-left">Bunga Bank</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_bunga_bank); ?></td>

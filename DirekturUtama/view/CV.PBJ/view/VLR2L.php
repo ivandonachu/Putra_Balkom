@@ -468,6 +468,13 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jml_perbaikan_etty = 0;
     }
 
+    //biaya pajak
+    $table_pajak = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pajak FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Pajak' ");
+    $data_pajak = mysqli_fetch_array($table_pajak);
+    $jumlah_pajak = $data_pajak['jumlah_pajak'];
+    if (!isset($data_pajak['jumlah_pajak'])) {
+        $jumlah_pajak = 0;
+    }
 
     $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bengkel) AS jumlah_perbaikan FROM riwayat_pengeluaran_workshop_s
                                          WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
