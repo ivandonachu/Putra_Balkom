@@ -19,6 +19,7 @@ else{ header("Location: logout.php");
 exit;
 }
 
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -27,34 +28,31 @@ if (isset($_GET['tanggal1'])) {
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
-}  
+} 
+else{
+  $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+}
 
 if ($tanggal_awal == $tanggal_akhir) {
-
-  $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(bs) AS total_bs FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal' GROUP BY no_polisi "); 
-
+  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal'");
 }
 else{
+  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Pajak' ");
+  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Pajak' ");
+  $data2 = mysqli_fetch_array($table2);
+  $total_pengeluaran = $data2['total_pengeluaran'];
 
- 
-   $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(bs) AS total_bs FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
-
-   $table4x = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(bs) AS total_bs FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
-
-   $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
-   $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
-   $data2 = mysqli_fetch_array($table2);
-   $total_pengeluaran = $data2['total_pengeluaran'];
- 
-   $tablex = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
-   $table2x = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
-   $data2x = mysqli_fetch_array($table2x);
-   $total_pengeluaran_kadek = $data2x['total_pengeluaran'];
- 
-
+  $tablex = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Pajak' ");
+  $table2x = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Pajak' ");
+  $data2x = mysqli_fetch_array($table2x);
+  $total_pengeluaran_kadek = $data2x['total_pengeluaran'];
 
 }
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,8 +64,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Biaya Sewa Kendaraan Luar</title>
-
+  <title>Pengeluaran Biaya Pajak</title>
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -89,8 +86,8 @@ else{
 
 <body id="page-top">
 
- <!-- Page Wrapper -->
- <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
 <!-- Sidebar -->
 <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
@@ -300,173 +297,21 @@ Logout
 <div>   
 
 
-
+  <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php echo "<a href='../VLR2L?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
-
-  <div class="col-md-8">
-   <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
- </div>
-
-
-
-<h5 align="center" >Biaya Sewa Kendaraan Luar Etty</h5>
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th align="center">No Polisi</th>
-      <th align="center">Biaya Sewa Kendaraan Luar</th>
-      <th align="center">Total Biaya Sewa Kendaraan Luar</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
-  <?php
-    $total_bs_etty = 0;
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
-    <?php while($data = mysqli_fetch_array($table4)){
-      $nama_driver = $data['no_polisi'];
-      $total_bs =$data['total_bs'];
-      $total_bs_etty =  $total_bs_etty + $total_bs;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs_etty); ?> <?php echo" </td>
-
-      </tr>";
-}
-?>
-
-</tbody>
-</table>
-
-<br>
-<hr>
-<br>
-
-
-<h5 align="center" >Biaya Sewa Kendaraan Luar Kadek</h5>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th align="center">No Polisi</th>
-      <th align="center">Biaya Sewa Kendaraan Luar</th>
-      <th align="center">Total Biaya Sewa Kendaraan Luar</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
-  <?php
-  $total_bs_kadek = 0;
-
-
-    ?>
-    <?php while($data = mysqli_fetch_array($table4x)){
-      $nama_driver = $data['no_polisi'];
-      $total_bs =$data['total_bs'];
-      $total_bs_kadek = $total_bs_kadek + $total_bs;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs_kadek); ?> <?php echo" </td>
-
-      </tr>";
-}
-?>
-
-</tbody>
-</table>
-
-<br>
-<br>
-<br>
-
-
-<h3 align='center' >Pengeluaran Biaya Kantor Etty</h3>
-<!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Pengeluaran</th>
-      <th>Total</th>
-      <th>file</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $total = 0;
-    $urut = 0;
-    ?>
-
-    <?php while($data = mysqli_fetch_array($table)){
-     $no_laporan = $data['no_transaksi'];
-     $tanggal =$data['tanggal'];
-     $nama_akun = $data['nama_akun'];
-     $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
-     $file_bukti = $data['file_bukti'];
-
-     $total = $total + $jumlah;
-     $urut = $urut + 1;
-
-
-     echo "<tr>
-     <td style='font-size: 14px'>$urut</td>
-     <td style='font-size: 14px'>$tanggal</td>
-     <td style='font-size: 14px'>$nama_akun</td>
-     <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     
-
-    <?php echo  " </tr>";
-  }
-
-?>
-
-</tbody>
-</table>
-
-<br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Pengeluaran</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran) ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
+  <div align="left">
+      <?php echo "<a href='../VLR2L?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
+  
+  <div class="row">
+    <div class="col-md-6">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
   </div>
-</div>
-<br>
-<hr>
-<br>
+  <br>
+  <br>
 
-<h3 align='center' >Pengeluaran Biaya Kantor Kadek</h3>
+<h3 align='center' >Pengeluaran Biaya Pajak</h3>
 <!-- Tabel -->    
 <table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -540,10 +385,11 @@ Logout
   </div>
 </div>
 <br>
-<br>
-<br>
+
+
 </div>
 </div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -614,7 +460,6 @@ aria-hidden="true">
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-
 <script>
   $(document).ready(function() {
     var table = $('#example').DataTable( {
@@ -638,7 +483,6 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
-
 
 </body>
 

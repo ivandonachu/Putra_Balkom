@@ -41,6 +41,17 @@ else{
 
    $table4x = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(bs) AS total_bs FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
 
+   $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
+   $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
+   $data2 = mysqli_fetch_array($table2);
+   $total_pengeluaran = $data2['total_pengeluaran'];
+ 
+   $tablex = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
+   $table2x = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
+   $data2x = mysqli_fetch_array($table2x);
+   $total_pengeluaran_kadek = $data2x['total_pengeluaran'];
+ 
+
 
 }
 ?>
@@ -375,6 +386,159 @@ Logout
 </tbody>
 </table>
 
+<br>
+<br>
+<br>
+
+
+<h3 align='center' >Pengeluaran Biaya Kantor Etty</h3>
+<!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Pengeluaran</th>
+      <th>Total</th>
+      <th>file</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total = 0;
+    $urut = 0;
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table)){
+     $no_laporan = $data['no_transaksi'];
+     $tanggal =$data['tanggal'];
+     $nama_akun = $data['nama_akun'];
+     $jumlah = $data['jumlah'];
+     $keterangan = $data['keterangan'];
+     $file_bukti = $data['file_bukti'];
+
+     $total = $total + $jumlah;
+     $urut = $urut + 1;
+
+
+     echo "<tr>
+     <td style='font-size: 14px'>$urut</td>
+     <td style='font-size: 14px'>$tanggal</td>
+     <td style='font-size: 14px'>$nama_akun</td>
+     <td style='font-size: 14px'>$keterangan</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     "; ?>
+     
+
+    <?php echo  " </tr>";
+  }
+
+?>
+
+</tbody>
+</table>
+
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Pengeluaran</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<hr>
+<br>
+
+<h3 align='center' >Pengeluaran Biaya Kantor Kadek</h3>
+<!-- Tabel -->    
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Pengeluaran</th>
+      <th>Total</th>
+      <th>file</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total = 0;
+    $urut = 0;
+
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($tablex)){
+     $no_laporan = $data['no_transaksi'];
+     $tanggal =$data['tanggal'];
+     $nama_akun = $data['nama_akun'];
+     $jumlah = $data['jumlah'];
+     $keterangan = $data['keterangan'];
+     $file_bukti = $data['file_bukti'];
+
+     $total = $total + $jumlah;
+     $urut = $urut + 1;
+
+
+     echo "<tr>
+     <td style='font-size: 14px'>$urut</td>
+     <td style='font-size: 14px'>$tanggal</td>
+     <td style='font-size: 14px'>$nama_akun</td>
+     <td style='font-size: 14px'>$keterangan</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     "; ?>
+     
+
+    <?php echo  " </tr>";
+  }
+
+?>
+
+</tbody>
+</table>
+
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Pengeluaran</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_pengeluaran_kadek) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <br>
 <br>
 <br>

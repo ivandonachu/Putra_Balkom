@@ -406,7 +406,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     //sewa hiblow
 
-    $sql_sewa_hiblow = mysqli_query($koneksipbj,"SELECT SUM(jumlah) AS total_sewa_hiblow FROM sewa_hiblow WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $sql_sewa_hiblow = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_sewa_hiblow FROM sewa_hiblow WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
     $data_sewa_hiblow = mysqli_fetch_array($sql_sewa_hiblow);
     $total_sewa_hiblow = $data_sewa_hiblow['total_sewa_hiblow'];
@@ -550,12 +550,12 @@ if ($tanggal_awal == $tanggal_akhir) {
         $harga_beli = $data_pembelian_1['harga_beli'];
         $qty = $data_pembelian_1['qty'];
         $pembelian_1 = $harga_beli * $qty;
-        $total_pembelian_1 = $total_pembelian_1 +$pembelian_1;
+        $total_pembelian_1 = $total_pembelian_1 + $pembelian_1;
     }
 
     //pembelian 2
     $table_pembelian_2 = mysqli_query($koneksipbj, "SELECT harga_beli, qty FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
- 
+
     $total_pembelian_2 = 0;
     while ($data_pembelian_2 = mysqli_fetch_array($table_pembelian_2)) {
 
@@ -565,8 +565,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $qty = $data_pembelian_2['qty'];
         $pembelian_2 = $harga_beli * $qty;
 
-        $total_pembelian_2 = $total_pembelian_2 +$pembelian_2;
-
+        $total_pembelian_2 = $total_pembelian_2 + $pembelian_2;
     }
 
     $pembelian_total = $total_pembelian_1 + $total_pembelian_2;
@@ -626,6 +625,21 @@ if ($tanggal_awal == $tanggal_akhir) {
     $jml_cashback = $data_cashback['jumlah_potongan_harga'];
     if (!isset($data_cashback['jumlah_potongan_harga'])) {
         $jml_cashback = 0;
+    }
+
+    //Biaya tarikan etty
+    $table_tarikan_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_tarikan FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
+    $data_tarikan_s = mysqli_fetch_array($table_tarikan_s);
+    $jml_biaya_tarikan_s = $data_tarikan_s['jumlah_biaya_tarikan'];
+    if (!isset($data_tarikan_s['jumlah_biaya_tarikan'])) {
+        $jml_biaya_tarikan_s = 0;
+    }
+    //Biaya tarikan kadek
+    $table_tarikan_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_tarikan FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
+    $data_tarikan_sl = mysqli_fetch_array($table_tarikan_sl);
+    $jml_biaya_tarikan_sl = $data_tarikan_sl['jumlah_biaya_tarikan'];
+    if (!isset($data_tarikan_sl['jumlah_biaya_tarikan'])) {
+        $jml_biaya_tarikan_sl = 0;
     }
     //Biaya Kantor etty
     $table3s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
@@ -690,85 +704,93 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jml_atk_sl = 0;
     }
 
-     //Biaya Konsumsi
-     $table_biaya_konsumsi_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_konsumsi_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
-     $data_biaya_konsumsi_s = mysqli_fetch_array($table_biaya_konsumsi_s);
-     $jumlah_biaya_konsumsi_s = $data_biaya_konsumsi_s['jumlah_biaya_konsumsi_s'];
-     if (!isset($data_biaya_konsumsi_s['jumlah_biaya_konsumsi_s'])) {
-         $jumlah_biaya_konsumsi_s = 0;
-     }
- 
-     //Biaya Konsumsi
-     $table_biaya_konsumsi = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_konsumsi_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
-     $data_biaya_konsumsi = mysqli_fetch_array($table_biaya_konsumsi);
-     $jumlah_biaya_konsumsi_sl = $data_biaya_konsumsi['jumlah_biaya_konsumsi_sl'];
-     if (!isset($data_biaya_konsumsi['jumlah_biaya_konsumsi_sl'])) {
-         $jumlah_biaya_konsumsi_sl = 0;
-     }
- 
-     //Biaya administrasi
-     $table_admin_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_admin_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Administrasi' ");
-     $data_admin_s = mysqli_fetch_array($table_admin_s);
-     $jumlah_admin_s = $data_admin_s['jumlah_admin_s'];
-     if (!isset($data_admin_s['jumlah_admin_s'])) {
-         $jumlah_admin_s = 0;
-     }
- 
-     //Biaya administrasi
-     $table_admin_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_admin_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Administrasi' ");
-     $data_admin_sl = mysqli_fetch_array($table_admin_sl);
-     $jumlah_admin_sl = $data_admin_sl['jumlah_admin_sl'];
-     if (!isset($data_admin_sl['jumlah_admin_sl'])) {
-         $jumlah_admin_sl = 0;
-     }
- 
-     //Pemasukan Lainnya
-     $table_pemasukan_lainnya_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pemasukan_lainnya_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pemasukan Lainnya' ");
-     $data_pemasukan_lainnya_s = mysqli_fetch_array($table_pemasukan_lainnya_s);
-     $jumlah_pemasukan_lainnya_s = $data_pemasukan_lainnya_s['jumlah_pemasukan_lainnya_s'];
-     if (!isset($data_pemasukan_lainnya_s['jumlah_pemasukan_lainnya_s'])) {
-         $jumlah_pemasukan_lainnya_s = 0;
-     }
- 
-     //Pemasukan Lainnya
-     $table_pemasukan_lainnya_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pemasukan_lainnya_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pemasukan Lainnya' ");
-     $data_pemasukan_lainnya_sl = mysqli_fetch_array($table_pemasukan_lainnya_sl);
-     $jumlah_pemasukan_lainnya_sl = $data_pemasukan_lainnya_sl['jumlah_pemasukan_lainnya_sl'];
-     if (!isset($data_pemasukan_lainnya_sl['jumlah_pemasukan_lainnya_sl'])) {
-         $jumlah_pemasukan_lainnya_sl = 0;
-     }
- 
-     //Ongkos Kuli s
-     $table_ongkos_kuli_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_ongkos_kuli_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Ongkos Kuli' ");
-     $data_ongkos_kuli_s = mysqli_fetch_array($table_ongkos_kuli_s);
-     $total_ongkos_kuli_s = $data_ongkos_kuli_s['jumlah_ongkos_kuli_s'];
-     if (!isset($data_ongkos_kuli_s['jumlah_ongkos_kuli_s'])) {
-         $total_ongkos_kuli_s = 0;
-     }
- 
-     //Ongkos Kuli sl
-     $table_ongkos_kuli_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_ongkos_kuli_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Ongkos Kuli' ");
-     $data_ongkos_kuli_sl = mysqli_fetch_array($table_ongkos_kuli_sl);
-     $total_ongkos_kuli_sl = $data_ongkos_kuli_sl['jumlah_ongkos_kuli_sl'];
-     if (!isset($data_ongkos_kuli_sl['jumlah_ongkos_kuli_sl'])) {
-         $total_ongkos_kuli_sl = 0;
-     }
- 
-     //Pengeluaran Laiinya s
-     $table_pengeluaran_lainnya_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_lainnya_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' ");
-     $data_pengeluaran_lainnya_s = mysqli_fetch_array($table_pengeluaran_lainnya_s);
-     $jumlah_pengeluaran_lainnya_s = $data_pengeluaran_lainnya_s['jumlah_pengeluaran_lainnya_s'];
-     if (!isset($data_pengeluaran_lainnya_s['jumlah_pengeluaran_lainnya_s'])) {
-         $jumlah_pengeluaran_lainnya_s = 0;
-     }
- 
-     //Pengeluaran Laiinya sl
-     $table_pengeluaran_lainnya_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_lainnya_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' ");
-     $data_pengeluaran_lainnya_sl = mysqli_fetch_array($table_pengeluaran_lainnya_sl);
-     $jumlah_pengeluaran_lainnya_sl = $data_pengeluaran_lainnya_sl['jumlah_pengeluaran_lainnya_sl'];
-     if (!isset($data_pengeluaran_lainnya_sl['jumlah_pengeluaran_lainnya_sl'])) {
-         $jumlah_pengeluaran_lainnya_sl = 0;
-     }
+    //Biaya Konsumsi
+    $table_biaya_konsumsi_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_konsumsi_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+    $data_biaya_konsumsi_s = mysqli_fetch_array($table_biaya_konsumsi_s);
+    $jumlah_biaya_konsumsi_s = $data_biaya_konsumsi_s['jumlah_biaya_konsumsi_s'];
+    if (!isset($data_biaya_konsumsi_s['jumlah_biaya_konsumsi_s'])) {
+        $jumlah_biaya_konsumsi_s = 0;
+    }
+
+    //Biaya Konsumsi
+    $table_biaya_konsumsi = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_konsumsi_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+    $data_biaya_konsumsi = mysqli_fetch_array($table_biaya_konsumsi);
+    $jumlah_biaya_konsumsi_sl = $data_biaya_konsumsi['jumlah_biaya_konsumsi_sl'];
+    if (!isset($data_biaya_konsumsi['jumlah_biaya_konsumsi_sl'])) {
+        $jumlah_biaya_konsumsi_sl = 0;
+    }
+
+    //Biaya administrasi
+    $table_admin_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_admin_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Administrasi' ");
+    $data_admin_s = mysqli_fetch_array($table_admin_s);
+    $jumlah_admin_s = $data_admin_s['jumlah_admin_s'];
+    if (!isset($data_admin_s['jumlah_admin_s'])) {
+        $jumlah_admin_s = 0;
+    }
+
+    //Biaya administrasi
+    $table_admin_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_admin_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Administrasi' ");
+    $data_admin_sl = mysqli_fetch_array($table_admin_sl);
+    $jumlah_admin_sl = $data_admin_sl['jumlah_admin_sl'];
+    if (!isset($data_admin_sl['jumlah_admin_sl'])) {
+        $jumlah_admin_sl = 0;
+    }
+
+    //Pemasukan Lainnya
+    $table_pemasukan_lainnya_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pemasukan_lainnya_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pemasukan Lainnya' ");
+    $data_pemasukan_lainnya_s = mysqli_fetch_array($table_pemasukan_lainnya_s);
+    $jumlah_pemasukan_lainnya_s = $data_pemasukan_lainnya_s['jumlah_pemasukan_lainnya_s'];
+    if (!isset($data_pemasukan_lainnya_s['jumlah_pemasukan_lainnya_s'])) {
+        $jumlah_pemasukan_lainnya_s = 0;
+    }
+
+    //Pemasukan Lainnya
+    $table_pemasukan_lainnya_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pemasukan_lainnya_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pemasukan Lainnya' ");
+    $data_pemasukan_lainnya_sl = mysqli_fetch_array($table_pemasukan_lainnya_sl);
+    $jumlah_pemasukan_lainnya_sl = $data_pemasukan_lainnya_sl['jumlah_pemasukan_lainnya_sl'];
+    if (!isset($data_pemasukan_lainnya_sl['jumlah_pemasukan_lainnya_sl'])) {
+        $jumlah_pemasukan_lainnya_sl = 0;
+    }
+
+    //Ongkos Kuli s
+    $table_ongkos_kuli_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_ongkos_kuli_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Ongkos Kuli' ");
+    $data_ongkos_kuli_s = mysqli_fetch_array($table_ongkos_kuli_s);
+    $total_ongkos_kuli_s = $data_ongkos_kuli_s['jumlah_ongkos_kuli_s'];
+    if (!isset($data_ongkos_kuli_s['jumlah_ongkos_kuli_s'])) {
+        $total_ongkos_kuli_s = 0;
+    }
+
+    //Ongkos Kuli sl
+    $table_ongkos_kuli_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_ongkos_kuli_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Ongkos Kuli' ");
+    $data_ongkos_kuli_sl = mysqli_fetch_array($table_ongkos_kuli_sl);
+    $total_ongkos_kuli_sl = $data_ongkos_kuli_sl['jumlah_ongkos_kuli_sl'];
+    if (!isset($data_ongkos_kuli_sl['jumlah_ongkos_kuli_sl'])) {
+        $total_ongkos_kuli_sl = 0;
+    }
+
+    //Pengeluaran Laiinya s
+    $table_pengeluaran_lainnya_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_lainnya_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' ");
+    $data_pengeluaran_lainnya_s = mysqli_fetch_array($table_pengeluaran_lainnya_s);
+    $jumlah_pengeluaran_lainnya_s = $data_pengeluaran_lainnya_s['jumlah_pengeluaran_lainnya_s'];
+    if (!isset($data_pengeluaran_lainnya_s['jumlah_pengeluaran_lainnya_s'])) {
+        $jumlah_pengeluaran_lainnya_s = 0;
+    }
+
+    //Pengeluaran Laiinya sl
+    $table_pengeluaran_lainnya_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_lainnya_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' ");
+    $data_pengeluaran_lainnya_sl = mysqli_fetch_array($table_pengeluaran_lainnya_sl);
+    $jumlah_pengeluaran_lainnya_sl = $data_pengeluaran_lainnya_sl['jumlah_pengeluaran_lainnya_sl'];
+    if (!isset($data_pengeluaran_lainnya_sl['jumlah_pengeluaran_lainnya_sl'])) {
+        $jumlah_pengeluaran_lainnya_sl = 0;
+    }
+
+    //biaya pajak
+    $table_pajak = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pajak FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Pajak' ");
+    $data_pajak = mysqli_fetch_array($table_pajak);
+    $jumlah_pajak = $data_pajak['jumlah_pajak'];
+    if (!isset($data_pajak['jumlah_pajak'])) {
+        $jumlah_pajak = 0;
+    }
 
     //pengeluran perbaikan yani
     $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_sparepart) AS total_pembelian_sparepart FROM riwayat_pengeluaran_workshop_s
@@ -831,7 +853,7 @@ if ($total_gaji_driver > 0) {
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
         $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
-        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli + $total_ongkos_kuli_sl;
+        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 } else {
 
@@ -841,7 +863,7 @@ if ($total_gaji_driver > 0) {
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
         $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
-        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl +$total_ongkos_kuli + $total_ongkos_kuli_sl;
+        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 }
 
@@ -972,28 +994,28 @@ if ($total_gaji_driver > 0) {
                 </div>
             </li>
 
-            <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"
+            <?php if ($nama == 'Nyoman Edy Susanto') {
+                echo "
                           <li class='nav-item'>
                           <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
                           <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VLR2L'> Laba Rugi </a>
                           </li>";
-                        } ?>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"
+            } ?>
+            <?php if ($nama == 'Nyoman Edy Susanto') {
+                echo "
                           <li class='nav-item'>
                           <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
                           <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VLR2LBaru'> Laba Rugi Baru </a>
                           </li>";
-                        } ?>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"
+            } ?>
+            <?php if ($nama == 'Nyoman Edy Susanto') {
+                echo "
                           <li class='nav-item'>
                           <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
                           <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VRekapanHarga'> Rekapan Harga</a>
                           </li>";
-                        } ?>
-           
+            } ?>
+
 
 
 
@@ -1319,7 +1341,7 @@ if ($total_gaji_driver > 0) {
                                                     <td>5-516</td>
                                                     <td class="text-left">Biaya Sewa Mobil Luar</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_bs + $total_bs_sl); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBaru/VRBS?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
@@ -1385,6 +1407,13 @@ if ($total_gaji_driver > 0) {
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VPengeluaranLainnya?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-597</td>
+                                                    <td class="text-left">Biaya Pajak</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($biaya_pajak); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VBiayaPajak?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-598</td>

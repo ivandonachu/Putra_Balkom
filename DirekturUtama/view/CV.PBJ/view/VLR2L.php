@@ -79,7 +79,6 @@ function formatuang($angka)
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-
 } else {
 
     // Penjualan kadek dan etty
@@ -292,6 +291,22 @@ if ($tanggal_awal == $tanggal_akhir) {
     if (!isset($data_cashback['jumlah_potongan_harga'])) {
         $jml_cashback = 0;
     }
+
+    //Biaya tarikan etty
+    $table_tarikan_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_tarikan FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
+    $data_tarikan_s = mysqli_fetch_array($table_tarikan_s);
+    $jml_biaya_tarikan_s = $data_tarikan_s['jumlah_biaya_tarikan'];
+    if (!isset($data_tarikan_s['jumlah_biaya_tarikan'])) {
+        $jml_biaya_tarikan_s = 0;
+    }
+    //Biaya tarikan kadek
+    $table_tarikan_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_tarikan FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
+    $data_tarikan_sl = mysqli_fetch_array($table_tarikan_sl);
+    $jml_biaya_tarikan_sl = $data_tarikan_sl['jumlah_biaya_tarikan'];
+    if (!isset($data_tarikan_sl['jumlah_biaya_tarikan'])) {
+        $jml_biaya_tarikan_sl = 0;
+    }
+
     //Biaya Kantor etty
     $table3s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_kantor FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
     $data3s = mysqli_fetch_array($table3s);
@@ -497,7 +512,7 @@ if ($total_gaji_driver > 0) {
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
         $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
-        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli + $total_ongkos_kuli_sl;
+        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 } else {
 
@@ -507,7 +522,7 @@ if ($total_gaji_driver > 0) {
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
         $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
-        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl +$total_ongkos_kuli + $total_ongkos_kuli_sl;
+        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 }
 
@@ -985,7 +1000,7 @@ if ($total_gaji_driver > 0) {
                                                     <td>5-516</td>
                                                     <td class="text-left">Biaya Sewa Mobil Luar</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_bs + $total_bs_sl); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRBS?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
@@ -1045,7 +1060,7 @@ if ($total_gaji_driver > 0) {
                                                     <td class="text-left"><?= formatuang($jml_pembelian_sparepart); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
-                                                
+
                                                 <tr>
                                                     <td>5-597</td>
                                                     <td class="text-left">Pengeluaran Lainnya</td>
@@ -1055,6 +1070,13 @@ if ($total_gaji_driver > 0) {
                                                 </tr>
                                                 <tr>
                                                     <td>5-598</td>
+                                                    <td class="text-left">Biaya Pajak</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($biaya_pajak); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VBiayaPajak?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-599</td>
                                                     <td class="text-left">Bunga Bank</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_bunga_bank); ?></td>
