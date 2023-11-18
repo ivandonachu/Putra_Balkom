@@ -550,6 +550,14 @@ $total_transport_fee = $data_transport_fee['jml_transport_fee'];
 if (!isset($data_transport_fee['jml_transport_fee'])) {
     $total_transport_fee = 0;
 }
+//transport_fee
+$tabel_transport_fee = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS transport_fee FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport Fee' AND referensi = 'CBM' ");
+$data_transport_fee_admin  = mysqli_fetch_array($tabel_transport_fee);
+$total_transport_fee_admin = $data_transport_fee_admin['transport_fee'];
+if (!isset($data_transport_fee_admin['transport_fee'])) {
+    $total_transport_fee_admin = 0;
+}
+$total_transport_fee = $total_transport_fee + $total_transport_fee_admin;
 
 $total_pendapatan = $total_pendapatan_refill + $total_transport_fee ;
 
@@ -910,16 +918,38 @@ if (!isset($data_biaya_administrasi_new['biaya_administrasi_new'])) {
     $total_biaya_administrasi_new = 0;
 }
 
+//buanga bank bni tabel bunga bank
+$tabel_bank_bni = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS bunga_bank_bni FROM bunga_bank WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM' AND nama_bank = 'Bank BNI' ");
+$data_bank_bni = mysqli_fetch_array($tabel_bank_bni);
+$total_bunga_bank_bni = $data_bank_bni['bunga_bank_bni'];
+if (!isset($data_bank_bni['bunga_bank_bni'])) {
+    $total_bunga_bank_bni = 0;
+}
+
+//buanga bank bni
+$tabel_pengeluaran_admin = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS bunga_bank_bni FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bunga Bank' AND referensi = 'CBM' ");
+$data_pengeluaran_admin = mysqli_fetch_array($tabel_pengeluaran_admin);
+$total_bunga_bank_bni_admin = $data_pengeluaran_admin['bunga_bank_bni'];
+if (!isset($data_pengeluaran_admin['bunga_bank_bni'])) {
+    $total_bunga_bank_bni_admin = 0;
+}
+$total_bunga_bank_bni = $total_bunga_bank_bni + $total_bunga_bank_bni_admin;
+
+//Pajak
+$tabel_pajak_admin = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pajak FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Pajak' AND referensi = 'CBM' ");
+$data_pajak_admin = mysqli_fetch_array($tabel_pajak_admin);
+$total_pajak = $data_pajak_admin['pajak'];
+if (!isset($data_pajak_admin['pajak'])) {
+    $total_pajak = 0;
+}
 
 
-
-$total_bunga_bank_bni = 25000000 * $bulan_bunga_bni;
 $total_bunga_bank_bri = 23000000 * $bulan_bunga_bri;
 
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3 + $total_perbaikan_pribadi + $total_perbaikan_pribadi_new;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_gaji_karyawan_new + $total_gaji_driver + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni + $total_bunga_bank_bri +  $total_biaya_administrasi_new;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni + $total_bunga_bank_bri +  $total_biaya_administrasi_new + $total_pajak;
 
 $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_biaya_usaha_final;
 }
@@ -1526,11 +1556,18 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                     <?php echo "<td class='text-right'><a href=''></a></td>"; ?>
                                 </tr>
                                 <tr>
-                                    <td>5-596</td>
+                                    <td>5-597</td>
                                     <td class="text-left">Bunga Bank BNI</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_bunga_bank_bni); ?></td>
-                                    <?php echo "<td class='text-right'><a href=''></a></td>"; ?>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VBungaBankBNI?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-598</td>
+                                    <td class="text-left">Biaya Pajak</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_pajak); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VBiayaPajak?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr style="background-color:    #F0F8FF; ">
                                     <td><strong>Total Biaya Usaha</strong></td>
