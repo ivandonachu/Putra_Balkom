@@ -39,6 +39,7 @@ else{
  
    $table4 = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
    $table4x = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
+   $table = mysqli_query($koneksipbj,"SELECT * FROM sewa_hiblow WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 
 }
@@ -370,6 +371,80 @@ Logout
 <br>
 <br>
 <br>
+<h5 align="center" >Uang Jalan Menyewakan HiBLow</h5>
+<!-- Tabel -->    
+<div style="overflow-x: auto">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal DO</th>
+      <th>No DO</th>
+      <th>No Kendaraan</th> 
+      <th>Uang Jalan</th> 
+      <th>Qty/Tonase</th>
+      <th>Harga / Ton</th>
+      <th>Jumlah</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $urut = 0;
+
+    $total_sewa = 0;
+    ?>
+    <?php while($data = mysqli_fetch_array($table)){
+      $no_laporan = $data['no_laporan'];
+      $tanggal_do =$data['tanggal_do'];
+      $no_do =$data['no_do'];
+      $no_kendaraan =$data['no_kendaraan'];
+      $uang_jalan =$data['uang_jalan'];
+      $tonase =$data['tonase'];
+      $harga =$data['harga'];
+      $jumlah =$data['jumlah'];
+      $total_sewa = $total_sewa + $uang_jalan;
+      $urut = $urut + 1;
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal_do</td>
+      <td style='font-size: 14px' align = 'center'>$no_do</td>
+      <td style='font-size: 14px' align = 'center'>$no_kendaraan</td>
+      <td style='font-size: 14px' align = 'center'>$uang_jalan</td>
+      <td style='font-size: 14px' align = 'center'>$tonase</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+       </tr>";
+}
+?>
+
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uj Hiblow</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_sewa) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+
 </div>
 </div>
 </div>

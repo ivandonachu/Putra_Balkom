@@ -284,6 +284,13 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_om_sl = $data2sl['total_om'];
     $total_bs_sl = $data2sl['total_bs'];
 
+    //SQL UJ Hiblow
+    $sql_uj_sewa_hiblow = mysqli_query($koneksipbj, "SELECT SUM(uang_jalan) AS total_uj_sewa_hiblow FROM sewa_hiblow WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+    $data_uj_sewa_hiblow = mysqli_fetch_array($sql_uj_sewa_hiblow);
+    $total_uj_sewa_hiblow = $data_uj_sewa_hiblow['total_uj_sewa_hiblow'];
+
+
     //Cashback
     $table_cashback = mysqli_query($koneksipbj, "SELECT SUM(potongan_harga) AS jumlah_potongan_harga FROM potongan_harga WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_cashback = mysqli_fetch_array($table_cashback);
@@ -471,9 +478,9 @@ if ($tanggal_awal == $tanggal_akhir) {
     //biaya pajak
     $table_pajak = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pajak FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Pajak' ");
     $data_pajak = mysqli_fetch_array($table_pajak);
-    $jumlah_pajak = $data_pajak['jumlah_pajak'];
+    $biaya_pajak = $data_pajak['jumlah_pajak'];
     if (!isset($data_pajak['jumlah_pajak'])) {
-        $jumlah_pajak = 0;
+        $biaya_pajak = 0;
     }
 
     $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bengkel) AS jumlah_perbaikan FROM riwayat_pengeluaran_workshop_s
@@ -519,7 +526,7 @@ if ($total_gaji_driver > 0) {
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
         $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
-        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak;
+        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak +  $total_uj_sewa_hiblow;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 } else {
 
@@ -529,7 +536,7 @@ if ($total_gaji_driver > 0) {
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_perbaikan + $jml_pembelian_sparepart + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
         $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $jml_perbaikan_etty + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
-        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak;
+        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak +  $total_uj_sewa_hiblow;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 }
 
@@ -986,7 +993,7 @@ if ($total_gaji_driver > 0) {
                                                     <td>5-513</td>
                                                     <td class="text-left">Uang Jalan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_uj + $total_uj_sl); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_uj + $total_uj_sl + $total_uj_sewa_hiblow); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRUJ?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
