@@ -125,6 +125,8 @@ if (isset($_GET['tanggal1'])) {
             <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawanPbr">Bon Karyawan PBR MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBonPribadi">Bon Pribadi Karyawan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranAdmin">Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapPinjamSaldo">Rekap Pinjam Saldo</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
