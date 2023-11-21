@@ -136,7 +136,7 @@ $nama = $data['nama_karyawan'];
                 <div id="collapseTwo3x" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Report Manager</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRekapHarga">Rekapan Harga</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapanHarga">Rekapan Harga</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VFilePBJ">File PBJ</a>
                     </div>
                 </div>
