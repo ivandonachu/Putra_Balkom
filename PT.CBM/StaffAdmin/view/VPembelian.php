@@ -92,8 +92,8 @@ WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR
         <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-         <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsManager">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -105,7 +105,7 @@ WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsManager">
+                <a class="nav-link" href="DsStaffAdmin">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
@@ -115,7 +115,7 @@ WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR
 
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Manager
+                     Menu Staff Admin
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
@@ -123,72 +123,114 @@ WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Transaksi</span>
+                    <span style="font-size: 15px; color:white;" >Admin Karyawaan</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian Barang Jual</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBungaBank">Bunga Bank</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
+                        <h6 class="collapse-header" style="font-size: 15px;">Gaji & Kas</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Penggajian dan Rekap</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Pencatatan Kas Kecil</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawanPbr">Bon Karyawan PBR MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBonPribadi">Bon Pribadi Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit Kendaraan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranAdmin">Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapPinjamSaldo">Rekap Pinjam Saldo</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VBPJSDriver">BPJS Driver</a>
                     </div>
                 </div>
             </li>
 
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Rekap Gaji CBM</span>
+                </a>
+                <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji CBM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiCBM">List Gaji CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiCBM">Rekap Gaji CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverCBM">List Gaji Driver CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverCBM">Rekap Gaji Driver CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverKebun">List Gaji Driver Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverKebun">Rekap Gaji Driver Kebun</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox1"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Rekap Gaji MES</span>
+                </a>
+                <div id="collapseTwox1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji MES</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiMES">List Gaji MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiMES">Rekap Gaji MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverMES">List Gaji Driver MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverMES">Rekap Gaji Driver MES</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-                  15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan CBM</span>
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Rekap Gaji PBR</span>
                 </a>
                 <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan CBM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPembelianBBM">Lap Pembelian BBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Lap Penggunaan BBM</a>
+                        <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji PBR</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiPBR">List Gaji PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiPBR">Rekap Gaji PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverPBR">List Gaji Driver PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverPBR">Rekap Gaji Driver PBR</a>
                     </div>
                 </div>
             </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-                  15  aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-chart-line" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Laporan MES/PBR</span>
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Rekap Gaji PBJ</span>
                 </a>
                 <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLPenjualanpbr1">L Penjualan MES/PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuanganpbr1">L Keuangan MES/PBR</a>
+                        <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji PBJ</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiPBJ">List Gaji PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiPBJ">Rekap Gaji PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverPBJ">List Gaji Driver PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverPBJ">Rekap Gaji Driver PBJ</a>
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-id-card-alt" style="font-size: 15px; color:white;"></i>
-                <span style="font-size: 15px; color:white;">SDM</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-                <a class="collapse-item" href="VLaporanInventory1" style="font-size: 15px;">Laporan Inventory</a>
-                <a class="collapse-item" href="VDataPangkalan" style="font-size: 15px;">Data Pangkalan</a>
-                <a class="collapse-item" href="VDataRute" style="font-size: 15px;">Data Rute</a>
-                <a class="collapse-item" href="VDataKaryawan" style="font-size: 15px;">Data Karyawan</a>
-                <a class="collapse-item" href="VAset" style="font-size: 15px;">Daftar Aset</a>
-                <a class="collapse-item" href="VDokumen" style="font-size: 15px;">Daftar Dokumen</a>
-                <a class="collapse-item" href="VAbsensiPerta" style="font-size: 15px;">Absensi Pertashop</a>
-            </div>
-        </div>
-    </li>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Rekap Gaji Balsri</span>
+                </a>
+                <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji Balsri</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiBalsri">List Gaji Balsri</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiBalsri">Rekap Gaji Balsri</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverBalsri">List Gaji Driver Balsri</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverBalsri">Rekap Gaji Driver Balsri</a>
+                    </div>
+                </div>
+            </li>
 
 
     <!-- Divider -->
