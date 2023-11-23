@@ -290,7 +290,7 @@ $table3 = mysqli_query($koneksi, "SELECT * FROM rute_driver");
       <td style='font-size: 14px'>$B12K00</td>
       <td style='font-size: 14px'>$status</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="../file_toko/<?= $file_bukti ?>" href="../file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="../file_gudang/<?= $file_bukti ?>" href="../file_gudang/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px' align = 'center'>"; ?>
 
