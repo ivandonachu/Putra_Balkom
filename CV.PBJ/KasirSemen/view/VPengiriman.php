@@ -122,6 +122,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap Do Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VFilePBJ">File PBJ</a>
           </div>
         </div>
       </li>
