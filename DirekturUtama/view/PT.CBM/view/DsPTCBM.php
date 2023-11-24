@@ -1822,6 +1822,7 @@ if (isset($_GET['tanggal1'])) {
                         
                         <?php if($nama == 'Nyoman Edy Susanto'){
                         echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
+                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLRNonPSO'>LR Non PSO</a>";
                         } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Laporan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>

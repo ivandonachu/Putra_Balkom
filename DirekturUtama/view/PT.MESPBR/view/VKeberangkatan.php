@@ -344,7 +344,7 @@ else{
       <td style='font-size: 14px'>$B12K00</td>
       <td style='font-size: 14px'>$status</td>
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="" href="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
      </tr>";
   }
   ?>
