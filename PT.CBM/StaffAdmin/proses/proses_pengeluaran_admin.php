@@ -24,6 +24,8 @@ $tanggal = $_POST['tanggal'];
 $referensi = $_POST['referensi'];
 $nama_akun = $_POST['nama_akun'];
 $jumlah = $_POST['jumlah'];
+$harga_beli_12 = $_POST['harga_beli_12'];
+$harga_beli_55 = $_POST['harga_beli_55'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -62,7 +64,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pengeluaran_admin VALUES ('','$tanggal','$referensi','$nama_akun','$jumlah','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengeluaran_admin VALUES ('','$tanggal','$referensi','$nama_akun','$jumlah','$keterangan','$harga_beli_12','$harga_beli_55','$file')");
 
 
 			if ($query != "") {

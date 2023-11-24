@@ -21,70 +21,20 @@ exit;
 
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
- $tahun1 = date('Y', strtotime($tanggal_awal));
- $tahun2 = date('Y', strtotime($tanggal_akhir)); 
- $bulanx1 = date('m', strtotime($tanggal_awal)); 
- $bulan1 = ltrim($bulanx1, '0');
- $bulanx2 = date('m', strtotime($tanggal_akhir)); 
- $bulan2 = ltrim($bulanx2, '0');
- $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
- $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
- $tahun1 = date('Y', strtotime($tanggal_awal));
- $tahun2 = date('Y', strtotime($tanggal_akhir)); 
- $bulanx1 = date('m', strtotime($tanggal_awal)); 
- $bulan1 = ltrim($bulanx1, '0');
- $bulanx2 = date('m', strtotime($tanggal_akhir)); 
- $bulan2 = ltrim($bulanx2, '0');
- $tanggal_awal_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_awal ))); 
- $tanggal_akhir_x = date('Y-m-d', strtotime('+1 days', strtotime(  $tanggal_akhir ))); 
-
-}  
-
-
-
-if($tahun1 == $tahun2){
-
-    if($bulan1 == 1){
-        $bulan_bunga_bni = $bulan2;
-        $bulan_bunga_bri = $bulan2;
-    }
-    else{
-        $bulan_bunga_bni=0;
-        $bulan_bunga_bri=0;
-        for ($x = $bulan1; $x <= $bulan2; $x++) {
-            $bulan_bunga_bni = $bulan_bunga_bni + 1;
-            $bulan_bunga_bri = $bulan_bunga_bri + 1;
-          }
-          
-    }
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+   } 
    
+   elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+   }  
+   
+   else{
+       $tanggal_awal = date('Y-m-1');
+     $tanggal_akhir = date('Y-m-31');
+     }
 
-}
-else if($tahun1 < $tahun2){
-
-if($bulan1 == 1){
-    $bulan_bunga_bni = $bulan2 + 12;
-    $bulan_bunga_bri = $bulan2 + 12;
-}
-else{
-    $bulan_bunga_bni=0;
-        $bulan_bunga_bri=0;
-    $bulan2 = $bulan2 + 12;
-    for ($x = $bulan1; $x <= $bulan2; $x++) {
-        $bulan_bunga_bni = $bulan_bunga_bni + 1;
-            $bulan_bunga_bri = $bulan_bunga_bri + 1;
-      }
-      
-}
-
-}
 
 
     function formatuang($angka){
@@ -96,7 +46,7 @@ else{
 if ($tanggal_awal == $tanggal_akhir ) {
   //PENDAPATAN
 // TOTAL PENJUALAN REFILL
-$table = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal_x' AND kode_akun = '4-110' ");
+$table = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal = '$tanggal_awal' AND kode_akun = '4-110' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
 $data_pendapatan_refill = mysqli_fetch_array($table);
 $total_pendapatan_refill = $data_pendapatan_refill['penjualan_refill'];
 if (!isset($data_pendapatan_refill['penjualan_refill'])) {
@@ -213,119 +163,180 @@ $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
 
 else{
     //PENDAPATAN
-// TOTAL PENJUALAN REFILL
-$table = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal_x' AND '$tanggal_akhir_x'AND kode_akun = '4-110' ");
+// TOTAL PENJUALAN REFILL cbm
+$table = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_refill FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '4-110' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
 $data_pendapatan_refill = mysqli_fetch_array($table);
 $total_pendapatan_refill = $data_pendapatan_refill['penjualan_refill'];
 if (!isset($data_pendapatan_refill['penjualan_refill'])) {
     $total_pendapatan_refill = 0;
 }
+// TOTAL PENJUALAN REFILL pbr
+$table_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_refill_pbr FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  referensi = 'PBR' AND kode_akun = '4-110' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
+$data_pendapatan_refill_pbr = mysqli_fetch_array($table_pbr);
+$total_pendapatan_refill_pbr = $data_pendapatan_refill_pbr['penjualan_refill_pbr'];
+if (!isset($data_pendapatan_refill_pbr['penjualan_refill_pbr'])) {
+    $total_pendapatan_refill_pbr = 0;
+}
 
-
-// TOTAL Pendapatan lain - lain
-$table1x = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pendapatan_lain FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-610' ");
-$data_pendapatan_lain = mysqli_fetch_array($table1x);
-$total_pendapatan_lain = $data_pendapatan_lain['pendapatan_lain'];
-if (!isset($data_pendapatan_lain['pendapatan_lain'])) {
-    $total_pendapatan_lain = 0;
+// TOTAL PENJUALAN REFILL mes
+$table_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_refill_mes FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  referensi = 'MES' AND kode_akun = '4-110' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
+$data_pendapatan_refill_mes = mysqli_fetch_array($table_mes);
+$total_pendapatan_refill_mes = $data_pendapatan_refill_mes['penjualan_refill_mes'];
+if (!isset($data_pendapatan_refill_mes['penjualan_refill_mes'])) {
+    $total_pendapatan_refill_mes = 0;
 }
 
 
 
-// TOTAL PENJUALAN BAJA + ISI
-$table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_bajaisi FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '4-120' ");
+// TOTAL PENJUALAN BAJA + ISI cbm
+$table2 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_bajaisi FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '4-120' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
 $data_pendapatan_bajaisi = mysqli_fetch_array($table2);
 $total_pendapatan_bajaisi = $data_pendapatan_bajaisi['penjualan_bajaisi'];
 if (!isset($data_pendapatan_bajaisi['penjualan_bajaisi'])) {
     $total_pendapatan_bajaisi = 0;
 }
+// TOTAL PENJUALAN BAJA + ISI pbr
+$table2_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS riwayat_penjualan_pbr FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  referensi = 'PBR' AND kode_akun = '4-120' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
+$data_pendapatan_bajaisi_pbr = mysqli_fetch_array($table2_pbr);
+$total_pendapatan_bajaisi_pbr = $data_pendapatan_bajaisi_pbr['riwayat_penjualan_pbr'];
+if (!isset($data_pendapatan_bajaisi_pbr['riwayat_penjualan_pbr'])) {
+    $total_pendapatan_bajaisi_pbr = 0;
+}
+// TOTAL PENJUALAN BAJA + ISI mes
+$table2_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS riwayat_penjualan_mes FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  referensi = 'MES' AND kode_akun = '4-120' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
+$data_pendapatan_bajaisi_mes = mysqli_fetch_array($table2_mes);
+$total_pendapatan_bajaisi_mes = $data_pendapatan_bajaisi_mes['riwayat_penjualan_mes'];
+if (!isset($data_pendapatan_bajaisi_mes['riwayat_penjualan_mes'])) {
+    $total_pendapatan_bajaisi_mes = 0;
+}
 
 
-// TOTAL PENJUALAN KOSONG
-$table3 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_bajakosong FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '4-130' ");
+// TOTAL PENJUALAN KOSONG cbm
+$table3 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS penjualan_bajakosong FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '4-130' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
 $data_pendapatan_bajakosong = mysqli_fetch_array($table3);
 $total_pendapatan_bajakosong = $data_pendapatan_bajakosong['penjualan_bajakosong'];
 if (!isset($data_pendapatan_bajakosong['penjualan_bajakosong'])) {
     $total_pendapatan_bajakosong = 0;
 }
-
-//transport_fee
-$table18 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS jml_transport_fee FROM transport_fee WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM'");
-$data_transport_fee = mysqli_fetch_array($table18);
-$total_transport_fee = $data_transport_fee['jml_transport_fee'];
-if (!isset($data_transport_fee['jml_transport_fee'])) {
-    $total_transport_fee = 0;
+// TOTAL PENJUALAN KOSONG pbr
+$table3_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_bajakosong_pbr FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  referensi = 'PBR' AND kode_akun = '4-130' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
+$data_pendapatan_bajakosong_pbr = mysqli_fetch_array($table3_pbr);
+$total_pendapatan_bajakosong_pbr = $data_pendapatan_bajakosong_pbr['penjualan_bajakosong_pbr'];
+if (!isset($data_pendapatan_bajakosong_pbr['penjualan_bajakosong_pbr'])) {
+    $total_pendapatan_bajakosong_pbr = 0;
 }
-//transport_fee
-$tabel_transport_fee = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS transport_fee FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport Fee' AND referensi = 'CBM' ");
-$data_transport_fee_admin  = mysqli_fetch_array($tabel_transport_fee);
-$total_transport_fee_admin = $data_transport_fee_admin['transport_fee'];
-if (!isset($data_transport_fee_admin['transport_fee'])) {
-    $total_transport_fee_admin = 0;
+// TOTAL PENJUALAN KOSONG pbr
+$table3_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS penjualan_bajakosong_mes FROM riwayat_penjualan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  referensi = 'MES' AND kode_akun = '4-130' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
+$data_pendapatan_bajakosong_mes = mysqli_fetch_array($table3_mes);
+$total_pendapatan_bajakosong_mes = $data_pendapatan_bajakosong_mes['penjualan_bajakosong_mes'];
+if (!isset($data_pendapatan_bajakosong_mes['penjualan_bajakosong_mes'])) {
+    $total_pendapatan_bajakosong_mes = 0;
 }
-$total_transport_fee = $total_transport_fee + $total_transport_fee_admin;
 
-$total_pendapatan = $total_pendapatan_refill + $total_transport_fee ;
+$total_pendapatan = $total_pendapatan_refill + $total_pendapatan_refill_pbr + $total_pendapatan_refill_mes + $total_pendapatan_bajaisi + $total_pendapatan_bajaisi_pbr + $total_pendapatan_bajaisi_mes + $total_pendapatan_bajakosong + $total_pendapatan_bajakosong_pbr + $total_pendapatan_bajakosong_mes ;
+
+
 
 
 //HARGA POKOK PENJUALAN
+
 //TOTAL PEMBELIAN REFILL CBM
-$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_refill_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-110' AND referensi = 'CBM' ");
+$table4 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_refill_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-110' AND referensi = 'CBM'  AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00' ");
 $data_pembelian_refill_cbm = mysqli_fetch_array($table4);
 $total_pembelian_refill_cbm = $data_pembelian_refill_cbm['pembelian_refill_cbm'];
 if (!isset($data_pembelian_refill_cbm['pembelian_refill_cbm'])) {
     $total_pembelian_refill_cbm = 0;
 }
-//TOTAL PEMBELIAN REFILL TK
-$table5 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_refill_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-110' AND referensi = 'TK' ");
-$data_pembelian_refill_tk = mysqli_fetch_array($table5);
-$total_pembelian_refill_tk = $data_pembelian_refill_tk['pembelian_refill_tk'];
-if (!isset($data_pembelian_refill_tk['pembelian_refill_tk'])) {
-    $total_pembelian_refill_tk = 0;
+//TOTAL PEMBELIAN REFILL PBR
+$table4_pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_refill_pbr FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-110' AND referensi = 'PBR' AND pembayaran = 'Bank BRI PBR' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00'  ");
+$data_pembelian_refill_pbr = mysqli_fetch_array($table4_pbr);
+$total_pembelian_refill_pbr = $data_pembelian_refill_pbr['pembelian_refill_pbr'];
+if (!isset($data_pembelian_refill_pbr['pembelian_refill_pbr'])) {
+    $total_pembelian_refill_pbr = 0;
+}
+//TOTAL PEMBELIAN REFILL PBR
+$table4_mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_refill_mes FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-110' AND referensi = 'MES' AND pembayaran = 'Bank BRI MES' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00'  ");
+$data_pembelian_refill_mes = mysqli_fetch_array($table4_mes);
+$total_pembelian_refill_mes = $data_pembelian_refill_mes['pembelian_refill_mes'];
+if (!isset($data_pembelian_refill_mes['pembelian_refill_mes'])) {
+    $total_pembelian_refill_mes = 0;
+}
+//PEMBELIAN REFILL ADMIN
+$tabel_pembayaran_refill = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembayaran_refill FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND nama_akun = 'Pembayaran Non PSO'");
+$data_pembayaran_refill = mysqli_fetch_array($tabel_pembayaran_refill);
+$total_pembayaran_refill = $data_pembayaran_refill['pembayaran_refill'];
+if (!isset($data_pembayaran_refill['pembayaran_refill'])) {
+    $total_pembayaran_refill = 0;
 }
 
-$total_pembelian_refill = $total_pembelian_refill_cbm + $total_pembelian_refill_tk;
+$total_pembelian_refill = $total_pembelian_refill_cbm + $total_pembelian_refill_mes + $total_pembelian_refill_pbr +  $total_pembayaran_refill;
 
 
 //TOTAL PEMBELIAN BAJA + ISI CBM
-$table6 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajaisi_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-120' AND referensi = 'CBM' ");
+$table6 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajaisi_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-120' AND referensi = 'CBM' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00'  ");
 $data_pembelian_bajaisi_cbm = mysqli_fetch_array($table6);
 $total_pembelian_bajaisi_cbm = $data_pembelian_bajaisi_cbm['pembelian_bajaisi_cbm'];
 if (!isset($data_pembelian_bajaisi_cbm['pembelian_bajaisi_cbm'])) {
     $total_pembelian_bajaisi_cbm = 0;
 }
-//TOTAL PEMBELIAN REFILL TK
-$table7 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajaisi_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-120' AND referensi = 'TK' ");
-$data_pembelian_bajaisi_tk = mysqli_fetch_array($table7);
-$total_pembelian_bajaisi_tk = $data_pembelian_bajaisi_tk['pembelian_bajaisi_tk'];
-if (!isset($data_pembelian_bajaisi_tk['pembelian_bajaisi_tk'])) {
-    $total_pembelian_bajaisi_tk = 0;
+//TOTAL PEMBELIAN BAJA + ISI PBR
+$table6pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajaisi_pbr FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-120' AND referensi = 'PBR'  AND pembayaran = 'Bank BRI PBR' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00'  ");
+$data_pembelian_bajaisi_pbr = mysqli_fetch_array($table6pbr);
+$total_pembelian_bajaisi_pbr = $data_pembelian_bajaisi_pbr['pembelian_bajaisi_pbr'];
+if (!isset($data_pembelian_bajaisi_pbr['pembelian_bajaisi_pbr'])) {
+    $total_pembelian_bajaisi_pbr = 0;
+}
+//TOTAL PEMBELIAN BAJA + ISI MES
+$table6mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajaisi_mes FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-120' AND referensi = 'MES'  AND pembayaran = 'Bank BRI MES' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00'  ");
+$data_pembelian_bajaisi_mes = mysqli_fetch_array($table6mes);
+$total_pembelian_bajaisi_mes = $data_pembelian_bajaisi_mes['pembelian_bajaisi_mes'];
+if (!isset($data_pembelian_bajaisi_mes['pembelian_bajaisi_mes'])) {
+    $total_pembelian_bajaisi_mes = 0;
 }
 
-$total_pembelian_bajaisi = $total_pembelian_bajaisi_cbm + $total_pembelian_bajaisi_tk;
+
+$total_pembelian_bajaisi = $total_pembelian_bajaisi_cbm + $total_pembelian_bajaisi_pbr + $total_pembelian_bajaisi_mes;
 
 
 //TOTAL PEMBELIAN KOSONG CBM
-$table8 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajakosong_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'CBM' ");
+$table8 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajakosong_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'CBM' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00'  ");
 $data_pembelian_bajakosong_cbm = mysqli_fetch_array($table8);
 $total_pembelian_bajakosong_cbm = $data_pembelian_bajakosong_cbm['pembelian_bajakosong_cbm'];
 if (!isset($data_pembelian_bajakosong_cbm['pembelian_bajakosong_cbm'])) {
     $total_pembelian_bajakosong_cbm = 0;
 }
-//TOTAL PEMBELIAN KOSONG TK
-$table9 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajakosong_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'TK' ");
-$data_pembelian_bajakosong_tk = mysqli_fetch_array($table9);
-$total_pembelian_bajakosong_tk = $data_pembelian_bajakosong_tk['pembelian_bajakosong_tk'];
-if (!isset($data_pembelian_bajakosong_tk['pembelian_bajakosong_tk'])) {
-    $total_pembelian_bajakosong_tk = 0;
+//TOTAL PEMBELIAN KOSONG PBR
+$table8pbr = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajakosong_pbr FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'PBR'  AND pembayaran = 'Bank BRI PBR' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00'  ");
+$data_pembelian_bajakosong_pbr = mysqli_fetch_array($table8pbr);
+$total_pembelian_bajakosong_pbr = $data_pembelian_bajakosong_pbr['pembelian_bajakosong_pbr'];
+if (!isset($data_pembelian_bajakosong_pbr['pembelian_bajakosong_pbr'])) {
+    $total_pembelian_bajakosong_pbr = 0;
+}
+//TOTAL PEMBELIAN KOSONG MES
+$table8mes = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS pembelian_bajakosong_mes FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'MES'  AND pembayaran = 'Bank BRI MES' AND kode_baja != 'L03K01' AND kode_baja != 'L03K10' AND kode_baja != 'L03K11' AND kode_baja != 'L03K00'  ");
+$data_pembelian_bajakosong_mes = mysqli_fetch_array($table8mes);
+$total_pembelian_bajakosong_mes = $data_pembelian_bajakosong_mes['pembelian_bajakosong_mes'];
+if (!isset($data_pembelian_bajakosong_mes['pembelian_bajakosong_mes'])) {
+    $total_pembelian_bajakosong_mes = 0;
 }
 
 
-
-
-$total_pembelian_bajakosong = $total_pembelian_bajakosong_cbm + $total_pembelian_bajakosong_tk;
-
+$total_pembelian_bajakosong = $total_pembelian_bajakosong_cbm + $total_pembelian_bajakosong_pbr + $total_pembelian_bajakosong_pbr;
 $total_harga_pokok_penjualan = $total_pembelian_refill + $total_pembelian_bajaisi + $total_pembelian_bajakosong;
+
+//sisa stok inventory
+//TOTAL Inventory cbm
+$table_inventory_cbm = mysqli_query($koneksicbm, "SELECT *  FROM laporan_inventory WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'GD' ORDER BY no_laporan DESC LIMIT 1");
+$data_inventory_cbm = mysqli_fetch_array($table_inventory_cbm);
+$total_stok_12bg = $data_inventory_cbm['B12K11'];
+$total_stok_12lpg = $data_inventory_cbm['L12K11'];
+$total_stok_55bg = $data_inventory_cbm['B05K11'];
+
+$table_inventory_pbr = mysqli_query($koneksipbr, "SELECT *  FROM laporan_inventory WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'GD'  ORDER BY no_laporan DESC LIMIT 1");
+$data_inventory_pbr = mysqli_fetch_array($table_inventory_pbr);
+$total_stok_12bg_pbr = $data_inventory_pbr['B12K11'];
+$total_stok_12lpg_pbr = $data_inventory_pbr['L12K11'];
+$total_stok_55bg_pbr = $data_inventory_pbr['B05K11'];
 
 //LABA KOTOR
 $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
@@ -651,14 +662,6 @@ $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                                <tr>
-                                    <td><strong>4-000</strong></td>
-                                    <td class="text-left"><strong>PENDAPATAN</strong></td>
-                                    <td class="text-left"></td>
-                                    <td class="text-left"></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
-                                </tr>
                                 <tr>
                                     <td>4-100</td>
                                     <td class="text-left">Penjualan Barang</td>
@@ -668,33 +671,81 @@ $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
                                 </tr>
                                 <tr>
                                     <td>4-110</td>
-                                    <td class="text-left">Penjualan Refill</td>
+                                    <td class="text-left">Penjualan Refill CBM</td>
                                     <td class="text-left"><?= formatuang($total_pendapatan_refill); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRRefillLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
-                                
+                                <tr>
+                                    <td>4-110</td>
+                                    <td class="text-left">Penjualan Refill MES</td>
+                                    <td class="text-left"><?= formatuang($total_pendapatan_refill_mes); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRRefillLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-110</td>
+                                    <td class="text-left">Penjualan Refill PBR</td>
+                                    <td class="text-left"><?= formatuang($total_pendapatan_refill_pbr); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRRefillLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
                                 <tr>
                                     <td>4-120</td>
-                                    <td class="text-left">Penjualan Baja + Isi</td>
+                                    <td class="text-left">Penjualan Baja + Isi CBM</td>
                                     <td class="text-left"><?= formatuang($total_pendapatan_bajaisi); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRBajaIsiLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
+                                    <td>4-120</td>
+                                    <td class="text-left">Penjualan Baja + Isi MES</td>
+                                    <td class="text-left"><?= formatuang($total_pendapatan_bajaisi_mes); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRBajaIsiLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-120</td>
+                                    <td class="text-left">Penjualan Baja + Isi PBR</td>
+                                    <td class="text-left"><?= formatuang($total_pendapatan_bajaisi_pbr); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRBajaIsiLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
                                     <td>4-130</td>
-                                    <td class="text-left">Penjualan Baja Kosong</td>
+                                    <td class="text-left">Penjualan Baja Kosong CBM</td>
                                     <td class="text-left"><?= formatuang($total_pendapatan_bajakosong); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRBajaKosongLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
+                                    <td>4-130</td>
+                                    <td class="text-left">Penjualan Baja Kosong MES</td>
+                                    <td class="text-left"><?= formatuang($total_pendapatan_bajakosong_mes); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRBajaKosongLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>4-130</td>
+                                    <td class="text-left">Penjualan Baja Kosong PBR</td>
+                                    <td class="text-left"><?= formatuang($total_pendapatan_bajakosong_pbr); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRBajaKosongLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
                                     <td>4-140</td>
-                                    <td class="text-left">Transport Fee</td>
+                                    <td class="text-left">Sisa Stok CBM</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                </tr>       
+                                </tr>      
+                                <tr>
+                                    <td>4-140</td>
+                                    <td class="text-left">Sisa Stok MES & PBR</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>      
                                 <tr style="background-color:     #F0F8FF; ">
                                     <td><strong>Total Pendapatan</strong></td>
                                     <td class="thick-line"></td>
@@ -717,13 +768,6 @@ $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
                                     <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
                                 <tr>
-                                    <td>5-100</td>
-                                    <td class="text-left">Pembelian Barang</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
-                                </tr>
-                                <tr>
                                     <td>5-110</td>
                                     <td class="text-left">Pembelian Refill</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
@@ -743,27 +787,6 @@ $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_pembelian_bajakosong); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelianBKosong?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                </tr>
-                                <tr>
-                                    <td>5-200</td>
-                                    <td class="text-left">Biaya Angkut Pembelian</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
-                                </tr>
-                                <tr>
-                                    <td>5-300</td>
-                                    <td class="text-left">Retur Pembelian</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
-                                </tr>
-                                <tr>
-                                    <td>5-400</td>
-                                    <td class="text-left">Potongan Pembelian</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
                             
                                 <tr style="background-color:    #F0F8FF;  ">

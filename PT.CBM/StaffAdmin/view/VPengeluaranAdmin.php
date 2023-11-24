@@ -392,6 +392,19 @@ else{
 
       <br>
 
+      <div class="row">
+        <div class="col-md-6">
+                <label>Harga Beli 12 Kg</label>
+                <input class="form-control form-control-sm" type="number" name="harga_beli_12" value= "0" >          
+            </div>
+            <div class="col-md-6">
+                <label>Harga Beli 5,5 Kg</label>
+                <input class="form-control form-control-sm" type="number" name="harga_beli_55" value= "0" >          
+            </div>
+        </div>
+
+        <br>
+
   <div>
     <label>Upload File</label> 
     <input type="file" name="file"> 
@@ -425,6 +438,8 @@ else{
       <th>Debit</th>
       <th>Kredit</th>
       <th>Total</th>
+      <th>Harga Beli 12 KG</th>
+      <th>Harga Beli 5,5 KG</th>
       <th>File</th>
       <th>Aksi</th>
     </tr>
@@ -445,6 +460,8 @@ else{
       $referensi = $data['referensi'];
       $nama_akun = $data['nama_akun'];
       $keterangan = $data['keterangan'];
+      $harga_beli_12 = $data['harga_beli_12'];
+      $harga_beli_55 = $data['harga_beli_55'];
       $jumlah = $data['jumlah'];
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
@@ -473,7 +490,10 @@ else{
         echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$harga_beli_12</td>
+      <td style='font-size: 14px'>$harga_beli_55</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
 
@@ -529,7 +549,7 @@ else{
             </div>
             <div class="col-md-6">
                 <label>Jumlah</label>
-                <input class="form-control form-control-sm" type="number"value="<?php echo $jumlah;?>" name="jumlah" required="">          
+                <input class="form-control form-control-sm" type="number" value="<?php echo $jumlah;?>" name="jumlah" required="">          
             </div>
         </div>
 
@@ -545,6 +565,18 @@ else{
      </div>
 
       <br>
+      <div class="row">
+        <div class="col-md-6">
+                <label>Harga Beli 12 Kg</label>
+                <input class="form-control form-control-sm" type="number" name="harga_beli_12"  value="<?php echo $harga_beli_12;?>">          
+            </div>
+            <div class="col-md-6">
+                <label>Harga Beli 5,5 Kg</label>
+                <input class="form-control form-control-sm" type="number" name="harga_beli_55"  value="<?php echo $harga_beli_55;?>">          
+            </div>
+        </div>
+
+        <br>
 
     <div>
         <label>Upload File</label> 
