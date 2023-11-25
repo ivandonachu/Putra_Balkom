@@ -541,10 +541,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <label>Keterangan</label>
-                                                        <select name="keterangan" class="form-control">
-                                                            <option>Pertashop</option>
-                                                            <option>Uji Flowmet</option>
-                                                        </select>
+                                                        <input class="form-control form-control-sm" type="float" name="keterangan" required="">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>BBM Keluar</label>
@@ -833,11 +830,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <label>Keterangan</label>
-                                                                <select name="keterangan" class="form-control">
-                                                                    <?php $dataSelect = $data['keterangan']; ?>
-                                                                    <option <?php echo ($dataSelect == 'Pertashop') ? "selected" : "" ?>>Pertashop</option>
-                                                                    <option <?php echo ($dataSelect == 'Uji Flomet') ? "selected" : "" ?>>Uji Flomet</option>
-                                                                </select>
+                                                                <input class="form-control form-control-sm" type="float" name="keterangan" required="" value="<?php echo $keterangan; ?>">
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <label>BBM Keluar </label>
