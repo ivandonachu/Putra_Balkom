@@ -292,6 +292,7 @@ aria-labelledby="userDropdown">
                                     <th>Uang Jalan</th>
                                     <th>Uang Gaji</th>
                                     <th>Ongkos Mobil</th>
+                                    <th>Biaya Sewa Kendaraan Luar</th>
                                     <th>Tgl Ambil Gaji</th>
                                     <th>Tgl Nota Tarikan</th>
                                     <th>KET</th>
@@ -320,6 +321,7 @@ aria-labelledby="userDropdown">
                                     $uj = $data['uj'];
                                     $ug = $data['ug'];
                                     $om = $data['om'];
+                                    $bs = $data['bs'];
                                     $tanggal_gaji = $data['tanggal_gaji'];
                                     $tanggal_nota = $data['tanggal_nota'];
                                     $keterangan = $data['keterangan'];
@@ -340,6 +342,7 @@ aria-labelledby="userDropdown">
                                     <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($uj); ?> <?php echo "</td>
                                     <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($ug); ?> <?php echo "</td>
                                     <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($om); ?> <?php echo "</td>
+                                    <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($bs); ?> <?php echo "</td>
                                     <td style='font-size: 14px' align = 'center'>$tanggal_gaji</td>
                                     <td style='font-size: 14px' align = 'center'>$tanggal_nota</td>
                                     <td style='font-size: 14px' align = 'center'>$keterangan</td>

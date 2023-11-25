@@ -502,6 +502,8 @@ else{
       <th>Uang Makan</th>
       <th>Gaji</th>
       <th>Uang Jalan</th>
+      <th>Solar</th>
+      <th>Uang Solar</th>
       <th>Jns Trans</th>
       <th>Jml Trans</th>
       <th>KET</th>
@@ -531,6 +533,8 @@ else{
       $um = $data['um'];
       $ug = $data['ug'];
       $uj = $data['uj'];
+      $solar = $data['solar'];
+      $u_solar = $data['u_solar'];
       $jns_trans = $data['jns_trans'];
       $jml_trans = $data['jml_trans'];
       $keterangan = $data['keterangan'];
@@ -551,6 +555,8 @@ else{
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($um); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>$solar/L</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($u_solar); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>$jns_trans</td>
       <td style='font-size: 14px' align = 'center'>$jml_trans</td>
       <td style='font-size: 14px' align = 'center'>$keterangan</td>

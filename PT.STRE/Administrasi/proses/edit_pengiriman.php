@@ -40,10 +40,21 @@ if($jen_ken == '8000 L'){
 }
 else{
 	$dexlite = $jt_gps/6;
+	$penambahan = $jt_gps%50;
+	$jt_gps_solar = $jt_gps - $penambahan;
+	$solar_tambahan = $jt_gps_solar/50;
+
+	if($penambahan >=25){
+		$solar_tambahan = $solar_tambahan + 1;
+	}
+
+	$solar = $jt_gps/6;
+	$solar = $solar + $solar_tambahan;
 }
 
 
 $u_dex = $dexlite*17650;
+$u_solar = $solar*12000;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
 if ($jns_trans == 'Lost') {
@@ -137,10 +148,10 @@ $no_driver = $data_driver['no_driver'];
 
 	if ($jns_trans == 'Lost') {
 		if ($file == '') {
-		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver' ,no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver' ,no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
 	}
 		else{
-		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file'  , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file'  , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
 	}
 
 	
@@ -148,10 +159,10 @@ $no_driver = $data_driver['no_driver'];
 	}
 	else{
 		if ($file == '') {
-		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan'  , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan'  , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
 	}
 		else{
-		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file' , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file' , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
 	}
 
 	
