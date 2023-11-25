@@ -331,12 +331,21 @@ $data_inventory_cbm = mysqli_fetch_array($table_inventory_cbm);
 $total_stok_12bg = $data_inventory_cbm['B12K11'];
 $total_stok_12lpg = $data_inventory_cbm['L12K11'];
 $total_stok_55bg = $data_inventory_cbm['B05K11'];
-
 $table_inventory_pbr = mysqli_query($koneksipbr, "SELECT *  FROM laporan_inventory WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'GD'  ORDER BY no_laporan DESC LIMIT 1");
 $data_inventory_pbr = mysqli_fetch_array($table_inventory_pbr);
 $total_stok_12bg_pbr = $data_inventory_pbr['B12K11'];
 $total_stok_12lpg_pbr = $data_inventory_pbr['L12K11'];
 $total_stok_55bg_pbr = $data_inventory_pbr['B05K11'];
+
+//harga beli non pso
+$table_harga_beli = mysqli_query($koneksicbm, "SELECT *  FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pembayaran Non PSO' ORDER BY no_pengeluaran DESC LIMIT 1");
+$data_harga_beli = mysqli_fetch_array($table_harga_beli);
+$harga_12kg = $data_harga_beli['harga_beli_12'];
+$harga_55kg = $data_harga_beli['harga_beli_55'];
+
+$uang_stok_cbm = ($total_stok_12bg * $harga_12kg) + ($total_stok_12lpg * $harga_12kg) + ($total_stok_55bg * $harga_55kg);
+$uang_stok_pbr = ($total_stok_12bg_pbr * $harga_12kg) + ($total_stok_12lpg_pbr * $harga_12kg) + ($total_stok_55bg_pbr * $harga_55kg);
+$total_harga_pokok_penjualan = $total_harga_pokok_penjualan - ($uang_stok_cbm + $uang_stok_pbr);
 
 //LABA KOTOR
 $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
@@ -732,20 +741,7 @@ $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRBajaKosongLR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
-                                <tr>
-                                    <td>4-140</td>
-                                    <td class="text-left">Sisa Stok CBM</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                </tr>      
-                                <tr>
-                                    <td>4-140</td>
-                                    <td class="text-left">Sisa Stok MES & PBR</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                </tr>      
+
                                 <tr style="background-color:     #F0F8FF; ">
                                     <td><strong>Total Pendapatan</strong></td>
                                     <td class="thick-line"></td>
@@ -788,6 +784,20 @@ $laba_kotor = $total_pendapatan - $total_harga_pokok_penjualan;
                                     <td class="text-left"><?= formatuang($total_pembelian_bajakosong); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelianBKosong?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
+                                <tr>
+                                    <td>4-140</td>
+                                    <td class="text-left">Sisa Stok CBM</td>
+                                    <td class="text-left"><?= formatuang($uang_stok_cbm); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>      
+                                <tr>
+                                    <td>4-140</td>
+                                    <td class="text-left">Sisa Stok MES & PBR</td>
+                                    <td class="text-left"><?= formatuang($uang_stok_pbr); ?></td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRTransportFee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>      
                             
                                 <tr style="background-color:    #F0F8FF;  ">
                                     <td><strong>Total Harga Pokok Penjualan</strong></td>

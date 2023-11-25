@@ -316,6 +316,7 @@ Menu Kepala Oprasional
                         <option>Biaya Konsumsi</option>
                         <option>Biaya Administrasi</option>
                         <option>Pengeluaran Lainnya</option>
+                        <option>Kasbon</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -478,6 +479,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
+                        <option <?php echo ($dataSelect == 'Kasbon') ? "selected": "" ?> >Kasbon</option>
                     </select>
             </div>
             <div class="col-md-6">
