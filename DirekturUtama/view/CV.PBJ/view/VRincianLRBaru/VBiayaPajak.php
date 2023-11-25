@@ -330,7 +330,10 @@ Logout
     <?php
     $total = 0;
     $urut = 0;
-
+    function formatuang($angka){
+      $uang = "Rp " . number_format($angka,2,',','.');
+      return $uang;
+    }
 
     ?>
 
