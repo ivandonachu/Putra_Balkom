@@ -292,7 +292,6 @@ Menu Kepala Oprasional
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <option>MES</option>
-              <option>Kebun Kota Batu</option>
             </select>
           </div>
         </div>
@@ -321,6 +320,7 @@ Menu Kepala Oprasional
                         <option>Pengeluaran Lainnya</option>
                         <option>Bunga Bank</option>
                         <option>Pengeluaran Kebun Kota Batu</option>
+                        <option>Alat & Bahan Bangunan Kebun Kota Batu</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -486,6 +486,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Kebun Kota Batu') ? "selected": "" ?> >Pengeluaran Kebun Kota Batu</option>
+                        <option <?php echo ($dataSelect == 'Alat & Bahan Bangunan Kebun Kota Batu') ? "selected": "" ?> >Alat & Bahan Bangunan Kebun Kota Batu</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -630,70 +631,6 @@ Menu Kepala Oprasional
 
 <br>
 <hr>
-<br>
-
-<h5 align="center" >Rincian Pengeluaran</h5>
-<!-- Tabel -->    
-<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Akun</th>
-      <th>Total Pengeluaran</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php 
-    $sisa_saldo = 0;
-    $total_pengeluaran = 0;
-    $total_saldo = 0;
-  ?>
-    <?php while($data = mysqli_fetch_array($table4)){
-        $nama_akun = $data['nama_akun'];
-        $jumlah =$data['total_jumlah'];
-
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
-        $sisa_saldo  = $sisa_saldo + $jumlah;
-        $total_saldo = $total_saldo + $jumlah;
-      }
-      else{
-        $sisa_saldo  = $sisa_saldo - $jumlah;
-        $total_pengeluaran = $total_pengeluaran + $jumlah;
-      }
-     
-
-
-      echo "<tr>
-
-       <td style='font-size: 14px' >$nama_akun</td>
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      
-     
-
-  </tr>";
-}
-?>    <tr>
-<td style='font-size: 14px; ' ><strong>Total Sakdo</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($total_saldo); ?></strong> </td>
-      </tr>
-      <tr>
-      <td style='font-size: 14px; ' ><strong>Total Pengeluaran</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($total_pengeluaran); ?></strong> </td>
-      </tr>
-      <tr>
-      <td style='font-size: 14px; ' ><strong>Sisa Saldo</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($sisa_saldo); ?></strong> </td>
-      </tr>
-      
-     
-      
-
-      </tr>
-</tbody>
-</table>
-
-<br>
-<hr>
-<br>
 
 
 
