@@ -320,6 +320,7 @@ Menu Kepala Oprasional
                         <option>Biaya Administrasi</option>
                         <option>Pengeluaran Lainnya</option>
                         <option>Bunga Bank</option>
+                        <option>Pengeluaran Kebun Kota Batu</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -474,7 +475,6 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Penarikan Cash') ? "selected": "" ?> >Penarikan Cash</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
-
                         <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
                         <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                         <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
@@ -485,6 +485,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
+                        <option <?php echo ($dataSelect == 'Pengeluaran Kebun Kota Batu') ? "selected": "" ?> >Pengeluaran Kebun Kota Batu</option>
                     </select>
             </div>
             <div class="col-md-6">
