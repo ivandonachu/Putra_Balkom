@@ -323,7 +323,7 @@ Logout
 
 
 
-<h4>Rincian Pembelian  Kadek</h4>
+<h4 align = 'center'>Rincian Pembelian  Kadek</h4>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -361,16 +361,21 @@ Logout
 
     <?php while($data1 = mysqli_fetch_array($tabel)){
       
-      $no_do_penjualan = $data1['no_do'];
-      $tablexj = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
-      $data = mysqli_fetch_array($tablexjx);
- 
 
+
+
+        $no_do_penjualan = $data1['no_do'];
+
+
+        $tablexj = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE no_do = '$no_do_penjualan' ");
+        $data = mysqli_fetch_array($tablexj);
+        
  
       $no_pembelian = $data['no_pembelian'];
       $tanggal =$data['tanggal'];
       $tipe_semen = $data['tipe_semen'];
       $tujuan = $data['tujuan'];
+      $no_do = $data['no_do'];
       $kota = $data['kota'];
       $material = $data['material'];
       $qty = $data['qty'];
@@ -408,6 +413,9 @@ Logout
   
   <?php echo  " </tr>";
 
+
+ 
+
           
 
    
@@ -422,7 +430,7 @@ Logout
 <br>
 
 
-<h4>Rincian Pembelian  Ety</h4>
+<h4 align = 'center' >Rincian Pembelian  Ety</h4>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
               <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -455,7 +463,8 @@ Logout
     <?php while($data1 = mysqli_fetch_array($tabel2)){
       
       $no_do_penjualan = $data1['no_do'];
-      $tablexj = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
+
+      $tablexjx = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE no_do = '$no_do_penjualan'  ");
       $data = mysqli_fetch_array($tablexjx);
  
 
@@ -465,6 +474,7 @@ Logout
       $tipe_semen = $data['tipe_semen'];
       $tujuan = $data['tujuan'];
       $kota = $data['kota'];
+      $no_do = $data['no_do'];
       $material = $data['material'];
       $qty = $data['qty'];
       $harga = $data['harga'];
@@ -501,7 +511,6 @@ Logout
   
   <?php echo  " </tr>";
 
-          
 
    
 }
