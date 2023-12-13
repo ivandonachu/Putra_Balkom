@@ -326,6 +326,7 @@ Menu Kepala Oprasional
                         <option>Pengeluaran Lainnya</option>
                         <option>Karyawan Kasbon</option>
                         <option>Stok Sparepart Gudang</option>
+                        <option>Bunga Bank</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -493,6 +494,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
                         <option <?php echo ($dataSelect == 'Karyawan Kasbon') ? "selected": "" ?> >Karyawan Kasbon</option>
                         <option <?php echo ($dataSelect == 'Stok Sparepart Gudang') ? "selected": "" ?> >Stok Sparepart Gudang</option>
+                        <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
                     </select>
             </div>
             <div class="col-md-6">

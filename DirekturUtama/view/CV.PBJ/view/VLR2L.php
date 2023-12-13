@@ -216,8 +216,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     $tabel2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
     while ($data2 = mysqli_fetch_array($tabel2)) {
-        $no_do_penjualan = $data2['no_do'];
-        $tablexjx = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualan'");
+        $no_do_penjualanx = $data2['no_do'];
+        $tablexjx = mysqli_query($koneksipbj, "SELECT jumlah FROM pembelian_sl WHERE no_do = '$no_do_penjualanx'");
 
         $data2x = mysqli_fetch_array($tablexjx);
         $jumlah_ety = $data2x['jumlah'];

@@ -297,6 +297,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Pemasukan Lainnya</option>
                               <option>Bayar BPJS</option>
                               <option>Biaya Pajak</option>
+                              <option>Pembelian Barang Jual</option>
+                              <option>Pinjam Saldo</option>
+                              <option>Pindah Saldo</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -438,6 +441,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Karyawan Bon') ? "selected" : "" ?>>Karyawan Bon</option>
                                     <option <?php echo ($dataSelect == 'Setor Uang') ? "selected" : "" ?>>Setor Uang</option>
                                     <option <?php echo ($dataSelect == 'Bayar Sewa Kendaraan Luar') ? "selected" : "" ?>>Bayar Sewa Kendaraan Luar</option>
+                                    <option <?php echo ($dataSelect == 'Pendapatan Sewa') ? "selected" : "" ?>>Pendapatan Sewa</option>
                                     <option <?php echo ($dataSelect == 'Ongkos Kuli') ? "selected" : "" ?>>Ongkos Kuli</option>
                                     <option <?php echo ($dataSelect == 'Uang Jalan') ? "selected" : "" ?>>Uang Jalan</option>
                                     <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected" : "" ?>>Biaya Konsumsi</option>
@@ -453,7 +457,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Pemasukan Lainnya') ? "selected" : "" ?>>Pemasukan Lainnya</option>
                                     <option <?php echo ($dataSelect == 'Bayar BPJS') ? "selected" : "" ?>>Bayar BPJS</option>
                                     <option <?php echo ($dataSelect == 'Biaya Pajak') ? "selected" : "" ?>>Biaya Pajak</option>
-
+                                    <option <?php echo ($dataSelect == 'Pembelian Barang Jual') ? "selected" : "" ?>>Pembelian Barang Jual</option>
+                                    <option <?php echo ($dataSelect == 'Pinjam Saldo') ? "selected" : "" ?>>Pinjam Saldo</option>
+                                    <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected" : "" ?>>Pindah Saldo</option>
                                   </select>
                                 </div>
                                 <div class="col-md-6">

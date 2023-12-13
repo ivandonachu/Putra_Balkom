@@ -123,6 +123,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VRekapPinjamSaldo">Rekap Pinjam Saldo</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBPJSDriver">BPJS Driver</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
           </div>
         </div>
       </li>

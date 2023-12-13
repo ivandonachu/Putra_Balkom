@@ -637,7 +637,7 @@ if (!isset($data_uang_bongkar_ulang['uang_bongkar_ulang'])) {
 
 
 //uang lembur
-$table111 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_lembur FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-560' AND referensi = 'PB' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-560' AND referensi = 'PBR'");
+$table111 = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS uang_lembur FROM riwayat_pengeluaran WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-514' AND referensi = 'PB' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-514' AND referensi = 'PBR'");
 $data_uang_lembur = mysqli_fetch_array($table111);
 $total_uang_lembur = $data_uang_lembur['uang_lembur'];
 if (!isset($data_uang_lembur['uang_lembur'])) {

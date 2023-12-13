@@ -42,6 +42,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal'");
   $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
   $table3 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR' GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Kota Batu GROUP BY nama_akun");
 
 
 }
@@ -50,6 +51,7 @@ else{
   $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
   $table3 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Kota Batu' GROUP BY nama_akun");
 
 }
 
@@ -317,6 +319,9 @@ Menu Kepala Oprasional
                         <option>Biaya Administrasi</option>
                         <option>Pengeluaran Lainnya</option>
                         <option>Kasbon</option>
+                        <option>Bunga Bank</option>
+                        <option>Pengeluaran Kebun Kota Batu</option>
+                        <option>Alat & Bahan Bangunan Kebun Kota Batu</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -454,6 +459,7 @@ Menu Kepala Oprasional
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <?php $dataSelect = $data['referensi']; ?>
               <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+              <option <?php echo ($dataSelect == 'Kebun Kota Batu') ? "selected": "" ?> >Kebun Kota Batu</option>
             </select>
           </div>
         </div>
@@ -480,6 +486,9 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
                         <option <?php echo ($dataSelect == 'Kasbon') ? "selected": "" ?> >Kasbon</option>
+                        <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
+                        <option <?php echo ($dataSelect == 'Pengeluaran Kebun Kota Batu') ? "selected": "" ?> >Pengeluaran Kebun Kota Batu</option>
+                        <option <?php echo ($dataSelect == 'Alat & Bahan Bangunan Kebun Kota Batu') ? "selected": "" ?> >Alat & Bahan Bangunan Kebun Kota Batu</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -578,7 +587,7 @@ Menu Kepala Oprasional
     $total_pengeluaran = 0;
     $total_saldo = 0;
   ?>
-    <?php while($data = mysqli_fetch_array($table2)){
+    <?php while($data = mysqli_fetch_array($table3)){
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['total_jumlah'];
 
@@ -623,9 +632,6 @@ Menu Kepala Oprasional
 </table>
 
 <br>
-<hr>
-
-
 
 
 </div>

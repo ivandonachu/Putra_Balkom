@@ -42,6 +42,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes  WHERE tanggal = '$tanggal_awal'");
   $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
   $table3 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes  WHERE tanggal = '$tanggal_awal' AND referensi = 'MES' GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Kota Batu GROUP BY nama_akun");
 
 
 }
@@ -50,6 +51,7 @@ else{
   $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
   $table3 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MES' GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_mes  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Kota Batu' GROUP BY nama_akun");
 
 }
 
@@ -316,6 +318,9 @@ Menu Kepala Oprasional
                         <option>Biaya Konsumsi</option>
                         <option>Biaya Administrasi</option>
                         <option>Pengeluaran Lainnya</option>
+                        <option>Bunga Bank</option>
+                        <option>Pengeluaran Kebun Kota Batu</option>
+                        <option>Alat & Bahan Bangunan Kebun Kota Batu</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -453,6 +458,7 @@ Menu Kepala Oprasional
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <?php $dataSelect = $data['referensi']; ?>
               <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+              <option <?php echo ($dataSelect == 'Kebun Kota Batu') ? "selected": "" ?> >Kebun Kota Batu</option>
             </select>
           </div>
         </div>
@@ -469,7 +475,6 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Penarikan Cash') ? "selected": "" ?> >Penarikan Cash</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
-
                         <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
                         <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                         <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
@@ -479,6 +484,9 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
+                        <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
+                        <option <?php echo ($dataSelect == 'Pengeluaran Kebun Kota Batu') ? "selected": "" ?> >Pengeluaran Kebun Kota Batu</option>
+                        <option <?php echo ($dataSelect == 'Alat & Bahan Bangunan Kebun Kota Batu') ? "selected": "" ?> >Alat & Bahan Bangunan Kebun Kota Batu</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -577,7 +585,7 @@ Menu Kepala Oprasional
     $total_pengeluaran = 0;
     $total_saldo = 0;
   ?>
-    <?php while($data = mysqli_fetch_array($table2)){
+    <?php while($data = mysqli_fetch_array($table3)){
         $nama_akun = $data['nama_akun'];
         $jumlah =$data['total_jumlah'];
 
