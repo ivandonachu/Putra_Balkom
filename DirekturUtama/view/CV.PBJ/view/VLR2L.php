@@ -82,7 +82,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 } else {
 
     // Penjualan kadek dan etty
-    $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' ");
+    $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND tujuan_pengiriman != 'Gudang Mesuji' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND tujuan_pengiriman != 'Gudang Mesuji' ");
     $pendapatan_penjualan_kadek = 0;
     //kadek
     while ($data = mysqli_fetch_array($tablex)) {
@@ -94,7 +94,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
     //ety
-    $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash' ");
+    $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tujuan_pengiriman != 'Gudang Mesuji'  AND status_bayar = 'Lunas Cash' AND tujuan_pengiriman != 'Gudang Mesuji' ");
     $pendapatan_penjualan_ety = 0;
 
     while ($datae = mysqli_fetch_array($tablex2)) {
@@ -198,7 +198,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
 
-    // pembelian kadek dan etty
+    /* pembelian kadek dan etty
     $total_penebusan_dani = 0;
     $total_penebusan_ety = 0;
     $tabel = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
@@ -230,15 +230,15 @@ if ($tanggal_awal == $tanggal_akhir) {
     // pembelian kadek dan etty
 
 
-    /*  $tablexj = mysqli_query($koneksipbj, "SELECT sum(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-
-        $data1x = mysqli_fetch_array($tablexj);
-        $pembelian_total = $data1x['total_pembelian'];
 
  
     */
 
 
+    $tablexj = mysqli_query($koneksipbj, "SELECT sum(jumlah) AS total_pembelian FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+    $data1x = mysqli_fetch_array($tablexj);
+    $pembelian_total = $data1x['total_pembelian'];
 
 
 

@@ -44,13 +44,14 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-
+/*
   $tabel = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 
 
   $tabel2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
-
+*/
+$table = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 
 
@@ -321,7 +322,7 @@ Logout
  </div>
 </div>
 
-
+<?php /* 
 
 <h4 align = 'center'>Rincian Pembelian  Kadek</h4>
 <!-- Tabel -->    
@@ -468,6 +469,97 @@ Logout
       $data = mysqli_fetch_array($tablexjx);
  
 
+ 
+      $no_pembelian = $data['no_pembelian'];
+      $tanggal =$data['tanggal'];
+      $tipe_semen = $data['tipe_semen'];
+      $tujuan = $data['tujuan'];
+      $kota = $data['kota'];
+      $no_do = $data['no_do'];
+      $material = $data['material'];
+      $qty = $data['qty'];
+      $harga = $data['harga'];
+      $jumlah = $data['jumlah'];
+      $driver = $data['driver'];
+      $no_polisi = $data['no_polisi'];
+      $tipe_bayar = $data['tipe_bayar'];
+      $tempo = $data['tempo'];
+      $keterangan = $data['keterangan'];
+      $file_bukti = $data['file_bukti'];
+      $no_urut = $no_urut + 1;
+        $total_pembelian = $total_pembelian + $jumlah;
+        echo "<tr>
+        <td style='font-size: 14px'>$no_urut</td>
+        <td style='font-size: 14px'>$tanggal</td>
+        <td style='font-size: 14px'>$no_do</td>
+        <td style='font-size: 14px'>$tujuan</td>
+        <td style='font-size: 14px'>$tipe_semen</td>
+        <td style='font-size: 14px'>$kota</td>
+        <td style='font-size: 14px'>$material</td>
+        <td style='font-size: 14px'>$qty</td>
+        <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+        <td style='font-size: 14px'>$driver</td>
+        <td style='font-size: 14px'>$no_polisi</td>
+        <td style='font-size: 14px'>$tipe_bayar</td>
+        <td style='font-size: 14px'>$tempo</td>
+        <td style='font-size: 14px'>$keterangan</td>
+        <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+        "; ?>
+     
+  
+  
+  
+  <?php echo  " </tr>";
+
+
+   
+}
+?>
+
+</tbody>
+</table>
+</div>
+*/ ?>
+
+<h4 align = 'center' >Rincian Pembelian </h4>
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center'>
+              <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>NO DO</th>
+      <th>Tujuan</th>
+      <th>Tipe</th>
+      <th>Kota</th>
+      <th>Material</th>
+      <th>QTY</th>
+      <th>Harga</th>
+      <th>Jumlah</th>    
+      <th>Driver</th>
+      <th>No Polisi</th>
+      <th>Tipe Pembayaran</th>
+      <th>Tempo</th>
+      <th>Ket</th>
+      <th>File</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+        $no_urut = 0;
+        $total_pembelian = 0;
+        function formatuang($angka){
+          $uang = "Rp " . number_format($angka,2,',','.');
+          return $uang;
+        }
+    
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table)){
+      
  
       $no_pembelian = $data['no_pembelian'];
       $tanggal =$data['tanggal'];
