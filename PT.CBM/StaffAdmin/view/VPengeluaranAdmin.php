@@ -468,7 +468,7 @@ else{
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Transport Fee'|| $nama_akun == 'Bunga Bank Pemasukan' ) {
+      if ($nama_akun == 'Transport Fee' || $nama_akun == 'Bunga Bank Pemasukan' ) {
         $total = $total + $jumlah;
       }
       else{
