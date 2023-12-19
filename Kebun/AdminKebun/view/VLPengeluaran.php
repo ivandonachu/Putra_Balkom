@@ -333,6 +333,7 @@ $total_umum = $data5['total_umum'];
                               <option>Bon Karyawan</option>
                               <option>Pembelian Alat</option>
                               <option>Perbaikan Kendaraan</option>
+                              <option>Pengeluaran Lainnya</option>
                             </select>
                           </div>
 
@@ -503,6 +504,7 @@ $total_umum = $data5['total_umum'];
                                     <option <?php echo ($dataSelect == 'Bon Karyawan') ? "selected" : "" ?>>Bon Karyawan</option>
                                     <option <?php echo ($dataSelect == 'Pembelian Alat') ? "selected" : "" ?>>Pembelian Alat</option>
                                     <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected" : "" ?>>Perbaikan Kendaraan</option>
+                                    <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected" : "" ?>>Pengeluaran Lainnya</option>
                                   </select>
                                 </div>
                               </div>
