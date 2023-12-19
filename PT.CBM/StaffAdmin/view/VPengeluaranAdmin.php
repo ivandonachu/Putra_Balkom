@@ -372,6 +372,7 @@ else{
                         <option>Bayar BPJS</option>
                         <option>Pembayaran Non PSO</option>
                         <option>Pengeluaran Lainnya</option>
+                        <option>Pindah Saldo</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -548,6 +549,7 @@ else{
                         <option <?php echo ($dataSelect == 'Bayar BPJS') ? "selected": "" ?> >Bayar BPJS</option>
                         <option <?php echo ($dataSelect == 'Pembayaran Non PSO') ? "selected": "" ?> >Pembayaran Non PSO</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
+                        <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected": "" ?> >Pindah Saldo</option>
                     </select>
             </div>
             <div class="col-md-6">
