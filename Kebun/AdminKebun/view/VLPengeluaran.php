@@ -326,13 +326,13 @@ $total_umum = $data5['total_umum'];
                               <option></option>
                               <option>Penambahan Dana</option>
                               <option>Biaya Usaha</option>
-                              <option>Biaya Usaha Lainnya</option>
                               <option>Biaya Admin</option>
                               <option>Biaya Transport / Perjalanan Dinas</option>
                               <option>Gaji Karyawan</option>
                               <option>Listrik & Telepon</option>>
                               <option>Bon Karyawan</option>
                               <option>Pembelian Alat</option>
+                              <option>Perbaikan Kendaraan</option>
                             </select>
                           </div>
 
@@ -496,13 +496,13 @@ $total_umum = $data5['total_umum'];
                                     <?php $dataSelect = $data['nama_akun']; ?>
                                     <option <?php echo ($dataSelect == 'Penambahan Dana') ? "selected" : "" ?>>Penambahan Dana</option>
                                     <option <?php echo ($dataSelect == 'Biaya Usaha') ? "selected" : "" ?>>Biaya Usaha</option>
-                                    <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected" : "" ?>>Biaya Usaha Lainnya</option>
                                     <option <?php echo ($dataSelect == 'Biaya Admin') ? "selected" : "" ?>>Biaya Admin</option>
                                     <option <?php echo ($dataSelect == 'Biaya Transport / Perjalanan Dinas') ? "selected" : "" ?>>Biaya Transport / Perjalanan Dinas</option>
                                     <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected" : "" ?>>Gaji Karyawan</option>
                                     <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected" : "" ?>>Listrik & Telepon</option>
                                     <option <?php echo ($dataSelect == 'Bon Karyawan') ? "selected" : "" ?>>Bon Karyawan</option>
                                     <option <?php echo ($dataSelect == 'Pembelian Alat') ? "selected" : "" ?>>Pembelian Alat</option>
+                                    <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected" : "" ?>>Perbaikan Kendaraan</option>
                                   </select>
                                 </div>
                               </div>
