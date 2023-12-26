@@ -319,6 +319,7 @@ Menu Kepala Oprasional
                         <option>Biaya Administrasi</option>
                         <option>Pengeluaran Lainnya</option>
                         <option>Bunga Bank</option>
+                        <option>Bunga Bank Pemasukan</option>
                         <option>Pengeluaran Kebun Kota Batu</option>
                         <option>Alat & Bahan Bangunan Kebun Kota Batu</option>
                     </select>
@@ -400,7 +401,7 @@ Menu Kepala Oprasional
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya'|| $nama_akun == 'Bunga Bank Pemasukan' ) {
         $total = $total + $jumlah;
       }
       else{
@@ -415,7 +416,7 @@ Menu Kepala Oprasional
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -485,8 +486,10 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
+                        <option <?php echo ($dataSelect == 'Bunga Bank Pemasukan') ? "selected": "" ?> >Bunga Bank Pemasukan</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Kebun Kota Batu') ? "selected": "" ?> >Pengeluaran Kebun Kota Batu</option>
                         <option <?php echo ($dataSelect == 'Alat & Bahan Bangunan Kebun Kota Batu') ? "selected": "" ?> >Alat & Bahan Bangunan Kebun Kota Batu</option>
+                        
                     </select>
             </div>
             <div class="col-md-6">
