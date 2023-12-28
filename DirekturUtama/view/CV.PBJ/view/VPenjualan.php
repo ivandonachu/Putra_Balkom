@@ -645,7 +645,7 @@ Logout
     </div>
   </div>
 </div>
-
+<br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-4 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
@@ -653,7 +653,7 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Uang Pembelain Zak</div>
+            Uang Pembelian Bag</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_bag) ?></div>
           </div>
           <div class="col-auto">
@@ -669,7 +669,7 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Uang Pembelain Bag</div>
+            Uang Pembelian Zak</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_zak) ?></div>
           </div>
           <div class="col-auto">
