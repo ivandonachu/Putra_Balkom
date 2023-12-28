@@ -402,6 +402,8 @@ Logout
   <tbody>
     <?php
     $no_urut = 0;
+    $total_zak =0;
+    $total_bag = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -420,6 +422,7 @@ Logout
   $qty = $data['qty'];
   $satuan = $data['satuan'];
   $harga_beli = $data['harga_beli'];
+  $jumlah_beli = $qty * $harga_beli;
   $harga = $data['harga'];
   $jumlah = $data['jumlah'];
   $toko_do = $data['toko_do'];
@@ -431,6 +434,13 @@ Logout
   $bulan = $data['bulan'];
   $file_bukti = $data['file_bukti'];
   $no_urut = $no_urut + 1;
+
+  if($satuan == 'Bag' ){
+    $total_bag = $total_bag + $jumlah_beli;
+  }
+  else{
+    $total_zak = $total_zak + $jumlah_beli;
+  }
 
 
       echo "<tr>
@@ -635,6 +645,61 @@ Logout
     </div>
   </div>
 </div>
+
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Uang Pembelain Zak</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=   formatuang($total_bag) ?></div>
+          </div>
+          <div class="col-auto">
+             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Uang Pembelain Bag</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_zak) ?></div>
+          </div>
+          <div class="col-auto">
+             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Uang Pembelian</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_zak + $total_bag) ?></div>
+          </div>
+          <div class="col-auto">
+             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
 
 <br>
 <hr>

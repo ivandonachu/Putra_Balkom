@@ -172,7 +172,7 @@ else{
   $data5 = mysqli_fetch_array($table5);
   $penjualan_bpcc = $data5['penjualan_bpcc'];
   $uang_bpcc = $data5['uang_bpcc'];
-
+  
   //Big Bag PCC Bon
   $table52 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_bpcc_bon ,  SUM(jumlah) AS uang_bpcc_bon  FROM penjualan_sl WHERE 
    tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Big Bag PCC' OR
@@ -511,6 +511,12 @@ Logout
   <tbody>
     <?php
     $no_urut = 0;
+    $total_Curah_OPC_Type1 = 0;
+    $total_Curah_PCC = 0;
+    $total_Big_Bag_OPC_Type1 = 0;
+    $total_Big_Bag_PCC = 0;
+    $total_Sak_PCC_50_Kg = 0;
+    
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -529,6 +535,7 @@ Logout
       $qty = $data['qty'];
       $satuan = $data['satuan'];
       $harga_beli = $data['harga_beli'];
+      $jumlah_beli = $qty * $harga_beli;
       $harga = $data['harga'];
       $jumlah = $data['jumlah'];
       $toko_do = $data['toko_do'];
@@ -540,6 +547,17 @@ Logout
       $file_bukti = $data['file_bukti'];
       $no_urut = $no_urut + 1;
 
+      if($satuan == 'Curah OPC Type 1'){
+        $total_Curah_OPC_Type1 = $total_Curah_OPC_Type1 + $jumlah_beli;
+      }else if($satuan == 'Curah PCC'){
+        $total_Curah_PCC = $total_Curah_PCC + $jumlah_beli;
+      }else if($satuan == 'Big Bag OPC Type 1' ){
+        $total_Big_Bag_OPC_Type1 = $total_Big_Bag_OPC_Type1 + $jumlah_beli;
+      }else if($satuan == 'Big Bag PCC'){
+        $total_Big_Bag_PCC = $total_Big_Bag_PCC + $jumlah_beli;
+      }else if($satuan == 'Sak PCC 50 Kg'){
+        $total_Sak_PCC_50_Kg = $total_Sak_PCC_50_Kg + $jumlah_beli;
+      }
 
       echo "<tr>
       <td style='font-size: 14px'>$no_urut</td> 
@@ -955,77 +973,100 @@ Logout
 
 <br>
 <br>
+
+
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Uang Pembelian Sak PCC 50 Kg</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=    formatuang($total_Sak_PCC_50_Kg)   ?></div>
+          </div>
+          <div class="col-auto">
+             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Uang Pembelian Curah OPC Type 1</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_Curah_OPC_Type1) ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Uang Pembelian Big Bag OPC Type 1</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_Big_Bag_OPC_Type1)  ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Uang Pembelian Big Bag PCC</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_Big_Bag_PCC)?></div>
+          </div>
+          <div class="col-auto">
+             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Seluruh Pembelian </div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_Big_Bag_PCC + $total_Big_Bag_OPC_Type1 + $total_Curah_OPC_Type1 + $total_Sak_PCC_50_Kg)?></div>
+          </div>
+          <div class="col-auto">
+             <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
 <br>
 
-<?php 
 
-$tablej2 = mysqli_query($koneksipbj, "SELECT no_do, tanggal, tujuan, qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-
-?>
-
-
-<h3 class="text-center" >Do Pembelian sudah Tercatat tetapi DO Penjualan belum Tercatat</h3>
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Do belum tercatat</th>
-      <th>Tanggal DO</th>
-      <th>Tujuan</th>
-      <th>Qty</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $total = 0;
-    $urut = 0;
-
-
-    ?>
-
-    <?php while($data = mysqli_fetch_array($tablej2)){
-    $no_do_pembelian = $data['no_do'];
-    $tanggal = $data['tanggal'];
-    $tujuan = $data['tujuan'];
-    $qty = $data['qty'];
-
-    $tablexk = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
-    if(mysqli_num_rows($tablexk) === 1 ){
-
-
-     }
-     
-     else{
-      $tablexj = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_do = '$no_do_pembelian'");
-
-
-      if(mysqli_num_rows($tablexj) === 0 ){
-  
-           $urut = $urut +1;
-  
-  
-           echo "<tr>
-           <td style='font-size: 14px'>$urut</td>
-           <td style='font-size: 14px'>$no_do_pembelian</td>
-           <td style='font-size: 14px'>$tanggal</td>
-           <td style='font-size: 14px'>$tujuan</td>
-           <td style='font-size: 14px'>$qty</td>
-           
-         </tr>";
-          }
-          
-     }
-
-
-
-
-  }
-
-?>
-
-</tbody>
-</table>
 </div>
 </div>
 <!-- End of Main Content -->

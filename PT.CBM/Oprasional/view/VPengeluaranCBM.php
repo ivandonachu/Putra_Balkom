@@ -44,6 +44,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table3 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm WHERE tanggal = '$tanggal_awal' AND referensi = 'CBM' GROUP BY nama_akun");
   $table4 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal' AND referensi = 'Melodi Tani' GROUP BY nama_akun");
   $table5 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal'AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
+  $table6 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal' AND referensi = 'MJRE' GROUP BY nama_akun");
+  $table7 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal' AND referensi = 'BBM' GROUP BY nama_akun");
 
 }
 else{
@@ -53,6 +55,8 @@ else{
   $table3 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'CBM' GROUP BY nama_akun");
   $table4 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Melodi Tani' GROUP BY nama_akun");
   $table5 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Lengkiti' GROUP BY nama_akun");
+  $table6 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'MJRE' GROUP BY nama_akun");
+  $table7 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BBM' GROUP BY nama_akun");
   
 }
 
@@ -295,6 +299,8 @@ Menu Kepala Oprasional
               <option>CBM</option>
               <option>Melodi Tani</option>
               <option>Kebun Lengkiti</option>
+              <option>MJRE</option>
+              <option>BBM</option>
             </select>
           </div>
         </div>
@@ -327,6 +333,7 @@ Menu Kepala Oprasional
                         <option>Karyawan Kasbon</option>
                         <option>Stok Sparepart Gudang</option>
                         <option>Bunga Bank</option>
+                        <option>Bunga Bank Pemasukan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -406,7 +413,7 @@ Menu Kepala Oprasional
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
         $total = $total + $jumlah;
       }
       else{
@@ -421,7 +428,7 @@ Menu Kepala Oprasional
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -466,6 +473,8 @@ Menu Kepala Oprasional
               <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
               <option <?php echo ($dataSelect == 'Melodi Tani') ? "selected": "" ?> >Melodi Tani</option>
               <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
+              <option <?php echo ($dataSelect == 'MJRE') ? "selected": "" ?> >MJRE</option>
+              <option <?php echo ($dataSelect == 'BBM') ? "selected": "" ?> >BBM</option>
             </select>
           </div>
         </div>
@@ -495,6 +504,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Karyawan Kasbon') ? "selected": "" ?> >Karyawan Kasbon</option>
                         <option <?php echo ($dataSelect == 'Stok Sparepart Gudang') ? "selected": "" ?> >Stok Sparepart Gudang</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
+                        <option <?php echo ($dataSelect == 'Bunga Bank Pemasukan') ? "selected": "" ?> >Bunga Bank Pemasukan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -753,6 +763,105 @@ Menu Kepala Oprasional
     $total_seluruh = 0;
   ?>
     <?php while($data = mysqli_fetch_array($table5)){
+      $nama_akun = $data['nama_akun'];
+      $jumlah =$data['total_jumlah'];
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+    
+      }
+      else{
+        $total_seluruh = $total_seluruh + $jumlah;
+      }
+
+      echo "<tr>
+      " ;
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+    
+      }
+      else{
+        echo" <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+     
+
+    echo" </tr>";
+}
+
+?>
+      <td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
+
+      </tr>
+</tbody>
+</table>
+
+
+<br>
+<hr>
+<br>
+
+<h5 align="center" >Rincian Pengeluaran Mesuji Jaya Raya Energi</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $total_seluruh = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table6)){
+      $nama_akun = $data['nama_akun'];
+      $jumlah =$data['total_jumlah'];
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+    
+      }
+      else{
+        $total_seluruh = $total_seluruh + $jumlah;
+      }
+
+      echo "<tr>
+      " ;
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+    
+      }
+      else{
+        echo" <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+     
+
+    echo" </tr>";
+}
+
+?>
+      <td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
+
+      </tr>
+</tbody>
+</table>
+
+<br>
+<hr>
+<br>
+
+<h5 align="center" >Rincian Pengeluaran Bahuga Bumi Energi</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $total_seluruh = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table7)){
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['total_jumlah'];
       if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
