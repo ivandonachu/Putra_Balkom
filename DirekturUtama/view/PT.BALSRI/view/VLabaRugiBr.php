@@ -208,14 +208,23 @@ else{
         }
         
     }
+
+        //pengeluran Denda Kreit
+   $table623 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+   $data623 = mysqli_fetch_array($table623);
+   $total_denda_kredit = $data623['jumlah_denda_kredit'];
+    if (!isset($data623['jumlah_denda_kredit'])) {
+    $total_denda_kredit = 0;
+    }
+
 }
 $total_laba_kotor = $total_tagihan;
 $sisa_oprasional = $jumlah_potongan - ($jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport );
 
-$total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan  + $jml_transport;
+$total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan  + $jml_transport + $total_denda_kredit;
 $laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
 
-$total_biaya_usaha_final_bbm = $uang_bbm + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan  + $jml_transport ;
+$total_biaya_usaha_final_bbm = $uang_bbm + $jml_biaya_kantor + $jml_listrik + $jml_sewa +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi+ $total_kredit + $jml_atk + $gaji_karyawan  + $jml_transport + $total_denda_kredit;
 $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
 ?>
 
@@ -791,6 +800,13 @@ $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_denda_kredit); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRDendaKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>

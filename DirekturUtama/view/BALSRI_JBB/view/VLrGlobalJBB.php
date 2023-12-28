@@ -624,15 +624,52 @@ else{
 
         
  
-
+// Denda Kredit JBB
+    // Denda Kredit balongan
+    $table62_bax = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_bax = mysqli_fetch_array($table62_bax);
+    $denda_kredit_ba = $data62_bax['jumlah_denda_kredit'];
+     if (!isset($data62_bax['jumlah_denda_kredit'])) {
+     $denda_kredit_ba = 0;
+     }
+     //Denda Kredit padalarang
+    $table62_pax = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_pax = mysqli_fetch_array($table62_pax);
+    $denda_kredit_pa = $data62_pax['jumlah_denda_kredit'];
+     if (!isset($data62_pax['jumlah_denda_kredit'])) {
+     $denda_kredit_pa = 0;
+     }
+     //Denda Kredit plumpang
+    $table62_plx = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_plx = mysqli_fetch_array($table62_plx);
+    $denda_kredit_pl = $data62_plx['jumlah_denda_kredit'];
+     if (!isset($data62_plx['jumlah_denda_kredit'])) {
+     $denda_kredit_pl = 0;
+     }
+     //Denda Kredit tanjung gerem
+    $table62_tgx = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_tgx = mysqli_fetch_array($table62_tgx);
+    $denda_kredit_tg = $data62_tgx['jumlah_denda_kredit'];
+     if (!isset($data62_tgx['jumlah_denda_kredit'])) {
+     $denda_kredit_tg = 0;
+     }
+     //Denda Kredit ujung berung
+    $table62_ubx = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_ubx = mysqli_fetch_array($table62_ubx);
+    $denda_kredit_ub = $data62_ubx['jumlah_denda_kredit'];
+     if (!isset($data62_ubx['jumlah_denda_kredit'])) {
+     $denda_kredit_ub = 0;
+     }
+ 
+      $denda_kredit_global_jbb = $denda_kredit_ba + $denda_kredit_pa + $denda_kredit_pl + $denda_kredit_tg  + $denda_kredit_ub;
 
 
 }
     $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
 
-    $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit;
+    $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $denda_kredit_global_jbb;
 
-    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit;
+    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $denda_kredit_global_jbb;
            
     $laba_bersih_sebelum_pajak = $total_tagihan_global - $total_biaya_usaha_final;
     $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_final_bbm;
@@ -1110,6 +1147,13 @@ else{
                 <td class="text-left">Bayar Kredit</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($denda_kredit_global_jbb); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">

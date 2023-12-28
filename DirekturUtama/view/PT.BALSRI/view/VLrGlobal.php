@@ -652,7 +652,52 @@ if (!isset($data_kredit['total_kredit'])) {
 }
 
 
+ // Denda Kredit
+    // Denda Kredit baturaja
+    $table62_br_x = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_br_x = mysqli_fetch_array($table62_br_x);
+    $total_denda_kredit_br = $data62_br_x['jumlah_denda_kredit'];
+     if (!isset($data62_br_x['jumlah_denda_kredit'])) {
+     $total_denda_kredit_br = 0;
+     }
+     // Denda Kredit lampung
+    $table62_lmgx = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_lmgx = mysqli_fetch_array($table62_lmgx);
+    $total_denda_kredit_lmg = $data62_lmgx['jumlah_denda_kredit'];
+     if (!isset($data62_lmgx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_lmg = 0;
+     }
+     // Denda Kredit palembang
+    $table62_plgx = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_plgx = mysqli_fetch_array($table62_plgx);
+    $total_denda_kredit_plg = $data62_plgx['jumlah_denda_kredit'];
+     if (!isset($data62_plgx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_plg = 0;
+     }
+     // Denda Kredit belitung
+    $table62_bbx = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_bbx = mysqli_fetch_array($table62_bbx);
+    $total_denda_kredit_bb = $data62_bbx['jumlah_denda_kredit'];
+     if (!isset($data62_bbx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_bb = 0;
+     }
  
+    // Denda Kredit bangka
+    $table62_bkx = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_bkx = mysqli_fetch_array($table62_bkx);
+    $total_denda_kredit_bk = $data62_bkx['jumlah_denda_kredit'];
+     if (!isset($data62_bkx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_bk = 0;
+     }
+     // Denda Kredit bengkulu
+    $table62_bklx = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_bklx = mysqli_fetch_array($table62_bklx);
+    $total_denda_kredit_bkl = $data62_bklx['jumlah_denda_kredit'];
+     if (!isset($data62_bklx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_bkl = 0;
+     }
+ 
+      $denda_kredit_global = $total_denda_kredit_br + $total_denda_kredit_lmg + $total_denda_kredit_plg + $total_denda_kredit_bb + $total_denda_kredit_bk + $total_denda_kredit_bkl;
 
 
 
@@ -660,9 +705,9 @@ if (!isset($data_kredit['total_kredit'])) {
 
 
     $total_laba_kotor = $total_tagihan_global - $jumlah_potongan_global;  
-    $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $total_kredit_kendaraan_pribadi;
+    $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $total_kredit_kendaraan_pribadi + $denda_kedaraan_global;
 
-    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $total_kredit_kendaraan_pribadi;
+    $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $total_kredit_kendaraan_pribadi + $denda_kedaraan_global;
            
     $laba_bersih_sebelum_pajak = $total_tagihan_global - $total_biaya_usaha_final;
     $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_final_bbm;
@@ -1210,6 +1255,13 @@ if (!isset($data_kredit['total_kredit'])) {
                 <td class="text-left">Bayar Kredit</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit + $total_kredit_kendaraan_pribadi); ?></td>
+                <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+            </tr>
+            <tr>
+                <td>5-598</td>
+                <td class="text-left">Bayar Kredit</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($denda_kredit_global); ?></td>
                 <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
             </tr>
             <tr style="background-color:    #F0F8FF; ">

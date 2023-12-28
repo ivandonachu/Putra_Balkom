@@ -645,7 +645,52 @@ else{
 
 
 
-
+// Denda Kredit
+    // Denda Kredit baturaja
+    $table62_br_x = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_br WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_br_x = mysqli_fetch_array($table62_br_x);
+    $total_denda_kredit_br = $data62_br_x['jumlah_denda_kredit'];
+     if (!isset($data62_br_x['jumlah_denda_kredit'])) {
+     $total_denda_kredit_br = 0;
+     }
+     // Denda Kredit lampung
+    $table62_lmgx = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_lmgx = mysqli_fetch_array($table62_lmgx);
+    $total_denda_kredit_lmg = $data62_lmgx['jumlah_denda_kredit'];
+     if (!isset($data62_lmgx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_lmg = 0;
+     }
+     // Denda Kredit palembang
+    $table62_plgx = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_p WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_plgx = mysqli_fetch_array($table62_plgx);
+    $total_denda_kredit_plg = $data62_plgx['jumlah_denda_kredit'];
+     if (!isset($data62_plgx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_plg = 0;
+     }
+     // Denda Kredit belitung
+    $table62_bbx = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_bl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_bbx = mysqli_fetch_array($table62_bbx);
+    $total_denda_kredit_bb = $data62_bbx['jumlah_denda_kredit'];
+     if (!isset($data62_bbx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_bb = 0;
+     }
+ 
+    // Denda Kredit bangka
+    $table62_bkx = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_bk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_bkx = mysqli_fetch_array($table62_bkx);
+    $total_denda_kredit_bk = $data62_bkx['jumlah_denda_kredit'];
+     if (!isset($data62_bkx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_bk = 0;
+     }
+     // Denda Kredit bengkulu
+    $table62_bklx = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_bklx = mysqli_fetch_array($table62_bklx);
+    $total_denda_kredit_bkl = $data62_bklx['jumlah_denda_kredit'];
+     if (!isset($data62_bklx['jumlah_denda_kredit'])) {
+     $total_denda_kredit_bkl = 0;
+     }
+ 
+      $denda_kredit_global = $total_denda_kredit_br + $total_denda_kredit_lmg + $total_denda_kredit_plg + $total_denda_kredit_bb + $total_denda_kredit_bk + $total_denda_kredit_bkl;
 
 
 
@@ -1132,6 +1177,45 @@ if (!isset($data_kredit['total_kredit'])) {
     $total_kredit_kendaraan_pribadi = 0;
 }
 
+// Denda Kredit JBB
+    // Denda Kredit balongan
+    $table62_bax = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_bax = mysqli_fetch_array($table62_bax);
+    $denda_kredit_ba = $data62_bax['jumlah_denda_kredit'];
+     if (!isset($data62_bax['jumlah_denda_kredit'])) {
+     $denda_kredit_ba = 0;
+     }
+     //Denda Kredit padalarang
+    $table62_pax = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_pax = mysqli_fetch_array($table62_pax);
+    $denda_kredit_pa = $data62_pax['jumlah_denda_kredit'];
+     if (!isset($data62_pax['jumlah_denda_kredit'])) {
+     $denda_kredit_pa = 0;
+     }
+     //Denda Kredit plumpang
+    $table62_plx = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_plx = mysqli_fetch_array($table62_plx);
+    $denda_kredit_pl = $data62_plx['jumlah_denda_kredit'];
+     if (!isset($data62_plx['jumlah_denda_kredit'])) {
+     $denda_kredit_pl = 0;
+     }
+     //Denda Kredit tanjung gerem
+    $table62_tgx = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_tgx = mysqli_fetch_array($table62_tgx);
+    $denda_kredit_tg = $data62_tgx['jumlah_denda_kredit'];
+     if (!isset($data62_tgx['jumlah_denda_kredit'])) {
+     $denda_kredit_tg = 0;
+     }
+     //Denda Kredit ujung berung
+    $table62_ubx = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+    $data62_ubx = mysqli_fetch_array($table62_ubx);
+    $denda_kredit_ub = $data62_ubx['jumlah_denda_kredit'];
+     if (!isset($data62_ubx['jumlah_denda_kredit'])) {
+     $denda_kredit_ub = 0;
+     }
+ 
+      $denda_kredit_global_jbb = $denda_kredit_ba + $denda_kredit_pa + $denda_kredit_pl + $denda_kredit_tg  + $denda_kredit_ub;
+
 
 
 }
@@ -1161,10 +1245,10 @@ else{
  
 
     $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
-                                $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
+                                $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb + $denda_kredit_global + $denda_kredit_global_jbb ;
 
     $total_biaya_usaha_final_bbm = $total_bbm_global + $total_dexlite_global_bbm + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
-                                    $total_bbm_global_jbb + $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb;
+                                    $total_bbm_global_jbb + $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb + $denda_kredit_global + $denda_kredit_global_jbb ;
            
     $laba_bersih_sebelum_pajak = ($total_tagihan_global + $total_tagihan_global_jbb) - $total_biaya_usaha_final;
     $laba_bersih_sebelum_pajak_bbm = ($total_tagihan_global + $total_tagihan_global_jbb) - $total_biaya_usaha_final_bbm;
@@ -1192,8 +1276,8 @@ else{
     $jumlah_potongan_lmg = (($total_tagihan_lmg * 10) / 100);
     $sisa_oprasional_lmg = $jumlah_potongan_lmg - ($jml_atk_lmg + $gaji_karyawan_lmg + $jml_sewa_lmg + $jml_transport_lmg );
 
-    $total_biaya_usaha_final_bbm_lmg  = $uang_bbm_lpg + $jml_biaya_kantor_lmg + $jml_listrik_lmg + $jml_sewa_lmg +  $jml_perbaikan_lmg + $total_um_lmg + $gaji_driver_lmg  +  $jml_konsumsi_lmg + $total_kredit_lmg + $jml_atk_lmg + $gaji_karyawan_lmg + $jml_sewa_lmg + $jml_transport_lmg;
-    $total_biaya_usaha_final_lmg = $total_dexlite_lmg + $jml_biaya_kantor_lmg + $jml_listrik_lmg + $jml_sewa_lmg +  $jml_perbaikan_lmg + $total_um_lmg + $gaji_driver_lmg  +  $jml_konsumsi_lmg + $total_kredit_lmg + $jml_atk_lmg + $gaji_karyawan_lmg + $jml_sewa_lmg + $jml_transport_lmg;
+    $total_biaya_usaha_final_bbm_lmg  = $uang_bbm_lpg + $jml_biaya_kantor_lmg + $jml_listrik_lmg + $jml_sewa_lmg +  $jml_perbaikan_lmg + $total_um_lmg + $gaji_driver_lmg  +  $jml_konsumsi_lmg + $total_kredit_lmg + $jml_atk_lmg + $gaji_karyawan_lmg + $jml_sewa_lmg + $jml_transport_lmg + $total_denda_kredit_lmg;
+    $total_biaya_usaha_final_lmg = $total_dexlite_lmg + $jml_biaya_kantor_lmg + $jml_listrik_lmg + $jml_sewa_lmg +  $jml_perbaikan_lmg + $total_um_lmg + $gaji_driver_lmg  +  $jml_konsumsi_lmg + $total_kredit_lmg + $jml_atk_lmg + $gaji_karyawan_lmg + $jml_sewa_lmg + $jml_transport_lmg + $total_denda_kredit_lmg;
 
     $laba_bersih_sebelum_pajak_lmg = $total_laba_kotor_lmg - $total_biaya_usaha_final_lmg;
     $laba_bersih_bbm_lmg = $total_laba_kotor_lmg - $total_biaya_usaha_final_bbm_lmg;
@@ -1221,10 +1305,10 @@ else{
     $jumlah_potongan_plg = (($total_tagihan_plg * 10) / 100);
     $sisa_oprasional_plg = $jumlah_potongan_plg - ($jml_atk_plg + $gaji_karyawan_plg + $jml_sewa_plg + $jml_transport_plg );
     $selisih_bbm_plg  =  $total_dexlite_plg - $uang_bbm_plg;
-    $total_biaya_usaha_final_plg = $total_dexlite_plg + $jml_biaya_kantor_plg + $jml_listrik_plg + $jml_sewa_plg +  $jml_perbaikan_plg + $total_um_plg + $gaji_driver_plg  +  $jml_konsumsi_plg + $total_kredit_plg + $jml_atk_plg + $gaji_karyawan_plg + $jml_transport_plg;
+    $total_biaya_usaha_final_plg = $total_dexlite_plg + $jml_biaya_kantor_plg + $jml_listrik_plg + $jml_sewa_plg +  $jml_perbaikan_plg + $total_um_plg + $gaji_driver_plg  +  $jml_konsumsi_plg + $total_kredit_plg + $jml_atk_plg + $gaji_karyawan_plg + $jml_transport_plg + $total_denda_kredit_plg;
     $laba_bersih_sebelum_pajak_plg = $total_laba_kotor_plg  - $total_biaya_usaha_final_plg;
 
-    $total_biaya_usaha_final_bbm_plg = $uang_bbm_plg + $jml_biaya_kantor_plg + $jml_listrik_plg + $jml_sewa_plg +  $jml_perbaikan_plg + $total_um_plg + $gaji_driver_plg  +  $jml_konsumsi_plg + $total_kredit_plg + $jml_atk_plg + $gaji_karyawan_plg  + $jml_transport_plg;
+    $total_biaya_usaha_final_bbm_plg = $uang_bbm_plg + $jml_biaya_kantor_plg + $jml_listrik_plg + $jml_sewa_plg +  $jml_perbaikan_plg + $total_um_plg + $gaji_driver_plg  +  $jml_konsumsi_plg + $total_kredit_plg + $jml_atk_plg + $gaji_karyawan_plg  + $jml_transport_plg + $total_denda_kredit_plg;
     $laba_bersih_bbm_plg = $total_laba_kotor_plg  - $total_biaya_usaha_final_bbm_plg;
 
 
@@ -1247,10 +1331,10 @@ else{
     $jumlah_potongan_br = (($total_tagihan_br * 10) / 100);
     $sisa_oprasional_br = $jumlah_potongan_br - ($jml_atk_br + $gaji_karyawan_br + $jml_sewa_br + $jml_transport_br );
     $selisih_bbm_br  =  $total_dexlite_br - $uang_bbm_br;
-    $total_biaya_usaha_final_br = $total_dexlite_br + $jml_biaya_kantor_br + $jml_listrik_br + $jml_sewa_br +  $jml_perbaikan_br + $total_um_br + $gaji_driver_br  +  $jml_konsumsi_br + $total_kredit_br + $jml_atk_br + $gaji_karyawan_br + $jml_transport_br;
+    $total_biaya_usaha_final_br = $total_dexlite_br + $jml_biaya_kantor_br + $jml_listrik_br + $jml_sewa_br +  $jml_perbaikan_br + $total_um_br + $gaji_driver_br  +  $jml_konsumsi_br + $total_kredit_br + $jml_atk_br + $gaji_karyawan_br + $jml_transport_br  + $total_denda_kredit_br;
     $laba_bersih_sebelum_pajak_br  = $total_laba_kotor_br - $total_biaya_usaha_final_br;
 
-    $total_biaya_usaha_final_bbm_br = $uang_bbm_br + $jml_biaya_kantor_br + $jml_listrik_br + $jml_sewa_br +  $jml_perbaikan_br + $total_um_br + $gaji_driver_br  +  $jml_konsumsi_br + $total_kredit_br + $jml_atk_br + $gaji_karyawan_br + $jml_transport_br;
+    $total_biaya_usaha_final_bbm_br = $uang_bbm_br + $jml_biaya_kantor_br + $jml_listrik_br + $jml_sewa_br +  $jml_perbaikan_br + $total_um_br + $gaji_driver_br  +  $jml_konsumsi_br + $total_kredit_br + $jml_atk_br + $gaji_karyawan_br + $jml_transport_br + $total_denda_kredit_br;
     $laba_bersih_bbm_br = $total_laba_kotor_br  - $total_biaya_usaha_final_bbm_br;
 
 
@@ -1272,7 +1356,7 @@ else{
     $total_laba_kotor_bb = $total_tagihan_bb ;
     $jumlah_potongan_bb = (($total_tagihan_bb * 10) / 100);
     $sisa_oprasional_bb = $jumlah_potongan_bb - ($jml_atk_bb + $gaji_karyawan_bb + $jml_sewa_bb + $jml_transport_bb );
-    $total_biaya_usaha_final_bb = $total_dexlite_bb + $jml_biaya_kantor_bb + $jml_listrik_bb + $jml_sewa_bb +  $jml_perbaikan_bb + $total_um_bb + $gaji_driver_bb  +  $jml_konsumsi_bb + $total_kredit_bb + $jml_atk_bb + $gaji_karyawan_bb + $jml_transport_bb;
+    $total_biaya_usaha_final_bb = $total_dexlite_bb + $jml_biaya_kantor_bb + $jml_listrik_bb + $jml_sewa_bb +  $jml_perbaikan_bb + $total_um_bb + $gaji_driver_bb  +  $jml_konsumsi_bb + $total_kredit_bb + $jml_atk_bb + $gaji_karyawan_bb + $jml_transport_bb + $total_denda_kredit_bb;
     $laba_bersih_sebelum_pajak_bb = $total_laba_kotor_bb - $total_biaya_usaha_final_bb;
     
 
@@ -1295,7 +1379,7 @@ else{
     $total_laba_kotor_bk = $total_tagihan_bk;
     $jumlah_potongan_bk = (($total_tagihan_bk * 10) / 100);
     $sisa_oprasional_bk = $jumlah_potongan_bk - ($jml_atk_bk + $gaji_karyawan_bk + $jml_sewa_bk + $jml_transport_bk );
-    $total_biaya_usaha_final_bk = $total_dexlite_bk + $jml_biaya_kantor_bk + $jml_listrik_bk + $jml_sewa_bk +  $jml_perbaikan_bk + $total_um_bk + $gaji_driver_bk  +  $jml_konsumsi_bk + $total_kredit_bk + $jml_atk_bk + $gaji_karyawan_bk + $jml_transport_bk;
+    $total_biaya_usaha_final_bk = $total_dexlite_bk + $jml_biaya_kantor_bk + $jml_listrik_bk + $jml_sewa_bk +  $jml_perbaikan_bk + $total_um_bk + $gaji_driver_bk  +  $jml_konsumsi_bk + $total_kredit_bk + $jml_atk_bk + $gaji_karyawan_bk + $jml_transport_bk + $total_denda_kredit_bk;
     $laba_bersih_sebelum_pajak_bk = $total_laba_kotor_bk - $total_biaya_usaha_final_bk;
 
 
@@ -1322,10 +1406,10 @@ else{
 
     $selisih_bbm_bkl  =  $total_dexlite_bkl - $uang_bbm_bku;
 
-    $total_biaya_usaha_final_bkl = $total_dexlite_bkl + $jml_biaya_kantor_bkl + $jml_listrik_bkl + $jml_sewa_bkl +  $jml_perbaikan_bkl + $total_um_bkl + $gaji_driver_bkl  +  $jml_konsumsi_bkl + $total_kredit_bkl + $jml_atk_bkl + $gaji_karyawan_bk + $jml_transport_bkl;
+    $total_biaya_usaha_final_bkl = $total_dexlite_bkl + $jml_biaya_kantor_bkl + $jml_listrik_bkl + $jml_sewa_bkl +  $jml_perbaikan_bkl + $total_um_bkl + $gaji_driver_bkl  +  $jml_konsumsi_bkl + $total_kredit_bkl + $jml_atk_bkl + $gaji_karyawan_bk + $jml_transport_bkl + $total_denda_kredit_bkl;
     $laba_bersih_sebelum_pajak_bkl = $total_laba_kotor_bkl  - $total_biaya_usaha_final_bkl;
 
-    $total_biaya_usaha_final_bbm_bkl = $uang_bbm_bku + $jml_biaya_kantor_bkl + $jml_listrik_bkl + $jml_sewa_bkl +  $jml_perbaikan_bkl + $total_um_bkl + $gaji_driver_bkl  +  $jml_konsumsi_bkl + $total_kredit_bkl + $jml_atk_bkl + $gaji_karyawan_bk + $jml_transport_bkl;
+    $total_biaya_usaha_final_bbm_bkl = $uang_bbm_bku + $jml_biaya_kantor_bkl + $jml_listrik_bkl + $jml_sewa_bkl +  $jml_perbaikan_bkl + $total_um_bkl + $gaji_driver_bkl  +  $jml_konsumsi_bkl + $total_kredit_bkl + $jml_atk_bkl + $gaji_karyawan_bk + $jml_transport_bkl + $total_denda_kredit_bkl;
     $laba_bersih_bbm_bkl = $total_laba_kotor_bkl  - $total_biaya_usaha_final_bbm_bkl;
 
 
@@ -1357,7 +1441,7 @@ else{
     $total_laba_kotor_tg = $total_tagihan_tg;
     $jumlah_potongan_tg = (($total_tagihan_tg * 10) / 100);
     $sisa_oprasional_tg = $jumlah_potongan_tg - ($jml_atk_tg + $gaji_karyawan_tg + $jml_sewa_tg + $jml_transport_tg );
-    $total_biaya_usaha_final_tg = $total_dexlite_tg + $jml_biaya_kantor_tg + $jml_listrik_tg  +  $jml_perbaikan_tg + $total_um_tg + $gaji_driver_tg  +  $jml_konsumsi_tg + $total_kredit_tg + $jml_atk_tg + $gaji_karyawan_tg + $jml_sewa_tg + $jml_transport_tg;
+    $total_biaya_usaha_final_tg = $total_dexlite_tg + $jml_biaya_kantor_tg + $jml_listrik_tg  +  $jml_perbaikan_tg + $total_um_tg + $gaji_driver_tg  +  $jml_konsumsi_tg + $total_kredit_tg + $jml_atk_tg + $gaji_karyawan_tg + $jml_sewa_tg + $jml_transport_tg + $denda_kredit_tg;
     $laba_bersih_sebelum_pajak_tg = $total_laba_kotor_tg  - $total_biaya_usaha_final_tg;
 
     // LR Padalarang
@@ -1387,7 +1471,7 @@ else{
     $total_laba_kotor_pa = $total_tagihan_pa ;
     $jumlah_potongan_pa = (($total_tagihan_pa * 10) / 100);
     $sisa_oprasional_pa = $jumlah_potongan_pa - ($jml_atk_pa + $gaji_karyawan_pa + $jml_sewa_pa + $jml_transport_pa );
-    $total_biaya_usaha_final_pa = $total_dexlite_pa + $jml_biaya_kantor_pa + $jml_listrik_pa  +  $jml_perbaikan_pa + $total_um_pa + $gaji_driver_pa + $jml_konsumsi_pa + $total_kredit_pa + $jml_atk_pa + $gaji_karyawan_pa + $jml_sewa_pa + $jml_transport_pa;
+    $total_biaya_usaha_final_pa = $total_dexlite_pa + $jml_biaya_kantor_pa + $jml_listrik_pa  +  $jml_perbaikan_pa + $total_um_pa + $gaji_driver_pa + $jml_konsumsi_pa + $total_kredit_pa + $jml_atk_pa + $gaji_karyawan_pa + $jml_sewa_pa + $jml_transport_pa + $denda_kredit_pa; 
     $laba_bersih_sebelum_pajak_pa = $total_laba_kotor_pa  - $total_biaya_usaha_final_pa;
 
 
@@ -1419,7 +1503,7 @@ else{
     $total_laba_kotor_pl = $total_tagihan_pl ;
     $jumlah_potongan_pl = (($total_tagihan_pl * 10) / 100);
     $sisa_oprasional_pl = $jumlah_potongan_pl - ($jml_atk_pl + $gaji_karyawan_pl + $jml_sewa_pl + $jml_transport_pl );
-    $total_biaya_usaha_final_pl = $total_dexlite_pl + $jml_biaya_kantor_pl + $jml_listrik_pl  +  $jml_perbaikan_pl + $total_um_pl + $gaji_driver_pl  +  $jml_konsumsi_pl + $total_kredit_pl + $jml_atk_pl + $gaji_karyawan_pl + $jml_sewa_pl + $jml_transport_pl;
+    $total_biaya_usaha_final_pl = $total_dexlite_pl + $jml_biaya_kantor_pl + $jml_listrik_pl  +  $jml_perbaikan_pl + $total_um_pl + $gaji_driver_pl  +  $jml_konsumsi_pl + $total_kredit_pl + $jml_atk_pl + $gaji_karyawan_pl + $jml_sewa_pl + $jml_transport_pl + $denda_kredit_pl;
     $laba_bersih_sebelum_pajak_pl = $total_laba_kotor_pl  - $total_biaya_usaha_final_pl;
 
 
@@ -1450,7 +1534,7 @@ else{
     $total_laba_kotor_ub = $total_tagihan_ub;
     $jumlah_potongan_ub = (($total_tagihan_ub * 10) / 100);
     $sisa_oprasional_ub = $jumlah_potongan_ub - ($jml_atk_ub + $gaji_karyawan_ub + $jml_sewa_ub + $jml_transport_ub );
-    $total_biaya_usaha_final_ub = $total_dexlite_ub + $jml_biaya_kantor_ub + $jml_listrik_ub  +  $jml_perbaikan_ub + $total_um_ub + $gaji_driver_ub  +  $jml_konsumsi_ub + $total_kredit_ub + $jml_atk_ub + $gaji_karyawan_ub + $jml_sewa_ub + $jml_transport_ub;
+    $total_biaya_usaha_final_ub = $total_dexlite_ub + $jml_biaya_kantor_ub + $jml_listrik_ub  +  $jml_perbaikan_ub + $total_um_ub + $gaji_driver_ub  +  $jml_konsumsi_ub + $total_kredit_ub + $jml_atk_ub + $gaji_karyawan_ub + $jml_sewa_ub + $jml_transport_ub + $denda_kredit_ub;
     $laba_bersih_sebelum_pajak_ub = $total_laba_kotor_ub - $total_biaya_usaha_final_ub;
 
 
@@ -1481,7 +1565,7 @@ else{
     $total_laba_kotor_ba = $total_tagihan_ba ;
     $jumlah_potongan_ba = (($total_tagihan_ba * 10) / 100);
     $sisa_oprasional_ba = $jumlah_potongan_ba - ($jml_atk_ba + $gaji_karyawan_ba + $jml_sewa_ba + $jml_transport_ba );
-    $total_biaya_usaha_final_ba = $total_dexlite_ba + $jml_biaya_kantor_ba + $jml_listrik_ba  +  $jml_perbaikan_ba + $total_um_ba + $gaji_driver_ba  +  $jml_konsumsi_ba + $total_kredit_ba + $jml_atk_ba + $gaji_karyawan_ba + $jml_sewa_ba + $jml_transport_ba;
+    $total_biaya_usaha_final_ba = $total_dexlite_ba + $jml_biaya_kantor_ba + $jml_listrik_ba  +  $jml_perbaikan_ba + $total_um_ba + $gaji_driver_ba  +  $jml_konsumsi_ba + $total_kredit_ba + $jml_atk_ba + $gaji_karyawan_ba + $jml_sewa_ba + $jml_transport_ba + $denda_kredit_ba;
     $laba_bersih_sebelum_pajak_ba = $total_laba_kotor_ba  - $total_biaya_usaha_final_ba;
 ?>
 
@@ -2049,6 +2133,12 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit + $total_kredit_kendaraan_pribadi); ?></td>
             </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit Kendaraan</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($denda_kredit_global + $denda_kredit_global_jbb); ?></td>
+            </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
                 <td class="thick-line"></td>
@@ -2281,7 +2371,12 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_lmg); ?></td>
             </tr>
-            
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_denda_kredit_lmg); ?></td>
+            </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Seluruh Dexlite</strong></td>
                 <td class="thick-line"></td>
@@ -2540,6 +2635,12 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_plg); ?></td>
             </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_denda_kredit_plg); ?></td>
+            </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
                 <td class="thick-line"></td>
@@ -2780,6 +2881,12 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_br); ?></td>
             </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_denda_kredit_br); ?></td>
+            </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
                 <td class="thick-line"></td>
@@ -3008,6 +3115,12 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_bb); ?></td>
             </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_denda_kredit_bb); ?></td>
+            </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
                 <td class="thick-line"></td>
@@ -3211,6 +3324,12 @@ if($tahun == 2023){
                 <td class="text-left">Bayar Kredit</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_bk); ?></td>
+            </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_denda_kredit_bk); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
@@ -3429,6 +3548,12 @@ if($tahun == 2023){
                 <td class="text-left">Bayar Kredit </td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_bkl); ?></td>
+            </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_denda_kredit_bkl); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
@@ -3674,6 +3799,12 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_tg); ?></td>
             </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($denda_kredit_tg); ?></td>
+            </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
                 <td class="thick-line"></td>
@@ -3890,6 +4021,12 @@ if($tahun == 2023){
                 <td class="text-left">Bayar Kredit </td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($denda_kredit_pa); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
@@ -4111,6 +4248,12 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_pl); ?></td>
             </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($denda_kredit_pl); ?></td>
+            </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
                 <td class="thick-line"></td>
@@ -4331,6 +4474,12 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_ub); ?></td>
             </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($denda_kredit_ub); ?></td>
+            </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
                 <td class="thick-line"></td>
@@ -4548,6 +4697,12 @@ if($tahun == 2023){
                 <td class="text-left">Bayar Kredit </td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_kredit_ba); ?></td>
+            </tr>
+            <tr>
+                <td>5-599</td>
+                <td class="text-left">Denda Kredit </td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($denda_kredit_ba); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Total Biaya Usaha</strong></td>
