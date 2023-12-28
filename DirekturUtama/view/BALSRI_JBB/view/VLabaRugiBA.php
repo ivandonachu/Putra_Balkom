@@ -224,7 +224,7 @@ else{
     }
 
             // Denda Kreit
-            $table623 = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
+            $table623 = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS jumlah_denda_kredit FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Denda Kredit' ");
             $data623 = mysqli_fetch_array($table623);
             $total_denda_kredit = $data623['jumlah_denda_kredit'];
             if (!isset($data623['jumlah_denda_kredit'])) {
