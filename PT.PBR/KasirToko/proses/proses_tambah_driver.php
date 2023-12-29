@@ -22,9 +22,12 @@ $nama_driver = $_POST['nama_driver'];
 $no_polisi = $_POST['no_polisi'];
 $status = $_POST['status'];
 $id_driver = $_POST['id_driver'];
+$nama_pt = $_POST['nama_pt'];
+$bpjs_kesehatan = $_POST['bpjs_kesehatan'];
+$bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
 
 
-		$query = mysqli_query($koneksi,"INSERT INTO driver VALUES ('$id_driver','$nama_driver','$no_polisi','','$status',0,0)");
+		$query = mysqli_query($koneksi,"INSERT INTO driver VALUES ('$id_driver','$nama_driver','$no_polisi','$nama_pt','$status','$bpjs_kesehatan','$bpjs_ketenagakerjaan')");
 
 		
 		if ($query != "") {
