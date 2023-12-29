@@ -400,7 +400,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
                             <div class="form-group">
                               <label><label>Nama PT</label></label>
                               <select name="nama_pt" class="form-control">
-                                <?php $dataSelect1 = $data['nama_rekening']; ?>
+                                <?php $dataSelect1 = $data['nama_pt']; ?>
                                 <option <?php echo ($dataSelect1 == 'PBR') ? "selected" : "" ?>>PBR</option>
                                 <option <?php echo ($dataSelect1 == 'MES') ? "selected" : "" ?>>MES</option>
                               </select>
@@ -411,11 +411,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM driver");
 
                             <div class="form-group">
                               <label>BPJS Kesehatan</label>
-                              <input type="number" name="bpjs_kesehatan" class="form-control" value="<?php echo $no_polisi; ?>" required="">
+                              <input type="number" name="bpjs_kesehatan" class="form-control" value="<?php echo $bpjs_kesehatan; ?>" required="">
                             </div>
                             <div class="form-group">
                               <label>BPJS Ketenagakerjaan</label>
-                              <input type="number" name="bpjs_ketenagakerjaan" class="form-control" value="<?php echo $no_polisi; ?>" required="">
+                              <input type="number" name="bpjs_ketenagakerjaan" class="form-control" value="<?php echo $bpjs_ketenagakerjaan; ?>" required="">
                             </div>
 
 
