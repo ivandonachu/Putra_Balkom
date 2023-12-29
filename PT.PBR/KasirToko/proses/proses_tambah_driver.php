@@ -24,7 +24,7 @@ $status = $_POST['status'];
 $id_driver = $_POST['id_driver'];
 
 
-		$query = mysqli_query($koneksi,"INSERT INTO driver VALUES ('$id_driver','$nama_driver','$no_polisi','$status',0,0)");
+		$query = mysqli_query($koneksi,"INSERT INTO driver VALUES ('$id_driver','$nama_driver','$no_polisi','','$status',0,0)");
 
 		
 		if ($query != "") {
