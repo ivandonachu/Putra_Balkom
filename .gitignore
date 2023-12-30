@@ -149,6 +149,9 @@
 /PT.CBM/CCTV/file_cctv
 /PT.CBM/HRD/proses/koneksi.php
 /PT.CBM/HRD/view/koneksi.php
+/PT.CBM/PesanAntarNonPSO/proses/koneksi.php
+/PT.CBM/PesanAntarNonPSO/view/koneksi.php
+/PT.CBM/PesanAntarNonPSO/file_pesan_antar
 
 /PT.PBR/KasirToko/gambar/
 /PT.PBR/KasirToko/file_toko
