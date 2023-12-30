@@ -367,7 +367,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                   }
                                         ?>
                     <?php echo "
-      <td style='font-size: 14px'>"; ?> <a download="../file_admin_semen/<?= $file_bukti ?>" href="../file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      <td style='font-size: 14px'>"; ?> <a download="" href="/PT.CBM/PesanAntarNonPSO/file_pesan_antar/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
     " ?>  "
     <?php echo "<td style='font-size: 12px'>"; ?>
 
