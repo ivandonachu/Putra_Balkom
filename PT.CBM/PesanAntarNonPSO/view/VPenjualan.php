@@ -362,6 +362,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>QTY BG 55 KG</th>
                     <th>Harga BG 55 KG</th>
                     <th>Jumlah BG 55 KG</th>
+                    <th>Ongkos Kirim</th>
                     <th>Tipe Pembayaran</th>
                     <th>Ket</th>
                     <th>File</th>
@@ -376,6 +377,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $total_uang_12kg = 0;
                   $total_penjualan_55kg = 0;
                   $total_uang_55kg = 0;
+                  $total_ongkos_kirim = 0;
                   function formatuang($angka)
                   {
                     $uang = "Rp " . number_format($angka, 2, ',', '.');
@@ -396,10 +398,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $qty_55kg = $data['qty_55kg'];
                     $harga_55kg = $data['harga_55kg'];
                     $jumlah_55kg = $data['jumlah_55kg'];
+                    $ongkos_kirim = $data['ongkos_kirim'];
                     $total_penjualan_12kg = $total_penjualan_12kg + $qty_12kg;
                     $total_uang_12kg = $total_uang_12kg + $jumlah_12kg;
                     $total_penjualan_55kg = $total_penjualan_55kg + $qty_55kg;
                     $total_uang_55kg = $total_uang_55kg + $jumlah_55kg;
+                    $total_ongkos_kirim = $total_ongkos_kirim + $ongkos_kirim;
+                    $ongkos_kirim = $data['ongkos_kirim'];
                     $tipe_pembayaran = $data['tipe_pembayaran'];
                     $keterangan = $data['keterangan'];
                     $file_bukti = $data['file_bukti'];
@@ -654,6 +659,22 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Total Uang Bright Gas 5,5 KG</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_55kg) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Ongkos Kirim</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_ongkos_kirim) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
