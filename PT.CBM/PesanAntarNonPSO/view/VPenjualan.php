@@ -83,46 +83,46 @@ if ($tanggal_awal == $tanggal_akhir) {
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPesanAntar">
-    <div class="sidebar-brand-icon rotate-n-15">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPesanAntar">
+        <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png"></div>
-</a>
+        </div>
+        <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png"></div>
+      </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active">
-    <a class="nav-link" href="DsKepalaOprasional">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;">Dashboard</span></a>
-</li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="DsKepalaOprasional">
+          <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+          <span style="font-size: 16px;">Dashboard</span></a>
+      </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
-<!-- Heading -->
-<div class="sidebar-heading" style="font-size: 15px; color:white;">
-    Menu Pesan Antar Non PSO
-</div>
+      <!-- Heading -->
+      <div class="sidebar-heading" style="font-size: 15px; color:white;">
+        Menu Pesan Antar Non PSO
+      </div>
 
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
-        <span style="font-size: 15px; color:white;">Transaksi</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Transaksi</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
+          </div>
         </div>
-    </div>
-</li>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -302,6 +302,10 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <div class="row">
                           <div class="col-md-6">
+                            <label>Ongkos Kirim</label>
+                            <input class="form-control form-control-sm" type="number" id="ongkos_kirim" name="ongkos_kirim" required="">
+                          </div>
+                          <div class="col-md-6">
                             <label>Tipe Pembayaran</label>
                             <select id="tipe_pembayaran" name="tipe_pembayaran" class="form-control">
                               <option>Tunai</option>
@@ -368,10 +372,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <tbody>
                   <?php
                   $no_urut = 0;
-                  $total_penjualan_12kg =0;
-                  $total_uang_12kg =0;
-                  $total_penjualan_55kg =0;
-                  $total_uang_55kg =0;
+                  $total_penjualan_12kg = 0;
+                  $total_uang_12kg = 0;
+                  $total_penjualan_55kg = 0;
+                  $total_uang_55kg = 0;
                   function formatuang($angka)
                   {
                     $uang = "Rp " . number_format($angka, 2, ',', '.');
@@ -511,6 +515,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <br>
                                 <div class="row">
                                   <div class="col-md-6">
+                                    <label>Ongkos Kirim</label>
+                                    <input class="form-control form-control-sm" type="number" id="ongkos_kirim" name="ongkos_kirim" required="" value="<?php echo $ongkos_kirim; ?>">
+                                  </div>
+                                  <div class="col-md-6">
                                     <label>Tipe Pembayaran</label>
                                     <select id="tipe_pembayaran" name="tipe_pembayaran" class="form-control">
                                       <?php $dataSelect = $data['tipe_pembayaran']; ?>
@@ -589,72 +597,72 @@ if ($tanggal_awal == $tanggal_akhir) {
               </table>
             </div>
             <br>
-      <div class="row" style="margin-right: 20px; margin-left: 20px;">
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                    Total Penjualan Bright Gas 12 KG</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_12kg ?></div>
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Penjualan Bright Gas 12 KG</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_12kg ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-auto">
-                  <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Uang Bright Gas 12 KG</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_12kg) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Penjualan Bright Gas 5,5 KG</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_55kg  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Uang Bright Gas 5,5 KG</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_55kg) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                    Total Uang Bright Gas 12 KG</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_12kg) ?></div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                    Total Penjualan Bright Gas 5,5 KG</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_55kg  ?></div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                    Total Uang Bright Gas 5,5 KG</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_55kg) ?></div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
             <br>
             <br>
           </div>

@@ -29,6 +29,7 @@ $jumlah_12kg = $qty_12kg * $harga_12kg;
 $qty_55kg = $_POST['qty_55kg'];
 $harga_55kg = $_POST['harga_55kg'];
 $jumlah_55kg = $qty_55kg * $harga_55kg;
+$ongkos_kirim = $_POST['ongkos_kirim'];
 $tipe_pembayaran = $_POST['tipe_pembayaran'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
@@ -68,7 +69,7 @@ else if ( $nama_file != "" ) {
 
 
 	$query = mysqli_query($koneksi,"INSERT INTO penjualan_pesan_antar_non_pso VALUES('','$id1','$tanggal','$area','$nama_pembeli','$alamat_pembeli','$qty_12kg','$harga_12kg','$jumlah_12kg'
-                                                                                    ,'$qty_55kg','$harga_55kg','$jumlah_55kg','$tipe_pembayaran','$keterangan','$file')");
+                                                                                    ,'$qty_55kg','$harga_55kg','$jumlah_55kg','$ongkos_kirim','$tipe_pembayaran','$keterangan','$file')");
 
 			if ($query != "") {
 		echo "<script>alert('Input Data Penjualan Berhasil :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

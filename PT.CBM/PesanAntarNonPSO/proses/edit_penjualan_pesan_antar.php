@@ -30,6 +30,7 @@ $jumlah_12kg = $qty_12kg * $harga_12kg;
 $qty_55kg = $_POST['qty_55kg'];
 $harga_55kg = $_POST['harga_55kg'];
 $jumlah_55kg = $qty_55kg * $harga_55kg;
+$ongkos_kirim = $_POST['ongkos_kirim'];
 $tipe_pembayaran = $_POST['tipe_pembayaran'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
@@ -71,12 +72,12 @@ else if ( $nama_file != "" ) {
 
 	if ($file == '') {
 			$query3 = mysqli_query($koneksi,"UPDATE penjualan_pesan_antar_non_pso SET id_karyawan = '$id1' , tanggal = '$tanggal', area = '$area' , nama_pembeli = '$nama_pembeli' ,alamat_pembeli = '$alamat_pembeli' , 
-		     qty_12kg = '$qty_12kg' , harga_12kg = '$harga_12kg' , jumlah_12kg = '$jumlah_12kg' , qty_55kg = '$qty_55kg' , harga_55kg = '$harga_55kg' , jumlah_55kg = '$jumlah_55kg', tipe_pembayaran = '$tipe_pembayaran' , keterangan = '$keterangan' WHERE no_transaksi = '$no_transaksi'");
+		     qty_12kg = '$qty_12kg' , harga_12kg = '$harga_12kg' , jumlah_12kg = '$jumlah_12kg' , qty_55kg = '$qty_55kg' , harga_55kg = '$harga_55kg' , jumlah_55kg = '$jumlah_55kg', ongkos_kirim = '$ongkos_kirim', tipe_pembayaran = '$tipe_pembayaran' , keterangan = '$keterangan' WHERE no_transaksi = '$no_transaksi'");
 
 	}
 	else{
 			$query3 = mysqli_query($koneksi,"UPDATE penjualan_pesan_antar_non_pso SET id_karyawan = '$id1' , tanggal = '$tanggal', area = '$area' , nama_pembeli = '$nama_pembeli' ,alamat_pembeli = '$alamat_pembeli' , 
-			qty_12kg = '$qty_12kg' , harga_12kg = '$harga_12kg' , jumlah_12kg = '$jumlah_12kg' , qty_55kg = '$qty_55kg' , harga_55kg = '$harga_55kg' , jumlah_55kg = '$jumlah_55kg', tipe_pembayaran = '$tipe_pembayaran' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
+			qty_12kg = '$qty_12kg' , harga_12kg = '$harga_12kg' , jumlah_12kg = '$jumlah_12kg' , qty_55kg = '$qty_55kg' , harga_55kg = '$harga_55kg' , jumlah_55kg = '$jumlah_55kg', ongkos_kirim = '$ongkos_kirim', tipe_pembayaran = '$tipe_pembayaran' , keterangan = '$keterangan' , file_bukti = '$file'  WHERE no_transaksi = '$no_transaksi'");
 
 			
 	}
