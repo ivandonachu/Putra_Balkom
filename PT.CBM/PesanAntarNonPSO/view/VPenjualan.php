@@ -306,6 +306,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tipe_pembayaran" name="tipe_pembayaran" class="form-control">
                               <option>Tunai</option>
                               <option>Transfer</option>
+                              <option>QRIS</option>
                             </select>
                           </div>
                         </div>
@@ -515,6 +516,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                       <?php $dataSelect = $data['tipe_pembayaran']; ?>
                                       <option <?php echo ($dataSelect == 'Tunai') ? "selected" : "" ?>>Tunai</option>
                                       <option <?php echo ($dataSelect == 'Transfer') ? "selected" : "" ?>>Transfer</option>
+                                      <option <?php echo ($dataSelect == 'QRIS') ? "selected" : "" ?>>QRIS</option>
                                     </select>
                                   </div>
                                 </div>
