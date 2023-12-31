@@ -378,6 +378,19 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $total_penjualan_55kg = 0;
                   $total_uang_55kg = 0;
                   $total_ongkos_kirim = 0;
+
+                  $total_penjualan_12kg_tf = 0;
+                  $total_uang_12kg_tf = 0;
+                  $total_penjualan_55kg_tf = 0;
+                  $total_uang_55kg_tf = 0;
+                  $total_ongkos_kirim_tf = 0;
+
+                  $total_penjualan_12kg_q = 0;
+                  $total_uang_12kg_q = 0;
+                  $total_penjualan_55kg_q = 0;
+                  $total_uang_55kg_q = 0;
+                  $total_ongkos_kirim_q = 0;
+
                   function formatuang($angka)
                   {
                     $uang = "Rp " . number_format($angka, 2, ',', '.');
@@ -399,13 +412,31 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $harga_55kg = $data['harga_55kg'];
                     $jumlah_55kg = $data['jumlah_55kg'];
                     $ongkos_kirim = $data['ongkos_kirim'];
-                    $total_penjualan_12kg = $total_penjualan_12kg + $qty_12kg;
-                    $total_uang_12kg = $total_uang_12kg + $jumlah_12kg;
-                    $total_penjualan_55kg = $total_penjualan_55kg + $qty_55kg;
-                    $total_uang_55kg = $total_uang_55kg + $jumlah_55kg;
-                    $total_ongkos_kirim = $total_ongkos_kirim + $ongkos_kirim;
-                    $ongkos_kirim = $data['ongkos_kirim'];
                     $tipe_pembayaran = $data['tipe_pembayaran'];
+                    if($tipe_pembayaran == 'Tunai'){
+                      $total_penjualan_12kg = $total_penjualan_12kg + $qty_12kg;
+                      $total_uang_12kg = $total_uang_12kg + $jumlah_12kg;
+                      $total_penjualan_55kg = $total_penjualan_55kg + $qty_55kg;
+                      $total_uang_55kg = $total_uang_55kg + $jumlah_55kg;
+                      $total_ongkos_kirim = $total_ongkos_kirim + $ongkos_kirim;
+                    }
+                    else if($tipe_pembayaran == 'Transfer'){
+                      $total_penjualan_12kg_tf = $total_penjualan_12kg_tf + $qty_12kg;
+                      $total_uang_12kg_tf = $total_uang_12kg_tf + $jumlah_12kg;
+                      $total_penjualan_55kg_tf = $total_penjualan_55kg_tf + $qty_55kg;
+                      $total_uang_55kg_tf = $total_uang_55kg_tf + $jumlah_55kg;
+                      $total_ongkos_kirim_tf = $total_ongkos_kirim_tf + $ongkos_kirim;
+                    }
+                    else if($tipe_pembayaran == 'QRIS'){
+                      $total_penjualan_12kg_q = $total_penjualan_12kg_q + $qty_12kg;
+                      $total_uang_12kg_q = $total_uang_12kg_q + $jumlah_12kg;
+                      $total_penjualan_55kg_q = $total_penjualan_55kg_q + $qty_55kg;
+                      $total_uang_55kg_q = $total_uang_55kg_q + $jumlah_55kg;
+                      $total_ongkos_kirim_q = $total_ongkos_kirim_q + $ongkos_kirim;
+                      
+                    }
+                    
+               
                     $keterangan = $data['keterangan'];
                     $file_bukti = $data['file_bukti'];
                     $no_urut = $no_urut + 1;
@@ -421,6 +452,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$qty_55kg</td>
       <td style='font-size: 14px'>"; ?> <?= formatuang($harga_55kg); ?> <?php echo "</td>
       <td style='font-size: 14px'>" ?> <?= formatuang($jumlah_55kg); ?> <?php echo "</td>
+      <td style='font-size: 14px'>" ?> <?= formatuang($ongkos_kirim); ?> <?php echo "</td>
       <td style='font-size: 14px'>$tipe_pembayaran</td>
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="" href="/PT.CBM/PesanAntarNonPSO/file_pesan_antar/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
@@ -609,7 +641,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                          Total Penjualan Bright Gas 12 KG</div>
+                          Total Penjualan Bright Gas 12 KG Tunai</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_12kg ?></div>
                       </div>
                       <div class="col-auto">
@@ -625,7 +657,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                          Total Uang Bright Gas 12 KG</div>
+                          Total Uang Bright Gas 12 KG Tunai</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_12kg) ?></div>
                       </div>
                       <div class="col-auto">
@@ -641,7 +673,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                          Total Penjualan Bright Gas 5,5 KG</div>
+                          Total Penjualan Bright Gas 5,5 KG Tunai</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_55kg  ?></div>
                       </div>
                       <div class="col-auto">
@@ -657,8 +689,45 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                          Total Uang Bright Gas 5,5 KG</div>
+                          Total Uang Bright Gas 5,5 KG Tunai</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_55kg) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Penjualan Bright Gas 12 KG Transfer</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_12kg_tf ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Uang Bright Gas 12 KG Transfer</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_12kg_tf) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -673,8 +742,146 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                          Total Ongkos Kirim</div>
+                          Total Penjualan Bright Gas 5,5 KG Transfer</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_55kg_tf  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Uang Bright Gas 5,5 KG Transfer</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_55kg_tf) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Penjualan Bright Gas 12 KG QRIS</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_12kg_q ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Uang Bright Gas 12 KG QRIS</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_12kg_q) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Penjualan Bright Gas 5,5 KG QRIS</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_penjualan_55kg_q  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Uang Bright Gas 5,5 KG QRIS</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uang_55kg_q) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Ongkos Kirim Cash</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_ongkos_kirim) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Ongkos Kirim Transfer</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_ongkos_kirim_tf) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Ongkos Kirim QRIS</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_ongkos_kirim_q) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
