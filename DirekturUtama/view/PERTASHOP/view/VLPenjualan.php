@@ -561,7 +561,7 @@ else{
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?></td>
      
   </tr>
