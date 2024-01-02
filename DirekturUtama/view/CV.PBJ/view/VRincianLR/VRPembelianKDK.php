@@ -721,7 +721,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example2').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: [ 'excel' ]
     } );
 
     table.buttons().container()
@@ -764,17 +764,6 @@ aria-hidden="true">
     liveSearch: true,
     maxOptions: 1
   });
-</script>
-<script>
-  $(document).ready(function() {
-    var table = $('#example2').DataTable( {
-      lengthChange: false,
-      buttons: ['excel' ]
-    } );
-
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
 </script>
 </body>
 
