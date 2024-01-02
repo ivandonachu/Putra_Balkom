@@ -564,7 +564,29 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example').DataTable( {
+      lengthChange: false,
+      buttons: [  'excel']
+    } );
 
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example1').DataTable( {
+      lengthChange: false,
+      buttons: [ ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
 </body>
 
 </html>

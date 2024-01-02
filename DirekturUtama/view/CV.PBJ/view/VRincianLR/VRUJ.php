@@ -374,7 +374,7 @@ Logout
 <h5 align="center" >Uang Jalan Menyewakan HiBLow</h5>
 <!-- Tabel -->    
 <div style="overflow-x: auto">
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -532,6 +532,18 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example1').DataTable( {
+      lengthChange: false,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
       lengthChange: false,
       buttons: ['excel']
     } );
