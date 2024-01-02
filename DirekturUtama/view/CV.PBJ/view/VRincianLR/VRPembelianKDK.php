@@ -73,7 +73,7 @@ $table = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE tanggal BET
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penebusan Semen Kadek</title>
+  <title>Penebusan Semen Dani</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -764,6 +764,17 @@ aria-hidden="true">
     liveSearch: true,
     maxOptions: 1
   });
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+      buttons: ['excel' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
 </script>
 </body>
 
