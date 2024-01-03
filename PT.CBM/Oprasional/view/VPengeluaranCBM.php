@@ -667,7 +667,7 @@ Menu Kepala Oprasional
     <?php while($data = mysqli_fetch_array($table3)){
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['total_jumlah'];
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
        
       }
       else{
@@ -676,7 +676,7 @@ Menu Kepala Oprasional
 
       echo "<tr>
       " ;
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
     
       }
       else{
