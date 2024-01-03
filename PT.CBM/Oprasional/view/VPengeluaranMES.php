@@ -592,7 +592,7 @@ Menu Kepala Oprasional
         $nama_akun = $data['nama_akun'];
         $jumlah =$data['total_jumlah'];
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
         $sisa_saldo  = $sisa_saldo + $jumlah;
         $total_saldo = $total_saldo + $jumlah;
       }
