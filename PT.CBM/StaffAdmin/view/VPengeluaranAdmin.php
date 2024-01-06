@@ -375,7 +375,7 @@ else{
                         <option>Pindah Saldo</option>
                         <option>Biaya Admin</option>
                         <option>Transport & Perjalanan Dinas</option>
-                        <option>Bayar Pinjam Saldo</option>
+                        <option>Kembalikan Pinjaman Saldo</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -487,7 +487,7 @@ else{
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Transport Fee' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Bayar Pinjam Saldo' ) {
+      if ($nama_akun == 'Transport Fee' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Kembalikan Pinjaman Saldo' ) {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -555,7 +555,7 @@ else{
                         <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected": "" ?> >Pindah Saldo</option>
                         <option <?php echo ($dataSelect == 'Biaya Admin') ? "selected": "" ?> >Biaya Admin</option>
                         <option <?php echo ($dataSelect == 'Transport & Perjalanan Dinas') ? "selected": "" ?> >Transport & Perjalanan Dinas</option>
-                        <option <?php echo ($dataSelect == 'Bayar Pinjam Saldo') ? "selected": "" ?> >Bayar Pinjam Saldo</option> 
+                        <option <?php echo ($dataSelect == 'Kembalikan Pinjaman Saldo') ? "selected": "" ?> >Kembalikan Pinjaman Saldo</option> 
                     </select>
             </div>
             <div class="col-md-6">
@@ -670,7 +670,7 @@ else{
         $nama_akun = $data['nama_akun'];
         $jumlah =$data['total_jumlah'];
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Transport Fee' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Kembalikan Pinjaman Saldo' ) {
         $sisa_saldo  = $sisa_saldo + $jumlah;
         $total_saldo = $total_saldo + $jumlah;
       }
