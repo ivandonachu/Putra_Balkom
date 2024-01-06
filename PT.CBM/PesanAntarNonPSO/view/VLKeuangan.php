@@ -253,6 +253,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <label>Akun</label>
                             <select id="nama_akun" name="nama_akun" class="form-control">
                               <option>Uang Bensin</option>
+                              <option>Uang Makan</option>
                               <option>Pulsa / Paket Data</option>
                               <option>Biaya Administrasi</option>
                               <option>Biaya Kantor</option>
@@ -261,6 +262,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Gaji Karyawan</option>     
                               <option>Pengeluaran Lainnya</option>
                               <option>Saldo Masuk</option>
+                              
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -420,6 +422,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <select id="nama_akun" name="nama_akun" class="form-control">
                     <?php $dataSelect = $data['nama_akun']; ?>
                     <option <?php echo ($dataSelect == 'Uang Bensin') ? "selected" : "" ?>>Uang Bensin</option>
+                    <option <?php echo ($dataSelect == 'Uang Makan') ? "selected" : "" ?>>Uang Makan</option>
                     <option <?php echo ($dataSelect == 'Pulsa / Paket Data') ? "selected" : "" ?>>Pulsa / Paket Data</option>
                     <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected" : "" ?>>Biaya Administrasi</option>
                     <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected" : "" ?>>Biaya Kantor</option>
