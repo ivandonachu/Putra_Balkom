@@ -49,13 +49,13 @@ if (isset($_GET['tanggal1'])) {
   
     
     //Tonase OKUT
-    $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okut FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'Kab Ogn Kmrg Ulu Tim'");
+    $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okut FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'KAB OKU TIMUR'");
     $data2 = mysqli_fetch_array($table2);
     $total_qty_okut = $data2['qty_okut'];
     $total_tonase_okut = $total_qty_okut/20;
 
     //Tonase OKUS
-    $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okus FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'Kab Ogn Kmrg Ulu Sel'");
+    $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okus FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'KAB OKU SELATAN'");
     $data3 = mysqli_fetch_array($table3);
     $total_qty_okus = $data3['qty_okus'];
     $total_tonase_okus = $total_qty_okus/20;
@@ -73,7 +73,7 @@ if (isset($_GET['tanggal1'])) {
     $total_tonase_way_kanan = $total_qty_way_kanan/20;
     
     //Tonase Tuba
-    $table6 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_tuba FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'Kab Tlg Bwg'");
+    $table6 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_tuba FROM pembelian_sl WHERE  tanggal = '$tanggal_akhir' AND kota = 'KAB. TULANG BAWANG'");
     $data6 = mysqli_fetch_array($table6);
     $total_qty_tuba = $data6['qty_tuba'];
     $total_tonase_tuba = $total_qty_tuba/20;
@@ -99,13 +99,13 @@ if (isset($_GET['tanggal1'])) {
     $table = mysqli_query($koneksipbj,"SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
     
      //Tonase OKUT
-     $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okut FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'Kab Ogn Kmrg Ulu Tim'");
+     $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okut FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB OKU TIMUR'");
      $data2 = mysqli_fetch_array($table2);
      $total_qty_okut = $data2['qty_okut'];
      $total_tonase_okut = $total_qty_okut/20;
  
      //Tonase OKUS
-     $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okus FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'Kab Ogn Kmrg Ulu Sel'");
+     $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_okus FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB OKU SELATAN'");
      $data3 = mysqli_fetch_array($table3);
      $total_qty_okus = $data3['qty_okus'];
      $total_tonase_okus = $total_qty_okus/20;
@@ -123,7 +123,7 @@ if (isset($_GET['tanggal1'])) {
      $total_tonase_way_kanan = $total_qty_way_kanan/20;
      
      //Tonase Tuba
-     $table6 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_tuba FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'Kab Tlg Bwg'");
+     $table6 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS qty_tuba FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. TULANG BAWANG'");
      $data6 = mysqli_fetch_array($table6);
      $total_qty_tuba = $data6['qty_tuba'];
      $total_tonase_tuba = $total_qty_tuba/20;
