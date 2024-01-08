@@ -21,7 +21,7 @@ $tanggal_akhir = $_POST['tanggal2'];
 $no_transaksi = $_POST['no_transaksi'];
 $tanggal = $_POST['tanggal'];
 $nama_akun = $_POST['nama_akun'];
-if($nama_akun == 'Saldo Masuk'){
+if($nama_akun == 'Saldo Masuk'|| $nama_akun == 'Saldo Awal'){
 	$status_saldo = 'Masuk';
 }
 else{

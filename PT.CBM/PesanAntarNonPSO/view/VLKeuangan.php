@@ -263,7 +263,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Gaji Karyawan</option>     
                               <option>Pengeluaran Lainnya</option>
                               <option>Saldo Masuk</option>
-                              
+                              <option>Saldo Awal</option>
+                            
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -432,6 +433,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected" : "" ?>>Gaji Karyawan</option>
                     <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected" : "" ?>>Pengeluaran Lainnya</option>
                     <option <?php echo ($dataSelect == 'Saldo Masuk') ? "selected" : "" ?>>Saldo Masuk</option>
+                    <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected" : "" ?>>Saldo Awal</option>
                   </select>
                 </div>
                 <div class="col-md-6">
