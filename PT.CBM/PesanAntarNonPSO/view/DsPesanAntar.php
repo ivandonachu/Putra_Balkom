@@ -137,6 +137,7 @@ $nama = $data['nama_karyawan'];
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLStok">Laporan Stok</a>
                     </div>
                 </div>
             </li>
