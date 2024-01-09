@@ -211,7 +211,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jumlah_dani = $data1x['jumlah'];
 
         $total_penebusan_dani = $total_penebusan_dani + $jumlah_dani;
-    }
+    }F
 
     $tabel2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
