@@ -117,6 +117,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLStok">Laporan Stok</a>
         </div>
     </div>
 </li>
@@ -262,7 +263,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Gaji Karyawan</option>     
                               <option>Pengeluaran Lainnya</option>
                               <option>Saldo Masuk</option>
-                              
+                              <option>Saldo Awal</option>
+                            
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -431,6 +433,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected" : "" ?>>Gaji Karyawan</option>
                     <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected" : "" ?>>Pengeluaran Lainnya</option>
                     <option <?php echo ($dataSelect == 'Saldo Masuk') ? "selected" : "" ?>>Saldo Masuk</option>
+                    <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected" : "" ?>>Saldo Awal</option>
                   </select>
                 </div>
                 <div class="col-md-6">

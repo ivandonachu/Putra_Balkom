@@ -211,7 +211,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jumlah_dani = $data1x['jumlah'];
 
         $total_penebusan_dani = $total_penebusan_dani + $jumlah_dani;
-    }
+    }F
 
     $tabel2 = mysqli_query($koneksipbj, "SELECT no_do FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
@@ -246,7 +246,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     // piutang kadek dan etty
-    $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' ");
+    $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman != 'Gudang Mesuji' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'  AND tujuan_pengiriman != 'Gudang Mesuji'");
     $piutang_penjualan_kadek = 0;
     //kadek
     while ($data = mysqli_fetch_array($tablexr)) {
