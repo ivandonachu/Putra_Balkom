@@ -121,6 +121,10 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLStok">Laporan Stok</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLStokGudang">Stok Gudang BK3</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLStokRantauPanjang">Stok Rantau Panjang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSetoranNPSO">Setoran NPSO</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSetoranPSO">Setoran PSO</a>
           </div>
         </div>
       </li>
@@ -416,30 +420,27 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $jumlah_55kg = $data['jumlah_55kg'];
                     $ongkos_kirim = $data['ongkos_kirim'];
                     $tipe_pembayaran = $data['tipe_pembayaran'];
-                    if($tipe_pembayaran == 'Tunai'){
+                    if ($tipe_pembayaran == 'Tunai') {
                       $total_penjualan_12kg = $total_penjualan_12kg + $qty_12kg;
                       $total_uang_12kg = $total_uang_12kg + $jumlah_12kg;
                       $total_penjualan_55kg = $total_penjualan_55kg + $qty_55kg;
                       $total_uang_55kg = $total_uang_55kg + $jumlah_55kg;
                       $total_ongkos_kirim = $total_ongkos_kirim + $ongkos_kirim;
-                    }
-                    else if($tipe_pembayaran == 'Transfer'){
+                    } else if ($tipe_pembayaran == 'Transfer') {
                       $total_penjualan_12kg_tf = $total_penjualan_12kg_tf + $qty_12kg;
                       $total_uang_12kg_tf = $total_uang_12kg_tf + $jumlah_12kg;
                       $total_penjualan_55kg_tf = $total_penjualan_55kg_tf + $qty_55kg;
                       $total_uang_55kg_tf = $total_uang_55kg_tf + $jumlah_55kg;
                       $total_ongkos_kirim_tf = $total_ongkos_kirim_tf + $ongkos_kirim;
-                    }
-                    else if($tipe_pembayaran == 'QRIS'){
+                    } else if ($tipe_pembayaran == 'QRIS') {
                       $total_penjualan_12kg_q = $total_penjualan_12kg_q + $qty_12kg;
                       $total_uang_12kg_q = $total_uang_12kg_q + $jumlah_12kg;
                       $total_penjualan_55kg_q = $total_penjualan_55kg_q + $qty_55kg;
                       $total_uang_55kg_q = $total_uang_55kg_q + $jumlah_55kg;
                       $total_ongkos_kirim_q = $total_ongkos_kirim_q + $ongkos_kirim;
-                      
                     }
-                    
-               
+
+
                     $keterangan = $data['keterangan'];
                     $file_bukti = $data['file_bukti'];
                     $no_urut = $no_urut + 1;

@@ -138,6 +138,10 @@ $nama = $data['nama_karyawan'];
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLStok">Laporan Stok</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLStokGudang">Stok Gudang BK3</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLStokRantauPanjang">Stok Rantau Panjang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranNPSO">Setoran NPSO</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranPSO">Setoran PSO</a>
                     </div>
                 </div>
             </li>

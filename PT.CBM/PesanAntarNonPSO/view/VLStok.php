@@ -118,6 +118,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLStok">Laporan Stok</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLStokGudang">Stok Gudang BK3</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLStokRantauPanjang">Stok Rantau Panjang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranNPSO">Setoran NPSO</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranPSO">Setoran PSO</a>
                     </div>
                 </div>
             </li>
@@ -397,7 +401,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                         <option <?php echo ($dataSelect == 'BK 3') ? "selected" : "" ?>>BK 3</option>
                                                                         <option <?php echo ($dataSelect == 'Gumawang') ? "selected" : "" ?>>Gumawang</option>
                                                                         <option <?php echo ($dataSelect == 'Rantau Panjang') ? "selected" : "" ?>>Rantau Panjang</option>
-                    
+
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -408,15 +412,15 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <label>Bright Gas 12 KG Isi</label>
-                                                                    <input class="form-control form-control-sm" type="number" id="B12K11" name="B12K11"  required="" value="<?php echo $B12K11; ?>">
+                                                                    <input class="form-control form-control-sm" type="number" id="B12K11" name="B12K11" required="" value="<?php echo $B12K11; ?>">
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <label>Bright Gas 12 KG Kosong</label>
-                                                                    <input class="form-control form-control-sm" type="number" id="B12K10" name="B12K10"  required="" value="<?php echo $B12K10; ?>">
+                                                                    <input class="form-control form-control-sm" type="number" id="B12K10" name="B12K10" required="" value="<?php echo $B12K10; ?>">
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <label>Bright Gas 12 KG Retur</label>
-                                                                    <input class="form-control form-control-sm" type="number" id="B12K00" name="B12K00"  required="" value="<?php echo $B12K00; ?>">
+                                                                    <input class="form-control form-control-sm" type="number" id="B12K00" name="B12K00" required="" value="<?php echo $B12K00; ?>">
                                                                 </div>
                                                             </div>
 
@@ -426,7 +430,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <label>Bright Gas 5,5 KG Isi</label>
-                                                                    <input class="form-control form-control-sm" type="number" id="B05K11" name="B05K11"  required="" value="<?php echo $B05K11; ?>">
+                                                                    <input class="form-control form-control-sm" type="number" id="B05K11" name="B05K11" required="" value="<?php echo $B05K11; ?>">
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <label>Bright Gas 5,5 KG Kosong</label>
@@ -434,7 +438,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <label>Bright Gas 5,5 KG Retur</label>
-                                                                    <input class="form-control form-control-sm" type="number" id="B05K00" name="B05K00"  required="" value="<?php echo $B05K00; ?>">
+                                                                    <input class="form-control form-control-sm" type="number" id="B05K00" name="B05K00" required="" value="<?php echo $B05K00; ?>">
                                                                 </div>
                                                             </div>
 
@@ -492,7 +496,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 </tbody>
                             </table>
                         </div>
-                      
+
                         <br>
                         <br>
 

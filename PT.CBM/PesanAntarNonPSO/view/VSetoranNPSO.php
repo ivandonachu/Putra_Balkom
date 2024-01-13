@@ -35,9 +35,9 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_pesan_antar_non_pso WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM setoran_npso WHERE tanggal = '$tanggal_awal'");
 } else {
-  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_pesan_antar_non_pso WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM setoran_npso WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
 }
 
 
@@ -53,7 +53,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Keuangan</title>
+  <title>Setoran NPSO</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -149,7 +149,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-          <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan</h5></a>"; ?>
+          <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Setoran NPSO</h5></a>"; ?>
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -196,7 +196,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           <!-- Name Page -->
           <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-            <?php echo "<form  method='POST' action='VLKeuangan' style='margin-bottom: 15px;'>" ?>
+            <?php echo "<form  method='POST' action='VSetoranNPSO' style='margin-bottom: 15px;'>" ?>
             <div>
               <div align="left" style="margin-left: 20px;">
                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -220,14 +220,14 @@ if ($tanggal_awal == $tanggal_akhir) {
               <div class="col-md-2">
                 <!-- Button Pindah Baja -->
                 <div align="right">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Keuangan </button> <br> <br>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Setoran </button> <br> <br>
                 </div>
                 <!-- Form Modal  -->
                 <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title"> Form Pencatatan Keuangan </h5>
+                        <h5 class="modal-title"> Form Pencatatan Setoran </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -235,7 +235,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                       <!-- Form Input Data -->
                       <div class="modal-body" align="left">
-                        <?php echo "<form action='../proses/proses_keuangan_pesan_antar?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                        <?php echo "<form action='../proses/proses_setoran_npso?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
                         <div class="row">
                           <div class="col-md-6">
@@ -248,36 +248,11 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                           </div>
                           <div class="col-md-6">
-
+                            <label>Jumlah Setoran</label>
+                            <input class="form-control form-control-sm" type="number" id="jumlah_setoran" name="jumlah_setoran" value='0' required="">
                           </div>
                         </div>
-                        <br>
-
-                        <div class="row">
-                          <div class="col-md-6">
-                            <label>Akun</label>
-                            <select id="nama_akun" name="nama_akun" class="form-control">
-                              <option>Uang Bensin</option>
-                              <option>Uang Makan</option>
-                              <option>Pulsa / Paket Data</option>
-                              <option>Biaya Administrasi</option>
-                              <option>Biaya Kantor</option>
-                              <option>Alat Tulis Kantor</option>
-                              <option>Perbaikan Kendaraan</option>
-                              <option>Gaji Karyawan</option>
-                              <option>Pengeluaran Lainnya</option>
-                              <option>Saldo Masuk</option>
-                              <option>Saldo Awal</option>
-
-                            </select>
-                          </div>
-                          <div class="col-md-6">
-                            <label>Jumlah</label>
-                            <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" value='0' required="">
-                          </div>
-                        </div>
-
-
+                        
                         <br>
 
                         <div>
@@ -315,10 +290,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <tr>
                     <th>No</th>
                     <th>Tanggal</th>
-                    <th>Akun</th>
+                    <th>Jumlah</th>
+                    <th>Total Setoran</th>
                     <th>Keterangan</th>
-                    <th>Debit</th>
-                    <th>Kredit</th>
                     <th>file</th>
                     <th></th>
 
@@ -326,9 +300,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 </thead>
                 <tbody>
                   <?php
-                  $total_kredit = 0;
+                  $total_setoran = 0;
                   $no_urut = 0;
-                  $total_debit = 0;
                   function formatuang($angka)
                   {
                     $uang = "Rp " . number_format($angka, 2, ',', '.');
@@ -337,53 +310,29 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                   ?>
                   <?php while ($data = mysqli_fetch_array($table)) {
-                    $no_laporan = $data['no_transaksi'];
+                    $no_laporan = $data['no_laporan'];
                     $tanggal = $data['tanggal'];
-                    $nama_akun = $data['nama_akun'];
-                    $status_saldo = $data['status_saldo'];
-                    $jumlah = $data['jumlah'];
+                    $jumlah_setoran = $data['jumlah_setoran'];
+                    $total_setoran = $total_setoran + $jumlah_setoran;
                     $keterangan = $data['keterangan'];
-                    if ($status_saldo == 'Masuk') {
-                      $total_debit = $total_debit + $jumlah;
-                    } elseif ($status_saldo == 'Keluar') {
-                      $total_kredit = $total_kredit + $jumlah;
-                    }
                     $no_urut = $no_urut + 1;
                     $file_bukti = $data['file_bukti'];
                     echo "<tr>
       <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-    
-      <td style='font-size: 14px'>$keterangan</td>";
+      <td style='font-size: 14px'>" ?> <?= formatuang($jumlah_setoran); ?> <?php echo "</td>
+      <td style='font-size: 14px'>" ?> <?= formatuang($total_setoran); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$keterangan</td>
 
-
-                    if ($status_saldo == 'Masuk') {
-                      echo "
-        <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                    } else {
-                                                                      echo "
-        <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                    }
-
-                                                                    if ($status_saldo == 'Keluar') {
-                                                                      echo "
-        <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                    } else {
-                                                                      echo "
-        <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                    }
-                                          ?>
-                    <?php echo "
       <td style='font-size: 14px'>"; ?> <a download="" href="/PT.CBM/PesanAntarNonPSO/file_pesan_antar/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
     " ?> "
                       <?php echo "<td style='font-size: 12px'>"; ?>
 
-                      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Edit</button>
+                      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
 
                       <!-- Form EDIT DATA -->
 
-                      <div class="modal fade" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                      <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -396,12 +345,12 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                             <!-- Form Edit Data -->
                             <div class="modal-body">
-                              <form action="../proses/edit_keuangan_pesan_antar" method="POST" enctype="multipart/form-data">
+                              <form action="../proses/edit_setoran_npso" method="POST" enctype="multipart/form-data">
 
 
 
                                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-                                <input type="hidden" name="no_transaksi" value="<?php echo $no_laporan; ?>">
+                                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
                                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
                                 <div class="row">
                                   <div class="col-md-6">
@@ -414,39 +363,12 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                   </div>
                                   <div class="col-md-6">
-
+                                  <label>Jumlah Setoran</label>
+                                    <input class="form-control form-control-sm" type="number" id="jumlah_setoran" name="jumlah_setoran" value='<?php echo $jumlah_setoran; ?>' required="">
 
                                   </div>
                                 </div>
-                                <br>
-
-
-
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <label>Akun</label>
-                                    <select id="nama_akun" name="nama_akun" class="form-control">
-                                      <?php $dataSelect = $data['nama_akun']; ?>
-                                      <option <?php echo ($dataSelect == 'Uang Bensin') ? "selected" : "" ?>>Uang Bensin</option>
-                                      <option <?php echo ($dataSelect == 'Uang Makan') ? "selected" : "" ?>>Uang Makan</option>
-                                      <option <?php echo ($dataSelect == 'Pulsa / Paket Data') ? "selected" : "" ?>>Pulsa / Paket Data</option>
-                                      <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected" : "" ?>>Biaya Administrasi</option>
-                                      <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected" : "" ?>>Biaya Kantor</option>
-                                      <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected" : "" ?>>Alat Tulis Kantor</option>
-                                      <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected" : "" ?>>Perbaikan Kendaraan</option>
-                                      <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected" : "" ?>>Gaji Karyawan</option>
-                                      <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected" : "" ?>>Pengeluaran Lainnya</option>
-                                      <option <?php echo ($dataSelect == 'Saldo Masuk') ? "selected" : "" ?>>Saldo Masuk</option>
-                                      <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected" : "" ?>>Saldo Awal</option>
-                                    </select>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <label>Jumlah</label>
-                                    <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" value='<?php echo $jumlah; ?>' required="">
-                                  </div>
-                                </div>
-
-
+                                
                                 <br>
 
                                 <div>
@@ -471,9 +393,9 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-                      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_transaksi']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'>Hapus</button>
+                      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Pencatatan'>Hapus</button>
 
-                      <div class="modal fade" id="PopUpHapus<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -485,8 +407,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                             <div class="modal-body">
-                              <form action="../proses/hapus_keuangan_pesan_antar" method="POST">
-                                <input type="hidden" name="no_transaksi" value="<?php echo $no_laporan; ?>">
+                              <form action="../proses/hapus_setoran_npso" method="POST">
+                                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
                                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
 
@@ -515,32 +437,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             </div>
             <br>
             <br>
-            <br>
-            <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-              <!-- Tabel -->
-              <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                <thead>
-                  <tr>
-                    <th>Total Debit</th>
-                    <th>Total Kredit</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  <?php
-                  echo "<tr>
-      <td style='font-size: 14px'>"; ?> <?= formatuang($total_debit); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <?= formatuang($total_kredit); ?> <?php echo "</td>
-      </tr>";
-
-                                                                          ?>
-
-                </tbody>
-              </table>
-            </div>
-            <br>
-            <br>
+        
 
 
           </div>
