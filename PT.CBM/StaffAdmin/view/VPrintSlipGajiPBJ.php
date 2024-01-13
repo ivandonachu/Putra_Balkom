@@ -81,7 +81,7 @@ $html = '
 
         $html .= '
         
-        <h3 class="panel-title" align="Center" style = "margin-bottom: 1px; margin-top: 1px;"><img style=" max-height: 70px; width: 100%; text-align:center; " src="../gambar/Kop pbj.jpg"> </h3>
+        <h3 class="panel-title" align="Center" style = "margin-bottom: 1px; margin-top: 1px;"><img style=" max-height: 70px; width: 100%; text-align:center; " src="../gambar/Kop PBJ.jpg"> </h3>
         <hr style = "margin-bottom: 1px; margin-top: 1px;">
         <h5 class="panel-title" align="Center" style = "margin-bottom: 1px; margin-top: 1px;"><u><strong>Slip Gaji Karyawan</strong></u></h5>
         <pre class="panel-title" align="center"  style="font-size: 10px; margin-bottom: 10px; margin-top: 1px;">'. $bulan .' '. $tahun .'</pre>
