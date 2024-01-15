@@ -376,6 +376,7 @@ else{
                         <option>Biaya Admin</option>
                         <option>Transport & Perjalanan Dinas</option>
                         <option>Kembalikan Pinjaman Saldo</option>
+                        <option>Sparepart Kendaraan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -555,7 +556,8 @@ else{
                         <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected": "" ?> >Pindah Saldo</option>
                         <option <?php echo ($dataSelect == 'Biaya Admin') ? "selected": "" ?> >Biaya Admin</option>
                         <option <?php echo ($dataSelect == 'Transport & Perjalanan Dinas') ? "selected": "" ?> >Transport & Perjalanan Dinas</option>
-                        <option <?php echo ($dataSelect == 'Kembalikan Pinjaman Saldo') ? "selected": "" ?> >Kembalikan Pinjaman Saldo</option> 
+                        <option <?php echo ($dataSelect == 'Kembalikan Pinjaman Saldo') ? "selected": "" ?> >Kembalikan Pinjaman Saldo</option>
+                        <option <?php echo ($dataSelect == 'Sparepart Kendaraan') ? "selected": "" ?> >Sparepart Kendaraan</option>
                     </select>
             </div>
             <div class="col-md-6">
