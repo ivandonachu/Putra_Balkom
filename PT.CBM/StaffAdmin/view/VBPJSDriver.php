@@ -25,6 +25,7 @@ $nama = $data['nama_karyawan'];
 $table = mysqli_query($koneksi, "SELECT * FROM driver");
 $table2 = mysqli_query($koneksipbr, "SELECT * FROM driver WHERE nama_pt = 'MES' ");
 $table3 = mysqli_query($koneksipbr, "SELECT * FROM driver WHERE nama_pt = 'PBR'");
+$table4 = mysqli_query($koneksipbj, "SELECT * FROM driver_semen ");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -456,7 +457,7 @@ $table3 = mysqli_query($koneksipbr, "SELECT * FROM driver WHERE nama_pt = 'PBR'"
 
             <h3 align='center'>List Driver PBR</h3>
             <!-- Tabel -->
-            <table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+            <table id="example3" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
               <thead>
                 <tr>
                   <th>ID Driver</th>
@@ -542,30 +543,119 @@ $table3 = mysqli_query($koneksipbr, "SELECT * FROM driver WHERE nama_pt = 'PBR'"
 
               </tbody>
             </table>
-          </div>
+         
 
           <br>
-          <br>
+          <hr>
           <br>
 
+          <h3 align='center'>List Driver PBJ</h3>
+          <!-- Tabel -->
+          <table id="example4" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+            <thead>
+              <tr>
+                <th>ID Driver</th>
+                <th>Nama Driver</th>
+                <th>BPJS Kesehatan</th>
+                <th>BPJS Ketenagakerjaan</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
 
+              <?php while ($data = mysqli_fetch_array($table4)) {
+                $nama_driverx = $data['nama_driver'];
+                $bpjs_kesehatan = $data['bpjs_kesehatan'];
+                $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
+                $id_driverx = $data['no_driver'];
+                echo "<tr>
+      <td style='font-size: 14px'>$id_driverx</td>
+      <td style='font-size: 14px'>$nama_driverx</td>
+      <td style='font-size: 14px'>$bpjs_kesehatan</td>
+      <td style='font-size: 14px'>$bpjs_ketenagakerjaan</td>
+      "; ?>
+                <?php echo "<td style='font-size: 12px'>"; ?>
+
+                <!-- edit -->
+                <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formeditx<?php echo $data['no_driver']; ?>">Edit</button>
+
+                <!-- Form EDIT DATA -->
+
+                <div class="modal fade" id="formeditx<?php echo $data['no_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title"> Form Edit Data Driver </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                          <span aria-hidden="true"> &times; </span>
+                        </button>
+                      </div>
+
+
+                      <!-- Form Edit Data -->
+                      <div class="modal-body">
+                        <form action="../proses/proses_edit_driver_pbj" method="POST">
+
+
+                          <div class="form-group">
+                            <label> Nama Driver </label>
+                            <input type="text" name="no_driver" class="form-control" value="<?php echo $nama_driverx; ?>" disabled="">
+                            <input type="hidden" name="no_driver" value="<?php echo $id_driverx; ?>">
+                          </div>
+                          <div class="form-group">
+                            <label>BPJS Kesehatan</label>
+                            <input type="text" name="bpjs_kesehatan" class="form-control" value="<?php echo $bpjs_kesehatan; ?>" required="">
+                          </div>
+                          <div class="form-group">
+                            <label>BPJS Ketenagakerjaan</label>
+                            <input type="text" name="bpjs_ketenagakerjaan" class="form-control" value="<?php echo $bpjs_ketenagakerjaan; ?>" required="">
+                          </div>
+
+
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"> Ubah </button>
+                            <button type="reset" class="btn btn-danger"> RESET</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+              <?php echo  " </td> </tr>";
+              }
+              ?>
+
+            </tbody>
+          </table>
         </div>
+
+
+        <br>
+        <br>
+        <br>
+
 
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -634,6 +724,28 @@ $table3 = mysqli_query($koneksipbr, "SELECT * FROM driver WHERE nama_pt = 'PBR'"
   <script>
     $(document).ready(function() {
       var table = $('#example2').DataTable({
+        lengthChange: false,
+        buttons: []
+      });
+
+      table.buttons().container()
+        .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      var table = $('#example3').DataTable({
+        lengthChange: false,
+        buttons: []
+      });
+
+      table.buttons().container()
+        .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
+  </script>
+    <script>
+    $(document).ready(function() {
+      var table = $('#example4').DataTable({
         lengthChange: false,
         buttons: []
       });
