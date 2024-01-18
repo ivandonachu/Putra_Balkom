@@ -125,7 +125,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $qty = $data1['qty'];
 
         //kak nyoman
-        if ($kota == 'Kab Ogn Kmrg Ulu Tim') {
+        if ($kota == 'Kab Ogn Kmrg Ulu Tim' || $kota == 'KAB OKU TIMUR' ) {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
@@ -148,7 +148,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Mbak Reni') {
                 $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
             }
-        } else if ($kota == 'Kab Mesuji') {
+        } else if ($kota == 'Kab Mesuji' || $kota == 'KAB MESUJI') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
@@ -165,8 +165,14 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+            } else if ($pemilik == 'Bapak Rama') {
+                $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+            } else if ($pemilik == 'Bapak Aril') {
+                $total_angkutan_aril = $total_angkutan_aril + $total_angkut;
+            } else if ($pemilik == 'Mbak Reni') {
+                $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
             }
-        } else if ($kota == 'Kab Tlg Bwg') {
+        } else if ($kota == 'Kab Tlg Bwg' || $kota == 'KAB. TULANG BAWANG' ) {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
@@ -179,8 +185,14 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+            } else if ($pemilik == 'Bapak Rama') {
+                $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+            } else if ($pemilik == 'Bapak Aril') {
+                $total_angkutan_aril = $total_angkutan_aril + $total_angkut;
+            } else if ($pemilik == 'Mbak Reni') {
+                $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
             }
-        } else if ($kota == 'Kab Tlg Bwg Barat') {
+        } else if ($kota == 'KAB WAY KANAN' ) {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
@@ -193,9 +205,39 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+            } else if ($pemilik == 'Bapak Rama') {
+                $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+            } else if ($pemilik == 'Bapak Aril') {
+                $total_angkutan_aril = $total_angkutan_aril + $total_angkut;
+            } else if ($pemilik == 'Mbak Reni') {
+                $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
+            }
+        }
+
+        else if ($kota == 'Kab OKU Selatan' || $kota == 'KAB OKU SELATAN'|| $kota == 'Kab Ogn Kmrg Ulu Sel'   ) {
+            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+            $data1p = mysqli_fetch_array($table1p);
+            $tarif = $data1p['tarif_pranko'];
+            $total_angkut = $qty * $tarif;
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi') {
+                $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+            } else if ($pemilik == 'Bapak Rama') {
+                $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+            } else if ($pemilik == 'Bapak Aril') {
+                $total_angkutan_aril = $total_angkutan_aril + $total_angkut;
+            } else if ($pemilik == 'Mbak Reni') {
+                $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
             }
         }
     }
+
+    
 
 
     /* pembelian kadek dan etty
