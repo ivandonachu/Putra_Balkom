@@ -137,12 +137,9 @@ if ($tanggal_awal == $tanggal_akhir) {
             if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            else{
-                $pemilik = "";
-            }
 
 
-            if ($pemilik == 'Bapak Nyoman Edi' ||  $pemilik == "" ) {
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             } else if ($pemilik == 'Bapak Rama') {
                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
@@ -165,11 +162,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            else{
-                $pemilik = "";
-            }
 
-            if ($pemilik == 'Bapak Nyoman Edi' ||  $pemilik == "" ) {
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             } else if ($pemilik == 'Bapak Rama') {
                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
@@ -188,11 +182,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            else{
-                $pemilik = "";
-            }
 
-            if ($pemilik == 'Bapak Nyoman Edi' ||  $pemilik == "" ) {
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             } else if ($pemilik == 'Bapak Rama') {
                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
@@ -211,11 +202,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            else{
-                $pemilik = "";
-            }
 
-            if ($pemilik == 'Bapak Nyoman Edi' ||  $pemilik == "" ) {
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             } else if ($pemilik == 'Bapak Rama') {
                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
@@ -236,11 +224,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-            else{
-                $pemilik = "";
-            }
 
-            if ($pemilik == 'Bapak Nyoman Edi' ||  $pemilik == "" )  {
+            if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
             } else if ($pemilik == 'Bapak Rama') {
                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
