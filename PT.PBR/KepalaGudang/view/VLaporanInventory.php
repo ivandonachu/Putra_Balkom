@@ -577,7 +577,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'excel', 'colvis']
+      buttons: [ 'excel']
     } );
 
     table.buttons().container()
