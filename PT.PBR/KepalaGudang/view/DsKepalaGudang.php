@@ -617,7 +617,7 @@ $no_laporan_tk = $data3['MAX(no_laporan)'];
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
 <h5 align="center" >Inventory</h3>
 <!-- Tabel -->    
-<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
      <thead>
       <tr>
         <th>Baja</th>
@@ -630,7 +630,7 @@ $no_laporan_tk = $data3['MAX(no_laporan)'];
     </thead>
     <tbody>
 
-      <?php while($data2 = mysqli_fetch_array($table2)){
+      <?php while($data2 = mysqli_fetch_array($table)){
         $nama_baja = $data2['nama_baja'];
         $gudang = $data2['gudang'];
         $bantuan_cbm = $data2['bantuan_cbm'];
