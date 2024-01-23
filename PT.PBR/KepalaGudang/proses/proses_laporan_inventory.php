@@ -205,28 +205,28 @@ else if ( $nama_file != "" ) {
 
 	elseif ($referensi == 'Bantuan CBM') {
 		//3KG
-		$query1 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$L03K11' WHERE kode_baja = 'L03K11'");
-		$query2 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$L03K11' WHERE kode_baja = 'L03K01'");
-		$query3 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$L03K10' WHERE kode_baja = 'L03K10'");
-		$query4 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$L03K00' WHERE kode_baja = 'L03K00'");
+		$query1 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$L03K11' WHERE kode_baja = 'L03K11'");
+		$query2 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$L03K11' WHERE kode_baja = 'L03K01'");
+		$query3 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$L03K10' WHERE kode_baja = 'L03K10'");
+		$query4 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$L03K00' WHERE kode_baja = 'L03K00'");
 
 		//12KG
-		$query5 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$L12K11' WHERE kode_baja = 'L12K11'");
-		$query6 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$L12K11' WHERE kode_baja = 'L12K01'");
-		$query7 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$L12K10' WHERE kode_baja = 'L12K10'");
-		$query8 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$L12K00' WHERE kode_baja = 'L12K00'");
+		$query5 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$L12K11' WHERE kode_baja = 'L12K11'");
+		$query6 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$L12K11' WHERE kode_baja = 'L12K01'");
+		$query7 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$L12K10' WHERE kode_baja = 'L12K10'");
+		$query8 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$L12K00' WHERE kode_baja = 'L12K00'");
 
 		//5,5KG
-		$query8 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$B05K11' WHERE kode_baja = 'B05K11'");
-		$query9 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$B05K11' WHERE kode_baja = 'B05K01'");
-		$query10 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$B05K10' WHERE kode_baja = 'B05K10'");
-		$query11 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$B05K00' WHERE kode_baja = 'B05K00'");
+		$query8 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$B05K11' WHERE kode_baja = 'B05K11'");
+		$query9 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$B05K11' WHERE kode_baja = 'B05K01'");
+		$query10 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$B05K10' WHERE kode_baja = 'B05K10'");
+		$query11 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$B05K00' WHERE kode_baja = 'B05K00'");
 
 		//12BKG
-		$querY12 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$B12K11' WHERE kode_baja = 'B12K11'");
-		$query13 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$B12K11' WHERE kode_baja = 'B12K01'");
-		$query14 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$B12K10' WHERE kode_baja = 'B12K10'");
-		$query15 = mysqli_query($koneksi,"UPDATE inventory SET Bantuan CBM = '$B12K00' WHERE kode_baja = 'B12K00'");
+		$querY12 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$B12K11' WHERE kode_baja = 'B12K11'");
+		$query13 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$B12K11' WHERE kode_baja = 'B12K01'");
+		$query14 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$B12K10' WHERE kode_baja = 'B12K10'");
+		$query15 = mysqli_query($koneksi,"UPDATE inventory SET bantuan_cbm = '$B12K00' WHERE kode_baja = 'B12K00'");
 
 	}
 	
