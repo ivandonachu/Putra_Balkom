@@ -617,39 +617,39 @@ $no_laporan_tk = $data3['MAX(no_laporan)'];
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px; color:black;">
 <h5 align="center" >Inventory</h3>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-   <thead>
-    <tr>
-      <th>Baja</th>
-      <th>Gudang</th>
-      <th>Global</th>
-      <th>Di Pinjam</th>
-      <th>Pasiv</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
+<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+     <thead>
+      <tr>
+        <th>Baja</th>
+        <th>Gudang</th>
+        <th>Bantuan CBM</th>
+        <th>Di Pinjam</th>
+        <th>Pasiv</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <?php while($data2 = mysqli_fetch_array($table)){
-      $nama_baja = $data2['nama_baja'];
-      $gudang = $data2['gudang'];
-      $dipinjam = $data2['dipinjam'];
-      $passive = $data2['passive'];
-      $global =  $gudang;
-      $total =  $gudang + $dipinjam + $passive;
-      echo "<tr>
-      <td style='font-size: 14px'>$nama_baja</td>
-      <td style='font-size: 14px'>$gudang</td>
-      <td style='font-size: 14px'>$global</td>
-      <td style='font-size: 14px'>$dipinjam</td> 
-      <td style='font-size: 14px'>$passive</td> 
-      <td style='font-size: 14px'>$total</td> 
+      <?php while($data2 = mysqli_fetch_array($table2)){
+        $nama_baja = $data2['nama_baja'];
+        $gudang = $data2['gudang'];
+        $bantuan_cbm = $data2['bantuan_cbm'];
+        $dipinjam = $data2['dipinjam'];
+        $passive = $data2['passive'];
+        $total =  $gudang + $dipinjam + $passive;
+        echo "<tr>
+        <td style='font-size: 14px'>$nama_baja</td>
+        <td style='font-size: 14px'>$gudang</td>
+        <td style='font-size: 14px'>$bantuan_cbm</td>
+        <td style='font-size: 14px'>$dipinjam</td> 
+        <td style='font-size: 14px'>$passive</td> 
+        <td style='font-size: 14px'>$total</td> 
         </tr>";
-  }
-  ?>
+      }
+      ?>
 
-</tbody>
-</table>
+    </tbody>
+  </table>
 </div>
 <br>
 <br>
