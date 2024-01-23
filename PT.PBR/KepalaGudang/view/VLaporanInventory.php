@@ -485,7 +485,7 @@ $tanggal_akhir = date('Y-m-31');
         $bantuan_cbm = $data2['bantuan_cbm'];
         $dipinjam = $data2['dipinjam'];
         $passive = $data2['passive'];
-        $total =  $gudang + $dipinjam + $passive;
+        $total =  $gudang + $dipinjam + $passive + $bantuan_cbm;
         echo "<tr>
         <td style='font-size: 14px'>$nama_baja</td>
         <td style='font-size: 14px'>$gudang</td>
@@ -588,7 +588,7 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example2').DataTable( {
-      lengthChange: false,
+      lengthChange: true,
       buttons: [  'excel' ]
     } );
 
