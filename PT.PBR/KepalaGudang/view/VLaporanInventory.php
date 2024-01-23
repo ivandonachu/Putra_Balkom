@@ -253,6 +253,7 @@ $tanggal_akhir = date('Y-m-31');
                 <label>REF</label>
                 <select id="referensi" name="referensi"  enctype="multipart/form-data" class="form-control">
                   <option>GD</option>
+                  <option>Bantuan CBM</option>
                   <option>Di Pinjam</option>
                   <option>Passive</option>
 
@@ -470,7 +471,7 @@ $tanggal_akhir = date('Y-m-31');
       <tr>
         <th>Baja</th>
         <th>Gudang</th>
-        <th>Global</th>
+        <th>Bantuan CBM</th>
         <th>Di Pinjam</th>
         <th>Pasiv</th>
         <th>Total</th>
@@ -481,14 +482,14 @@ $tanggal_akhir = date('Y-m-31');
       <?php while($data2 = mysqli_fetch_array($table2)){
         $nama_baja = $data2['nama_baja'];
         $gudang = $data2['gudang'];
+        $bantuan_cbm = $data2['bantuan_cbm'];
         $dipinjam = $data2['dipinjam'];
         $passive = $data2['passive'];
-        $global = $gudang;
         $total =  $gudang + $dipinjam + $passive;
         echo "<tr>
         <td style='font-size: 14px'>$nama_baja</td>
         <td style='font-size: 14px'>$gudang</td>
-        <td style='font-size: 14px'>$global</td>
+        <td style='font-size: 14px'>$bantuan_cbm</td>
         <td style='font-size: 14px'>$dipinjam</td> 
         <td style='font-size: 14px'>$passive</td> 
         <td style='font-size: 14px'>$total</td> 
