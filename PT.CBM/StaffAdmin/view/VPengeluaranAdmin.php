@@ -368,6 +368,7 @@ else{
                         <option>Transport Fee</option>
                         <option>Bunga Bank</option>
                         <option>Bunga Bank Pemasukan</option>
+                        <option>Biaya Kantor</option>
                         <option>Biaya Pajak</option>
                         <option>Bayar BPJS</option>
                         <option>Pembayaran Non PSO</option>
@@ -549,6 +550,7 @@ else{
                         <option <?php echo ($dataSelect == 'Transport Fee') ? "selected": "" ?> >Transport Fee</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank Pemasukan') ? "selected": "" ?> >Bunga Bank Pemasukan</option>
+                        <option <?php echo ($dataSelect == 'Bunga Bank Pemasukan') ? "selected": "" ?> >Biaya Kantor</option>
                         <option <?php echo ($dataSelect == 'Biaya Pajak') ? "selected": "" ?> >Biaya Pajak</option>
                         <option <?php echo ($dataSelect == 'Bayar BPJS') ? "selected": "" ?> >Bayar BPJS</option>
                         <option <?php echo ($dataSelect == 'Pembayaran Non PSO') ? "selected": "" ?> >Pembayaran Non PSO</option>
