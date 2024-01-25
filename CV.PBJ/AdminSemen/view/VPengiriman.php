@@ -34,9 +34,14 @@ if (isset($_GET['tanggal1'])) {
 if ($tanggal_awal == $tanggal_akhir) {
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal'");
+
+  $table2 = mysqli_query($koneksi, "SELECT no_poisi,  SUM(uj) AS total_uj, SUM(ug) AS total_ug, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal' GROUP BY no_polisi");
+
 } else {
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_sl WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_antar ASC");
+
+  $table2 = mysqli_query($koneksi, "SELECT no_polisi,  SUM(uj) AS total_uj, SUM(ug) AS total_ug, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi");
 }
 
 ?>
@@ -680,153 +685,88 @@ if ($tanggal_awal == $tanggal_akhir) {
                 </tbody>
               </table>
             </div>
-          </div>
+   
+
           <br>
           <br>
-          <!--
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total JT ODO</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_jt_odo  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-road fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total JT GPS</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_jt_gps  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-road fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total LOST</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_lost  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Surplus</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_surplus  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang Jalan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_uj)  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Gaji</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_ug)  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang Makan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_um)  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total DEX</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jml_dex  ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-truck-moving fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<br>
-<br>
--->
+          <br>
+          <hr>
+          <br>
+
+          <h5 align="center">Rincian UJ UG OM BSML</h5>
+          <!-- Tabel -->
+          <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+            <thead>
+              <tr>
+                <th>No Polisi</th>
+                <th>Total Uang Jalan</th>
+                <th>Total Uang Gaji</th>
+                <th>Total Ongkos Mobil</th>
+                <th>Total Biaya Sewa Mobil Luar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $total_seluruh_uj = 0;
+              $total_seluruh_ug = 0;
+              $total_seluruh_om = 0;
+              $total_seluruh_bs = 0;
+              ?>
+              <?php while ($data = mysqli_fetch_array($table2)) {
+                $no_polisi = $data['no_polisi'];
+                $total_uj = $data['total_uj'];
+                $total_ug = $data['total_ug'];
+                $total_om = $data['total_om'];
+                $total_bs = $data['total_bs'];
+
+                $total_seluruh_uj = $total_seluruh_uj + $total_uj;
+                $total_seluruh_ug = $total_seluruh_ug + $total_ug;
+                $total_seluruh_om = $total_seluruh_om + $total_om;
+                $total_seluruh_bs = $total_seluruh_bs + $total_bs;
+
+                echo "<tr>
+
+        <td style='font-size: 14px' >$no_polisi</td>
+        <td style='font-size: 14px'>" ?> <?= formatuang($total_uj); ?> <?php echo "</td>
+        <td style='font-size: 14px'>" ?> <?= formatuang($total_ug); ?> <?php echo "</td>
+        <td style='font-size: 14px'>" ?> <?= formatuang($total_om); ?> <?php echo "</td>
+        <td style='font-size: 14px'>" ?> <?= formatuang($total_bs); ?> <?php echo "</td>
+      
+     
+
+  </tr>";
+                                                                  }
+                                                                    ?> <tr>
+                <td style='font-size: 14px; '><strong>Total Seluruh Uang Jalan</strong></td>
+                <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh_uj); ?></strong> </td>
+              </tr>
+              <tr>
+                <td style='font-size: 14px; '><strong>Total Seluruh Uang Gaji</strong></td>
+                <td colspan="4"  style='font-size: 14px'> <strong> <?= formatuang($total_seluruh_ug); ?></strong> </td>
+              </tr>
+              <tr>
+                <td style='font-size: 14px; '><strong>Total Seluruh Ongkos Mobil</strong></td>
+                <td colspan="4" style='font-size: 14px'> <strong> <?= formatuang($total_seluruh_om); ?></strong> </td>
+              </tr>
+              <tr>
+                <td style='font-size: 14px; '><strong>Total Seluruh Biaya Sewa Mobil Luar</strong></td>
+                <td  colspan="4" style='font-size: 14px'> <strong> <?= formatuang($total_seluruh_bs); ?></strong> </td>
+              </tr>
+
+
+
+
+              </tr>
+            </tbody>
+          </table>
+
+          <br>
+          <hr>
+          <br>
 
 
         </div>
-
+        </div>
       </div>
       <!-- End of Main Content -->
 
