@@ -620,7 +620,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $sisa_saldo  = $sisa_saldo + $jumlah;
         $total_saldo = $total_saldo + $jumlah;
       }
-      else if ($nama_akun == 'Setor Uang' || $nama_akun == 'Kembalikan Deposit' ) {
+      else if ($nama_akun == 'Setor Uang' || $nama_akun == 'Kembalikan Deposit' || $nama_akun == 'Pembelian Barang Jual'  || $nama_akun == 'Kembalikan Saldo' ) {
       }
       else{
         $sisa_saldo  = $sisa_saldo - $jumlah;
