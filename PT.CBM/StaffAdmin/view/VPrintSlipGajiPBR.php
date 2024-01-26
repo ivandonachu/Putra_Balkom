@@ -61,6 +61,7 @@ $html = '
         $jabatan = $data['jabatan'];
         $gaji_pokok = $data['gaji_pokok'];
         $tunjangan_jabatan = $data['tunjangan_jabatan'];
+        $tunjangan_akomodasi = $data['tunjangan_akomodasi'];
         $tunjangan_operasional = $data['tunjangan_operasional'];
         $bpjs_kesehatan = $data['bpjs_kesehatan'];
         $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
@@ -104,6 +105,10 @@ $html = '
         <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Tunjangan Jabatan</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($tunjangan_jabatan) .'</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Tunjangan Akomodasi</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($tunjangan_akomodasi) .'</td>
         </tr>
         <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Tunjangan Operasional</td>
@@ -187,9 +192,8 @@ $html = '
 
 
         <hr style = "margin-bottom: 5px; margin-top: 1px;">
-        <br>
-        <br>
-        <br>
+
+  
 
      
 

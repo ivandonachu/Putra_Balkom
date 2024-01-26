@@ -580,7 +580,15 @@ else{
     $gaji_karyawan_bk = 0;
     }
 
-    $gaji_karyawan_global = $gaji_karyawan_br + $gaji_karyawan_lmg + $gaji_karyawan_plg + $gaji_karyawan_bb + $gaji_karyawan_bk;
+        //Gaji karyawan bangka
+   $table9_bk = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BKU' ");
+   $data9_bk = mysqli_fetch_array($table9_bk);
+   $gaji_karyawan_bkl = $data9_bk['jumlah_gaji'];
+    if (!isset($data9_bk['jumlah_gaji'])) {
+    $gaji_karyawan_bkl = 0;
+    }
+
+    $gaji_karyawan_global = $gaji_karyawan_br + $gaji_karyawan_lmg + $gaji_karyawan_plg + $gaji_karyawan_bb + $gaji_karyawan_bk + $gaji_karyawan_bkl;
 
     // GAJI DRIVER
     //Gaji dRIVER baturaja
@@ -620,7 +628,7 @@ else{
     $gaji_driver_bk = 0;
     }
     //Gaji dRIVER bengkulu
-   $table9_bkl = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BALSRI BKU' ");
+   $table9_bkl = mysqli_query($koneksistre, "SELECT SUM(jumlah) AS jumlah_gaji FROM riwayat_penggajian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Driver BKU' ");
    $data9_bkl = mysqli_fetch_array($table9_bkl);
    $gaji_driver_bkl = $data9_bkl['jumlah_gaji'];
     if (!isset($data9_bkl['jumlah_gaji'])) {
@@ -629,7 +637,7 @@ else{
     
     $gaji_driver_global = $gaji_driver_br + $gaji_driver_lmg + $gaji_driver_plg + $gaji_driver_bb + $gaji_driver_bk + $gaji_driver_bkl;
     
-    $total_gaji_karaywan_global = $gaji_karyawan_global + $gaji_driver_global + $gaji_driver_bb;
+    $total_gaji_karaywan_global = $gaji_karyawan_global + $gaji_driver_global;
 
 
     //totalkreditGLOBAL
@@ -1158,7 +1166,7 @@ else{
     
     $gaji_driver_global_jbb = $gaji_driver_ba + $gaji_driver_pa + $gaji_driver_pl + $gaji_driver_tg  + $gaji_driver_ub;
     
-    $total_gaji_karaywan_global_jbb = $gaji_karyawan_global + $gaji_driver_global ;
+    $total_gaji_karaywan_global_jbb = $gaji_karyawan_global_jbb + $gaji_driver_global_jbb ;
 
 
     //totalkreditGLOBAL
@@ -1242,16 +1250,17 @@ else{
     $total_laba_kotor = ($total_tagihan_global + $total_tagihan_global_jbb) - ($jumlah_potongan_global + $jumlah_potongan_global_jbb);  
 }
 
- 
+    $total_biaya_oprasional = ($atk_global + $atk_global_jbb + $gaji_karyawan_global + $gaji_karyawan_global_jbb  + $biaya_sewa_global + $biaya_sewa_global_jbb + $transport_global + $transport_global_jbb + $listrik_global + $listrik_global_jbb + $biaya_kantor_global + $biaya_kantor_global_jbb );
+    $sisa_oprasional_global = ($jumlah_potongan_global + $jumlah_potongan_global_jbb) -$total_biaya_oprasional ;
 
-    $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
-                                $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb + $denda_kredit_global + $denda_kredit_global_jbb ;
+    $total_biaya_usaha_final = $total_dexlite_global  + $perbaikan_global + $total_um_global + $gaji_driver_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
+                                $total_dexlite_global_jbb    + $perbaikan_global_jbb + $total_um_global_jbb + $gaji_driver_global_jbb  +  $konsumsi_global_jbb + $total_kredit_jbb + $denda_kredit_global + $denda_kredit_global_jbb ;
 
-    $total_biaya_usaha_final_bbm = $total_bbm_global + $total_dexlite_global_bbm + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
-                                    $total_bbm_global_jbb + $total_dexlite_global_jbb + $biaya_kantor_global_jbb + $listrik_global_jbb + $biaya_sewa_global_jbb + $atk_global_jbb + $perbaikan_global_jbb + $total_um_global_jbb + $total_gaji_karaywan_global_jbb + $transport_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb + $denda_kredit_global + $denda_kredit_global_jbb ;
+    $total_biaya_usaha_final_bbm = $total_bbm_global + $total_dexlite_global_bbm  + $perbaikan_global + $total_um_global + $gaji_driver_global +  $konsumsi_global + $total_kredit +  $total_kredit_kendaraan_pribadi +
+                                    $total_bbm_global_jbb + $total_dexlite_global_jbb  + $perbaikan_global_jbb + $total_um_global_jbb + $gaji_driver_global_jbb +  $konsumsi_global_jbb + $total_kredit_jbb + $denda_kredit_global + $denda_kredit_global_jbb ;
            
-    $laba_bersih_sebelum_pajak = ($total_tagihan_global + $total_tagihan_global_jbb) - $total_biaya_usaha_final;
-    $laba_bersih_sebelum_pajak_bbm = ($total_tagihan_global + $total_tagihan_global_jbb) - $total_biaya_usaha_final_bbm;
+    $laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
+    $laba_bersih_sebelum_pajak_bbm = $total_laba_kotor - $total_biaya_usaha_final_bbm;
 
 
     // LR Lampung
@@ -1269,15 +1278,16 @@ else{
         
     }
 
-    $total_laba_kotor_lmg = $total_tagihan_lmg;
+ 
     $total_seluruh_bbm_lmg =  $uang_bbm_lpg;
     $total_seluruh_dexlite_lmg = $total_dexlite_lmg;
     $selisih_bbm_lmg  =  $total_seluruh_dexlite_lmg - $total_seluruh_bbm_lmg;
     $jumlah_potongan_lmg = (($total_tagihan_lmg * 10) / 100);
-    $sisa_oprasional_lmg = $jumlah_potongan_lmg - ($jml_atk_lmg + $gaji_karyawan_lmg + $jml_sewa_lmg + $jml_transport_lmg );
-
-    $total_biaya_usaha_final_bbm_lmg  = $uang_bbm_lpg + $jml_biaya_kantor_lmg + $jml_listrik_lmg + $jml_sewa_lmg +  $jml_perbaikan_lmg + $total_um_lmg + $gaji_driver_lmg  +  $jml_konsumsi_lmg + $total_kredit_lmg + $jml_atk_lmg + $gaji_karyawan_lmg + $jml_sewa_lmg + $jml_transport_lmg + $total_denda_kredit_lmg;
-    $total_biaya_usaha_final_lmg = $total_dexlite_lmg + $jml_biaya_kantor_lmg + $jml_listrik_lmg + $jml_sewa_lmg +  $jml_perbaikan_lmg + $total_um_lmg + $gaji_driver_lmg  +  $jml_konsumsi_lmg + $total_kredit_lmg + $jml_atk_lmg + $gaji_karyawan_lmg + $jml_sewa_lmg + $jml_transport_lmg + $total_denda_kredit_lmg;
+    $total_biaya_oprasional_lmg = $jml_atk_lmg + $gaji_karyawan_lmg + $jml_sewa_lmg + $jml_transport_lmg + $jml_listrik_lmg + $jml_biaya_kantor_lmg;
+    $sisa_oprasional_lmg = $jumlah_potongan_lmg - $total_biaya_oprasional_lmg;
+    $total_laba_kotor_lmg = $total_tagihan_lmg - $jumlah_potongan_lmg;
+    $total_biaya_usaha_final_bbm_lmg  = $uang_bbm_lpg   +  $jml_perbaikan_lmg + $total_um_lmg + $gaji_driver_lmg  +  $jml_konsumsi_lmg + $total_kredit_lmg + $total_denda_kredit_lmg;
+    $total_biaya_usaha_final_lmg = $total_dexlite_lmg   +  $jml_perbaikan_lmg + $total_um_lmg + $gaji_driver_lmg  +  $jml_konsumsi_lmg + $total_kredit_lmg + $total_denda_kredit_lmg;
 
     $laba_bersih_sebelum_pajak_lmg = $total_laba_kotor_lmg - $total_biaya_usaha_final_lmg;
     $laba_bersih_bbm_lmg = $total_laba_kotor_lmg - $total_biaya_usaha_final_bbm_lmg;
@@ -1300,15 +1310,19 @@ else{
                  
              }
 
-    $total_laba_kotor_plg = $total_tagihan_plg;
+   
 
     $jumlah_potongan_plg = (($total_tagihan_plg * 10) / 100);
-    $sisa_oprasional_plg = $jumlah_potongan_plg - ($jml_atk_plg + $gaji_karyawan_plg + $jml_sewa_plg + $jml_transport_plg );
+    $total_biaya_oprasional_plg = $jml_atk_plg + $gaji_karyawan_plg + $jml_sewa_plg + $jml_transport_plg + $jml_biaya_kantor_plg + $jml_listrik_plg;
+    $sisa_oprasional_plg = $jumlah_potongan_plg -  $total_biaya_oprasional_plg  ;
+    $total_laba_kotor_plg = $total_tagihan_plg - $jumlah_potongan_plg;
+
     $selisih_bbm_plg  =  $total_dexlite_plg - $uang_bbm_plg;
-    $total_biaya_usaha_final_plg = $total_dexlite_plg + $jml_biaya_kantor_plg + $jml_listrik_plg + $jml_sewa_plg +  $jml_perbaikan_plg + $total_um_plg + $gaji_driver_plg  +  $jml_konsumsi_plg + $total_kredit_plg + $jml_atk_plg + $gaji_karyawan_plg + $jml_transport_plg + $total_denda_kredit_plg;
+    
+    $total_biaya_usaha_final_plg = $total_dexlite_plg  +  $jml_perbaikan_plg + $total_um_plg + $gaji_driver_plg  +  $jml_konsumsi_plg + $total_kredit_plg  + $total_denda_kredit_plg;
     $laba_bersih_sebelum_pajak_plg = $total_laba_kotor_plg  - $total_biaya_usaha_final_plg;
 
-    $total_biaya_usaha_final_bbm_plg = $uang_bbm_plg + $jml_biaya_kantor_plg + $jml_listrik_plg + $jml_sewa_plg +  $jml_perbaikan_plg + $total_um_plg + $gaji_driver_plg  +  $jml_konsumsi_plg + $total_kredit_plg + $jml_atk_plg + $gaji_karyawan_plg  + $jml_transport_plg + $total_denda_kredit_plg;
+    $total_biaya_usaha_final_bbm_plg = $uang_bbm_plg  +  $jml_perbaikan_plg + $total_um_plg + $gaji_driver_plg  +  $jml_konsumsi_plg + $total_kredit_plg + $total_denda_kredit_plg;
     $laba_bersih_bbm_plg = $total_laba_kotor_plg  - $total_biaya_usaha_final_bbm_plg;
 
 
@@ -1326,15 +1340,17 @@ else{
                 }
                 
             }
-    $total_laba_kotor_br = $total_tagihan_br;
+ 
 
     $jumlah_potongan_br = (($total_tagihan_br * 10) / 100);
-    $sisa_oprasional_br = $jumlah_potongan_br - ($jml_atk_br + $gaji_karyawan_br + $jml_sewa_br + $jml_transport_br );
+    $total_laba_kotor_br = $total_tagihan_br - $jumlah_potongan_br;
+    $total_biaya_oprasional_br =  ($jml_atk_br + $gaji_karyawan_br + $jml_sewa_br + $jml_transport_br + $jml_biaya_kantor_br + $jml_listrik_br  );
+    $sisa_oprasional_br = $jumlah_potongan_br - $total_biaya_oprasional_br;
     $selisih_bbm_br  =  $total_dexlite_br - $uang_bbm_br;
-    $total_biaya_usaha_final_br = $total_dexlite_br + $jml_biaya_kantor_br + $jml_listrik_br + $jml_sewa_br +  $jml_perbaikan_br + $total_um_br + $gaji_driver_br  +  $jml_konsumsi_br + $total_kredit_br + $jml_atk_br + $gaji_karyawan_br + $jml_transport_br  + $total_denda_kredit_br;
+    $total_biaya_usaha_final_br = $total_dexlite_br  +  $jml_perbaikan_br + $total_um_br + $gaji_driver_br  +  $jml_konsumsi_br + $total_kredit_br  + $total_denda_kredit_br;
     $laba_bersih_sebelum_pajak_br  = $total_laba_kotor_br - $total_biaya_usaha_final_br;
 
-    $total_biaya_usaha_final_bbm_br = $uang_bbm_br + $jml_biaya_kantor_br + $jml_listrik_br + $jml_sewa_br +  $jml_perbaikan_br + $total_um_br + $gaji_driver_br  +  $jml_konsumsi_br + $total_kredit_br + $jml_atk_br + $gaji_karyawan_br + $jml_transport_br + $total_denda_kredit_br;
+    $total_biaya_usaha_final_bbm_br = $uang_bbm_br +  $jml_perbaikan_br + $total_um_br + $gaji_driver_br  +  $jml_konsumsi_br + $total_kredit_br  + $total_denda_kredit_br;
     $laba_bersih_bbm_br = $total_laba_kotor_br  - $total_biaya_usaha_final_bbm_br;
 
 
@@ -1353,10 +1369,12 @@ else{
         }
         
     }
-    $total_laba_kotor_bb = $total_tagihan_bb ;
+    
     $jumlah_potongan_bb = (($total_tagihan_bb * 10) / 100);
-    $sisa_oprasional_bb = $jumlah_potongan_bb - ($jml_atk_bb + $gaji_karyawan_bb + $jml_sewa_bb + $jml_transport_bb );
-    $total_biaya_usaha_final_bb = $total_dexlite_bb + $jml_biaya_kantor_bb + $jml_listrik_bb + $jml_sewa_bb +  $jml_perbaikan_bb + $total_um_bb + $gaji_driver_bb  +  $jml_konsumsi_bb + $total_kredit_bb + $jml_atk_bb + $gaji_karyawan_bb + $jml_transport_bb + $total_denda_kredit_bb;
+    $total_biaya_oprasional_bb =   ($jml_atk_bb + $gaji_karyawan_bb + $jml_sewa_bb + $jml_transport_bb + $jml_biaya_kantor_bb + $jml_listrik_bb );
+    $sisa_oprasional_bb = $jumlah_potongan_bb -   $total_biaya_oprasional_bb;
+    $total_laba_kotor_bb = $total_tagihan_bb - $jumlah_potongan_bb ;
+    $total_biaya_usaha_final_bb = $total_dexlite_bb  +  $jml_perbaikan_bb + $total_um_bb + $gaji_driver_bb  +  $jml_konsumsi_bb + $total_kredit_bb  + $total_denda_kredit_bb;
     $laba_bersih_sebelum_pajak_bb = $total_laba_kotor_bb - $total_biaya_usaha_final_bb;
     
 
@@ -1376,10 +1394,12 @@ else{
         
     }
 
-    $total_laba_kotor_bk = $total_tagihan_bk;
+    
     $jumlah_potongan_bk = (($total_tagihan_bk * 10) / 100);
-    $sisa_oprasional_bk = $jumlah_potongan_bk - ($jml_atk_bk + $gaji_karyawan_bk + $jml_sewa_bk + $jml_transport_bk );
-    $total_biaya_usaha_final_bk = $total_dexlite_bk + $jml_biaya_kantor_bk + $jml_listrik_bk + $jml_sewa_bk +  $jml_perbaikan_bk + $total_um_bk + $gaji_driver_bk  +  $jml_konsumsi_bk + $total_kredit_bk + $jml_atk_bk + $gaji_karyawan_bk + $jml_transport_bk + $total_denda_kredit_bk;
+    $total_laba_kotor_bk = $total_tagihan_bk - $jumlah_potongan_bk;
+    $total_biaya_oprasional_bk = ($jml_atk_bk + $gaji_karyawan_bk + $jml_sewa_bk + $jml_transport_bk + $jml_biaya_kantor_bk + $jml_listrik_bk );
+    $sisa_oprasional_bk = $jumlah_potongan_bk - $total_biaya_oprasional_bk ;
+    $total_biaya_usaha_final_bk = $total_dexlite_bk  +  $jml_perbaikan_bk + $total_um_bk + $gaji_driver_bk  +  $jml_konsumsi_bk + $total_kredit_bk + $total_denda_kredit_bk;
     $laba_bersih_sebelum_pajak_bk = $total_laba_kotor_bk - $total_biaya_usaha_final_bk;
 
 
@@ -1399,17 +1419,20 @@ else{
         
     }
 
-    $total_laba_kotor_bkl = $total_tagihan_bkl;
+
 
     $jumlah_potongan_bkl = (($total_tagihan_bkl * 10) / 100);
-    $sisa_oprasional_bkl = $jumlah_potongan_bkl - ($jml_atk_bkl + $gaji_karyawan_bk + $jml_sewa_bkl + $jml_transport_bkl );
+
+    $total_biaya_oprasional_bkl = ($jml_atk_bkl + $gaji_karyawan_bkl + $jml_sewa_bkl + $jml_transport_bkl + $jml_biaya_kantor_bkl + $jml_listrik_bkl );
+    $sisa_oprasional_bkl = $jumlah_potongan_bkl - $total_biaya_oprasional_bkl;
+    $total_laba_kotor_bkl = $total_tagihan_bkl -  $jumlah_potongan_bkl;
 
     $selisih_bbm_bkl  =  $total_dexlite_bkl - $uang_bbm_bku;
 
-    $total_biaya_usaha_final_bkl = $total_dexlite_bkl + $jml_biaya_kantor_bkl + $jml_listrik_bkl + $jml_sewa_bkl +  $jml_perbaikan_bkl + $total_um_bkl + $gaji_driver_bkl  +  $jml_konsumsi_bkl + $total_kredit_bkl + $jml_atk_bkl + $gaji_karyawan_bk + $jml_transport_bkl + $total_denda_kredit_bkl;
+    $total_biaya_usaha_final_bkl = $total_dexlite_bkl +  $jml_perbaikan_bkl + $total_um_bkl + $gaji_driver_bkl  +  $jml_konsumsi_bkl + $total_kredit_bkl + $total_denda_kredit_bkl;
     $laba_bersih_sebelum_pajak_bkl = $total_laba_kotor_bkl  - $total_biaya_usaha_final_bkl;
 
-    $total_biaya_usaha_final_bbm_bkl = $uang_bbm_bku + $jml_biaya_kantor_bkl + $jml_listrik_bkl + $jml_sewa_bkl +  $jml_perbaikan_bkl + $total_um_bkl + $gaji_driver_bkl  +  $jml_konsumsi_bkl + $total_kredit_bkl + $jml_atk_bkl + $gaji_karyawan_bk + $jml_transport_bkl + $total_denda_kredit_bkl;
+    $total_biaya_usaha_final_bbm_bkl = $uang_bbm_bku +  $jml_perbaikan_bkl + $total_um_bkl + $gaji_driver_bkl  +  $jml_konsumsi_bkl + $total_kredit_bkl + $total_denda_kredit_bkl;
     $laba_bersih_bbm_bkl = $total_laba_kotor_bkl  - $total_biaya_usaha_final_bbm_bkl;
 
 
@@ -1438,10 +1461,12 @@ else{
         }
         
     }
-    $total_laba_kotor_tg = $total_tagihan_tg;
+    
     $jumlah_potongan_tg = (($total_tagihan_tg * 10) / 100);
-    $sisa_oprasional_tg = $jumlah_potongan_tg - ($jml_atk_tg + $gaji_karyawan_tg + $jml_sewa_tg + $jml_transport_tg );
-    $total_biaya_usaha_final_tg = $total_dexlite_tg + $jml_biaya_kantor_tg + $jml_listrik_tg  +  $jml_perbaikan_tg + $total_um_tg + $gaji_driver_tg  +  $jml_konsumsi_tg + $total_kredit_tg + $jml_atk_tg + $gaji_karyawan_tg + $jml_sewa_tg + $jml_transport_tg + $denda_kredit_tg;
+    $total_laba_kotor_tg = $total_tagihan_tg -  $jumlah_potongan_tg;
+    $total_biaya_oprasional_tg = ($jml_atk_tg + $gaji_karyawan_tg + $jml_sewa_tg + $jml_transport_tg + $jml_biaya_kantor_tg + $jml_listrik_tg );
+    $sisa_oprasional_tg = $jumlah_potongan_tg - $total_biaya_oprasional_tg ;
+    $total_biaya_usaha_final_tg = $total_dexlite_tg  +  $jml_perbaikan_tg + $total_um_tg + $gaji_driver_tg  +  $jml_konsumsi_tg + $total_kredit_tg  + $denda_kredit_tg;
     $laba_bersih_sebelum_pajak_tg = $total_laba_kotor_tg  - $total_biaya_usaha_final_tg;
 
     // LR Padalarang
@@ -1468,10 +1493,12 @@ else{
         }
         
     }
-    $total_laba_kotor_pa = $total_tagihan_pa ;
+
     $jumlah_potongan_pa = (($total_tagihan_pa * 10) / 100);
-    $sisa_oprasional_pa = $jumlah_potongan_pa - ($jml_atk_pa + $gaji_karyawan_pa + $jml_sewa_pa + $jml_transport_pa );
-    $total_biaya_usaha_final_pa = $total_dexlite_pa + $jml_biaya_kantor_pa + $jml_listrik_pa  +  $jml_perbaikan_pa + $total_um_pa + $gaji_driver_pa + $jml_konsumsi_pa + $total_kredit_pa + $jml_atk_pa + $gaji_karyawan_pa + $jml_sewa_pa + $jml_transport_pa + $denda_kredit_pa; 
+    $total_laba_kotor_pa = $total_tagihan_pa - $jumlah_potongan_pa;
+    $total_biaya_oprasional_pa = ($jml_atk_pa + $gaji_karyawan_pa + $jml_sewa_pa + $jml_transport_pa + $jml_biaya_kantor_pa + $jml_listrik_pa  );
+    $sisa_oprasional_pa = $jumlah_potongan_pa -  $total_biaya_oprasional_pa;
+    $total_biaya_usaha_final_pa = $total_dexlite_pa  +  $jml_perbaikan_pa + $total_um_pa + $gaji_driver_pa + $jml_konsumsi_pa + $total_kredit_pa + $denda_kredit_pa; 
     $laba_bersih_sebelum_pajak_pa = $total_laba_kotor_pa  - $total_biaya_usaha_final_pa;
 
 
@@ -1500,10 +1527,12 @@ else{
         
     }
 
-    $total_laba_kotor_pl = $total_tagihan_pl ;
+    
     $jumlah_potongan_pl = (($total_tagihan_pl * 10) / 100);
-    $sisa_oprasional_pl = $jumlah_potongan_pl - ($jml_atk_pl + $gaji_karyawan_pl + $jml_sewa_pl + $jml_transport_pl );
-    $total_biaya_usaha_final_pl = $total_dexlite_pl + $jml_biaya_kantor_pl + $jml_listrik_pl  +  $jml_perbaikan_pl + $total_um_pl + $gaji_driver_pl  +  $jml_konsumsi_pl + $total_kredit_pl + $jml_atk_pl + $gaji_karyawan_pl + $jml_sewa_pl + $jml_transport_pl + $denda_kredit_pl;
+    $total_laba_kotor_pl = $total_tagihan_pl - $jumlah_potongan_pl ;
+    $total_biaya_oprasional_pl = ($jml_atk_pl + $gaji_karyawan_pl + $jml_sewa_pl + $jml_transport_pl + $jml_biaya_kantor_pl + $jml_listrik_pl);
+    $sisa_oprasional_pl = $jumlah_potongan_pl - $total_biaya_oprasional_pl;
+    $total_biaya_usaha_final_pl = $total_dexlite_pl   +  $jml_perbaikan_pl + $total_um_pl + $gaji_driver_pl  +  $jml_konsumsi_pl + $total_kredit_pl  + $denda_kredit_pl;
     $laba_bersih_sebelum_pajak_pl = $total_laba_kotor_pl  - $total_biaya_usaha_final_pl;
 
 
@@ -1531,10 +1560,12 @@ else{
         }
         
     }
-    $total_laba_kotor_ub = $total_tagihan_ub;
+   
     $jumlah_potongan_ub = (($total_tagihan_ub * 10) / 100);
-    $sisa_oprasional_ub = $jumlah_potongan_ub - ($jml_atk_ub + $gaji_karyawan_ub + $jml_sewa_ub + $jml_transport_ub );
-    $total_biaya_usaha_final_ub = $total_dexlite_ub + $jml_biaya_kantor_ub + $jml_listrik_ub  +  $jml_perbaikan_ub + $total_um_ub + $gaji_driver_ub  +  $jml_konsumsi_ub + $total_kredit_ub + $jml_atk_ub + $gaji_karyawan_ub + $jml_sewa_ub + $jml_transport_ub + $denda_kredit_ub;
+    $total_laba_kotor_ub = $total_tagihan_ub -  $jumlah_potongan_ub;
+    $total_biaya_oprasional_ub =   ($jml_atk_ub + $gaji_karyawan_ub + $jml_sewa_ub + $jml_transport_ub + $jml_biaya_kantor_ub + $jml_listrik_ub );
+    $sisa_oprasional_ub = $jumlah_potongan_ub -  $total_biaya_oprasional_ub ;
+    $total_biaya_usaha_final_ub = $total_dexlite_ub   +  $jml_perbaikan_ub + $total_um_ub + $gaji_driver_ub  +  $jml_konsumsi_ub + $total_kredit_ub + $denda_kredit_ub;
     $laba_bersih_sebelum_pajak_ub = $total_laba_kotor_ub - $total_biaya_usaha_final_ub;
 
 
@@ -1993,6 +2024,13 @@ else{
                  <td class="text-left"><?= formatuang($total_tagihan_global + $total_tagihan_global_jbb); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_global + $jumlah_potongan_global_jbb); ?></td>
+             </tr>
              <?php
 
 if($tahun == 2023){
@@ -2036,12 +2074,6 @@ if($tahun == 2023){
     
 }
 ?>
-             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_global + $jumlah_potongan_global_jbb); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -2055,22 +2087,24 @@ if($tahun == 2023){
                 <td class="no-line text-left"></td>
             </tr>
             <tr>
-                <td><strong>5-500</strong></td>
-                <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                <td><strong>4-101</strong></td>
+                <td class="text-left"><strong>PEMOTONGAN BIAYA OPRASIONAL</strong></td>
                 <td class="text-left"></td>
                 <td class="text-left"></td>
             </tr>
+            
             <tr>
                 <td>5-510</td>
-                <td class="text-left">GAJI</td>
+                <td class="text-left">Gaji Karyawan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($total_gaji_karaywan_global + $total_gaji_karaywan_global_jbb); ?></td>
+                <td class="text-left"><?= formatuang($gaji_karyawan_global + $gaji_karyawan_global_jbb); ?></td>
             </tr>
             <tr>
                 <td>5-520</td>
                 <td class="text-left">Alat Tulis Kantor</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($atk_global + $atk_global_jbb); ?></td>
+
             </tr>
             <tr>
                 <td>5-530</td>
@@ -2090,19 +2124,55 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($listrik_global + $listrik_global_jbb); ?></td>
             </tr>
-            <tr>
-                <td>5-560</td>
-                <td class="text-left">Biaya Konsumsi</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($konsumsi_global + $konsumsi_global_jbb); ?></td>
-            </tr>
+
             <tr>
                 <td>5-570</td>
                 <td class="text-left">Biaya Sewa</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($biaya_sewa_global + $biaya_sewa_global_jbb); ?></td>
             </tr>
-            
+             <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_global + $jumlah_potongan_global_jbb); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
+             <tr style="background-color: navy;  color:white;">
+                <td><strong>Sisa Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"><?= formatuang($sisa_oprasional_global); ?> </td>
+                <td class="no-line text-left"><?= formatuang(0); ?> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="thick-line"></td>
+                <td class="no-line text-left"></td>
+                <td class="no-line text-left"></td>
+            </tr>
+            <tr>
+                <td><strong>5-500</strong></td>
+                <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+            <tr>
+                <td>5-510</td>
+                <td class="text-left">Gaji Driver</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($gaji_driver_global + $gaji_driver_global_jbb); ?></td>
+            </tr>
+            <tr>
+                <td>5-560</td>
+                <td class="text-left">Biaya Konsumsi</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($konsumsi_global + $konsumsi_global_jbb); ?></td>
+            </tr>
             <tr>
                 <td>5-595</td>
                 <td class="text-left">Biaya Perbaikan Kendaraan</td>
@@ -2140,10 +2210,22 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($denda_kredit_global + $denda_kredit_global_jbb); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Total Biaya Usaha</strong></td>
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang(($total_dexlite_global + $total_dexlite_global_jbb)  - ($total_bbm_global + $total_bbm_global_jbb) ); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha Dexlite</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_biaya_usaha_final); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_bbm); ?></td>
             </tr>
             <tr>
                 <td></td>
@@ -2250,6 +2332,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_lmg); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_lmg); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -2282,23 +2371,41 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_atk_lmg); ?></td>
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_lmg); ?></td>
-            </tr>
-            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport_lmg); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_lmg); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_lmg); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_lmg); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_lmg); ?></td>
+            </tr>
+             <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_lmg); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_lmg); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -2322,18 +2429,6 @@ if($tahun == 2023){
                 <td class="text-left">Gaji Driver</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_lmg); ?></td>
-            </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_lmg); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_lmg); ?></td>
             </tr>
             <tr>
                 <td>5-560</td>
@@ -2378,28 +2473,22 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($total_denda_kredit_lmg); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Total Seluruh Dexlite</strong></td>
-                <td class="thick-line"></td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($total_seluruh_dexlite_lmg); ?></td>
-            </tr>
-            <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Total Seluruh BBM</strong></td>
-                <td class="thick-line"></td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($total_seluruh_bbm_lmg); ?></td>
-            </tr>
-            <tr style="background-color:    #F0F8FF; ">
                 <td><strong>Selisih BBM</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($selisih_bbm_lmg); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Total Biaya Usaha</strong></td>
+                <td><strong>Total Biaya Usaha Dexlite</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_biaya_usaha_final_lmg); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_bbm_lmg); ?></td>
             </tr>
             <tr>
                 <td></td>
@@ -2414,7 +2503,7 @@ if($tahun == 2023){
                 <td class="no-line text-left"></td>
             </tr>
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td><strong>LABA BERSIH SEBELUM PAJAK (DEX)</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
@@ -2437,7 +2526,7 @@ if($tahun == 2023){
                 ?>
             </tr>   
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH BBM</strong></td>
+                <td><strong>LABA BERSIH SEBELUM PAJAK (BBM)</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
@@ -2508,6 +2597,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_plg); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_plg); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -2540,23 +2636,41 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_atk_plg); ?></td>
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_plg); ?></td>
-            </tr>
-            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport_plg); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_plg); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_plg); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_plg); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_plg); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_plg); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_plg); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -2580,18 +2694,6 @@ if($tahun == 2023){
                 <td class="text-left">Gaji Driver</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_plg); ?></td>
-            </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_plg); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_plg); ?></td>
             </tr>
             <tr>
                 <td>5-560</td>
@@ -2623,12 +2725,6 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($uang_bbm_plg); ?></td>
             </tr>
-            <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Selisih BBM</strong></td>
-                <td class="thick-line"></td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($selisih_bbm_plg); ?></td>
-            </tr>
             <tr>
                 <td>5-598</td>
                 <td class="text-left">Bayar Kredit</td>
@@ -2642,10 +2738,22 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($total_denda_kredit_plg); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Total Biaya Usaha</strong></td>
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($selisih_bbm_plg); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha Dexlite</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_biaya_usaha_final_plg); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_bbm_plg); ?></td>
             </tr>
             <tr>
                 <td></td>
@@ -2660,7 +2768,7 @@ if($tahun == 2023){
                 <td class="no-line text-left"></td>
             </tr>
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td><strong>LABA BERSIH SEBELUM PAJAK (DEX)</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
@@ -2683,7 +2791,7 @@ if($tahun == 2023){
                 ?>
             </tr>
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH BBM</strong></td>
+                <td><strong>LABA BERSIH SEBELUM PAJAK (BBM)</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
@@ -2754,6 +2862,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_br); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_br); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -2786,23 +2901,41 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_atk_br); ?></td>
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_br); ?></td>
-            </tr>
-            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport_br); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_br); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_br); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_br); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_br); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_br); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_br); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -2827,18 +2960,7 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_br); ?></td>
             </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_br); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_br); ?></td>
-            </tr>
+           
             <tr>
                 <td>5-560</td>
                 <td class="text-left">Biaya Konsumsi</td>
@@ -2869,12 +2991,6 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($uang_bbm_br); ?></td>
             </tr>
-            <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Selisih BBM</strong></td>
-                <td class="thick-line"></td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($selisih_bbm_br); ?></td>
-            </tr>
             <tr>
                 <td>5-598</td>
                 <td class="text-left">Bayar Kredit</td>
@@ -2888,10 +3004,22 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($total_denda_kredit_br); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Total Biaya Usaha</strong></td>
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($selisih_bbm_br); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha Dexlite</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_biaya_usaha_final_br); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_bbm_br); ?></td>
             </tr>
             <tr>
                 <td></td>
@@ -2906,7 +3034,7 @@ if($tahun == 2023){
                 <td class="no-line text-left"></td>
             </tr>
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td><strong>LABA BERSIH SEBELUM PAJAK (DEX)</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
@@ -2929,7 +3057,7 @@ if($tahun == 2023){
                 ?>
             </tr>
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH BBM</strong></td>
+                <td><strong>LABA BERSIH SEBELUM PAJAK (BBM)</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
@@ -3000,6 +3128,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_bb); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_bb); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -3032,23 +3167,41 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_atk_bb); ?></td>
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_bb); ?></td>
-            </tr>
-            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport_bb); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_bb); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_bb); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_bb); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_bb); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_bb); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_bb); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -3073,18 +3226,7 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_bb); ?></td>
             </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_bb); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_bb); ?></td>
-            </tr>
+           
             <tr>
                 <td>5-560</td>
                 <td class="text-left">Biaya Konsumsi</td>
@@ -3210,6 +3352,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_bk); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_bk); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -3242,23 +3391,41 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_atk_bk); ?></td>
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_bk); ?></td>
-            </tr>
-            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport_bk); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_bk); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_bk); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_bk); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_bk); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_bk); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_bk); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -3283,18 +3450,7 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_bk); ?></td>
             </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_bk); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_bk); ?></td>
-            </tr>
+            
             <tr>
                 <td>5-560</td>
                 <td class="text-left">Biaya Konsumsi</td>
@@ -3421,7 +3577,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_bkl); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
-           
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_bkl); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -3445,7 +3607,7 @@ if($tahun == 2023){
                 <td>5-510</td>
                 <td class="text-left">Gaji Karyawan</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($gaji_karyawan_bk); ?></td>
+                <td class="text-left"><?= formatuang($gaji_karyawan_bkl); ?></td>
             </tr>
             <tr>
                 <td>5-520</td>
@@ -3454,23 +3616,42 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_atk_bkl); ?></td>
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_bkl); ?></td>
-            </tr>
-            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport_bkl); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_bkl); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_bkl); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_bkl); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_bkl); ?></td>
+            </tr>
+           
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_bkl); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_bkl); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -3495,18 +3676,7 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_bkl); ?></td>
             </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_bkl); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_bkl); ?></td>
-            </tr>
+           
             <tr>
                 <td>5-560</td>
                 <td class="text-left">Biaya Konsumsi</td>
@@ -3537,12 +3707,6 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($uang_bbm_bku); ?></td>
             </tr>
-            <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Selisih BBM</strong></td>
-                <td class="thick-line"></td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($selisih_bbm_bkl); ?></td>
-            </tr>
             <tr>
                 <td>5-598</td>
                 <td class="text-left">Bayar Kredit </td>
@@ -3556,10 +3720,23 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($total_denda_kredit_bkl); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Total Biaya Usaha</strong></td>
+                <td><strong>Selisih BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($selisih_bbm_bkl); ?></td>
+            </tr>
+           
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha Dexlite</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($total_biaya_usaha_final_bkl); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Usaha BBM</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_usaha_final_bbm_bkl); ?></td>
             </tr>
             <tr>
                 <td></td>
@@ -3574,7 +3751,7 @@ if($tahun == 2023){
                 <td class="no-line text-left"></td>
             </tr>
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH SEBELUM PAJAK</strong></td>
+                <td><strong>LABA BERSIH SEBELUM PAJAK (DEX)</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
@@ -3597,7 +3774,7 @@ if($tahun == 2023){
                 ?>
             </tr>
             <tr style="background-color: navy;  color:white;">
-                <td><strong>LABA BERSIH BBM</strong></td>
+                <td><strong>LABA BERSIH SEBELUM PAJAK (BBM)</strong></td>
                 <td class="thick-line"></td>
                 <?php
 
@@ -3667,7 +3844,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_tg); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
-           
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_tg); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -3701,10 +3884,10 @@ if($tahun == 2023){
 
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_tg); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_tg); ?></td>
             </tr>
             <tr>
                 <td>5-530</td>
@@ -3713,11 +3896,30 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_transport_tg); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_tg); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_tg); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_tg); ?></td>
+            </tr>
+          
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_tg); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_tg); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -3742,18 +3944,7 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_tg); ?></td>
             </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_tg); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_tg); ?></td>
-            </tr>
+           
             <tr>
                 <td>5-560</td>
                 <td class="text-left">Biaya Konsumsi</td>
@@ -3892,7 +4083,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_pa); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
-           
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_pa); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -3925,23 +4122,42 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_atk_pa); ?></td>
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_pa); ?></td>
-            </tr>
-            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport_pa); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_pa); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_pa); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_pa); ?></td>
+            </tr>
+           
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_pa); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_pa); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -3966,18 +4182,7 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_pa); ?></td>
             </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_pa); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_pa); ?></td>
-            </tr>
+           
             <tr>
                 <td>5-560</td>
                 <td class="text-left">Biaya Konsumsi</td>
@@ -4118,7 +4323,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_pl); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
-           
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_pl); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -4151,23 +4362,42 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_atk_pl); ?></td>
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_pl); ?></td>
-            </tr>
-            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport_pl); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_pl); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_pl); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_pl); ?></td>
+            </tr>
+       
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_pl); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_pl); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -4192,18 +4422,7 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_pl); ?></td>
             </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_pl); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_pl); ?></td>
-            </tr>
+           
             <tr>
                 <td>5-560</td>
                 <td class="text-left">Biaya Konsumsi</td>
@@ -4344,7 +4563,13 @@ if($tahun == 2023){
                  <td class="text-left"><?= formatuang($total_tagihan_ub); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
              </tr>
-           
+             <tr>
+                 <td>4-101</td>
+                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <td class="text-left"><?= formatuang($jumlah_potongan_ub); ?></td>
+             </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>LABA KOTOR</strong></td>
                 <td class="thick-line"></td>
@@ -4377,23 +4602,42 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($jml_atk_ub); ?></td>
             </tr>
             <tr>
-                <td>5-570</td>
-                <td class="text-left">Biaya Sewa</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_sewa_ub); ?></td>
-            </tr>
-            <tr>
                 <td>5-530</td>
                 <td class="text-left">Transport & Perjalanan Dinas</td>
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($jml_transport_ub); ?></td>
             </tr>
             <tr>
-                 <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
-                 <td class="text-left"><?= formatuang($jumlah_potongan_ub); ?></td>
-                 <td class="text-left"><?= formatuang(0); ?></td>
-             </tr>
+                <td>5-540</td>
+                <td class="text-left">Biaya Kantor</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_biaya_kantor_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-550</td>
+                <td class="text-left">Listrik & Telepon</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_listrik_ub); ?></td>
+            </tr>
+            <tr>
+                <td>5-570</td>
+                <td class="text-left">Biaya Sewa</td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($jml_sewa_ub); ?></td>
+            </tr>
+         
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Total Biaya Oprasional</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang(0); ?></td>
+                <td class="text-left"><?= formatuang($total_biaya_oprasional_ub); ?></td>
+            </tr>
+            <tr style="background-color:    #F0F8FF; ">
+                <td><strong>Dana Oprasional 10%</strong></td>
+                <td class="thick-line"></td>
+                <td class="text-left"><?= formatuang($jumlah_potongan_ub); ?></td>     
+                <td class="text-left"><?= formatuang(0); ?></td>
+            </tr>
              <tr style="background-color: navy;  color:white;">
                 <td><strong>Sisa Biaya Oprasional</strong></td>
                 <td class="thick-line"></td>
@@ -4418,18 +4662,7 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang(0); ?></td>
                 <td class="text-left"><?= formatuang($gaji_driver_ub); ?></td>
             </tr>
-            <tr>
-                <td>5-540</td>
-                <td class="text-left">Biaya Kantor</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_biaya_kantor_ub); ?></td>
-            </tr>
-            <tr>
-                <td>5-550</td>
-                <td class="text-left">Listrik & Telepon</td>
-                <td class="text-left"><?= formatuang(0); ?></td>
-                <td class="text-left"><?= formatuang($jml_listrik_ub); ?></td>
-            </tr>
+         
             <tr>
                 <td>5-560</td>
                 <td class="text-left">Biaya Konsumsi</td>
