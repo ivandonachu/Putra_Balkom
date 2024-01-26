@@ -660,7 +660,7 @@ else{
 <br>
 
 
-<h5 align="center" >Pengeluaran PBR</h5>
+<h5 align="center" >Pengeluaran MES</h5>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
   <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -880,7 +880,7 @@ else{
 <br>
 
 
-<h5 align="center" >Pengeluaran MES</h5>
+<h5 align="center" >Pengeluaran PBR</h5>
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
   <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
