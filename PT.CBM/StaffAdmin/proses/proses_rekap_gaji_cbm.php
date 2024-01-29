@@ -47,7 +47,7 @@ while($data2 = mysqli_fetch_array($table)){
         $angsuran_bon_bulanan = $data5['total_bon'];
       }
     $bonus = $data2['bonus'];
-    if($nama_karyawan == 'Septian Andriansyah' ){
+    if($nama_karyawan == 'Septian Andriansyah' || $nama_karyawan == 'Okta Mayasari' ){
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
         $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus  ;
     }
