@@ -375,17 +375,21 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
             <br>
 
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                <label>Nama Karyawan</label>
                <input class="form-control form-control-sm" type="text" name="nama_karyawan" required="">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>Jabatan</label>
                <input class="form-control form-control-sm" type="text" name="jabatan" required="" >
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>Gaji Pokok</label>
                <input class="form-control form-control-sm" type="number" name="gaji_pokok" required="" value="0">
+             </div>
+             <div class="col-md-3">
+               <label>Tunjangan Jabatan</label>
+               <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="0">
              </div>
            </div>
 
@@ -393,9 +397,9 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
 
            <div class="row">
             
-             <div class="col-md-3">
-               <label>Tunjangan Jabatan</label>
-               <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="0">
+           <div class="col-md-3">
+               <label>Tunjangan Akomodasi</label>
+               <input class="form-control form-control-sm" type="number" name="tunjangan_akomodasi" required="" value="0">
              </div>
              <div class="col-md-3">
                <label>Tunjangan Operasional</label>
@@ -485,6 +489,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
           <th style="font-size: 14px" scope="col">Jabatan</th>
           <th style="font-size: 14px" scope="col">Gaji Pokok</th>
           <th style="font-size: 14px" scope="col">Tunjangan Jabatan</th>
+          <th style="font-size: 14px" scope="col">Tunjangan Akomodasi</th>
           <th style="font-size: 14px" scope="col">Tunjangan Oprasional</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
@@ -520,6 +525,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
           $jabatan = $data2['jabatan'];
           $gaji_pokok = $data2['gaji_pokok'];
           $tunjangan_jabatan = $data2['tunjangan_jabatan'];
+          $tunjangan_akomodasi = $data2['tunjangan_akomodasi'];
           $tunjangan_operasional = $data2['tunjangan_operasional'];
           $bpjs_kesehatan = $data2['bpjs_kesehatan'];
           $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
@@ -557,6 +563,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
           <td style='font-size: 14px'>$jabatan</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($gaji_pokok); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_jabatan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_akomodasi); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_operasional); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
@@ -593,17 +600,21 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
             <input type="hidden" name="no_karyawan" value="<?php echo $no_karyawan;?>"> 
 
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                <label>Nama Karyawan</label>
                <input class="form-control form-control-sm" type="text" name="nama_karyawan" required="" value="<?php echo $nama_karyawan;?>">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>Jabatan</label>
                <input class="form-control form-control-sm" type="text" name="jabatan" required="" value="<?php echo $jabatan;?>">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>Gaji Pokok</label>
                <input class="form-control form-control-sm" type="number" name="gaji_pokok" required="" value="<?php echo $gaji_pokok;?>">
+             </div>
+             <div class="col-md-3">
+               <label>Tunjangan Jabatan</label>
+               <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="<?php echo $tunjangan_jabatan;?>">
              </div>
            </div>
 
@@ -612,8 +623,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_cbm");
            <div class="row">
              
              <div class="col-md-3">
-               <label>Tunjangan Jabatan</label>
-               <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="<?php echo $tunjangan_jabatan;?>">
+               <label>Tunjangan Akomodasi</label>
+               <input class="form-control form-control-sm" type="number" name="tunjangan_akomodasi" required="" value="<?php echo $tunjangan_akomodasi;?>">
              </div>
              <div class="col-md-3">
                <label>Tunjangan Operasional</label>
