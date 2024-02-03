@@ -117,6 +117,10 @@ else{
             $total_rugi_global = $total_rugi_global + $rugi;
 
         }
+        else if($harga == $harga_beli){
+
+
+      }
      
     }
 
@@ -140,6 +144,10 @@ else{
             $rugi = $jumlah - $jumlah_beli;
             $total_rugi_global = $total_rugi_global + $rugi;
      
+
+        }
+        else if($harga == $harga_beli){
+
 
         }
 
