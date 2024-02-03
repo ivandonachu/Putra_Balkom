@@ -85,8 +85,6 @@ else{
     $pembelian_total = $total_pembelian_1 + $total_pembelian_2;
     
   $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_do ASC");
-
-
   $table2 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_do ASC");
   $table3 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_do ASC");
   $table4 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_do ASC");
@@ -123,7 +121,7 @@ else{
     }
 
     //pembelian 2
-    $table_pembelian_2 = mysqli_query($koneksipbj, "SELECT  harga_beli, qty, jumlah , harga FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $table_pembelian_2 = mysqli_query($koneksipbj, "SELECT  harga_beli, qty, jumlah , harga FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tujuan_pengiriman != 'Gudang Mesuji'  ");
     while ($data_pembelian_2 = mysqli_fetch_array($table_pembelian_2)) {
 
 
