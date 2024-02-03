@@ -121,7 +121,7 @@ else{
     }
 
     //pembelian 2
-    $table_pembelian_2 = mysqli_query($koneksipbj, "SELECT  harga_beli, qty, jumlah , harga FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tujuan_pengiriman != 'Gudang Mesuji'  ");
+    $table_pembelian_2 = mysqli_query($koneksipbj, "SELECT  harga_beli, qty, jumlah , harga FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tujuan_pengiriman != 'Gudang Mesuji'");
     while ($data_pembelian_2 = mysqli_fetch_array($table_pembelian_2)) {
 
 
