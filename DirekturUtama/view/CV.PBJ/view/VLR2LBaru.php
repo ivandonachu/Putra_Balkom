@@ -230,10 +230,10 @@ if ($tanggal_awal == $tanggal_akhir) {
     //kadek
     while ($data = mysqli_fetch_array($tabler)) {
         $no_do_pembelian = $data['no_do'];
-        $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_do = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Bon' 
-                                                                            OR tanggal_do = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil'
-                                                                            OR tanggal_do = '$tanggal_awal' AND no_do = '' AND status_bayar = 'Bon'
-                                                                            OR tanggal_do = '$tanggal_awal' AND no_do = '' AND status_bayar = 'Nyicil' ");
+        $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_do = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Bon' AND tujuan_pengiriman != 'Gudang Mesuji'
+                                                                            OR tanggal_do = '$tanggal_awal' AND no_do = '$no_do_pembelian' AND status_bayar = 'Nyicil' AND tujuan_pengiriman != 'Gudang Mesuji'
+                                                                            OR tanggal_do = '$tanggal_awal' AND no_do = '' AND status_bayar = 'Bon' AND tujuan_pengiriman != 'Gudang Mesuji'
+                                                                            OR tanggal_do = '$tanggal_awal' AND no_do = '' AND status_bayar = 'Nyicil' AND tujuan_pengiriman != 'Gudang Mesuji'");
         $datax = mysqli_fetch_array($tablexr);
         if (isset($datax['jumlah'])) {
             $jumlah = $datax['jumlah'];
