@@ -423,7 +423,8 @@ else{
 
 <!-- Tabel -->    
 <h5 class="text-center" >Uang Makan Berdasarkan Kendaraan</h5>
-<table id="example"  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -458,10 +459,12 @@ else{
 
 </tbody>
 </table>
+</div>
 <br>
 <br>
 <h5 class="text-center" >Uang Makan Berdasarkan Driver</h5>
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example1" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>Nama Driver</th>
@@ -493,6 +496,7 @@ else{
 </tbody>
 </table>
 </div>
+  </div>
 
 <br>
 <br>

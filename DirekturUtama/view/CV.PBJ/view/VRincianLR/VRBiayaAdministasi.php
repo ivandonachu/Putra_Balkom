@@ -315,7 +315,8 @@ Logout
 
 <h3 align='center' >Pengeluaran Biaya Administrasi Etty</h3>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -369,7 +370,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-3 col-md-6 mb-4">
@@ -395,7 +396,8 @@ Logout
 
 <h3 align='center' >Pengeluaran Biaya Administrasi Kadek</h3>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example1" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -446,7 +448,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-3 col-md-6 mb-4">

@@ -318,7 +318,8 @@ Logout
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -372,7 +373,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <br>
 

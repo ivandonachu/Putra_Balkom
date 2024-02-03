@@ -312,7 +312,8 @@ Logout
 
 <h5 align="center" >Biaya Sewa Kendaraan Luar Etty</h5>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th align="center">No Polisi</th>
@@ -346,7 +347,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <hr>
 <br>
@@ -354,7 +355,8 @@ Logout
 
 <h5 align="center" >Biaya Sewa Kendaraan Luar Kadek</h5>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example1" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th align="center">No Polisi</th>
@@ -385,7 +387,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <br>
 

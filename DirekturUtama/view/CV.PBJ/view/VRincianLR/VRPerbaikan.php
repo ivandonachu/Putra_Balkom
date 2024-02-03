@@ -308,7 +308,8 @@ Logout
 
 <!-- Tabel -->    
 <h3 align='center' >Pengeluaran Perbaikan Kendaraan Workshop</h3>
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -357,14 +358,15 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <br>
 <br>
 
 <h3 align='center' >Perbaikan Kendaraan Etty</h3>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example1" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -414,7 +416,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 </div>
 </div>
 </div>
