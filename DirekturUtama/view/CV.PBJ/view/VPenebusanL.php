@@ -246,7 +246,9 @@ else{
 
   //Sak PCC 50 Kg Tunai
   $table61 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_sakpcc_tunai ,  SUM(jumlah) AS uang_sakpcc_tunai  FROM pembelian_sl WHERE  tanggal BETWEEN 
-  '$tanggal_awal' AND '$tanggal_akhir' AND tipe_bayar = 'Tunai' AND material = 'Sak PCC 50 Kg'");
+  '$tanggal_awal' AND '$tanggal_akhir' AND tipe_bayar = 'Tunai' AND material = 'Sak PCC 50 Kg' OR  tanggal BETWEEN 
+  '$tanggal_awal' AND '$tanggal_akhir' AND tipe_bayar = ' Tunai' AND material = 'Sak PCC 50 Kg' OR  tanggal BETWEEN 
+  '$tanggal_awal' AND '$tanggal_akhir' AND tipe_bayar = 'Tunai ' AND material = 'Sak PCC 50 Kg' ");
   $data61 = mysqli_fetch_array($table61);
   $penjualan_sakpcc_tunai = $data61['penjualan_sakpcc_tunai'];
   $uang_sakpcc_tunai= $data61['uang_sakpcc_tunai'];
