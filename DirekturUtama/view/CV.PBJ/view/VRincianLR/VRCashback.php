@@ -307,7 +307,8 @@ Logout
 
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -347,6 +348,7 @@ Logout
 
 </tbody>
 </table>
+</div>
 </div>
 <br>
 <br>

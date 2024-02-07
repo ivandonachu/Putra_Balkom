@@ -390,7 +390,8 @@ Logout
 
  <h3 align='center' >Gaji Driver Etty</h3>
 <!-- Tabel -->    
-<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example2" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th align="center">Nama Driver</th>
@@ -421,14 +422,15 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <hr>
 <br>
 
 <h3 align='center' >Gaji Driver Kadek</h3>
 <!-- Tabel -->    
-<table id="example3" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example3" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th align="center">Nama Driver</th>
@@ -455,7 +457,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <br>
 <br>

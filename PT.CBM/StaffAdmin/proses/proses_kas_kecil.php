@@ -61,7 +61,7 @@ else if ( $nama_file != "" ) {
 
 
 
-if ($akun == 'Saldo Awal') {
+if ($akun == 'Saldo Awal' || $akun == 'Tambahan Saldo') {
 	$query = mysqli_query($koneksi,"INSERT INTO riwayat_kas_kecil VALUES ('','$tanggal','$akun','Masuk','$jumlah','$keterangan','$file')");
 
 			//rekening

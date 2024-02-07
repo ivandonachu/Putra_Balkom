@@ -33,7 +33,7 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' ");
+  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' ORDER BY no_penjualan ");
   //Curah OPC Type 1 bayar
   $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_copct1 ,  SUM(jumlah) AS uang_copct1  FROM penjualan_sl WHERE  tanggal_kirim ='$tanggal_awal' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah OPC Type 1' OR  tanggal_kirim =  
   '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah OPC Type 1'  ");
@@ -102,7 +102,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $penjualan_sakpcc_bon = $data62['penjualan_sakpcc_bon'];
   $uang_sakpcc_bon = $data62['uang_sakpcc_bon'];
 } else {
-  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY no_penjualan ASC");
 
   //Curah OPC Type 1 bayar
   $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_copct1 ,  SUM(jumlah) AS uang_copct1  FROM penjualan_sl WHERE  tanggal_kirim BETWEEN 

@@ -296,6 +296,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Listrik & Telepon</option>
                               <option>Alat Tulis Kantor</option>
                               <option>Perbaikan Kendaraan</option>
+                              <option>Pembelian Sparepart</option>
                               <option>Gaji Karyawan</option>
                               <option>Kembalikan Deposit</option>
                               <option>Pengeluaran Lainnya</option>
@@ -306,6 +307,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Pinjam Saldo</option>
                               <option>Pindah Saldo</option>
                               <option>Kembalikan Saldo</option>
+                              <option>Bunga Bank</option>
                             </select>
                           </div>
                           <div class="col-md-6">

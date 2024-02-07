@@ -298,7 +298,8 @@ Logout
 
 <h5 align="center" >Uang Jalan Etty</h5>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th align="center">Nama Driver</th>
@@ -330,7 +331,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <br>
 <br>
@@ -338,7 +339,8 @@ Logout
 
 <h5 align="center" >Uang Jalan Kadek</h5>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example1" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th align="center">Nama Driver</th>
@@ -367,7 +369,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <br>
 <br>

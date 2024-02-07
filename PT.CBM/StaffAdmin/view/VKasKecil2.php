@@ -368,6 +368,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
             <option>Listrik & Telepon</option>
             <option>Biaya Umum</option>
             <option>Saldo Awal</option>
+            <option>Tambahan Saldo</option>
           </select>
         </div>            
 
@@ -464,23 +465,18 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
       <td style='font-size: 14px'>$keterangan</td>";
 
       
-      if ($nama_akun == 'Saldo Awal') {
+      if ($nama_akun == 'Saldo Awal' || $nama_akun == 'Tambahan Saldo') {
         echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+        <td style='font-size: 14px'>"?>  <?php echo "</td>";
       }
       else{
         echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
+        <td style='font-size: 14px'>"?>  <?php echo "</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
 
-      if ($nama_akun != 'Saldo Awal') {
-        echo "
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      else{
-        echo "
-        <td style='font-size: 14px'>"?>  <?php echo "</td>";
-      }
+  
       ?>
       <?php echo "
          <td style='font-size: 14px'>"; ?> <a download="../file_staff_admin/<?= $file_bukti ?>" href="../file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
@@ -535,6 +531,7 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
             <option <?php echo ($dataSelect == 'Biaya Umum') ? "selected": "" ?> >Biaya Umum</option>
             <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
              <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected": "" ?> >Saldo Awal</option>
+             <option <?php echo ($dataSelect == 'Tambahan Saldo') ? "selected": "" ?> >Tambahan Saldo</option>
           </select>
 
         </div>            
