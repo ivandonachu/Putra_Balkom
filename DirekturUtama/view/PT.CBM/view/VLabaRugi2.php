@@ -600,12 +600,8 @@ $total_pembelian_bajaisi = $total_pembelian_bajaisi_cbm + $total_pembelian_bajai
 
 
 //TOTAL PEMBELIAN KOSONG CBM
-$table8 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajakosong_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'CBM' ");
-$data_pembelian_bajakosong_cbm = mysqli_fetch_array($table8);
-$total_pembelian_bajakosong_cbm = $data_pembelian_bajakosong_cbm['pembelian_bajakosong_cbm'];
-if (!isset($data_pembelian_bajakosong_cbm['pembelian_bajakosong_cbm'])) {
-    $total_pembelian_bajakosong_cbm = 0;
-}
+$total_pembelian_bajakosong_cbm = $qty_penjualan_bajakaosong * 145000;
+
 //TOTAL PEMBELIAN KOSONG TK
 $table9 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajakosong_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'TK' ");
 $data_pembelian_bajakosong_tk = mysqli_fetch_array($table9);
