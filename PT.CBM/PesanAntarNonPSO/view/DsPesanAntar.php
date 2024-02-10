@@ -113,7 +113,7 @@ $nama = $data['nama_karyawan'];
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="DsKepalaOprasional">
+                <a class="nav-link" href="DsPesanAntar">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;">Dashboard</span></a>
             </li>
@@ -136,7 +136,9 @@ $nama = $data['nama_karyawan'];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPangkalan">Penjualan Pangkalan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapRekeningNonPso">Rekening Non PSO</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLStok">Laporan Stok</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLStokGudang">Stok Gudang BK3</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLStokRantauPanjang">Stok Rantau Panjang</a>
