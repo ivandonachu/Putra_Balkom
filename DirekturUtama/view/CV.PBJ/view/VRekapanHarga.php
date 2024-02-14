@@ -25,26 +25,19 @@ exit;
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
- $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
-  $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir))); 
 } 
 
 elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
- $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
-  $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir))); 
 } 
 else{
   $tanggal_awal = date('Y-m-1');
   $tanggal_akhir = date('Y-m-31');
-
-  $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal))); 
-  $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir))); 
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' ORDER BY no_penjualan ASC");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_do = '$tanggal_akhir' ORDER BY no_penjualan ASC");
 
 
 
@@ -53,46 +46,55 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_do ASC");
 
 
-  $table2 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
-  $table3 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
-  $table4 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
-  $table5 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
-  $table6 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_kirim ASC");
+  $table2 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_do ASC");
+  $table3 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_do ASC");
+  $table4 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tujuan_pengiriman != 'Gudang Mesuji'  ORDER BY tanggal_do ASC");
+  $table5 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tujuan_pengiriman != 'Gudang Mesuji' ORDER BY tanggal_do ASC");
+  $table6 = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tujuan_pengiriman != 'Gudang Mesuji' ORDER BY tanggal_do ASC");
 
   $total_untung_global = 0;
   $total_rugi_global =0;
+  $total_penebusan = 0;
+  $total_penjualan = 0;
+  $total_penebusan_dani = 0;
+  $total_penjualan_dani = 0;
+  $total_penebusan_ety = 0;
+  $total_penjualan_ety = 0;
 
 
       // pembelian kadek dan etty
 
     //pembelian 1
-    $table_pembelian_1 = mysqli_query($koneksipbj, "SELECT harga_beli, qty, jumlah , harga FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $table_pembelian_1 = mysqli_query($koneksipbj, "SELECT harga_beli, qty, jumlah , harga FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     while ($data_pembelian_1 = mysqli_fetch_array($table_pembelian_1)) {
 
 
         $harga = $data_pembelian_1['harga'];
         $jumlah = $data_pembelian_1['jumlah'];
+
         $harga_beli = $data_pembelian_1['harga_beli'];
         $qty = $data_pembelian_1['qty'];
         $jumlah_beli = $harga_beli * $qty;
-        if($harga > $harga_beli){
-            $untung = $jumlah - $jumlah_beli;
-            $total_untung_global = $total_untung_global + $untung;
-        }
-        else if($harga < $harga_beli){
+      
 
-            $rugi = $jumlah - $jumlah_beli;
-            $total_rugi_global = $total_rugi_global + $rugi;
-
-        }
+        $total_penjualan = $total_penjualan + $jumlah;
+        $total_penebusan = $total_penebusan + $jumlah_beli;
+        $total_penjualan_ety = $total_penjualan_ety + $jumlah;
+        $total_penebusan_ety = $total_penebusan_ety + $jumlah_beli;
      
+        $untung = $jumlah - $jumlah_beli;
+
+      
+            $total_untung_global = $total_untung_global + $untung;
+        
+
     }
 
     //pembelian 2
-    $table_pembelian_2 = mysqli_query($koneksipbj, "SELECT  harga_beli, qty, jumlah , harga FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $table_pembelian_2 = mysqli_query($koneksipbj, "SELECT  harga_beli, qty, jumlah , harga, tujuan_pengiriman FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
     while ($data_pembelian_2 = mysqli_fetch_array($table_pembelian_2)) {
 
 
@@ -101,18 +103,31 @@ else{
         $jumlah = $data_pembelian_2['jumlah'];
         $harga_beli = $data_pembelian_2['harga_beli'];
         $qty = $data_pembelian_2['qty'];
-        $jumlah_beli = $harga_beli * $qty;
-        if($harga > $harga_beli){
-            $untung = $jumlah - $jumlah_beli;
-            $total_untung_global = $total_untung_global + $untung;
-        }
-        else if($harga < $harga_beli){
+        $tujuan_pengiriman = $data_pembelian_2['tujuan_pengiriman'];
 
-            $rugi = $jumlah - $jumlah_beli;
-            $total_rugi_global = $total_rugi_global + $rugi;
-     
+        if($tujuan_pengiriman == 'Gudang Mesuji' ){
+
+          $jumlah_beli = $harga_beli * $qty;
+       
+          $total_penebusan = $total_penebusan + $jumlah_beli;
+        
+          $total_penebusan_dani = $total_penebusan_dani + $jumlah_beli;
+
 
         }
+        else{
+
+          $jumlah_beli = $harga_beli * $qty;
+          $total_penjualan = $total_penjualan + $jumlah;
+          $total_penebusan = $total_penebusan + $jumlah_beli;
+          $total_penjualan_dani = $total_penjualan_dani + $jumlah;
+          $total_penebusan_dani = $total_penebusan_dani + $jumlah_beli;
+
+          $untung = $jumlah - $jumlah_beli;
+          $total_untung_global = $total_untung_global + $untung;
+
+        }
+
 
 
     }
@@ -135,7 +150,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penjualan Semen</title>
+  <title>Rekapan Harga Penjualan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -437,7 +452,7 @@ Logout
     <?php while($data = mysqli_fetch_array($table)){
   $no_penjualan = $data['no_penjualan'];
   $tanggal_do =$data['tanggal_do'];
-  $tanggal_kirim = $data['tanggal_kirim'];
+  $tanggal_do = $data['tanggal_do'];
   $no_do = $data['no_do'];
   $driver = $data['driver'];
   $no_polisi = $data['no_polisi'];
@@ -462,7 +477,7 @@ Logout
     echo "<tr>
     <td style='font-size: 14px'>$no_urut</td>
     <td style='font-size: 14px'>$tanggal_do</td>
-    <td style='font-size: 14px'>$tanggal_kirim</td>
+    <td style='font-size: 14px'>$tanggal_do</td>
     <td style='font-size: 14px'>$no_do</td>
     <td style='font-size: 14px'>$driver</td>
     <td style='font-size: 14px'>$no_polisi</td>
@@ -539,7 +554,7 @@ Logout
     <?php while($data = mysqli_fetch_array($table2)){
   $no_penjualan = $data['no_penjualan'];
   $tanggal_do =$data['tanggal_do'];
-  $tanggal_kirim = $data['tanggal_kirim'];
+  $tanggal_do = $data['tanggal_do'];
   $no_do = $data['no_do'];
   $driver = $data['driver'];
   $no_polisi = $data['no_polisi'];
@@ -564,7 +579,7 @@ Logout
     echo "<tr>
     <td style='font-size: 14px'>$no_urut</td>
     <td style='font-size: 14px'>$tanggal_do</td>
-    <td style='font-size: 14px'>$tanggal_kirim</td>
+    <td style='font-size: 14px'>$tanggal_do</td>
     <td style='font-size: 14px'>$no_do</td>
     <td style='font-size: 14px'>$driver</td>
     <td style='font-size: 14px'>$no_polisi</td>
@@ -639,7 +654,7 @@ Logout
     <?php while($data = mysqli_fetch_array($table3)){
   $no_penjualan = $data['no_penjualan'];
   $tanggal_do =$data['tanggal_do'];
-  $tanggal_kirim = $data['tanggal_kirim'];
+  $tanggal_do = $data['tanggal_do'];
   $no_do = $data['no_do'];
   $driver = $data['driver'];
   $no_polisi = $data['no_polisi'];
@@ -664,7 +679,7 @@ Logout
     echo "<tr>
     <td style='font-size: 14px'>$no_urut</td>
     <td style='font-size: 14px'>$tanggal_do</td>
-    <td style='font-size: 14px'>$tanggal_kirim</td>
+    <td style='font-size: 14px'>$tanggal_do</td>
     <td style='font-size: 14px'>$no_do</td>
     <td style='font-size: 14px'>$driver</td>
     <td style='font-size: 14px'>$no_polisi</td>
@@ -736,7 +751,7 @@ Logout
     <?php while($data = mysqli_fetch_array($table4)){
       $no_penjualan = $data['no_penjualan'];
       $tanggal_do =$data['tanggal_do'];
-      $tanggal_kirim = $data['tanggal_kirim'];
+      $tanggal_do = $data['tanggal_do'];
       $no_do = $data['no_do'];
       $driver = $data['driver'];
       $no_polisi = $data['no_polisi'];
@@ -759,7 +774,7 @@ Logout
         echo "<tr>
         <td style='font-size: 14px'>$no_urut</td> 
         <td style='font-size: 14px'>$tanggal_do</td>
-        <td style='font-size: 14px'>$tanggal_kirim</td>
+        <td style='font-size: 14px'>$tanggal_do</td>
         <td style='font-size: 14px'>$no_do</td>
         <td style='font-size: 14px'>$driver</td>
         <td style='font-size: 14px'>$no_polisi</td>
@@ -831,7 +846,7 @@ Logout
     <?php while($data = mysqli_fetch_array($table5)){
       $no_penjualan = $data['no_penjualan'];
       $tanggal_do =$data['tanggal_do'];
-      $tanggal_kirim = $data['tanggal_kirim'];
+      $tanggal_do = $data['tanggal_do'];
       $no_do = $data['no_do'];
       $driver = $data['driver'];
       $no_polisi = $data['no_polisi'];
@@ -854,7 +869,7 @@ Logout
         echo "<tr>
         <td style='font-size: 14px'>$no_urut</td> 
         <td style='font-size: 14px'>$tanggal_do</td>
-        <td style='font-size: 14px'>$tanggal_kirim</td>
+        <td style='font-size: 14px'>$tanggal_do</td>
         <td style='font-size: 14px'>$no_do</td>
         <td style='font-size: 14px'>$driver</td>
         <td style='font-size: 14px'>$no_polisi</td>
@@ -925,7 +940,7 @@ Logout
     <?php while($data = mysqli_fetch_array($table6)){
       $no_penjualan = $data['no_penjualan'];
       $tanggal_do =$data['tanggal_do'];
-      $tanggal_kirim = $data['tanggal_kirim'];
+      $tanggal_do = $data['tanggal_do'];
       $no_do = $data['no_do'];
       $driver = $data['driver'];
       $no_polisi = $data['no_polisi'];
@@ -948,7 +963,7 @@ Logout
         echo "<tr>
         <td style='font-size: 14px'>$no_urut</td> 
         <td style='font-size: 14px'>$tanggal_do</td>
-        <td style='font-size: 14px'>$tanggal_kirim</td>
+        <td style='font-size: 14px'>$tanggal_do</td>
         <td style='font-size: 14px'>$no_do</td>
         <td style='font-size: 14px'>$driver</td>
         <td style='font-size: 14px'>$no_polisi</td>
@@ -982,14 +997,36 @@ Logout
 <hr>
 <br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-6 col-md-6 mb-4">
+  <div class="col-xl-12 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Jual Untung</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_untung_global) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_penjualan - $total_penebusan) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Penebusan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_penebusan) ?></div>
           </div>
           <div class="col-auto">
            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -1004,8 +1041,8 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Jual Rugi</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_rugi_global) ?></div>
+            Total Penjualan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_penjualan) ?></div>
           </div>
           <div class="col-auto">
             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1015,6 +1052,78 @@ Logout
     </div>
   </div>
 </div>
+
+<br>
+<hr>
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Penebusan Dani</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_penebusan_dani) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Penjualan Dani</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_penjualan_dani) ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Penebusan Ety</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_penebusan_ety) ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Penjualan Ety</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_penjualan_ety) ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <br>
 

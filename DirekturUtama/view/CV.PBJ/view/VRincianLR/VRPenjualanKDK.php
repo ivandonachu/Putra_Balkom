@@ -35,13 +35,13 @@ else{
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_do = '$tanggal_awal'   AND status_bayar = 'Lunas Transfer' OR tanggal_do = '$tanggal_awal' AND status_bayar = 'Lunas Cash' ");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_do = '$tanggal_awal'   AND status_bayar = 'Lunas Transfer' OR tanggal_do = '$tanggal_awal' AND status_bayar = 'Lunas Cash' AND tujuan_pengiriman != 'Gudang Mesuji' ");
 
 
 }
 
 else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Transfer' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash'  ORDER BY tanggal_do ASC");
+  $table = mysqli_query($koneksipbj,"SELECT * FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Transfer' AND tujuan_pengiriman != 'Gudang Mesuji' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash' AND tujuan_pengiriman != 'Gudang Mesuji'  ORDER BY tanggal_do ASC");
 
   //Curah OPC Type 1 bayar
   $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1 ,  SUM(jumlah) AS uang_copct1  FROM penjualan_sl WHERE  tanggal_do BETWEEN 
@@ -107,15 +107,15 @@ else{
 
   //Sak PCC 50 Kg bayar
   $table6 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_sakpcc ,  SUM(jumlah) AS uang_sakpcc  FROM penjualan_sl WHERE  tanggal_do BETWEEN 
-  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Sak PCC 50 Kg' OR  tanggal_do BETWEEN 
-  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Sak PCC 50 Kg'  ");
+  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Sak PCC 50 Kg' AND tujuan_pengiriman != 'Gudang Mesuji' OR  tanggal_do BETWEEN 
+  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Sak PCC 50 Kg' AND tujuan_pengiriman != 'Gudang Mesuji' ");
   $data6 = mysqli_fetch_array($table6);
   $penjualan_sakpcc = $data6['penjualan_sakpcc'];
   $uang_sakpcc = $data6['uang_sakpcc'];
 
   //Sak PCC 50 Kg Bon
   $table62 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_sakpcc_bon ,  SUM(jumlah) AS uang_sakpcc_bon  FROM penjualan_sl WHERE  tanggal_do BETWEEN 
-  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Sak PCC 50 Kg'");
+  '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND satuan = 'Sak PCC 50 Kg' AND tujuan_pengiriman != 'Gudang Mesuji'");
   $data62 = mysqli_fetch_array($table62);
   $penjualan_sakpcc_bon = $data62['penjualan_sakpcc_bon'];
   $uang_sakpcc_bon= $data62['uang_sakpcc_bon'];

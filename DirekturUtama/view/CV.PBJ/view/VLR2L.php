@@ -82,7 +82,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 } else {
 
     // Penjualan kadek dan etty
-    $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND tujuan_pengiriman != 'Gudang Mesuji' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND tujuan_pengiriman != 'Gudang Mesuji' ");
+    $tablex = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND tujuan_pengiriman != 'Gudang Mesuji' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND tujuan_pengiriman != 'Gudang Mesuji' ");
     $pendapatan_penjualan_kadek = 0;
     //kadek
     while ($data = mysqli_fetch_array($tablex)) {
@@ -94,7 +94,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
     //ety
-    $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar  = 'Lunas Transfer' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash'  ");
+    $tablex2 = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar  = 'Lunas Transfer' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND status_bayar = 'Lunas Cash'  ");
     $pendapatan_penjualan_ety = 0;
 
     while ($datae = mysqli_fetch_array($tablex2)) {
@@ -288,7 +288,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     // piutang kadek dan etty
-    $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman != 'Gudang Mesuji' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'  AND tujuan_pengiriman != 'Gudang Mesuji'");
+    $tablexr = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman != 'Gudang Mesuji' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'  AND tujuan_pengiriman != 'Gudang Mesuji'");
     $piutang_penjualan_kadek = 0;
     //kadek
     while ($data = mysqli_fetch_array($tablexr)) {
@@ -298,7 +298,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
     //ety
-    $tablex2r = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar  = 'Bon' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  status_bayar = 'Nyicil' ");
+    $tablex2r = mysqli_query($koneksipbj, "SELECT jumlah FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar  = 'Bon' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND  status_bayar = 'Nyicil' ");
     $piutang_penjualan_ety = 0;
     while ($datae = mysqli_fetch_array($tablex2r)) {
 
