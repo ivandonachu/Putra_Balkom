@@ -502,8 +502,8 @@ else{
         echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-      <td style='font-size: 14px'>$harga_beli_12</td>
-      <td style='font-size: 14px'>$harga_beli_55</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($harga_beli_12); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($harga_beli_55); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
 
       "; ?>
@@ -943,8 +943,8 @@ else{
         echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
       echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-      <td style='font-size: 14px'>$harga_beli_12</td>
-      <td style='font-size: 14px'>$harga_beli_55</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($harga_beli_12); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($harga_beli_55); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
 
       "; ?>
