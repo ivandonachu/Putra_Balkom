@@ -268,6 +268,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                             <option>Penjualan Non PSO</option>
                                                             <option>Penebusan Non PSO</option>
                                                             <option>Potongan SMS</option>
+                                                            <option>Admin Fee</option>
                                                             <option>Saldo Awal</option>
                                                             <option>Saldo Masuk</option>
                                                         </select>
@@ -440,6 +441,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                             <option <?php echo ($dataSelect == 'Penjualan Non PSO') ? "selected" : "" ?>>Penjualan Non PSO</option>
                                                                             <option <?php echo ($dataSelect == 'Penebusan Non PSO') ? "selected" : "" ?>>Penebusan Non PSO</option>
                                                                             <option <?php echo ($dataSelect == 'Potongan SMS') ? "selected" : "" ?>>Potongan SMS</option>
+                                                                            <option <?php echo ($dataSelect == 'Admin Fee') ? "selected" : "" ?>>Admin Fee</option>
                                                                             <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected" : "" ?>>Saldo Awal</option>
                                                                             <option <?php echo ($dataSelect == 'Saldo Masuk') ? "selected" : "" ?>>Saldo Masuk</option>
                                                                         </select>
