@@ -39,19 +39,17 @@ else{
   }
 if ($tanggal_awal == $tanggal_akhir) {
   
-  $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR' GROUP BY nama_akun");
-  $table4 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Kota Batu GROUP BY nama_akun");
+  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal = '$tanggal_awal'");
+  $table2 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
 
 
 }
 else{
 
-  $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR' GROUP BY nama_akun");
-  $table4 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Kota Batu' GROUP BY nama_akun");
+  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table2 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
 
 }
 
@@ -67,7 +65,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran PBR</title>
+  <title>Pengeluaran Kebun Seberuk</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -200,7 +198,7 @@ Menu Kepala Oprasional
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengeluaranPBR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pengeluaran PBR</h5></a>"; ?>
+      <?php echo "<a href='VPengeluaranKebun?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pengeluaran Kebun Seberuk</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -249,7 +247,7 @@ Menu Kepala Oprasional
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VPengeluaranPBR' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VPengeluaranSeberuk' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -283,7 +281,7 @@ Menu Kepala Oprasional
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_pengeluaran_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_pengeluaran_seberuk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-6">
@@ -293,7 +291,7 @@ Menu Kepala Oprasional
           <div class="col-md-6">
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
-              <option>PBR</option>
+              <option>Kebun Seberuk</option>
             </select>
           </div>
         </div>
@@ -307,11 +305,10 @@ Menu Kepala Oprasional
                         <option></option>
                         <option>Saldo Sebelumnya</option>
                         <option>Saldo Cek Masuk</option>
-                        <option>Saldo Brankas Muara Dua</option>
-                        <option>Saldo Brimo Masuk</option>
                         <option>Penarikan Cash</option>
                         <option>Transport / Perjalanan Dinas</option>
                         <option>Biaya Penjualan & Pemasaran</option>
+                        <option>Biaya Usaha Lainnya</option>
                         <option>Biaya Perbaikan Kendaraan</option>
                         <option>Alat Tulis Kantor</option>
                         <option>Listrik & Telepon</option>
@@ -319,12 +316,9 @@ Menu Kepala Oprasional
                         <option>Biaya Penyusutan</option>
                         <option>Biaya Konsumsi</option>
                         <option>Biaya Administrasi</option>
-                        <option>Pengeluaran Lainnya</option>
-                        <option>Kasbon</option>
-                        <option>Bunga Bank</option>
-                        <option>Bunga Bank Pemasukan</option>
-                        <option>Pengeluaran Kebun Kota Batu</option>
-                        <option>Alat & Bahan Bangunan Kebun Kota Batu</option>
+                        <option>Biaya Pupuk</option>
+                        <option>Biaya Buruh</option>
+                        <option>Biaya Insentif</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -404,7 +398,7 @@ Menu Kepala Oprasional
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
         $total = $total + $jumlah;
       }
       else{
@@ -419,7 +413,7 @@ Menu Kepala Oprasional
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -448,7 +442,7 @@ Menu Kepala Oprasional
 
       <!-- Form Edit Data -->
       <div class="modal-body">
-        <form action="../proses/edit_pengeluaran_pbr" enctype="multipart/form-data" method="POST">
+        <form action="../proses/edit_pengeluaran_seberuk" enctype="multipart/form-data" method="POST">
         <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
         <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran;?>">
@@ -461,8 +455,7 @@ Menu Kepala Oprasional
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <?php $dataSelect = $data['referensi']; ?>
-              <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
-              <option <?php echo ($dataSelect == 'Kebun Kota Batu') ? "selected": "" ?> >Kebun Kota Batu</option>
+              <option <?php echo ($dataSelect == 'Kebun Seberuk') ? "selected": "" ?> >Kebun Seberuk</option>
             </select>
           </div>
         </div>
@@ -474,11 +467,10 @@ Menu Kepala Oprasional
                         <?php $dataSelect = $data['nama_akun']; ?>
                         <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
                         <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
-                        <option <?php echo ($dataSelect == 'Saldo Brankas Muara Dua') ? "selected": "" ?> >Saldo Brankas Muara Dua</option>
-                        <option <?php echo ($dataSelect == 'Saldo Brimo Masuk') ? "selected": "" ?> >Saldo Brimo Masuk</option>
                         <option <?php echo ($dataSelect == 'Penarikan Cash') ? "selected": "" ?> >Penarikan Cash</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
+                        <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
                         <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
                         <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                         <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
@@ -487,12 +479,10 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Biaya Penyusutan') ? "selected": "" ?> >Biaya Penyusutan</option>
                         <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
-                        <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
-                        <option <?php echo ($dataSelect == 'Kasbon') ? "selected": "" ?> >Kasbon</option>
-                        <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
-                        <option <?php echo ($dataSelect == 'Bunga Bank Pemasukan') ? "selected": "" ?> >Bunga Bank Pemasukan</option>
-                        <option <?php echo ($dataSelect == 'Pengeluaran Kebun Kota Batu') ? "selected": "" ?> >Pengeluaran Kebun Kota Batu</option>
-                        <option <?php echo ($dataSelect == 'Alat & Bahan Bangunan Kebun Kota Batu') ? "selected": "" ?> >Alat & Bahan Bangunan Kebun Kota Batu</option>
+                        <option <?php echo ($dataSelect == 'Biaya Pupuk') ? "selected": "" ?> >Biaya Pupuk</option>
+                        <option <?php echo ($dataSelect == 'Biaya Buruh') ? "selected": "" ?> >Biaya Buruh</option>
+                        <option <?php echo ($dataSelect == 'Biaya Insentif') ? "selected": "" ?> >Biaya Insentif</option>
+\
                     </select>
             </div>
             <div class="col-md-6">
@@ -546,7 +536,7 @@ Menu Kepala Oprasional
     
 
           <div class="modal-body">
-            <form action="../proses/hapus_pengeluaran_pbr" method="POST">
+            <form action="../proses/hapus_pengeluaran_seberuk" method="POST">
               <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran; ?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
@@ -591,11 +581,11 @@ Menu Kepala Oprasional
     $total_pengeluaran = 0;
     $total_saldo = 0;
   ?>
-    <?php while($data = mysqli_fetch_array($table3)){
+    <?php while($data = mysqli_fetch_array($table2)){
       $nama_akun = $data['nama_akun'];
-      $jumlah =$data['total_jumlah'];
+      $jumlah =$data['jumlah'];
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
         $sisa_saldo  = $sisa_saldo + $jumlah;
         $total_saldo = $total_saldo + $jumlah;
       }
@@ -636,6 +626,9 @@ Menu Kepala Oprasional
 </table>
 
 <br>
+<hr>
+
+
 
 
 </div>
