@@ -40,16 +40,16 @@ else{
 if ($tanggal_awal == $tanggal_akhir) {
   
   $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_seberuk  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
+
 
 
 }
 else{
 
   $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_seberuk  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_seberuk  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+
 
 }
 
@@ -152,7 +152,7 @@ Menu Kepala Oprasional
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranCBM">Pengeluaran CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranMES">Pengeluaran MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Lengkiti</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranSeberuk">Pengeluaran Seberuk</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKPesanAntar">Keuangan Pesan Antar</a>
                     </div>

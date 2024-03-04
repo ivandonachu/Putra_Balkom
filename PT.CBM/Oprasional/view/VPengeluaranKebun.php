@@ -40,16 +40,16 @@ else{
 if ($tanggal_awal == $tanggal_akhir) {
   
   $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun  WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_kebun  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
+
 
 
 }
 else{
 
   $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_kebun  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+
 
 }
 
@@ -65,7 +65,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran Kebun</title>
+  <title>Pengeluaran Kebun Lengkiti</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -152,7 +152,7 @@ Menu Kepala Oprasional
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranCBM">Pengeluaran CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranMES">Pengeluaran MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Lengkiti</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranSeberuk">Pengeluaran Seberuk</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKPesanAntar">Keuangan Pesan Antar</a>
                     </div>
@@ -198,7 +198,7 @@ Menu Kepala Oprasional
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VPengeluaranKebun?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pengeluaran Kebun</h5></a>"; ?>
+      <?php echo "<a href='VPengeluaranKebun?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pengeluaran Kebun Lengkiti</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
