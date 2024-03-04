@@ -490,12 +490,10 @@ if (!isset($data_perbaikan_pribadi_new['perbaikan_pribadi_new'])) {
 
 
 
-$total_bunga_bank_bni = 25000000 * $bulan_bunga_bni;
-
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3 + $total_perbaikan_pribadi + $data_perbaikan_pribadi_new;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_gaji_karyawan_new + $total_gaji_driver + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni + $total_bunga_bank_bri;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni;
 
 $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_biaya_usaha_final;
 }
