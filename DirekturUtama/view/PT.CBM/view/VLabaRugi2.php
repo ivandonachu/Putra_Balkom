@@ -491,7 +491,6 @@ if (!isset($data_perbaikan_pribadi_new['perbaikan_pribadi_new'])) {
 
 
 $total_bunga_bank_bni = 25000000 * $bulan_bunga_bni;
-$total_bunga_bank_bri = 23000000 * $bulan_bunga_bri;
 
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3 + $total_perbaikan_pribadi + $data_perbaikan_pribadi_new;
 
@@ -940,12 +939,12 @@ if (!isset($data_pajak_admin['pajak'])) {
 }
 
 
-$total_bunga_bank_bri = 23000000 * $bulan_bunga_bri;
+
 
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3 + $total_perbaikan_pribadi + $total_perbaikan_pribadi_new;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_gaji_karyawan_new + $total_gaji_driver + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni + $total_bunga_bank_bri +  $total_biaya_administrasi_new + $total_pajak;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni  +  $total_biaya_administrasi_new + $total_pajak;
 
 $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_biaya_usaha_final;
 }
@@ -1545,15 +1544,8 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPerbaikanKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
-                                    <td>5-596</td>
-                                    <td class="text-left">Bunga Bank BRI</td>
-                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_bunga_bank_bri); ?></td>
-                                    <?php echo "<td class='text-right'><a href=''></a></td>"; ?>
-                                </tr>
-                                <tr>
                                     <td>5-597</td>
-                                    <td class="text-left">Bunga Bank BNI</td>
+                                    <td class="text-left">Bunga Bank</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_bunga_bank_bni); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VBungaBankBNI?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
