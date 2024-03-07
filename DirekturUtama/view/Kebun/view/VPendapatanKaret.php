@@ -17,7 +17,6 @@ if ($jabatan_valid == 'Direktur Utama') {
 }
 
 
-
 if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
     $tanggal_akhir = $_GET['tanggal2'];
@@ -30,9 +29,16 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksikebun, "SELECT * FROM absensi_lengkiti WHERE tanggal = '$tanggal_akhir' ");
+    $table = mysqli_query($koneksikebun, "SELECT * FROM laporan_karet_seberuk WHERE tanggal = '$tanggal_akhir' ");
 } else {
-    $table = mysqli_query($koneksikebun, "SELECT * FROM absensi_lengkiti WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
+    $table = mysqli_query($koneksikebun, "SELECT * FROM laporan_karet_seberuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
+    $table2 = mysqli_query($koneksikebun, "SELECT SUM(timbang_gudang) AS total_timbang_gudang, SUM(timbang_pabrik) AS total_timbang_pabrik , harga FROM laporan_karet_seberuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data2 = mysqli_fetch_array($table2);
+    $total_timbang_gudang = $data2['total_timbang_gudang'];
+    $total_timbang_pabrik = $data2['total_timbang_pabrik'];
+    $harga = $data2['harga'];
+    $uang_timbang_gudang = $harga * $total_timbang_gudang;
+    $uang_timbang_pabrik = $harga * $total_timbang_pabrik;
 }
 
 
@@ -51,7 +57,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Absensi Lengkiti</title>
+    <title>Laporan Karet Seberuk</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -226,7 +232,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                 </div>
             </li>
 
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -251,7 +256,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-                    <?php echo "<a href='VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Laporan Absensi Lengkiti</h5></a>"; ?>
+                    <?php echo "<a href='VPendapatanKaret?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Laporan Karet Seberuk</h5></a>"; ?>
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -306,7 +311,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-                        <?php echo "<form  method='POST' action='VLAbsensiL' style='margin-bottom: 15px;'>" ?>
+                        <?php echo "<form  method='POST' action='VPendapatanKaret' style='margin-bottom: 15px;'>" ?>
                         <div>
                             <div align="left" style="margin-left: 20px;">
                                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -323,58 +328,146 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <div class="col-md-6">
                                 <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
                             </div>
-
                         </div>
 
 
 
+
                         <!-- Tabel -->
-                        <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Tanggal</th>
-                                    <th>Total Upah Kerja </th>
-                                    <th>Total Potongan Bon</th>
-                                    <th>File Absensi</th>
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>No Polisi</th>
+                                        <th>Harga</th>
+                                        <th>Timbang Gudang</th>
+                                        <th>Total Uang Timbang Gudang</th>
+                                        <th>Timbang Pabrik</th>
+                                        <th>Total Uang Timbang Pabrik</th>
+                                        <th>KET</th>
+                                        <th>File</th>
+                                   
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no_urut = 0;
+                                    function formatuang($angka)
+                                    {
+                                        $uang = "Rp " . number_format($angka, 2, ',', '.');
+                                        return $uang;
+                                    }
+
+                                    ?>
+
+                                    <?php while ($data = mysqli_fetch_array($table)) {
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $no_polisi = $data['no_polisi'];
+                                        $hargax = $data['harga'];
+                                        $timbang_gudangx = $data['timbang_gudang'];
+                                        $timbang_pabrikx = $data['timbang_pabrik'];
+                                        $uang_timbang_gudang_x = $hargax * $timbang_gudangx;
+                                        $uang_timbang_pabrik_x = $hargax * $timbang_pabrikx;
+                                        $keterangan = $data['keterangan'];
+                                        $file_bukti = $data['file_bukti'];
+                                        $no_urut = $no_urut + 1;
 
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $no_urut = 0;
-                                function formatuang($angka)
-                                {
-                                    $uang = "Rp " . number_format($angka, 2, ',', '.');
-                                    return $uang;
-                                }
-                                ?>
-
-                                <?php while ($data = mysqli_fetch_array($table)) {
-                                    $no_laporan = $data['no_laporan'];
-                                    $tanggal = $data['tanggal'];
-                                    $total_upah_kerja = $data['total_upah_kerja'];
-                                    $total_potongan_bon = $data['total_potongan_bon'];
-                                    $file_bukti = $data['file_bukti'];
-                                    $no_urut = $no_urut + 1;
-
-
-                                    echo "<tr>
+                                        echo "<tr>
                                 <td style='font-size: 14px'>$no_urut</td>
                                 <td style='font-size: 14px'>$tanggal</td>
-                                <td style='font-size: 14px'>"; ?> <?= formatuang($total_upah_kerja); ?> <?php echo "</td>
-                                <td style='font-size: 14px'>"; ?> <?= formatuang($total_potongan_bon); ?> <?php echo "</td>
-                                <td style='font-size: 14px'>"; ?> <a download="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>" href="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                                <td style='font-size: 14px'>$no_polisi</td>
+                                <td style='font-size: 14px'>"; ?> <?= formatuang($hargax); ?> <?php echo "</td>
+                                <td style='font-size: 14px'>$timbang_gudangx /KG</td>
+                                <td style='font-size: 14px'>"; ?> <?= formatuang($uang_timbang_gudang_x); ?> <?php echo "</td>
+                                <td style='font-size: 14px'>$timbang_pabrikx /KG</td>
+                                <td style='font-size: 14px'>"; ?> <?= formatuang($uang_timbang_pabrik_x); ?> <?php echo "</td>
+                                <td style='font-size: 14px'>$keterangan</td>
+                                <td style='font-size: 14px'>"; ?> <a download="/Kebun/AdminSeberuk/file_admin_seberuk/<?= $file_bukti ?>" href="/Kebun/AdminSeberuk/file_admin_seberuk/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
                                 </tr>";
-                                                                                                                                                                                    }
-                                                                                                                                                                                        ?>
+                                    }
+                                        ?>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <br>
+                    <br>
+                    <div class="row" style="margin-right: 20px; margin-left: 20px;" align='center'>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Timbang Gudang</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_timbang_gudang ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Uang Timbang Gudang</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_timbang_gudang); ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Timbang Pabrik</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_timbang_pabrik ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class=" fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Uang Timbang Pabrik</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_timbang_pabrik); ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="  fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
 
                 </div>
             </div>

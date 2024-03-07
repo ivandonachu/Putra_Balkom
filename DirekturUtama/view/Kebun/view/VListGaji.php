@@ -17,65 +17,9 @@ if ($jabatan_valid == 'Direktur Utama') {
 }
 
 
-if (isset($_GET['tanggal1'])) {
-  $tanggal_awal = $_GET['tanggal1'];
-  $tanggal_akhir = $_GET['tanggal2'];
-} elseif (isset($_POST['tanggal1'])) {
-  $tanggal_awal = $_POST['tanggal1'];
-  $tanggal_akhir = $_POST['tanggal2'];
-} else {
-  $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-}
-
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_keb_lengkiti WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksikebun, "SELECT SUM(jumlah) AS total_pengeluaran  FROM pengeluaran_keb_lengkiti 
-  WHERE  tanggal = '$tanggal_awal'");
-  $data2 = mysqli_fetch_array($table2);
-  $total_pengeluaran = $data2['total_pengeluaran'];
-
-  $table3 = mysqli_query($koneksikebun, "SELECT SUM(jumlah) AS total_karet_sawit  FROM pengeluaran_keb_lengkiti 
-  WHERE  tanggal = '$tanggal_awal' AND referensi = 'Karet dan Sawit' ");
-  $data3 = mysqli_fetch_array($table3);
-  $total_karet_sawit = $data3['total_karet_sawit'];
-
-  $table4 = mysqli_query($koneksikebun, "SELECT SUM(jumlah) AS total_buah  FROM pengeluaran_keb_lengkiti 
-  WHERE  tanggal = '$tanggal_awal' AND referensi = 'Buah' ");
-  $data4 = mysqli_fetch_array($table4);
-  $total_buah = $data4['total_buah'];
-
-  $table5 = mysqli_query($koneksikebun, "SELECT SUM(jumlah) AS total_umum  FROM pengeluaran_keb_lengkiti 
-WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
-  $data5 = mysqli_fetch_array($table5);
-  $total_umum = $data5['total_umum'];
-} else {
-  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_keb_lengkiti WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-
-  $table2 = mysqli_query($koneksikebun, "SELECT SUM(jumlah) AS total_pengeluaran  FROM pengeluaran_keb_lengkiti 
-                                    WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $data2 = mysqli_fetch_array($table2);
-  $total_pengeluaran = $data2['total_pengeluaran'];
-
-  $table3 = mysqli_query($koneksikebun, "SELECT SUM(jumlah) AS total_karet_sawit  FROM pengeluaran_keb_lengkiti 
-                                    WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Karet dan Sawit' ");
-  $data3 = mysqli_fetch_array($table3);
-  $total_karet_sawit = $data3['total_karet_sawit'];
-
-  $table4 = mysqli_query($koneksikebun, "SELECT SUM(jumlah) AS total_buah  FROM pengeluaran_keb_lengkiti 
-                                    WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Buah' ");
-  $data4 = mysqli_fetch_array($table4);
-  $total_buah = $data4['total_buah'];
-
-  $table5 = mysqli_query($koneksikebun, "SELECT SUM(jumlah) AS total_umum  FROM pengeluaran_keb_lengkiti 
-  WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Umum' ");
-  $data5 = mysqli_fetch_array($table5);
-  $total_umum = $data5['total_umum'];
-}
-
+$table = mysqli_query($koneksikebun, "SELECT * FROM list_gaji_seberuk");
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,7 +31,8 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran Kebun</title>
+  <title>List Gaji Karyawan Kebun Seberuk</title>
+
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -106,7 +51,6 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
 </head>
 
 <body id="page-top">
-
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -260,7 +204,6 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
         </div>
       </li>
 
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -285,8 +228,7 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-          <?php echo "<a href='VPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pengeluaran Kebun Lengkiti</h5></a>"; ?>
-
+          <?php echo "<a href='VListGaji'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Gaji Karyawan Kebun Seberuk</h5></a>"; ?>
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -301,23 +243,20 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
 
 
 
+
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline  small" style="color:white;"><?php echo "$nama"; ?></span>
-                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile -->
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
-                </a>
-                <a class="dropdown-item" href="VSetting">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
@@ -338,120 +277,114 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
 
           <!-- Name Page -->
           <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-            <?php echo "<form  method='POST' action='VLPengeluaran' style='margin-bottom: 15px;'>" ?>
-            <div>
-              <div align="left" style="margin-left: 20px;">
-                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
-                <span>-</span>
-                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
-                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
-              </div>
-            </div>
-            </form>
-            <div class="row">
-              <div class="col-md-6">
-                <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-              </div>
 
-            </div>
-
-
-
-
-
-
+           
             <!-- Tabel -->
-            <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Tanggal</th>
-                  <th>Akun</th>
-                  <th>Ref</th>
-                  <th>Keterangan</th>
-                  <th>Debit</th>
-                  <th>Kredit</th>
-                  <th>file</th>
+            <div style="overflow-x: auto" align='center' ;>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                <thead>
+                  <tr>
+                    <th style="font-size: 14px" scope="col">No</th>
+                    <th style="font-size: 14px" scope="col">Nama Karyawan</th>
+                    <th style="font-size: 14px" scope="col">Jabatan</th>
+                    <th style="font-size: 14px" scope="col">Gaji Pokok</th>
+                    <th style="font-size: 14px" scope="col">Tunjangan Jabatan</th>
+                    <th style="font-size: 14px" scope="col">Tunjangan Oprasional</th>
+                    <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
+                    <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
+                    <th style="font-size: 14px" scope="col">Uang Makan / Bulan</th>
+                    <th style="font-size: 14px" scope="col">Fee Kehadiran</th>
+                    <th style="font-size: 14px" scope="col">Lembur</th>
+                    <th style="font-size: 14px" scope="col">Absen Terlambat</th>
+                    <th style="font-size: 14px" scope="col">Denda Absen</th>
+                    <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan</th>
+                    <th style="font-size: 14px" scope="col">Bonus</th>
+                    <th style="font-size: 14px" scope="col">Total Gaji</th>
+                    <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
+                    <th style="font-size: 14px" scope="col">Keterangan </th>
+               
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $no_urut = 0;
+                  $total_tf = 0;
+                  $total_cash = 0;
+                  $total_seluruh = 0;
+                  function formatuang($angka)
+                  {
+                    $uang = "Rp " . number_format($angka, 0, ',', '.');
+                    return $uang;
+                  }
+                  ?>
 
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                $total = 0;
-                $urut = 0;
-                function formatuang($angka)
-                {
-                  $uang = "Rp " . number_format($angka, 2, ',', '.');
-                  return $uang;
-                }
+                  <?php while ($data2 = mysqli_fetch_array($table)) {
+                    $no_karyawan = $data2['no_karyawan'];
+                    $nama_karyawan = $data2['nama_karyawan'];
+                    $jabatan = $data2['jabatan'];
+                    $gaji_pokok = $data2['gaji_pokok'];
+                    $tunjangan_jabatan = $data2['tunjangan_jabatan'];
+                    $tunjangan_operasional = $data2['tunjangan_operasional'];
+                    $bpjs_kesehatan = $data2['bpjs_kesehatan'];
+                    $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
+                    $uang_makan_bulan = $data2['uang_makan_bulan'];
+                    $fee_kehadiran = $data2['fee_kehadiran'];
+                    $lembur = $data2['lembur'];
+                    $absen_terlambat = $data2['absen_terlambat'];
+                    $denda_absen = $data2['denda_absen'];
+                    $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+                    $bonus = $data2['bonus'];
+                    $total_gaji = $data2['total_gaji'];
+                    $total_gaji_diterima = $data2['total_gaji_diterima'];
+                    $keterangan = $data2['keterangan'];
+                    $no_urut = $no_urut + 1;
 
-                ?>
+                    $total_seluruh = $total_seluruh + $total_gaji_diterima;
+                    if ($keterangan == 'Transfer') {
+                      $total_tf = $total_tf + $total_gaji_diterima;
+                    } else if ($keterangan == 'Cash') {
+                      $total_cash = $total_cash + $total_gaji_diterima;
+                    }
+                    echo "<tr>
+          <td style='font-size: 14px'>$no_urut</td>
+          <td style='font-size: 14px'>$nama_karyawan</td>
+          <td style='font-size: 14px'>$jabatan</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($gaji_pokok); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_jabatan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_operasional); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan_bulan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($fee_kehadiran); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($lembur); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($absen_terlambat); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($denda_absen); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$keterangan</td>
+         
+      </tr>";
+                  }
+                  ?>
 
-                <?php while ($data = mysqli_fetch_array($table)) {
-                  $no_laporan = $data['no_laporan'];
-                  $tanggal = $data['tanggal'];
-                  $nama_akun = $data['nama_akun'];
-                  $referensi = $data['referensi'];
-                  $status_saldo = $data['status_saldo'];
-                  $jumlah = $data['jumlah'];
-                  $keterangan = $data['keterangan'];
-                  $file_bukti = $data['file_bukti'];
-
-                  $total = $total + $jumlah;
-                  $urut = $urut + 1;
-
-
-                  echo "<tr>
-                <td style='font-size: 14px'>$urut</td>
-                <td style='font-size: 14px'>$tanggal</td>
-                <td style='font-size: 14px'>$nama_akun</td>
-                <td style='font-size: 14px'>$referensi</td>
-                <td style='font-size: 14px'>$keterangan</td>"; ?>
-                  <?php if ($status_saldo == 'Masuk') {
-                    echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                                          echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
-                                                                                  } else {
-                                                                                    echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
-                                                                                    echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                                        }
-                                                                                        echo "
-                <td style='font-size: 14px'>"; ?> <a download="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>" href="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-                </tr>";
-                                                                                                                                                                      }
-
-                                                                                                                                                                        ?>
-
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
           <br>
-
+          <br>
           <br>
           <div class="row" style="margin-right: 20px; margin-left: 20px;">
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Total Pengeluaran</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_pengeluaran) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign  fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Total Karet dan Sawit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_karet_sawit) ?></div>
+                        Total Gaji Transfer</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_tf)  ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -460,30 +393,30 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Total Bauh</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_buah)   ?></div>
+                        Total Gaji Cash</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_cash)  ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign  fa-2x text-gray-300"></i>
+                      <i class=" fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Total Umum</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_umum) ?></div>
+                        Total Seluruh Gaji</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_seluruh)  ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -493,6 +426,10 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
               </div>
             </div>
           </div>
+          <br>
+          <br>
+          <br>
+
 
         </div>
 
@@ -564,11 +501,10 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
   <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-
   <script>
     $(document).ready(function() {
       var table = $('#example').DataTable({
-        lengthChange: false,
+        lengthChange: true,
         buttons: ['copy', 'excel', 'csv', 'pdf', 'colvis']
       });
 

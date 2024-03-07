@@ -129,7 +129,7 @@ exit;
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Report Lengkiti</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiL">Absensi Lengkiti</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKegiatan">Laporan Kegiatan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKaret">Laporan Karet</a>
@@ -145,7 +145,7 @@ exit;
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x"
                 15  aria-expanded="true" aria-controls="collapseTwo1x">
                 <i class="fa fa-address-card" aria-hidden="true"></i>
-                    <span style="font-size: 15px; color:white;" >SDM</span>
+                    <span style="font-size: 15px; color:white;" >SDM Lengkiti</span>
                 </a>
                 <div id="collapseTwo1x" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -154,6 +154,75 @@ exit;
                         <a class="collapse-item" style="font-size: 15px;" href="VMobilS">Mobil Sawit</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawanK">Karyawan Karet</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawanL">Karyawan Lengkiti</a>
+                    </div>
+                </div>
+            </li>
+            
+             <!-- Nav Item - Pages Collapse Menu -->
+             <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                  15  aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Pendapatan Seberuk</span>
+                </a>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pendapatan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPendapatanKaret">Pendapatan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTimbanganBTA">Timbangan Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDataProduksi">Data Produksi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTimbanganGetah">Timbangan Getah</a>
+                    </div>
+                </div>
+            </li>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
+                  15  aria-expanded="true" aria-controls="collapseTwo22">
+                    <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Pengeluaran Seberuk</span>
+                </a>
+                <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKasBesar">Kas Besar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGaji">List Gaji</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
+                    </div>
+                </div>
+            </li>
+             <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z"
+                  15  aria-expanded="true" aria-controls="collapseTwo22z">
+                    <i class="fas fa-users" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Absensi Seberuk</span>
+                </a>
+                <div id="collapseTwo22z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Absensi</h6>
+                        
+                        <a class="collapse-item" style="font-size: 15px;" href="VKegiatanHarian">Kegiatan Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensiBuruh">Absensi Buruh</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsenFoto">Absensi Foto</a>
+                    </div>
+                </div>
+            </li>
+           <!-- Nav Item - Pages Collapse Menu -->
+           <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz"
+                  15  aria-expanded="true" aria-controls="collapseTwo1xz">
+                    <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >SDM Seberuk</span>
+                </a>
+                <div id="collapseTwo1xz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListBuruh">List Buruh</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListBuruhHarian">List Buruh Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListKendaraan">List Kendaraan</a>
+
                     </div>
                 </div>
             </li>

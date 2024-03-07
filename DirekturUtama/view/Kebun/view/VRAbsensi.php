@@ -1,21 +1,19 @@
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
-  header("Location: logout.php");
-  exit;
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
+    header("Location: logout.php");
+    exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
-
-}
-
-else{ header("Location: logout.php");
-exit;
+} else {
+    header("Location: logout.php");
+    exit;
 }
 
 
@@ -86,31 +84,30 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png" ></div>
+                <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png"></div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-          <!-- Nav Item - Dashboard -->
-          <li class="nav-item active" >
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
                 <a class="nav-link" href="DsKebun">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+                    <span style="font-size: 16px;">Dashboard</span></a>
+            </li>
 
-                 <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Kebun
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Company</span>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                Menu Kebun
+            </div>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">List Company</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -128,15 +125,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                 </div>
             </li>
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Report</span>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Report Lengkiti</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiL">Absensi Lengkiti</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKegiatan">Laporan Kegiatan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKaret">Laporan Karet</a>
@@ -149,10 +145,9 @@ if ($tanggal_awal == $tanggal_akhir) {
             </li>
 
             <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x"
-                15  aria-expanded="true" aria-controls="collapseTwo1x">
-                <i class="fa fa-address-card" aria-hidden="true"></i>
-                    <span style="font-size: 15px; color:white;" >SDM</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x" 15 aria-expanded="true" aria-controls="collapseTwo1x">
+                    <i class="fa fa-address-card" aria-hidden="true"></i>
+                    <span style="font-size: 15px; color:white;">SDM Lengkiti</span>
                 </a>
                 <div id="collapseTwo1x" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -165,6 +160,70 @@ if ($tanggal_awal == $tanggal_akhir) {
                 </div>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" 15 aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Pendapatan Seberuk</span>
+                </a>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pendapatan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPendapatanKaret">Pendapatan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTimbanganBTA">Timbangan Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDataProduksi">Data Produksi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTimbanganGetah">Timbangan Getah</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22" 15 aria-expanded="true" aria-controls="collapseTwo22">
+                    <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Pengeluaran Seberuk</span>
+                </a>
+                <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKasBesar">Kas Besar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGaji">List Gaji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z" 15 aria-expanded="true" aria-controls="collapseTwo22z">
+                    <i class="fas fa-users" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Absensi Seberuk</span>
+                </a>
+                <div id="collapseTwo22z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Absensi</h6>
+
+                        <a class="collapse-item" style="font-size: 15px;" href="VKegiatanHarian">Kegiatan Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensiBuruh">Absensi Buruh</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsenFoto">Absensi Foto</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz" 15 aria-expanded="true" aria-controls="collapseTwo1xz">
+                    <i class="fas fa-car" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">SDM Seberuk</span>
+                </a>
+                <div id="collapseTwo1xz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListBuruh">List Buruh</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListBuruhHarian">List Buruh Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListKendaraan">List Kendaraan</a>
+
+                    </div>
+                </div>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -247,60 +306,60 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-  
+
                                 <?php echo "<a href='VLabsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
-              
-                        </div>
+
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
                             </div>
                         </div>
-                        
 
 
 
-                    <!-- Tabel -->
-                    <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Nama Karyawan</th>
-                                <th>Jumlah ABsensi</th>
-                                <th>Upah Kerja</th>
-                                <th>Potongan Bon</th>
-                                <th>Gaji Bersih</th>
-                                <th>Seluruh Gaji</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $no_urut = 0;
-                            $total_seluruh =0;
-                            function formatuang($angka)
-                            {
-                                $uang = "Rp " . number_format($angka, 2, ',', '.');
-                                return $uang;
-                            }
-                            ?>
+                        <!-- Tabel -->
+                        <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tanggal</th>
+                                    <th>Nama Karyawan</th>
+                                    <th>Jumlah ABsensi</th>
+                                    <th>Upah Kerja</th>
+                                    <th>Potongan Bon</th>
+                                    <th>Gaji Bersih</th>
+                                    <th>Seluruh Gaji</th>
 
-                            <?php while ($data = mysqli_fetch_array($table)) {
-                                $no_laporan = $data['no_laporan'];
-                                $tanggal = $data['tanggal'];
-                                $nama_karyawan = $data['nama_karyawan'];
-                                $jumlah_absensi = $data['jumlah_absensi'];
-                                $total_potongan = $data['total_potongan'];
-                                $no_urut = $no_urut + 1;
-                                
-                                $result = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti WHERE nama_karyawan = '$nama_karyawan' ");
-                                $data_perta = mysqli_fetch_array($result);
-                                $upah_kerja = $data_perta['upah_kerja'];
-                                $total = ($jumlah_absensi*$upah_kerja) - $total_potongan;
-                                $total_seluruh = $total_seluruh + $total;
-                                echo "<tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no_urut = 0;
+                                $total_seluruh = 0;
+                                function formatuang($angka)
+                                {
+                                    $uang = "Rp " . number_format($angka, 2, ',', '.');
+                                    return $uang;
+                                }
+                                ?>
+
+                                <?php while ($data = mysqli_fetch_array($table)) {
+                                    $no_laporan = $data['no_laporan'];
+                                    $tanggal = $data['tanggal'];
+                                    $nama_karyawan = $data['nama_karyawan'];
+                                    $jumlah_absensi = $data['jumlah_absensi'];
+                                    $total_potongan = $data['total_potongan'];
+                                    $no_urut = $no_urut + 1;
+
+                                    $result = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti WHERE nama_karyawan = '$nama_karyawan' ");
+                                    $data_perta = mysqli_fetch_array($result);
+                                    $upah_kerja = $data_perta['upah_kerja'];
+                                    $total = ($jumlah_absensi * $upah_kerja) - $total_potongan;
+                                    $total_seluruh = $total_seluruh + $total;
+                                    echo "<tr>
                                 <td style='font-size: 14px'>$no_urut</td>
                                 <td style='font-size: 14px'>$tanggal</td>
                                 <td style='font-size: 14px'>$nama_karyawan</td>
@@ -310,33 +369,33 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($total); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($total_seluruh); ?> <?php echo "</td>
                                 "; ?>
-                               
+
                                 <?php echo  "</tr>";
-                                                    }
+                                }
                                 ?>
 
-        </tbody>
-        </table>
-    </div>
-    <br>
-   
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
 
-    </div>
-    </div>
-    <!-- End of Main Content -->
 
-    <!-- Footer -->
-    <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+                </div>
             </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
+            <!-- End of Main Content -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+            <!-- Footer -->
+            <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

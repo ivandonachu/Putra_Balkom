@@ -1,21 +1,19 @@
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
-  header("Location: logout.php");
-  exit;
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
+    header("Location: logout.php");
+    exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
-
-}
-
-else{ header("Location: logout.php");
-exit;
+} else {
+    header("Location: logout.php");
+    exit;
 }
 
 if (isset($_GET['tanggal1'])) {
@@ -40,26 +38,24 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_upah_bersih = $data2['total_upah_bersih'];
 
     //data tanggal grafik
-$tablex= mysqli_query($koneksikebun, "SELECT tanggal FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  GROUP BY tanggal ");
+    $tablex = mysqli_query($koneksikebun, "SELECT tanggal FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  GROUP BY tanggal ");
 
 
-while($datax = mysqli_fetch_assoc($tablex)){
-$tanggal = $datax['tanggal'];
+    while ($datax = mysqli_fetch_assoc($tablex)) {
+        $tanggal = $datax['tanggal'];
 
-$data_tanggal[] = "$tanggal";
-}
+        $data_tanggal[] = "$tanggal";
+    }
 
-//data pendapatan karet
-$tablex2 = mysqli_query($koneksikebun, "SELECT sum(total_pendapatan) as total_pendapatan FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  GROUP BY tanggal  ");
+    //data pendapatan karet
+    $tablex2 = mysqli_query($koneksikebun, "SELECT sum(total_pendapatan) as total_pendapatan FROM laporan_karet WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  GROUP BY tanggal  ");
 
-while($datax2 = mysqli_fetch_array($tablex2)){
-    $total_pendapatan = $datax2['total_pendapatan'];
-
-
-    $data_pendapatan[] = "$total_pendapatan";
-}
+    while ($datax2 = mysqli_fetch_array($tablex2)) {
+        $total_pendapatan = $datax2['total_pendapatan'];
 
 
+        $data_pendapatan[] = "$total_pendapatan";
+    }
 }
 
 
@@ -104,39 +100,38 @@ while($datax2 = mysqli_fetch_array($tablex2)){
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <!-- Sidebar -->
-       <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKebun">
-    <div class="sidebar-brand-icon rotate-n-15">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKebun">
+                <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png" ></div>
+                </div>
+                <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png"></div>
             </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active" >
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
                 <a class="nav-link" href="DsKebun">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+                    <span style="font-size: 16px;">Dashboard</span></a>
+            </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Kebun
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Company</span>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                Menu Kebun
+            </div>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">List Company</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -154,15 +149,14 @@ while($datax2 = mysqli_fetch_array($tablex2)){
                 </div>
             </li>
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Report</span>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+                        <h6 class="collapse-header" style="font-size: 15px;">Report Lengkiti</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiL">Absensi Lengkiti</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKegiatan">Laporan Kegiatan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKaret">Laporan Karet</a>
@@ -175,10 +169,9 @@ while($datax2 = mysqli_fetch_array($tablex2)){
             </li>
 
             <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x"
-                15  aria-expanded="true" aria-controls="collapseTwo1x">
-                <i class="fa fa-address-card" aria-hidden="true"></i>
-                    <span style="font-size: 15px; color:white;" >SDM</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x" 15 aria-expanded="true" aria-controls="collapseTwo1x">
+                    <i class="fa fa-address-card" aria-hidden="true"></i>
+                    <span style="font-size: 15px; color:white;">SDM Lengkiti</span>
                 </a>
                 <div id="collapseTwo1x" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -187,6 +180,71 @@ while($datax2 = mysqli_fetch_array($tablex2)){
                         <a class="collapse-item" style="font-size: 15px;" href="VMobilS">Mobil Sawit</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawanK">Karyawan Karet</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawanL">Karyawan Lengkiti</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" 15 aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Pendapatan Seberuk</span>
+                </a>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pendapatan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPendapatanKaret">Pendapatan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTimbanganBTA">Timbangan Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDataProduksi">Data Produksi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTimbanganGetah">Timbangan Getah</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22" 15 aria-expanded="true" aria-controls="collapseTwo22">
+                    <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Pengeluaran Seberuk</span>
+                </a>
+                <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKasBesar">Kas Besar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGaji">List Gaji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z" 15 aria-expanded="true" aria-controls="collapseTwo22z">
+                    <i class="fas fa-users" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Absensi Seberuk</span>
+                </a>
+                <div id="collapseTwo22z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Absensi</h6>
+
+                        <a class="collapse-item" style="font-size: 15px;" href="VKegiatanHarian">Kegiatan Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensiBuruh">Absensi Buruh</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsenFoto">Absensi Foto</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz" 15 aria-expanded="true" aria-controls="collapseTwo1xz">
+                    <i class="fas fa-car" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">SDM Seberuk</span>
+                </a>
+                <div id="collapseTwo1xz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListBuruh">List Buruh</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListBuruhHarian">List Buruh Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListKendaraan">List Kendaraan</a>
+
                     </div>
                 </div>
             </li>
@@ -287,62 +345,62 @@ while($datax2 = mysqli_fetch_array($tablex2)){
                             <div class="col-md-6">
                                 <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
                             </div>
-                          
+
                         </div>
-                    
 
 
 
-                    <!-- Tabel -->
-                    <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Nama</th>
-                                <th>BOX</th>
-                                <th>Berat</th>
-                                <th>Harga Karet</th>
-                                <th>Pembagi</th>
-                                <th>Upah Kotor</th>
-                                <th>OA</th>
-                                <th>B Kompor</th>
-                                <th>Upah Bersih</th>
-                                <th>Ket</th>
-                                <th>File</th>
-                           
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $no_urut = 0;
-                            function formatuang($angka)
-                            {
-                                $uang = "Rp " . number_format($angka, 2, ',', '.');
-                                return $uang;
-                            }
-
-                            ?>
-
-                            <?php while ($data = mysqli_fetch_array($table)) {
-                                $no_laporan = $data['no_laporan'];
-                                $tanggal = $data['tanggal'];
-                                $nama_karyawan = $data['nama_karyawan'];
-                                $box = $data['box_karet'];
-                                $berat = $data['berat'];
-                                $harga_karet = $data['harga_karet'];
-                                $pembagi = $data['pembagi'];
-                                $upah_kotor = $data['upah_kotor'];
-                                $ongkos_angkut = $data['ongkos_angkut'];
-                                $bayar_kompor = $data['bayar_kompor'];
-                                $upah_bersih = $data['upah_bersih'];
-                                $keterangan = $data['keterangan'];
-                                $file_bukti = $data['file_bukti'];
-                                $no_urut = $no_urut + 1;
+                        <!-- Tabel -->
+                        <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tanggal</th>
+                                    <th>Nama</th>
+                                    <th>BOX</th>
+                                    <th>Berat</th>
+                                    <th>Harga Karet</th>
+                                    <th>Pembagi</th>
+                                    <th>Upah Kotor</th>
+                                    <th>OA</th>
+                                    <th>B Kompor</th>
+                                    <th>Upah Bersih</th>
+                                    <th>Ket</th>
+                                    <th>File</th>
 
 
-                                echo "<tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $no_urut = 0;
+                                function formatuang($angka)
+                                {
+                                    $uang = "Rp " . number_format($angka, 2, ',', '.');
+                                    return $uang;
+                                }
+
+                                ?>
+
+                                <?php while ($data = mysqli_fetch_array($table)) {
+                                    $no_laporan = $data['no_laporan'];
+                                    $tanggal = $data['tanggal'];
+                                    $nama_karyawan = $data['nama_karyawan'];
+                                    $box = $data['box_karet'];
+                                    $berat = $data['berat'];
+                                    $harga_karet = $data['harga_karet'];
+                                    $pembagi = $data['pembagi'];
+                                    $upah_kotor = $data['upah_kotor'];
+                                    $ongkos_angkut = $data['ongkos_angkut'];
+                                    $bayar_kompor = $data['bayar_kompor'];
+                                    $upah_bersih = $data['upah_bersih'];
+                                    $keterangan = $data['keterangan'];
+                                    $file_bukti = $data['file_bukti'];
+                                    $no_urut = $no_urut + 1;
+
+
+                                    echo "<tr>
                                 <td style='font-size: 14px'>$no_urut</td>
                                 <td style='font-size: 14px'>$tanggal</td>
                                 <td style='font-size: 14px'>$nama_karyawan</td>
@@ -357,89 +415,89 @@ while($datax2 = mysqli_fetch_array($tablex2)){
                                 <td style='font-size: 14px'>$keterangan</td>
                                 <td style='font-size: 14px'>"; ?> <a download="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>" href="/Kebun/AdminKebun/file_kebun/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
                                 </tr>";
-                                                    }
-                                ?>
+                                                                                                                                                                                    }
+                                                                                                                                                                                        ?>
 
-        </tbody>
-        </table>
-    </div>
-    <br>
-   
-         <br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;"  align = 'center'>
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Box</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  $total_box ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="  fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Berat</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_berat ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Upah Bersih</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_upah_bersih)   ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="  fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
 
-</div>
-<br>
-<br>
-<div id="chart_pendapatan_karet" >
+                    <br>
+                    <div class="row" style="margin-right: 20px; margin-left: 20px;" align='center'>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Box</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_box ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="  fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Berat</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_berat ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    </div>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Upah Bersih</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_upah_bersih)   ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="  fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    </div>
-    </div>
-    <!-- End of Main Content -->
+                    </div>
+                    <br>
+                    <br>
+                    <div id="chart_pendapatan_karet">
 
-    <!-- Footer -->
-    <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
+            <!-- End of Main Content -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+            <!-- Footer -->
+            <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -545,63 +603,64 @@ while($datax2 = mysqli_fetch_array($tablex2)){
         });
     </script>
 
-    <script>  
-Highcharts.chart('chart_pendapatan_karet', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Grafik Pendapatan Karet'
-    },
-  
-    xAxis: {
-        categories: [
-             <?php 
-                
-                foreach($data_tanggal as $a){
-                 ?> ' <?php print_r($a);
-             
-                ?> ' <?php echo",";
-                } ?> 
-                     
-                 
-                 
-                 
-    
-           
-        ],
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Pendapatan (Rp)'
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>Rp{point.y:,0f}</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
-        name: 'Karet',
-        data: [<?php foreach($data_pendapatan as $x){
-            print_r($x);
-            echo",";
-       } ?>]
+    <script>
+        Highcharts.chart('chart_pendapatan_karet', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Grafik Pendapatan Karet'
+            },
 
-    }]
-});
-</script>
+            xAxis: {
+                categories: [
+                    <?php
+
+                    foreach ($data_tanggal as $a) {
+                    ?> ' <?php print_r($a);
+
+                        ?> '
+                    <?php echo ",";
+                    } ?>
+
+
+
+
+
+
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Pendapatan (Rp)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>Rp{point.y:,0f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Karet',
+                data: [<?php foreach ($data_pendapatan as $x) {
+                            print_r($x);
+                            echo ",";
+                        } ?>]
+
+            }]
+        });
+    </script>
 
 
 </body>

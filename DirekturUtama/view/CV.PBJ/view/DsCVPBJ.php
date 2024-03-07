@@ -158,6 +158,7 @@ exit;
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapSparepart">Rekap Sparepart</a>
                     </div>
                 </div>
             </li>
