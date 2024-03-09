@@ -57,6 +57,10 @@ else{
 
   $total_untung_global = 0;
   $total_rugi_global =0;
+  $total_untung_dani = 0;
+  $total_rugi_dani =0;
+  $total_untung_ety = 0;
+  $total_rugi_ety =0;
   $total_penebusan = 0;
   $total_penjualan = 0;
   $total_penebusan_dani = 0;
@@ -78,6 +82,20 @@ else{
         $harga_beli = $data_pembelian_1['harga_beli'];
         $qty = $data_pembelian_1['qty'];
         $jumlah_beli = $harga_beli * $qty;
+
+        if($harga_beli < $harga){
+
+          
+          $total_untung_ety =  $total_untung_ety + ($jumlah - $jumlah_beli);
+          $total_untung_global =  $total_untung_global + ($jumlah - $jumlah_beli);
+
+        }
+        else{
+
+          $total_rugi_ety =  $total_rugi_ety + ($jumlah_beli - $jumlah);
+          $total_rugi_global =  $total_rugi_global + ($jumlah_beli - $jumlah);
+
+        }
       
 
         $total_penjualan = $total_penjualan + $jumlah;
@@ -85,10 +103,6 @@ else{
         $total_penjualan_ety = $total_penjualan_ety + $jumlah;
         $total_penebusan_ety = $total_penebusan_ety + $jumlah_beli;
      
-        $untung = $jumlah - $jumlah_beli;
-
-      
-            $total_untung_global = $total_untung_global + $untung;
         
 
     }
@@ -99,23 +113,26 @@ else{
 
 
 
-        $harga = $data_pembelian_2['harga'];
-        $jumlah = $data_pembelian_2['jumlah'];
-        $harga_beli = $data_pembelian_2['harga_beli'];
-        $qty = $data_pembelian_2['qty'];
-        $tujuan_pengiriman = $data_pembelian_2['tujuan_pengiriman'];
+      $harga = $data_pembelian_2['harga'];
+      $jumlah = $data_pembelian_2['jumlah'];
 
-        if($tujuan_pengiriman == 'Gudang Mesuji' ){
+      $harga_beli = $data_pembelian_2['harga_beli'];
+      $qty = $data_pembelian_2['qty'];
+      $jumlah_beli = $harga_beli * $qty;
 
-          $jumlah_beli = $harga_beli * $qty;
-       
-          $total_penebusan = $total_penebusan + $jumlah_beli;
-        
-          $total_penebusan_dani = $total_penebusan_dani + $jumlah_beli;
+        if($harga_beli < $harga){
 
+          
+          $total_untung_dani =  $total_untung_dani + ($jumlah - $jumlah_beli);
+          $total_untung_global =  $total_untung_global + ($jumlah - $jumlah_beli);
 
         }
         else{
+
+          $total_rugi_dani =  $total_rugi_dani + ($jumlah_beli - $jumlah);
+          $total_rugi_global =  $total_rugi_global + ($jumlah_beli - $jumlah);
+
+        }
 
           $jumlah_beli = $harga_beli * $qty;
           $total_penjualan = $total_penjualan + $jumlah;
@@ -123,10 +140,9 @@ else{
           $total_penjualan_dani = $total_penjualan_dani + $jumlah;
           $total_penebusan_dani = $total_penebusan_dani + $jumlah_beli;
 
-          $untung = $jumlah - $jumlah_beli;
-          $total_untung_global = $total_untung_global + $untung;
 
-        }
+
+      
 
 
 
@@ -477,10 +493,10 @@ Logout
   $catatan = $data['catatan'];
   $bulan = $data['bulan'];
   $file_bukti = $data['file_bukti'];
-  $no_urut = $no_urut + 1;
+
 
   if($harga_beli<$harga){
-
+    $no_urut = $no_urut + 1;
     echo "<tr>
     <td style='font-size: 14px'>$no_urut</td>
     <td style='font-size: 14px'>$tanggal_do</td>
@@ -550,7 +566,7 @@ Logout
   </thead>
   <tbody>
     <?php
-    $no_urut = 0;
+    $no_urut2 = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -579,12 +595,12 @@ Logout
   $catatan = $data['catatan'];
   $bulan = $data['bulan'];
   $file_bukti = $data['file_bukti'];
-  $no_urut = $no_urut + 1;
+
 
   if($harga_beli>$harga){
-
+    $no_urut2 = $no_urut2 + 1;
     echo "<tr>
-    <td style='font-size: 14px'>$no_urut</td>
+    <td style='font-size: 14px'>$no_urut2</td>
     <td style='font-size: 14px'>$tanggal_do</td>
     <td style='font-size: 14px'>$tanggal_do</td>
     <td style='font-size: 14px'>$no_do</td>
@@ -653,7 +669,7 @@ Logout
   </thead>
   <tbody>
     <?php
-    $no_urut = 0;
+    $no_urut3 = 0;
 
 
     ?>
@@ -679,12 +695,12 @@ Logout
   $catatan = $data['catatan'];
   $bulan = $data['bulan'];
   $file_bukti = $data['file_bukti'];
-  $no_urut = $no_urut + 1;
+
 
   if($harga_beli==$harga){
-
+    $no_urut3 = $no_urut3 + 1;
     echo "<tr>
-    <td style='font-size: 14px'>$no_urut</td>
+    <td style='font-size: 14px'>$no_urut3</td>
     <td style='font-size: 14px'>$tanggal_do</td>
     <td style='font-size: 14px'>$tanggal_do</td>
     <td style='font-size: 14px'>$no_do</td>
@@ -751,7 +767,7 @@ Logout
   </thead>
   <tbody>
     <?php
-    $no_urut = 0;
+    $no_urut4 = 0;
 
     ?>
 
@@ -775,11 +791,12 @@ Logout
       $keterangan = $data['keterangan'];
       $bulan = $data['bulan'];
       $file_bukti = $data['file_bukti'];
-      $no_urut = $no_urut + 1;
+    
     
         if($harga_beli<$harga){
+          $no_urut4 = $no_urut4 + 1;
         echo "<tr>
-        <td style='font-size: 14px'>$no_urut</td> 
+        <td style='font-size: 14px'>$no_urut4</td> 
         <td style='font-size: 14px'>$tanggal_do</td>
         <td style='font-size: 14px'>$tanggal_do</td>
         <td style='font-size: 14px'>$no_do</td>
@@ -846,7 +863,7 @@ Logout
   </thead>
   <tbody>
     <?php
-    $no_urut = 0;
+    $no_urut5 = 0;
 
     ?>
 
@@ -870,11 +887,12 @@ Logout
       $keterangan = $data['keterangan'];
       $bulan = $data['bulan'];
       $file_bukti = $data['file_bukti'];
-      $no_urut = $no_urut + 1;
+    
     
       if($harga_beli>$harga){
+        $no_urut5 = $no_urut5 + 1;
         echo "<tr>
-        <td style='font-size: 14px'>$no_urut</td> 
+        <td style='font-size: 14px'>$no_urut5</td> 
         <td style='font-size: 14px'>$tanggal_do</td>
         <td style='font-size: 14px'>$tanggal_do</td>
         <td style='font-size: 14px'>$no_do</td>
@@ -940,7 +958,7 @@ Logout
   </thead>
   <tbody>
     <?php
-    $no_urut = 0;
+    $no_urut6 = 0;
 
     ?>
 
@@ -964,11 +982,12 @@ Logout
       $keterangan = $data['keterangan'];
       $bulan = $data['bulan'];
       $file_bukti = $data['file_bukti'];
-      $no_urut = $no_urut + 1;
-    
+     
       if($harga_beli==$harga){
+        $no_urut6 = $no_urut6 + 1;
+    
         echo "<tr>
-        <td style='font-size: 14px'>$no_urut</td> 
+        <td style='font-size: 14px'>$no_urut6</td> 
         <td style='font-size: 14px'>$tanggal_do</td>
         <td style='font-size: 14px'>$tanggal_do</td>
         <td style='font-size: 14px'>$no_do</td>
@@ -1010,11 +1029,125 @@ Logout
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Jual Untung</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_penjualan - $total_penebusan) ?></div>
+            Total Pendapatan</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_untung_global - $total_rugi_global) ?></div>
           </div>
           <div class="col-auto">
            <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Untung Global</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_untung_global) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Rugi Global</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_rugi_global) ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Untung Dani</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_untung_dani) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Rugi Dani</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_rugi_dani) ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+<div class="row" style="margin-right: 20px; margin-left: 20px;">
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Untung Ety</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_untung_ety) ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Rugi Ety</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_rugi_ety) ?></div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
           </div>
         </div>
       </div>
@@ -1258,7 +1391,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example5').DataTable( {
       lengthChange: true,
-      buttons: [  ]
+      buttons: []
     } );
 
     table.buttons().container()
