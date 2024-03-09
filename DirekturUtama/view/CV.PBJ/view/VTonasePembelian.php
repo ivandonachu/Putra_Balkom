@@ -295,6 +295,13 @@ if (isset($_GET['tanggal1'])) {
                           <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VRekapanHarga'> Rekapan Harga</a>
                           </li>";
                         } ?>
+                        <?php if($nama == 'Nyoman Edy Susanto'){
+                          echo"
+                          <li class='nav-item'>
+                          <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
+                          <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VRekapSparepart'>Rekap Sparepart</a>
+                          </li>";
+                        } ?>
            
 
 

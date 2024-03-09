@@ -412,7 +412,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_sewa_hiblow = $data_sewa_hiblow['total_sewa_hiblow'];
 
 
-    
+
     //Untung angkutan / pranko
     $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ");
     $total_angkutan_edy = 0;
@@ -426,7 +426,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $qty = $data1['qty'];
 
         //kak nyoman
-        if ($kota == 'Kab Ogn Kmrg Ulu Tim' || $kota == 'KAB OKU TIMUR' ) {
+        if ($kota == 'Kab Ogn Kmrg Ulu Tim' || $kota == 'KAB OKU TIMUR') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
@@ -473,7 +473,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Mbak Reni') {
                 $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
             }
-        } else if ($kota == 'Kab Tlg Bwg' || $kota == 'KAB. TULANG BAWANG' ) {
+        } else if ($kota == 'Kab Tlg Bwg' || $kota == 'KAB. TULANG BAWANG') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
@@ -493,7 +493,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Mbak Reni') {
                 $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
             }
-        } else if ($kota == 'KAB WAY KANAN' ) {
+        } else if ($kota == 'KAB WAY KANAN') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
@@ -513,9 +513,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Mbak Reni') {
                 $total_angkutan_reni = $total_angkutan_reni + $total_angkut;
             }
-        }
-
-        else if ($kota == 'Kab OKU Selatan' || $kota == 'KAB OKU SELATAN'|| $kota == 'Kab Ogn Kmrg Ulu Sel'   ) {
+        } else if ($kota == 'Kab OKU Selatan' || $kota == 'KAB OKU SELATAN' || $kota == 'Kab Ogn Kmrg Ulu Sel') {
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
@@ -839,6 +837,23 @@ if ($tanggal_awal == $tanggal_akhir) {
         $biaya_pajak = 0;
     }
 
+    //biaya oprasional pabrik 1
+    $table_op_pabrik_1 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS oprasional_pabrik_1 FROM keuangan_sl WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Oprasional Pabrik' ");
+    $data_op_pabrik_1 = mysqli_fetch_array($table_op_pabrik_1);
+    $biaya_op_pabrik_1 = $data_op_pabrik_1['oprasional_pabrik_1'];
+    if (!isset($data_op_pabrik_1['oprasional_pabrik_1'])) {
+        $biaya_op_pabrik_1 = 0;
+    }
+
+    //biaya oprasional pabrik 2
+    $table_op_pabrik_2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS oprasional_pabrik_2 FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Oprasional Pabrik' ");
+    $data_op_pabrik_2 = mysqli_fetch_array($table_op_pabrik_2);
+    $biaya_op_pabrik_2 = $data_op_pabrik_2['oprasional_pabrik_2'];
+    if (!isset($data_op_pabrik_2['oprasional_pabrik_2'])) {
+        $biaya_op_pabrik_2 = 0;
+    }
+
+
     //pengeluran perbaikan yani
     $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_sparepart) AS total_pembelian_sparepart FROM riwayat_pengeluaran_workshop_s
                                          WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
@@ -856,13 +871,13 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jml_perbaikan_etty = 0;
     }
 
-            //pengeluran perbaikan 2
-            $table7sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan_2 FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
-            $data7sl = mysqli_fetch_array($table7sl);
-            $jml_perbaikan_2 = $data7sl['jumlah_perbaikan_2'];
-            if (!isset($data7sl['jumlah_perbaikan_2'])) {
-                $jml_perbaikan_2 = 0;
-            }
+    //pengeluran perbaikan 2
+    $table7sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan_2 FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
+    $data7sl = mysqli_fetch_array($table7sl);
+    $jml_perbaikan_2 = $data7sl['jumlah_perbaikan_2'];
+    if (!isset($data7sl['jumlah_perbaikan_2'])) {
+        $jml_perbaikan_2 = 0;
+    }
 
 
     $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bengkel) AS jumlah_perbaikan FROM riwayat_pengeluaran_workshop_s
@@ -906,7 +921,7 @@ if ($total_gaji_driver > 0) {
 
     $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
     $laba_kotor = $total_pendapatan - $pembelian_total;
-    $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
+    $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_biaya_kantor_s + $jml_biaya_kantor_sl + $biaya_op_pabrik_1 + $biaya_op_pabrik_2 +
         $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
         $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak +  $total_uj_sewa_hiblow;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
@@ -916,7 +931,7 @@ if ($total_gaji_driver > 0) {
 
     $total_pendapatan = $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $total_angkutan_edy + $total_angkutan_rama + $total_angkutan_aril + $total_angkutan_reni + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
     $laba_kotor = $total_pendapatan - $pembelian_total;
-    $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s  + $jml_biaya_kantor_s + $jml_biaya_kantor_sl +
+    $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s  + $jml_biaya_kantor_s + $jml_biaya_kantor_sl + $biaya_op_pabrik_1 + $biaya_op_pabrik_2 +
         $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl  + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
         $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak +  $total_uj_sewa_hiblow;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
@@ -1068,6 +1083,13 @@ if ($total_gaji_driver > 0) {
                           <li class='nav-item'>
                           <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
                           <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VRekapanHarga'> Rekapan Harga</a>
+                          </li>";
+            } ?>
+            <?php if ($nama == 'Nyoman Edy Susanto') {
+                echo "
+                          <li class='nav-item'>
+                          <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
+                          <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VRekapSparepart'>Rekap Sparepart</a>
                           </li>";
             } ?>
 
@@ -1426,6 +1448,13 @@ if ($total_gaji_driver > 0) {
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jml_listrik_s + $jml_listrik_sl); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBaru/VRListrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-560</td>
+                                                    <td class="text-left">Oprasional Pabrik</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($biaya_op_pabrik_1 + $biaya_op_pabrik_2); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VROPPabrik?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-570</td>

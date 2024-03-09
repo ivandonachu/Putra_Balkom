@@ -38,13 +38,13 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal'");
 }
 else{
-  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
-  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Oprasional Pabrik' ");
+  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Oprasional Pabrik' ");
   $data2 = mysqli_fetch_array($table2);
   $total_pengeluaran = $data2['total_pengeluaran'];
 
-  $tablex = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
-  $table2x = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Kantor' ");
+  $tablex = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Oprasional Pabrik' ");
+  $table2x = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Oprasional Pabrik' ");
   $data2x = mysqli_fetch_array($table2x);
   $total_pengeluaran_kadek = $data2x['total_pengeluaran'];
 
@@ -64,7 +64,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pengeluaran Biaya Kantor</title>
+  <title>Pengeluaran Oprasional Pabrik</title>
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -86,8 +86,9 @@ else{
 
 <body id="page-top">
 
-<!-- Page Wrapper -->
-<div id="wrapper">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
 <!-- Sidebar -->
 <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
@@ -107,7 +108,7 @@ else{
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active" >
-        <a class="nav-link" href="DsCVPBJ">
+        <a class="nav-link" href="../DsCVPBJ">
             <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
             <span style="font-size: 16px;" >Dashboard</span></a>
         </li>
@@ -129,7 +130,7 @@ else{
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
                 <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-                <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
+                <a class="collapse-item" style="font-size: 15px;" href="../DsCVPBJ">CV.PBJ</a>
                 <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
                 <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
                 <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
@@ -209,7 +210,7 @@ else{
                           <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='../VRekapSparepart'>Rekap Sparepart</a>
                           </li>";
                         } ?>
-   
+           
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -320,9 +321,10 @@ Logout
 
 
 
-<h3 align='center' >Pengeluaran Biaya Kantor Etty</h3>
+<h3 align='center' >Pengeluaran Oprasional Pabrik Etty</h3>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -376,7 +378,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-3 col-md-6 mb-4">
@@ -400,9 +402,10 @@ Logout
 <hr>
 <br>
 
-<h3 align='center' >Pengeluaran Biaya Kantor Kadek</h3>
+<h3 align='center' >Pengeluaran Oprasional Pabrik Kadek</h3>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+<table id="example1" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
@@ -453,7 +456,7 @@ Logout
 
 </tbody>
 </table>
-
+</div>
 <br>
 <div class="row" style="margin-right: 20px; margin-left: 20px;">
   <div class="col-xl-3 col-md-6 mb-4">

@@ -158,7 +158,7 @@ exit;
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRekapSparepart">Rekap Sparepart</a>
+                    
                     </div>
                 </div>
             </li>
@@ -182,6 +182,13 @@ exit;
                           <li class='nav-item'>
                           <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
                           <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VRekapanHarga'> Rekapan Harga</a>
+                          </li>";
+                        } ?>
+                        <?php if($nama == 'Nyoman Edy Susanto'){
+                          echo"
+                          <li class='nav-item'>
+                          <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
+                          <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VRekapSparepart'>Rekap Sparepart</a>
                           </li>";
                         } ?>
            
