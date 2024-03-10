@@ -30,11 +30,11 @@ if (isset($_GET['tanggal1'])) {
 if ($tanggal_awal == $tanggal_akhir) {
 
   $table = mysqli_query($koneksikebun, "SELECT * FROM kas_besar_seberuk a  WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksikebun, "SELECT * FROM kas_besar_seberuk a  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksikebun, "SELECT  nama_akun , SUM(jumlah) as total_jumlah FROM kas_besar_seberuk a  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
 } else {
 
   $table = mysqli_query($koneksikebun, "SELECT * FROM kas_besar_seberuk a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksikebun, "SELECT * FROM kas_besar_seberuk a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksikebun, "SELECT  nama_akun , SUM(jumlah) as total_jumlah FROM kas_besar_seberuk a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
 }
 
 ?>
@@ -397,14 +397,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                 ?>
                 <?php while ($data = mysqli_fetch_array($table2)) {
                   $nama_akun = $data['nama_akun'];
-                  $jumlah = $data['jumlah'];
+                  $total_jumlah = $data['total_jumlah'];
 
                   if ($nama_akun == 'Saldo Masuk') {
-                    $sisa_saldo  = $sisa_saldo + $jumlah;
-                    $total_saldo = $total_saldo + $jumlah;
+                    $sisa_saldo  = $sisa_saldo + $total_jumlah;
+                    $total_saldo = $total_saldo + $total_jumlah;
                   } else {
-                    $sisa_saldo  = $sisa_saldo - $jumlah;
-                    $total_pengeluaran = $total_pengeluaran + $jumlah;
+                    $sisa_saldo  = $sisa_saldo - $total_jumlah;
+                    $total_pengeluaran = $total_pengeluaran + $total_jumlah;
                   }
 
 
@@ -412,7 +412,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   echo "<tr>
 
        <td style='font-size: 14px' >$nama_akun</td>
-        <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
+        <td style='font-size: 14px'>" ?> <?= formatuang($total_jumlah); ?> <?php echo "</td>
       
      
 
