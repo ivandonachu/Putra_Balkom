@@ -33,6 +33,10 @@ if (isset($_GET['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_karet_seberuk WHERE tanggal = '$tanggal_akhir' ");
+    $table2 = mysqli_query($koneksi, "SELECT SUM(timbang_gudang) AS total_timbang_gudang, SUM(timbang_pabrik) AS total_timbang_pabrik , harga FROM laporan_karet_seberuk WHERE WHERE tanggal = '$tanggal_akhir'");
+    $data2 = mysqli_fetch_array($table2);
+    $total_timbang_gudang = $data2['total_timbang_gudang'];
+    $total_timbang_pabrik = $data2['total_timbang_pabrik'];
 } else {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_karet_seberuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal ASC");
     $table2 = mysqli_query($koneksi, "SELECT SUM(timbang_gudang) AS total_timbang_gudang, SUM(timbang_pabrik) AS total_timbang_pabrik , harga FROM laporan_karet_seberuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
