@@ -28,12 +28,63 @@ if (isset($_GET['tanggal1'])) {
     $tanggal_awal = date('Y-m-1');
     $tanggal_akhir = date('Y-m-31');
 }
+$total_pembelian_sparepart_global = 0;
+$total_pengeluaran_perbaikan_global = 0;
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal' WHERE status_saldo = 'Keluar' ");
+    //pengeluran perbaikan yani
+    $table = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(jumlah_sparepart) AS total_pembelian_sparepart, SUM(jumlah_bengkel) AS total_perbaikan  FROM riwayat_pengeluaran_workshop_s WHERE tanggal = '$tanggal_awal' GROUP BY no_polisi");
+    $data_sparepart_gl = mysqli_fetch_array($table);
+
+    $total_pembelian_sparepart = $data_sparepart_gl['total_pembelian_sparepart'];
+    $total_perbaikan = $data_sparepart_gl['total_perbaikan'];
+
+    $total_pembelian_sparepart_global =  $total_pembelian_sparepart_global + $total_pembelian_sparepart;
+    $total_pengeluaran_perbaikan_global = $total_pengeluaran_perbaikan_global + $total_perbaikan;
+
+    //pengiriman 1
+    $table_om_1 = mysqli_query($koneksipbj, "SELECT SUM(om) AS total_om_1 FROM pengiriman_s WHERE tanggal_antar  = '$tanggal_awal'  ");
+    $data_om_1 = mysqli_fetch_array($table_om_1);
+    $total_om_1 = $data_om_1['total_om_1'];
+
+
+
+    //pengiriman 1
+    $table_om_2 = mysqli_query($koneksipbj, "SELECT SUM(om) AS total_om_2 FROM pengiriman_sl WHERE tanggal_antar  = '$tanggal_awal'  ");
+    $data_om_2 = mysqli_fetch_array($table_om_2);
+    $total_om_2 = $data_om_2['total_om_2'];
+
+    $total_pendapatan_global = $total_om_1 + $total_om_2;
+
+
+    $total_sisa_pendapatan_global = $total_pendapatan_global - ($total_pembelian_sparepart_global + $total_pengeluaran_perbaikan_global);
 } else {
     //pengeluran perbaikan yani
     $table = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(jumlah_sparepart) AS total_pembelian_sparepart, SUM(jumlah_bengkel) AS total_perbaikan  FROM riwayat_pengeluaran_workshop_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi");
+    $data_sparepart_gl = mysqli_fetch_array($table);
+
+    $total_pembelian_sparepart = $data_sparepart_gl['total_pembelian_sparepart'];
+    $total_perbaikan = $data_sparepart_gl['total_perbaikan'];
+
+    $total_pembelian_sparepart_global =  $total_pembelian_sparepart_global + $total_pembelian_sparepart;
+    $total_pengeluaran_perbaikan_global = $total_pengeluaran_perbaikan_global + $total_perbaikan;
+
+    //pengiriman 1
+    $table_om_1 = mysqli_query($koneksipbj, "SELECT SUM(om) AS total_om_1 FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $data_om_1 = mysqli_fetch_array($table_om_1);
+    $total_om_1 = $data_om_1['total_om_1'];
+
+
+
+    //pengiriman 1
+    $table_om_2 = mysqli_query($koneksipbj, "SELECT SUM(om) AS total_om_2 FROM pengiriman_sl WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $data_om_2 = mysqli_fetch_array($table_om_2);
+    $total_om_2 = $data_om_2['total_om_2'];
+
+    $total_pendapatan_global = $total_om_1 + $total_om_2;
+
+
+    $total_sisa_pendapatan_global = $total_pendapatan_global - ($total_pembelian_sparepart_global + $total_pengeluaran_perbaikan_global);
 }
 
 
@@ -325,8 +376,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <tbody>
                                     <?php
                                     $total_sisa_pendapatan = 0;
-                                    $total_pendapatan =0;
-                                    $jumlah_pengeluaran =0;
+                                    $total_pendapatan = 0;
+                                    $jumlah_pengeluaran = 0;
                                     $urut = 0;
                                     function formatuang($angka)
                                     {
@@ -370,9 +421,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <td style='font-size: 14px'>" ?> <?= formatuang($total_pendapatan); ?> <?php echo "</td>
                                             <td style='font-size: 14px'>" ?> <?= formatuang($total_sisa_pendapatan); ?> <?php echo "</td>
                                             </tr>";
-                                    }
+                                                                                                                    }
 
-                                        ?>
+                                                                                                                        ?>
 
                                 </tbody>
                             </table>
@@ -386,8 +437,56 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total Pengeluaran</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_pengeluaran) ?></div>
+                                                Total Pembelian Sparepart</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_pembelian_sparepart_global) ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Pengeluaran Perbaikan</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_pengeluaran_perbaikan_global) ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Pendapatan</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_pendapatan_global) ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Sisa Pendapatan</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_sisa_pendapatan_global) ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
