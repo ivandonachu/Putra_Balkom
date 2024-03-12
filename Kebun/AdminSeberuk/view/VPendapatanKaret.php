@@ -39,9 +39,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $data2 = mysqli_fetch_array($table2);
     $total_timbang_gudang = $data2['total_timbang_gudang'];
     $total_timbang_pabrik = $data2['total_timbang_pabrik'];
-    $harga = $data2['harga'];
-    $uang_timbang_gudang = $harga * $total_timbang_gudang;
-    $uang_timbang_pabrik = $harga * $total_timbang_pabrik;
+
 
 }
 
@@ -398,6 +396,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <tbody>
                             <?php
                             $no_urut = 0;
+                            $uang_timbang_gudang =0;
+                            $uang_timbang_pabrik=0;
                             function formatuang($angka)
                             {
                                 $uang = "Rp " . number_format($angka, 2, ',', '.');
@@ -419,7 +419,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 $file_bukti = $data['file_bukti'];
                                 $no_urut = $no_urut + 1;
 
-
+                   
+                                $uang_timbang_gudang = $uang_timbang_gudang + $uang_timbang_gudang_x;
+                                $uang_timbang_pabrik = $uang_timbang_pabrik + $uang_timbang_pabrik_x;
                                 echo "<tr>
                                 <td style='font-size: 14px'>$no_urut</td>
                                 <td style='font-size: 14px'>$tanggal</td>
