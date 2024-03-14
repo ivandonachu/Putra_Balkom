@@ -346,7 +346,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         <th>No Polisi</th>
                                         <th>Harga</th>
                                         <th>Timbang Gudang</th>
-                                        <th>Total Uang Timbang Gudang</th>
                                         <th>Timbang Pabrik</th>
                                         <th>Total Uang Timbang Pabrik</th>
                                         <th>KET</th>
@@ -389,7 +388,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <td style='font-size: 14px'>$no_polisi</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($hargax); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>$timbang_gudangx /KG</td>
-                                <td style='font-size: 14px'>"; ?> <?= formatuang($uang_timbang_gudang_x); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>$timbang_pabrikx /KG</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($uang_timbang_pabrik_x); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>$keterangan</td>
@@ -405,7 +403,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <br>
                     <br>
                     <div class="row" style="margin-right: 20px; margin-left: 20px;" align='center'>
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -421,24 +419,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total Uang Timbang Gudang</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_timbang_gudang); ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -455,7 +437,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
