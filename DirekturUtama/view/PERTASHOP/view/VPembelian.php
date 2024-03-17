@@ -344,10 +344,10 @@ else{
       $urut = $urut + 1;
 
 
-      if($losis < 0){
+    
         if($kode_perta == 'nusabakti'){
           if($nama_barang == 'Pertamax'){
-            $losis_nb_max = $losis_nb_max + $losis; 
+            $losis_nb_max = $losis_nb_max + $losis;
             $qty_nb_max = $qty_nb_max + $qty;
             $uang_nb_max = $uang_nb_max + $jumlah;
           }
@@ -376,40 +376,7 @@ else{
             $uang_sj = $uang_sj + $jumlah;
           
         }
-      }
-      else{
-        if($kode_perta == 'nusabakti'){
-          if($nama_barang == 'Pertamax'){
-    
-            $qty_nb_max = $qty_nb_max + $qty;
-            $uang_nb_max = $uang_nb_max + $jumlah;
-          }
-          else{
-         
-            $qty_nb_dex = $qty_nb_dex + $qty;
-            $uang_nb_dex = $uang_nb_dex + $jumlah;
-          }
-          
-        }
-        else if($kode_perta == 'bedilan'){
-         
-          $qty_be = $qty_be + $qty;
-            $uang_be = $uang_be + $jumlah;
-         
-        }
-        else if($kode_perta == 'muaradua'){
-         
-          $qty_md = $qty_md + $qty;
-            $uang_md = $uang_md + $jumlah;
-         
-        }
-        else if($kode_perta == 'sumberjaya'){
-         
-          $qty_sj = $qty_sj + $qty;
-            $uang_sj = $uang_sj + $jumlah;
-          
-        }
-      }
+      
 
      
 
