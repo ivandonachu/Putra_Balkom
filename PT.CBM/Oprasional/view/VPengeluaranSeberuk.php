@@ -307,6 +307,7 @@ Menu Kepala Oprasional
                         <option>Order Dana Cek</option>
                         <option>Pindah Saldo</option>
                         <option>Penarikan Saldo</option>
+                        <option>Biaya Administrasi</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -465,6 +466,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Order Dana Cek') ? "selected": "" ?> >Order Dana Cek</option>
                         <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected": "" ?> >Pindah Saldo</option>
                         <option <?php echo ($dataSelect == 'Penarikan Saldo') ? "selected": "" ?> >Penarikan Saldo</option>
+                        <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
                     </select>
             </div>
             <div class="col-md-6">
