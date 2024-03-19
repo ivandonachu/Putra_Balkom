@@ -304,22 +304,9 @@ Menu Kepala Oprasional
                     <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
                         <option></option>
                         <option>Saldo Sebelumnya</option>
-                        <option>Saldo Cek Masuk</option>
+                        <option>Saldo Masuk</option>
+                        <option>Order Dana Cek</option>
                         <option>Pindah Saldo</option>
-                        <option>Penarikan Cash</option>
-                        <option>Transport / Perjalanan Dinas</option>
-                        <option>Biaya Penjualan & Pemasaran</option>
-                        <option>Biaya Usaha Lainnya</option>
-                        <option>Biaya Perbaikan Kendaraan</option>
-                        <option>Alat Tulis Kantor</option>
-                        <option>Listrik & Telepon</option>
-                        <option>Biaya Kantor</option>
-                        <option>Biaya Penyusutan</option>
-                        <option>Biaya Konsumsi</option>
-                        <option>Biaya Administrasi</option>
-                        <option>Biaya Pupuk</option>
-                        <option>Biaya Buruh</option>
-                        <option>Biaya Insentif</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -399,7 +386,7 @@ Menu Kepala Oprasional
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
         $total = $total + $jumlah;
       }
       else{
@@ -414,7 +401,7 @@ Menu Kepala Oprasional
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -467,24 +454,9 @@ Menu Kepala Oprasional
                     <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
                         <?php $dataSelect = $data['nama_akun']; ?>
                         <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
-                        <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
+                        <option <?php echo ($dataSelect == 'Saldo Masuk') ? "selected": "" ?> >Saldo Masuk</option>
+                        <option <?php echo ($dataSelect == 'Order Dana Cek') ? "selected": "" ?> >Order Dana Cek</option>
                         <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected": "" ?> >Pindah Saldo</option>
-                        <option <?php echo ($dataSelect == 'Penarikan Cash') ? "selected": "" ?> >Penarikan Cash</option>
-                        <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
-                        <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
-                        <option <?php echo ($dataSelect == 'Biaya Usaha Lainnya') ? "selected": "" ?> >Biaya Usaha Lainnya</option>
-                        <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
-                        <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
-                        <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
-                        <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
-                        <option <?php echo ($dataSelect == 'Biaya Penyusutan') ? "selected": "" ?> >Biaya Penyusutan</option>
-                        <option <?php echo ($dataSelect == 'Biaya Penyusutan') ? "selected": "" ?> >Biaya Penyusutan</option>
-                        <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
-                        <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
-                        <option <?php echo ($dataSelect == 'Biaya Pupuk') ? "selected": "" ?> >Biaya Pupuk</option>
-                        <option <?php echo ($dataSelect == 'Biaya Buruh') ? "selected": "" ?> >Biaya Buruh</option>
-                        <option <?php echo ($dataSelect == 'Biaya Insentif') ? "selected": "" ?> >Biaya Insentif</option>
-\
                     </select>
             </div>
             <div class="col-md-6">
@@ -587,7 +559,7 @@ Menu Kepala Oprasional
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['jumlah'];
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
         $sisa_saldo  = $sisa_saldo + $jumlah;
         $total_saldo = $total_saldo + $jumlah;
       }
