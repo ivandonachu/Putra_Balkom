@@ -287,6 +287,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Saldo Masuk</option>
                               <option>Order Dana Cek</option>
                               <option>Pindah Saldo</option>
+                              <option>Kembalikan Saldo</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -367,7 +368,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $file_bukti = $data['file_bukti'];
                     $urut  = $urut + 1;
 
-                    if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+                    if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
                       $total = $total + $jumlah;
                     } else {
                       $total = $total - $jumlah;
@@ -381,7 +382,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-                    if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+                    if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
                       echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
                                                                                           echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
                                                                                                                                       } else {
@@ -436,6 +437,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                       <option <?php echo ($dataSelect == 'Saldo Masuk') ? "selected" : "" ?>>Saldo Masuk</option>
                                       <option <?php echo ($dataSelect == 'Order Dana Cek') ? "selected" : "" ?>>Order Dana Cek</option>
                                       <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected" : "" ?>>Pindah Saldo</option>
+                                      <option <?php echo ($dataSelect == 'Kembalikan Saldo') ? "selected" : "" ?>>Kembalikan Saldo</option>
                                     </select>
                                   </div>
                                   <div class="col-md-6">
@@ -454,7 +456,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     </div>
                                   </div>
                                 </div>
-                                
+
 
                                 <br>
 
@@ -539,7 +541,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $nama_akun = $data['nama_akun'];
                   $jumlah = $data['jumlah'];
 
-                  if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+                  if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
                     $sisa_saldo  = $sisa_saldo + $jumlah;
                     $total_saldo = $total_saldo + $jumlah;
                   } else {
