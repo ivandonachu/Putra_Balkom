@@ -302,7 +302,6 @@ Menu Kepala Oprasional
             <div class="col-md-6">
                  <label>Akun</label>
                     <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
-                        <option></option>
                         <option>Saldo Sebelumnya</option>
                         <option>Saldo Masuk</option>
                         <option>Order Dana Cek</option>
