@@ -288,6 +288,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Order Dana Cek</option>
                               <option>Pindah Saldo</option>
                               <option>Kembalikan Saldo</option>
+                              <option>Penarikan Saldo</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -370,6 +371,9 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                     if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
                       $total = $total + $jumlah;
+                    }
+                    else if($nama_akun == 'Penarikan Saldo'){
+        
                     } else {
                       $total = $total - $jumlah;
                     }
@@ -384,12 +388,15 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$keterangan</td>";
                     if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
                       echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                                          echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
-                                                                                                                                      } else {
-                                                                                                                                        echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
-                                                                                                                                        echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                                                                                      }
-                                                                                                                                      echo " <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
+                      echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
+                    }else if($nama_akun == 'Penarikan Saldo'){
+                      echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                      echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
+                    } else {
+                      echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
+                      echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                    }
+                    echo " <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
                       <?php echo "<td style='font-size: 12px'>"; ?>
@@ -438,6 +445,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                       <option <?php echo ($dataSelect == 'Order Dana Cek') ? "selected" : "" ?>>Order Dana Cek</option>
                                       <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected" : "" ?>>Pindah Saldo</option>
                                       <option <?php echo ($dataSelect == 'Kembalikan Saldo') ? "selected" : "" ?>>Kembalikan Saldo</option>
+                                      <option <?php echo ($dataSelect == 'Penarikan Saldo') ? "selected": "" ?> >Penarikan Saldo</option>
                                     </select>
                                   </div>
                                   <div class="col-md-6">
@@ -544,6 +552,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                   if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
                     $sisa_saldo  = $sisa_saldo + $jumlah;
                     $total_saldo = $total_saldo + $jumlah;
+                  }
+                  else if($nama_akun == 'Penarikan Saldo'){
+        
                   } else {
                     $sisa_saldo  = $sisa_saldo - $jumlah;
                     $total_pengeluaran = $total_pengeluaran + $jumlah;

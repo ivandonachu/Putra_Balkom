@@ -409,7 +409,8 @@ Menu Kepala Oprasional
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
       else if($nama_akun == 'Penarikan Saldo'){
-        
+        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+       echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
       else{
         echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
