@@ -22,6 +22,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -86,8 +87,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+       <!-- Sidebar -->
+       <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdminSeberuk">
@@ -144,7 +145,7 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VKasBesar">Kas Besar</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListGaji">List Gaji</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
+<a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
         </div>
     </div>
 </li>
@@ -270,61 +271,6 @@ else{
     <div class="col-md-8">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-   <div class="col-md-12">
-
-    <!-- Button Input Data Bayar -->
-    <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Kegiatan </button> <br> <br>
-    </div>
-    <!-- Form Modal  -->
-    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-       <div class="modal-content"> 
-        <div class="modal-header">
-          <h5 class="modal-title"> Form Kegiatan </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> 
-
-        <!-- Form Input Data -->
-        <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_kegiatan_buruh?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-          <div class="row">
-            <div class="col-md-6">
-              <label>Tanggal</label>
-               <input class="form-control form-control-sm" type="date" name="tanggal" required="">
-          </div> 
-          <div class="col-md-6">
-                <label>Jumlah HK</label>
-                <input class="form-control form-control-sm" type="number" name="jumlah_hk" >           
-            </div>
-        </div>
-
-        <br>
-
-      <div class="row">
-        <div class="col-md-6">
-            <label>Kegiatan</label>
-            <textarea class="form-control form-control-sm"  name="kegiatan" style="width: 300px;"></textarea>
-        </div>   
-        <div class="col-md-6">
-            <label>Hasil</label>
-            <textarea class="form-control form-control-sm"  name="hasil" style="width: 300px;"></textarea>
-        </div>           
-     </div>
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> CATAT</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 
 
@@ -339,7 +285,6 @@ else{
       <th>Kegiatan</th>
       <th>Jumlah HK</th>
       <th>Hasil</th>
-      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
@@ -361,98 +306,7 @@ else{
       <td style='font-size: 14px'>$kegiatan</td>
       <td style='font-size: 14px'>$jumlah_hk</td>
       <td style='font-size: 14px'>$hasil</td>
-      "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
-
-<!-- Form EDIT DATA -->
-
-<div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_laporan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-    <div class="modal-content"> 
-      <div class="modal-header">Form Edit Kegiatan </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true"> &times; </span>
-        </button>
-      </div>
-
-
-      <!-- Form Edit Data -->
-      <div class="modal-body">
-        <form action="../proses/edit_kegiatan_buruh" enctype="multipart/form-data" method="POST">
-        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-        <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-        <div class="row">
-            <div class="col-md-6">
-              <label>Tanggal</label>
-               <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>" >
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Hk</label>
-                <input class="form-control form-control-sm" type="number"  value="<?php echo $jumlah_hk;?>" name="jumlah_hk">          
-            </div>
-        </div>
-        
-        <br>
-
-        <div class="row">
-             <div class="col-md-6">
-                 <label>Kegiatan</label>
-                 <textarea class="form-control form-control-sm"  name="kegiatan" style="width: 300px;"><?php echo $kegiatan;?></textarea>
-            </div>
-            <div class="col-md-6">
-                 <label>Hasil</label>
-                 <textarea class="form-control form-control-sm"  name="hasil" style="width: 300px;"><?php echo $hasil;?></textarea>
-            </div>           
-        </div>
-
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary"> Ubah </button>
-            <button type="reset" class="btn btn-danger"> RESET</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Pengeluaran'></button>
-
-  
-       <div class="modal fade bd-example-modal-lg" id="PopUpHapus<?php echo $data['no_laporan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus Kegiatan </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-    
-
-          <div class="modal-body">
-            <form action="../proses/hapus_kegiatan_buruh" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
-              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
-              </div>
-
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <?php echo  " </td> </tr>";
+      </tr>";
   }
   ?>
 

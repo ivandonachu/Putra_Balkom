@@ -168,6 +168,10 @@
 /Kebun/AdminSeberuk/file_admin_seberuk
 /Kebun/AdminSeberuk/proses/koneksi.php
 /Kebun/AdminSeberuk/view/koneksi.php
+/Kebun/AdminSeberukUtama/file_admin_seberuk
+/Kebun/AdminSeberukUtama/proses/koneksi.php
+/Kebun/AdminSeberukUtama/view/koneksi.php
+/Kebun/ManagerSeberuk/view/koneksi.php
 
 /PT.STRE/Administrasi/file_administrasi
 /PT.STRE/Administrasi/proses/koneksi.php

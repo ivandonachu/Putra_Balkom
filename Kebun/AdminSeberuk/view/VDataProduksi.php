@@ -22,6 +22,8 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+
+
 if (isset($_GET['tanggal1'])) {
  $tanggal_awal = $_GET['tanggal1'];
  $tanggal_akhir = $_GET['tanggal2'];
@@ -89,7 +91,7 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
+       <!-- Sidebar -->
      <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
@@ -147,7 +149,7 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VKasBesar">Kas Besar</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListGaji">List Gaji</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
+<a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
         </div>
     </div>
 </li>
@@ -185,6 +187,7 @@ else{
         </div>
     </div>
 </li>
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -273,341 +276,6 @@ else{
     <div class="col-md-8">
      <?php echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-   <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#inputxa"> <i class="fas fa-trash-alt mr-2"></i>Hapus Seluh Data</button>
-      </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="inputxa" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title">Persetujuan Hapus Absen</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> 
-
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/hapus_seluruh_data_produksi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-            <br>
-
-            <div class="row">
-              <div class="col-md-6">
-                 <label>Tanggal</label>
-                 <input class="form-control form-control-sm" type="date" id="tanggal" name="tanggal" required="">
-              </div>
-              <div class="col-md-6">
-             
-              </div>
-           </div>
-
-           <br>
-           
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-danger">Hapus</button>
-
-      </div>
-    </form>
-  </div>
-</div>
-</div>
-</div>
-</div>
-
-   <div class="col-md-2">
-
-    <!-- Button Input Data Bayar -->
-    <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Produksi Karet</button> <br> <br>
-    </div>
-    <!-- Form Modal  -->
-    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-       <div class="modal-content"> 
-        <div class="modal-header">
-          <h5 class="modal-title"> Form Data Produksi Karet </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> 
-
-        <!-- Form Input Data -->
-        <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_produksi_karet?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-
-        <div class="row">
-            <div class="col-md-6">
-                <label>Tanggal</label>
-                <input class="form-control form-control-sm" type="date" name="tanggal" required="">
-            </div> 
-        </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama Buruh 1</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_1" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 1</label>
-                <input class="form-control form-control-sm" type="number" name="keping_1"  >           
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama Buruh 2</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_2" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 2</label>
-                <input class="form-control form-control-sm" type="number" name="keping_2"  >           
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama Buruh 3</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_3" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 3</label>
-                <input class="form-control form-control-sm" type="number" name="keping_3"  >           
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama Buruh 4</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_4" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 4</label>
-                <input class="form-control form-control-sm" type="number" name="keping_4"  >           
-            </div>
-        </div>
-        <br>
-        <div class="row">
-        <div class="col-md-6">
-                <label>Nama Buruh 5</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_5" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 5</label>
-                <input class="form-control form-control-sm" type="number" name="keping_5"  >           
-            </div>  
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama Buruh 6</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_6" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 6</label>
-                <input class="form-control form-control-sm" type="number" name="keping_6"  >           
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama Buruh 7</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_7" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 7</label>
-                <input class="form-control form-control-sm" type="number" name="keping_7"  >           
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama Buruh 8</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_8" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 8</label>
-                <input class="form-control form-control-sm" type="number" name="keping_8"  >           
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama Buruh 9</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_9" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 9</label>
-                <input class="form-control form-control-sm" type="number" name="keping_9"  >           
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama Buruh 10</label>
-                <select id="tokens" class="selectpicker form-control" name="nama_buruh_10" multiple data-live-search="true">
-                <option></option>
-                <?php
-                include 'koneksi.php';
-                $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-
-                while ($data2 = mysqli_fetch_array($result2)){
-                $data_pangakalan = $data2['nama_buruh'];
-
-                
-                    echo "<option> $data_pangakalan </option> ";
-                
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh 10</label>
-                <input class="form-control form-control-sm" type="number" name="keping_10"  >           
-            </div>
-        </div>
-
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary"> CATAT</button>
-    <button type="reset" class="btn btn-danger"> RESET</button>
-  </div>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 
 
@@ -621,7 +289,6 @@ else{
       <th>Tanggal</th>
       <th>Nama Buruh</th>
       <th>Jumlah Keping</th>
-      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
@@ -645,108 +312,7 @@ else{
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$nama_buruh</td>
       <td style='font-size: 14px'>$keping</td>
-     "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
-
-<!-- Form EDIT DATA -->
-
-<div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_laporan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg" role ="document">
-    <div class="modal-content"> 
-      <div class="modal-header">Form Edit Data Produksi Karet </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true"> &times; </span>
-        </button>
-      </div>
-
-
-      <!-- Form Edit Data -->
-      <div class="modal-body">
-        <form action="../proses/edit_produksi_karet" enctype="multipart/form-data" method="POST">
-        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-        <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-        <div class="row">
-            <div class="col-md-6">
-              <label>Tanggal</label>
-               <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>" >
-          </div>
-        </div>
-      <br>
-        <div class="row">
-            <div class="col-md-6">
-            <div>
-                <label>Nama Buruh</label>
-            </div>
-                  <select id="tokens" class="selectpicker form-control" name="nama_buruh" multiple data-live-search="true">
-                    <option></option>
-                    <?php
-                    include 'koneksi.php';
-                    $result2 = mysqli_query($koneksi, "SELECT * FROM list_buruh_seberuk");   
-                    $dataSelect = $data['nama_buruh'];
-                    while ($data2 = mysqli_fetch_array($result2)){
-                    $data_pangakalan = $data2['nama_buruh'];
-
-                    
-                        echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>" ;
-                    
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Jumlah Keping Buruh </label>
-                <input class="form-control form-control-sm" type="number" name="keping"  value="<?php echo $keping;?>">           
-            </div>  
-        </div>
-
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary"> Ubah </button>
-            <button type="reset" class="btn btn-danger"> RESET</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Pengeluaran'></button>
-
-  
-       <div class="modal fade bd-example-modal-lg" id="PopUpHapus<?php echo $data['no_laporan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus Data Produksi Karet </b> </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true"> &times; </span>
-            </button>
-          </div>
-
-    
-
-          <div class="modal-body">
-            <form action="../proses/hapus_produksi_karet" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
-              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-
-              <div class="form-group">
-                <h6> Yakin Ingin Hapus Data? </h6>             
-              </div>
-
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Hapus </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <?php echo  " </td> </tr>";
+     </tr>";
   }
   ?>
 
