@@ -202,8 +202,10 @@ else{
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VKasBesar">Kas Besar</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VListGaji">List Gaji</a>
-<a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiPenyadap">Rekap Gaji Penyadap</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiBuhar">Rekap Gaji Buruh Harian</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranBuahSeberuk">Pengeluaran Buah</a>
         </div>
     </div>
 </li>
@@ -237,6 +239,7 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VListBuruh">List Buruh</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListBuruhHarian">List Buruh Harian</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListKendaraan">List Kendaraan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListAsetSeberuk">List Aset Seberuk</a>
 
         </div>
     </div>
