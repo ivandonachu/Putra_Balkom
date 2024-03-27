@@ -82,7 +82,264 @@ function formatuang($angka)
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
+ //Untung angkutan / pranko
+ $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty FROM pembelian_sl WHERE tanggal  = '$tanggal_awal' AND tipe_semen = 'Pranko'  ");
+ $total_angkutan_edy = 0;
+ $total_angkutan_rama = 0;
+ $total_map = 0;
+ $total_eki_bangunan = 0;
+ while ($data1 = mysqli_fetch_array($table1)) {
 
+
+     $kota = $data1['kota'];
+     $qty = $data1['qty'];
+
+     //kak nyoman
+     if ($kota == 'Kab Ogn Kmrg Ulu Tim' || $kota == 'KAB OKU TIMUR') {
+         $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+         $data1p = mysqli_fetch_array($table1p);
+         $tarif = $data1p['tarif_pranko'];
+         $total_angkut = $qty * $tarif;
+         $no_polisi = trim($data1["no_polisi"]);
+         $no_polisi_ts = str_replace(" ", "", $no_polisi);
+         $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+         $data2p = mysqli_fetch_array($table2p);
+         if (isset($data2p['status_kendaraan'])) {
+             $pemilik = $data2p['status_kendaraan'];
+         }
+
+         if ($pemilik == 'Bapak Nyoman Edi') {
+             $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+         } else if ($pemilik == 'Bapak Rama') {
+             $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+         } else if ($pemilik == 'MAP') {
+             $total_map = $total_map + $total_angkut;
+         } else if ($pemilik == 'Eki Bangunan') {
+             $total_eki_bangunan = $total_eki_bangunan + $total_angkut;
+         }
+
+
+
+     } else if ($kota == 'Kab Mesuji' || $kota == 'KAB MESUJI') {
+         $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+         $data1p = mysqli_fetch_array($table1p);
+         $tarif = $data1p['tarif_pranko'];
+         $total_angkut = $qty * $tarif;
+         $no_polisi = trim($data1["no_polisi"]);
+         $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
+         $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+         $data2p = mysqli_fetch_array($table2p);
+         $pemilik = 0;
+         if (isset($data2p['status_kendaraan'])) {
+             $pemilik = $data2p['status_kendaraan'];
+         }
+
+         /*if($status_kendaraan == 'Bapak Nyoman Edi' ){
+
+             if ($pemilik == 'Bapak Nyoman Edi') {
+                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+             } else if ($pemilik == 'Bapak Rama') {
+                 
+             } else if ($pemilik == 'MAP') {
+                
+             } else if ($pemilik == 'Eki Bangunan') {
+                 
+             }
+
+         }
+
+         else if($status_kendaraan == 'Bapak Rama' ){
+
+             if ($pemilik == 'Bapak Nyoman Edi') {
+             
+             } else if ($pemilik == 'Bapak Rama') {
+                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+             } else if ($pemilik == 'MAP') {
+                
+             } else if ($pemilik == 'Eki Bangunan') {
+                 
+             }
+
+         }
+
+         else if($status_kendaraan == 'MAP' ){
+
+             if ($pemilik == 'Bapak Nyoman Edi') {
+             
+             } else if ($pemilik == 'Bapak Rama') {
+                 
+             } else if ($pemilik == 'MAP') {
+                 $total_map = $total_map + $total_angkut;
+             } else if ($pemilik == 'Eki Bangunan') {
+                 
+             }
+
+         }
+
+         else if($status_kendaraan == 'Eki Bangunan' ){
+
+             if ($pemilik == 'Bapak Nyoman Edi') {
+             
+             } else if ($pemilik == 'Bapak Rama') {
+                 
+             } else if ($pemilik == 'MAP') {
+                 
+             } else if ($pemilik == 'Eki Bangunan') {
+                 $total_eki_bangunan = $total_eki_bangunan + $total_angkut;
+             }
+
+         }*/
+
+         if ($pemilik == 'Bapak Nyoman Edi') {
+             $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+         } else if ($pemilik == 'Bapak Rama') {
+             $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+         } else if ($pemilik == 'MAP') {
+             $total_map = $total_map + $total_angkut;
+         } else if ($pemilik == 'Eki Bangunan') {
+             $total_eki_bangunan = $total_eki_bangunan + $total_angkut;
+         }
+
+     }
+     
+   
+
+     else if ($kota == 'Kab Tlg Bwg' || $kota == 'KAB. TULANG BAWANG') {
+         $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+         $data1p = mysqli_fetch_array($table1p);
+         $tarif = $data1p['tarif_pranko'];
+         $total_angkut = $qty * $tarif;
+         $no_polisi = trim($data1["no_polisi"]);
+         $no_polisi_ts = str_replace(" ", "", $no_polisi);
+         $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+         $data2p = mysqli_fetch_array($table2p);
+         if (isset($data2p['status_kendaraan'])) {
+             $pemilik = $data2p['status_kendaraan'];
+         }
+
+         if ($pemilik == 'Bapak Nyoman Edi') {
+             $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+         } else if ($pemilik == 'Bapak Rama') {
+             $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+         } else if ($pemilik == 'MAP') {
+             $total_map = $total_map + $total_angkut;
+         } else if ($pemilik == 'Eki Bangunan') {
+             $total_eki_bangunan = $total_eki_bangunan + $total_angkut;
+         }
+
+     } else if ($kota == 'KAB WAY KANAN') {
+         $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+         $data1p = mysqli_fetch_array($table1p);
+         $tarif = $data1p['tarif_pranko'];
+         $total_angkut = $qty * $tarif;
+         $no_polisi = trim($data1["no_polisi"]);
+         $no_polisi_ts = str_replace(" ", "", $no_polisi);
+         $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+         $data2p = mysqli_fetch_array($table2p);
+         if (isset($data2p['status_kendaraan'])) {
+             $pemilik = $data2p['status_kendaraan'];
+         }
+
+         if ($pemilik == 'Bapak Nyoman Edi') {
+             $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+         } else if ($pemilik == 'Bapak Rama') {
+             $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+         } else if ($pemilik == 'MAP') {
+             $total_map = $total_map + $total_angkut;
+         } else if ($pemilik == 'Eki Bangunan') {
+             $total_eki_bangunan = $total_eki_bangunan + $total_angkut;
+         }
+
+     } else if ($kota == 'Kab OKU Selatan' || $kota == 'KAB OKU SELATAN' || $kota == 'Kab Ogn Kmrg Ulu Sel') {
+         $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+         $data1p = mysqli_fetch_array($table1p);
+         $tarif = $data1p['tarif_pranko'];
+         $total_angkut = $qty * $tarif;
+         $no_polisi = trim($data1["no_polisi"]);
+         $no_polisi_ts = str_replace(" ", "", $no_polisi);
+         $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+         $data2p = mysqli_fetch_array($table2p);
+         if (isset($data2p['status_kendaraan'])) {
+             $pemilik = $data2p['status_kendaraan'];
+         }
+
+         if ($pemilik == 'Bapak Nyoman Edi') {
+             $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
+         } else if ($pemilik == 'Bapak Rama') {
+             $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+         } else if ($pemilik == 'MAP') {
+             $total_map = $total_map + $total_angkut;
+         } else if ($pemilik == 'Eki Bangunan') {
+             $total_eki_bangunan = $total_eki_bangunan + $total_angkut;
+         }
+     }
+ }
+
+
+ //pengiriman ety
+ $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE 
+                                     tanggal_antar  = '$tanggal_awal'");
+ $data2 = mysqli_fetch_array($table2);
+ $total_uj = $data2['total_uj'];
+ $total_gaji = $data2['total_gaji'];
+ $total_om = $data2['total_om'];
+ $total_bs = $data2['total_bs'];
+
+ //pengiriman kadek
+ $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE 
+  tanggal_antar  = '$tanggal_awal'");
+ $data2sl = mysqli_fetch_array($table2sl);
+ $total_uj_sl = $data2sl['total_uj'];
+ $total_gaji_sl = $data2sl['total_gaji'];
+ $total_om_sl = $data2sl['total_om'];
+ $total_bs_sl = $data2sl['total_bs'];
+
+
+
+ //pengeluran perbaikan yani
+ $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_sparepart) AS total_pembelian_sparepart FROM riwayat_pengeluaran_workshop_s
+                                      WHERE tanggal  = '$tanggal_awal'");
+ $data7 = mysqli_fetch_array($table7);
+ $jml_pembelian_sparepart = $data7['total_pembelian_sparepart'];
+ if (!isset($data7['total_pembelian_sparepart'])) {
+     $jml_pembelian_sparepart = 0;
+ }
+
+ //pengeluran perbaikan etty
+ $table7s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan FROM keuangan_s  WHERE tanggal  = '$tanggal_awal' AND nama_akun = 'Perbaikan Kendaraan' ");
+ $data7s = mysqli_fetch_array($table7s);
+ $jml_perbaikan_etty = $data7s['jumlah_perbaikan'];
+ if (!isset($data7s['jumlah_perbaikan'])) {
+     $jml_perbaikan_etty = 0;
+ }
+
+ //pengeluran perbaikan 2
+ $table7sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan_2 FROM keuangan_sl  WHERE tanggal  = '$tanggal_awal' AND nama_akun = 'Perbaikan Kendaraan' ");
+ $data7sl = mysqli_fetch_array($table7sl);
+ $jml_perbaikan_2 = $data7sl['jumlah_perbaikan_2'];
+ if (!isset($data7sl['jumlah_perbaikan_2'])) {
+     $jml_perbaikan_2 = 0;
+ }
+
+
+ $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bengkel) AS jumlah_perbaikan FROM riwayat_pengeluaran_workshop_s
+                                      WHERE tanggal  = '$tanggal_awal'");
+ $data8 = mysqli_fetch_array($table8);
+ $jml_perbaikan = $data8['jumlah_perbaikan'];
+ if (!isset($data8['jumlah_perbaikan'])) {
+     $jml_perbaikan = 0;
+ }
+
+
+
+ $total_pendapatan = $total_angkutan_edy + $total_angkutan_rama + $total_map + $total_eki_bangunan;
+ $pembelian_total = 0;
+
+
+ $laba_kotor = $total_pendapatan - $pembelian_total;
+ $total_biaya_usaha_final =  $jml_pembelian_sparepart + $jml_perbaikan_etty + $jml_perbaikan_2 + $jml_perbaikan;
+ $laba_bersih_sebelum_pajak =  $laba_kotor;
 
    
 } else {
@@ -217,6 +474,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
             if (isset($data2p['status_kendaraan'])) {
@@ -238,6 +497,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
             if (isset($data2p['status_kendaraan'])) {
@@ -259,6 +520,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             $data1p = mysqli_fetch_array($table1p);
             $tarif = $data1p['tarif_pranko'];
             $total_angkut = $qty * $tarif;
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
             if (isset($data2p['status_kendaraan'])) {

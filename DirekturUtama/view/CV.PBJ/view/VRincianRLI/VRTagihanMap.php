@@ -125,7 +125,6 @@ else{
             $total_angkut = $qty * $tarif;
             $no_polisi = trim($data1["no_polisi"]);
             $no_polisi_ts = str_replace(" ", "", $no_polisi);
-
             $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
             $data2p = mysqli_fetch_array($table2p);
             $pemilik = 0;
@@ -221,8 +220,8 @@ else{
             }
 
             if ($pemilik == 'Bapak Nyoman Edi') {
-                $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
-                $total_angkutan_edy_tlg_bwg = $total_angkutan_edy_tlg_bwg + $total_angkut;
+                $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
+                $total_angkutan_rama_tlg_bwg = $total_angkutan_rama_tlg_bwg + $total_angkut;
             } else if ($pemilik == 'Bapak Rama') {
                 $total_angkutan_rama = $total_angkutan_rama + $total_angkut;
                 $total_angkutan_rama_tlg_bwg = $total_angkutan_rama_tlg_bwg + $total_angkut;
@@ -246,7 +245,6 @@ else{
             if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
             }
-
             if ($pemilik == 'Bapak Nyoman Edi') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
                 $total_angkutan_edy_way_kanan = $total_angkutan_edy_way_kanan + $total_angkut;
@@ -565,7 +563,7 @@ Logout
 
 <br>
 
-<h5 align='center'>Rekap Pranko RLI Bapak Nyoman Edy</h5>
+<h5 align='center'>Rekap Pranko RLI MAP</h5>
 <!-- Tabel -->    
 <div align='center' style="overflow-x: auto">
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -638,7 +636,7 @@ $file_bukti = $data['file_bukti'];
  
   $no_urut = $no_urut + 1;
 
-  if($pemilik == "Bapak Nyoman Edi"){
+  if($pemilik == "MAP"){
 
     echo "<tr>
     <td style='font-size: 14px'>$no_urut</td>
@@ -690,7 +688,7 @@ $file_bukti = $data['file_bukti'];
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Tagihan RLI Global</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_edy) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_map) ?></div>
           </div>
           <div class="col-auto">
              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -706,7 +704,7 @@ $file_bukti = $data['file_bukti'];
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Tagihan OKU Timur</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_edy_okut) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_map_okut) ?></div>
           </div>
           <div class="col-auto">
              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -722,7 +720,7 @@ $file_bukti = $data['file_bukti'];
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Tagihan OKU Selatan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_edy_okus) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_map_okus) ?></div>
           </div>
           <div class="col-auto">
              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -745,7 +743,7 @@ $file_bukti = $data['file_bukti'];
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Tagihan Tulang Bawang</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_edy_tlg_bwg) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_map_tlg_bwg) ?></div>
           </div>
           <div class="col-auto">
              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -761,7 +759,7 @@ $file_bukti = $data['file_bukti'];
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Tagihan Way Kanan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_edy_way_kanan) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_map_way_kanan) ?></div>
           </div>
           <div class="col-auto">
              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -777,7 +775,7 @@ $file_bukti = $data['file_bukti'];
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Tagihan OKU Mesuji</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_edy_mesuji) ?></div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_angkutan_map_mesuji) ?></div>
           </div>
           <div class="col-auto">
              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
