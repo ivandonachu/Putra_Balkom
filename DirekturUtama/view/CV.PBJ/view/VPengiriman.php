@@ -165,34 +165,26 @@ if ($tanggal_awal == $tanggal_akhir) {
                 </div>
             </li>
 
-            <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"
-                          <li class='nav-item'>
-                          <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
-                          <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VLR2L'> Laba Rugi </a>
-                          </li>";
-                        } ?>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"
-                          <li class='nav-item'>
-                          <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
-                          <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VLR2LBaru'> Laba Rugi Baru </a>
-                          </li>";
-                        } ?>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"
-                          <li class='nav-item'>
-                          <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
-                          <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VRekapanHarga'> Rekapan Harga</a>
-                          </li>";
-                        } ?>
-                        <?php if($nama == 'Nyoman Edy Susanto'){
-                          echo"
-                          <li class='nav-item'>
-                          <i class='fas fa-chart-line' style='font-size: 15px; color:white; margin-left: 15px; margin-top: 15px; margin-bottom: 15px;' ></i> 
-                          <a style='font-size: 15px; color:white; margin-left: 4px; text-decoration: none; ' href='VRekapSparepart'>Rekap Sparepart</a>
-                          </li>";
-                        } ?>
+            <?php if ($nama == 'Nyoman Edy Susanto') {
+                echo "
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class='nav-item'>
+                <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseTwo4' 15 aria-expanded='true' aria-controls='collapseTwo4'>
+                    <i class='fa fa-clipboard-list' style='font-size: 15px; color:white;'></i>
+                    <span style='font-size: 15px; color:white;'>Report Laba Rugi</span>
+                </a>
+                <div id='collapseTwo4' class='collapse' aria-labelledby='headingTwo' data-parent='#accordionSidebar'>
+                    <div class='bg-white py-2 collapse-inner rounded'>
+                        <h6 class='collapse-header' style='font-size: 15px;'>Report</h6>
+                        <a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>
+                        <a class='collapse-item' style='font-size: 15px;' href='VLR2LBaru'>Laba Rugi Baru</a>
+                        <a class='collapse-item' style='font-size: 15px;' href='VLRKendaraan'>Laba Rugi Kendaraan</a>
+                        <a class='collapse-item' style='font-size: 15px;' href='VRekapanHarga'>Rekapan Harga</a>
+                        <a class='collapse-item' style='font-size: 15px;' href='VRekapSparepart'>Rekap Sparepart</a>
+                    </div>
+                </div>
+            </li>";
+            } ?>
            
 
 
