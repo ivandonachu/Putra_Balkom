@@ -25,6 +25,7 @@ $tanggal = $_POST['tanggal'];
 $no_polisi = $_POST['no_polisi'];
 $driver = $_POST['driver'];
 $no_do = $_POST['no_do'];
+$no_so = $_POST['no_so'];
 $tipe_semen = $_POST['tipe_semen'];
 $tujuan = $_POST['tujuan'];
 $qty = $_POST['qty'];
@@ -75,7 +76,7 @@ $data_kota = mysqli_fetch_array($resultx);
 $tarif_pranko = $data_kota['tarif_pranko'];
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE pembelian_sl SET tanggal = '$tanggal', no_do = '$no_do', tipe_semen = '$tipe_semen', tujuan = '$tujuan', kota = '$nama_kota', tarif_pranko = '$tarif_pranko' , material = '$material', 
+			$query3 = mysqli_query($koneksi,"UPDATE pembelian_sl SET tanggal = '$tanggal', no_do = '$no_do', no_so = '$no_so', tipe_semen = '$tipe_semen', tujuan = '$tujuan', kota = '$nama_kota', tarif_pranko = '$tarif_pranko' , material = '$material', 
 			qty = '$qty', harga = '$harga', jumlah = '$jumlah', driver = '$driver', no_polisi = '$no_polisi', tipe_bayar = '$tipe_bayar', tempo = '$tempo', keterangan = '$keterangan' 
             WHERE no_pembelian = '$no_pembelian'");
 
@@ -83,7 +84,7 @@ $tarif_pranko = $data_kota['tarif_pranko'];
 	
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE pembelian_sl SET tanggal = '$tanggal', no_do = '$no_do', tipe_semen = '$tipe_semen', tujuan = '$tujuan', kota = '$nama_kota', tarif_pranko = '$tarif_pranko', material = '$material', 
+			$query3 = mysqli_query($koneksi,"UPDATE pembelian_sl SET tanggal = '$tanggal', no_do = '$no_do', no_so = '$no_so', tipe_semen = '$tipe_semen', tujuan = '$tujuan', kota = '$nama_kota', tarif_pranko = '$tarif_pranko', material = '$material', 
 			qty = '$qty', harga = '$harga', jumlah = '$jumlah', driver = '$driver', no_polisi = '$no_polisi', tipe_bayar = '$tipe_bayar', tempo = '$tempo', keterangan = '$keterangan'
             , file_bukti = '$file'  WHERE no_pembelian = '$no_pembelian'");
 
