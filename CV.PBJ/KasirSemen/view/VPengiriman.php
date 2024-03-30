@@ -35,7 +35,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal'");
   
-  $table2 = mysqli_query($koneksi, "SELECT no_poisi,  SUM(uj) AS total_uj, SUM(ug) AS total_ug, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal' GROUP BY no_polisi");
+  $table2 = mysqli_query($koneksi, "SELECT no_polisi,  SUM(uj) AS total_uj, SUM(ug) AS total_ug, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal' GROUP BY no_polisi");
 } else {
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_s WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_antar ASC");
@@ -240,7 +240,7 @@ if ($tanggal_awal == $tanggal_akhir) {
               <div class="col-md-2">
                 <!-- Button Input Data Bayar -->
                 <div align="right">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pengiriman</button> <br> <br>
+                
                 </div>
                 <!-- Form Modal  -->
                 <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -319,6 +319,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                           <div class="col-md-6">
                             <label>NO DO</label>
                             <input class="form-control form-control-sm" type="text" id="no_do" name="no_do">
+                          </div>
+                          <div class="col-md-6">
+                            <label>NO SO</label>
+                            <input class="form-control form-control-sm" type="text" id="no_so" name="no_so">
                           </div>
 
 
@@ -425,7 +429,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <tr>
                     <th>No</th>
                     <th>Tgl Antar</th>
-                    <th>No Do</th>
+                    <th>No DO</th>
+                    <th>No SO</th>
                     <th>Driver</th>
                     <th>No Polisi</th>
                     <th>Tujuan Pengiriman</th>
@@ -459,6 +464,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $no_polisi = $data['no_polisi'];
                     $toko_do = $data['toko_do'];
                     $no_do = $data['no_do'];
+                    $no_so = $data['no_so'];
                     $uj = $data['uj'];
                     $ug = $data['ug'];
                     $om = $data['om'];
@@ -476,6 +482,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px' align = 'center'>$urut</td>
       <td style='font-size: 14px' align = 'center'>$tanggal_antar</td>
       <td style='font-size: 14px' align = 'center'>$no_do</td>
+      <td style='font-size: 14px' align = 'center'>$no_so</td>
       <td style='font-size: 14px' align = 'center'>$driver</td>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
@@ -562,12 +569,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 </div>
                                 <br>
                                 <div class="row">
-
-                                  <div class="col-md-6">
-                                    <label>NO DO</label>
-                                    <input class="form-control form-control-sm" type="text" id="no_do" name="no_do" value="<?php echo $no_do; ?>">
-                                  </div>
-
 
                                   <div class="col-md-6">
                                     <label>Nama Toko di DO</label>

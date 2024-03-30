@@ -25,6 +25,7 @@ $no_penjualan = $_POST['no_penjualan'];
 $driver = $_POST['driver'];
 $no_polisi = $_POST['no_polisi'];
 $no_do = $_POST['no_do'];
+$no_so = $_POST['no_so'];
 if($no_do == ""){
     
 }
@@ -79,7 +80,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_s VALUES('','$no_penjualan','$tanggal_antar','$no_do','$driver','$no_polisi','$toko_do','$uj','$ug','$om','$bs','$tanggal_gaji','$tanggal_nota','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_s VALUES('','$no_penjualan','$tanggal_antar','$no_do','$no_so','$driver','$no_polisi','$toko_do','$uj','$ug','$om','$bs','$tanggal_gaji','$tanggal_nota','$keterangan','$file')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

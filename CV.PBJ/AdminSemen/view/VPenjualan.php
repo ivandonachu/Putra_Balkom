@@ -281,6 +281,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Uang Sewa Hi Blow</a>
             <a class="collapse-item" style="font-size: 15px;" href="VFilePBJ">File PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VStokGudang">Stok Gudang</a>
           </div>
         </div>
       </li>
@@ -427,20 +428,22 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <br>
 
                         <div class="row">
-                          <div class="col-md-6">
-                            <label>NO Do</label>
+                          <div class="col-md-4">
+                            <label>NO DO</label>
                             <div class="col-sm-10">
                               <input class="form-control form-control-sm" type="text" id="no_do" name="no_do">
                             </div>
                           </div>
-
-                          <div class="col-md-6">
-                            <label>No Polisi</label>
+                          <div class="col-md-4">
+                            <label>NO SO</label>
                             <div class="col-sm-10">
-                              <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required="">
+                              <input class="form-control form-control-sm" type="text" id="no_so" name="no_so">
                             </div>
                           </div>
-
+                          <div class="col-md-4">
+                            <label>No Polisi</label>
+                            <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required="">
+                          </div>
                         </div>
 
                         <br>
@@ -600,6 +603,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>TGL DO</th>
                     <th>TGL Kirim</th>
                     <th>NO DO</th>
+                    <th>NO SO</th>
                     <th>Driver</th>
                     <th>NO Polisi</th>
                     <th>Tujuan Pengiriman</th>
@@ -633,6 +637,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $tanggal_do = $data['tanggal_do'];
                     $tanggal_kirim = $data['tanggal_kirim'];
                     $no_do = $data['no_do'];
+                    $no_so = $data['no_so'];
                     $driver = $data['driver'];
                     $no_polisi = $data['no_polisi'];
                     $tujuan_pengiriman = $data['tujuan_pengiriman'];
@@ -697,15 +702,22 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <br>
 
                               <div class="row">
-                                <div class="col-md-6">
-                                  <label>NO Do</label>
-                                  <div class="col-sm-10">
-                                    <input class="form-control form-control-sm" type="text" id="no_do" name="no_do" value="<?php echo $no_do; ?>">
-                                  </div>
+                                <div class="col-md-4">
+                                  <label>NO DO</label>
+
+                                  <input class="form-control form-control-sm" type="text" id="no_do" name="no_do" value="<?php echo $no_do; ?>">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
+                                  <label>NO SO</label>
+
+                                  <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" value="<?php echo $no_so; ?>">
+
+                                </div>
+                                <div class="col-md-4">
                                   <label>No Polisi</label>
-                                  <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" required="" value="<?php echo $no_polisi; ?>">
+
+                                  <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" value="<?php echo $no_polisi; ?>">
+
                                 </div>
                               </div>
 
@@ -776,8 +788,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                                         echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>";
-                                                                                                                                    }
-                                                                                                                                      ?>
+                                                                                                                                                            }
+                                                                                                                                                              ?>
                                     </select>
                                   </div>
                                 </div>
@@ -909,14 +921,44 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                     <div class="row">
 
-                      <div class="col-md-6">
+                      <div class="col-md-4">
+                        <label>Driver</label>
+                        <input class="form-control form-control-sm" type="text" id="driver" name="driver" disabled="" value="<?php echo $driver; ?>">
+                        <input type="hidden" name="driver" value="<?php echo $driver; ?>">
+                      </div>
+
+                      <div class="col-md-4">
+                        <label>Kendaraan</label>
+                        <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" disabled="" value="<?php echo $no_polisi; ?>">
+                        <input type="hidden" name="no_polisi" value="<?php echo $no_polisi; ?>">
+                      </div>
+                      <div class="col-md-4">
+                        <label>Tujuan Pengiriman</label>
+                        <input class="form-control form-control-sm" type="text" disabled="" value="<?php echo $tujuan_pengiriman; ?>">
+                      </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+
+                      <div class="col-md-4">
                         <label>NO DO</label>
                         <input class="form-control form-control-sm" type="text" id="no_do" name="no_do" disabled="" value="<?php echo $no_do; ?>">
                         <input type="hidden" name="no_do" value="<?php echo $no_do; ?>">
                       </div>
 
+                      <div class="col-md-4">
+                        <label>NO SO</label>
 
-                      <div class="col-md-6">
+                        <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" value="<?php echo $no_so; ?>" disabled>
+                        <input type="hidden" name="no_so" value="<?php echo $no_so; ?>">
+                      </div>
+
+
+
+                      <div class="col-md-4">
                         <label>Nama Toko di DO</label>
                         <input class="form-control form-control-sm" type="text" id="toko_do" name="toko_do" disabled="" value="<?php echo $toko_do; ?>">
                         <input type="hidden" name="toko_do" value="<?php echo $toko_do; ?>">
@@ -925,6 +967,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
 
                     <br>
+
 
                     <div class="row">
 
@@ -1034,6 +1077,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$tanggal_do</td>
       <td style='font-size: 14px'>$tanggal_kirim</td>
       <td style='font-size: 14px'>$no_do</td>
+      <td style='font-size: 14px'>$no_so</td>
       <td style='font-size: 14px'>$driver</td>
       <td style='font-size: 14px'>$no_polisi</td>
       <td style='font-size: 14px'>$tujuan_pengiriman</td>

@@ -35,7 +35,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal'");
 
-  $table2 = mysqli_query($koneksi, "SELECT no_poisi,  SUM(uj) AS total_uj, SUM(ug) AS total_ug, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal' GROUP BY no_polisi");
+  $table2 = mysqli_query($koneksi, "SELECT no_polisi,  SUM(uj) AS total_uj, SUM(ug) AS total_ug, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal' GROUP BY no_polisi");
 
 } else {
 
@@ -134,6 +134,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Uang Sewa Hi Blow</a>
             <a class="collapse-item" style="font-size: 15px;" href="VFilePBJ">File PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VStokGudang">Stok Gudang</a>
           </div>
         </div>
       </li>
@@ -249,7 +250,7 @@ if ($tanggal_awal == $tanggal_akhir) {
               <div class="col-md-2">
                 <!-- Button Input Data Bayar -->
                 <div align="right">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pengiriman</button> <br> <br>
+                 
                 </div>
                 <!-- Form Modal  -->
                 <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -415,6 +416,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>No</th>
                     <th>Tgl Antar</th>
                     <th>No Do</th>
+                    <th>No SO</th>
                     <th>Driver</th>
                     <th>No Polisi</th>
                     <th>Tujuan Pengiriman</th>
@@ -448,6 +450,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $no_polisi = $data['no_polisi'];
                     $toko_do = $data['toko_do'];
                     $no_do = $data['no_do'];
+                    $no_so = $data['no_so'];
                     $uj = $data['uj'];
                     $ug = $data['ug'];
                     $om = $data['om'];
@@ -465,6 +468,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px' align = 'center'>$urut</td>
       <td style='font-size: 14px' align = 'center'>$tanggal_antar</td>
       <td style='font-size: 14px' align = 'center'>$no_do</td>
+      <td style='font-size: 14px' align = 'center'>$no_so</td>
       <td style='font-size: 14px' align = 'center'>$driver</td>
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
@@ -549,33 +553,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <br>
                               <div class="row">
 
-                                <div class="col-md-6">
-                                  <label>NO DO</label>
-                                  <input class="form-control form-control-sm" type="text" id="no_do" name="no_do" value="<?php echo $no_do; ?>">
-                                </div>
-
-
-                                <div class="col-md-6">
-                                  <label>Nama Toko di DO</label>
-                                  <div>
-                                    <select id="tokens" class="selectpicker form-control" name="toko_do" multiple data-live-search="true">
-                                      <option></option>
-                                      <?php
-                                      include 'koneksi.php';
-                                      $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");
-                                      $dataSelect = $data['toko_do'];
-                                      while ($data2 = mysqli_fetch_array($result)) {
-                                        $data_pangakalan = $data2['nm_lokasi'];
-
-
-                                        echo "<option" ?> <?php echo ($dataSelect == $data_pangakalan) ? "selected" : "" ?>> <?php echo $data_pangakalan; ?> <?php echo "</option>";
-                                                                                                                                    }
-                                                                                                                                      ?>
-                                    </select>
+                                  <div class="col-md-6">
+                                    <label>Nama Toko di DO</label>
+                                    <div>
+                                      <input class="form-control form-control-sm" type="text" id="toko_do" name="toko_do" value="<?php echo $toko_do; ?>">
+                                    </div>
                                   </div>
-                                </div>
 
-                              </div>
+                                </div>
 
                               <br>
 

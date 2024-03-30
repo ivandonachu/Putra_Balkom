@@ -23,10 +23,20 @@ $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $no_penjualan = $_POST['no_penjualan'];
 
+$result3 = mysqli_query($koneksi, "SELECT * FROM pengiriman_sl WHERE no_penjualan = '$no_penjualan' ");
+$data_perta = mysqli_fetch_array($result3);
+if (isset($data_perta['no_pengiriman'])) {
+	$no_pengiriman = $data_perta['no_pengiriman'];
+} else {
+	$no_pengiriman = "";
+}
+
 
 
 	
-		
+if ($no_pengiriman != "") {
+	$query2 = mysqli_query($koneksi,"DELETE FROM pengiriman_sl WHERE no_pengiriman = '$no_pengiriman'");
+}
 
 		//Hapusriwayat keberangkatan
 		$query = mysqli_query($koneksi,"DELETE FROM penjualan_sl WHERE no_penjualan = '$no_penjualan'");

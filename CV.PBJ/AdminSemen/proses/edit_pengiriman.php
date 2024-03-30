@@ -24,7 +24,6 @@ $tanggal_akhir = $_POST['tanggal2'];
 $tanggal_antar = $_POST['tanggal_antar'];
 $driver = $_POST['driver'];
 $no_polisi = $_POST['no_polisi'];
-$no_do = $_POST['no_do'];
 $toko_do = $_POST['toko_do'];
 $uj = $_POST['uj'];
 $ug = $_POST['ug'];
@@ -68,26 +67,19 @@ else if ( $nama_file != "" ) {
 
 }
 
-	$result = mysqli_query($koneksi, "SELECT * FROM pengiriman_sl WHERE no_pengiriman = '$no_pengiriman' ");
-	$data_perta = mysqli_fetch_array($result);
-	$no_penjualan = $data_perta['no_penjualan'];
 
 
 
 	if ($file == '') {
-			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET tanggal_antar = '$tanggal_antar', no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi', 
+			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET tanggal_antar = '$tanggal_antar', driver = '$driver', no_polisi = '$no_polisi', 
 			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', bs = '$bs' , tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan' WHERE no_pengiriman = '$no_pengiriman'");
 
-			$query4 = mysqli_query($koneksi,"UPDATE penjualan_sl SET  no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
-			toko_do = '$toko_do' WHERE no_penjualan = '$no_penjualan'");
 
 	}
 	else{
-			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET tanggal_antar = '$tanggal_antar', no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi',
+			$query3 = mysqli_query($koneksi,"UPDATE pengiriman_sl SET tanggal_antar = '$tanggal_antar', driver = '$driver', no_polisi = '$no_polisi',
 			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', bs = '$bs', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan', file_bukti = '$file'  WHERE no_pengiriman = '$no_pengiriman'");
 
-			$query4 = mysqli_query($koneksi,"UPDATE penjualan_sl SET no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
-			toko_do = '$toko_do' WHERE no_penjualan = '$no_penjualan'");
 	}
 
 

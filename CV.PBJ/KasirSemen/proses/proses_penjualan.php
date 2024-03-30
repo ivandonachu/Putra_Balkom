@@ -23,6 +23,7 @@ $tanggal_akhir = $_GET['tanggal2'];
 $tanggal_do = $_POST['tanggal_do'];
 $tanggal_kirim = $_POST['tanggal_kirim'];
 $no_do = $_POST['no_do'];
+$no_so = $_POST['no_so'];
 if($no_do == ''){
     
 }
@@ -83,7 +84,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO penjualan_s VALUES('','$tanggal_do','$tanggal_kirim','$no_do','$driver','$no_polisi','$tujuan_pengiriman','$qty','$satuan','$harga_beli','$harga','$jumlah','$toko_do','$tempo','$tanggal_bayar','$status_bayar'
+	$query = mysqli_query($koneksi,"INSERT INTO penjualan_s VALUES('','$tanggal_do','$tanggal_kirim','$no_do','$no_so','$driver','$no_polisi','$tujuan_pengiriman','$qty','$satuan','$harga_beli','$harga','$jumlah','$toko_do','$tempo','$tanggal_bayar','$status_bayar'
 		,'$keterangan','$catatan','$bulan','$file')");
 
 			if ($query != "") {

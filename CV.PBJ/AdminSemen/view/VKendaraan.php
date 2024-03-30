@@ -117,6 +117,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM kendaraan_sl");
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a> 
             <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Uang Sewa Hi Blow</a> 
             <a class="collapse-item" style="font-size: 15px;" href="VFilePBJ">File PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VStokGudang">Stok Gudang</a>
         </div>
     </div>
 </li>
