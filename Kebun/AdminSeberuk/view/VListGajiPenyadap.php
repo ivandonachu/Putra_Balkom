@@ -1,22 +1,19 @@
-
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
-  header("Location: logout.php");
-  exit;
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
+    header("Location: logout.php");
+    exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Admin Seberuk') {
-
-}
-
-else{  header("Location: logout.php");
-exit;
+} else {
+    header("Location: logout.php");
+    exit;
 }
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
@@ -62,8 +59,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+      <!-- Sidebar -->
+      <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdminSeberuk">
@@ -159,7 +156,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
         </div>
     </div>
 </li>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -237,7 +233,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center';>
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -245,10 +240,12 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
     <tr>  
           <th style="font-size: 14px" scope="col">No</th>
           <th style="font-size: 14px" scope="col">Nama Penyadap</th>
-          <th style="font-size: 14px" scope="col">Berat</th>
+          <th style="font-size: 14px" scope="col">Hasil Kotor</th>
+          <th style="font-size: 14px" scope="col">Pembagi</th>
+          <th style="font-size: 14px" scope="col">Hasil Bersih </th>
           <th style="font-size: 14px" scope="col">Harga Gaji / Kg </th>
           <th style="font-size: 14px" scope="col">Total Gaji</th>
-    
+
         </tr>
       </thead>
       <tbody>
@@ -265,16 +262,20 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
         <?php while($data2 = mysqli_fetch_array($table)){
           $no_penyadap = $data2['no_penyadap'];
           $nama_penyadap =$data2['nama_penyadap'];
-          $berat = $data2['berat'];
+          $hasil_kotor = $data2['hasil_kotor'];
+          $pembagi = $data2['pembagi'];
+          $hasil_bersih = $hasil_kotor/$pembagi;
           $harga_gaji = $data2['harga_gaji'];
-          $total_gaji = $berat * $harga_gaji;
+          $total_gaji = $hasil_bersih * $harga_gaji;
          
           $no_urut = $no_urut + 1 ;
 
           echo "<tr>
           <td style='font-size: 14px'>$no_urut</td>
           <td style='font-size: 14px'>$nama_penyadap</td>
-          <td style='font-size: 14px'>$berat Kg</td>
+          <td style='font-size: 14px'>$hasil_kotor Kg</td>
+          <td style='font-size: 14px'>$pembagi </td>
+          <td style='font-size: 14px'>$hasil_bersih Kg</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($harga_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
          

@@ -18,6 +18,7 @@ else{ header("Location: logout.php");
 exit;
 }
 
+
 if (isset($_GET['tanggal1'])) {
   $tanggal_awal = $_GET['tanggal1'];
   $tanggal_akhir = $_GET['tanggal2'];
@@ -76,8 +77,8 @@ if ($tanggal_awal == $tanggal_akhir) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-         <!-- Sidebar -->
-         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+           <!-- Sidebar -->
+           <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKebun">
@@ -326,7 +327,6 @@ if ($tanggal_awal == $tanggal_akhir) {
     <div class="col-md-6">
     <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
     </div>
-    
 </div>
 
 
@@ -338,10 +338,12 @@ if ($tanggal_awal == $tanggal_akhir) {
           <th style="font-size: 14px" scope="col">No</th>
           <th style="font-size: 14px" scope="col">Tanggal</th>
           <th style="font-size: 14px" scope="col">Nama Penyadap</th>
-          <th style="font-size: 14px" scope="col">Berat</th>
+          <th style="font-size: 14px" scope="col">Hasil Kotor</th>
+          <th style="font-size: 14px" scope="col">Pembagi</th>
+          <th style="font-size: 14px" scope="col">Hasil Bersih</th>
           <th style="font-size: 14px" scope="col">Harga Gaji / Kg </th>
           <th style="font-size: 14px" scope="col">Total Gaji</th>
-      
+
         </tr>
       </thead>
       <tbody>
@@ -359,7 +361,9 @@ if ($tanggal_awal == $tanggal_akhir) {
           $no_riwayat = $data2['no_riwayat'];
           $tanggal = $data2['tanggal'];
           $nama_penyadap =$data2['nama_penyadap'];
-          $berat = $data2['berat'];
+          $hasil_kotor = $data2['hasil_kotor'];
+          $pembagi = $data2['pembagi'];
+          $hasil_bersih = $data2['hasil_bersih'];
           $harga_gaji = $data2['harga_gaji'];
           $total_gaji = $data2['total_gaji'];
           $total_gaji_seluruh = $total_gaji_seluruh + $total_gaji;
@@ -369,10 +373,110 @@ if ($tanggal_awal == $tanggal_akhir) {
           <td style='font-size: 14px'>$no_urut</td>
           <td style='font-size: 14px'>$tanggal</td>
           <td style='font-size: 14px'>$nama_penyadap</td>
-          <td style='font-size: 14px'>$berat Kg</td>
+          <td style='font-size: 14px'>$hasil_kotor Kg</td>
+          <td style='font-size: 14px'>$pembagi</td>
+          <td style='font-size: 14px'>$hasil_bersih Kg</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($harga_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
-         
+          <td style='font-size: 14px'>"; ?>
+
+          <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data2['no_riwayat']; ?>">Edit</button>
+
+          <!-- Form EDIT DATA -->
+
+          <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data2['no_riwayat']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-lg" role ="document">
+             <div class="modal-content"> 
+              <div class="modal-header">
+                <h5 class="modal-title"> Form Edit Gaji Penyadap </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+          <!-- Form Edit Data -->
+          <div class="modal-body">
+              <?php  echo "<form action='../proses/edit_rekap_gaji_penyadap_seberuk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                
+            <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat;?>"> 
+
+            <div class="row">
+              <div class="col-md-6">
+                 <label>Tanggal</label>
+                 <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>">
+              </div>
+              <div class="col-md-6">
+               <label>Nama Penyadap</label>
+               <input class="form-control form-control-sm" type="text" name="nama_penyadap" required="" value="<?php echo $nama_penyadap;?>">
+             </div>
+            </div>
+            <div class="row">
+             <div class="col-md-4">
+               <label>Hasil Kotor</label>
+               <input class="form-control form-control-sm" type="text" name="hasil_kotor" required="" value="<?php echo $hasil_kotor;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Pembagi</label>
+               <input class="form-control form-control-sm" type="number" name="pembagi" required="" value="<?php echo $pembagi;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Hasil Bersih</label>
+               <input class="form-control form-control-sm" type="number" name="hasil_bersih" required="" value="<?php echo $hasil_bersih;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Harga Gaji</label>
+               <input class="form-control form-control-sm" type="number" name="harga_gaji" required="" value="<?php echo $harga_gaji;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Total Gaji</label>
+               <input class="form-control form-control-sm" type="number" name="total_gaji" required="" value="<?php echo $total_gaji;?>">
+             </div>
+           </div>
+
+           <br>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Ubah </button>
+          <button type="reset" class="btn btn-danger"> RESET</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Button Hapus -->
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $no_riwayat;?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus<?php echo $no_riwayat; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+ <div class="modal-dialog" role ="document">
+   <div class="modal-content"> 
+    <div class="modal-header">
+      <h4 class="modal-title"> <b> Hapus Rekap Gaji Penyadap </b> </h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+  
+      <?php  echo "<form action='../proses/hapus_rekap_gaji_penyadap_seberuk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' method='POST'>";  ?>
+        <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat;?>">
+        <div class="form-group">
+          <h6> Yakin Ingin Hapus Data? </h6>             
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Hapus </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+     
+
+
+      <?php echo "</td> 
       </tr>";
   }
   ?>
