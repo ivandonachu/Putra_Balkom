@@ -25,19 +25,22 @@ $tanggal_akhir = $_GET['tanggal2'];
 $no_riwayat = $_POST['no_riwayat'];
 $tanggal = $_POST['tanggal'];
 $nama_penyadap =$_POST['nama_penyadap'];
-$berat = $_POST['berat'];
+$hasil_kotor = $_POST['hasil_kotor'];
+$pembagi = $_POST['pembagi'];
+$hasil_bersih = $_POST['hasil_bersih'];
 $harga_gaji = $_POST['harga_gaji'];
 $total_gaji = $_POST['total_gaji'];
 
 
 
 
-	$query = mysqli_query($koneksi,"UPDATE rekap_gaji_penyadap_seberuk SET tanggal = '$tanggal', nama_penyadap = '$nama_penyadap', berat = '$berat' , harga_gaji = '$harga_gaji' , total_gaji = '$total_gaji'  WHERE no_riwayat = '$no_riwayat'");
+	$query = mysqli_query($koneksi,"UPDATE rekap_gaji_penyadap_seberuk SET tanggal = '$tanggal', nama_penyadap = '$nama_penyadap', hasil_kotor = '$hasil_kotor', pembagi = '$pembagi'
+																					, hasil_bersih = '$hasil_bersih' , harga_gaji = '$harga_gaji' , total_gaji = '$total_gaji'  WHERE no_riwayat = '$no_riwayat'");
 
 
 if ($query != "") {
 
-    echo "<script>alert('Data Berhasil di Ubah :)'); window.location='../view/VRekapGajiPenyadap?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+   echo "<script>alert('Data Berhasil di Ubah :)'); window.location='../view/VRekapGajiPenyadap?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 }
 

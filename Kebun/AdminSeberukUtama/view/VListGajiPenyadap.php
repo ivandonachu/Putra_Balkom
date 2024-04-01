@@ -300,7 +300,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
        <div class="modal-dialog modal-lg" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h5 class="modal-title"> Form Gaji Karyawan</h5>
+            <h5 class="modal-title"> Form Gaji Penyadap</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -318,12 +318,16 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                <input class="form-control form-control-sm" type="text" name="nama_penyadap" required="">
              </div>
              <div class="col-md-4">
-               <label>berat</label>
-               <input class="form-control form-control-sm" type="text" name="berat" required="" >
+               <label>Hasil Kotor</label>
+               <input class="form-control form-control-sm" type="text" name="hasil_kotor" required="" >
              </div>
              <div class="col-md-4">
-               <label>Harga_gaji</label>
-               <input class="form-control form-control-sm" type="number" name="harga_gaji" required="" value="0">
+               <label>Pembagi</label>
+               <input class="form-control form-control-sm" type="text" name="pembagi" required="" >
+             </div>
+             <div class="col-md-4">
+               <label>Harga Gaji</label>
+               <input class="form-control form-control-sm" type="number" name="harga_gaji" required="">
              </div>
            </div>
 
@@ -351,7 +355,9 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
     <tr>  
           <th style="font-size: 14px" scope="col">No</th>
           <th style="font-size: 14px" scope="col">Nama Penyadap</th>
-          <th style="font-size: 14px" scope="col">Berat</th>
+          <th style="font-size: 14px" scope="col">Hasil Kotor</th>
+          <th style="font-size: 14px" scope="col">Pembagi</th>
+          <th style="font-size: 14px" scope="col">Hasil Bersih </th>
           <th style="font-size: 14px" scope="col">Harga Gaji / Kg </th>
           <th style="font-size: 14px" scope="col">Total Gaji</th>
           <th style="font-size: 14px" scope="col"></th>
@@ -371,16 +377,20 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
         <?php while($data2 = mysqli_fetch_array($table)){
           $no_penyadap = $data2['no_penyadap'];
           $nama_penyadap =$data2['nama_penyadap'];
-          $berat = $data2['berat'];
+          $hasil_kotor = $data2['hasil_kotor'];
+          $pembagi = $data2['pembagi'];
+          $hasil_bersih = $hasil_kotor/$pembagi;
           $harga_gaji = $data2['harga_gaji'];
-          $total_gaji = $berat * $harga_gaji;
+          $total_gaji = $hasil_bersih * $harga_gaji;
          
           $no_urut = $no_urut + 1 ;
 
           echo "<tr>
           <td style='font-size: 14px'>$no_urut</td>
           <td style='font-size: 14px'>$nama_penyadap</td>
-          <td style='font-size: 14px'>$berat Kg</td>
+          <td style='font-size: 14px'>$hasil_kotor Kg</td>
+          <td style='font-size: 14px'>$pembagi </td>
+          <td style='font-size: 14px'>$hasil_bersih Kg</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($harga_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?>
@@ -411,8 +421,54 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                <input class="form-control form-control-sm" type="text" name="nama_penyadap" required="" value="<?php echo $nama_penyadap;?>">
              </div>
              <div class="col-md-4">
-               <label>Berat</label>
-               <input class="form-control form-control-sm" type="text" name="berat" required="" value="<?php echo $berat;?>">
+               <label>Hasil Kotor</label>
+               <input class="form-control form-control-sm" type="text" name="hasil_kotor" required="" value="<?php echo $hasil_kotor;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Pembagi</label>
+               <input class="form-control form-control-sm" type="text" name="pembagi" required="" value="<?php echo $pembagi;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Harga Gaji</label>
+               <input class="form-control form-control-sm" type="number" name="harga_gaji" required="" value="<?php echo $harga_gaji;?>">
+             </div>
+           </div>
+
+           <br>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"> Ubah </button>
+          <button type="reset" class="btn btn-danger"> RESET</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formeditseluruh<?php echo $data2['no_penyadap']; ?>">Edit Seluruh</button>
+
+          <!-- Form EDIT DATA -->
+
+          <div class="modal fade bd-example-modal-lg" id="formeditseluruh<?php echo $data2['no_penyadap']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-lg" role ="document">
+             <div class="modal-content"> 
+              <div class="modal-header">
+                <h5 class="modal-title"> Form Edit Seluruh Gaji Penyadap </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+          <!-- Form Edit Data -->
+          <div class="modal-body">
+              <form action="../proses/edit_seluruh_list_gaji_penyadap_seberuk" enctype="multipart/form-data" method="POST">
+
+
+            <div class="row">
+             <div class="col-md-4">
+               <label>Pembagi</label>
+               <input class="form-control form-control-sm" type="text" name="pembagi" required="" value="<?php echo $pembagi;?>">
              </div>
              <div class="col-md-4">
                <label>Harga Gaji</label>

@@ -19,9 +19,6 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$no_penyadap = $_POST['no_penyadap'];
-$nama_penyadap =$_POST['nama_penyadap'];
-$hasil_kotor = $_POST['hasil_kotor'];
 $pembagi = $_POST['pembagi'];
 $harga_gaji = $_POST['harga_gaji'];
 
@@ -29,7 +26,7 @@ $harga_gaji = $_POST['harga_gaji'];
 
 
 
-	$query = mysqli_query($koneksi,"UPDATE list_gaji_penyadap_seberuk SET nama_penyadap = '$nama_penyadap', hasil_kotor = '$hasil_kotor', pembagi = '$pembagi' , harga_gaji = '$harga_gaji' WHERE no_penyadap = '$no_penyadap'");
+	$query = mysqli_query($koneksi,"UPDATE list_gaji_penyadap_seberuk SET pembagi = '$pembagi' , harga_gaji = '$harga_gaji'");
 
 
 if ($query != "") {

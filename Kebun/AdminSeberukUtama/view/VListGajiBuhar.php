@@ -432,6 +432,44 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_burhar_seberuk");
 </div>
 </div>
 
+<button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formeditseluruh<?php echo $data2['no_buruh_harian']; ?>">Edit Seluruh</button>
+
+<!-- Form EDIT DATA -->
+
+<div class="modal fade bd-example-modal-lg" id="formeditseluruh<?php echo $data2['no_buruh_harian']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-lg" role ="document">
+   <div class="modal-content"> 
+    <div class="modal-header">
+      <h5 class="modal-title"> Form Edit Selurug Gaji Buruh Harian </h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+
+<!-- Form Edit Data -->
+<div class="modal-body">
+    <form action="../proses/edit_seluruh_list_gaji_buhar_seberuk" enctype="multipart/form-data" method="POST">
+      
+
+  <div class="row">
+   <div class="col-md-4">
+     <label>Upah</label>
+     <input class="form-control form-control-sm" type="number" name="upah" required="" value="<?php echo $upah;?>">
+   </div>
+ </div>
+
+ <br>
+
+<div class="modal-footer">
+<button type="submit" class="btn btn-primary"> Ubah </button>
+<button type="reset" class="btn btn-danger"> RESET</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
 <!-- Button Hapus -->
 <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $no_buruh_harian;?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
 <div class="modal fade" id="PopUpHapus<?php echo $no_buruh_harian; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">

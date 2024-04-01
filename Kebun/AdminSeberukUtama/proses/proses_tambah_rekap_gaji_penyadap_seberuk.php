@@ -21,11 +21,18 @@ exit;
     $tanggal_akhir = $_GET['tanggal2'];
     $tanggal = $_POST['tanggal'];
     $nama_penyadap =$_POST['nama_penyadap'];
-    $berat = $_POST['berat'];
+    $hasil_kotor = $_POST['hasil_kotor'];
+    $pembagi = $_POST['pembagi'];
+    if($hasil_kotor == 0 || $pembagi == 0 ){
+        $hasil_bersih = 0;
+    }else{
+        $hasil_bersih = $hasil_kotor/$pembagi;
+    }
+   
     $harga_gaji = $_POST['harga_gaji'];
-    $total_gaji = $berat * $harga_gaji;
+    $total_gaji = $hasil_bersih * $harga_gaji;
 
-$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_penyadap_seberuk VALUES('','$tanggal','$nama_penyadap','$berat','$harga_gaji','$total_gaji')");
+$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_penyadap_seberuk VALUES('','$tanggal','$nama_penyadap','$hasil_kotor','$pembagi','$hasil_bersih','$harga_gaji','$total_gaji')");
 
 
 if ($query != "") {

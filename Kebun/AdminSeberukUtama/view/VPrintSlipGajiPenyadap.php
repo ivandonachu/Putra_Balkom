@@ -58,7 +58,9 @@ $html = '
     while($data = mysqli_fetch_array($table)){
 
         $nama_penyadap =$data['nama_penyadap'];
-        $berat = $data['berat'];
+        $hasil_kotor = $data['hasil_kotor'];
+        $pembagi = $data['pembagi'];
+        $hasil_bersih = $data['hasil_bersih'];
         $harga_gaji = $data['harga_gaji'];
         $total_gaji = $data['total_gaji'];
 
@@ -86,9 +88,17 @@ $html = '
         <table align="center" style="width:100%" border="1" cellspacing="0">
 
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Berat</td>
-        <td align="right" style="font-size: 10px; width:79%;">'. $berat .' Kg</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Hasil Kotor</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. $hasil_kotor .' Kg</td>
         </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Pembagi</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. $pembagi .'</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Hasil Kotor</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. $hasil_bersih .' Kg</td>
+        </tr>        
         <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Harga Gaji</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($harga_gaji) .' / Kg</td>
@@ -136,8 +146,7 @@ $html = '
         <br>
         <br>
         <br>
-        <br>
-        <br>
+
  
      
 

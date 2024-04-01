@@ -26,12 +26,19 @@ $tanggal =$_POST['tanggal'];
 while($data2 = mysqli_fetch_array($table)){
 
     $nama_penyadap =$data2['nama_penyadap'];
-    $berat = $data2['berat'];
-    $harga_gaji = $data2['harga_gaji'];
-    $total_gaji = $berat * $harga_gaji;
-   
+    $hasil_kotor = $data2['hasil_kotor'];
+    $pembagi = $data2['pembagi'];
+    if($hasil_kotor == 0 || $pembagi == 0 ){
+        $hasil_bersih = 0;
+    }else{
+        $hasil_bersih = $hasil_kotor/$pembagi;
+    }
+  
 
-$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_penyadap_seberuk VALUES('','$tanggal','$nama_penyadap','$berat','$harga_gaji','$total_gaji')");
+    $harga_gaji = $data2['harga_gaji'];
+    $total_gaji = $hasil_bersih * $harga_gaji;
+
+$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_penyadap_seberuk VALUES('','$tanggal','$nama_penyadap','$hasil_kotor','$pembagi','$hasil_bersih','$harga_gaji','$total_gaji')");
 
 }
 

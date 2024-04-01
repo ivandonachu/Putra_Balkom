@@ -19,17 +19,18 @@ else{  header("Location: logout.php");
 exit;
 }
 
-    $nama_penyadap =$_POST['nama_penyadap'];
-    $hasil_kotor = $_POST['hasil_kotor'];
-    $pembagi = $_POST['pembagi'];
-    $harga_gaji = $_POST['harga_gaji'];
+
+$upah = $_POST['upah'];
 
 
-$query = mysqli_query($koneksi,"INSERT INTO list_gaji_penyadap_seberuk VALUES('','$nama_penyadap','$hasil_kotor','$pembagi','$harga_gaji')");
+
+
+
+	$query = mysqli_query($koneksi,"UPDATE list_gaji_burhar_seberuk SET upah = '$upah'");
 
 
 if ($query != "") {
-	echo "<script>alert('Proses Tambah Data Berhasil :)'); window.location='../view/VListGajiPenyadap';</script>";exit;
+	echo "<script>alert('Data Berhasil di Ubah :)'); window.location='../view/VListGajiBuhar';</script>";exit;
 
 }
 
