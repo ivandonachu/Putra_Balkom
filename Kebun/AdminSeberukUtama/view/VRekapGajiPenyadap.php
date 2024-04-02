@@ -590,7 +590,7 @@ if ($tanggal_awal == $tanggal_akhir) {
               </div>
             </div>
           </div>
-        </div>
+        
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
               <div class="card-body">
@@ -606,6 +606,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         <br>
         <br>
