@@ -415,6 +415,8 @@ if ($tanggal_awal == $tanggal_akhir) {
       <?php
       $no_urut = 0;
       $total_gaji_seluruh =0;
+      $total_kg_kotor =0;
+      $total_kg_bersih =0;
           function formatuang($angka)
           {
             $uang = "Rp " . number_format($angka, 0, ',', '.');
@@ -432,6 +434,8 @@ if ($tanggal_awal == $tanggal_akhir) {
           $harga_gaji = $data2['harga_gaji'];
           $total_gaji = $data2['total_gaji'];
           $total_gaji_seluruh = $total_gaji_seluruh + $total_gaji;
+          $total_kg_kotor = $total_kg_kotor + $hasil_kotor;
+          $total_kg_bersih = $total_kg_bersih + $hasil_bersih;
           $no_urut = $no_urut + 1 ;
 
           echo "<tr>
@@ -554,7 +558,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 <br>
 <br>
         <div class="row" style="margin-right: 20px; margin-left: 20px;">
-          <div class="col-xl-12 col-md-6 mb-4">
+          <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -570,7 +574,39 @@ if ($tanggal_awal == $tanggal_akhir) {
               </div>
             </div>
           </div>
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Total Kg Kotor</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_kg_kotor  ?> Kg</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-scale-balanced fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Total Kg Bersih</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_kg_bersih ?> Kg</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-scale-balanced fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         <br>
         <br>
 <br>
