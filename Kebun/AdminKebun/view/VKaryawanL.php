@@ -138,6 +138,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM karyawan_lengkiti");
                         <a class="collapse-item" style="font-size: 15px;" href="VMobilS">Mobil Sawit</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawanK">Karyawan Karet</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKaryawanL">Karyawan Lengkiti</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListAsetLengkiti">List Aset Lengkiti</a>
                     </div>
                 </div>
             </li>
