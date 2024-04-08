@@ -344,6 +344,288 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
 </div>
 </div>
 
+
+
+<!-- Button Input Data Bayar -->
+<div align="right">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_hasil_kotor"> <i class="fas fa-plus-square mr-2"></i> Edit Hasil Kotor</button> <br> <br>
+    </div>
+    <!-- Form Modal  -->
+    <div class="modal fade bd-example-modal-lg" id="edit_hasil_kotor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role ="document">
+       <div class="modal-content"> 
+        <div class="modal-header">
+          <h5 class="modal-title"> Form Edit Hasil Kotor </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <!-- Form Input Data -->
+        <div class="modal-body" align="left">
+          <?php  echo "<form action='../proses/edit_hasil_kotor' enctype='multipart/form-data' method='POST'>";  ?>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 1</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_1"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 1</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_1"  >           
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 2</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_2"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 2</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_2"  >           
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 3</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_3"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 3</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_3"  >           
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 4</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_4"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 4</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_4"  >           
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 5</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_5"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 5</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_5"  >           
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 6</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_6"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 6</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_6"  >           
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 7</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_7"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 7</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_7"  >           
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 8</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_8"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 8</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_8"  >           
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 9</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_9"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 9</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_9"  >           
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama Penyadap 10</label>
+                <select id="tokens" class="selectpicker form-control" name="penyadap_10"  data-live-search="true">
+                <option></option>
+                <?php
+                include 'koneksi.php';
+                $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
+
+                while ($data2 = mysqli_fetch_array($result2)){
+                $nama_penyadap = $data2['nama_penyadap'];
+
+                
+                    echo "<option> $nama_penyadap </option> ";
+                
+                }
+                ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Hasil Kotor Penyadap 10</label>
+                <input class="form-control form-control-sm" type="number" name="hasil_kotor_10"  >           
+            </div>
+        </div>
+        <br>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary"> UBAH</button>
+    <button type="reset" class="btn btn-danger"> RESET</button>
+  </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
 </div>
 </div>
 
