@@ -408,6 +408,7 @@ else{
                     <option>Kota Baru</option>
                     <option>Batu Marta</option>
                     <option>Bantu Tabung Pertamina</option>
+                    <option>Melati</option>
                 </select>
              </div>  
          </div>
@@ -526,6 +527,7 @@ else{
                     <option <?php echo ($dataSelect == 'Kota Baru') ? "selected": "" ?>>Kota Baru</option>
                     <option <?php echo ($dataSelect == 'Batu Marta') ? "selected": "" ?>>Batu Marta</option>  
                     <option <?php echo ($dataSelect == 'Bantu Tabung Pertamina') ? "selected": "" ?>>Bantu Tabung Pertamina</option> 
+                    <option <?php echo ($dataSelect == 'Melati') ? "selected": "" ?>>Melati</option> 
                 </select>
                 </div>          
       </div>

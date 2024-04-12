@@ -334,7 +334,6 @@ data-parent="#accordionSidebar">
                 <select id="nama_rute" name="nama_rute" class="form-control">
                     <option>NJE</option>
                     <option>Gas Palembang</option>
-
                 </select>
              </div>  
          </div>
