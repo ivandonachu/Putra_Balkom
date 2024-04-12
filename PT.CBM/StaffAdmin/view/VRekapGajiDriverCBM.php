@@ -425,21 +425,29 @@ if (isset($_GET['tanggal1'])) {
                <label>Rit Nikan</label>
                <input class="form-control form-control-sm" type="number" name="rit_nikan" required="" value="0">
              </div>
+             <div class="col-md-4">
+               <label>Rit Bantu Tabung Pertamina</label>
+               <input class="form-control form-control-sm" type="number" name="rit_bantu_tabung_pertamina" required="" value="0">
+             </div>
 
            </div>
 
            <br>
 
            <div class="row">
-           <div class="col-md-4">
+           <div class="col-md-3">
                <label>Rit Kota Baru</label>
                <input class="form-control form-control-sm" type="number" name="rit_kota_baru" required="" value="0">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
                <label>Rit Batu Marta</label>
                <input class="form-control form-control-sm" type="number" name="rit_batu_marta" required="" value="0">
              </div>
-             <div class="col-md-4">
+             <div class="col-md-3">
+               <label>Rit Melati</label>
+               <input class="form-control form-control-sm" type="number" name="rit_melati" required="" value="0">
+             </div>
+             <div class="col-md-3">
                <label>Uang Makan</label>
                <input class="form-control form-control-sm" type="number" name="uang_makan" required="" value="0">
              </div>
@@ -509,6 +517,8 @@ if (isset($_GET['tanggal1'])) {
           <th style="font-size: 14px" scope="col">Upah Batu Marta</th>
           <th style="font-size: 14px" scope="col">Rit Bantu Tabung Pertamina</th>
           <th style="font-size: 14px" scope="col">Upah Bantu Tabung Pertamina</th>
+          <th style="font-size: 14px" scope="col">Rit Melati</th>
+          <th style="font-size: 14px" scope="col">Upah Melati</th>
           <th style="font-size: 14px" scope="col">Uang Makan</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
@@ -549,6 +559,8 @@ if (isset($_GET['tanggal1'])) {
           $upah_batu_marta = $data2['upah_batu_marta'];
           $rit_bantu_tabung_pertamina = $data2['rit_bantu_tabung_pertamina'];
           $upah_bantu_tabung_pertamina = $data2['upah_bantu_tabung_pertamina'];
+          $rit_melati = $data2['rit_melati'];
+          $upah_melati = $data2['upah_melati'];
           $uang_makan = $data2['uang_makan'];
           $bpjs_kesehatan = $data2['bpjs_kesehatan'];
           $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
@@ -583,6 +595,8 @@ if (isset($_GET['tanggal1'])) {
           <td style='font-size: 14px'>"; ?> <?= formatuang($upah_batu_marta); ?> <?php echo "</td>
           <td style='font-size: 14px'>$rit_bantu_tabung_pertamina</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($upah_bantu_tabung_pertamina); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_melati</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_melati); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
@@ -672,6 +686,10 @@ if (isset($_GET['tanggal1'])) {
            <div class="col-md-6">
                <label>Rit Bantu Tabung Pertamina</label>
                <input class="form-control form-control-sm" type="number" name="rit_bantu_tabung_pertamina" required="" value="<?php echo $rit_bantu_tabung_pertamina;?>">
+             </div>
+             <div class="col-md-6">
+               <label>Rit Melati</label>
+               <input class="form-control form-control-sm" type="number" name="rit_melati" required="" value="<?php echo $rit_melati;?>">
              </div>
            </div>
 

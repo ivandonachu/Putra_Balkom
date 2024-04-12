@@ -387,6 +387,8 @@ if (isset($_GET['tanggal1'])) {
       <th>Upah Batu Marta</th>
       <th>Rit Bantu Tabung Pertamina</th>
       <th>Upah Bantu Tabung Pertamina</th>
+      <th>Rit Melati</th>
+      <th>Upah Melati</th>
       <th>Bon Bulanan</th>
       <th>Upah Total</th>
     </tr>
@@ -479,6 +481,19 @@ if (isset($_GET['tanggal1'])) {
       if (  $total_rit_bantu_tabung_pertamina == ""  ) {
         $total_rit_bantu_tabung_pertamina = 0;
       }
+
+      $table10 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_melati , SUM(rit) AS rit_melati FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Melati'");
+      $data10 = mysqli_fetch_array($table10);
+
+      $total_uang_melati= $data10['uang_gaji_melati'];
+      if (  $total_uang_melati == ""  ) {
+        $total_uang_melati = 0;
+      }
+
+      $total_rit_melati = $data10['rit_melati'];
+      if (  $total_rit_melati == ""  ) {
+        $total_rit_melati = 0;
+      }
       
     $table8 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
     $data8 = mysqli_fetch_array($table8);
@@ -488,6 +503,8 @@ if (isset($_GET['tanggal1'])) {
       else{
         $angsuran_bon_bulanan = $data8['total_bon'];
       }
+
+      
       echo "<tr>
 
     <td style='font-size: 14px' >$nama_driver</td>
@@ -504,8 +521,10 @@ if (isset($_GET['tanggal1'])) {
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_batu_marta); ?> <?php echo "</td>
     <td style='font-size: 14px' >$total_rit_bantu_tabung_pertamina</td>
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_bantu_tabung_pertamina); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_melati</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_melati); ?> <?php echo "</td>
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_bantu_tabung_pertamina); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_melati + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_bantu_tabung_pertamina); ?> <?php echo "</td>
 
 
  </tr>";
