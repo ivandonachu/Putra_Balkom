@@ -602,6 +602,8 @@ else{
       <th>Upah Kota Baru</th>
       <th>Rit Batu Marta</th>
       <th>Upah Batu Marta</th>
+      <th>Rit Melati</th>
+      <th>Upah Melati</th>
       <th>Upah Total</th>
     </tr>
   </thead>
@@ -679,6 +681,18 @@ else{
       if (  $total_rit_batu_marta == ""  ) {
         $total_rit_batu_marta = 0;
       }
+      $table8 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_melati , SUM(rit) AS rit_melati FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Melati'");
+      $data8 = mysqli_fetch_array($table8);
+
+      $total_uang_gaji_melati = $data8['uang_gaji_melati'];
+      if (  $total_uang_gaji_melati == ""  ) {
+        $total_uang_gaji_melatia = 0;
+      }
+
+      $total_rit_melati = $data8['rit_melati'];
+      if (  $total_rit_melati == ""  ) {
+        $total_rit_melati = 0;
+      }
 
       echo "<tr>
 
@@ -694,7 +708,9 @@ else{
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_kota_baru); ?> <?php echo "</td>
     <td style='font-size: 14px' >$total_rit_batu_marta</td>
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_batu_marta); ?> <?php echo "</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_melati</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_melati); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_melati); ?> <?php echo "</td>
 
 
  </tr>";

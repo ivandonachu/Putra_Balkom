@@ -23,7 +23,7 @@ $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $nama_driver = $_POST['nama_driver'];
 $nama_rute = $_POST['nama_rute'];
-if($nama_rute == 'NJE' || $nama_rute == 'Melati'){
+if($nama_rute == 'NJE'){
     $uang_gaji = 100000;
 }
 else if($nama_rute == 'Gas Palembang'){
