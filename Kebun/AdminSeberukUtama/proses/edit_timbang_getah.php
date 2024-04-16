@@ -23,12 +23,13 @@ $no_laporan = $_POST['no_laporan'];
 $tanggal =$_POST['tanggal'];
 $keping = $_POST['keping'];
 $stok = $_POST['stok'];
+$timbang_keping = $_POST['timbang_keping'];
 $kg_timbang = $_POST['kg_timbang'];
 $kg_pabrik = $_POST['kg_pabrik'];
 $harga = $_POST['harga'];
 
 
-		$query3 = mysqli_query($koneksi,"UPDATE timbangan_getah SET tanggal = '$tanggal' , keping = '$keping' , stok = '$stok', kg_timbang = '$kg_timbang', kg_pabrik = '$kg_pabrik', harga = '$harga' WHERE no_laporan = 
+		$query3 = mysqli_query($koneksi,"UPDATE timbangan_getah SET tanggal = '$tanggal' , keping = '$keping' , stok = '$stok', timbang_keping = '$timbang_keping', kg_timbang = '$kg_timbang', kg_pabrik = '$kg_pabrik', harga = '$harga' WHERE no_laporan = 
 		'$no_laporan'");
 
 

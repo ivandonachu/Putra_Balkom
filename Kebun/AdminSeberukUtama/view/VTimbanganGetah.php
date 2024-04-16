@@ -299,13 +299,17 @@ else{
           <?php  echo "<form action='../proses/prosess_timbang_getah?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label>Tanggal</label>
                 <input class="form-control form-control-sm" type="date" name="tanggal" required="">
             </div> 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label>Harga</label>
                 <input class="form-control form-control-sm" type="float"  name="harga"  required=""> 
+            </div>
+            <div class="col-md-4">
+                <label>keping</label>
+                <input class="form-control form-control-sm" type="number"  name="keping"  required="">
             </div>
         </div>
 
@@ -313,8 +317,8 @@ else{
 
         <div class="row">
             <div class="col-md-3">
-                <label>keping</label>
-                <input class="form-control form-control-sm" type="number"  name="keping"  required="">
+                <label>Timbang Keping</label>
+                <input class="form-control form-control-sm" type="number"  name="timbang_keping"  required="">
             </div>
             <div class="col-md-3">
                 <label>Stok</label>
@@ -370,6 +374,9 @@ else{
     }
     $urut = 0;
     $timbang_keping = 0;
+    $total_timbangan_keping = 0;
+    $total_stok = 0;
+    $total_keping = 0;
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
@@ -380,7 +387,11 @@ else{
       $kg_timbang = $data['kg_timbang'];
       $kg_pabrik = $data['kg_pabrik'];
       $harga = $data['harga'];
-      $timbang_keping = $keping + $stok;
+      $timbang_keping = $data['timbang_keping'];
+      $total_timbangan_keping = $total_timbangan_keping + $timbang_keping;
+      $total_keping = $total_keping + $keping;
+      $total_stok = $total_keping - $total_timbangan_keping;
+
       $urut  = $urut + 1;
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
@@ -416,13 +427,17 @@ else{
         <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
         
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label>Tanggal</label>
                 <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>">
             </div> 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label>Harga</label>
                 <input class="form-control form-control-sm" type="float"  name="harga"  required="" value="<?php echo $harga;?>"> 
+            </div>
+            <div class="col-md-4">
+                <label>keping</label>
+                <input class="form-control form-control-sm" type="number"  name="keping"  required="" value="<?php echo $keping;?>">
             </div>
         </div>
 
@@ -430,12 +445,12 @@ else{
 
         <div class="row">
             <div class="col-md-3">
-                <label>keping</label>
-                <input class="form-control form-control-sm" type="number"  name="keping"  required="" value="<?php echo $keping;?>">
-            </div>
-            <div class="col-md-3">
                 <label>Stok</label>
                 <input class="form-control form-control-sm" type="float"  name="stok"  required="" value="<?php echo $stok;?>">
+            </div>
+            <div class="col-md-3">
+                <label>Timbang Keping</label>
+                <input class="form-control form-control-sm" type="number"  name="timbang_keping"  required="" value="<?php echo $timbang_keping;?>">
             </div>
             <div class="col-md-3">
                 <label>Kg Timbang</label>
@@ -547,6 +562,38 @@ else{
 <br>
 <hr>
 
+
+<br>
+<hr>
+<br>
+
+<h5 align="center" >Rincian Total Data Produksi Karet</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Keterangan</th>
+      <th>Jumlah</th>
+    </tr>
+  </thead>
+  <tbody>
+     <tr>
+      <td style='font-size: 14px; ' ><strong>Total Keping</strong></td>
+      <td style='font-size: 14px'> <strong><?= $total_keping; ?></strong> </td>
+    </tr>
+    <tr>
+      <td style='font-size: 14px; ' ><strong>Total Stok</strong></td>
+      <td style='font-size: 14px'> <strong><?= $total_stok; ?></strong> </td>
+    </tr>
+    <tr>
+      <td style='font-size: 14px; ' ><strong>Total Timbang Keping</strong></td>
+      <td style='font-size: 14px'> <strong><?= $total_timbangan_keping; ?></strong> </td>
+    </tr>
+</tbody>
+</table>
+
+<br>
+<hr>
 
 
 
