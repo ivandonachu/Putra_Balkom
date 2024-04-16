@@ -389,8 +389,8 @@ else{
       $harga = $data['harga'];
       $timbang_keping = $data['timbang_keping'];
       $total_timbangan_keping = $total_timbangan_keping + $timbang_keping;
-      $total_keping = $total_keping + $keping;
-      $total_stok = $total_keping - $total_timbangan_keping;
+      $total_keping_all = $total_keping_all + $keping;
+      $total_stok = $total_keping_all - $total_timbangan_keping;
 
       $urut  = $urut + 1;
       echo "<tr>
