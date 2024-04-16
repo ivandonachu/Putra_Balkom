@@ -579,7 +579,7 @@ else{
   <tbody>
      <tr>
       <td style='font-size: 14px; ' ><strong>Total Keping</strong></td>
-      <td style='font-size: 14px'> <strong><?= $total_keping; ?></strong> </td>
+      <td style='font-size: 14px'> <strong><?= $total_keping_all; ?></strong> </td>
     </tr>
     <tr>
       <td style='font-size: 14px; ' ><strong>Total Stok</strong></td>
