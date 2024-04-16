@@ -45,7 +45,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT * FROM timbangan_getah a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM timbangan_getah a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal");
   $table3 = mysqli_query($koneksi, "SELECT SUM(keping) AS total_keping, tanggal FROM produksi_karet a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY tanggal");
 }
 
