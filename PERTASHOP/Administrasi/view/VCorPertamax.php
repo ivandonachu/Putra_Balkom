@@ -370,6 +370,7 @@ data-parent="#accordionSidebar">
           <select id="nm_pt" name="nm_pt"  class="form-control form-control-sm">
             <option>PT CBM</option>
             <option>BALSRI</option>
+            <option>PT PBJ</option>
           </select>
         </div>       
         <div class="col-md-4">
