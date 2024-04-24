@@ -693,6 +693,7 @@ data-parent="#accordionSidebar">
                 
                 <option <?php echo ($dataSelect == 'PT CBM') ? "selected" : "" ?>>PT CBM</option>
                 <option <?php echo ($dataSelect == 'BALSRI') ? "selected" : "" ?>>BALSRI</option>
+                <option <?php echo ($dataSelect == 'PT PBJ') ? "selected" : "" ?>>PT PBJ</option>
 
               </select>
         </div>       
