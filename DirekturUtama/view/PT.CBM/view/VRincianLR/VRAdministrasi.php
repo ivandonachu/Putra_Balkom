@@ -522,7 +522,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: true,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: [ 'excel']
     } );
 
     table.buttons().container()
@@ -533,7 +533,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example2').DataTable( {
       lengthChange: true,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: [  'excel' ]
     } );
 
     table.buttons().container()
