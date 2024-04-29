@@ -826,77 +826,16 @@ if ($tanggal_awal == $tanggal_akhir) {
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
   <script>
-    $(document).ready(function() {
-      var table = $('#example').DataTable({
-        lengthChange: true,
-        buttons: []
-      });
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                lengthChange: true,
+                buttons: ['excel']
+            });
 
-      table.buttons().container()
-        .appendTo('#example_wrapper .col-md-6:eq(0)');
-    });
-  </script>
-
-  <script>
-    $(document).ready(function() {
-      var table = $('#example2').DataTable({
-        lengthChange: true,
-        buttons: []
-      });
-
-      table.buttons().container()
-        .appendTo('#example_wrapper .col-md-6:eq(0)');
-    });
-  </script>
-
-  <script>
-    $(document).ready(function() {
-      var table = $('#example3').DataTable({
-        lengthChange: true,
-        buttons: []
-      });
-
-      table.buttons().container()
-        .appendTo('#example_wrapper .col-md-6:eq(0)');
-    });
-  </script>
-
-  <script>
-    $(document).ready(function() {
-      var table = $('#example4').DataTable({
-        lengthChange: true,
-        buttons: []
-      });
-
-      table.buttons().container()
-        .appendTo('#example_wrapper .col-md-6:eq(0)');
-    });
-  </script>
-
-  <script>
-    $(document).ready(function() {
-      var table = $('#example5').DataTable({
-        lengthChange: true,
-        buttons: []
-      });
-
-      table.buttons().container()
-        .appendTo('#example_wrapper .col-md-6:eq(0)');
-    });
-  </script>
-
-
-  <script>
-    $(document).ready(function() {
-      var table = $('#example6').DataTable({
-        lengthChange: true,
-        buttons: []
-      });
-
-      table.buttons().container()
-        .appendTo('#example_wrapper .col-md-6:eq(0)');
-    });
-  </script>
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 
   <script>
     function createOptions(number) {
