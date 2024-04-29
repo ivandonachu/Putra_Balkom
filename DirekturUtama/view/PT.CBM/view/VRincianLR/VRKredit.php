@@ -20,32 +20,35 @@ exit;
 
 
 
+
+
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-
-if ($tanggal_akhir == $tanggal_awal) {
-  
-  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal = '$tanggal_awal'  AND nama_akun = 'Biaya Administrasi' ");
-  $table2 = mysqli_query($koneksicbm, "SELECT * FROM pengeluaran_admin WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Biaya Admin' AND referensi = 'MES' ");
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+   } 
+   
+   elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+   }  
+   else{
+     $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+   }
+if ($tanggal_awal == $tanggal_akhir) {
+  $table2 = mysqli_query($koneksicbm, "SELECT * FROM pengeluaran_admin WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Kredit' AND referensi = 'CBM' ");
 }
 else{
- 
-  $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Administrasi' ");
-  $table2 = mysqli_query($koneksicbm, "SELECT * FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Admin' AND referensi = 'MES' ");
+  $table2 = mysqli_query($koneksicbm, "SELECT * FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Kredit' AND referensi = 'CBM' ");
 }
 
- ?>
- <!DOCTYPE html>
- <html lang="en">
 
- <head>
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,8 +56,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Biaya Administrasi MES</title>
-
+  <title>Biaya Kredit CBM</title>
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -69,8 +71,6 @@ else{
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
 
   <!-- Link datepicker -->
 
@@ -78,13 +78,15 @@ else{
 
 <body id="page-top">
 
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+ 
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
+        <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../DsPTPBRMES">
                 <div class="sidebar-brand-icon rotate-n-15">
 
@@ -151,6 +153,9 @@ else{
                     </div>
                 </div>
             </li>
+
+
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -175,7 +180,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-  <?php echo "<a href='VRUsahaLainnyaTK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Biaya Administrasi MES</h5></a>"; ?>
+      <?php echo "<a href='VBungaBank'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Biaya Kredit CBM</h5></a>"; ?>
 
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -187,8 +192,8 @@ else{
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-          
-      
+
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -231,93 +236,10 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-    <div align="left">
-      <?php echo "<a href='../VLabaRugiMes2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+  <div align="left">
+      <?php echo "<a href='../VLabaRugi2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
-<br>
-<br>
-   
-
-<h3 align = 'center'>Rincian Biaya Administrasi</h3>
-
-<!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center' >
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>REF</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Debit</th>
-      <th>Kredit</th>
-      <th>Total</th>
-      <th>File</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-
-    $urut = 0;
-    $total = 0;
-    ?>
-     <?php
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-
-    ?>
-
-    <?php while($data = mysqli_fetch_array($table3)){
-      $no_pengeluaran = $data['no_pengeluaran'];
-      $tanggal =$data['tanggal'];
-      $referensi = $data['referensi'];
-      $nama_akun = $data['nama_akun'];
-      $keterangan = $data['keterangan'];
-      $jumlah = $data['jumlah'];
-      $file_bukti = $data['file_bukti'];
-      $urut  = $urut + 1;
-
-
-        $total = $total + $jumlah;
-
-
-
-
-      echo "<tr>
-      <td style='font-size: 14px'>$urut</td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
-       echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-       echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
-      }
-      else{
-        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
-        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      </tr>";
-  }
-  ?>
-
-</tbody>
-</table>
-</div>
-<br>
-<br>
-<hr>
-<br>
-<br>
-
-<h3 align = 'center'>Rincian Biaya Administrasi (Admin)</h3>
-
+    
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
   <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -335,7 +257,10 @@ else{
   </thead>
   <tbody>
     <?php
-
+function formatuang($angka){
+    $uang = "Rp " . number_format($angka,2,',','.');
+    return $uang;
+  }
     $urut = 0;
     $total = 0;
     ?>
@@ -366,9 +291,8 @@ else{
 </tbody>
 </table>
 </div>
-</div>
-
-
+<br>
+  </div>
 </div>
 
 </div>
@@ -416,8 +340,8 @@ aria-hidden="true">
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+<script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
+<script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -425,7 +349,7 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-<script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
+
 <!-- Tabel -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -441,22 +365,10 @@ aria-hidden="true">
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-
 <script>
   $(document).ready(function() {
     var table = $('#example').DataTable( {
-      lengthChange: true,
-      buttons: [ 'excel']
-    } );
-
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
-<script>
-  $(document).ready(function() {
-    var table = $('#example2').DataTable( {
-      lengthChange: true,
+      lengthChange: false,
       buttons: [  'excel' ]
     } );
 
@@ -464,6 +376,20 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+      buttons: [ 'excel' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+
 </body>
 
 </html>

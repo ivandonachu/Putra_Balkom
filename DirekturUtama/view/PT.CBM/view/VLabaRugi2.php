@@ -597,10 +597,14 @@ $total_pembelian_bajaisi = $total_pembelian_bajaisi_cbm + $total_pembelian_bajai
 
 
 //TOTAL PEMBELIAN KOSONG CBM
-$total_pembelian_bajakosong_cbm = $qty_penjualan_bajakaosong * 145000;
-
+$table8 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajakosong_cbm FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-130' AND referensi = 'CBM' ");
+$data_pembelian_bajakosong_cbm = mysqli_fetch_array($table8);
+$total_pembelian_bajakosong_cbm = $data_pembelian_bajakosong_cbm['pembelian_bajakosong_cbm'];
+if (!isset($data_pembelian_bajakosong_cbm['pembelian_bajakosong_cbm'])) {
+    $total_pembelian_bajakosong_cbm = 0;
+}
 //TOTAL PEMBELIAN KOSONG TK
-$table9 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajakosong_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_akun = '5-130' AND referensi = 'TK' ");
+$table9 = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS pembelian_bajakosong_tk FROM riwayat_pembelian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_akun = '5-130' AND referensi = 'TK' ");
 $data_pembelian_bajakosong_tk = mysqli_fetch_array($table9);
 $total_pembelian_bajakosong_tk = $data_pembelian_bajakosong_tk['pembelian_bajakosong_tk'];
 if (!isset($data_pembelian_bajakosong_tk['pembelian_bajakosong_tk'])) {
@@ -936,13 +940,29 @@ if (!isset($data_pajak_admin['pajak'])) {
     $total_pajak = 0;
 }
 
+//Biaya Admin
+$tabel_biaya_admin = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS biaya_admin FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Admin' AND referensi = 'CBM' ");
+$data_biaya_admin = mysqli_fetch_array($tabel_biaya_admin);
+$total_biaya_administrasi_new_x = $data_biaya_admin['biaya_admin'];
+if (!isset($data_biaya_admin['biaya_admin'])) {
+    $total_biaya_administrasi_new_x = 0;
+}
+
+//Kredit
+$tabel_kredit = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS kredit FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Kredit' AND referensi = 'CBM' ");
+$data_kredit = mysqli_fetch_array($tabel_kredit);
+$total_biaya_kredit = $data_kredit['kredit'];
+if (!isset($data_kredit['kredit'])) {
+    $total_biaya_kredit = 0;
+}
+
 
 
 
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3 + $total_perbaikan_pribadi + $total_perbaikan_pribadi_new;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_gaji_karyawan_new + $total_gaji_driver + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni  +  $total_biaya_administrasi_new + $total_pajak;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_pengeluaran_lainnya + $total_bunga_bank_bni  +  $total_biaya_administrasi_new + $total_biaya_administrasi_new_x + $total_pajak + $total_biaya_kredit;
 
 $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_biaya_usaha_final;
 }
@@ -1524,7 +1544,7 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                     <td>5-591</td>
                                     <td class="text-left">Biaya Administrasi</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_biaya_administrasi_new); ?></td>
+                                    <td class="text-left"><?= formatuang($total_biaya_administrasi_new + $total_biaya_administrasi_new_x); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRAdministrasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
@@ -1540,6 +1560,13 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                                     <td class="text-left"><?= formatuang(0); ?></td>
                                     <td class="text-left"><?= formatuang($total_perbaikan_kendaraan); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPerbaikanKen?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                </tr>
+                                <tr>
+                                    <td>5-597</td>
+                                    <td class="text-left">Kredit</td>
+                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                    <td class="text-left"><?= formatuang($total_biaya_kredit); ?></td>
+                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>
                                     <td>5-597</td>

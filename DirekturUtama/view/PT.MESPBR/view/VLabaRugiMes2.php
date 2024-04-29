@@ -712,12 +712,21 @@ if (!isset($data_pajak_admin['pajak'])) {
     $total_pajak = 0;
 }
 
+//Biaya Admin
+$tabel_biaya_admin = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS biaya_admin FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Admin' AND referensi = 'MES' ");
+$data_biaya_admin = mysqli_fetch_array($tabel_biaya_admin);
+$total_biaya_administrasi_new_x = $data_biaya_admin['biaya_admin'];
+if (!isset($data_biaya_admin['biaya_admin'])) {
+    $total_biaya_administrasi_new_x = 0;
+}
+
+
 $total_pengeluaran_lainnya = $total_pengeluaran_lainnya_new;
 
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
 $total_biaya_usaha_final = $total_gaji_karyawan + $total_gaji_karyawan_new + $total_gaji_driver + $total_pengeluaran_atk + $total_pengeluaran_transport + $total_pengeluaran_kantor + $total_pengeluaran_listrik + $total_biaya_pemasaran + $total_biaya_usaha + $total_pengeluaran_lainnya +
-                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan +  $total_biaya_administrasi_new + $total_kredit_kendaraan +$total_pajak;
+                            $total_perbaikan_kendaraan + $total_pengeluaran_konsumsi + $total_biaya_prive + $total_uang_makan + $total_uang_anter_gas + $total_uang_bongkar_ulang + $total_uang_makan +  $total_biaya_administrasi_new +  $total_biaya_administrasi_new_x  + $total_kredit_kendaraan +$total_pajak;
 
 $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 }
@@ -1263,7 +1272,7 @@ $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
                                     <td>5-591</td>
                                     <td class="text-left">Biaya Administrasi</td>
                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                    <td class="text-left"><?= formatuang($total_biaya_administrasi_new); ?></td>
+                                    <td class="text-left"><?= formatuang($total_biaya_administrasi_new +  $total_biaya_administrasi_new_x ); ?></td>
                                     <?php echo "<td class='text-right'><a href='VRincianLRMES/VRBAdministrasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                 </tr>
                                 <tr>

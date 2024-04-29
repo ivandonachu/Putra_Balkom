@@ -274,7 +274,7 @@ function formatuang($angka){
       $jumlah = $data['jumlah'];
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
-      $total = $total =$jumlah;
+      $total = $total + $jumlah;
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
