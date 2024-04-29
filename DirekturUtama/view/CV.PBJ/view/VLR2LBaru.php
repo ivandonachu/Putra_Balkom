@@ -597,7 +597,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $harga_beli = $data_pembelian_2['harga_beli'];
         $qty = $data_pembelian_2['qty'];
 
-        
+
         $jumlah_beli = $harga_beli * $qty;
 
 
@@ -804,6 +804,14 @@ if ($tanggal_awal == $tanggal_akhir) {
         $biaya_pajak = 0;
     }
 
+    //bUNGA BANK
+    $table_bunga_bank = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS bunga_bank FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Bunga Bank' ");
+    $data_bunga_bank = mysqli_fetch_array($table_bunga_bank);
+    $total_bunga_bank = $data_bunga_bank['bunga_bank'];
+    if (!isset($data_bunga_bank['bunga_bank'])) {
+        $total_bunga_bank = 0;
+    }
+
     //biaya oprasional pabrik 1
     $table_op_pabrik_1 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS oprasional_pabrik_1 FROM keuangan_sl WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Oprasional Pabrik' ");
     $data_op_pabrik_1 = mysqli_fetch_array($table_op_pabrik_1);
@@ -884,7 +892,7 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
 }
 
 if ($total_gaji_driver > 0) {
-    $total_bunga_bank = 50000000 * $bulan_bunga;
+
 
     $total_pendapatan = $total_penjualan_dani_c + $total_penjualan_dani_p + $total_penjualan_ety_c + $total_penjualan_ety_p + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s;
     $pembelian_total = $total_penebusan_dani_c + $total_penebusan_dani_p + $total_penebusan_ety_c + $total_penebusan_ety_p;
@@ -897,7 +905,6 @@ if ($total_gaji_driver > 0) {
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 } else {
 
-    $total_bunga_bank = 50000000 * $bulan_bunga;
 
     $total_pendapatan = $total_penjualan_dani_c + $total_penjualan_dani_p + $total_penjualan_ety_c + $total_penjualan_ety_p + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s;
     $pembelian_total = $total_penebusan_dani_c + $total_penebusan_dani_p + $total_penebusan_ety_c + $total_penebusan_ety_p;
@@ -1047,8 +1054,7 @@ if ($total_gaji_driver > 0) {
                 <div id='collapseTwo4' class='collapse' aria-labelledby='headingTwo' data-parent='#accordionSidebar'>
                     <div class='bg-white py-2 collapse-inner rounded'>
                         <h6 class='collapse-header' style='font-size: 15px;'>Report</h6>
-                        <a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='VLR2LBaru'>Laba Rugi Baru</a>
+                        <a class='collapse-item' style='font-size: 15px;' href='VLR2LBaru'>Laba Rugi</a>
                         <a class='collapse-item' style='font-size: 15px;' href='VLRKendaraan'>Laba Rugi Kendaraan</a>
                         <a class='collapse-item' style='font-size: 15px;' href='VRekapanHarga'>Rekapan Harga</a>
                         <a class='collapse-item' style='font-size: 15px;' href='VRekapSparepart'>Rekap Sparepart</a>
@@ -1166,7 +1172,7 @@ if ($total_gaji_driver > 0) {
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi PT PBJ Baru (Harga Jual dan Beli)</strong></h3>
+                                    <h3 class="panel-title" align="Center"><strong>Laba Rugi PT PBJ</strong></h3>
                                 </div>
 
                                 <div>
@@ -1432,7 +1438,7 @@ if ($total_gaji_driver > 0) {
                                                     <td class="text-left">Bunga Bank</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_bunga_bank); ?></td>
-                                                    <?php echo "<td class='text-right'><a href=''></a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VBungaBank?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
 
                                                 <tr style="background-color:    #F0F8FF; ">

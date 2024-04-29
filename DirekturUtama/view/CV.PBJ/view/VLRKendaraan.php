@@ -116,7 +116,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -185,7 +185,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -255,7 +255,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -321,7 +321,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -426,7 +426,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -515,7 +515,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ) {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
@@ -525,7 +525,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -576,7 +576,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ) {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
@@ -586,7 +586,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -646,7 +646,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ) {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
@@ -656,7 +656,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -712,7 +712,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ) {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
@@ -722,7 +722,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -817,7 +817,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ) {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
@@ -827,7 +827,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
             } 
             else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map_bmu = $total_map_bmu + $total_angkut_bmu;
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
 
             } 
             else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
@@ -981,8 +981,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <div id='collapseTwo4' class='collapse' aria-labelledby='headingTwo' data-parent='#accordionSidebar'>
                     <div class='bg-white py-2 collapse-inner rounded'>
                         <h6 class='collapse-header' style='font-size: 15px;'>Report</h6>
-                        <a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='VLR2LBaru'>Laba Rugi Baru</a>
+                        <a class='collapse-item' style='font-size: 15px;' href='VLR2LBaru'>Laba Rugi</a>
                         <a class='collapse-item' style='font-size: 15px;' href='VLRKendaraan'>Laba Rugi Kendaraan</a>
                         <a class='collapse-item' style='font-size: 15px;' href='VRekapanHarga'>Rekapan Harga</a>
                         <a class='collapse-item' style='font-size: 15px;' href='VRekapSparepart'>Rekap Sparepart</a>
