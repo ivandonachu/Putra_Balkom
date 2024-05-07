@@ -964,6 +964,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <input type="hidden" name="toko_do" value="<?php echo $toko_do; ?>">
                       </div>
 
+                      <div class="col-md-4">
+                            <label>Tipe Semen</label>
+                            <select id="tipe_semen" name="tipe_semen" class="form-control">
+                              <option>Pranko</option>
+                              <option>AS</option>
+                            </select>
+                      </div>
+
                     </div>
 
                     <br>

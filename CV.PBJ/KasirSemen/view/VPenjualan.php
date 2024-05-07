@@ -569,15 +569,15 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <div class="row">
                                 <div class="col-md-6">
                                   <label>Tanggal DO</label>
-                               
-                                    <input class="form-control form-control-sm" type="date" name="tanggal_do" value="<?php echo $tanggal_do; ?>">
-                              
+
+                                  <input class="form-control form-control-sm" type="date" name="tanggal_do" value="<?php echo $tanggal_do; ?>">
+
                                 </div>
                                 <div class="col-md-6">
                                   <label>Tanggal Kirim</label>
-                         
-                                    <input class="form-control form-control-sm" type="date"  name="tanggal_kirim" value="<?php echo $tanggal_kirim; ?>">
-                              
+
+                                  <input class="form-control form-control-sm" type="date" name="tanggal_kirim" value="<?php echo $tanggal_kirim; ?>">
+
                                 </div>
                               </div>
 
@@ -586,20 +586,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <div class="row">
                                 <div class="col-md-4">
                                   <label>NO DO</label>
-                          
-                                    <input class="form-control form-control-sm" type="text" id="no_do" name="no_do" value="<?php echo $no_do; ?>">
+
+                                  <input class="form-control form-control-sm" type="text" id="no_do" name="no_do" value="<?php echo $no_do; ?>">
                                 </div>
-                                  <div class="col-md-4">
+                                <div class="col-md-4">
                                   <label>NO SO</label>
-                                
-                                    <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" value="<?php echo $no_so; ?>">
-                               
+
+                                  <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" value="<?php echo $no_so; ?>">
+
                                 </div>
                                 <div class="col-md-4">
                                   <label>No Polisi</label>
-                                  
-                                    <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" value="<?php echo $no_polisi; ?>">
-                              
+
+                                  <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" value="<?php echo $no_polisi; ?>">
+
                                 </div>
                               </div>
 
@@ -608,15 +608,15 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <div class="row">
                                 <div class="col-md-6">
                                   <label>Tujuan Pengiriman</label>
-                            
-                                    <input class="form-control form-control-sm" type="text" id="tujuan_pengiriman" name="tujuan_pengiriman" required="" value="<?php echo $tujuan_pengiriman; ?>">
-                               
+
+                                  <input class="form-control form-control-sm" type="text" id="tujuan_pengiriman" name="tujuan_pengiriman" required="" value="<?php echo $tujuan_pengiriman; ?>">
+
                                 </div>
                                 <div class="col-md-6">
                                   <label>Driver</label>
-                                 
-                                    <input class="form-control form-control-sm" type="text" id="driver" name="driver" required="" value="<?php echo $driver; ?>">
-                                
+
+                                  <input class="form-control form-control-sm" type="text" id="driver" name="driver" required="" value="<?php echo $driver; ?>">
+
                                 </div>
                               </div>
 
@@ -798,11 +798,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                               </div>
 
                               <div class="col-md-4">
-                                  <label>NO SO</label>
-                             
-                                    <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" value="<?php echo $no_so; ?>">
-                                    <input type="hidden" name="no_so" value="<?php echo $no_so; ?>">
-                                </div>
+                                <label>NO SO</label>
+
+                                <input class="form-control form-control-sm" type="text" id="no_so" name="no_so" value="<?php echo $no_so; ?>">
+                                <input type="hidden" name="no_so" value="<?php echo $no_so; ?>">
+                              </div>
 
 
 
@@ -810,6 +810,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <label>Nama Toko di DO</label>
                                 <input class="form-control form-control-sm" type="text" id="toko_do" name="toko_do" disabled="" value="<?php echo $toko_do; ?>">
                                 <input type="hidden" name="toko_do" value="<?php echo $toko_do; ?>">
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Tipe Semen</label>
+                                <select id="tipe_semen" name="tipe_semen" class="form-control">
+                                  <option>Pranko</option>
+                                  <option>AS</option>
+                                </select>
                               </div>
 
                             </div>

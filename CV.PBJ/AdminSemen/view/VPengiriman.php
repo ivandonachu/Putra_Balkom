@@ -421,6 +421,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>No Polisi</th>
                     <th>Tujuan Pengiriman</th>
                     <th>Nama Toko di DO</th>
+                    <th>Tipe Semen</th>
                     <th>Uang Jalan</th>
                     <th>Uang Gaji</th>
                     <th>Ongkos Mobil</th>
@@ -449,6 +450,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $driver = $data['driver'];
                     $no_polisi = $data['no_polisi'];
                     $toko_do = $data['toko_do'];
+                    $tipe_semen = $data['tipe_semen'];
                     $no_do = $data['no_do'];
                     $no_so = $data['no_so'];
                     $uj = $data['uj'];
@@ -473,6 +475,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px' align = 'center'>$no_polisi</td>
       <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
       <td style='font-size: 14px' align = 'center'>$toko_do</td>
+      <td style='font-size: 14px' align = 'center'>$tipe_semen</td>
       <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($uj); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($ug); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($om); ?> <?php echo "</td>
@@ -561,6 +564,21 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   </div>
 
                                 </div>
+
+                              <br>
+
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label>Tipe Semen</label>
+                                  <select id="tipe_semen" name="tipe_semen" class="form-control">
+                                    <?php
+                                    $dataSelect = $data['tipe_semen']; ?>
+                                    <option <?php echo ($dataSelect == 'Pranko') ? "selected" : "" ?>>Pranko</option>
+                                    <option <?php echo ($dataSelect == 'AS') ? "selected" : "" ?>>AS</option>
+                                  </select>
+
+                                </div>
+                              </div>
 
                               <br>
 

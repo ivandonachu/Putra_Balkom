@@ -23,6 +23,7 @@ $tanggal_antar = $_POST['tanggal_antar'];
 $driver = $_POST['driver'];
 $no_polisi = $_POST['no_polisi'];
 $toko_do = $_POST['toko_do'];
+$tipe_semen = $_POST['tipe_semen'];
 $uj = $_POST['uj'];
 $ug = $_POST['ug'];
 $om = $_POST['om'];
@@ -66,12 +67,12 @@ if ($nama_file == "") {
 
 if ($file == '') {
 	$query3 = mysqli_query($koneksi, "UPDATE pengiriman_s SET tanggal_antar = '$tanggal_antar', driver = '$driver', no_polisi = '$no_polisi', 
-			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', bs = '$bs', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan' WHERE no_pengiriman = '$no_pengiriman'");
+			toko_do = '$toko_do', tipe_semen = '$tipe_semen', uj = '$uj', ug = '$ug', om = '$om', bs = '$bs', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan' WHERE no_pengiriman = '$no_pengiriman'");
 
 
 } else {
 	$query3 = mysqli_query($koneksi, "UPDATE pengiriman_s SET tanggal_antar = '$tanggal_antar', driver = '$driver', no_polisi = '$no_polisi',
-			toko_do = '$toko_do', uj = '$uj', ug = '$ug', om = '$om', bs = '$bs', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan', file_bukti = '$file'  WHERE no_pengiriman = '$no_pengiriman'");
+			toko_do = '$toko_do', tipe_semen = '$tipe_semen', uj = '$uj', ug = '$ug', om = '$om', bs = '$bs', tanggal_gaji = '$tanggal_gaji', tanggal_nota = '$tanggal_nota', keterangan = '$keterangan', file_bukti = '$file'  WHERE no_pengiriman = '$no_pengiriman'");
 
 }
 
