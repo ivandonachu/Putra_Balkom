@@ -620,7 +620,7 @@ data-parent="#accordionSidebar">
 
               <label>Tanggal Pembayaran</label>
               <div class="col-md-10">
-                <input  class="form-control form-control-sm" type="date" id="tanggal_pembayaran" name="tanggal_pembayaran" required="" value="<?php echo $tanggal_pembayaran; ?>">
+                <input  class="form-control form-control-sm" type="date" id="tanggal_pembayaran" name="tanggal_pembayaran" value="<?php echo $tanggal_pembayaran; ?>">
               </div>
 
             </div>
