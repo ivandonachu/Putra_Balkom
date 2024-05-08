@@ -111,6 +111,8 @@ $nama = $data['nama_karyawan'];
             <a class="collapse-item" style="font-size: 15px;" href="VRekapDoPenjualan">Rekap Do Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VFilePBJ">File PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapTagihan">Rekap Tagihan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapPiutang">Rekap Piutang</a>
         </div>
     </div>
 </li>

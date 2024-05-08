@@ -11,9 +11,11 @@
 /CV.PBJ/KasirSemen/file_semen
 /CV.PBJ/KasirSemen/proses/koneksi.php
 /CV.PBJ/KasirSemen/view/koneksi.php
+/CV.PBJ/KasirSemen/view/VRincianRLI/koneksi.php
 /CV.PBJ/AdminSemen/file_admin_semen
 /CV.PBJ/AdminSemen/proses/koneksi.php
 /CV.PBJ/AdminSemen/view/koneksi.php
+/CV.PBJ/AdminSemen/view/VRincianRLI/koneksi.php
 /CV.PBJ/Manager/proses/koneksi.php
 /CV.PBJ/Manager/view/koneksi.php
 /CV.PBJ/Manager/file_manager

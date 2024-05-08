@@ -160,6 +160,8 @@ $status_karyawan = $data['status_karyawan'];
             <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Uang Sewa Hi Blow</a> 
             <a class="collapse-item" style="font-size: 15px;" href="VFilePBJ">File PBJ</a>
             <a class="collapse-item" style="font-size: 15px;" href="VStokGudang">Stok Gudang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapTagihan">Rekap Tagihan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapPiutang">Rekap Piutang</a>
         </div>
     </div>
 </li>
