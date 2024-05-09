@@ -228,7 +228,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                     <div align="left">
-                            <?php echo "<a href='VRekappIUTANG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+                            <?php echo "<a href='VRekapPiutang?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
                         </div>
 
                         <br>
