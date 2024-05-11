@@ -88,8 +88,8 @@ while($data4 = mysqli_fetch_array($table5)){
     $qty = $data4['total_qty1'];
     $harga = $data4['harga'];
     $jumlah = $qty * $harga;
-    $data_pendapatan_nb[] = "$jumlah";
-    $data_penjualan_nb[] = "$qty";
+    $data_pendapatan_md[] = "$jumlah";
+    $data_penjualan_md[] = "$qty";
 }
 
 //DATA DEXLITE
@@ -114,8 +114,8 @@ while($data21 = mysqli_fetch_array($table21)){
     $qty = $data21['total_qty1'];
     $harga = $data21['harga'];
     $jumlah = $qty * $harga;
-    $data_pendapatan_md_dex[] = "$jumlah";
-    $data_penjualan_md_dex[] = "$qty";
+    $data_pendapatan_nb_dex[] = "$jumlah";
+    $data_penjualan_nb_dex[] = "$qty";
 }
 
 
