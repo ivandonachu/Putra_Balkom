@@ -1,21 +1,19 @@
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
-  header("Location: logout.php");
-  exit;
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
+    header("Location: logout.php");
+    exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
-
-}
-
-else{ header("Location: logout.php");
-exit;
+} else {
+    header("Location: logout.php");
+    exit;
 }
 
 
@@ -76,31 +74,30 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM list_aset_seberuk");
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png" ></div>
+                <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png"></div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
+            <li class="nav-item active">
                 <a class="nav-link" href="DsKebun">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+                    <span style="font-size: 16px;">Dashboard</span></a>
+            </li>
 
-                 <!-- Divider -->
-                <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                     Menu Kebun
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >List Company</span>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                Menu Kebun
+            </div>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">List Company</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -118,11 +115,24 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM list_aset_seberuk");
                 </div>
             </li>
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Report</span>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoZZZ" 15 aria-expanded="true" aria-controls="collapseTwoZZZ">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Laba Rugi</span>
+                </a>
+                <div id="collapseTwoZZZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report Laba Rugi</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLRSeberuk">Laba Rugi Seberuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLRLengkiti">Laba Rugi Lengkiti</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Lengkiti</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -139,10 +149,9 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM list_aset_seberuk");
             </li>
 
             <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x"
-                15  aria-expanded="true" aria-controls="collapseTwo1x">
-                <i class="fa fa-address-card" aria-hidden="true"></i>
-                    <span style="font-size: 15px; color:white;" >SDM Lengkiti</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x" 15 aria-expanded="true" aria-controls="collapseTwo1x">
+                    <i class="fa fa-address-card" aria-hidden="true"></i>
+                    <span style="font-size: 15px; color:white;">SDM Lengkiti</span>
                 </a>
                 <div id="collapseTwo1x" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -154,13 +163,12 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM list_aset_seberuk");
                     </div>
                 </div>
             </li>
-            
-             <!-- Nav Item - Pages Collapse Menu -->
-             <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                  15  aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pendapatan Seberuk</span>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" 15 aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Pendapatan Seberuk</span>
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -172,12 +180,11 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM list_aset_seberuk");
                     </div>
                 </div>
             </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
-                  15  aria-expanded="true" aria-controls="collapseTwo22">
-                    <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengeluaran Seberuk</span>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22" 15 aria-expanded="true" aria-controls="collapseTwo22">
+                    <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Pengeluaran Seberuk</span>
                 </a>
                 <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -191,29 +198,27 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM list_aset_seberuk");
                     </div>
                 </div>
             </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z"
-                  15  aria-expanded="true" aria-controls="collapseTwo22z">
-                    <i class="fas fa-users" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Absensi Seberuk</span>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z" 15 aria-expanded="true" aria-controls="collapseTwo22z">
+                    <i class="fas fa-users" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Absensi Seberuk</span>
                 </a>
                 <div id="collapseTwo22z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Absensi</h6>
-                        
+
                         <a class="collapse-item" style="font-size: 15px;" href="VKegiatanHarian">Kegiatan Harian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsensiBuruh">Absensi Buruh</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsenFoto">Absensi Foto</a>
                     </div>
                 </div>
             </li>
-           <!-- Nav Item - Pages Collapse Menu -->
-           <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz"
-                  15  aria-expanded="true" aria-controls="collapseTwo1xz">
-                    <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >SDM Seberuk</span>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz" 15 aria-expanded="true" aria-controls="collapseTwo1xz">
+                    <i class="fas fa-car" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">SDM Seberuk</span>
                 </a>
                 <div id="collapseTwo1xz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -304,7 +309,7 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM list_aset_seberuk");
 
                     <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-            
+
                         <!-- Tabel -->
                         <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
                             <thead>
@@ -313,7 +318,7 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM list_aset_seberuk");
                                     <th>Nama Aset</th>
                                     <th>Jumlah Aset</th>
                                     <th>Keterangan</th>
-                          
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -418,7 +423,7 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM list_aset_seberuk");
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 lengthChange: true,
-                buttons: [ 'excel']
+                buttons: ['excel']
             });
 
             table.buttons().container()

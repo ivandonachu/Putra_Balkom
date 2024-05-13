@@ -317,7 +317,10 @@ else{
                         <option>Biaya Operasional</option>
                         <option>Biaya Konsumsi</option>
                         <option>Biaya Administrasi</option>
-                        <option>Biaya Buruh</option>
+                        <option>Biaya Bahan Bakar</option>
+                        <option>Biaya Peralatan</option>
+                        <option>Biaya Karet</option>
+                        <option>Biaya Buah</option>
                         <option>Biaya Insentif</option>
                         <option>Biaya Kantor</option>
                         <option>Biaya Perbaikan Kendaraan</option>

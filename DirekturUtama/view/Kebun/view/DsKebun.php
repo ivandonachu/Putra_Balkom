@@ -120,12 +120,26 @@ exit;
                     </div>
                 </div>
             </li>
+                <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoZZZ"
+                    15  aria-expanded="true" aria-controls="collapseTwoZZZ">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
+                        <span style="font-size: 15px; color:white;" >Report Laba Rugi</span>
+                    </a>
+                    <div id="collapseTwoZZZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header" style="font-size: 15px;">Report Laba Rugi</h6>
+                            <a class="collapse-item" style="font-size: 15px;" href="VLRSeberuk">Laba Rugi Seberuk</a>
+                            <a class="collapse-item" style="font-size: 15px;" href="VLRLengkiti">Laba Rugi Lengkiti</a>
+                        </div>
+                    </div>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                   15  aria-expanded="true" aria-controls="collapseTwo">
                   <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Report</span>
+                    <span style="font-size: 15px; color:white;" >Report Lengkiti</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -229,6 +243,7 @@ exit;
                     </div>
                 </div>
             </li>
+
         
             <!-- Divider -->
   <hr class="sidebar-divider">
