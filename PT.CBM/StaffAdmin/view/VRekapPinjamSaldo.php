@@ -37,6 +37,7 @@ else{
     $tanggal_awal = date('Y-m-1');
   $tanggal_akhir = date('Y-m-31');
   }
+
 if ($tanggal_awal == $tanggal_akhir) {
   
   $table = mysqli_query($koneksi, "SELECT * FROM pinjam_saldo_admin  WHERE tanggal = '$tanggal_awal'");
@@ -45,6 +46,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
 
   $table = mysqli_query($koneksi, "SELECT * FROM pinjam_saldo_admin  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+
+  
 
 }
 
@@ -135,6 +138,7 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranAdmin">Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapPinjamSaldo">Rekap Pinjam Saldo</a>
+            <a class="collapse-item" style="font-size: 12px;" href="VRekapPengembalianSaldo">Rekap Pengembalian Saldo</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBPJSDriver">BPJS Driver</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
@@ -347,10 +351,13 @@ else{
             <label>Rekening Dipinjam</label>
             <select class="form-control form-control-sm"  name="rekening_dipinjam" class="form-control">
               <option>Balsri</option>
+              <option>STRE</option>
               <option>PBJ</option>
               <option>CBM</option>
               <option>PBR</option>
               <option>MES</option>
+              <option>Kebun Lengkiti</option>
+              <option>Kebun Seberuk</option>
             </select>
           </div>
         </div>
@@ -362,10 +369,13 @@ else{
             <label>Rekening Peminjam</label>
             <select class="form-control form-control-sm"  name="rekening_peminjam" class="form-control">
               <option>Balsri</option>
+              <option>STRE</option>
               <option>PBJ</option>
               <option>CBM</option>
               <option>PBR</option>
               <option>MES</option>
+              <option>Kebun Lengkiti</option>
+              <option>Kebun Seberuk</option>
             </select>
           </div>
             <div class="col-md-6">
@@ -483,10 +493,13 @@ else{
             <select class="form-control form-control-sm"  name="rekening_dipinjam" class="form-control">
             <?php $dataSelect = $data['rekening_dipinjam']; ?>
               <option <?php echo ($dataSelect == 'Balsri') ? "selected": "" ?> >Balsri</option>
+              <option <?php echo ($dataSelect == 'STRE') ? "selected": "" ?> >STRE</option>
               <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
               <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
               <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
               <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+              <option <?php echo ($dataSelect == 'Kebun Seberuk') ? "selected": "" ?> >Kebun Seberuk</option>
+              <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
             </select>
           </div>
         </div>
@@ -497,10 +510,13 @@ else{
             <select class="form-control form-control-sm"  name="rekening_peminjam" class="form-control">
             <?php $dataSelect = $data['rekening_peminjam']; ?>
               <option <?php echo ($dataSelect == 'Balsri') ? "selected": "" ?> >Balsri</option>
+              <option <?php echo ($dataSelect == 'STRE') ? "selected": "" ?> >STRE</option>
               <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
               <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
               <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
               <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+              <option <?php echo ($dataSelect == 'Kebun Seberuk') ? "selected": "" ?> >Kebun Seberuk</option>
+              <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
             </select>
           </div>
             <div class="col-md-6">

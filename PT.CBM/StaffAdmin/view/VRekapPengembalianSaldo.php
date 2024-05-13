@@ -1,20 +1,22 @@
 <?php
 session_start();
-include 'koneksi.php';
-if (!isset($_SESSION["login"])) {
+include'koneksi.php';
+if(!isset($_SESSION["login"])){
   header("Location: logout.php");
   exit;
 }
-$id = $_COOKIE['id_cookie'];
+$id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Staff Admin') {
-} else {
-  header("Location: logout.php");
-  exit;
+
+}
+
+else{  header("Location: logout.php");
+exit;
 }
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
@@ -22,28 +24,32 @@ $nama = $data['nama_karyawan'];
 
 
 if (isset($_GET['tanggal1'])) {
-    $tanggal_awal = $_GET['tanggal1'];
-    $tanggal_akhir = $_GET['tanggal2'];
-   } 
-   
-   elseif (isset($_POST['tanggal1'])) {
-    $tanggal_awal = $_POST['tanggal1'];
-    $tanggal_akhir = $_POST['tanggal2'];
-   }  
-   else{
-     $tanggal_awal = date('Y-m-1');
-   $tanggal_akhir = date('Y-m-31');
-   }
+ $tanggal_awal = $_GET['tanggal1'];
+ $tanggal_akhir = $_GET['tanggal2'];
+} 
+
+elseif (isset($_POST['tanggal1'])) {
+ $tanggal_awal = $_POST['tanggal1'];
+ $tanggal_akhir = $_POST['tanggal2'];
+}  
+
+else{
+    $tanggal_awal = date('Y-m-1');
+  $tanggal_akhir = date('Y-m-31');
+  }
+
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM transport_fee WHERE tanggal = '$tanggal_awal'");
+  
+  $table = mysqli_query($koneksi, "SELECT * FROM pengembalian_saldo_admin  WHERE tanggal = '$tanggal_awal'");
+
 }
 else{
-  $table = mysqli_query($koneksi, "SELECT * FROM transport_fee WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+
+  $table = mysqli_query($koneksi, "SELECT * FROM pengembalian_saldo_admin  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+
 }
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +61,8 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Transport Fee</title>
+  <title>Pengembalian Saldo Admin</title>
+
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -77,12 +84,11 @@ else{
 
 <body id="page-top">
 
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+     <!-- Sidebar -->
+     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
@@ -225,8 +231,6 @@ else{
         </div>
     </div>
 </li>
-
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -251,8 +255,7 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VTrasnportFee'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Transport Fee</h5></a>"; ?>
-
+      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pengembalian Saldo Admin</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -264,37 +267,29 @@ else{
       <ul class="navbar-nav ml-auto">
 
 
-
-
-
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-          <img class="img-profile rounded-circle"
-          src="img/undraw_profile.svg">
-        </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
+                </a>
         <!-- Dropdown - User Information -->
-        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-        aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="VProfile">
-          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-          Profile
-        </a>
-        <a class="dropdown-item" href="VSetting">
-          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-          Settings
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Logout
-        </a>
-      </div>
-    </li>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="VProfile">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+              </div>
+             </li>
 
   </ul>
 
@@ -307,7 +302,9 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-    <?php  echo "<form  method='POST' action='VTransportFee' style='margin-bottom: 15px;'>" ?>
+
+
+    <?php  echo "<form  method='POST' action='VRekapPemgembalianSaldo' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -317,22 +314,23 @@ else{
       </div>
     </div>
   </form>
+
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-   <div class="col-md-6">
+   <div class="col-md-12">
+
     <!-- Button Input Data Bayar -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Transport Fee </button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pengembalian </button> <br> <br>
     </div>
-    
-     <!-- Form Modal  -->
+    <!-- Form Modal  -->
     <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Pencatatan Transport Fee </h5>
+          <h5 class="modal-title"> Form Pengembalian </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -340,50 +338,63 @@ else{
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_transport_fee?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_pengembalian_saldo?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-6">
-
               <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal" required="">
-             </div>
-
+               <input class="form-control form-control-sm" type="date" name="tanggal" required="">
           </div>
- 
+          <div class="col-md-6">
+            <label>Rekening Peminjam</label>
+            <select class="form-control form-control-sm"  name="rekening_peminjam" class="form-control">
+              <option>Balsri</option>
+              <option>STRE</option>
+              <option>PBJ</option>
+              <option>CBM</option>
+              <option>PBR</option>
+              <option>MES</option>
+              <option>Kebun Lengkiti</option>
+              <option>Kebun Seberuk</option>
+            </select>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+        <div class="col-md-6">
+            <label>Di kembalikan ke Rekening</label>
+            <select class="form-control form-control-sm"  name="dikembalikan_ke_rekening" class="form-control">
+              <option>Balsri</option>
+              <option>STRE</option>
+              <option>PBJ</option>
+              <option>CBM</option>
+              <option>PBR</option>
+              <option>MES</option>
+              <option>Kebun Lengkiti</option>
+              <option>Kebun Seberuk</option>
+            </select>
+          </div>
+            <div class="col-md-6">
+                <label>Jumlah</label>
+                <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="">          
+            </div>
         </div>
 
 
-        <div class="row">
-          
+      <br>
 
+      <div class="row">
         <div class="col-md-6">
-          <label>Referensi</label>
-          <select id="referensi" name="referensi" class="form-control">
-            <option>CBM</option>
-            <option>MES</option>
-            <option>PBR</option>
-          </select>
-        </div>  
-
-        <div class="col-md-6">
-          <label>Jumlah</label>
-          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
-        </div>    
-       
-      </div>
-
-  
-  
-    <br>
-
-    <div>
-     <label>Keterangan</label>
-     <div class="form-group">
-       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
+         <label>Keterangan</label>
+         <div class="form-group">
+           <textarea class="form-control form-control-sm"  name="keterangan" style="width: 300px;"></textarea>
+         </div>
+       </div>           
      </div>
-   </div>
+
+      <br>
 
   <div>
     <label>Upload File</label> 
@@ -391,175 +402,176 @@ else{
   </div> 
 
 
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"> BAYAR</button>
-        <button type="reset" class="btn btn-danger"> RESET</button>
-      </div>
-    </form>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary"> CATAT</button>
+    <button type="reset" class="btn btn-danger"> RESET</button>
   </div>
+</form>
 </div>
 </div>
 </div>
 </div>
 </div>
-
-
-
+</div>
 
 
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Referensi</th>
+      <th>Rekening Peminjam</th>
+      <th>Di Kembalikan ke Rekening</th>
       <th>Jumlah</th>
       <th>Keterangan</th>
-      <th>file</th>
+      <th>File</th>
       <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
     <?php
- 
-    $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
+    $urut = 0;
+    $total = 0;
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-     $no_laporan = $data['no_laporan'];
-     $tanggal =$data['tanggal'];
-     $referensi = $data['referensi'];
-     $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
-     $file_bukti = $data['file_bukti'];
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $rekening_peminjam = $data['rekening_peminjam'];
+      $dikembalikan_ke_rekening = $data['dikembalikan_ke_rekening'];
+      $keterangan = $data['keterangan'];
+      $jumlah = $data['jumlah'];
+      $file_bukti = $data['file_bukti'];
+      $urut  = $urut + 1;
+      echo "<tr>
+      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$rekening_peminjam</td>
+      <td style='font-size: 14px'>$dikembalikan_ke_rekening</td>";
+      echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+      <?php echo "<td style='font-size: 12px'>"; ?>
 
-     $urut = $urut + 1;
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
 
+<!-- Form EDIT DATA -->
 
-     echo "<tr>
-     <td style='font-size: 14px'>$urut</td>
-     <td style='font-size: 14px'>$tanggal</td>
-     <td style='font-size: 14px'>$referensi</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Manager/file_manager/<?= $file_bukti ?>" href="/PT.CBM/Manager/file_manager/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     <?php echo "<td style='font-size: 12px'>"; ?>
-
-       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
-
-        <!-- Form EDIT DATA -->
-
-        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role ="document">
-            <div class="modal-content"> 
-              <div class="modal-header">Form Edit Transport Fee </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
-
-
-              <!-- Form Edit Data -->
-              <div class="modal-body">
-                <form action="../proses/edit_transport_fee" enctype="multipart/form-data" method="POST">
-
-                                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-                                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-                                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
-                  <div class="row">
-                      <div class="col-md-6">
-
-                        <label>Tanggal</label>
-                        <div class="col-sm-10">
-                        <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
-                        </div>
-                      </div>
-
-                        
-                  </div>
+<div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_laporan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role ="document">
+    <div class="modal-content"> 
+      <div class="modal-header">Form Edit Laporan </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
 
 
-                 <div class="row">
-                            <div class="col-md-6">
-
-                            <label>Referensi</label>
-                            <select id="referensi" name="referensi" class="form-control">
-                            <?php $dataSelect = $data['referensi']; ?>
-                            <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
-                            <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
-                            <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
-                            </select>
-
-                            </div> 
-                            <div class="col-md-6">
-                            <label>Jumlah</label>
-                            <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
-                            </div>           
-
-                        </div>
-
-                        <br>
-
-                        
-                        <div>
-                        <label>Keterangan</label>
-                        <div class="form-group">
-                        <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
-                        </div>
-                    </div>
-
-                            
-                    
-                        <br>
-
-
-
-                    <div>
-                        <label>Upload File</label> 
-                        <input type="file" name="file"> 
-                    </div> 
-                                    
-
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"> Ubah </button>
-                    <button type="reset" class="btn btn-danger"> RESET</button>
-                  </div>
-                </form>
-              </div>
-            </div>
+      <!-- Form Edit Data -->
+      <div class="modal-body">
+        <form action="../proses/edit_pengembalian_saldo" enctype="multipart/form-data" method="POST">
+        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+        <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+        <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
+        <div class="row">
+            <div class="col-md-6">
+              <label>Tanggal</label>
+               <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>" >
+          </div>
+          <div class="col-md-6">
+            <label>Rekening Peminjam</label>
+            <select class="form-control form-control-sm"  name="rekening_peminjam" class="form-control">
+            <?php $dataSelect = $data['rekening_peminjam']; ?>
+              <option <?php echo ($dataSelect == 'Balsri') ? "selected": "" ?> >Balsri</option>
+              <option <?php echo ($dataSelect == 'STRE') ? "selected": "" ?> >STRE</option>
+              <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
+              <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
+              <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+              <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+              <option <?php echo ($dataSelect == 'Kebun Seberuk') ? "selected": "" ?> >Kebun Seberuk</option>
+              <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
+            </select>
           </div>
         </div>
+      <br>
+        <div class="row">
+        <div class="col-md-6">
+            <label>Di Kembalikan ke Rekening</label>
+            <select class="form-control form-control-sm"  name="dikembalikan_ke_rekening" class="form-control">
+            <?php $dataSelect = $data['dikembalikan_ke_rekening']; ?>
+              <option <?php echo ($dataSelect == 'Balsri') ? "selected": "" ?> >Balsri</option>
+              <option <?php echo ($dataSelect == 'STRE') ? "selected": "" ?> >STRE</option>
+              <option <?php echo ($dataSelect == 'PBJ') ? "selected": "" ?> >PBJ</option>
+              <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
+              <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
+              <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
+              <option <?php echo ($dataSelect == 'Kebun Seberuk') ? "selected": "" ?> >Kebun Seberuk</option>
+              <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
+            </select>
+          </div>
+            <div class="col-md-6">
+                <label>Jumlah</label>
+                <input class="form-control form-control-sm" type="number"value="<?php echo $jumlah;?>" name="jumlah" required="">          
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+        <div class="col-md-6">
+         <label>Keterangan</label>
+         <div class="form-group">
+           <textarea class="form-control form-control-sm"  name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+         </div>
+       </div>           
+     </div>
+
+      <br>
+
+    <div>
+        <label>Upload File</label> 
+        <input type="file" name="file"> 
+    </div> 
 
 
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Ubah </button>
+            <button type="reset" class="btn btn-danger"> RESET</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
+      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Pengeluaran'></button>
 
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'>Hapus</button>
-
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-       <div class="modal-dialog" role ="document">
+  
+       <div class="modal fade bd-example-modal-lg" id="PopUpHapus<?php echo $data['no_laporan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus </b> </h4>
+            <h4 class="modal-title"> <b> Hapus Laporan </b> </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true"> &times; </span>
             </button>
           </div>
 
+    
 
           <div class="modal-body">
-            <form action="../proses/hapus_transport_fee" method="POST">
+            <form action="../proses/hapus_pengembalian_saldo" method="POST">
               <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-
 
               <div class="form-group">
                 <h6> Yakin Ingin Hapus Data? </h6>             
@@ -576,16 +588,20 @@ else{
 
     <?php echo  " </td> </tr>";
   }
-
-?>
+  ?>
 
 </tbody>
 </table>
 </div>
+
 <br>
-<br>
+<hr>
 <br>
 
+
+
+
+</div>
 
 </div>
 
