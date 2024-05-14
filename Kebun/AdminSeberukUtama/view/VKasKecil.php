@@ -469,7 +469,10 @@ else{
                         <option <?php echo ($dataSelect == 'Biaya Perawatan') ? "selected": "" ?> >Biaya Operasional</option>
                         <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
-                        <option <?php echo ($dataSelect == 'Biaya Buruh') ? "selected": "" ?> >Biaya Buruh</option>
+                        <option <?php echo ($dataSelect == 'Biaya Bahan Bakar') ? "selected": "" ?> >Biaya Bahan Bakar</option>
+                        <option <?php echo ($dataSelect == 'Biaya Peralatan') ? "selected": "" ?> >Biaya Peralatan</option>
+                        <option <?php echo ($dataSelect == 'Biaya Karet') ? "selected": "" ?> >Biaya Karet</option>
+                        <option <?php echo ($dataSelect == 'Biaya Buah') ? "selected": "" ?> >Biaya Buah</option>
                         <option <?php echo ($dataSelect == 'Biaya Insentif') ? "selected": "" ?> >Biaya Insentif</option>
                         <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
                         <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
