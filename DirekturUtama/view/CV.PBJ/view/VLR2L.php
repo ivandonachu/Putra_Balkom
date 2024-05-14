@@ -235,7 +235,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         }
     }
  
-    $total_angkutan_global = $total_angkutan_aril + $total_angkutan_aril + $total_angkutan_rama + $total_angkutan_reni;
+    $total_angkutan_global = $total_angkutan_edy + $total_angkutan_aril + $total_angkutan_rama + $total_angkutan_reni;
 
 
 
