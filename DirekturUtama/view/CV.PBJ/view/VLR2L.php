@@ -235,7 +235,6 @@ if ($tanggal_awal == $tanggal_akhir) {
         }
     }
  
-    $total_angkutan_global = $total_angkutan_edy + $total_angkutan_aril + $total_angkutan_rama + $total_angkutan_reni;
 
 
 
@@ -588,7 +587,7 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
 if ($total_gaji_driver > 0) {
     $total_bunga_bank = 50000000 * $bulan_bunga;
 
-    $total_pendapatan =  $total_angkutan_global + $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
+    $total_pendapatan =  $total_angkutan_edy + $total_angkutan_aril + $total_angkutan_rama + $total_angkutan_reni + $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
     $laba_kotor = $total_pendapatan - $pembelian_total;
 
     $total_biaya_usaha_final =  $total_uj + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_biaya_kantor_s + $jml_biaya_kantor_sl + $biaya_op_pabrik_1 + $biaya_op_pabrik_2 +
@@ -600,7 +599,7 @@ if ($total_gaji_driver > 0) {
 
     $total_bunga_bank = 50000000 * $bulan_bunga;
 
-    $total_pendapatan = $total_angkutan_global +  $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
+    $total_pendapatan = $total_angkutan_edy + $total_angkutan_aril + $total_angkutan_rama + $total_angkutan_reni +  $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
     $laba_kotor = $total_pendapatan - $pembelian_total;
     $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_biaya_kantor_s + $jml_biaya_kantor_sl + $biaya_op_pabrik_1 + $biaya_op_pabrik_2 +
         $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
@@ -923,10 +922,31 @@ if ($total_gaji_driver > 0) {
                                                     <td class="text-left"><?= formatuang($piutang_penjualan_ety); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPiutangETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr><tr>
+                                                </tr>
                                                     <td>4-104</td>
-                                                    <td class="text-left">Pendapatan Angkutan Pranko</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_global); ?></td>
+                                                    <td class="text-left">Pranko Nyoman Edy</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_edy); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                </tr>
+                                                </tr>
+                                                    <td>4-104</td>
+                                                    <td class="text-left">Pranko Bli Rama</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_rama); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                </tr>
+                                                </tr>
+                                                    <td>4-104</td>
+                                                    <td class="text-left">Pranko Pak Aril</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_aril); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                </tr>
+                                                </tr>
+                                                    <td>4-104</td>
+                                                    <td class="text-left">Pranko Yuk Reni</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_reni); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
