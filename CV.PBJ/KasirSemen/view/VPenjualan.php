@@ -343,11 +343,19 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <br>
 
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                             <label>Tujuan Pengiriman</label>
-                            <div class="col-sm-12">
-                              <input class="form-control form-control-sm" type="text" id="tujuan_pengiriman" name="tujuan_pengiriman" required="">
-                            </div>
+                            <input class="form-control form-control-sm" type="text" id="tujuan_pengiriman" name="tujuan_pengiriman" required="">
+                          </div>
+                          <div class="col-md-4">
+                            <label>Wilayah</label>
+                            <select id="wilayah" name="wilayah" class="form-control">
+                              <option>OKUT</option>
+                              <option>OKUS</option>
+                              <option>OKU</option>
+                              <option>Mesuji</option>
+                              <option>Way Kanan</option>
+                            </select>
                           </div>
                           <div class="col-md-6">
                             <label>Driver</label>
@@ -482,6 +490,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>Driver</th>
                     <th>NO Polisi</th>
                     <th>Tujuan Pengiriman</th>
+                    <th>Wilayah</th>
                     <th>QTY</th>
                     <th>Satuan</th>
                     <th>Harga Beli</th>
@@ -516,6 +525,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $driver = $data['driver'];
                     $no_polisi = $data['no_polisi'];
                     $tujuan_pengiriman = $data['tujuan_pengiriman'];
+                    $wilayah = $data['wilayah'];
                     $qty = $data['qty'];
                     $satuan = $data['satuan'];
                     $harga_beli = $data['harga_beli'];
@@ -608,13 +618,27 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <br>
 
                               <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                   <label>Tujuan Pengiriman</label>
 
                                   <input class="form-control form-control-sm" type="text" id="tujuan_pengiriman" name="tujuan_pengiriman" required="" value="<?php echo $tujuan_pengiriman; ?>">
 
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
+                                  <label>Wilayah</label>
+
+                                  <select id="wilayah" name="wilayah" class="form-control">
+                                    <?php $dataSelect = $data['wilayah']; ?>
+                                    <option <?php echo ($dataSelect == 'OKUT') ? "selected" : "" ?>>OKUT</option>
+                                    <option <?php echo ($dataSelect == 'OKUS') ? "selected" : "" ?>>OKUS</option>
+                                    <option <?php echo ($dataSelect == 'OKU') ? "selected" : "" ?>>OKU</option>
+                                    <option <?php echo ($dataSelect == 'Mesuji') ? "selected" : "" ?>>Mesuji</option>
+                                    <option <?php echo ($dataSelect == 'Way Kanan') ? "selected" : "" ?>>Way Kanan</option>
+
+                                  </select>
+
+                                </div>
+                                <div class="col-md-4">
                                   <label>Driver</label>
 
                                   <input class="form-control form-control-sm" type="text" id="driver" name="driver" required="" value="<?php echo $driver; ?>">
@@ -937,6 +961,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$driver</td>
       <td style='font-size: 14px'>$no_polisi</td>
       <td style='font-size: 14px'>$tujuan_pengiriman</td>
+      <td style='font-size: 14px'>$wilayah</td>
       <td style='font-size: 14px'>$qty</td>
       <td style='font-size: 14px'>$satuan</td>
       <td style='font-size: 14px'>"; ?> <?= formatuang($harga_beli); ?> <?php echo "</td>

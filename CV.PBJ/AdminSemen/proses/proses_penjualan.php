@@ -36,6 +36,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM penjualan_sl WHERE no_do = '$no_
 $no_polisi = $_POST['no_polisi'];
 $driver = $_POST['driver'];
 $tujuan_pengiriman = $_POST['tujuan_pengiriman'];
+$wilayah = $_POST['wilayah'];
 $qty = $_POST['qty'];
 $satuan = $_POST['satuan'];
 $harga_beli = $_POST['harga_beli'];
@@ -84,7 +85,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO penjualan_sl VALUES('','$tanggal_do','$tanggal_kirim','$no_do','$no_so','$driver','$no_polisi','$tujuan_pengiriman','$qty','$satuan','$harga_beli','$harga','$jumlah','$toko_do','$tempo','$tanggal_bayar','$status_bayar'
+	$query = mysqli_query($koneksi,"INSERT INTO penjualan_sl VALUES('','$tanggal_do','$tanggal_kirim','$no_do','$no_so','$driver','$no_polisi','$tujuan_pengiriman','$wilayah','$qty','$satuan','$harga_beli','$harga','$jumlah','$toko_do','$tempo','$tanggal_bayar','$status_bayar'
 		,'$keterangan','$catatan','$bulan','$file')");
 
 			if ($query != "") {

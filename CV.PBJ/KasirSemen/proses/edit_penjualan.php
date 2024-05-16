@@ -26,6 +26,7 @@ $no_so = $_POST['no_so'];
 $driver = $_POST['driver'];
 $no_polisi = $_POST['no_polisi'];
 $tujuan_pengiriman = $_POST['tujuan_pengiriman'];
+$wilayah = $_POST['wilayah'];
 $qty = $_POST['qty'];
 $satuan = $_POST['satuan'];
 $harga_beli = $_POST['harga_beli'];
@@ -86,7 +87,7 @@ if (isset($data_perta['no_pengiriman'])) {
 
 if ($file == '') {
 	$query3 = mysqli_query($koneksi, "UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do', no_so = '$no_so' , driver = '$driver' ,no_polisi = '$no_polisi' , 
-			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga_beli = '$harga_beli' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
+			tujuan_pengiriman = '$tujuan_pengiriman' , wilayah = '$wilayah' , qty = '$qty' , satuan = '$satuan' , harga_beli = '$harga_beli' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
 			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' WHERE no_penjualan = '$no_penjualan'");
 	if ($no_pengiriman != "") {
 		$query4 = mysqli_query($koneksi, "UPDATE pengiriman_s SET no_do = '$no_do' , no_so = '$no_so'  , driver = '$driver', no_polisi = '$no_polisi', 
@@ -94,7 +95,7 @@ if ($file == '') {
 	}
 } else {
 	$query3 = mysqli_query($koneksi, "UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , no_so = '$no_so', driver = '$driver', no_polisi = '$no_polisi' , 
-			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga_beli = '$harga_beli' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
+			tujuan_pengiriman = '$tujuan_pengiriman' , wilayah = '$wilayah' , qty = '$qty' , satuan = '$satuan' , harga_beli = '$harga_beli' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
 			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' , file_bukti = '$file'  WHERE no_penjualan = '$no_penjualan'");
 	if ($no_pengiriman != "") {
 
