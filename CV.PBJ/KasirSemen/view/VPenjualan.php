@@ -355,6 +355,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>OKU</option>
                               <option>Mesuji</option>
                               <option>Way Kanan</option>
+                              <option>Tuba</option>
+                              <option>Tubaba</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -634,6 +636,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'OKU') ? "selected" : "" ?>>OKU</option>
                                     <option <?php echo ($dataSelect == 'Mesuji') ? "selected" : "" ?>>Mesuji</option>
                                     <option <?php echo ($dataSelect == 'Way Kanan') ? "selected" : "" ?>>Way Kanan</option>
+                                    <option <?php echo ($dataSelect == 'Tuba') ? "selected" : "" ?>>Tuba</option>
+                                    <option <?php echo ($dataSelect == 'Tubaba') ? "selected" : "" ?>>Tubaba</option>
 
                                   </select>
 
