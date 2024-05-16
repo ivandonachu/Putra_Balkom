@@ -88,7 +88,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   }
 
   //balsri kembalikan ke REKENIGN PRiBADI
-  $table_balsri_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_balsri_pribadi FROM pengembalian_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND dikembalikan_ke_rekening = 'Rekening Priibadi' AND rekening_peminjam = 'Balsri' ");
+  $table_balsri_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_balsri_pribadi FROM pengembalian_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND dikembalikan_ke_rekening = 'Rekening Pribadi' AND rekening_peminjam = 'Balsri' ");
   $data_balsri_pribadi = mysqli_fetch_array($table_balsri_pribadi);
   $jumlah_balsri_pribadi = $data_balsri_pribadi['jumlah_balsri_pribadi'];
   if (!isset($data_balsri_pribadi['jumlah_balsri_pribadi'])) {
@@ -145,7 +145,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   }
 
   //PBJ kembalikan ke REKENIGN PRiBADI
-  $table_pbj_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_pbj_pribadi FROM pengembalian_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND dikembalikan_ke_rekening = 'Rekening Priibadi' AND rekening_peminjam = 'PBJ' ");
+  $table_pbj_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_pbj_pribadi FROM pengembalian_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND dikembalikan_ke_rekening = 'Rekening Pribadi' AND rekening_peminjam = 'PBJ' ");
   $data_pbj_pribadi = mysqli_fetch_array($table_pbj_pribadi);
   $jumlah_pbj_pribadi = $data_pbj_pribadi['jumlah_pbj_pribadi'];
   if (!isset($data_pbj_pribadi['jumlah_pbj_pribadi'])) {

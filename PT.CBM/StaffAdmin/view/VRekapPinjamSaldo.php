@@ -88,7 +88,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   }
 
   //balsri pinjam ke REKENIGN PRiBADI
-  $table_balsri_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_balsri_pribadi FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'Rekening Priibadi' AND rekening_peminjam = 'Balsri' ");
+  $table_balsri_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_balsri_pribadi FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'Rekening Pribadi' AND rekening_peminjam = 'Balsri' ");
   $data_balsri_pribadi = mysqli_fetch_array($table_balsri_pribadi);
   $jumlah_balsri_pribadi = $data_balsri_pribadi['jumlah_balsri_pribadi'];
   if (!isset($data_balsri_pribadi['jumlah_balsri_pribadi'])) {
@@ -145,7 +145,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   }
 
   //PBJ pinjam ke REKENIGN PRiBADI
-  $table_pbj_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_pbj_pribadi FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'Rekening Priibadi' AND rekening_peminjam = 'PBJ' ");
+  $table_pbj_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_pbj_pribadi FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'Rekening Pribadi' AND rekening_peminjam = 'PBJ' ");
   $data_pbj_pribadi = mysqli_fetch_array($table_pbj_pribadi);
   $jumlah_pbj_pribadi = $data_pbj_pribadi['jumlah_pbj_pribadi'];
   if (!isset($data_pbj_pribadi['jumlah_pbj_pribadi'])) {
@@ -153,7 +153,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   }
 
     //PBR pinjam ke REKENIGN PRiBADI
-    $table_pbr_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_pbr_pribadi FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'Rekening Priibadi' AND rekening_peminjam = 'PBR' ");
+    $table_pbr_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_pbr_pribadi FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'Rekening Pribadi' AND rekening_peminjam = 'PBR' ");
     $data_pbr_pribadi = mysqli_fetch_array($table_pbr_pribadi);
     $jumlah_pbr_pribadi = $data_pbr_pribadi['jumlah_pbr_pribadi'];
     if (!isset($data_pbr_pribadi['jumlah_pbr_pribadi'])) {
