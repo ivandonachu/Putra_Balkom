@@ -151,6 +151,14 @@ if ($tanggal_awal == $tanggal_akhir) {
   if (!isset($data_pbj_pribadi['jumlah_pbj_pribadi'])) {
     $jumlah_pbj_pribadi = 0;
   }
+
+    //PBR pinjam ke REKENIGN PRiBADI
+    $table_pbr_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_pbr_pribadi FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'Rekening Priibadi' AND rekening_peminjam = 'PBR' ");
+    $data_pbr_pribadi = mysqli_fetch_array($table_pbr_pribadi);
+    $jumlah_pbr_pribadi = $data_pbr_pribadi['jumlah_pbr_pribadi'];
+    if (!isset($data_pbr_pribadi['jumlah_pbr_pribadi'])) {
+      $jumlah_pbr_pribadi = 0;
+    }
 }
 
 
@@ -793,6 +801,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <td style='font-size: 11px' align='center'>PBJ</td>
                       <td style='font-size: 11px' align='center'>Rekenig Pribadi</td>
                       <td style='font-size: 11px' align='center'><?= formatuang($jumlah_pbj_pribadi); ?></td>
+                    </tr>
+                    <tr>
+                      <td style='font-size: 11px' align='center'>PBR</td>
+                      <td style='font-size: 11px' align='center'>Rekenig Pribadi</td>
+                      <td style='font-size: 11px' align='center'><?= formatuang($jumlah_pbr_pribadi); ?></td>
                     </tr>
 
                   </tbody>
