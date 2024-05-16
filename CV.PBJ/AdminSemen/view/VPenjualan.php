@@ -461,6 +461,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>OKUT</option>
                               <option>OKUS</option>
                               <option>OKU</option>
+                              <option>OKI</option>
                               <option>Mesuji</option>
                               <option>Way Kanan</option>
                               <option>Tuba</option>
@@ -750,6 +751,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'OKUT') ? "selected" : "" ?>>OKUT</option>
                                     <option <?php echo ($dataSelect == 'OKUS') ? "selected" : "" ?>>OKUS</option>
                                     <option <?php echo ($dataSelect == 'OKU') ? "selected" : "" ?>>OKU</option>
+                                    <option <?php echo ($dataSelect == 'OKU') ? "selected" : "" ?>>OKI</option>
                                     <option <?php echo ($dataSelect == 'Mesuji') ? "selected" : "" ?>>Mesuji</option>
                                     <option <?php echo ($dataSelect == 'Way Kanan') ? "selected" : "" ?>>Way Kanan</option>
                                     <option <?php echo ($dataSelect == 'Tuba') ? "selected" : "" ?>>Tuba</option>
