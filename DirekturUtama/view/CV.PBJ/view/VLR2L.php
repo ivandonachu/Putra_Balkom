@@ -1034,21 +1034,9 @@ if ($total_gaji_driver > 0) {
                                                 <tr>
                                                     <td>5-511</td>
                                                     <td class="text-left">Gaji Driver</td>
+                
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-
-
-                                                    <?php
-
-                                                    if ($total_gaji_driver > 0) { ?>
-                                                        <td class="text-left"><?= formatuang($total_gaji_driver); ?></td>
-
-
-                                                    <?php } else { ?>
-
-                                                        <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl); ?></td>
-
-                                                    <?php } ?>
-
+                                                    <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl + $total_gaji_driver); ?></td>
 
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
