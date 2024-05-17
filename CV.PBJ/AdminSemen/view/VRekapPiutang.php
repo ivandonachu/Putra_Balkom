@@ -272,7 +272,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-                                        if($jumlah_piutang == 0){
+                                        if($jumlah_piutang != 0){
                                             echo "<tr>
                                             <td style='font-size: 14px' align = 'center'>$no_urut</td>
                                             <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
@@ -321,7 +321,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-                                        if($jumlah_piutang == 0){
+                                        if($jumlah_piutang != 0){
                                             echo "<tr>
                                             <td style='font-size: 14px' align = 'center'>$no_urut</td>
                                             <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
