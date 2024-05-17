@@ -234,7 +234,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             }
         }
     }
- 
+
 
 
 
@@ -498,30 +498,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
 
-    //pengeluran perbaikan yani
-    $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_sparepart) AS total_pembelian_sparepart FROM riwayat_pengeluaran_workshop_s
-                                         WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-    $data7 = mysqli_fetch_array($table7);
-    $jml_pembelian_sparepart = $data7['total_pembelian_sparepart'];
-    if (!isset($data7['total_pembelian_sparepart'])) {
-        $jml_pembelian_sparepart = 0;
-    }
 
-    //pengeluran perbaikan etty
-    $table7s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
-    $data7s = mysqli_fetch_array($table7s);
-    $jml_perbaikan_etty = $data7s['jumlah_perbaikan'];
-    if (!isset($data7s['jumlah_perbaikan'])) {
-        $jml_perbaikan_etty = 0;
-    }
 
-    //pengeluran perbaikan 2
-    $table7sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_perbaikan_2 FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
-    $data7sl = mysqli_fetch_array($table7sl);
-    $jml_perbaikan_2 = $data7sl['jumlah_perbaikan_2'];
-    if (!isset($data7sl['jumlah_perbaikan_2'])) {
-        $jml_perbaikan_2 = 0;
-    }
 
     //biaya pajak
     $table_pajak = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pajak FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Pajak' ");
@@ -545,6 +523,32 @@ if ($tanggal_awal == $tanggal_akhir) {
     $biaya_op_pabrik_2 = $data_op_pabrik_2['oprasional_pabrik_2'];
     if (!isset($data_op_pabrik_2['oprasional_pabrik_2'])) {
         $biaya_op_pabrik_2 = 0;
+    }
+
+    //biaya perbaikan kendaraan 1
+    $table_perbaikan_1 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS biaya_perbaikan_1 FROM keuangan_sl WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
+    $data_perbaikan_1 = mysqli_fetch_array($table_perbaikan_1);
+    $biaya_perbaikan_1 = $data_perbaikan_1['biaya_perbaikan_1'];
+    if (!isset($data_perbaikan_1['biaya_perbaikan_1'])) {
+        $biaya_perbaikan_1 = 0;
+    }
+
+    //biaya perbaikan kendaraan 2
+    $table_perbaikan_2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS biaya_perbaikan_2 FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
+    $data_perbaikan_2 = mysqli_fetch_array($table_perbaikan_2);
+    $biaya_perbaikan_2 = $data_perbaikan_2['biaya_perbaikan_2'];
+    if (!isset($data_perbaikan_2['biaya_perbaikan_2'])) {
+        $biaya_perbaikan_2 = 0;
+    }
+
+
+    //pengeluran perbaikan yani
+    $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_sparepart) AS total_pembelian_sparepart FROM riwayat_pengeluaran_workshop_s
+    WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data7 = mysqli_fetch_array($table7);
+    $jml_pembelian_sparepart = $data7['total_pembelian_sparepart'];
+    if (!isset($data7['total_pembelian_sparepart'])) {
+        $jml_pembelian_sparepart = 0;
     }
 
 
@@ -923,32 +927,32 @@ if ($total_gaji_driver > 0) {
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPiutangETY?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
-                                                    <td>4-104</td>
-                                                    <td class="text-left">Pranko Nyoman Edy</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_edy); ?></td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                <td>4-104</td>
+                                                <td class="text-left">Pranko Nyoman Edy</td>
+                                                <td class="text-left"><?= formatuang($total_angkutan_edy); ?></td>
+                                                <td class="text-left"><?= formatuang(0); ?></td>
+                                                <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
                                                 </tr>
-                                                    <td>4-104</td>
-                                                    <td class="text-left">Pranko Bli Rama</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_rama); ?></td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                <td>4-104</td>
+                                                <td class="text-left">Pranko Bli Rama</td>
+                                                <td class="text-left"><?= formatuang($total_angkutan_rama); ?></td>
+                                                <td class="text-left"><?= formatuang(0); ?></td>
+                                                <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
                                                 </tr>
-                                                    <td>4-104</td>
-                                                    <td class="text-left">Pranko Pak Aril</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_aril); ?></td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                <td>4-104</td>
+                                                <td class="text-left">Pranko Pak Aril</td>
+                                                <td class="text-left"><?= formatuang($total_angkutan_aril); ?></td>
+                                                <td class="text-left"><?= formatuang(0); ?></td>
+                                                <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
                                                 </tr>
-                                                    <td>4-104</td>
-                                                    <td class="text-left">Pranko Yuk Reni</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_reni); ?></td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                <td>4-104</td>
+                                                <td class="text-left">Pranko Yuk Reni</td>
+                                                <td class="text-left"><?= formatuang($total_angkutan_reni); ?></td>
+                                                <td class="text-left"><?= formatuang(0); ?></td>
+                                                <?php echo "<td class='text-right'><a href='VRincianLR/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-108</td>
@@ -1131,6 +1135,20 @@ if ($total_gaji_driver > 0) {
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jml_atk_s + $jml_atk_sl); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-595</td>
+                                                    <td class="text-left">Perbaikan Kendaraan</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($biaya_perbaikan_1 + $biaya_perbaikan_2); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-595</td>
+                                                    <td class="text-left">Pembalian Sparepart</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($jml_pembelian_sparepart); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-597</td>
