@@ -340,6 +340,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                             </table>
                         </div>
 
+                        <br>
+                        <hr>
+                        <br>
+
                     </div>
                 </div>
             </div>
