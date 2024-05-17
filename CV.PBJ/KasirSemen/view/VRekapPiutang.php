@@ -309,13 +309,19 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $no_urut = $no_urut + 1;
 
 
-
+                                    if($jumlah_piutang != 0){
                                         echo "<tr>
                                         <td style='font-size: 14px' align = 'center'>$no_urut</td>
                                         <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
                                         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah_piutang); ?> <?php echo "</td>
                                         <td style='font-size: 14px'><a href='RincianPiutangR2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tujuan_pengiriman=$tujuan_pengiriman'>Rincian</a></td>
                                        </tr>";
+
+                                    }
+                                    else{
+
+                                    }
+                         
                                     }
                                     ?>
 
