@@ -268,11 +268,12 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php while ($data = mysqli_fetch_array($table)) {
                                         $tujuan_pengiriman = $data['tujuan_pengiriman'];
                                         $jumlah_piutang = $data['jumlah_piutang'];
-                                        $no_urut = $no_urut + 1;
+                                     
 
 
 
                                         if($jumlah_piutang != 0){
+                                            $no_urut = $no_urut + 1;
                                             echo "<tr>
                                             <td style='font-size: 14px' align = 'center'>$no_urut</td>
                                             <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
@@ -317,11 +318,12 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php while ($data = mysqli_fetch_array($table2)) {
                                         $tujuan_pengiriman = $data['tujuan_pengiriman'];
                                         $jumlah_piutang = $data['jumlah_piutang'];
-                                        $no_urut = $no_urut + 1;
+                                      
 
 
 
                                         if($jumlah_piutang != 0){
+                                            $no_urut = $no_urut + 1;
                                             echo "<tr>
                                             <td style='font-size: 14px' align = 'center'>$no_urut</td>
                                             <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
