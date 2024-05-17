@@ -596,7 +596,7 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
 
     $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_gaji_sl + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_biaya_kantor_s + $jml_biaya_kantor_sl + $biaya_op_pabrik_1 + $biaya_op_pabrik_2 +
         $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
-        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak +  $total_uj_sewa_hiblow;
+        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak +  $total_uj_sewa_hiblow +  $jml_pembelian_sparepart +  $biaya_perbaikan_2 +  $biaya_perbaikan_1 + $$jml_perbaikan;
 
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 
@@ -1117,7 +1117,7 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
                                                     <td>5-595</td>
                                                     <td class="text-left">Perbaikan Kendaraan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($biaya_perbaikan_1 + $biaya_perbaikan_2); ?></td>
+                                                    <td class="text-left"><?= formatuang($biaya_perbaikan_1 + $biaya_perbaikan_2 + $jml_perbaikan); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
