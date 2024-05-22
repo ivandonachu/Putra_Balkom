@@ -31,9 +31,9 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM Laporan_batang  WHERE tanggal ='$tanggal_awal' ");
+    $table = mysqli_query($koneksi, "SELECT * FROM laporan_batang  WHERE tanggal ='$tanggal_awal' ");
 } else {
-    $table = mysqli_query($koneksi, "SELECT * FROM Laporan_batang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $table = mysqli_query($koneksi, "SELECT * FROM laporan_batang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 }
 
 
