@@ -155,6 +155,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Pengeluaran Kebun</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLMinyak">Stok Minyak</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPupuk">Stok Pupuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLBatang">Laporan Batang</a>
                     </div>
                 </div>
             </li>

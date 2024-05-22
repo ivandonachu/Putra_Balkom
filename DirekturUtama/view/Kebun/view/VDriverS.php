@@ -144,6 +144,7 @@ $table = mysqli_query($koneksikebun, "SELECT * FROM driver_sawit");
             <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Pengeluaran Kebun</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLMinyak">Stok Minyak</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLPupuk">Stok Pupuk</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLBatang">Laporan Batang</a>
           </div>
         </div>
       </li>
