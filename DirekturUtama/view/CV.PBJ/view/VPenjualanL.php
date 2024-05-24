@@ -492,6 +492,7 @@ Logout
       <th>TGL DO</th>
       <th>TGL Kirim</th>
       <th>NO DO</th>
+      <th>NO SO</th>
       <th>Driver</th>
       <th>NO Polisi</th>
       <th>Tujuan Pengiriman</th>
@@ -529,6 +530,7 @@ Logout
       $tanggal_kirim =$data['tanggal_kirim'];
       $tanggal_kirim = $data['tanggal_kirim'];
       $no_do = $data['no_do'];
+      $no_so = $data['no_so'];
       $driver = $data['driver'];
       $no_polisi = $data['no_polisi'];
       $tujuan_pengiriman = $data['tujuan_pengiriman'];
@@ -565,6 +567,7 @@ Logout
       <td style='font-size: 14px'>$tanggal_kirim</td>
       <td style='font-size: 14px'>$tanggal_kirim</td>
       <td style='font-size: 14px'>$no_do</td>
+      <td style='font-size: 14px'>$no_so</td>
       <td style='font-size: 14px'>$driver</td>
       <td style='font-size: 14px'>$no_polisi</td>
       <td style='font-size: 14px'>$tujuan_pengiriman</td>

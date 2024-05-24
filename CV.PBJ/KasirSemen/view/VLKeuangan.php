@@ -614,7 +614,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['total_jumlah'];
 
-      if ($nama_akun == 'Bayar Piutang' && $nama_akun == 'Pemasukan Lainnya') {
+      if ($nama_akun == 'Bayar Piutang' || $nama_akun == 'Pemasukan Lainnya') {
         $sisa_saldo  = $sisa_saldo + $jumlah;
         $total_saldo = $total_saldo + $jumlah;
       }
