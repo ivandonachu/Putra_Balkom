@@ -235,7 +235,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         </div>
 
 
-
+                        <h4 align = 'center'>Tabel Piutang <?= $tujuan_pengiriman ?></h4>
 
                         <!-- Tabel -->
                         <div style="overflow-x: auto">
@@ -243,6 +243,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Edit</th>
                                         <th>TGL DO</th>
                                         <th>TGL Kirim</th>
                                         <th>NO DO</th>
@@ -301,7 +302,199 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $total = $total + $jumlah;
 
                                         echo "<tr>
-                                        <td style='font-size: 14px'>$no_urut</td>
+                                        <td style='font-size: 14px'>$no_urut</td>"; ?>
+                                        <?php echo "<td style='font-size: 12px'>"; ?>
+                                        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_penjualan']; ?>">Edit</button>
+                    
+                                        <!-- Form EDIT DATA -->
+                    
+                                        <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_penjualan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title"> Form Edit Penjualan </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                  <span aria-hidden="true"> &times; </span>
+                                                </button>
+                                              </div>
+                    
+                                              <!-- Form Edit Data -->
+                                              <div class="modal-body" align="left">
+                                                <form action="../proses/edit_piutang_r1" enctype="multipart/form-data" method="POST">
+                                                  <script>
+                                                    function sum2() {
+                                                      var banyak_barang2 = document.getElementById('qty2').value;
+                                                      var harga2 = document.getElementById('harga2').value;
+                                                      var result2 = parseInt(banyak_barang2) * parseInt(harga2);
+                                                      if (!isNaN(result2)) {
+                                                        document.getElementById('jumlah2').value = result2;
+                                                      }
+                                                    }
+                                                  </script>
+                                                  <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan; ?>">
+                                                  <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                  <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                  <input type="hidden" name="tanggal" value="<?php echo $tanggal; ?>">
+                    
+                    
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                      <label>Tanggal DO</label>
+                                                      <div class="col-sm-10">
+                                                        <input type="date" name="tanggal_do" value="<?php echo $tanggal_do; ?>">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <label>Tanggal Kirim</label>
+                                                      <div class="col-sm-10">
+                                                        <input type="date" name="tanggal_kirim" value="<?php echo $tanggal_kirim; ?>">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                    
+                                                  <br>
+                    
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                      <label>NO Do</label>
+                                                      <div class="col-sm-10">
+                                                        <input class="form-control form-control-sm" type="text" id="no_do" name="no_do" value="<?php echo $no_do; ?>">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <label>No Polisi</label>
+                                                      <div class="col-sm-10">
+                                                        <input class="form-control form-control-sm" type="text" id="no_polisi" name="no_polisi" value="<?php echo $no_polisi; ?>">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                    
+                                                  <br>
+                    
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                      <label>Tujuan Pengiriman</label>
+                                                      <div class="col-sm-12">
+                                                        <input class="form-control form-control-sm" type="text" id="tujuan_pengiriman" name="tujuan_pengiriman" required="" value="<?php echo $tujuan_pengiriman; ?>">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <label>Driver</label>
+                                                      <div class="col-sm-12">
+                                                        <input class="form-control form-control-sm" type="text" id="driver" name="driver" required="" value="<?php echo $driver; ?>">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                    
+                                                  <br>
+                    
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                      <label>QTY</label>
+                                                      <input class="form-control form-control-sm" type="number" id="qty2" name="qty" onkeyup="sum2();" required="" value="<?php echo $qty; ?>">
+                    
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <label>Satuan</label>
+                                                      <select id="satuan" name="satuan" class="form-control">
+                                                        <?php $dataSelect = $data['satuan']; ?>
+                                                        <option <?php echo ($dataSelect == 'Zak') ? "selected" : "" ?>>Zak</option>
+                                                        <option <?php echo ($dataSelect == 'Bag') ? "selected" : "" ?>>Bag</option>
+                    
+                                                      </select>
+                                                    </div>
+                                                  </div>
+                    
+                    
+                    
+                                                  <br>
+                    
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                      <label>Harga Beli</label>
+                                                      <input class="form-control form-control-sm" type="number" name="harga_beli" required="" value="<?php echo $harga_beli; ?>">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <label>Harga Jual</label>
+                                                      <input class="form-control form-control-sm" type="number" id="harga2" name="harga" onkeyup="sum2();" required="" value="<?php echo $harga; ?>">
+                                                    </div>
+                                                  </div>
+                    
+                                                  <br>
+                    
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                      <label>Nama Toko di DO</label>
+                                                      <input class="form-control form-control-sm" type="text" id="toko_do" name="toko_do" value="<?php echo $toko_do; ?>">
+                                                    </div>
+                    
+                                                    <div class="col-md-6">
+                                                      <label>Tempo</label>
+                                                      <input class="form-control form-control-sm" type="text" id="tempo" name="tempo" value="<?php echo $tempo; ?>">
+                                                    </div>
+                                                  </div>
+                    
+                                                  <br>
+                    
+                    
+                                                  <div class="row">
+                                                    <div class="col-md-6">
+                                                      <label>Tanggal Bayar</label>
+                                                      <div class="col-sm-10">
+                                                        <input type="date" name="tanggal_bayar" value="<?php echo $tanggal_bayar; ?>">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <label>Status Bayar</label>
+                                                      <select id="status_bayar" name="status_bayar" class="form-control">
+                                                        <?php
+                                                        $dataSelect = $data['status_bayar']; ?>
+                                                        <option <?php echo ($dataSelect == 'Lunas Transfer') ? "selected" : "" ?>>Lunas Transfer</option>
+                                                        <option <?php echo ($dataSelect == 'Lunas Cash') ? "selected" : "" ?>>Lunas Cash</option>
+                                                        <option <?php echo ($dataSelect == 'Nyicil') ? "selected" : "" ?>>Nyicil</option>
+                                                        <option <?php echo ($dataSelect == 'Bon') ? "selected" : "" ?>>Bon</option>
+                                                      </select>
+                    
+                                                    </div>
+                                                  </div>
+                    
+                                                  <br>
+                    
+                                                  <div>
+                                                    <label>Keterangan</label>
+                                                    <div class="form-group">
+                                                      <textarea id="keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan; ?></textarea>
+                                                    </div>
+                    
+                    
+                                                    <br>
+                                                    <label>Catatan</label>
+                                                    <div class="form-group">
+                                                      <textarea id="catatan" name="catatan" style="width: 300px;"><?php echo $catatan; ?></textarea>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <label>Bulan</label>
+                                                      <input class="form-control form-control-sm" type="text" id="bulan" name="bulan" value="<?php echo $bulan; ?>">
+                                                    </div>
+                    
+                                                    <br>
+                                                    <div>
+                                                      <label>Upload File</label>
+                                                      <input type="file" name="file">
+                                                    </div>
+                    
+                    
+                                                    <div class="modal-footer">
+                                                      <button type="submit" class="btn btn-primary"> Ubah </button>
+                                                      <button type="reset" class="btn btn-danger"> RESET</button>
+                                                    </div>
+                                                </form>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                    
+                                        <?php echo "</td>
                                         <td style='font-size: 14px'>$tanggal_do</td>
                                         <td style='font-size: 14px'>$tanggal_kirim</td>
                                         <td style='font-size: 14px'>$no_do</td>

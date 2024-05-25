@@ -251,6 +251,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         <th>No</th>
                                         <th>Nama Customer</th>
                                         <th>Jumlah Piutang</th>
+                                        <th>Tanggal Awal Piutang</th>
+                                        <th>Tanggal Akhir Piutang</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -269,7 +271,12 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $tujuan_pengiriman = $data['tujuan_pengiriman'];
                                         $jumlah_piutang = $data['jumlah_piutang'];
                                      
-
+                                        $table3 = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND tujuan_pengiriman = '$tujuan_pengiriman' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman' ORDER BY tanggal_kirim ASC LIMIT 1");
+                                        $data3= mysqli_fetch_array($table3);
+                                        $tanggal_order_pertama_r1 = $data3['tanggal_do'];
+                                        $table5 = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND tujuan_pengiriman = '$tujuan_pengiriman' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman' ORDER BY tanggal_kirim DESC LIMIT 1");
+                                        $data5= mysqli_fetch_array($table5);
+                                        $tanggal_order_terakhir_r1 = $data5['tanggal_do'];
 
 
                                         if($jumlah_piutang != 0){
@@ -278,7 +285,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <td style='font-size: 14px' align = 'center'>$no_urut</td>
                                             <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
                                             <td style='font-size: 14px'>" ?> <?= formatuang($jumlah_piutang); ?> <?php echo "</td>
-                                            <td style='font-size: 14px'><a href='RincianPiutangR2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tujuan_pengiriman=$tujuan_pengiriman'>Rincian</a></td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal_order_pertama_r1</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal_order_terakhir_r1</td>
+                                            <td style='font-size: 14px'><a href='RincianPiutangR1?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tujuan_pengiriman=$tujuan_pengiriman'>Rincian</a></td>
                                            </tr>";
     
                                         }
@@ -306,6 +315,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         <th>No</th>
                                         <th>Nama Customer</th>
                                         <th>Jumlah Piutang</th>
+                                        <th>Tanggal Awal Piutang</th>
+                                        <th>Tanggal Akhir Piutang</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -319,7 +330,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $tujuan_pengiriman = $data['tujuan_pengiriman'];
                                         $jumlah_piutang = $data['jumlah_piutang'];
                                       
-
+                                        $table4 = mysqli_query($koneksi, "SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND tujuan_pengiriman = '$tujuan_pengiriman' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman' ORDER BY tanggal_kirim ASC LIMIT 1");
+                                        $data4= mysqli_fetch_array($table4);
+                                        $tanggal_order_pertama_r2 = $data4['tanggal_do'];
+                                   
+                                        $table6 = mysqli_query($koneksi, "SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND tujuan_pengiriman = '$tujuan_pengiriman' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman'  ORDER BY tanggal_kirim DESC LIMIT 1");
+                                        $data6= mysqli_fetch_array($table6);
+                                        $tanggal_order_terakhir_r2 = $data6['tanggal_do'];
 
 
                                         if($jumlah_piutang != 0){
@@ -328,6 +345,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <td style='font-size: 14px' align = 'center'>$no_urut</td>
                                             <td style='font-size: 14px' align = 'center'>$tujuan_pengiriman</td>
                                             <td style='font-size: 14px'>" ?> <?= formatuang($jumlah_piutang); ?> <?php echo "</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal_order_pertama_r2</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal_order_terakhir_r2</td>
                                             <td style='font-size: 14px'><a href='RincianPiutangR2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tujuan_pengiriman=$tujuan_pengiriman'>Rincian</a></td>
                                            </tr>";
     

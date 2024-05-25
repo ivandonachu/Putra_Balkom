@@ -276,6 +276,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             </div>
                         </div>
 
+                        <h4 align = 'center'>Tabel Piutang <?= $tujuan_pengiriman ?></h4>
 
 
 
