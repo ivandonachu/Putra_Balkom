@@ -354,6 +354,7 @@ else{
                         <a class='collapse-item' style='font-size: 15px;' href='VRekapanHarga'>Rekapan Harga</a>
                         <a class='collapse-item' style='font-size: 15px;' href='VRekapSparepart'>Rekap Sparepart</a>
                         <a class='collapse-item' style='font-size: 15px;' href='VRekapPiutang'>Rekap Piutang</a>
+                        <a class='collapse-item' style='font-size: 15px;' href='VPenjualanRegion'>Penjualan Per Region</a>
                     </div>
                 </div>
             </li>";
@@ -501,6 +502,7 @@ Logout
       <th>Harga Beli</th>
       <th>Harga Jual</th>
       <th>Jumlah</th>    
+      <th>Wilayah</th>
       <th>Nama Toko di DO</th>
       <th>TGL Bayar</th>
       <th>Status Bayar</th>
@@ -537,7 +539,7 @@ Logout
       $qty = $data['qty'];
       $satuan = $data['satuan'];
       $harga_beli = $data['harga_beli'];
-    
+      $wilayah = $data['wilayah'];
       $harga = $data['harga'];
       $jumlah_beli = $qty * $harga;
       $jumlah = $data['jumlah'];
@@ -576,6 +578,7 @@ Logout
       <td style='font-size: 14px'>";?> <?= formatuang($harga_beli); ?> <?php echo "</td>
       <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$wilayah</td>
       <td style='font-size: 14px'>$toko_do</td>
       <td style='font-size: 14px'>$tanggal_bayar</td>
       <td style='font-size: 14px'>$status_bayar</td>
