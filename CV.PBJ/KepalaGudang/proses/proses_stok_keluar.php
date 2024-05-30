@@ -41,6 +41,8 @@ $pembeli = $_POST['pembeli'];
 $alamat = $_POST['alamat'];
 $jenis_semen = $_POST['jenis_semen'];
 $qty = $_POST['qty'];
+$harga = $_POST['harga'];
+$jumlah = $harga * $qty;
 $expenditur = $_POST['expenditur'];
 $jenis_angkutan = $_POST['jenis_angkutan'];
 $driver = $_POST['driver'];
@@ -49,7 +51,7 @@ $keterangan = $_POST['keterangan'];
 
 
 
-$query = mysqli_query($koneksi,"INSERT INTO laporan_stok_keluar_gudang VALUES('','$tanggal','$kode_gudang','$pembeli','$alamat','$jenis_semen','$qty','$expenditur','$jenis_angkutan','$driver','$no_polisi','$keterangan')");
+$query = mysqli_query($koneksi,"INSERT INTO laporan_stok_keluar_gudang VALUES('','$tanggal','$kode_gudang','$pembeli','$alamat','$jenis_semen','$qty','$harga','$jumlah','$expenditur','$jenis_angkutan','$driver','$no_polisi','$keterangan')");
 
 if ($query != "") {
 	echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VStokKeluar?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

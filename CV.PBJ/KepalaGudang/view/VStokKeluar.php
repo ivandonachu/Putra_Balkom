@@ -292,16 +292,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <br>
 
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <label>Jenis Semen</label>
                                                         <select id="jenis_semen" name="jenis_semen" class="form-control">
                                                             <option>SMBR</option>
                                                             <option>Dynamix</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <label>QTY</label>
                                                         <input class="form-control form-control-sm" type="number" name="qty" required="">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Harga</label>
+                                                        <input class="form-control form-control-sm" type="number" name="harga" required="">
                                                     </div>
                                                 </div>
 
@@ -364,6 +368,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         <th>Alamat</th>
                                         <th>Jenis Semen</th>
                                         <th>QTY</th>
+                                        <th>Harga</th>
+                                        <th>Jumlah</th>
                                         <th>Expenditur Angkutan</th>
                                         <th>Jenis Angkutan</th>
                                         <th>Driver</th>
@@ -390,6 +396,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $alamat = $data['alamat'];
                                         $jenis_semen = $data['jenis_semen'];
                                         $qty = $data['qty'];
+                                        $harga = $data['harga'];
+                                        $jumlah = $data['jumlah'];
                                         $expenditur = $data['expenditur'];
                                         $jenis_angkutan = $data['jenis_angkutan'];
                                         $driver = $data['driver'];
@@ -404,6 +412,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <td style='font-size: 14px' align = 'center'>$alamat</td>
                                             <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
                                             <td style='font-size: 14px' align = 'center'>$qty</td>
+                                            <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($harga); ?> <?php echo "</td>
+                                            <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
                                             <td style='font-size: 14px' align = 'center'>$expenditur</td>
                                             <td style='font-size: 14px' align = 'center'>$jenis_angkutan</td>
                                             <td style='font-size: 14px' align = 'center'>$driver</td>

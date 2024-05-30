@@ -400,6 +400,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <td style='font-size: 14px' align = 'center'>$jenis_angkutan</td>
                                             <td style='font-size: 14px' align = 'center'>$driver</td>
                                             <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+                                            <td style='font-size: 14px' align = 'center'>$keterangan</td>
                                             "; ?>
                                         <?php echo "<td style='font-size: 12px'>"; ?>
 

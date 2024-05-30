@@ -41,6 +41,8 @@ $pembeli = $_POST['pembeli'];
 $alamat = $_POST['alamat'];
 $jenis_semen = $_POST['jenis_semen'];
 $qty = $_POST['qty'];
+$harga = $_POST['harga'];
+$jumlah = $harga * $qty;
 $expenditur = $_POST['expenditur'];
 $jenis_angkutan = $_POST['jenis_angkutan'];
 $driver = $_POST['driver'];
@@ -50,7 +52,7 @@ $keterangan = $_POST['keterangan'];
 
 
 	
-			$query = mysqli_query($koneksi,"UPDATE laporan_stok_keluar_gudang SET  tanggal = '$tanggal', pembeli = '$pembeli', alamat = '$alamat' , jenis_semen = '$jenis_semen' , qty = '$qty' , expenditur = '$expenditur' , 
+			$query = mysqli_query($koneksi,"UPDATE laporan_stok_keluar_gudang SET  tanggal = '$tanggal', pembeli = '$pembeli', alamat = '$alamat' , jenis_semen = '$jenis_semen' , qty = '$qty', harga = '$harga', jumlah = '$jumlah' , expenditur = '$expenditur' , 
                                                                                   jenis_angkutan = '$jenis_angkutan' , driver = '$driver' , no_polisi = '$no_polisi'  , keterangan = '$keterangan' WHERE no_laporan = '$no_laporan'");
 
 
