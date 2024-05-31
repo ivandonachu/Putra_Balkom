@@ -581,7 +581,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     $nama_akun = $data['nama_akun'];
                                     $jumlah = $data['total_jumlah'];
 
-                                    if ($nama_akun == 'Uang Penjualan' || $nama_akun == 'Pemasukan Lainnya') {
+                                    if ($nama_akun == 'Uang Penjualan' || $nama_akun == 'Pemasukan Lainnya' || $nama_akun == 'Saldo Awal Bulan') {
                                         $sisa_saldo  = $sisa_saldo + $jumlah;
                                         $total_saldo = $total_saldo + $jumlah;
                                     }  else {
