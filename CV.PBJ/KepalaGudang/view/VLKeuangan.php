@@ -423,7 +423,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                     <label>Akun</label>
                                                                     <select id="nama_akun" name="nama_akun" class="form-control">
                                                                         <?php $dataSelect = $data['nama_akun']; ?>
-                                                                        <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected" : "" ?>>Saldo Awal</option>
+                                                                        <option <?php echo ($dataSelect == 'Saldo Awal Bulan') ? "selected" : "" ?>>Saldo Awal Bulan</option>
                                                                         <option <?php echo ($dataSelect == 'Uang Penjualan') ? "selected" : "" ?>>Uang Penjualan</option>
                                                                         <option <?php echo ($dataSelect == 'Setor Tunai') ? "selected" : "" ?>>Setor Tunai</option>
                                                                         <option <?php echo ($dataSelect == 'Ongkos Kuli') ? "selected" : "" ?>>Ongkos Kuli</option>
