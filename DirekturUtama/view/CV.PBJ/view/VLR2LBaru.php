@@ -910,9 +910,9 @@ if ($total_gaji_driver > 0) {
     $pembelian_total = $total_penebusan_dani_c + $total_penebusan_dani_p + $total_penebusan_ety_c + $total_penebusan_ety_p;
 
     $laba_kotor = $total_pendapatan - $pembelian_total;
-    $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s  + $jml_biaya_kantor_s + $jml_biaya_kantor_sl + $biaya_op_pabrik_1 + $biaya_op_pabrik_2 +
-        $total_uj_sl + $total_gaji_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl  + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
-        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak +  $total_uj_sewa_hiblow;
+    $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $gaji_karyawan + $total_gaji_karyawan_new + $total_uj + $total_uj_sl +  $total_uj_sewa_hiblow + $total_om + $total_om_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $jumlah_admin_s + $jumlah_admin_sl + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jml_biaya_kantor_s + $jml_biaya_kantor_sl + $jml_listrik_s + $jml_listrik_sl +
+    $biaya_op_pabrik_1 + $biaya_op_pabrik_2 + $jml_transport_s + $jml_transport_sl + $jml_atk_s + $jml_atk_sl + $jml_pembelian_sparepart + $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl +
+    $biaya_pajak + $total_bunga_bank;
     $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 }
 
