@@ -49,7 +49,7 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM laporan_keuangan_gudang WHERE tanggal = '$tanggal_awal'AND kode_gudang = '$kode_gudang' ORDER BY no_transaksi");
+    $table = mysqli_query($koneksi, "SELECT * FROM laporan_keuangan_gudang WHERE tanggal = '$tanggal_awal' AND kode_gudang = '$kode_gudang' ORDER BY tanggal");
 
     $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM laporan_keuangan_gudang  WHERE tanggal = '$tanggal_awal' AND kode_gudang = '$kode_gudang' GROUP BY nama_akun");
 } else {
