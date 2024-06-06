@@ -282,15 +282,22 @@ Menu Kepala Oprasional
           <?php  echo "<form action='../proses/proses_mocash_cbm?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label>Tanggal</label>
                <input class="form-control form-control-sm" type="date" name="tanggal" required="">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label>Nama Akun</label>
             <select class="form-control form-control-sm"  name="nama_akun" class="form-control">
               <option>Mocash</option>
               <option>Saldo Cek Masuk</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>Rekening</label>
+            <select class="form-control form-control-sm"  name="rekening" class="form-control">
+              <option>BRI Risa Septiana</option>
+              <option>BRI Rianto</option>
             </select>
           </div>
         </div>
@@ -355,6 +362,7 @@ Menu Kepala Oprasional
       <th>No</th>
       <th>Tanggal</th>
       <th>Nama Akun</th>
+      <th>Rekening</th>
       <th>Akun Mocash</th>
       <th>Keterangan</th>
       <th>Debit</th>
@@ -378,6 +386,7 @@ Menu Kepala Oprasional
       $no_pengeluaran = $data['no_pengeluaran'];
       $tanggal =$data['tanggal'];
       $nama_akun = $data['nama_akun'];
+      $rekening = $data['rekening'];
       $akun_mocash = $data['akun_mocash'];
       $keterangan = $data['keterangan'];
       $jumlah = $data['jumlah'];
@@ -397,6 +406,7 @@ Menu Kepala Oprasional
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$rekening</td>
       <td style='font-size: 14px'>$akun_mocash</td>
       <td style='font-size: 14px'>$keterangan</td>";
       if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
@@ -433,11 +443,11 @@ Menu Kepala Oprasional
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
         <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran;?>">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label>Tanggal</label>
                <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>" >
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label>Nama Akun</label>
             <select class="form-control form-control-sm"  name="nama_akun" class="form-control">
               <?php $dataSelect = $data['nama_akun']; ?>
@@ -445,6 +455,15 @@ Menu Kepala Oprasional
               <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
             </select>
           </div>
+          <div class="col-md-4">
+                 <label>Rekening</label>
+                    <select class="form-control form-control-sm" name="rekening" class="form-control ">
+                        <?php $dataSelect = $data['rekening']; ?>
+                        <option <?php echo ($dataSelect == 'BRI Risa Septiana') ? "selected": "" ?> >BRI Risa Septiana</option>
+                        <option <?php echo ($dataSelect == 'BRI Rianto') ? "selected": "" ?> >BRI Rianto</option>
+                      
+                    </select>
+            </div>
         </div>
       <br>
         <div class="row">

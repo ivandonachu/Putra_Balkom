@@ -23,6 +23,7 @@ $tanggal_akhir = $_POST['tanggal2'];
 $no_pengeluaran = $_POST['no_pengeluaran'];
 $tanggal = $_POST['tanggal'];
 $referensi = $_POST['referensi'];
+$rekening = $_POST['rekening'];
 $nama_akun = $_POST['nama_akun'];
 $jumlah = $_POST['jumlah'];
 $keterangan = $_POST['keterangan'];
@@ -61,11 +62,11 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-		$query3 = mysqli_query($koneksipbr,"UPDATE pengeluaran_pbr SET tanggal = '$tanggal' , referensi = '$referensi' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_pengeluaran = 
+		$query3 = mysqli_query($koneksipbr,"UPDATE pengeluaran_pbr SET tanggal = '$tanggal' , referensi = '$referensi', rekening = '$rekening' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_pengeluaran = 
 		'$no_pengeluaran'");
 	}
 	else{
-		$query3 = mysqli_query($koneksipbr,"UPDATE pengeluaran_pbr SET tanggal = '$tanggal' , referensi = '$referensi' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_pengeluaran = 
+		$query3 = mysqli_query($koneksipbr,"UPDATE pengeluaran_pbr SET tanggal = '$tanggal' , referensi = '$referensi', rekening = '$rekening' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_pengeluaran = 
 		'$no_pengeluaran'");
 	}
 	

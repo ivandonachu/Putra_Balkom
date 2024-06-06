@@ -286,14 +286,20 @@ Menu Kepala Oprasional
           <?php  echo "<form action='../proses/proses_pengeluaran_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label>Tanggal</label>
                <input class="form-control form-control-sm" type="date" name="tanggal" required="">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <option>MES</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>Rekening</label>
+            <select class="form-control form-control-sm"  name="rekening" class="form-control">
+              <option>BRI Nyoman Serli</option>
             </select>
           </div>
         </div>
@@ -375,6 +381,7 @@ Menu Kepala Oprasional
       <th>No</th>
       <th>Tanggal</th>
       <th>REF</th>
+      <th>Rekening</th>
       <th>Akun</th>
       <th>Keterangan</th>
       <th>Debit</th>
@@ -398,6 +405,7 @@ Menu Kepala Oprasional
       $no_pengeluaran = $data['no_pengeluaran'];
       $tanggal =$data['tanggal'];
       $referensi = $data['referensi'];
+      $rekening = $data['rekening'];
       $nama_akun = $data['nama_akun'];
       $keterangan = $data['keterangan'];
       $jumlah = $data['jumlah'];
@@ -417,6 +425,7 @@ Menu Kepala Oprasional
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$rekening</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
       if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
@@ -453,16 +462,23 @@ Menu Kepala Oprasional
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
         <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran;?>">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label>Tanggal</label>
                <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>" >
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <?php $dataSelect = $data['referensi']; ?>
               <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
               <option <?php echo ($dataSelect == 'Kebun Kota Batu') ? "selected": "" ?> >Kebun Kota Batu</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>Rekening</label>
+            <select class="form-control form-control-sm"  name="rekening" class="form-control">
+              <?php $dataSelect = $data['rekening']; ?>
+              <option <?php echo ($dataSelect == 'BRI Nyoman Serli') ? "selected": "" ?> >BRI Nyoman Serli</option>
             </select>
           </div>
         </div>

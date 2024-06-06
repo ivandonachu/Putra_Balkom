@@ -22,6 +22,7 @@ $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $nama_akun = $_POST['nama_akun'];
+$rekening = $_POST['rekening'];
 $akun_mocash = $_POST['akun_mocash'];
 $jumlah = $_POST['jumlah'];
 $keterangan = $_POST['keterangan'];
@@ -62,7 +63,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksipbr,"INSERT INTO mocash_mes VALUES ('','$tanggal','$nama_akun','$akun_mocash','$jumlah','$keterangan','$file')");
+	$query = mysqli_query($koneksipbr,"INSERT INTO mocash_mes VALUES ('','$tanggal','$nama_akun','$rekening','$akun_mocash','$jumlah','$keterangan','$file')");
 
 
 			if ($query != "") {

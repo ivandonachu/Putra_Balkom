@@ -24,6 +24,7 @@ $no_pengeluaran = $_POST['no_pengeluaran'];
 $tanggal = $_POST['tanggal'];
 $akun_mocash = $_POST['akun_mocash'];
 $nama_akun = $_POST['nama_akun'];
+$rekening = $_POST['rekening'];
 $jumlah = $_POST['jumlah'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
@@ -61,11 +62,11 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-		$query3 = mysqli_query($koneksipbr,"UPDATE mocash_pbr SET tanggal = '$tanggal' , akun_mocash = '$akun_mocash' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_pengeluaran = 
+		$query3 = mysqli_query($koneksipbr,"UPDATE mocash_pbr SET tanggal = '$tanggal' , akun_mocash = '$akun_mocash' , nama_akun = '$nama_akun' , rekening = '$rekening' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_pengeluaran = 
 		'$no_pengeluaran'");
 	}
 	else{
-		$query3 = mysqli_query($koneksipbr,"UPDATE mocash_pbr SET tanggal = '$tanggal' , akun_mocash = '$akun_mocash' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_pengeluaran = 
+		$query3 = mysqli_query($koneksipbr,"UPDATE mocash_pbr SET tanggal = '$tanggal' , akun_mocash = '$akun_mocash' , nama_akun = '$nama_akun' , rekening = '$rekening', keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_pengeluaran = 
 		'$no_pengeluaran'");
 	}
 	

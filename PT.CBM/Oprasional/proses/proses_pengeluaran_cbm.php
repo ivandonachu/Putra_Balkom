@@ -22,6 +22,7 @@ $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $referensi = $_POST['referensi'];
+$rekening = $_POST['rekening'];
 $nama_akun = $_POST['nama_akun'];
 $jumlah = $_POST['jumlah'];
 $keterangan = $_POST['keterangan'];
@@ -62,7 +63,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pengeluaran_cbm VALUES ('','$tanggal','$referensi','$nama_akun','$jumlah','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengeluaran_cbm VALUES ('','$tanggal','$referensi','$rekening','$nama_akun','$jumlah','$keterangan','$file')");
 
 
 			if ($query != "") {
