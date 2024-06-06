@@ -96,7 +96,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       }
 
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_okut = $total_angkutan_edy_okut + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {
@@ -127,7 +127,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $kontrak = '';
       }
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_mesuji = $total_angkutan_edy_mesuji + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {
@@ -158,7 +158,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       }
 
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_tlg_bwg = $total_angkutan_edy_tlg_bwg + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {
@@ -189,7 +189,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       }
 
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_way_kanan = $total_angkutan_edy_way_kanan + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {
@@ -220,7 +220,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       }
 
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_okus = $total_angkutan_edy_okus + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {

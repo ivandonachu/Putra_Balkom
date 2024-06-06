@@ -581,7 +581,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
@@ -654,7 +654,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ) {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
@@ -736,7 +736,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ) {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
@@ -814,7 +814,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ) {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
@@ -931,7 +931,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' || $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } 
             else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
