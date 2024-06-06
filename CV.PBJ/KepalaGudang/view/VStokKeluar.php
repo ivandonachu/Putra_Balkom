@@ -358,7 +358,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <h4 align='center'> Laporan Stok Keluar Gudang <?= $kode_gudang; ?></h4>
                         <!-- Tabel -->
-                        <div style="overflow-x: auto">
+                        <div style="overflow-x: auto" align='center'>
                             <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
                                 <thead>
                                     <tr>
@@ -635,19 +635,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['copy', 'excel', 'csv', 'pdf', 'colvis']
-            });
-
-            table.buttons().container()
-                .appendTo('#example_wrapper .col-md-6:eq(0)');
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            var table = $('#example2').DataTable({
-                lengthChange: false,
-                buttons: []
+                buttons: [ 'excel']
             });
 
             table.buttons().container()

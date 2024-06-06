@@ -322,7 +322,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?></h4>
                         <!-- Tabel -->
-                        <div style="overflow-x: auto">
+                        <div style="overflow-x: auto" align='center'>
                             <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
                                 <thead>
                                     <tr>
@@ -541,30 +541,18 @@ if ($tanggal_awal == $tanggal_akhir) {
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
+
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['copy', 'excel', 'csv', 'pdf', 'colvis']
+                buttons: [ 'excel']
             });
 
             table.buttons().container()
                 .appendTo('#example_wrapper .col-md-6:eq(0)');
         });
     </script>
-
-    <script>
-        $(document).ready(function() {
-            var table = $('#example2').DataTable({
-                lengthChange: false,
-                buttons: []
-            });
-
-            table.buttons().container()
-                .appendTo('#example_wrapper .col-md-6:eq(0)');
-        });
-    </script>
-
 
 
 </body>
