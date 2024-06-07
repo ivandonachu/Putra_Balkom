@@ -121,7 +121,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ) {
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
                 $total_angkutan_edy = $total_angkutan_edy + $total_angkut_bmu;
                 $total_angkutan_edy_okut = $total_angkutan_edy_okut + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
@@ -645,7 +645,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
                         <div align="left">
-                            <?php echo "<a href='../VRekapanTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+                            <?php echo "<a href='../VLRKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
                         </div>
 
 
@@ -663,7 +663,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <br>
 
-                        <h5 align='center'>Rekap Pranko BMU Bapak Nyoman Edy</h5>
+                        <h5 align='center'>Rekap Pranko BMU Bapak Rama</h5>
                         <!-- Tabel -->
                         <div align='center' style="overflow-x: auto">
                             <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -728,8 +728,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $no_do = $data['no_do'];
                                         $material = $data['material'];
                                         $qty = $data['qty'];
-                                       
-                               
+                                        $harga = $data['harga'];
+                                        $jumlah = $data['jumlah'];
                                         $driver = $data['driver'];
                                         $no_polisi = $data['no_polisi'];
                                         $tipe_bayar = $data['tipe_bayar'];
@@ -738,11 +738,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $file_bukti = $data['file_bukti'];
 
                                         $no_urut = $no_urut + 1;
-
-
-                                
-                                        //kak nyoman
-                                        if ($kota == 'Kab Ogn Kmrg Ulu Tim' || $kota == 'KAB OKU TIMUR') {
+                                          //kak nyoman
+                                          if ($kota == 'Kab Ogn Kmrg Ulu Tim' || $kota == 'KAB OKU TIMUR') {
                                             //BMU 10ton
                                             if ($qty >= 200 && $qty <= 300) {
                                 
@@ -896,10 +893,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                             
                                         }
 
-                                        
-                                  
 
-                                        if ($pemilik == "Bapak Nyoman Edi" && $kontrak == 'BMU') {
+                                        if ($pemilik == "Bapak Rama" && $kontrak == 'BMU') {
                                             $jumlah = $qty * $tarifx;
                                             $total = $total + $jumlah;
 
@@ -950,7 +945,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan OKU Timur</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_okut) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_okut) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -966,7 +961,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan OKU Selatan</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_okus) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_okus) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -982,7 +977,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Muara Dua Kota</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_md_kota) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_md_kota) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1005,7 +1000,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Tulang Bawang</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_tlg_bwg) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_tlg_bwg) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1021,7 +1016,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Way Kanan</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_way_kanan) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_way_kanan) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1037,7 +1032,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Mesuji</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_mesuji) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_mesuji) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1047,11 +1042,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 </div>
                             </div>
                         </div>
-
                         <br>
                         <hr>
                         <br>
-
                         <div class="row" style="margin-right: 20px; margin-left: 20px;">
                             <div class="col-xl-12 col-md-6 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
@@ -1060,7 +1053,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan BMU Global</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1070,7 +1063,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 </div>
                             </div>
                         </div>
-
 
 
                         <br>

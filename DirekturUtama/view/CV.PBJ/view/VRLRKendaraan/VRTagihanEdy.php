@@ -38,8 +38,6 @@ if (isset($_GET['tanggal1'])) {
   $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir)));
 }
 
-
-
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbj, "SELECT * FROM penjualan_s WHERE tanggal_do = '$tanggal_akhir' ORDER BY no_penjualan ASC");
 } else {
@@ -98,7 +96,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       }
 
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_okut = $total_angkutan_edy_okut + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {
@@ -129,7 +127,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $kontrak = '';
       }
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_mesuji = $total_angkutan_edy_mesuji + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {
@@ -160,7 +158,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       }
 
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_tlg_bwg = $total_angkutan_edy_tlg_bwg + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {
@@ -191,7 +189,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       }
 
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_way_kanan = $total_angkutan_edy_way_kanan + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {
@@ -222,7 +220,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       }
 
 
-      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Nyoman Edi' && $kontrak == '') {
+      if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
         $total_angkutan_edy = $total_angkutan_edy + $total_angkut;
         $total_angkutan_edy_okus = $total_angkutan_edy_okus + $total_angkut;
       } else if ($pemilik == 'Bapak Rama' && $kontrak == 'RLI' ||  $pemilik == 'Bapak Rama' && $kontrak == '') {
@@ -238,7 +236,6 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
   }
 }
-
 
 
 
@@ -484,7 +481,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
             <div align="left">
-              <?php echo "<a href='../VRekapanTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+              <?php echo "<a href='../VLRKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
             </div>
 
 
@@ -502,7 +499,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             <br>
 
-            <h5 align='center'>Rekap Pranko RLI Bapak Rama</h5>
+            <h5 align='center'>Rekap Pranko RLI Bapak Nyoman Edy</h5>
             <!-- Tabel -->
             <div align='center' style="overflow-x: auto">
               <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -566,7 +563,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $no_do = $data['no_do'];
                     $material = $data['material'];
                     $qty = $data['qty'];
-
+               
 
 
                     $driver = $data['driver'];
@@ -602,7 +599,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       $tarifx = $data1p['tarif_pranko'];
                     }
 
-                    if ($pemilik == "Bapak Rama" && $kontrak == 'RLI' && $kota != 'KAB WAY KANAN' || $pemilik == "Bapak Rama" && $kontrak == '' && $kota != 'KAB WAY KANAN') {
+                    if ($pemilik == "Bapak Nyoman Edi" && $kontrak == 'RLI' && $kota != 'KAB WAY KANAN' || $pemilik == "Bapak Nyoman Edi" && $kontrak == '' && $kota != 'KAB WAY KANAN') {
                       $jumlah = $qty * $tarifx;
                       $total = $total + $jumlah;
                       echo "<tr>
@@ -622,6 +619,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <td style='font-size: 14px'>$keterangan</td>
                       <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
                       "; ?>
+
 
 
 
@@ -651,7 +649,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Total Tagihan RLI Global</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama) ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -667,7 +665,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Total Tagihan OKU Timur</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_okut) ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_okut) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -683,7 +681,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Total Tagihan OKU Selatan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_okus) ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_okus) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -706,7 +704,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Total Tagihan Tulang Bawang</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_tlg_bwg) ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_tlg_bwg) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -722,7 +720,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Total Tagihan Way Kanan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_way_kanan) ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_way_kanan) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -738,7 +736,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Total Tagihan OKU Mesuji</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_rama_mesuji) ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_mesuji) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -839,7 +837,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 .appendTo('#example_wrapper .col-md-6:eq(0)');
         });
     </script>
-    
+
   <script>
     function createOptions(number) {
       var options = [],
