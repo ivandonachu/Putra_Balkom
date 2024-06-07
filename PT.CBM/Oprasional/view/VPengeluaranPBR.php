@@ -300,6 +300,7 @@ Menu Kepala Oprasional
             <label>Rekening</label>
             <select class="form-control form-control-sm"  name="rekening" class="form-control">
               <option>BRI Nyoman Serli</option>
+              <option>Cash</option>
             </select>
           </div>
         </div>
@@ -480,6 +481,7 @@ Menu Kepala Oprasional
             <select class="form-control form-control-sm"  name="rekening" class="form-control">
               <?php $dataSelect = $data['rekening']; ?>
               <option <?php echo ($dataSelect == 'BRI Nyoman Serli') ? "selected": "" ?> >BRI Nyoman Serli</option>
+              <option <?php echo ($dataSelect == 'Cash') ? "selected": "" ?> >Cash</option>
             </select>
           </div>
         </div>
