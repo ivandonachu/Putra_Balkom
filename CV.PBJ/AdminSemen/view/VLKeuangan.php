@@ -276,7 +276,13 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                           </div>
                           <div class="col-md-6">
-
+                            <label>Rekening</label>
+                            <select name="rekening" class="form-control">
+                              <option>BRI Harian</option>
+                              <option>BRI DF</option>
+                              <option>Mandiri</option>
+                              <option>BNI</option>
+                            </select>
                           </div>
                         </div>
                         <br>
@@ -358,6 +364,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <tr>
                     <th>No</th>
                     <th>Tanggal</th>
+                    <th>Rekening</th>
                     <th>Akun</th>
                     <th></th>
                     <th>Keterangan</th>
@@ -383,6 +390,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <?php while ($data = mysqli_fetch_array($table)) {
                     $no_laporan = $data['no_transaksi'];
                     $tanggal = $data['tanggal'];
+                    $rekening = $data['rekening'];
                     $nama_akun = $data['nama_akun'];
                     $status_saldo = $data['status_saldo'];
                     $jumlah = $data['jumlah'];
@@ -397,6 +405,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     echo "<tr>
       <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$rekening</td>
       <td style='font-size: 14px'>$nama_akun</td>
       "; ?>
                     <?php echo "<td style='font-size: 12px'>"; ?>
@@ -436,7 +445,14 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                 </div>
                                 <div class="col-md-6">
-
+                                <label>Rekening</label>
+                                  <select  name="rekening" class="form-control">
+                                    <?php $dataSelect = $data['rekening']; ?>
+                                    <option <?php echo ($dataSelect == 'BRI Harian') ? "selected" : "" ?>>BRI Harian</option>
+                                    <option <?php echo ($dataSelect == 'BRI DF') ? "selected" : "" ?>>BRI DF</option>
+                                    <option <?php echo ($dataSelect == 'Mandri') ? "selected" : "" ?>>Mandri</option>
+                                    <option <?php echo ($dataSelect == 'BNI') ? "selected" : "" ?>>BNI</option>
+                                  </select>
 
                                 </div>
                               </div>
@@ -472,8 +488,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Pembelian Barang Jual') ? "selected" : "" ?>>Pembelian Barang Jual</option>
                                     <option <?php echo ($dataSelect == 'Pinjam Saldo') ? "selected" : "" ?>>Pinjam Saldo</option>
                                     <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected" : "" ?>>Pindah Saldo</option>
-                                    <option <?php echo ($dataSelect == 'Kembalikan Saldo') ? "selected" : "" ?>>Kembalikan Saldo</option>  
-                                    <option <?php echo ($dataSelect == 'Kembalikan Saldo') ? "selected" : "" ?>>Oprasional Pabrik</option>  
+                                    <option <?php echo ($dataSelect == 'Kembalikan Saldo') ? "selected" : "" ?>>Kembalikan Saldo</option>
+                                    <option <?php echo ($dataSelect == 'Kembalikan Saldo') ? "selected" : "" ?>>Oprasional Pabrik</option>
                                   </select>
                                 </div>
                                 <div class="col-md-6">
@@ -547,19 +563,19 @@ if ($tanggal_awal == $tanggal_akhir) {
                                               if ($status_saldo == 'Masuk') {
                                                 echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
+                                                                    }
 
-                                                                  if ($status_saldo == 'Keluar') {
-                                                                    echo "
+                                                                    if ($status_saldo == 'Keluar') {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
-                                        ?>
+                                                                    }
+                                          ?>
                     <?php echo "
       <td style='font-size: 14px'>" ?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
       <td style='font-size: 14px'>"; ?> <a download="../file_admin_semen/<?= $file_bukti ?>" href="../file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
@@ -601,73 +617,71 @@ if ($tanggal_awal == $tanggal_akhir) {
             <br>
             <br>
             <br>
-<hr>
-<br>
+            <hr>
+            <br>
 
-<h5 align="center" >Rincian Pengeluaran</h5>
-<!-- Tabel -->    
-<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Akun</th>
-      <th>Total Pengeluaran</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php 
-    $sisa_saldo = 0;
-    $total_pengeluaran = 0;
-    $total_saldo = 0;
-  ?>
-    <?php while($data = mysqli_fetch_array($table2)){
-      $nama_akun = $data['nama_akun'];
-      $jumlah =$data['total_jumlah'];
+            <h5 align="center">Rincian Pengeluaran</h5>
+            <!-- Tabel -->
+            <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+              <thead>
+                <tr>
+                  <th>Akun</th>
+                  <th>Total Pengeluaran</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $sisa_saldo = 0;
+                $total_pengeluaran = 0;
+                $total_saldo = 0;
+                ?>
+                <?php while ($data = mysqli_fetch_array($table2)) {
+                  $nama_akun = $data['nama_akun'];
+                  $jumlah = $data['total_jumlah'];
 
-      if ($nama_akun == 'Bayar Piutang' || $nama_akun == 'Pendapatan Sewa') {
-        $sisa_saldo  = $sisa_saldo + $jumlah;
-        $total_saldo = $total_saldo + $jumlah;
-      }
-      else if ($nama_akun == 'Setor Uang' || $nama_akun == 'Kembalikan Deposit' || $nama_akun == 'Pembelian Barang Jual'  || $nama_akun == 'Kembalikan Saldo' ) {
-      }
-      else{
-        $sisa_saldo  = $sisa_saldo - $jumlah;
-        $total_pengeluaran = $total_pengeluaran + $jumlah;
-      }
-     
+                  if ($nama_akun == 'Bayar Piutang' || $nama_akun == 'Pendapatan Sewa') {
+                    $sisa_saldo  = $sisa_saldo + $jumlah;
+                    $total_saldo = $total_saldo + $jumlah;
+                  } else if ($nama_akun == 'Setor Uang' || $nama_akun == 'Kembalikan Deposit' || $nama_akun == 'Pembelian Barang Jual'  || $nama_akun == 'Kembalikan Saldo') {
+                  } else {
+                    $sisa_saldo  = $sisa_saldo - $jumlah;
+                    $total_pengeluaran = $total_pengeluaran + $jumlah;
+                  }
 
 
-      echo "<tr>
+
+                  echo "<tr>
 
        <td style='font-size: 14px' >$nama_akun</td>
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+        <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
       
      
 
   </tr>";
-}
-?>    <tr>
-<td style='font-size: 14px; ' ><strong>Total Sakdo</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($total_saldo); ?></strong> </td>
-      </tr>
-      <tr>
-      <td style='font-size: 14px; ' ><strong>Total Pengeluaran</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($total_pengeluaran); ?></strong> </td>
-      </tr>
-      <tr>
-      <td style='font-size: 14px; ' ><strong>Sisa Saldo</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($sisa_saldo); ?></strong> </td>
-      </tr>
-      
-     
-      
+                                                                  }
+                                                                    ?> <tr>
+                  <td style='font-size: 14px; '><strong>Total Sakdo</strong></td>
+                  <td style='font-size: 14px'> <strong> <?= formatuang($total_saldo); ?></strong> </td>
+                </tr>
+                <tr>
+                  <td style='font-size: 14px; '><strong>Total Pengeluaran</strong></td>
+                  <td style='font-size: 14px'> <strong> <?= formatuang($total_pengeluaran); ?></strong> </td>
+                </tr>
+                <tr>
+                  <td style='font-size: 14px; '><strong>Sisa Saldo</strong></td>
+                  <td style='font-size: 14px'> <strong> <?= formatuang($sisa_saldo); ?></strong> </td>
+                </tr>
 
-      </tr>
-</tbody>
-</table>
 
-<br>
-<hr>
-<br>
+
+
+                </tr>
+              </tbody>
+            </table>
+
+            <br>
+            <hr>
+            <br>
 
           </div>
         </div>

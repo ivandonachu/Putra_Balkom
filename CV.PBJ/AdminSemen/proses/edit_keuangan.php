@@ -23,6 +23,7 @@ $tanggal_akhir = $_POST['tanggal2'];
 $no_transaksi = $_POST['no_transaksi'];
 $tanggal = $_POST['tanggal'];
 $nama_akun = $_POST['nama_akun'];
+$rekening = $_POST['rekening'];
 if($nama_akun == 'Bayar Piutang' || $nama_akun == 'Pemasukan Lainnya' || $nama_akun == 'Pendapatan Sewa'){
 	$status_saldo = 'Masuk';
 }
@@ -66,11 +67,11 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE keuangan_sl SET tanggal = '$tanggal' , nama_akun = '$nama_akun' ,keterangan = '$keterangan' , status_saldo = '$status_saldo'  ,jumlah = '$jumlah'  WHERE no_transaksi = 
+		$query3 = mysqli_query($koneksi,"UPDATE keuangan_sl SET tanggal = '$tanggal' , nama_akun = '$nama_akun', rekening = '$rekening' ,keterangan = '$keterangan' , status_saldo = '$status_saldo'  ,jumlah = '$jumlah'  WHERE no_transaksi = 
 		'$no_transaksi'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE keuangan_sl SET tanggal = '$tanggal', nama_akun = '$nama_akun' , keterangan = '$keterangan' , status_saldo = '$status_saldo'  ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_transaksi = 
+		$query3 = mysqli_query($koneksi,"UPDATE keuangan_sl SET tanggal = '$tanggal', nama_akun = '$nama_akun' , rekening = '$rekening' , keterangan = '$keterangan' , status_saldo = '$status_saldo'  ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_transaksi = 
 		'$no_transaksi'");
 	}
 	

@@ -22,6 +22,7 @@ $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
 $nama_akun = $_POST['nama_akun'];
+$rekening = $_POST['rekening'];
 if($nama_akun == 'Bayar Piutang' || $nama_akun == 'Pemasukan Lainnya'|| $nama_akun == 'Pendapatan Sewa'){
 	$status_saldo = 'Masuk';
 }
@@ -69,7 +70,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO keuangan_sl VALUES ('','$tanggal','$nama_akun','$keterangan','$status_saldo','$jumlah','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO keuangan_sl VALUES ('','$tanggal','$nama_akun','$rekening','$keterangan','$status_saldo','$jumlah','$file')");
 
 			
 			if ($query != "") {
