@@ -27,16 +27,16 @@ $lo = $_POST['lo'];
 $jumlah_pesanan = $_POST['jumlah_pesanan'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
-$kode_pesanan = 'kl8';
+$kode_pesanan = 'kl5';
 
 $result = mysqli_query($koneksi, "SELECT * FROM tagihan_spbu WHERE so = '$so' AND tanggal = '$tanggal' ");
  if(mysqli_num_rows($result) == 1 ){
-  	echo "<script>alert('SO sudah tercatat :)'); window.location='../view/VTagihanBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
+  	echo "<script>alert('SO sudah tercatat :)'); window.location='../view/VTagihanL8?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
       }
 
 $result2 = mysqli_query($koneksi, "SELECT * FROM tagihan_spbu WHERE lo = '$lo' AND tanggal = '$tanggal' ");
  if(mysqli_num_rows($result2) == 1 ){
-  	echo "<script>alert('LO sudah tercatat :)'); window.location='../view/VTagihanBl?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
+  	echo "<script>alert('LO sudah tercatat :)'); window.location='../view/VTagihanL8?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
       }
 
 	
@@ -47,8 +47,6 @@ $result3 = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu WHERE deliver
 $data_tarif = mysqli_fetch_array($result3);
 $total = $data_tarif[$kode_pesanan];
 
-
-	$total = $harga;
 
 
 

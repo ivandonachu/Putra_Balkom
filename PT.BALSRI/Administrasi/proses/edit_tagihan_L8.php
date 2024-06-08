@@ -28,7 +28,7 @@ $lo = $_POST['lo'];
 $jumlah_pesanan = $_POST['jumlah_pesanan'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
-$kode_pesanan = 'kl8';
+$kode_pesanan = 'kl5';
 
 
 $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu WHERE delivery_point = '$delivery_point' ");

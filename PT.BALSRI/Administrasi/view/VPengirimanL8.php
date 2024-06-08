@@ -465,7 +465,7 @@ else{
         <div class="col-md-4">
           <label>Muatan</label>
           <select id="muatan" name="muatan" class="form-control">
-            <option>8000 L</option>
+            <option>5000 L</option>
           </select>
         </div>                
 
@@ -688,7 +688,7 @@ else{
                 <label>Muatan</label>
                 <select id="muatan" name="muatan" class="form-control">
                   <?php $dataSelect = $data['muatan']; ?>
-                  <option <?php echo ($dataSelect == '8000 L') ? "selected": "" ?> >8000 L</option>
+                  <option <?php echo ($dataSelect == '5000 L') ? "selected": "" ?> >5000 L</option>
                 </select>
 
               </div>                

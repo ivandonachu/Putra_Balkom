@@ -374,8 +374,9 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu ");
   
       <td style='font-size: 14px' align = 'center'>$supply_point</td>
       <td style='font-size: 14px' align = 'center'>$delivery_point</td>
-      <td style='font-size: 14px' align = 'center'>$jt/KM</td>
       <td style='font-size: 14px' align = 'center'>$hrg_bbm</td>
+      <td style='font-size: 14px' align = 'center'>$jt/KM</td>
+      
       <td style='font-size: 14px' align = 'center'>$kl5/L</td>
 
       "; ?>
@@ -422,7 +423,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu ");
                               </div>
                               <div class="col-md-4">
                                 <label>Jarak Tempuh</label>
-                                <input class="form-control form-control-sm" type="number"  name="jt" required="" value="<?php echo $jt_pp; ?>">
+                                <input class="form-control form-control-sm" type="number"  name="jt" required="" value="<?php echo $jt; ?>">
                               </div>
                               <div class="col-md-4">
                                 <label>KL 5</label>
@@ -445,7 +446,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu ");
                   </div>
 
                   <!-- Button Hapus -->
-                  <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['delivery_point']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+                 
                   <div class="modal fade" id="PopUpHapus<?php echo $data['delivery_point']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">

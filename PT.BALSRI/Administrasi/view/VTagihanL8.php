@@ -27,11 +27,10 @@ if (isset($_GET['tanggal1'])) {
 } elseif (isset($_POST['tanggal1'])) {
   $tanggal_awal = $_POST['tanggal1'];
   $tanggal_akhir = $_POST['tanggal2'];
-}
-else{
-    $tanggal_awal = date('Y-m-1');
+} else {
+  $tanggal_awal = date('Y-m-1');
   $tanggal_akhir = date('Y-m-31');
-  }
+}
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point WHERE tanggal = '$tanggal_awal'");
@@ -89,43 +88,42 @@ if ($tanggal_awal == $tanggal_akhir) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
-    <div class="sidebar-brand-icon rotate-n-15">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+        <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-</a>
+        </div>
+        <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png"></div>
+      </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active" >
-    <a class="nav-link" href="DsAdministrasi">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-    </li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="DsAdministrasi">
+          <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+          <span style="font-size: 16px;">Dashboard</span></a>
+      </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Administrasi
-    </div>
-     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-      15  aria-expanded="true" aria-controls="collapseOne">
-        <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Tagihan</span>
-    </a>
-    <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      <!-- Heading -->
+      <div class="sidebar-heading" style="font-size: 15px; color:white;">
+        Menu Administrasi
+      </div>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" 15 aria-expanded="true" aria-controls="collapseOne">
+          <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Tagihan</span>
+        </a>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Tagihan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihan">Tagihan Lampung</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanL8">Tagihan Lampung SPBU</a>
@@ -139,18 +137,17 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBr">Master Tarif BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBl">Master Tarif BL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBk">Master Tarif BK</a>
+          </div>
         </div>
-    </div>
-</li>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-truck" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Pengiriman</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-truck" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Pengiriman</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Pengiriman LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL8">Pengiriman LMG SPBU</a>
@@ -167,9 +164,9 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuh">Jarak Tempuh LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhL8">Jarak Tempuh LMG SPBU</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhP">Jarak Tempuh PLG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a> 
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBl">Jarak Tempuh BL</a> 
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBk">Jarak Tempuh BK</a> 
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBr">Jarak Tempuh BTA</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBl">Jarak Tempuh BL</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBk">Jarak Tempuh BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGaji">Gaji LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiL8">Gaji LMG SPBU</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiP">Gaji PLG</a>
@@ -177,18 +174,17 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VGajiBl">Gaji BL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiBk">Gaji BK</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+          </div>
         </div>
-    </div>
-</li>
- <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
-      15  aria-expanded="true" aria-controls="collapseTwo22">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Pengeluaran</span>
-    </a>
-    <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22" 15 aria-expanded="true" aria-controls="collapseTwo22">
+          <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Pengeluaran</span>
+        </a>
+        <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikan">Catat Perbaikan LMG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanP">Catat Perbaikan PLG</a>
@@ -200,42 +196,40 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBr">Pengeluaran Pul BTA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBl">Pengeluaran Pul BL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBk">Pengeluaran Pul BK</a>
+          </div>
         </div>
-    </div>
-</li>
- <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-      15  aria-expanded="true" aria-controls="collapseTwo1">
-        <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >SDM</span>
-    </a>
-    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo1">
+          <i class="fas fa-car" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">SDM</span>
+        </a>
+        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VAMT">AMT</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMT">MT</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBayarKredit">Kredit Kendaraan</a>
+          </div>
         </div>
-    </div>
-</li>
- <!-- Nav Item - Pages Collapse Menu -->
- <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1z"
-                  15  aria-expanded="true" aria-controls="collapseTwo1z">
-                    <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >BBM</span>
-                </a>
-                <div id="collapseTwo1z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu BBM</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokBBM">Lap Stok BBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBBMMasuk">Lap BBM Masuk</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VBBMKeluar">Lap BBM Keluar</a>
-                    </div>
-                </div>
-            </li>
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1z" 15 aria-expanded="true" aria-controls="collapseTwo1z">
+          <i class="fas fa-car" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">BBM</span>
+        </a>
+        <div id="collapseTwo1z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu BBM</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VStokBBM">Lap Stok BBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBBMMasuk">Lap BBM Masuk</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VBBMKeluar">Lap BBM Keluar</a>
+          </div>
+        </div>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -274,27 +268,25 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
-           <!-- Nav Item - User Information -->
-           <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
-                </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="userDropdown">
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline  small" style="color:white;"><?php echo "$nama"; ?></span>
+                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile -->
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
                 </a>
               </div>
-             </li>
+            </li>
 
           </ul>
 
@@ -380,7 +372,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                           <div class="col-md-6">
                             <label>Delivery Point</label>
-                            <select id="tokens" class="selectpicker form-control" name="delivery_point" multiple data-live-search="true">
+                            <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
                               <?php
                               include 'koneksi.php';
                               $result2 = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu");
@@ -388,9 +380,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                               while ($data2 = mysqli_fetch_array($result2)) {
                                 $data_tarif = $data2['delivery_point'];
 
-                      
-                                  echo "<option> $data_tarif </option> ";
-                                
+
+                                echo "<option> $data_tarif </option> ";
                               }
                               ?>
                             </select>
@@ -401,7 +392,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                           <div class="col-md-6">
                             <label>Jumlah Pemesanan</label>
                             <select id="jumlah_pesanan" name="jumlah_pesanan" class="form-control">
-                              <option>8000 L</option>
+                              <option>5000 L</option>
                             </select>
                           </div>
 
@@ -472,8 +463,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
             <!-- Tabel -->
-            <div style="overflow-x: auto" align = 'center';>
-                <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+            <div style="overflow-x: auto" align='center' ;>
+              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -481,7 +472,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>SO</th>
                     <th>LO</th>
                     <th>Delivery Point</th>
-                    <th>Alamat</th>
                     <th>Jumlah Pemesanan</th>
                     <th>Jarak Tempuh</th>
                     <th>AMT</th>
@@ -492,63 +482,48 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>Aksi</th>
                   </tr>
                 </thead>
-              <tbody>
-                <?php
-                $total_max_pesanan = 0;
-                $urut = 0;
-                function formatuang($angka)
-                {
-                  $uang = "Rp " . number_format($angka, 2, ',', '.');
-                  return $uang;
-                }
+                <tbody>
+                  <?php
+                  $total_max_pesanan = 0;
+                  $urut = 0;
+                  function formatuang($angka)
+                  {
+                    $uang = "Rp " . number_format($angka, 2, ',', '.');
+                    return $uang;
+                  }
 
-                ?>
+                  ?>
 
-                <?php while ($data = mysqli_fetch_array($table)) {
-                  $no_tagihan = $data['no_tagihan'];
-                  $tanggal = $data['tanggal'];
-                  $so = $data['so'];
-                  $lo = $data['lo'];
-                  $delivery_point = $data['delivery_point'];
-                  $alamat = $data['alamat'];
-                  $jumlah_pesanan = $data['jumlah_pesanan'];
-                  $jt = $data['jt'];
-                  $amt = $data['amt'];
-                  $mt = $data['mt'];
-                  $total = $data['total'];
-                  $file_bukti = $data['file_bukti'];
-                  if ($jumlah_pesanan == 'kl8') {
-                    $total_pesanan = 8000;
+                  <?php while ($data = mysqli_fetch_array($table)) {
+                    $no_tagihan = $data['no_tagihan'];
+                    $tanggal = $data['tanggal'];
+                    $so = $data['so'];
+                    $lo = $data['lo'];
+                    $delivery_point = $data['delivery_point'];
+                    $jumlah_pesanan = $data['jumlah_pesanan'];
+                    $jt = $data['jt'];
+                    $amt = $data['amt'];
+                    $mt = $data['mt'];
+                    $total = $data['total'];
+                    $file_bukti = $data['file_bukti'];
+
+                    $total_pesanan = 5000;
                     $total_max_pesanan = $total_max_pesanan + $total_pesanan;
-                  } 
-                  $harga1 = $data[$jumlah_pesanan];
-                  if($jumlah_pesanan == 'kl1'){
-                      $harga = $harga1 / 1000;
-                  }
-                  else if($jumlah_pesanan == 'kl2'){
-                      $harga = $harga1 / 2000;
-                  }
-                  else if($jumlah_pesanan == 'kl3'){
-                      $harga = $harga1 / 3000;
-                  }
-                  else if($jumlah_pesanan == 'kl4'){
-                    $harga = $harga1 / 4000;
-                  }
 
-                  else if($jumlah_pesanan == 'kl5'){
+                    $harga1 = $data[$jumlah_pesanan];
+
                     $harga = $harga1 / 5000;
-                  }
 
 
-                  $urut = $urut + 1;
 
-                  echo "<tr>
+                    $urut = $urut + 1;
+
+                    echo "<tr>
                   <td style='font-size: 14px'>$urut</td>
                   <td style='font-size: 14px'>$tanggal</td>
                   <td style='font-size: 14px'>$so</td>
                   <td style='font-size: 14px'>$lo</td>
                   <td style='font-size: 14px'>$delivery_point</td>
-                  <td style='font-size: 14px'>$alamat</td>
                   <td style='font-size: 14px'>$total_pesanan/L</td>
                   <td style='font-size: 14px'>$jt</td>
                   <td style='font-size: 14px'>$amt</td>
@@ -557,283 +532,283 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
                   <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
                   "; ?>
-                    <?php echo "<td style='font-size: 12px'>"; ?>
-                    <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_tagihan']; ?>">Edit</button>
+                      <?php echo "<td style='font-size: 12px'>"; ?>
+                      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_tagihan']; ?>">Edit</button>
 
-                    <!-- Form EDIT DATA -->
+                      <!-- Form EDIT DATA -->
 
-                    <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_tagihan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title"> Form Edit Tagihan </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                              <span aria-hidden="true"> &times; </span>
-                            </button>
-                          </div>
+                      <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_tagihan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title"> Form Edit Tagihan </h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true"> &times; </span>
+                              </button>
+                            </div>
 
-                          <!-- Form Edit Data -->
-                          <div class="modal-body" align="left">
-                            <form action="../proses/edit_tagihan_L8" enctype="multipart/form-data" method="POST">
+                            <!-- Form Edit Data -->
+                            <div class="modal-body" align="left">
+                              <form action="../proses/edit_tagihan_L8" enctype="multipart/form-data" method="POST">
 
-                              <input type="hidden" name="no_tagihan" value="<?php echo $no_tagihan; ?>">
-                              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-                              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
-                              <input type="hidden" name="tanggal" value="<?php echo $tanggal; ?>">
+                                <input type="hidden" name="no_tagihan" value="<?php echo $no_tagihan; ?>">
+                                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                <input type="hidden" name="tanggal" value="<?php echo $tanggal; ?>">
 
-                              <div class="row">
-                                <div class="col-md-6">
+                                <div class="row">
+                                  <div class="col-md-6">
 
-                                  <label>Tanggal</label>
-                                  <div class="col-sm-10">
-                                    <input type="date" id="tanggal" name="tanggal" required="" disabled="" value="<?php echo $tanggal; ?>">
+                                    <label>Tanggal</label>
+                                    <div class="col-sm-10">
+                                      <input type="date" id="tanggal" name="tanggal" required="" disabled="" value="<?php echo $tanggal; ?>">
+                                    </div>
+
                                   </div>
 
                                 </div>
 
-                              </div>
-
-                              <div class="row">
+                                <div class="row">
 
 
-                                <div class="col-md-6">
-                                  <label>SO</label>
-                                  <input class="form-control form-control-sm" type="text" id="so" name="so" required="" value="<?php echo $so; ?>">
-                                </div>
+                                  <div class="col-md-6">
+                                    <label>SO</label>
+                                    <input class="form-control form-control-sm" type="text" id="so" name="so" required="" value="<?php echo $so; ?>">
+                                  </div>
 
 
 
-                                <div class="col-md-6">
-                                  <label>LO</label>
-                                  <input class="form-control form-control-sm" type="text" id="lo" name="lo" required="" value="<?php echo $lo; ?>">
-                                </div>
-
-                              </div>
-
-
-
-                              <br>
-                              <label>Delivery Point</label>
-                              <div class="row">
-
-                                <div class="col-md-6">
-
-                                  <select id="tokens" class="selectpicker form-control" name="delivery_point" multiple data-live-search="true">
-                                    <?php
-                                    include 'koneksi.php';
-                                    $dataSelect = $data['delivery_point'];
-                                    $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu");
-
-                                    while ($data2 = mysqli_fetch_array($result)) {
-                                      $data_tarif = $data2['delivery_point'];
-
-
-                                      echo "<option" ?> <?php echo ($dataSelect == $data_tarif) ? "selected" : "" ?>> <?php echo $data_tarif; ?> <?php echo "</option>";
-                                                                                                                                                  }
-                                                                                                                                                    ?>
-                                  </select>
+                                  <div class="col-md-6">
+                                    <label>LO</label>
+                                    <input class="form-control form-control-sm" type="text" id="lo" name="lo" required="" value="<?php echo $lo; ?>">
+                                  </div>
 
                                 </div>
 
 
-                                <div class="col-md-6">
-                                  <label>Jumlah Pemesanan</label>
-                                  <select id="jumlah_pesanan" name="jumlah_pesanan" class="form-control">
-                                    <?php
-                                    $dataSelect = $data['jumlah_pesanan']; ?>
-                                    <option <?php echo ($dataSelect == 'kl8') ? "selected" : "" ?>>8000 L</option>
-                                  </select>
-                                </div>
 
-                              </div>
+                                <br>
+                                <label>Delivery Point</label>
+                                <div class="row">
 
-                              <br>
+                                  <div class="col-md-6">
 
-                              <div class="row">
+                                    <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
+                                      <?php
+                                      include 'koneksi.php';
+                                      $dataSelect = $data['delivery_point'];
+                                      $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_spbu");
 
-                                <div class="col-md-6">
-                                  <label>AMT</label>
-
-                                  <select id="amt" name="amt" class="form-control ">
-                                    <?php
-                                    $dataSelect = $data['amt'];
-                                    include 'koneksi.php';
-                                    $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Lampung'");
-
-                                    while ($data2 = mysqli_fetch_array($result)) {
-                                      $nama_driver = $data2['nama_driver'];
-
-                                      echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
-                                                                                                                                                    }
-                                                                                                                                                      ?>
-                                  </select>
+                                      while ($data2 = mysqli_fetch_array($result)) {
+                                        $data_tarif = $data2['delivery_point'];
 
 
-                                </div>
-
-                                <div class="col-md-6">
-                                  <label>MT</label>
-                                  <select id="mt" name="mt" class="form-control">
-                                    <?php
-                                    $dataSelect = $data['mt'];
-                                    include 'koneksi.php';
-                                    $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Lampung'");
-
-                                    while ($data2 = mysqli_fetch_array($result)) {
-                                      $no_polisi = $data2['no_polisi'];
-
-                                      echo "<option" ?> <?php echo ($dataSelect == $no_polisi) ? "selected" : "" ?>> <?php echo $no_polisi; ?> <?php echo "</option>";
+                                        echo "<option" ?> <?php echo ($dataSelect == $data_tarif) ? "selected" : "" ?>> <?php echo $data_tarif; ?> <?php echo "</option>";
                                                                                                                                                 }
                                                                                                                                                   ?>
-                                  </select>
+                                    </select>
+
+                                  </div>
+
+
+                                  <div class="col-md-6">
+                                    <label>Jumlah Pemesanan</label>
+                                    <select id="jumlah_pesanan" name="jumlah_pesanan" class="form-control">
+                                      <?php
+                                      $dataSelect = $data['jumlah_pesanan']; ?>
+                                      <option <?php echo ($dataSelect == '5000 L') ? "selected" : "" ?>>5000 L</option>
+                                    </select>
+                                  </div>
+
                                 </div>
-                              </div>
 
-                              <br>
+                                <br>
 
-                              <div>
-                                <label>Upload File</label>
-                                <input type="file" name="file">
-                              </div>
-                          </div>
+                                <div class="row">
+
+                                  <div class="col-md-6">
+                                    <label>AMT</label>
+
+                                    <select id="amt" name="amt" class="form-control ">
+                                      <?php
+                                      $dataSelect = $data['amt'];
+                                      include 'koneksi.php';
+                                      $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Lampung'");
+
+                                      while ($data2 = mysqli_fetch_array($result)) {
+                                        $nama_driver = $data2['nama_driver'];
+
+                                        echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
+                                                                                                                                                  }
+                                                                                                                                                    ?>
+                                    </select>
 
 
-                          <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"> Ubah </button>
-                            <button type="reset" class="btn btn-danger"> RESET</button>
-                          </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-         
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label>MT</label>
+                                    <select id="mt" name="mt" class="form-control">
+                                      <?php
+                                      $dataSelect = $data['mt'];
+                                      include 'koneksi.php';
+                                      $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Lampung'");
+
+                                      while ($data2 = mysqli_fetch_array($result)) {
+                                        $no_polisi = $data2['no_polisi'];
+
+                                        echo "<option" ?> <?php echo ($dataSelect == $no_polisi) ? "selected" : "" ?>> <?php echo $no_polisi; ?> <?php echo "</option>";
+                                                                                                                                              }
+                                                                                                                                                ?>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <br>
+
+                                <div>
+                                  <label>Upload File</label>
+                                  <input type="file" name="file">
+                                </div>
+                            </div>
 
 
-                    <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_tagihan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
-
-                    <div class="modal fade" id="PopUpHapus<?php echo $data['no_tagihan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title"> <b> Hapus </b> </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                              <span aria-hidden="true"> &times; </span>
-                            </button>
-                          </div>
-
-                          <div class="modal-body">
-                            <form action="../proses/hapus_tagihan_L8" method="POST">
-                              <input type="hidden" name="no_tagihan" value="<?php echo $data['no_tagihan']; ?>">
-                              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-                              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
-
-                              <div class="form-group">
-                                <h6> Yakin Ingin Hapus Data? </h6>
-                              </div>
-
-                              <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary"> Hapus </button>
-                              </div>
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary"> Ubah </button>
+                              <button type="reset" class="btn btn-danger"> RESET</button>
+                            </div>
                             </form>
                           </div>
                         </div>
                       </div>
+
+
+
+                      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_tagihan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
+
+                      <div class="modal fade" id="PopUpHapus<?php echo $data['no_tagihan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title"> <b> Hapus </b> </h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true"> &times; </span>
+                              </button>
+                            </div>
+
+                            <div class="modal-body">
+                              <form action="../proses/hapus_tagihan_L8" method="POST">
+                                <input type="hidden" name="no_tagihan" value="<?php echo $data['no_tagihan']; ?>">
+                                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+
+                                <div class="form-group">
+                                  <h6> Yakin Ingin Hapus Data? </h6>
+                                </div>
+
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-primary"> Hapus </button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    <?php echo  " </td> </tr>";
+                  }
+                    ?>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br>
+          <div class="row" style="margin-right: 20px; margin-left: 20px;">
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Total Tagihan</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_tagihan)  ?></div>
                     </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Total Ritase</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_rit  ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class=" fas fa-truck-moving fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Total KM</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_jt  ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-road fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Total Pesanan</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_max_pesanan ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
 
-                  <?php echo  " </td> </tr>";
-                }
-        ?>
-
-        </tbody>
-        </table>
         </div>
-          </div>
-        <br>
-        <div class="row" style="margin-right: 20px; margin-left: 20px;">
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Tagihan</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_tagihan)  ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Ritase</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_rit  ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class=" fas fa-truck-moving fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total KM</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_jt  ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-road fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Total Pesanan</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_max_pesanan ?></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <br>
-
       </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
     </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
-        </div>
-      </div>
-    </footer>
-    <!-- End of Footer -->
-
-  </div>
-  <!-- End of Content Wrapper -->
+    <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->

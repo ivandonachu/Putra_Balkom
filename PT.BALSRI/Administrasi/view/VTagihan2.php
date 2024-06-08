@@ -378,7 +378,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                           <div class="col-md-6">
                             <label>Delivery Point</label>
-                            <select id="tokens" class="selectpicker form-control" name="delivery_point" multiple data-live-search="true">
+                            <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
                               <?php
                               include 'koneksi.php';
                               $result2 = mysqli_query($koneksi, "SELECT * FROM master_tarif");
@@ -632,7 +632,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                 <div class="col-md-6">
 
-                                  <select id="tokens" class="selectpicker form-control" name="delivery_point" multiple data-live-search="true">
+                                  <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
                                     <?php
                                     include 'koneksi.php';
                                     $dataSelect = $data['delivery_point'];
