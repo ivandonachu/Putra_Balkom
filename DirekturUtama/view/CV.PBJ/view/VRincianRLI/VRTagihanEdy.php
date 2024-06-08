@@ -599,7 +599,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       $tarifx = $data1p['tarif_pranko'];
                     }
 
-                    if ($pemilik == "Bapak Nyoman Edi" && $kontrak == 'RLI' && $kota != 'KAB WAY KANAN' || $pemilik == "Bapak Nyoman Edi" && $kontrak == '' && $kota != 'KAB WAY KANAN') {
+                    if ($pemilik == "Bapak Nyoman Edi" && $kontrak == 'RLI' || $pemilik == "Bapak Nyoman Edi" && $kontrak != '' ) {
                       $jumlah = $qty * $tarifx;
                       $total = $total + $jumlah;
                       echo "<tr>
