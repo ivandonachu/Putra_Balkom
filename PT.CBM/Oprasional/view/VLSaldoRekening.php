@@ -266,10 +266,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <input type="hidden" name="rekening_2" value="BRI Cahaya Bumi Musi">
                                                 <input type="hidden" name="rekening_3" value="BRI Mulia Elpiji Sejahtera">
                                                 <input type="hidden" name="rekening_4" value="BRI Putra Balkom Raya">
-                                                <input type="hidden" name="rekening_5" value="BRI Risa Septiana">
-                                                <input type="hidden" name="rekening_6" value="BRI Rianto">
-                                                <input type="hidden" name="rekening_7" value="BRI Koder">
-                                                <input type="hidden" name="rekening_8" value="BRI Baharuddin">
+                                                <input type="hidden" name="rekening_5" value="Kebun Seberuk">
+                                                <input type="hidden" name="rekening_6" value="Kebun Lengkiti">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Tanggal</label>
@@ -324,7 +322,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Rekening 5</label>
-                                                        <input class="form-control form-control-sm" type="text" name="rekening_5" required="" value ='BRI Risa Septiana' disabled>
+                                                        <input class="form-control form-control-sm" type="text" name="rekening_5" required="" value ='Kebun Seberuk' disabled>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Jumlah Saldo 5</label>
@@ -335,35 +333,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Rekening 6</label>
-                                                        <input class="form-control form-control-sm" type="text" name="rekening_6" required="" value ='BRI Rianto' disabled>
+                                                        <input class="form-control form-control-sm" type="text" name="rekening_6" required="" value ='Kebun Lengkiti' disabled>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Jumlah Saldo 6</label>
                                                         <input class="form-control form-control-sm" type="number" name="jumlah_saldo_6">
                                                     </div>
                                                 </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Rekening 7</label>
-                                                        <input class="form-control form-control-sm" type="text" name="rekening_7" required="" value ='BRI Koder' disabled>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Jumlah Saldo 7</label>
-                                                        <input class="form-control form-control-sm" type="number" name="jumlah_saldo_7">
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Rekening 8</label>
-                                                        <input class="form-control form-control-sm" type="text" name="rekening_8" required="" value ='BRI Baharuddin' disabled>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Jumlah Saldo 8</label>
-                                                        <input class="form-control form-control-sm" type="number" name="jumlah_saldo_8">
-                                                    </div>
-                                                </div>
+                                               <br>
 
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-primary">CATAT</button>
