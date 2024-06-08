@@ -33,10 +33,6 @@ $rekening_5 = $_POST['rekening_5'];
 $jumlah_saldo_5 = $_POST['jumlah_saldo_5'];
 $rekening_6 = $_POST['rekening_6'];
 $jumlah_saldo_6 = $_POST['jumlah_saldo_6'];
-$rekening_7 = $_POST['rekening_7'];
-$jumlah_saldo_7 = $_POST['jumlah_saldo_7'];
-$rekening_8 = $_POST['rekening_8'];
-$jumlah_saldo_8 = $_POST['jumlah_saldo_8'];
 
     if($jumlah_saldo_1 == ""){
 
@@ -79,20 +75,7 @@ $jumlah_saldo_8 = $_POST['jumlah_saldo_8'];
     else{
         $query6 = mysqli_query($koneksi,"INSERT INTO laporan_saldo_rekening VALUES ('','$tanggal','$rekening_6','$jumlah_saldo_6')");
     }
-    if($jumlah_saldo_7 == ""){
 
-    }
-    else{
-        $query7 = mysqli_query($koneksi,"INSERT INTO laporan_saldo_rekening VALUES ('','$tanggal','$rekening_7','$jumlah_saldo_7')");
-    }
-    
-    if($jumlah_saldo_8 == ""){
-
-    }
-    else{
-        $query8 = mysqli_query($koneksi,"INSERT INTO laporan_saldo_rekening VALUES ('','$tanggal','$rekening_8','$jumlah_saldo_8')");
-    }
-    
 
 
 				echo "<script> window.location='../view/VLSaldoRekening?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
