@@ -292,6 +292,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <label>Jenis Semen</label>
                                                         <select id="jenis_semen" name="jenis_semen" class="form-control form-control-sm">
                                                             <option>SMBR</option>
+                                                            <option>Merdeka</option>
                                                             <option>Dynamix</option>
                                                         </select>
                                                     </div>
@@ -447,6 +448,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                     <select id="jenis_semen" name="jenis_semen" class="form-control form-control-sm">
                                                                         <?php $dataSelect = $data['jenis_semen']; ?>
                                                                         <option <?php echo ($dataSelect == 'SMBR') ? "selected" : "" ?>>SMBR</option>
+                                                                        <option <?php echo ($dataSelect == 'Merdeka') ? "selected" : "" ?>>Merdeka</option>
                                                                         <option <?php echo ($dataSelect == 'Dynamix') ? "selected" : "" ?>>Dynamix</option>
                                                                     </select>
                                                                 </div>
