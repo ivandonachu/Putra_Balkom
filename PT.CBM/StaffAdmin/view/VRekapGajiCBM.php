@@ -466,6 +466,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <input class="form-control form-control-sm" type="number" name="bonus" required="" value="0">
                           </div>
                           <div class="col-md-3">
+                            <label>Insentif</label>
+                            <input class="form-control form-control-sm" type="number" name="insentif" required="" value="0">
+                          </div>
+                          <div class="col-md-3">
                             <label>Keterangan</label>
                             <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                               <option>Transfer</option>
@@ -515,6 +519,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th style="font-size: 14px" scope="col">Denda Absen</th>
                     <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan</th>
                     <th style="font-size: 14px" scope="col">Bonus</th>
+                    <th style="font-size: 14px" scope="col">Insentif</th>
                     <th style="font-size: 14px" scope="col">Total Gaji</th>
                     <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
                     <th style="font-size: 14px" scope="col">Keterangan </th>
@@ -552,6 +557,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $denda_absen = $data2['denda_absen'];
                     $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
                     $bonus = $data2['bonus'];
+                    $insentif = $data2['insentif'];
                     $total_gaji = $data2['total_gaji'];
                     $total_gaji_diterima = $data2['total_gaji_diterima'];
                     $keterangan = $data2['keterangan'];
@@ -581,6 +587,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           <td style='font-size: 14px'>"; ?> <?= formatuang($denda_absen); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bonus); ?> <?php echo "</td>
+           <td style='font-size: 14px'>"; ?> <?= formatuang($insentif); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
           <td style='font-size: 14px'>$keterangan</td>
@@ -691,6 +698,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <div class="col-md-3">
                                 <label>Bonus</label>
                                 <input class="form-control form-control-sm" type="number" name="bonus" required="" value="<?php echo $bonus; ?>">
+                              </div>
+                              <div class="col-md-3">
+                                <label>Insentif</label>
+                                <input class="form-control form-control-sm" type="number" name="insentif" required="" value="<?php echo $insentif; ?>">
                               </div>
                               <div class="col-md-3">
                                 <label>Keterangan</label>

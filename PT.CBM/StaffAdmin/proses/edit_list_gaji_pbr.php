@@ -34,13 +34,14 @@ $absen_terlambat = $_POST['absen_terlambat'];
 $denda_absen = $_POST['denda_absen'];
 $angsuran_bon_bulanan = $_POST['angsuran_bon_bulanan'];
 $bonus = $_POST['bonus'];
+$insentif = $_POST['insentif'];
 if($nama_karyawan == 'Septian Andriansyah' || $nama_karyawan == 'Okta Mayasari' ){
 	$total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan  + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
-	$total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus  ;
+	$total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus  + $insentif ;
 }
 else{
 	$total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan  + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_ketenagakerjaan;
-	$total_gaji = $gaji_pokok + $tunjangan_jabatan  + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus;
+	$total_gaji = $gaji_pokok + $tunjangan_jabatan  + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif;
 }
 $keterangan = $_POST['keterangan'];
 
@@ -49,7 +50,7 @@ $keterangan = $_POST['keterangan'];
 
 	$query = mysqli_query($koneksi,"UPDATE list_gaji_pbr SET nama_karyawan = '$nama_karyawan', jabatan = '$jabatan' , gaji_pokok = '$gaji_pokok' , tunjangan_jabatan = '$tunjangan_jabatan', tunjangan_akomodasi = '$tunjangan_akomodasi' , tunjangan_operasional = '$tunjangan_operasional' , 
                                                              bpjs_kesehatan = '$bpjs_kesehatan', bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan', uang_makan_bulan = '$uang_makan_bulan', fee_kehadiran = '$fee_kehadiran', lembur = '$lembur' , absen_terlambat = '$absen_terlambat' , denda_absen = '$denda_absen' 
-                                                             , angsuran_bon_bulanan = '$angsuran_bon_bulanan' , bonus = '$bonus' , total_gaji = '$total_gaji' , total_gaji_diterima = '$total_gaji_diterima' , keterangan = '$keterangan'   WHERE no_karyawan = '$no_karyawan'");
+                                                             , angsuran_bon_bulanan = '$angsuran_bon_bulanan' , bonus = '$bonus' , insentif = '$insentif' , total_gaji = '$total_gaji' , total_gaji_diterima = '$total_gaji_diterima' , keterangan = '$keterangan'   WHERE no_karyawan = '$no_karyawan'");
 
 
 if ($query != "") {
