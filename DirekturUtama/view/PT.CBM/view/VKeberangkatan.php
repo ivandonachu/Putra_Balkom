@@ -224,6 +224,13 @@ else{
                     </div>
                 </div>
             </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="VLaporanKeuangan">
+          <i class="fas fa-file-alt" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Laporan Rekening</span>
+        </a>
+      </li>
 
     
     
