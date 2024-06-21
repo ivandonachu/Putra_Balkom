@@ -953,7 +953,24 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
                 </div>
             </li>
+           <!-- Nav Item - Pages Collapse Menu -->
+           <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Gudang</span>
+                </a>
+                <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluar">Laporan Stok Keluar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+
+                    </div>
+                </div>
+            </li>
             <?php if ($nama == 'Nyoman Edy Susanto') {
                 echo "
             <!-- Nav Item - Pages Collapse Menu -->
@@ -1102,7 +1119,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-condensed" style="color : black;" >
+                                        <table class="table table-condensed" style="color : black;">
                                             <thead>
                                                 <tr>
                                                     <td><strong>Akun</strong></td>
@@ -1211,7 +1228,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om + $total_om_sl); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBaru/VROM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr> 
+                                                </tr>
                                                 <tr>
                                                     <td>5-516</td>
                                                     <td class="text-left">Biaya Sewa Mobil Luar</td>
@@ -1219,20 +1236,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="text-left"><?= formatuang($total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBaru/VRBS?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
-                                                <tr> 
+                                                <tr>
                                                     <td>5-595</td>
                                                     <td class="text-left">Perbaikan Kendaraan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($biaya_perbaikan_1 + $biaya_perbaikan_2); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr> 
+                                                </tr>
                                                 <tr>
                                                     <td>5-595</td>
                                                     <td class="text-left">Pembalian Sparepart</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jml_pembelian_sparepart); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLR/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr> 
+                                                </tr>
                                                 <tr style="background-color:    #F0F8FF; ">
                                                     <td><strong>Total Biaya Usaha</strong></td>
                                                     <td class="thick-line"></td>

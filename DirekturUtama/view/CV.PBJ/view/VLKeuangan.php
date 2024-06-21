@@ -1,45 +1,48 @@
 <?php
 session_start();
-include 'koneksi.php';
-if (!isset($_SESSION["login"])) {
-    header("Location: logout.php");
-    exit;
+include'koneksi.php';
+if(!isset($_SESSION["login"])){
+  header("Location: logout.php");
+  exit;
 }
-$id = $_COOKIE['id_cookie'];
+$id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
-} else {
-    header("Location: logout.php");
-    exit;
+
 }
+
+else{ header("Location: logout.php");
+exit;
+}
+
 
 
 
 if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
     $tanggal_akhir = $_GET['tanggal2'];
-    $tujuan_pengiriman = $_GET['tujuan_pengiriman'];
+    $kode_gudang = $_GET['kode_gudang'];
 } elseif (isset($_POST['tanggal1'])) {
     $tanggal_awal = $_POST['tanggal1'];
     $tanggal_akhir = $_POST['tanggal2'];
-    $tujuan_pengiriman = $_POST['tujuan_pengiriman'];
+    $kode_gudang = $_POST['kode_gudang'];
 } else {
     $tanggal_awal = date('Y-m-1');
     $tanggal_akhir = date('Y-m-31');
+    $kode_gudang = 'KG Mesuji';
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksipbj, "SELECT * FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND tujuan_pengiriman = '$tujuan_pengiriman'  OR  tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman' ");
+    $table = mysqli_query($koneksipbj, "SELECT * FROM laporan_keuangan_gudang WHERE tanggal = '$tanggal_awal' AND kode_gudang = '$kode_gudang' ORDER BY tanggal");
+    $table2 = mysqli_query($koneksipbj, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM laporan_keuangan_gudang  WHERE tanggal = '$tanggal_awal' AND kode_gudang = '$kode_gudang' GROUP BY nama_akun");
 } else {
-    $table = mysqli_query($koneksipbj, "SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'  AND tujuan_pengiriman = '$tujuan_pengiriman'  OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman'  ORDER BY tanggal_kirim ASC");
+    $table = mysqli_query($koneksipbj, "SELECT * FROM laporan_keuangan_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_gudang = '$kode_gudang' ORDER BY tanggal");
+    $table2 = mysqli_query($koneksipbj, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM laporan_keuangan_gudang  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_gudang = '$kode_gudang' GROUP BY nama_akun");
 }
-
-
-
 
 
 ?>
@@ -54,7 +57,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rincian Piutang Region 2</title>
+    <title>Laporan Keuangan</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -68,8 +71,6 @@ if ($tanggal_awal == $tanggal_akhir) {
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
 
     <!-- Link datepicker -->
 
@@ -80,8 +81,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-      <!-- Sidebar -->
-      <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+         <!-- Sidebar -->
+         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
@@ -210,7 +211,6 @@ if ($tanggal_awal == $tanggal_akhir) {
 </li>";
 } ?>
 
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -235,8 +235,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-                    <?php echo "<a href='VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Piutang Region 2</h5></a>"; ?>
-
+                    <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Keuangan Gudang $kode_gudang </h5></a>"; ?>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -246,6 +245,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+
 
 
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -282,54 +282,55 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <!-- Name Page -->
                     <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-
-                    <div align="left">
-                            <?php echo "<a href='VRekapPiutang?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+                        <?php echo "<form  method='POST' action='VLKeuangan' style='margin-bottom: 15px;'>" ?>
+                        <div>
+                            <div align="left" style="margin-left: 20px;">
+                                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                                <span>-</span>
+                                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                                <select id="kode_gudang" name="kode_gudang" >
+                                    <option>KG Mesuji</option>
+                                    <option>KG MES</option>
+                                    <option>KG Way Kanan</option>
+                                    <option>KG Unit 1</option>
+                                    <option>KG Rantau Panjang</option>
+                                    <option>KG Simpang Sender</option>
+                                    <option>KG Ruko M2</option>
+                                    <option>KG Kuto Sari</option>
+                                </select>
+                                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
+                            </div>
                         </div>
+                        </form>
 
-                        <br>
-                        <br>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
                             </div>
                         </div>
 
-                        <h4 align = 'center'>Tabel Piutang <?= $tujuan_pengiriman ?></h4>
-
-
-
+                        <br>
+                       <h5 align="center">Laporan Keuangan Gudang <?= $kode_gudang; ?></h5>
                         <!-- Tabel -->
-                        <div style="overflow-x: auto">
+                        <div style="overflow-x: auto" align='center'>
                             <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>TGL DO</th>
-                                        <th>TGL Kirim</th>
-                                        <th>NO DO</th>
-                                        <th>Driver</th>
-                                        <th>NO Polisi</th>
-                                        <th>Tujuan Pengiriman</th>
-                                        <th>Material</th>
-                                        <th>QTY</th>
-                                        <th>Harga Beli</th>
-                                        <th>Harga Jual</th>
-                                        <th>Jumlah</th>
-                                        <th>Total</th>
-                                        <th>Nama Toko di DO</th>
-                                        <th>TGL Bayar</th>
-                                        <th>Status Bayar</th>
-                                        <th>Ket</th>
-                                        <th>Catatan</th>
-                                        <th>File</th>
-
+                                        <th>Tanggal</th>
+                                        <th>Akun</th>
+                                        <th>Keterangan</th>
+                                        <th>Masuk</th>
+                                        <th>Keluar</th>
+                                        <th>Saldo</th>
+                                        <th>file</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
+                                    $total_kredit = 0;
                                     $no_urut = 0;
-                                    $total = 0;
+                                    $total_debit = 0;
                                     function formatuang($angka)
                                     {
                                         $uang = "Rp " . number_format($angka, 2, ',', '.');
@@ -337,58 +338,48 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     }
 
                                     ?>
-
                                     <?php while ($data = mysqli_fetch_array($table)) {
-                                        $no_penjualan = $data['no_penjualan'];
-                                        $tanggal_do = $data['tanggal_do'];
-                                        $tanggal_kirim = $data['tanggal_kirim'];
-                                        $no_do = $data['no_do'];
-                                        $driver = $data['driver'];
-                                        $no_polisi = $data['no_polisi'];
-                                        $tujuan_pengiriman = $data['tujuan_pengiriman'];
-                                        $qty = $data['qty'];
-                                        $satuan = $data['satuan'];
-                                        $harga_beli = $data['harga_beli'];
-                                        $harga = $data['harga'];
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $nama_akun = $data['nama_akun'];
+                                        $status_saldo = $data['status_saldo'];
                                         $jumlah = $data['jumlah'];
-                                        $toko_do = $data['toko_do'];
-                                        $tempo = $data['tempo'];
-                                        $tanggal_bayar = $data['tanggal_bayar'];
-                                        $status_bayar = $data['status_bayar'];
                                         $keterangan = $data['keterangan'];
-                                        $catatan = $data['catatan'];
-                                        $bulan = $data['bulan'];
-                                        $file_bukti = $data['file_bukti'];
+                                        if ($status_saldo == 'Masuk') {
+                                            $total_debit = $total_debit + $jumlah;
+                                        } elseif ($status_saldo == 'Keluar') {
+                                            $total_kredit = $total_kredit + $jumlah;
+                                        }
                                         $no_urut = $no_urut + 1;
-                                        $total = $total + $jumlah;
-
+                                        $file_bukti = $data['file_bukti'];
                                         echo "<tr>
                                         <td style='font-size: 14px'>$no_urut</td>
-                                        <td style='font-size: 14px'>$tanggal_do</td>
-                                        <td style='font-size: 14px'>$tanggal_kirim</td>
-                                        <td style='font-size: 14px'>$no_do</td>
-                                        <td style='font-size: 14px'>$driver</td>
-                                        <td style='font-size: 14px'>$no_polisi</td>
-                                        <td style='font-size: 14px'>$tujuan_pengiriman</td>
-                                        <td style='font-size: 14px'>$satuan</td>
-                                        <td style='font-size: 14px'>$qty</td>
-                                        <td style='font-size: 14px'>"; ?> <?= formatuang($harga_beli); ?> <?php echo "</td>
-                                        <td style='font-size: 14px'>"; ?> <?= formatuang($harga); ?> <?php echo "</td>
-                                        <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
-                                        <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
-                                        <td style='font-size: 14px'>$toko_do</td>
-                                        <td style='font-size: 14px'>$tanggal_bayar</td>
-                                        <td style='font-size: 14px'>$status_bayar</td>
-                                        <td style='font-size: 14px'>$keterangan</td>
-                                        <td style='font-size: 14px'>$catatan</td>
-                                        <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-                                        "; ?>
+                                        <td style='font-size: 14px'>$tanggal</td>
+                                        <td style='font-size: 14px'>$nama_akun</td>
+                                        <td style='font-size: 14px'>$keterangan</td>";
+                                                                    if ($status_saldo == 'Masuk') {
+                                                                        echo "
+                                            <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                                                                                                        } else {
+                                                                                                            echo "
+                                            <td style='font-size: 14px'>" ?> <?php echo "</td>";
+                                                                                                        }
 
-
-
-
-                                        <?php echo  " </tr>";
+                                                                                                        if ($status_saldo == 'Keluar') {
+                                                                                                            echo "
+                                            <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                                                                                                        } else {
+                                                                                                            echo "
+                                            <td style='font-size: 14px'>" ?> <?php echo "</td>";
+                                                                                                        }
+                                                                                ?>
+                                        <?php echo "
+                                        <td style='font-size: 14px'>" ?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
+                                        <td style='font-size: 14px'>"; ?> <a download="../file_semen/<?= $file_bukti ?>" href="../file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                                        " ?>
+                                        <?php echo  "</tr>";
                                     }
+
                                         ?>
 
                                 </tbody>
@@ -397,136 +388,184 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <br>
                         <br>
                         <br>
-                    </div>
-                    </div>
-                </div>
-                <!-- End of Main Content -->
+                        <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-                <!-- Footer -->
-                <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+                            <!-- Tabel -->
+                            <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                                <thead>
+                                    <tr>
+                                        <th>Total Debit</th>
+                                        <th>Total Kredit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php
+                                    echo "<tr>
+      <td style='font-size: 14px'>"; ?> <?= formatuang($total_debit); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <?= formatuang($total_kredit); ?> <?php echo "</td>
+      </tr>";
+
+                                                                            ?>
+
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
+                        <br>
+                        <br>
 
-            </div>
-            <!-- End of Content Wrapper -->
+                        <br>
+                        <hr>
+                        <br>
 
-        </div>
-        <!-- End of Page Wrapper -->
+                        <h5 align="center">Rincian Pengeluaran <?= $kode_gudang; ?></h5>
+                        <!-- Tabel -->
+                        <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                            <thead>
+                                <tr>
+                                    <th>Akun</th>
+                                    <th>Total Pengeluaran</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sisa_saldo = 0;
+                                $total_pengeluaran = 0;
+                                $total_saldo = 0;
+                                ?>
+                                <?php while ($data = mysqli_fetch_array($table2)) {
+                                    $nama_akun = $data['nama_akun'];
+                                    $jumlah = $data['total_jumlah'];
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+                                    if ($nama_akun == 'Uang Penjualan' || $nama_akun == 'Pemasukan Lainnya' || $nama_akun == 'Saldo Awal Bulan') {
+                                        $sisa_saldo  = $sisa_saldo + $jumlah;
+                                        $total_saldo = $total_saldo + $jumlah;
+                                    } else {
+                                        $sisa_saldo  = $sisa_saldo - $jumlah;
+                                        $total_pengeluaran = $total_pengeluaran + $jumlah;
+                                    }
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="logout">Logout</a>
+
+
+                                    echo "<tr>
+
+       <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
+      
+     
+
+  </tr>";
+                                                                    }
+                                                                        ?> <tr>
+                                    <td style='font-size: 14px; '><strong>Total Sakdo</strong></td>
+                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_saldo); ?></strong> </td>
+                                </tr>
+                                <tr>
+                                    <td style='font-size: 14px; '><strong>Total Pengeluaran</strong></td>
+                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_pengeluaran); ?></strong> </td>
+                                </tr>
+                                <tr>
+                                    <td style='font-size: 14px; '><strong>Sisa Saldo</strong></td>
+                                    <td style='font-size: 14px'> <strong> <?= formatuang($sisa_saldo); ?></strong> </td>
+                                </tr>
+
+
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <br>
+                        <hr>
+                        <br>
+
+
                     </div>
                 </div>
             </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
         </div>
+        <!-- End of Content Wrapper -->
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-        <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Core plugin JavaScript-->
-        <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-        <!-- Custom scripts for all pages-->
-        <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-        <script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
-        <!-- Tabel -->
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
+    <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                var table = $('#example').DataTable({
-                    lengthChange: false,
-                    buttons: ['copy', 'excel', 'csv', 'pdf', 'colvis']
-                });
+    <!-- Core plugin JavaScript-->
+    <script src="/sbadmin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                table.buttons().container()
-                    .appendTo('#example_wrapper .col-md-6:eq(0)');
-            });
-        </script>
-        <script>
-            function createOptions(number) {
-                var options = [],
-                    _options;
+    <!-- Custom scripts for all pages-->
+    <script src="/sbadmin/js/sb-admin-2.min.js"></script>
 
-                for (var i = 0; i < number; i++) {
-                    var option = '<option value="' + i + '">Option ' + i + '</option>';
-                    options.push(option);
-                }
+    <!-- Tabel -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-                _options = options.join('');
-
-                $('#number')[0].innerHTML = _options;
-                $('#number-multiple')[0].innerHTML = _options;
-
-                $('#number2')[0].innerHTML = _options;
-                $('#number2-multiple')[0].innerHTML = _options;
-            }
-
-            var mySelect = $('#first-disabled2');
-
-            createOptions(4000);
-
-            $('#special').on('click', function() {
-                mySelect.find('option:selected').prop('disabled', true);
-                mySelect.selectpicker('refresh');
+    <script>
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                lengthChange: false,
+                buttons: ['excel']
             });
 
-            $('#special2').on('click', function() {
-                mySelect.find('option:disabled').prop('disabled', false);
-                mySelect.selectpicker('refresh');
-            });
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 
-            $('#basic2').selectpicker({
-                liveSearch: true,
-                maxOptions: 1
-            });
-        </script>
-        <script>
-            function sum() {
-                var banyak_barang = document.getElementById('qty').value;
-                var harga = document.getElementById('harga').value;
-                var result = parseFloat(banyak_barang) * parseFloat(harga);
-                if (!isNaN(result)) {
-                    document.getElementById('jumlah').value = result;
-                }
-            }
-        </script>
+
+
 </body>
 
 </html>

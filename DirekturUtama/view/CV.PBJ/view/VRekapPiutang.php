@@ -34,13 +34,10 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     $table = mysqli_query($koneksipbj, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' OR  tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' GROUP BY tujuan_pengiriman ");
     $table2 = mysqli_query($koneksipbj, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' OR  tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' GROUP BY tujuan_pengiriman ");
-
 } else {
 
     $table = mysqli_query($koneksipbj, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' GROUP BY tujuan_pengiriman ");
     $table2 = mysqli_query($koneksipbj, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' GROUP BY tujuan_pengiriman ");
-
-
 }
 
 ?>
@@ -83,97 +80,114 @@ if ($tanggal_awal == $tanggal_akhir) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-     <!-- Sidebar -->
-     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
-    <div class="sidebar-brand-icon rotate-n-15">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
+                <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3"> <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png"></div>
-</a>
-<br>
+                </div>
+                <div class="sidebar-brand-text mx-3"> <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png"></div>
+            </a>
+            <br>
 
-<br>
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+            <br>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active">
-    <a class="nav-link" href="DsCVPBJ">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;">Dashboard</span></a>
-</li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="DsCVPBJ">
+                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+                    <span style="font-size: 16px;">Dashboard</span></a>
+            </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
-<!-- Heading -->
-<div class="sidebar-heading" style="font-size: 15px; color:white;">
-    Menu CV.PBJ (Semen)
-</div>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
-        <span style="font-size: 15px; color:white;">List Company</span>
-    </a>
-    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-            <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
-        </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-        <span style="font-size: 15px; color:white;">Report Etty</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
-        </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo3">
-        <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-        <span style="font-size: 15px; color:white;">Report Made Dani</span>
-    </a>
-    <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                Menu CV.PBJ (Semen)
+            </div>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">List Company</span>
+                </a>
+                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Etty</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo3">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Made Dani</span>
+                </a>
+                <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
-            <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Sewa Hiblow</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Sewa Hiblow</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
 
-        </div>
-    </div>
-</li>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Gudang</span>
+                </a>
+                <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
-<?php if ($nama == 'Nyoman Edy Susanto') {
-    echo "
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluar">Laporan Stok Keluar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+
+                    </div>
+                </div>
+            </li>
+            <?php if ($nama == 'Nyoman Edy Susanto') {
+                echo "
 <!-- Nav Item - Pages Collapse Menu -->
 <li class='nav-item'>
     <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseTwo4' 15 aria-expanded='true' aria-controls='collapseTwo4'>
@@ -194,7 +208,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         </div>
     </div>
 </li>";
-} ?>
+            } ?>
 
 
             <!-- Divider -->
@@ -312,16 +326,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php while ($data = mysqli_fetch_array($table)) {
                                         $tujuan_pengiriman = $data['tujuan_pengiriman'];
                                         $jumlah_piutang = $data['jumlah_piutang'];
-                                        
+
 
                                         $table3 = mysqli_query($koneksipbj, "SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND tujuan_pengiriman = '$tujuan_pengiriman' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman' ORDER BY tanggal_kirim ASC LIMIT 1");
-                                        $data3= mysqli_fetch_array($table3);
+                                        $data3 = mysqli_fetch_array($table3);
                                         $tanggal_order_pertama_r1 = $data3['tanggal_do'];
                                         $table5 = mysqli_query($koneksipbj, "SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND tujuan_pengiriman = '$tujuan_pengiriman' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman' ORDER BY tanggal_kirim DESC LIMIT 1");
-                                        $data5= mysqli_fetch_array($table5);
+                                        $data5 = mysqli_fetch_array($table5);
                                         $tanggal_order_terakhir_r1 = $data5['tanggal_do'];
 
-                                        if($jumlah_piutang != 0){
+                                        if ($jumlah_piutang != 0) {
                                             $no_urut = $no_urut + 1;
                                             echo "<tr>
                                             <td style='font-size: 14px' align = 'center'>$no_urut</td>
@@ -331,13 +345,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <td style='font-size: 14px' align = 'center'>$tanggal_order_terakhir_r1</td>
                                             <td style='font-size: 14px'><a href='RincianPiutangR1?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tujuan_pengiriman=$tujuan_pengiriman'>Rincian</a></td>
                                            </tr>";
-    
-                                        }
-                                        else{
-    
-                                        }
-                                    }
-                                    ?>
+                                                                                                                } else {
+                                                                                                                }
+                                                                                                            }
+                                                                                                                    ?>
 
                                 </tbody>
                             </table>
@@ -371,17 +382,17 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php while ($data = mysqli_fetch_array($table2)) {
                                         $tujuan_pengiriman = $data['tujuan_pengiriman'];
                                         $jumlah_piutang = $data['jumlah_piutang'];
-                                      
-                                        
+
+
                                         $table4 = mysqli_query($koneksipbj, "SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND tujuan_pengiriman = '$tujuan_pengiriman' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman' ORDER BY tanggal_kirim ASC LIMIT 1");
-                                        $data4= mysqli_fetch_array($table4);
+                                        $data4 = mysqli_fetch_array($table4);
                                         $tanggal_order_pertama_r2 = $data4['tanggal_do'];
-                                   
+
                                         $table6 = mysqli_query($koneksipbj, "SELECT * FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND tujuan_pengiriman = '$tujuan_pengiriman' OR  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND tujuan_pengiriman = '$tujuan_pengiriman'  ORDER BY tanggal_kirim DESC LIMIT 1");
-                                        $data6= mysqli_fetch_array($table6);
+                                        $data6 = mysqli_fetch_array($table6);
                                         $tanggal_order_terakhir_r2 = $data6['tanggal_do'];
 
-                                        if($jumlah_piutang != 0){
+                                        if ($jumlah_piutang != 0) {
                                             $no_urut = $no_urut + 1;
                                             echo "<tr>
                                             <td style='font-size: 14px' align = 'center'>$no_urut</td>
@@ -391,13 +402,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <td style='font-size: 14px' align = 'center'>$tanggal_order_terakhir_r2</td>
                                             <td style='font-size: 14px'><a href='RincianPiutangR2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&tujuan_pengiriman=$tujuan_pengiriman'>Rincian</a></td>
                                            </tr>";
-    
-                                        }
-                                        else{
-    
-                                        }
-                                    }
-                                    ?>
+                                                                                                                } else {
+                                                                                                                }
+                                                                                                            }
+                                                                                                                    ?>
 
                                 </tbody>
                             </table>
@@ -487,7 +495,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 .appendTo('#example_wrapper .col-md-6:eq(0)');
         });
     </script>
-     <script>
+    <script>
         $(document).ready(function() {
             var table = $('#example2').DataTable({
                 lengthChange: true,

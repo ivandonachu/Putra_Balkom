@@ -1,11 +1,11 @@
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
   header("Location: logout.php");
   exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
@@ -14,11 +14,9 @@ $jabatan_valid = $data1['jabatan'];
 $nama_pemilik = $data1['nama_pemilik'];
 
 if ($jabatan_valid == 'Direktur Utama') {
-
-}
-
-else{ header("Location: logout.php");
-exit;
+} else {
+  header("Location: logout.php");
+  exit;
 }
 
 
@@ -105,98 +103,112 @@ exit;
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-<!-- Sidebar -->
-<ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
         <div class="sidebar-brand-icon rotate-n-15">
 
         </div>
-        <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png" ></div>
-    </a>
-    <br>
-    
-    <br>
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+        <div class="sidebar-brand-text mx-3"> <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png"></div>
+      </a>
+      <br>
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active" >
+      <br>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
         <a class="nav-link" href="DsCVPBJ">
-            <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-            <span style="font-size: 16px;" >Dashboard</span></a>
-        </li>
+          <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+          <span style="font-size: 16px;">Dashboard</span></a>
+      </li>
 
-         <!-- Divider -->
-        <hr class="sidebar-divider">
-        <!-- Heading -->
-        <div class="sidebar-heading" style="font-size: 15px; color:white;">
-             Menu CV.PBJ (Semen)
-        </div>
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-          15  aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
-            <span style="font-size: 15px; color:white;" >List Company</span>
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Heading -->
+      <div class="sidebar-heading" style="font-size: 15px; color:white;">
+        Menu CV.PBJ (Semen)
+      </div>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">List Company</span>
         </a>
         <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
-                <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-                <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
-                <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-                <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-                <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-                <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
-            </div>
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
+          </div>
         </div>
-    </li>
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-          15  aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-            <span style="font-size: 15px; color:white;" >Report Etty</span>
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Report Etty</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
-                <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
-            </div>
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+          </div>
         </div>
-    </li>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-          15  aria-expanded="true" aria-controls="collapseTwo3">
-            <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-            <span style="font-size: 15px; color:white;" >Report Made Dani</span>
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo3">
+          <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Report Made Dani</span>
         </a>
         <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
-                <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Sewa Hiblow</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
-            </div>
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Sewa Hiblow</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
+          </div>
         </div>
-    </li>
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Gudang</span>
+                </a>
+                <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
-    <?php if ($nama == 'Nyoman Edy Susanto') {
-                echo "
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluar">Laporan Stok Keluar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+
+                    </div>
+                </div>
+            </li>
+      <?php if ($nama == 'Nyoman Edy Susanto') {
+        echo "
             <!-- Nav Item - Pages Collapse Menu -->
             <li class='nav-item'>
                 <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseTwo4' 15 aria-expanded='true' aria-controls='collapseTwo4'>
@@ -217,95 +229,89 @@ exit;
                     </div>
                 </div>
             </li>";
-            } ?>
-           
+      } ?>
 
 
 
-   
-<!-- Divider -->
-<hr class="sidebar-divider">
 
 
- 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+      </div>
 
 
 
-</ul>
-<!-- End of Sidebar -->
+    </ul>
+    <!-- End of Sidebar -->
 
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-    <!-- Main Content -->
-    <div id="content">
+      <!-- Main Content -->
+      <div id="content">
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
 
-            <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                <i class="fa fa-bars"></i>
-            </button>
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
 
 
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto">
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
 
-                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                <li class="nav-item dropdown no-arrow d-sm-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-search fa-fw"></i>
-                </a>
-                <!-- Dropdown - Messages -->
-                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                aria-labelledby="searchDropdown">
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small"
-                        placeholder="Search for..." aria-label="Search"
-                        aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
                     </div>
+                  </div>
                 </form>
-            </div>
-        </li>
+              </div>
+            </li>
 
 
 
 
-        <div class="topbar-divider d-none d-sm-block"></div>
+            <div class="topbar-divider d-none d-sm-block"></div>
 
-<!-- Nav Item - User Information -->
-<li class="nav-item dropdown no-arrow">
-<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-<img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
-</a>
-<!-- Dropdown - User Information -->
-<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-aria-labelledby="userDropdown">
-<a class="dropdown-item" href="VProfile">
-<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-Profile
-</a>
-<div class="dropdown-divider"></div>
-<a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-Logout
-</a>
-</div>
-</li>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline  small" style="color:white;"><?php echo "$nama"; ?></span>
+                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile -->
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="VProfile">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
 
           </ul>
 
@@ -353,10 +359,10 @@ Logout
             Account settings
           </h4>
 
-          
+
           <div class="card overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
-            <div class="col-md-3 pt-0">
+              <div class="col-md-3 pt-0">
                 <div class="list-group list-group-flush account-settings-links">
                   <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
                   <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
@@ -367,7 +373,7 @@ Logout
                   <div class="tab-pane fade active show" id="account-general">
                     <?php echo "<form action='edit_profil' enctype='multipart/form-data' method='POST'>";  ?>
                     <div class="card-body media align-items-center">
-                    <img src="/assets/img/foto_profile/<?= $foto_profile; ?>" style="max-height: 150px; " alt="" class="d-block ui-w-80">
+                      <img src="/assets/img/foto_profile/<?= $foto_profile; ?>" style="max-height: 150px; " alt="" class="d-block ui-w-80">
                       <div class="media-body ml-4">
 
 
@@ -380,20 +386,20 @@ Logout
                     <div class="card-body">
                       <div class="form-group">
                         <label class="form-label">Nama</label>
-                        <input type="text" class="form-control mb-1" name="nama_karyawan" value="<?= $nama; ?> "disabled>
+                        <input type="text" class="form-control mb-1" name="nama_karyawan" value="<?= $nama; ?> " disabled>
                       </div>
                       <div class="form-group">
                         <label class="form-label">Jabatan</label>
                         <input type="text" class="form-control" value="<?= $jabatan_valid; ?> " disabled>
-                      
+
                       </div>
-           
-                    
+
+
                     </div>
                   </div>
 
 
-                    <div class="tab-pane fade" id="account-change-password">
+                  <div class="tab-pane fade" id="account-change-password">
                     <div class="card-body pb-2">
                       <div class="form-group">
                         <label class="form-label">Username</label>
@@ -443,7 +449,7 @@ Logout
       <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-          <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
           </div>
         </div>
       </footer>

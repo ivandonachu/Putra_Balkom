@@ -147,16 +147,13 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
                 $total_angkutan_eki_okut = $total_angkutan_eki_okut + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
                 $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
                 $total_angkutan_soma_okut = $total_angkutan_soma_okut + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
                 $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
                 $total_angkutan_berkah_okut = $total_angkutan_berkah_okut + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
                 $total_angkutan_syafuan_okut = $total_angkutan_syafuan_okut + $total_angkut_bmu;
             }
@@ -212,16 +209,13 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
                 $total_angkutan_eki_mesuji = $total_angkutan_eki_mesuji + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
                 $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
                 $total_angkutan_soma_mesuji = $total_angkutan_soma_mesuji + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
                 $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
                 $total_angkutan_berkah_mesuji = $total_angkutan_berkah_mesuji + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
                 $total_angkutan_syafuan_mesuji = $total_angkutan_syafuan_mesuji + $total_angkut_bmu;
             }
@@ -277,20 +271,16 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
                 $total_angkutan_eki_tlg_bwg = $total_angkutan_eki_tlg_bwg + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
                 $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
                 $total_angkutan_soma_tlg_bwg = $total_angkutan_soma_tlg_bwg + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
                 $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
                 $total_angkutan_berkah_tlg_bwg = $total_angkutan_berkah_tlg_bwg + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
                 $total_angkutan_syafuan_tlg_bwg = $total_angkutan_syafuan_tlg_bwg + $total_angkut_bmu;
             }
-                
         } else if ($kota == 'KAB WAY KANAN') {
             //BMU 10ton
             if ($qty >= 200 && $qty <= 300) {
@@ -342,16 +332,13 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
                 $total_angkutan_eki_way_kanan = $total_angkutan_eki_way_kanan + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
                 $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
                 $total_angkutan_soma_way_kanan = $total_angkutan_soma_way_kanan + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
                 $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
                 $total_angkutan_berkah_way_kanan = $total_angkutan_berkah_way_kanan + $total_angkut_bmu;
-            }
-            else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
+            } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
                 $total_angkutan_syafuan_way_kanan = $total_angkutan_syafuan_way_kanan + $total_angkut_bmu;
             }
@@ -443,16 +430,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                 } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                     $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
                     $total_angkutan_eki_md_kota = $total_angkutan_eki_md_kota + $total_angkut_bmu;
-                }
-                else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+                } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
                     $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
                     $total_angkutan_soma_md_kota = $total_angkutan_soma_md_kota  + $total_angkut_bmu;
-                }
-                else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+                } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
                     $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
                     $total_angkutan_berkah_md_kota = $total_angkutan_berkah_md_kota  + $total_angkut_bmu;
-                }
-                else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
+                } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                     $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
                     $total_angkutan_syafuan_md_kota = $total_angkutan_syafuan_md_kota  + $total_angkut_bmu;
                 }
@@ -470,16 +454,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                 } else if ($pemilik == 'Eki Bangunan') {
                     $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
                     $total_angkutan_eki_okus = $total_angkutan_eki_okus + $total_angkut_bmu;
-                }
-                else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+                } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
                     $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
                     $total_angkutan_soma_okus = $total_angkutan_soma_okus  + $total_angkut_bmu;
-                }
-                else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+                } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
                     $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
                     $total_angkutan_berkah_okus = $total_angkutan_berkah_okus  + $total_angkut_bmu;
-                }
-                else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
+                } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                     $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
                     $total_angkutan_syafuan_okus = $total_angkutan_syafuan_okus  + $total_angkut_bmu;
                 }
@@ -588,11 +569,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPenjualan">Laporan Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPengiriman">Laporan Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPengeluran">Laporan Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaranWorkshop">Pengeluaran Workshop</a>
                     </div>
                 </div>
             </li>
@@ -605,39 +586,55 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Sewa Hiblow</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPenjualanL">Laporan Penjualan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPenebusanL">Laporan Penebusan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VSewaHiBlow">Sewa Hiblow</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPengirimanL">Laporan Pengiriman</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VKeuanganL">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VPengeluaranL">Laporan Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VTonasePembelian">Tonase Pembelian</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Gudang</span>
+                </a>
+                <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+
+                        <a class="collapse-item" style="font-size: 15px;" href="../VStokMasuk">Laporan Stok Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VStokKeluar">Laporan Stok Keluar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VStokHarian">Laporan Stok Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="../VLKeuangan">Laporan Keuangan</a>
+
                     </div>
                 </div>
             </li>
             <?php if ($nama == 'Nyoman Edy Susanto') {
                 echo "
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class='nav-item'>
-                <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseTwo4' 15 aria-expanded='true' aria-controls='collapseTwo4'>
-                    <i class='fa fa-clipboard-list' style='font-size: 15px; color:white;'></i>
-                    <span style='font-size: 15px; color:white;'>Report Laba Rugi</span>
-                </a>
-                <div id='collapseTwo4' class='collapse' aria-labelledby='headingTwo' data-parent='#accordionSidebar'>
-                    <div class='bg-white py-2 collapse-inner rounded'>
-                        <h6 class='collapse-header' style='font-size: 15px;'>Report</h6>
-                        <a class='collapse-item' style='font-size: 15px;' href='../VLR2L'>Laba Rugi</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='../VLRKendaraan'>Laba Rugi Kendaraan</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='../VRekapanTagihan'>Rekapan Tagihan</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='../VRekapanHarga'>Rekapan Harga</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='../VRekapSparepart'>Rekap Sparepart</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='../VRekapPiutang'>Rekap Piutang</a>
-                    </div>
-                </div>
-            </li>";
+<!-- Nav Item - Pages Collapse Menu -->
+<li class='nav-item'>
+    <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseTwo5' 15 aria-expanded='true' aria-controls='collapseTwo5'>
+        <i class='fa fa-clipboard-list' style='font-size: 15px; color:white;'></i>
+        <span style='font-size: 15px; color:white;'>Report Laba Rugi</span>
+    </a>
+    <div id='collapseTwo5' class='collapse' aria-labelledby='headingTwo' data-parent='#accordionSidebar'>
+        <div class='bg-white py-2 collapse-inner rounded'>
+            <h6 class='collapse-header' style='font-size: 15px;'>Report</h6>
+            <a class='collapse-item' style='font-size: 15px;' href='../VLR2L'>Laba Rugi</a>
+            <a class='collapse-item' style='font-size: 15px;' href='../VLRKendaraan'>Laba Rugi Kendaraan</a>
+            <a class='collapse-item' style='font-size: 15px;' href='../VRekapanTagihan'>Rekapan Tagihan</a>
+            <a class='collapse-item' style='font-size: 15px;' href='../VRekapanHarga'>Rekapan Harga</a>
+            <a class='collapse-item' style='font-size: 15px;' href='../VRekapSparepart'>Rekap Sparepart</a>
+            <a class='collapse-item' style='font-size: 15px;' href='../VRekapPiutang'>Rekap Piutang</a>
+        </div>
+    </div>
+</li>";
             } ?>
-
-
 
 
 
@@ -826,159 +823,140 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                         $no_urut = $no_urut + 1;
 
-                                          //kak nyoman
-                                          if ($kota == 'Kab Ogn Kmrg Ulu Tim' || $kota == 'KAB OKU TIMUR') {
+                                        //kak nyoman
+                                        if ($kota == 'Kab Ogn Kmrg Ulu Tim' || $kota == 'KAB OKU TIMUR') {
                                             //BMU 10ton
                                             if ($qty >= 200 && $qty <= 300) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_200'];
-                                      
                                             }
                                             //BMU 20ton
                                             else if ($qty > 300 && $qty <= 500) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_400'];
-                                       
                                             }
                                             //BMU 30ton
                                             else if ($qty > 500) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
-                                   
                                             }
                                         } else if ($kota == 'Kab Mesuji' || $kota == 'KAB MESUJI') {
-                                
+
                                             //BMU 20ton
                                             if ($qty >= 200 && $qty <= 500) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_400'];
-                                  
                                             }
                                             //BMU 30ton
                                             else if ($qty > 500) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
-                                       
                                             }
                                         } else if ($kota == 'Kab Tlg Bwg' || $kota == 'KAB. TULANG BAWANG') {
                                             //BMU 10ton
                                             if ($qty >= 200 && $qty <= 300) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_200'];
-                                
                                             }
                                             //BMU 20ton
                                             else if ($qty > 300 && $qty <= 500) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_400'];
-                                            
                                             }
                                             //BMU 30ton
                                             else if ($qty > 500) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
-                                          
                                             }
                                         } else if ($kota == 'KAB WAY KANAN') {
                                             //BMU 10ton
                                             if ($qty >= 200 && $qty <= 300) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_200'];
-                                           
                                             }
                                             //BMU 20ton
                                             else if ($qty > 300 && $qty <= 500) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_400'];
-                                              
                                             }
                                             //BMU 30ton
                                             else if ($qty > 500) {
-                                
+
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
-                                          
                                             }
-                                
                                         } else if ($kota == 'Kab OKU Selatan' || $kota == 'KAB OKU SELATAN' || $kota == 'Kab Ogn Kmrg Ulu Sel') {
                                             if (
                                                 $tujuan == 'TK BESI 88' || $tujuan == 'TB BERKAH' || $tujuan == 'EKA JAYA' || $tujuan == 'ANUGRAH' ||
                                                 $tujuan == 'TB MANDIRI JAYA' || $tujuan == 'ANEKA JAYA' || $tujuan == 'ANEKA BAUT' || $tujuan == 'SUMBER ANUGRAH' || $tujuan == 'RIZKY' || $tujuan == 'PUTRA LIWA'
                                             ) {
-                                
+
                                                 //BMU 10ton
                                                 if ($qty >= 200 && $qty <= 300) {
-                                
+
                                                     $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = 'MUARA DUA KOTA' ");
                                                     $data3p = mysqli_fetch_array($table3p);
                                                     $tarifx = $data3p['tarif_200'];
-                                                 
                                                 }
                                                 //BMU 20ton
                                                 else if ($qty > 300 && $qty <= 500) {
-                                
+
                                                     $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = 'MUARA DUA KOTA' ");
                                                     $data3p = mysqli_fetch_array($table3p);
                                                     $tarifx = $data3p['tarif_400'];
-                                
                                                 }
                                                 //BMU 30ton
                                                 else if ($qty > 500) {
-                                
+
                                                     $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = 'MUARA DUA KOTA' ");
                                                     $data3p = mysqli_fetch_array($table3p);
                                                     $tarifx = $data3p['tarif_600'];
-                                           
                                                 }
                                             } else {
-                                
+
                                                 //BMU 10ton
                                                 if ($qty >= 200 && $qty <= 300) {
-                                
+
                                                     $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                     $data3p = mysqli_fetch_array($table3p);
                                                     $tarifx = $data3p['tarif_200'];
-                                                
                                                 }
                                                 //BMU 20ton
                                                 else if ($qty > 300 && $qty <= 500) {
-                                
+
                                                     $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                     $data3p = mysqli_fetch_array($table3p);
                                                     $tarifx = $data3p['tarif_400'];
-                                               
                                                 }
                                                 //BMU 30ton
                                                 else if ($qty > 500) {
-                                
+
                                                     $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                     $data3p = mysqli_fetch_array($table3p);
                                                     $tarifx = $data3p['tarif_600'];
-                                                  
                                                 }
                                             }
-                            
                                         }
 
 
@@ -986,7 +964,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             $jumlah = $qty * $tarifx;
                                             $total = $total + $jumlah;
 
-                                                                                    echo "<tr>
+                                            echo "<tr>
                                             <td style='font-size: 14px'>$no_urut</td>
                                             <td style='font-size: 14px'>$tanggal</td>
                                             <td style='font-size: 14px'>$no_do</td>

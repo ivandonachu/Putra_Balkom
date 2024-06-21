@@ -696,20 +696,20 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 
-    $total_bunga_bank = (50000000 * $bulan_bunga) + $total_bunga_bank_1;
+$total_bunga_bank = (50000000 * $bulan_bunga) + $total_bunga_bank_1;
 
 
-    $total_pendapatan = $total_penjualan_dani_c + $total_penjualan_dani_p + $total_penjualan_ety_c + $total_penjualan_ety_p + $jml_cashback;
-    $pembelian_total = $total_penebusan_dani_c + $total_penebusan_dani_p + $total_penebusan_ety_c + $total_penebusan_ety_p;
+$total_pendapatan = $total_penjualan_dani_c + $total_penjualan_dani_p + $total_penjualan_ety_c + $total_penjualan_ety_p + $jml_cashback;
+$pembelian_total = $total_penebusan_dani_c + $total_penebusan_dani_p + $total_penebusan_ety_c + $total_penebusan_ety_p;
 
-    $laba_kotor = $total_pendapatan - $pembelian_total;
+$laba_kotor = $total_pendapatan - $pembelian_total;
 
-    $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $gaji_karyawan + $total_gaji_karyawan_new + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + 
-                               $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $jumlah_admin_s + $jumlah_admin_sl + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jml_biaya_kantor_s + 
-                               $jml_biaya_kantor_sl + $jml_listrik_s + $jml_listrik_sl + $jml_transport_s + $jml_transport_sl + $jml_atk_s + $jml_atk_sl + $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl +
-                               $biaya_pajak + $total_bunga_bank;
+$total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $gaji_karyawan + $total_gaji_karyawan_new + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl +
+    $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $jumlah_admin_s + $jumlah_admin_sl + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jml_biaya_kantor_s +
+    $jml_biaya_kantor_sl + $jml_listrik_s + $jml_listrik_sl + $jml_transport_s + $jml_transport_sl + $jml_atk_s + $jml_atk_sl + $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl +
+    $biaya_pajak + $total_bunga_bank;
 
-    $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
+$laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 
 
 
@@ -838,7 +838,24 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
                 </div>
             </li>
+           <!-- Nav Item - Pages Collapse Menu -->
+           <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Gudang</span>
+                </a>
+                <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluar">Laporan Stok Keluar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+
+                    </div>
+                </div>
+            </li>
             <?php if ($nama == 'Nyoman Edy Susanto') {
                 echo "
             <!-- Nav Item - Pages Collapse Menu -->
@@ -1242,7 +1259,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>

@@ -589,16 +589,16 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
 }
 
 
-    $total_bunga_bank = 50000000 * $bulan_bunga;
+$total_bunga_bank = 50000000 * $bulan_bunga;
 
-    $total_pendapatan =  $total_angkutan_edy + $total_angkutan_aril + $total_angkutan_rama + $total_angkutan_reni + $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
-    $laba_kotor = $total_pendapatan - $pembelian_total;
+$total_pendapatan =  $total_angkutan_edy + $total_angkutan_aril + $total_angkutan_rama + $total_angkutan_reni + $pendapatan_penjualan_ety + $pendapatan_penjualan_kadek + $piutang_penjualan_ety + $piutang_penjualan_kadek + $jml_cashback + $total_sewa_hiblow + $jumlah_pemasukan_lainnya_s + $jumlah_biaya_konsumsi_sl;
+$laba_kotor = $total_pendapatan - $pembelian_total;
 
-    $total_biaya_usaha_final =  $total_uj + $total_gaji + $total_gaji_sl + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_biaya_kantor_s + $jml_biaya_kantor_sl + $biaya_op_pabrik_1 + $biaya_op_pabrik_2 +
-        $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
-        $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak +  $total_uj_sewa_hiblow +  $jml_pembelian_sparepart +  $biaya_perbaikan_2 +  $biaya_perbaikan_1;
+$total_biaya_usaha_final =  $total_uj + $total_gaji + $total_gaji_sl + $total_gaji_driver + $total_om + $jml_listrik_s + $jml_transport_s + $jml_atk_s + $jml_biaya_kantor_s + $jml_biaya_kantor_sl + $biaya_op_pabrik_1 + $biaya_op_pabrik_2 +
+    $total_uj_sl + $total_om_sl + $jml_listrik_sl + $jml_transport_sl + $jml_atk_sl + $gaji_karyawan + $total_gaji_karyawan_new + $total_bunga_bank + $jumlah_biaya_konsumsi_s + $jumlah_biaya_konsumsi_sl + $jumlah_admin_s + $jumlah_admin_sl + $total_bs + $total_bs_sl +
+    $jumlah_pengeluaran_lainnya_s + $jumlah_pengeluaran_lainnya_sl + $total_ongkos_kuli_s + $total_ongkos_kuli_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_pajak +  $total_uj_sewa_hiblow +  $jml_pembelian_sparepart +  $biaya_perbaikan_2 +  $biaya_perbaikan_1;
 
-    $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
+$laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
 
 
 
@@ -725,7 +725,24 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
                     </div>
                 </div>
             </li>
+           <!-- Nav Item - Pages Collapse Menu -->
+           <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+                    <span style="font-size: 15px; color:white;">Report Gudang</span>
+                </a>
+                <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluar">Laporan Stok Keluar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+
+                    </div>
+                </div>
+            </li>
             <?php if ($nama == 'Nyoman Edy Susanto') {
                 echo "
             <!-- Nav Item - Pages Collapse Menu -->
@@ -1025,7 +1042,7 @@ if (!isset($data_gaji_driver['total_gaji_driverx'])) {
                                                 <tr>
                                                     <td>5-511</td>
                                                     <td class="text-left">Gaji Driver</td>
-                
+
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl + $total_gaji_driver); ?></td>
 
