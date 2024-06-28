@@ -473,13 +473,19 @@ if ($tanggal_awal == $tanggal_akhir) {
                             </div>
                           </div>
                           <div class="col-md-6">
+                            <label>Brand</label>
+                            <select id="brand" name="brand" class="form-control">
+                              <option>SMBR</option>
+                              <option>MDK</option>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
                             <label>Tipe Semen</label>
                             <select id="tipe_semen" name="tipe_semen" class="form-control">
                               <option>Pranko</option>
                               <option>As</option>
                             </select>
                           </div>
-
                         </div>
                         <br>
                         <div class="row">
@@ -635,6 +641,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>Tanggal</th>
                     <th>NO DO</th>
                     <th>NO SO</th>
+                    <th>Brand</th>
                     <th>Tipe Semen</th>
                     <th>Tujuan</th>
                     <th>Kota</th>
@@ -667,6 +674,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $tanggal = $data['tanggal'];
                     $no_do = $data['no_do'];
                     $no_so = $data['no_so'];
+                    $no_so = $data['brand'];
                     $tipe_semen = $data['tipe_semen'];
                     $tujuan = $data['tujuan'];
                     $kota = $data['kota'];
@@ -716,6 +724,15 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   <div class="col-sm-10">
                                     <input type="date" name="tanggal" value="<?php echo $tanggal; ?>">
                                   </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <label>Brand</label>
+                                  <select id="tipe_semen" name="tipe_semen" class="form-control">
+                                    <?php
+                                    $dataSelect = $data['tipe_semen']; ?>
+                                    <option <?php echo ($dataSelect == 'SMBR') ? "selected" : "" ?>>SMBR</option>
+                                    <option <?php echo ($dataSelect == 'MDK') ? "selected" : "" ?>>MDK</option>
+                                  </select>
                                 </div>
                                 <div class="col-md-6">
                                   <label>Tipe Semen</label>
@@ -911,6 +928,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$no_do</td>
       <td style='font-size: 14px'>$no_so</td>
+      <td style='font-size: 14px'>$band</td>
       <td style='font-size: 14px'>$tipe_semen</td>
       <td style='font-size: 14px'>$tujuan</td>
       <td style='font-size: 14px'>$kota</td>

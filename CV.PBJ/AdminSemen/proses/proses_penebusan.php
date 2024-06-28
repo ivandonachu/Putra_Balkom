@@ -35,6 +35,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM pembelian_sl WHERE no_do = '$no_
 $no_polisi = $_POST['no_polisi'];
 $driver = $_POST['driver'];
 $tujuan = $_POST['tujuan'];
+$brand = $_POST['brand'];
 $tipe_semen = $_POST['tipe_semen'];
 $qty = $_POST['qty'];
 $material = $_POST['material'];
@@ -84,7 +85,7 @@ else if ( $nama_file != "" ) {
 	$tarif_pranko = $data_kota['tarif_pranko'];
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$no_do','$no_so','$tipe_semen','$tujuan','$nama_kota','$tarif_pranko','$material','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar', '$tempo','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pembelian_sl VALUES('','$tanggal','$no_do','$no_so','$tipe_semen','$tujuan','$nama_kota','$tarif_pranko','$material','$brand','$qty','$harga','$jumlah','$driver','$no_polisi','$tipe_bayar', '$tempo','$keterangan','$file')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPenebusan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
