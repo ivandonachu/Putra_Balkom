@@ -312,6 +312,9 @@ Menu Kepala Oprasional
                         <option>Pindah Saldo</option>
                         <option>Penarikan Saldo</option>
                         <option>Biaya Administrasi</option>
+                        <option>Biaya Operasional</option>
+                        <option>Biaya Konsumsi</option>
+                        <option>Pengeluaran Lainnya</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -472,6 +475,9 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected": "" ?> >Pindah Saldo</option>
                         <option <?php echo ($dataSelect == 'Penarikan Saldo') ? "selected": "" ?> >Penarikan Saldo</option>
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
+                        <option <?php echo ($dataSelect == 'Biaya Operasional') ? "selected": "" ?> >Biaya Operasional</option>
+                        <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+                        <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
                     </select>
             </div>
             <div class="col-md-6">
