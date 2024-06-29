@@ -699,15 +699,15 @@ else{
         $total_rit_melati = 0;
       }
 
-      $table9 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_melati , SUM(rit) AS rit_melati FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Lampung'");
+      $table9 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_lampung , SUM(rit) AS rit_lampung FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Lampung'");
       $data9 = mysqli_fetch_array($table9);
 
-      $total_uang_gaji_lampung = $data9['uang_gaji_melati'];
+      $total_uang_gaji_lampung = $data9['uang_gaji_lampung'];
       if (  $total_uang_gaji_lampung == ""  ) {
         $total_uang_gaji_lampung = 0;
       }
 
-      $total_rit_lampung = $data9['rit_melati'];
+      $total_rit_lampung = $data9['rit_lampung'];
       if (  $total_rit_lampung == ""  ) {
         $total_rit_lampung = 0;
       }
