@@ -36,11 +36,11 @@ exit;
     $bonus = $_POST['bonus'];
     $insentif = $_POST['insentif'];
     if($nama_karyawan == 'Septian Andriansyah' ){
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_kesehatan - $bpjs_ketenagakerjaan ;
         $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif  ;
     }
     else{
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus - $bpjs_ketenagakerjaan;
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_ketenagakerjaan;
         $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif ;
     }
     $keterangan = $_POST['keterangan'];
