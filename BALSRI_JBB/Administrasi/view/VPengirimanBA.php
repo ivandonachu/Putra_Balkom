@@ -582,7 +582,7 @@ else{
       $jt_gps = $data['jt_gps'];
       $jt_odo = $data['jt_odo'];
       $dexlite = $data['dexlite'];
-      $dexlite = $data['dexlite'];
+      $u_dex = $data['u_dex'];
       $um = $data['um'];
       $ug = $data['ug'];
       $uj = $data['uj'];
@@ -603,6 +603,7 @@ else{
       <td style='font-size: 14px' align = 'center'>$jt_gps/Km</td>
       <td style='font-size: 14px' align = 'center'>$jt_odo/km</td>
       <td style='font-size: 14px' align = 'center'>$dexlite/L</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($u_dex); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($um); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
