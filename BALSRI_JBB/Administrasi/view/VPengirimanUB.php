@@ -551,6 +551,7 @@ else{
       <th>JT GPS</th>
       <th>JT ODO</th>
       <th>DEX</th>
+      <th>Uang DEX</th>
       <th>Uang Makan</th>
       <th>Gaji</th>
       <th>Uang Jalan</th>

@@ -552,6 +552,7 @@ else{
       <th>JT GPS</th>
       <th>JT ODO</th>
       <th>DEX</th>
+      <th>Uang DEX</th>
       <th>Uang Makan</th>
       <th>Gaji</th>
       <th>Uang Jalan</th>
@@ -580,6 +581,7 @@ else{
       $muatan = $data['muatan'];
       $jt_gps = $data['jt_gps'];
       $jt_odo = $data['jt_odo'];
+      $dexlite = $data['dexlite'];
       $dexlite = $data['dexlite'];
       $um = $data['um'];
       $ug = $data['ug'];
