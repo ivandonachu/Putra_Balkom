@@ -74,6 +74,8 @@ $html = '
         $upah_bantu_tabung_pertamina = $data['upah_bantu_tabung_pertamina'];
         $rit_melati = $data['rit_melati'];
         $upah_melati = $data['upah_melati'];
+        $rit_lampung = $data['rit_lampung'];
+        $upah_lampung = $data['upah_lampung'];
         $uang_makan = $data['uang_makan'];
         $bpjs_kesehatan = $data['bpjs_kesehatan'];
         $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
@@ -163,6 +165,14 @@ $html = '
         <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Upah Melati</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_melati) .'</td>
+        </tr>
+                <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Ritase Melati</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. $rit_lampung .' Rit</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Upah Melati</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_lampung) .'</td>
         </tr>
         <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Uang Makan</td>
