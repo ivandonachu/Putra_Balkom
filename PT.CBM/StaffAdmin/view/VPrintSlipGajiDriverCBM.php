@@ -167,11 +167,11 @@ $html = '
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_melati) .'</td>
         </tr>
                 <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Ritase Melati</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Ritase Lampung</td>
         <td align="right" style="font-size: 10px; width:79%;">'. $rit_lampung .' Rit</td>
         </tr>
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Upah Melati</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Upah Lampung</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_lampung) .'</td>
         </tr>
         <tr>
