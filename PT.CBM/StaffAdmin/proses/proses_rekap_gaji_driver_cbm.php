@@ -142,8 +142,8 @@ while($data = mysqli_fetch_array($table2)){
     
     
 
-    $total_gaji = $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_melati + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_bantu_tabung_pertamina + $total_uang_melati + $total_uang_lampung;
-    $total_gaji_diterima =  $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_melati + $total_uang_lampung+  $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_bantu_tabung_pertamina - $bpjs_ketenagakerjaan;
+    $total_gaji = $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_melati + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_bantu_tabung_pertamina + $total_uang_lampung;
+    $total_gaji_diterima =  $total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_melati + $total_uang_lampung +  $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_bantu_tabung_pertamina - $bpjs_ketenagakerjaan;
 
     $table8 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_driver' ");
     $data8 = mysqli_fetch_array($table8);
