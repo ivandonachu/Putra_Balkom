@@ -28,6 +28,9 @@ if($nama_rute == 'NJE'){
 }
 else if($nama_rute == 'Gas Palembang'){
     $uang_gaji = 150000;
+}
+else if($nama_rute == 'Lampung'){
+    $uang_gaji = 250000;
 }else{
 	$uang_gaji = 100000;
 }

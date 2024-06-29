@@ -26,8 +26,12 @@ $nama_rute = $_POST['nama_rute'];
 if($nama_rute == 'NJE'){
     $uang_gaji = 100000;
 }
+
 else if($nama_rute == 'Gas Palembang'){
     $uang_gaji = 150000;
+}
+else if($nama_rute == 'Lampung'){
+    $uang_gaji = 250000;
 }else{
 	$uang_gaji = 100000;
 }

@@ -410,6 +410,7 @@ else{
                     <option>Batu Marta</option>
                     <option>Bantu Tabung Pertamina</option>
                     <option>Melati</option>
+                    <option>Lampung</option>
                 </select>
              </div>  
          </div>
@@ -529,6 +530,7 @@ else{
                     <option <?php echo ($dataSelect == 'Batu Marta') ? "selected": "" ?>>Batu Marta</option>  
                     <option <?php echo ($dataSelect == 'Bantu Tabung Pertamina') ? "selected": "" ?>>Bantu Tabung Pertamina</option> 
                     <option <?php echo ($dataSelect == 'Melati') ? "selected": "" ?>>Melati</option> 
+                    <option <?php echo ($dataSelect == 'Lampung') ? "selected": "" ?>>Lampung</option> 
                 </select>
                 </div>          
       </div>
@@ -605,6 +607,8 @@ else{
       <th>Upah Batu Marta</th>
       <th>Rit Melati</th>
       <th>Upah Melati</th>
+      <th>Rit Lampung</th>
+      <th>Upah Lampung</th>
       <th>Upah Total</th>
     </tr>
   </thead>
@@ -687,12 +691,25 @@ else{
 
       $total_uang_gaji_melati = $data8['uang_gaji_melati'];
       if (  $total_uang_gaji_melati == ""  ) {
-        $total_uang_gaji_melatia = 0;
+        $total_uang_gaji_melati = 0;
       }
 
       $total_rit_melati = $data8['rit_melati'];
       if (  $total_rit_melati == ""  ) {
         $total_rit_melati = 0;
+      }
+
+      $table9 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_melati , SUM(rit) AS rit_melati FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'Lampung'");
+      $data9 = mysqli_fetch_array($table9);
+
+      $total_uang_gaji_lampung = $data9['uang_gaji_melati'];
+      if (  $total_uang_gaji_lampung == ""  ) {
+        $total_uang_gaji_lampung = 0;
+      }
+
+      $total_rit_lampung = $data9['rit_melati'];
+      if (  $total_rit_lampung == ""  ) {
+        $total_rit_lampung = 0;
       }
 
       echo "<tr>
@@ -711,7 +728,9 @@ else{
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_batu_marta); ?> <?php echo "</td>
     <td style='font-size: 14px' >$total_rit_melati</td>
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_melati); ?> <?php echo "</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_melati); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_lampung</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_lampung); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_uang_gaji_gas_palembang + $total_gaji_nje + $total_uang_gaji_nikan + $total_uang_gaji_kota_baru + $total_uang_gaji_batu_marta + $total_uang_gaji_melati + $total_uang_gaji_lampung); ?> <?php echo "</td>
 
 
  </tr>";
