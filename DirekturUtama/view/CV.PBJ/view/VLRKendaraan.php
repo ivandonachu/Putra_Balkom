@@ -40,7 +40,7 @@ function formatuang($angka)
 if ($tanggal_awal == $tanggal_akhir) {
 
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko'  ");
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko'  OR tanggal = '$tanggal_awal' AND tipe_semen = 'FRC'  ");
     $total_angkutan_edy_rli = 0;
     $total_angkutan_edy_bmu = 0;
     $total_angkutan_rama_bmu = 0;
@@ -407,7 +407,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ");
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
     $total_angkutan_edy_rli = 0;
     $total_angkutan_edy_bmu = 0;
     $total_angkutan_rama_bmu = 0;
@@ -788,7 +788,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
     //pengiriman ety
     $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE 
-    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'");
+    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'");
     $data2 = mysqli_fetch_array($table2);
     $total_uj = $data2['total_uj'];
     $total_gaji = $data2['total_gaji'];
@@ -797,7 +797,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     //pengiriman kadek
     $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE 
-    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' ");
+    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' ");
     $data2sl = mysqli_fetch_array($table2sl);
     $total_uj_sl = $data2sl['total_uj'];
     $total_gaji_sl = $data2sl['total_gaji'];
