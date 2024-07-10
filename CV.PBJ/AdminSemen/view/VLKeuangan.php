@@ -318,6 +318,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Kembalikan Saldo</option>
                               <option>Bunga Bank</option>
                               <option>Oprasional Pabrik</option>
+                              <option>Pengeluaran Khusus</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -490,6 +491,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Pindah Saldo') ? "selected" : "" ?>>Pindah Saldo</option>
                                     <option <?php echo ($dataSelect == 'Kembalikan Saldo') ? "selected" : "" ?>>Kembalikan Saldo</option>
                                     <option <?php echo ($dataSelect == 'Kembalikan Saldo') ? "selected" : "" ?>>Oprasional Pabrik</option>
+                                    <option <?php echo ($dataSelect == 'Pengeluaran Khusus') ? "selected" : "" ?>>Pengeluaran Khusus</option>
                                   </select>
                                 </div>
                                 <div class="col-md-6">

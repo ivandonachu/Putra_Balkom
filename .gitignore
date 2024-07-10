@@ -179,6 +179,9 @@
 /Kebun/AdminSeberukUtama/proses/koneksi.php
 /Kebun/AdminSeberukUtama/view/koneksi.php
 /Kebun/ManagerSeberuk/view/koneksi.php
+/Kebun/AdminMesuji/view/koneksi.php
+/Kebun/AdminMesuji/file_kebun
+/Kebun/AdminMesuji/proses/koneksi.php
 
 /PT.STRE/Administrasi/file_administrasi
 /PT.STRE/Administrasi/proses/koneksi.php

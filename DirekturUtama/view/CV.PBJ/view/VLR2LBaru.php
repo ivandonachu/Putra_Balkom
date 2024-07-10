@@ -625,12 +625,28 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jumlah_pengeluaran_lainnya_s = 0;
     }
 
+    //Pengeluaran khusus s
+    $table_pengeluaran_khusus_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_khusus_s FROM keuangan_s  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Khusus' ");
+    $data_pengeluaran_khusus_s = mysqli_fetch_array($table_pengeluaran_khusus_s);
+    $jumlah_pengeluaran_khusus_s = $data_pengeluaran_khusus_s['jumlah_pengeluaran_khusus_s'];
+    if (!isset($data_pengeluaran_khusus_s['jumlah_pengeluaran_khusus_s'])) {
+        $jumlah_pengeluaran_khusus_s = 0;
+    }
+
     //Pengeluaran Laiinya sl
     $table_pengeluaran_lainnya_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_lainnya_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Lainnya' ");
     $data_pengeluaran_lainnya_sl = mysqli_fetch_array($table_pengeluaran_lainnya_sl);
     $jumlah_pengeluaran_lainnya_sl = $data_pengeluaran_lainnya_sl['jumlah_pengeluaran_lainnya_sl'];
     if (!isset($data_pengeluaran_lainnya_sl['jumlah_pengeluaran_lainnya_sl'])) {
         $jumlah_pengeluaran_lainnya_sl = 0;
+    }
+
+    //Pengeluaran khusus sl
+    $table_pengeluaran_khusus_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_pengeluaran_khusus_sl FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran Khusus' ");
+    $data_pengeluaran_khusus_sl = mysqli_fetch_array($table_pengeluaran_khusus_sl);
+    $jumlah_pengeluaran_khusus_sl = $data_pengeluaran_khusus_sl['jumlah_pengeluaran_khusus_sl'];
+    if (!isset($data_pengeluaran_khusus_sl['jumlah_pengeluaran_khusus_sl'])) {
+        $jumlah_pengeluaran_khusus_sl = 0;
     }
 
     //biaya pajak
@@ -838,8 +854,8 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                     </div>
                 </div>
             </li>
-           <!-- Nav Item - Pages Collapse Menu -->
-           <li class="nav-item">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
                     <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
                     <span style="font-size: 15px; color:white;">Report Gudang</span>
@@ -1245,6 +1261,35 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                         <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak); ?></td>
 
                                                     <?php } else if ($laba_bersih_sebelum_pajak == 0) { ?>
+
+                                                        <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                                        <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                                    <?php }
+                                                    ?>
+                                                    <td class="thick-line"></td>
+                                                </tr>
+                                                <tr style="background-color:    #F0F8FF; ">
+                                                    <td><strong>Pengeluaran Khusus</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPengeluaranKhusus?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr style="background-color: navy;  color:white;">
+                                                    <td><strong>LABA BERSIH DIKURANGI PENGELUIARAN KHUSUS</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <?php
+
+                                                    if ($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl) > 0) { ?>
+
+                                                        <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl)); ?> </td>
+                                                        <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                                                    <?php } else if ($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl) < 0) { ?>
+
+                                                        <td class="no-line text-left"><?= formatuang(0); ?></td>
+                                                        <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl)); ?></td>
+
+                                                    <?php } else if ($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl) == 0) { ?>
 
                                                         <td class="no-line text-left"><?= formatuang(0); ?></td>
                                                         <td class="no-line text-left"><?= formatuang(0); ?></td>
