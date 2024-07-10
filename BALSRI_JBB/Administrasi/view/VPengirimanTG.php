@@ -553,9 +553,12 @@ else{
       <th>JT ODO</th>
       <th>DEX</th>
       <th>Uang DEX</th>
+      <th>Solar</th>
+      <th>Uang Solar</th>
       <th>Uang Makan</th>
       <th>Gaji</th>
       <th>Uang Jalan</th>
+      <th>Uang Jalan Solar</th>
       <th>Jns Trans</th>
       <th>Jml Trans</th>
       <th>KET</th>
@@ -583,9 +586,12 @@ else{
       $jt_odo = $data['jt_odo'];
       $dexlite = $data['dexlite'];
       $u_dex = $data['u_dex'];
+      $solar = $data['solar'];
+      $u_solar = $data['u_solar'];
       $um = $data['um'];
       $ug = $data['ug'];
       $uj = $data['uj'];
+      $uj_solar = $data['uj_solar'];
       $jns_trans = $data['jns_trans'];
       $jml_trans = $data['jml_trans'];
       $keterangan = $data['keterangan'];
@@ -604,9 +610,12 @@ else{
       <td style='font-size: 14px' align = 'center'>$jt_odo/km</td>
       <td style='font-size: 14px' align = 'center'>$dexlite/L</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($u_dex); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>$solar/L</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($u_solar); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($um); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($ug); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($uj_solar); ?> <?php echo "</td>
       <td style='font-size: 14px' align = 'center'>$jns_trans</td>
       <td style='font-size: 14px' align = 'center'>$jml_trans</td>
       <td style='font-size: 14px' align = 'center'>$keterangan</td>

@@ -37,15 +37,19 @@ $jen_ken = $data_kendaraan['jenis_kendaraan'];
 
 if($jen_ken == '8000 L'){
 	$dexlite = $jt_gps/5;
+	$solar = $jt_gps/5;
 }
 else{
 	$dexlite = $jt_gps/6;
+	$solar = $jt_gps/6;
 }
 
-
 $u_dex = $dexlite*14550;
+$u_solar = $solar*12000;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
+$uang_jalan_solar = $u_solar + $uang_makan;
+
 if ($jns_trans == 'Lost') {
 	if ($muatan == '1000 L') {
 		$jml_lost = (1000 * 0.15) / 100;
@@ -135,24 +139,24 @@ $no_driver = $data_driver['no_driver'];
 
 	
 
-	if ($jns_trans == 'Lost') {
-		if ($file == '') {
-		$query = mysqli_query($koneksi,"UPDATE pengiriman_ub SET no_driver = '$no_driver' ,no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan', kode_input = '$id1'   WHERE no_laporan = '$no_laporan'");
-	}
-		else{
-		$query = mysqli_query($koneksi,"UPDATE pengiriman_ub SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file' , kode_input = '$id1'  WHERE no_laporan = '$no_laporan'");
-	}
-
-	
-			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPengirimanUB?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-	}
+if ($jns_trans == 'Lost') {
+	if ($file == '') {
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_ub SET no_driver = '$no_driver' ,no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', solar = '$solar', u_solar = '$u_solar', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', uj_solar = '$uang_jalan_solar', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , kode_input = '$id1'  WHERE no_laporan = '$no_laporan'");
+}
 	else{
-		if ($file == '') {
-		$query = mysqli_query($koneksi,"UPDATE pengiriman_ub SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan', kode_input = '$id1'  WHERE no_laporan = '$no_laporan'");
-	}
-		else{
-		$query = mysqli_query($koneksi,"UPDATE pengiriman_ub SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file' , kode_input = '$id1'  WHERE no_laporan = '$no_laporan'");
-	}
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_ub SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', solar = '$solar', u_solar = '$u_solar', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', uj_solar = '$uang_jalan_solar', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file' , kode_input = '$id1'  WHERE no_laporan = '$no_laporan'");
+}
+
+
+		echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPengirimanBA?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+}
+else{
+	if ($file == '') {
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_ub SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', solar = '$solar', u_solar = '$u_solar', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', uj_solar = '$uang_jalan_solar', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , kode_input = '$id1'  WHERE no_laporan = '$no_laporan'");
+}
+	else{
+	$query = mysqli_query($koneksi,"UPDATE pengiriman_ub SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', solar = '$solar', u_solar = '$u_solar', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', uj_solar = '$uang_jalan_solar', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file' , kode_input = '$id1'  WHERE no_laporan = '$no_laporan'");
+}
 
 	
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPengirimanUB?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;

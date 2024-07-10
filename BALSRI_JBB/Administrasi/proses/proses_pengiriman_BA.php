@@ -40,14 +40,19 @@ $jen_ken = $data_kendaraan['jenis_kendaraan'];
 
 if($jen_ken == '8000 L'){
 	$dexlite = $jt_gps/5;
+	$solar = $jt_gps/5;
 }
 else{
 	$dexlite = $jt_gps/6;
+	$solar = $jt_gps/6;
 }
 
 $u_dex = $dexlite*14550;
+$u_solar = $solar*12000;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
+$uang_jalan_solar = $u_solar + $uang_makan;
+
 
 if ($jns_trans == 'Lost') {
 	if ($muatan == '1000 L') {
@@ -139,11 +144,11 @@ $no_driver = $data_driver['no_driver'];
 
 
 if ($jns_trans == 'Lost') {
-	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_ba VALUES('','$tanggal','$no','$no_driver','$muatan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$jns_trans','$total_lost','$keterangan','$file','$id1')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_ba VALUES('','$tanggal','$no','$no_driver','$muatan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$solar','$u_solar','$uang_makan','$uang_gaji','$uang_jalan','$uang_jalan_solar','$jns_trans','$total_lost','$keterangan','$file','$id1')");
 
 }
 else {
-	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_ba VALUES('','$tanggal','$no','$no_driver','$muatan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$uang_makan','$uang_gaji','$uang_jalan','$jns_trans','$jml_trans','$keterangan','$file','$id1')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_ba VALUES('','$tanggal','$no','$no_driver','$muatan','$rit','$jt_gps','$jt_odo','$dexlite','$u_dex','$solar','$u_solar','$uang_makan','$uang_gaji','$uang_jalan','$uang_jalan_solar','$jns_trans','$jml_trans','$keterangan','$file','$id1')");
 
 }
 

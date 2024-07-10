@@ -57,6 +57,8 @@ $u_dex = $dexlite*15250;
 $u_solar = $solar*12000;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
+$uang_jalan_solar = $u_solar + $uang_makan;
+
 if ($jns_trans == 'Lost') {
 	if ($muatan == '1000 L') {
 		$jml_lost = (1000 * 0.15) / 100;
@@ -148,10 +150,10 @@ $no_driver = $data_driver['no_driver'];
 
 	if ($jns_trans == 'Lost') {
 		if ($file == '') {
-		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver' ,no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver' ,no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', uj_solar = '$uang_jalan_solar', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
 	}
 		else{
-		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file'  , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', uj_solar = '$uang_jalan_solar', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$total_lost', keterangan = '$keterangan' , file_bukti = '$file'  , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
 	}
 
 	
@@ -159,10 +161,10 @@ $no_driver = $data_driver['no_driver'];
 	}
 	else{
 		if ($file == '') {
-		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan'  , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver' , no = '$no', muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', uj_solar = '$uang_jalan_solar', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan'  , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
 	}
 		else{
-		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file' , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksi,"UPDATE pengiriman SET no_driver = '$no_driver', no = '$no' , muatan = '$muatan', jt_gps = '$jt_gps' , jt_odo = '$jt_odo' , dexlite = '$dexlite', u_dex = '$u_dex', um = '$uang_makan', ug = '$uang_gaji', uj = '$uang_jalan', uj_solar = '$uang_jalan_solar', solar = '$solar', u_solar = '$u_solar', jns_trans = '$jns_trans', jml_trans = '$jml_trans', keterangan = '$keterangan' , file_bukti = '$file' , kode_input = '$id1' WHERE no_laporan = '$no_laporan'");
 	}
 
 	
