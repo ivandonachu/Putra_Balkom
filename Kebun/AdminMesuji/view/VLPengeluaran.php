@@ -35,26 +35,26 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_keb_mesuji WHERE tanggal = '$tanggal_awal'");
   $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran  FROM pengeluaran_keb_mesuji 
   WHERE  tanggal = '$tanggal_awal'");
-$data2 = mysqli_fetch_array($table2);
-$total_pengeluaran = $data2['total_pengeluaran'];
+  $data2 = mysqli_fetch_array($table2);
+  $total_pengeluaran = $data2['total_pengeluaran'];
 
-$table3 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_karet_sawit  FROM pengeluaran_keb_mesuji 
+  $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_karet_sawit  FROM pengeluaran_keb_mesuji 
   WHERE  tanggal = '$tanggal_awal' AND referensi = 'Karet dan Sawit' ");
-$data3 = mysqli_fetch_array($table3);
-$total_karet_sawit = $data3['total_karet_sawit'];
+  $data3 = mysqli_fetch_array($table3);
+  $total_karet_sawit = $data3['total_karet_sawit'];
 
-$table4 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_buah  FROM pengeluaran_keb_mesuji 
+  $table4 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_buah  FROM pengeluaran_keb_mesuji 
   WHERE  tanggal = '$tanggal_awal' AND referensi = 'Buah' ");
-$data4 = mysqli_fetch_array($table4);
-$total_buah = $data4['total_buah'];
+  $data4 = mysqli_fetch_array($table4);
+  $total_buah = $data4['total_buah'];
 
-$table5 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_umum  FROM pengeluaran_keb_mesuji 
+  $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_umum  FROM pengeluaran_keb_mesuji 
 WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
-$data5 = mysqli_fetch_array($table5);
-$total_umum = $data5['total_umum'];
+  $data5 = mysqli_fetch_array($table5);
+  $total_umum = $data5['total_umum'];
 } else {
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_keb_mesuji WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  
+
   $table2 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran  FROM pengeluaran_keb_mesuji 
                                     WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $data2 = mysqli_fetch_array($table2);
@@ -74,7 +74,6 @@ $total_umum = $data5['total_umum'];
   WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Umum' ");
   $data5 = mysqli_fetch_array($table5);
   $total_umum = $data5['total_umum'];
-
 }
 
 
@@ -115,43 +114,42 @@ $total_umum = $data5['total_umum'];
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <!-- Sidebar -->
-   <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsMesuji">
-    <div class="sidebar-brand-icon rotate-n-15">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsMesuji">
+        <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;"  ></div>
-</a>
+        </div>
+        <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;"></div>
+      </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active" >
-    <a class="nav-link" href="DsMesuji">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-    </li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="DsMesuji">
+          <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+          <span style="font-size: 16px;">Dashboard</span></a>
+      </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Admin Mesuji
-    </div>
+      <!-- Heading -->
+      <div class="sidebar-heading" style="font-size: 15px; color:white;">
+        Menu Admin Mesuji
+      </div>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Laporan</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Laporan</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiL">Absensi Mesuji</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLKegiatan">Laporan Kegiatan</a>
@@ -161,25 +159,24 @@ $total_umum = $data5['total_umum'];
             <a class="collapse-item" style="font-size: 15px;" href="VLPupuk">Stok Pupuk</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLBatang">Laporan Batang</a>
+          </div>
         </div>
-    </div>
-</li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-      15  aria-expanded="true" aria-controls="collapseTwo1">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >SDM</span>
-    </a>
-    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo1">
+          <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">SDM</span>
+        </a>
+        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VDriverS">Driver Sawit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMobilS">Mobil Sawit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKaryawanL">Karyawan Mesuji</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListAsetMesuji">List Aset Mesuji</a>
+          </div>
         </div>
-    </div>
-</li>
+      </li>
 
 
 
@@ -207,7 +204,7 @@ $total_umum = $data5['total_umum'];
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-          <?php echo "<a href='VPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pengeluaran Mesuji Lengkiti</h5></a>"; ?>
+          <?php echo "<a href='VPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pengeluaran Mesuji</h5></a>"; ?>
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -433,15 +430,14 @@ $total_umum = $data5['total_umum'];
                 <td style='font-size: 14px'>$nama_akun</td>
                 <td style='font-size: 14px'>$referensi</td>
                 <td style='font-size: 14px'>$keterangan</td>"; ?>
-                <?php if ($status_saldo == 'Masuk') {
-                     echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                     echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
-                } 
-                else {
-                     echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
-                     echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                }
-                echo "
+                  <?php if ($status_saldo == 'Masuk') {
+                    echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                                                                                          echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
+                                                                                  } else {
+                                                                                    echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
+                                                                                    echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                                                                                        }
+                                                                                        echo "
                 <td style='font-size: 14px'>"; ?> <a download="../file_kebun/<?= $file_bukti ?>" href="../file_kebun/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
                 "; ?>
                     <?php echo "<td style='font-size: 12px'>"; ?>
@@ -479,7 +475,7 @@ $total_umum = $data5['total_umum'];
                                 <div class="col-md-6">
                                 </div>
                               </div>
-                                  <br>                                        
+                              <br>
 
                               <div class="row">
                                 <div class="col-md-6">
@@ -521,7 +517,7 @@ $total_umum = $data5['total_umum'];
                                 <div class="col-md-6">
                                 </div>
                               </div>
-                                <br>                                        
+                              <br>
                               <div>
                                 <label>Keterangan</label>
                                 <div class="form-group">
@@ -594,72 +590,72 @@ $total_umum = $data5['total_umum'];
           <br>
 
           <br>
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Pengeluaran</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_pengeluaran) ?></div>
+          <div class="row" style="margin-right: 20px; margin-left: 20px;">
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Total Pengeluaran</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_pengeluaran) ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign  fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Total Karet dan Sawit</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_karet_sawit) ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Total Bauh</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_buah)   ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign  fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Total Umum</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_umum) ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-auto">
-           <i class="fas fa-dollar-sign  fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Karet dan Sawit</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_karet_sawit) ?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Bauh</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_buah)   ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="fas fa-dollar-sign  fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Umum</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=formatuang($total_umum)?></div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
         </div>
 

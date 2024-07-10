@@ -18,13 +18,13 @@ else{  header("Location: logout.php");
 exit;
 }
 
-
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
-$total_upah_kerja = $_POST['total_upah_kerja'];
-$total_potongan_bon = $_POST['total_potongan_bon'];
-
+$referensi = $_POST['referensi'];
+$akun = $_POST['akun'];
+$jumlah = $_POST['jumlah'];
+$keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -60,16 +60,19 @@ else if ( $nama_file != "" ) {
 
 }
 
-	$query = mysqli_query($koneksi,"INSERT INTO absensi_mesuji VALUES ('','$tanggal','$total_upah_kerja','$total_potongan_bon','$file')");
 
+    if($akun == 'Penambahan Dana'){
+        $status_saldo = 'Masuk';
+    }
+    else{
+        $status_saldo = 'Keluar';
+    }
 
-	
-		
-	  
-			
-		echo "<script> window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-		   
+	$query = mysqli_query($koneksi,"INSERT INTO pengeluaran_keb_mesuji VALUES('','$tanggal','$akun','$referensi','$keterangan','$status_saldo','$jumlah','$file')");
 
+			if ($query != "") {
+			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VLPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
-     
-		
+}
+
+  ?>

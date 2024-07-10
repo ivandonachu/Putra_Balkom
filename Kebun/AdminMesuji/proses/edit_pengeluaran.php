@@ -18,13 +18,14 @@ else{  header("Location: logout.php");
 exit;
 }
 
-
-$tanggal_awal = $_GET['tanggal1'];
-$tanggal_akhir = $_GET['tanggal2'];
+$no_laporan = $_POST['no_laporan'];
+$tanggal_awal = $_POST['tanggal1'];
+$tanggal_akhir = $_POST['tanggal2'];
 $tanggal = $_POST['tanggal'];
-$total_upah_kerja = $_POST['total_upah_kerja'];
-$total_potongan_bon = $_POST['total_potongan_bon'];
-
+$referensi = $_POST['referensi'];
+$akun = $_POST['akun'];
+$jumlah = $_POST['jumlah'];
+$keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -60,16 +61,25 @@ else if ( $nama_file != "" ) {
 
 }
 
-	$query = mysqli_query($koneksi,"INSERT INTO absensi_mesuji VALUES ('','$tanggal','$total_upah_kerja','$total_potongan_bon','$file')");
+
+if($akun == 'Penambahan Dana'){
+    $status_saldo = 'Masuk';
+}
+else{
+    $status_saldo = 'Keluar';
+}
 
 
-	
-		
-	  
-			
-		echo "<script> window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-		   
+	if ($file == '') {
+			$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_keb_mesuji SET tanggal = '$tanggal' , nama_akun = '$akun' , jumlah ='$jumlah' , referensi = '$referensi' ,
+            keterangan = '$keterangan', status_saldo = '$status_saldo' WHERE no_laporan = '$no_laporan'");
+	}
+	else{
+			$query3 = mysqli_query($koneksi,"UPDATE pengeluaran_keb_mesuji SET tanggal = '$tanggal' , nama_akun = '$akun' , jumlah ='$jumlah'  , referensi = '$referensi' ,
+            keterangan = '$keterangan', status_saldo = '$status_saldo' , file_bukti = '$file'  WHERE no_laporan = '$no_laporan'");
+	}
 
 
-     
-		
+echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VLPengeluaran?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+
+?>

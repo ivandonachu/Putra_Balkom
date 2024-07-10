@@ -35,7 +35,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_sawit_msj WHERE tanggal_muat = '$tanggal_akhir' ");
 } else {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_sawit_msj WHERE tanggal_muat BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ORDER BY tanggal_muat ASC");
-    $table2 = mysqli_query($koneksi, "SELECT SUM(gross) AS total_gross, SUM(tare) AS total_tare, SUM(deduction) AS total_deduction, SUM(sortasi) AS total_sortasi FROM laporan_sawit WHERE tanggal_muat BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table2 = mysqli_query($koneksi, "SELECT SUM(gross) AS total_gross, SUM(tare) AS total_tare, SUM(deduction) AS total_deduction, SUM(sortasi) AS total_sortasi FROM laporan_sawit_msj WHERE tanggal_muat BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data2 = mysqli_fetch_array($table2);
     $total_gross = $data2['total_gross'];
     $total_tare = $data2['total_tare'];

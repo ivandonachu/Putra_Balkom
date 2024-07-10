@@ -22,9 +22,7 @@ exit;
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
 $tanggal = $_POST['tanggal'];
-$total_upah_kerja = $_POST['total_upah_kerja'];
-$total_potongan_bon = $_POST['total_potongan_bon'];
-
+$keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -59,17 +57,13 @@ else if ( $nama_file != "" ) {
 	}
 
 }
-
-	$query = mysqli_query($koneksi,"INSERT INTO absensi_mesuji VALUES ('','$tanggal','$total_upah_kerja','$total_potongan_bon','$file')");
-
-
-	
-		
-	  
-			
-		echo "<script> window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-		   
-
-
+        
+    
+            
+            	$query = mysqli_query($koneksi,"INSERT INTO laporan_kegiatan_msj VALUES ('','$tanggal','$keterangan','$file')");
+              
+                	if ($query != "") {
+				echo "<script> window.location='../view/VLKegiatan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+		       	}
      
 		

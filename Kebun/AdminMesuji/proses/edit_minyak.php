@@ -21,17 +21,19 @@ exit;
 $no_laporan = $_POST['no_laporan'];
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
-$potongan_bon = $_POST['potongan_bon'];
+$tanggal = $_POST['tanggal'];
+$jumlah = $_POST['jumlah'];
+$keterangan = $_POST['keterangan'];
 
 
 
 
+	
+			$query3 = mysqli_query($koneksi,"UPDATE laporan_solar_msj SET tanggal = '$tanggal' , keterangan = '$keterangan' , jumlah = '$jumlah' WHERE no_laporan = '$no_laporan'");
 
 
-			$query3 = mysqli_query($koneksi,"UPDATE absensi_mesuji SET potongan_bon = '$potongan_bon' WHERE no_laporan = '$no_laporan'");
+	
 
-
-
-echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+echo "<script>alert('Data Berhasil Di Edit :)'); window.location='../view/VLMinyak?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
 ?>

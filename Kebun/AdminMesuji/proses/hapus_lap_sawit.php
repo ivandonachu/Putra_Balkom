@@ -29,10 +29,10 @@ $no = $_POST['no_laporan'];
 		
 
 		//Hapusriwayat keberangkatan
-		$query = mysqli_query($koneksi,"DELETE FROM absensi_mesuji WHERE no_laporan = '$no'");
+		$query = mysqli_query($koneksi,"DELETE FROM laporan_sawit_msj WHERE no_laporan = '$no'");
 
 
 
 	
-				echo "<script> window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VLSawit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 	

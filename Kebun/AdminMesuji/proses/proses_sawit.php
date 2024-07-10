@@ -18,13 +18,17 @@ else{  header("Location: logout.php");
 exit;
 }
 
-
 $tanggal_awal = $_GET['tanggal1'];
 $tanggal_akhir = $_GET['tanggal2'];
-$tanggal = $_POST['tanggal'];
-$total_upah_kerja = $_POST['total_upah_kerja'];
-$total_potongan_bon = $_POST['total_potongan_bon'];
-
+$tanggal_muat = $_POST['tanggal_muat'];
+$tanggal_timbang = $_POST['tanggal_timbang'];
+$nama_driver = $_POST['nama_driver'];
+$no_polisi = $_POST['no_polisi'];
+$gross = $_POST['gross'];
+$tare = $_POST['tare'];
+$deduction = $_POST['deduction'];
+$sortasi = $_POST['sortasi'];
+$keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -60,16 +64,12 @@ else if ( $nama_file != "" ) {
 
 }
 
-	$query = mysqli_query($koneksi,"INSERT INTO absensi_mesuji VALUES ('','$tanggal','$total_upah_kerja','$total_potongan_bon','$file')");
 
+	$query = mysqli_query($koneksi,"INSERT INTO laporan_sawit_msj VALUES('','$tanggal_muat','$nama_driver','$no_polisi','$gross','$tare','$deduction','$sortasi','$tanggal_timbang','$keterangan','$file')");
 
-	
-		
-	  
-			
-		echo "<script> window.location='../view/VLAbsensiL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
-		   
+			if ($query != "") {
+			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VLSawit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
+}
 
-     
-		
+  ?>
