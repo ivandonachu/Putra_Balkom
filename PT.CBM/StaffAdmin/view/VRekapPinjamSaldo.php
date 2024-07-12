@@ -818,10 +818,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <tr>
                       <td style='font-size: 11px' align='center'>CBM</td>
                       <td style='font-size: 11px' align='center'>PBR</td>
-                      <td style='font-size: 11px' align='center'><?= formatuang($jumlah__cbm_pbr); ?></td>
+                      <td style='font-size: 11px' align='center'><?= formatuang($jumlah_cbm_pbr); ?></td>
                     </tr>
 
-                    
+
 
                   </tbody>
                 </table>
