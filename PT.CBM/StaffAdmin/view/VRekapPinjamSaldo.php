@@ -821,6 +821,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <td style='font-size: 11px' align='center'><?= formatuang($jumlah__cbm_pbr); ?></td>
                     </tr>
 
+                    
+
                   </tbody>
                 </table>
               </div>
