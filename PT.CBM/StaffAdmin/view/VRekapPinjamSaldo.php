@@ -161,7 +161,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
         //CBM pinjam ke PBR
-        $table_cbm_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah__cbm_pbr FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'PBR' AND rekening_peminjam = 'CBM' ");
+        $table_cbm_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_cbm_pbr FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'PBR' AND rekening_peminjam = 'CBM' ");
         $data_cbm_pbr = mysqli_fetch_array($table_cbm_pbr);
         $jumlah_cbm_pbr = $data_cbm_pbr['jumlah_cbm_pbr'];
         if (!isset($data_cbm_pbr['jumlah_cbm_pbr'])) {
