@@ -43,6 +43,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table4 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND lokasi = 'Bedilan' GROUP BY a.sumber_dana");
   $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND lokasi = 'Nusa Bakti' GROUP BY a.sumber_dana");
   $table6 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND lokasi = 'Sumber Jaya' GROUP BY a.sumber_dana");
+  $table6 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal = '$tanggal_awal' AND lokasi = 'Muara Dua' GROUP BY a.sumber_dana");
 }
 else{
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
@@ -51,6 +52,7 @@ else{
   $table4 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND lokasi = 'Bedilan' GROUP BY a.sumber_dana");
   $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND lokasi = 'Nusa Bakti' GROUP BY a.sumber_dana");
   $table6 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND lokasi = 'Sumber Jaya' GROUP BY a.sumber_dana");
+  $table7 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_pengeluaran, sumber_dana , lokasi FROM pengeluaran  a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND lokasi = 'Muara Dua' GROUP BY a.sumber_dana");
 }
 
 
@@ -768,6 +770,40 @@ else{
     $total_seluruh = 0;
   ?>
     <?php while($data = mysqli_fetch_array($table6)){
+      $sumber_dana = $data['sumber_dana'];
+      $total_pengeluaran =$data['total_pengeluaran'];
+      $total_seluruh = $total_seluruh + $total_pengeluaran;
+
+      echo "<tr>
+      <td style='font-size: 14px' >$sumber_dana</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total_pengeluaran); ?> <?php echo "</td>
+
+      </tr>";
+}
+?>
+<td style='font-size: 14px; ' ><strong>TOTAL</strong></td>  
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
+
+      </tr>
+</tbody>
+</table>
+
+<br>
+<br>
+<h5 align="center" >Total Pengeluaran Berdasarkan Sumber (Muara Dua)</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Sumber Dana</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $total_seluruh = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table7)){
       $sumber_dana = $data['sumber_dana'];
       $total_pengeluaran =$data['total_pengeluaran'];
       $total_seluruh = $total_seluruh + $total_pengeluaran;
