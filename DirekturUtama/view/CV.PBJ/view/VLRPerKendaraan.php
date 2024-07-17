@@ -36,8 +36,6 @@ if (isset($_GET['tanggal1'])) {
     $no_polisi_ts = str_replace(" ", "", $no_polisi);
 }
 
-var_dump($no_polisi_ts);
-var_dump($no_polisi);
 
 function formatuang($angka)
 {
@@ -816,8 +814,6 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_om_sl = $data2sl['total_om'];
     $total_bs_sl = $data2sl['total_bs'];
 
-    var_dump($total_uj_sl);
-    var_dump($total_uj);
 
 
 

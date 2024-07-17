@@ -805,8 +805,6 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_om_sl = $data2sl['total_om'];
     $total_bs_sl = $data2sl['total_bs'];
 
-    var_dump($total_uj_sl);
-    var_dump($total_uj);
 
 
     //Biaya tarikan etty
