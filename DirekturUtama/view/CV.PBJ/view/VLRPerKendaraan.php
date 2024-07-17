@@ -22,15 +22,22 @@ if ($jabatan_valid == 'Direktur Utama') {
 if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
     $tanggal_akhir = $_GET['tanggal2'];
+    $no_polisi = $_GET['no_polisi'];
+    $no_polisi_ts = str_replace(" ", "", $no_polisi);
 } elseif (isset($_POST['tanggal1'])) {
     $tanggal_awal = $_POST['tanggal1'];
     $tanggal_akhir = $_POST['tanggal2'];
+    $no_polisi = $_POST['no_polisi'];
+    $no_polisi_ts = str_replace(" ", "", $no_polisi);
 } else {
     $tanggal_awal = date('Y-m-1');
     $tanggal_akhir = date('Y-m-31');
+    $no_polisi = $_POST['no_polisi'];
+    $no_polisi_ts = str_replace(" ", "", $no_polisi);
 }
 
-
+var_dump($no_polisi_ts);
+var_dump($no_polisi);
 
 function formatuang($angka)
 {
@@ -41,7 +48,7 @@ function formatuang($angka)
 if ($tanggal_awal == $tanggal_akhir) {
 
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko'  OR tanggal = '$tanggal_awal' AND tipe_semen = 'FRC'  ");
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts'  OR tanggal = '$tanggal_awal' AND tipe_semen = 'FRC' AND no_polisi = '$no_polisi_ts'  ");
     $total_angkutan_edy_rli = 0;
     $total_angkutan_edy_bmu = 0;
     $total_angkutan_rama_bmu = 0;
@@ -408,7 +415,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND no_polisi = '$no_polisi_ts'  ");
     $total_angkutan_edy_rli = 0;
     $total_angkutan_edy_bmu = 0;
     $total_angkutan_rama_bmu = 0;
@@ -762,43 +769,47 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     //pengeluaran
 
-    //biaya perbaikan kendaraan 1
-    $table_perbaikan_1 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS biaya_perbaikan_1 FROM keuangan_sl WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
-    $data_perbaikan_1 = mysqli_fetch_array($table_perbaikan_1);
-    $biaya_perbaikan_1 = $data_perbaikan_1['biaya_perbaikan_1'];
-    if (!isset($data_perbaikan_1['biaya_perbaikan_1'])) {
-        $biaya_perbaikan_1 = 0;
-    }
-
-    //biaya perbaikan kendaraan 2
-    $table_perbaikan_2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS biaya_perbaikan_2 FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
-    $data_perbaikan_2 = mysqli_fetch_array($table_perbaikan_2);
-    $biaya_perbaikan_2 = $data_perbaikan_2['biaya_perbaikan_2'];
-    if (!isset($data_perbaikan_2['biaya_perbaikan_2'])) {
-        $biaya_perbaikan_2 = 0;
-    }
 
 
     //pengeluran perbaikan yani
     $table7 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_sparepart) AS total_pembelian_sparepart FROM riwayat_pengeluaran_workshop_s
-        WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+        WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi = '$no_polisi'");
     $data7 = mysqli_fetch_array($table7);
     $jml_pembelian_sparepart = $data7['total_pembelian_sparepart'];
     if (!isset($data7['total_pembelian_sparepart'])) {
         $jml_pembelian_sparepart = 0;
     }
+
+    //pengeluran perbaikan yani
+    $table71 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bengkel) AS total_perbaikan FROM riwayat_pengeluaran_workshop_s
+    WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
+    $data71 = mysqli_fetch_array($table71);
+    $jml_perbaikan = $data71['total_perbaikan'];
+    if (!isset($data71['total_perbaikan'])) {
+        $jml_perbaikan = 0;
+    }
+
+    //pengiriman ety
+
     //pengiriman ety
     $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE 
-    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'");
+                                                tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi' OR
+                                                tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  AND no_polisi = '$no_polisi' OR
+                                                tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts'OR
+                                                tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  AND no_polisi = '$no_polisi_ts'  ");
     $data2 = mysqli_fetch_array($table2);
     $total_uj = $data2['total_uj'];
     $total_gaji = $data2['total_gaji'];
     $total_om = $data2['total_om'];
     $total_bs = $data2['total_bs'];
 
+
     //pengiriman kadek
     $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE 
-    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'");
+                                                tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi' OR
+                                                tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  AND no_polisi = '$no_polisi' OR
+                                                tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts' OR
+                                                tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  AND no_polisi = '$no_polisi_ts'  ");
     $data2sl = mysqli_fetch_array($table2sl);
     $total_uj_sl = $data2sl['total_uj'];
     $total_gaji_sl = $data2sl['total_gaji'];
@@ -809,27 +820,10 @@ if ($tanggal_awal == $tanggal_akhir) {
     var_dump($total_uj);
 
 
-    //Biaya tarikan etty
-    $table_tarikan_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_tarikan FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
-    $data_tarikan_s = mysqli_fetch_array($table_tarikan_s);
-    $jml_biaya_tarikan_s = $data_tarikan_s['jumlah_biaya_tarikan'];
-    if (!isset($data_tarikan_s['jumlah_biaya_tarikan'])) {
-        $jml_biaya_tarikan_s = 0;
-    }
-    //Biaya tarikan kadek
-    $table_tarikan_sl = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_tarikan FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
-    $data_tarikan_sl = mysqli_fetch_array($table_tarikan_sl);
-    $jml_biaya_tarikan_sl = $data_tarikan_sl['jumlah_biaya_tarikan'];
-    if (!isset($data_tarikan_sl['jumlah_biaya_tarikan'])) {
-        $jml_biaya_tarikan_sl = 0;
-    }
-
-
-
 
     $laba_kotor = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu + $total_angkutan_edy_rli;
 
-    $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_perbaikan_1 + $biaya_perbaikan_2 + $jml_pembelian_sparepart;
+    $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_perbaikan + $jml_pembelian_sparepart;
 
     $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
@@ -1152,49 +1146,49 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="text-left">Tagihan BMU Bapak Edy</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_edy_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanEdyBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRTagihanEdyBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi_ts'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-101</td>
                                                     <td class="text-left">Tagihan RLI Bapak Edy</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_edy_rli); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanEdy?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRTagihanEdy?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-102</td>
                                                     <td class="text-left">Tagihan BMU Bapak Rama</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_rama_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanRamaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRTagihanRamaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-103</td>
                                                     <td class="text-left">Tagihan BMU Eki Bangunan</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_eki_bangunan_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanEkiBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRTagihanEkiBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-104</td>
                                                     <td class="text-left">Tagihan BMU Soma</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_soma_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSomaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRTagihanSomaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-105</td>
                                                     <td class="text-left">Tagihan BMU Berkah</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_berkah_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanBerkahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRTagihanBerkahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-106</td>
                                                     <td class="text-left">Tagihan BMU Syafuan</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_syafuan_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color: navy;  color:white;">
                                                     <td><strong>TOTAL LABA KOTOR</strong></td>
@@ -1222,42 +1216,35 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="text-left">Gaji Driver</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_gaji + $total_gaji_sl); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-513</td>
                                                     <td class="text-left">Uang Jalan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_uj + $total_uj_sl); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRUJ?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRUJ?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-514</td>
                                                     <td class="text-left">Ongkos Mobil</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om + $total_om_sl); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr>
-                                                <tr>
-                                                    <td>5-516</td>
-                                                    <td class="text-left">Biaya Sewa Mobil Luar</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRBS?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VROM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-595</td>
                                                     <td class="text-left">Perbaikan Kendaraan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($biaya_perbaikan_1 + $biaya_perbaikan_2); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <td class="text-left"><?= formatuang($jml_perbaikan); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-595</td>
                                                     <td class="text-left">Pembalian Sparepart</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jml_pembelian_sparepart); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color:    #F0F8FF; ">
                                                     <td><strong>Total Biaya Usaha</strong></td>
