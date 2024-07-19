@@ -39,7 +39,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $total_pengeluaran = $data2['total_pengeluaran'];
 
   $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_karet_sawit  FROM pengeluaran_keb_mesuji 
-  WHERE  tanggal = '$tanggal_awal' AND referensi = 'Karet dan Sawit' ");
+  WHERE  tanggal = '$tanggal_awal' AND referensi = 'Sawit' ");
   $data3 = mysqli_fetch_array($table3);
   $total_karet_sawit = $data3['total_karet_sawit'];
 
@@ -61,7 +61,7 @@ WHERE  tanggal = '$tanggal_awal' AND referensi = 'Umum' ");
   $total_pengeluaran = $data2['total_pengeluaran'];
 
   $table3 = mysqli_query($koneksi, "SELECT SUM(jumlah) AS total_karet_sawit  FROM pengeluaran_keb_mesuji 
-                                    WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Karet dan Sawit' ");
+                                    WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Sawit' ");
   $data3 = mysqli_fetch_array($table3);
   $total_karet_sawit = $data3['total_karet_sawit'];
 
