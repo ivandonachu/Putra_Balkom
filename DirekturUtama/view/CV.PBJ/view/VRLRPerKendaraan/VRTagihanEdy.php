@@ -25,27 +25,34 @@ if (isset($_GET['tanggal1'])) {
   $tanggal_akhir = $_GET['tanggal2'];
   $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal)));
   $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir)));
+  $no_polisi = $_GET['no_polisi'];
+  $no_polisi_ts = str_replace(" ", "", $no_polisi);
 } elseif (isset($_POST['tanggal1'])) {
   $tanggal_awal = $_POST['tanggal1'];
   $tanggal_akhir = $_POST['tanggal2'];
   $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal)));
   $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir)));
+  $no_polisi = $_POST['no_polisi'];
+  $no_polisi_ts = str_replace(" ", "", $no_polisi);
 } else {
   $tanggal_awal = date('Y-m-1');
   $tanggal_akhir = date('Y-m-31');
 
   $bulan_sebelum = date('Y-m-d', strtotime('-3 day', strtotime($tanggal_awal)));
   $bulan_sesudah =  date('Y-m-d', strtotime('+1 day', strtotime($tanggal_akhir)));
+
+  $no_polisi = $_POST['no_polisi'];
+  $no_polisi_ts = str_replace(" ", "", $no_polisi);
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbj, "SELECT * FROM penjualan_s WHERE tanggal_do = '$tanggal_akhir' ORDER BY no_penjualan ASC");
 } else {
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  AND no_polisi = '$no_polisi_ts'");
 
   //Untung angkutan / pranko
-  $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
+  $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND no_polisi = '$no_polisi_ts' ");
   $total_angkutan_edy = 0;
   $total_angkutan_edy_okut = 0;
   $total_angkutan_edy_okus = 0;
@@ -500,7 +507,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
             <div align="left">
-              <?php echo "<a href='../VLRKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+            <?php echo "<a href='../VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
             </div>
 
 

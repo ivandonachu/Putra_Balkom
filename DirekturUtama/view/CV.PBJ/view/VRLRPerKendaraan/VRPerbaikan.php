@@ -20,29 +20,26 @@ exit;
 }
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+  $no_polisi = $_GET['no_polisi'];
+  $no_polisi_ts = str_replace(" ", "", $no_polisi);
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $no_polisi = $_POST['no_polisi'];
+  $no_polisi_ts = str_replace(" ", "", $no_polisi);
+ }  
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Perbaikan Kendaraan' ");
-  $table2 = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Perbaikan Kendaraan' ");
-
-
+  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s WHERE tanggal = '$tanggal_awal' AND no_polisi = '$no_polisi' ");
 
 }
 else{
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
-  $table2 = mysqli_query($koneksipbj, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Perbaikan Kendaraan' ");
-
-
+  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
 
 }
 
@@ -59,7 +56,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Perbaikan Kendaraan</title>
+  <title>Rincian Perbaikan Sparepart Kendaraan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -212,7 +209,6 @@ else{
 </li>";
 } ?>
 
-   
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -310,7 +306,7 @@ Logout
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
   <div align="left">
-      <?php echo "<a href='../VLRKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+  <?php echo "<a href='../VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
 <div class="row">
   <div class="col-md-6">
@@ -319,20 +315,17 @@ Logout
 </div>
 
 
-<h3 align='center' >Perbaikan Kendaraan 1</h3>
 <!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center' >
-<table id="example1" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Pengeluaran</th>
+      <th>Nama Driver</th>
+      <th>No Polisi</th>
+      <th>Jumlah Perbaikan</th>
       <th>Total</th>
-      <th>file</th>
-
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
@@ -347,97 +340,39 @@ Logout
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-     $no_laporan = $data['no_transaksi'];
-     $tanggal =$data['tanggal'];
-     $nama_akun = $data['nama_akun'];
-     $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
-     $file_bukti = $data['file_bukti'];
+      $tanggal =$data['tanggal'];
+      $nama_driver =$data['nama_driver'];
+      $no_polisi =$data['no_polisi'];
+      $jumlah_bengkel = $data['jumlah_bengkel'];
+      $file_bukti = $data['file_bukti'];
+      $total = $total + $jumlah_bengkel;
+      $urut = $urut + 1;
 
-     $total = $total + $jumlah;
-     $urut = $urut + 1;
+      echo "<tr>
+      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$nama_driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bengkel); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>" href="/PT.CBM/Workshop/file_workshop/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+    
 
-
-     echo "<tr>
-     <td style='font-size: 14px'>$urut</td>
-     <td style='font-size: 14px'>$tanggal</td>
-     <td style='font-size: 14px'>$nama_akun</td>
-     <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     
-
-    <?php echo  " </tr>";
-  }
-
+<?php echo  " </tr>";
+}
 ?>
 
 </tbody>
 </table>
 </div>
 <br>
-<hr>
+<br>
 <br>
 
-<h3 align='center' >Perbaikan Kendaraan 2</h3>
-<!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center' >
-<table id="example1" class="table-sm table-striped table-bordered nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Tanggal</th>
-      <th>Akun</th>
-      <th>Keterangan</th>
-      <th>Pengeluaran</th>
-      <th>Total</th>
-      <th>file</th>
 
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $total = 0;
-    $urut = 0;
-
-    ?>
-
-    <?php while($data = mysqli_fetch_array($table2)){
-     $no_laporan = $data['no_transaksi'];
-     $tanggal =$data['tanggal'];
-     $nama_akun = $data['nama_akun'];
-     $jumlah = $data['jumlah'];
-     $keterangan = $data['keterangan'];
-     $file_bukti = $data['file_bukti'];
-
-     $total = $total + $jumlah;
-     $urut = $urut + 1;
-
-
-     echo "<tr>
-     <td style='font-size: 14px'>$urut</td>
-     <td style='font-size: 14px'>$tanggal</td>
-     <td style='font-size: 14px'>$nama_akun</td>
-     <td style='font-size: 14px'>$keterangan</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-     <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-     "; ?>
-     
-
-    <?php echo  " </tr>";
-  }
-
-?>
-
-</tbody>
-</table>
-<br>
 </div>
-</div>
-</div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -512,19 +447,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: ['excel']
-    } );
-
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
-
-<script>
-  $(document).ready(function() {
-    var table = $('#example1').DataTable( {
-      lengthChange: false,
-      buttons: ['excel']
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
     table.buttons().container()

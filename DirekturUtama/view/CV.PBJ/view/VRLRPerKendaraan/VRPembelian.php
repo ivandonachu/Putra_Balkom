@@ -20,23 +20,26 @@ exit;
 }
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+  $no_polisi = $_GET['no_polisi'];
+  $no_polisi_ts = str_replace(" ", "", $no_polisi);
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $no_polisi = $_POST['no_polisi'];
+  $no_polisi_ts = str_replace(" ", "", $no_polisi);
+ }  
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s WHERE tanggal = '$tanggal_awal' ");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s WHERE tanggal = '$tanggal_awal' AND no_polisi = '$no_polisi' ");
 
 }
 else{
 
-  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksipbj, "SELECT * FROM riwayat_pengeluaran_workshop_s  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi = '$no_polisi' ");
 
 }
 
@@ -303,7 +306,7 @@ Logout
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
   <div align="left">
-      <?php echo "<a href='../VLRKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+  <?php echo "<a href='../VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
 <div class="row">
   <div class="col-md-6">

@@ -172,8 +172,6 @@ exit;
                     </div>
                 </div>
             </li>
-            
-             <!-- Nav Item - Pages Collapse Menu -->
              <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                   15  aria-expanded="true" aria-controls="collapseOne">
@@ -190,7 +188,6 @@ exit;
                     </div>
                 </div>
             </li>
-                <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
                   15  aria-expanded="true" aria-controls="collapseTwo22">
@@ -209,7 +206,6 @@ exit;
                     </div>
                 </div>
             </li>
-             <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z"
                   15  aria-expanded="true" aria-controls="collapseTwo22z">
@@ -226,7 +222,6 @@ exit;
                     </div>
                 </div>
             </li>
-           <!-- Nav Item - Pages Collapse Menu -->
            <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz"
                   15  aria-expanded="true" aria-controls="collapseTwo1xz">
@@ -241,6 +236,43 @@ exit;
                         <a class="collapse-item" style="font-size: 15px;" href="VListKendaraan">List Kendaraan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VListAsetSeberuk">List Aset Seberuk</a>
 
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menumesuji1"
+                  15  aria-expanded="true" aria-controls="menumesuji1">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Laporan Mesuji</span>
+                </a>
+                <div id="menumesuji1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiM">Absensi Mesuji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKegiatanM">Laporan Kegiatan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLSawitM">Laporan Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaranM">Pengeluaran Mesuji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLMinyakM">Stok Minyak</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPupukM">Stok Pupuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriverM">Laporan Rit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLBatangM">Laporan Batang</a>
+                    </div>
+                </div>
+            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menumesuji2"
+                  15  aria-expanded="true" aria-controls="menumesuji2">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >SDM Mesuji</span>
+                </a>
+                <div id="menumesuji2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriverM">Driver Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMobilM">Mobil Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawanM">Karyawan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawanM">Karyawan Mesuji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListAsetMesujiM">List Aset Mesuji</a>
                     </div>
                 </div>
             </li>

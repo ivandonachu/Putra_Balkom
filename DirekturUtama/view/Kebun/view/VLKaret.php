@@ -108,30 +108,31 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
-                <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png"></div>
+                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png" ></div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item active" >
                 <a class="nav-link" href="DsKebun">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;">Dashboard</span></a>
-            </li>
+                    <span style="font-size: 16px;" >Dashboard</span></a>
+                </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                Menu Kebun
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">List Company</span>
+                 <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                     Menu Kebun
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                  <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >List Company</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -148,25 +149,26 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
                 </div>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoZZZ" 15 aria-expanded="true" aria-controls="collapseTwoZZZ">
-                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Report Laba Rugi</span>
-                </a>
-                <div id="collapseTwoZZZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Report Laba Rugi</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLRSeberuk">Laba Rugi Seberuk</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLRLengkiti">Laba Rugi Lengkiti</a>
+                <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoZZZ"
+                    15  aria-expanded="true" aria-controls="collapseTwoZZZ">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
+                        <span style="font-size: 15px; color:white;" >Report Laba Rugi</span>
+                    </a>
+                    <div id="collapseTwoZZZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header" style="font-size: 15px;">Report Laba Rugi</h6>
+                            <a class="collapse-item" style="font-size: 15px;" href="VLRSeberuk">Laba Rugi Seberuk</a>
+                            <a class="collapse-item" style="font-size: 15px;" href="VLRLengkiti">Laba Rugi Lengkiti</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Report Lengkiti</span>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                  <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Report Lengkiti</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -184,9 +186,10 @@ if ($tanggal_awal == $tanggal_akhir) {
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x" 15 aria-expanded="true" aria-controls="collapseTwo1x">
-                    <i class="fa fa-address-card" aria-hidden="true"></i>
-                    <span style="font-size: 15px; color:white;">SDM Lengkiti</span>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x"
+                15  aria-expanded="true" aria-controls="collapseTwo1x">
+                <i class="fa fa-address-card" aria-hidden="true"></i>
+                    <span style="font-size: 15px; color:white;" >SDM Lengkiti</span>
                 </a>
                 <div id="collapseTwo1x" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -198,12 +201,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
                 </div>
             </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" 15 aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Pendapatan Seberuk</span>
+             <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                  15  aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Pendapatan Seberuk</span>
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -215,11 +217,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22" 15 aria-expanded="true" aria-controls="collapseTwo22">
-                    <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Pengeluaran Seberuk</span>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
+                  15  aria-expanded="true" aria-controls="collapseTwo22">
+                    <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Pengeluaran Seberuk</span>
                 </a>
                 <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -233,27 +235,27 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z" 15 aria-expanded="true" aria-controls="collapseTwo22z">
-                    <i class="fas fa-users" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Absensi Seberuk</span>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z"
+                  15  aria-expanded="true" aria-controls="collapseTwo22z">
+                    <i class="fas fa-users" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Absensi Seberuk</span>
                 </a>
                 <div id="collapseTwo22z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Absensi</h6>
-
+                        
                         <a class="collapse-item" style="font-size: 15px;" href="VKegiatanHarian">Kegiatan Harian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsensiBuruh">Absensi Buruh</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VAbsenFoto">Absensi Foto</a>
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz" 15 aria-expanded="true" aria-controls="collapseTwo1xz">
-                    <i class="fas fa-car" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">SDM Seberuk</span>
+           <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz"
+                  15  aria-expanded="true" aria-controls="collapseTwo1xz">
+                    <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >SDM Seberuk</span>
                 </a>
                 <div id="collapseTwo1xz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -263,6 +265,43 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VListKendaraan">List Kendaraan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VListAsetSeberuk">List Aset Seberuk</a>
 
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menumesuji1"
+                  15  aria-expanded="true" aria-controls="menumesuji1">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Laporan Mesuji</span>
+                </a>
+                <div id="menumesuji1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiM">Absensi Mesuji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKegiatanM">Laporan Kegiatan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLSawitM">Laporan Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaranM">Pengeluaran Mesuji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLMinyakM">Stok Minyak</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPupukM">Stok Pupuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriverM">Laporan Rit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLBatangM">Laporan Batang</a>
+                    </div>
+                </div>
+            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menumesuji2"
+                  15  aria-expanded="true" aria-controls="menumesuji2">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >SDM Mesuji</span>
+                </a>
+                <div id="menumesuji2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriverM">Driver Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMobilM">Mobil Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawanM">Karyawan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawanM">Karyawan Mesuji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListAsetMesujiM">List Aset Mesuji</a>
                     </div>
                 </div>
             </li>

@@ -20,29 +20,33 @@ exit;
 }
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-
-if ($tanggal_awal == $tanggal_akhir) {
-
-  $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal' GROUP BY no_polisi "); 
-
-}
-else{
-
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+  $no_polisi = $_GET['no_polisi'];
+  $no_polisi_ts = str_replace(" ", "", $no_polisi);
+ } 
  
-   $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+  $no_polisi = $_POST['no_polisi'];
+  $no_polisi_ts = str_replace(" ", "", $no_polisi);
+ }  
+ 
+ if ($tanggal_awal == $tanggal_akhir) {
+ 
+   $table4 = mysqli_query($koneksipbj, "SELECT * FROM pengiriman_s  WHERE tanggal_antar = '$tanggal_awal' AND no_polisi = '$no_polisi_ts'  "); 
+   $table4x= mysqli_query($koneksipbj, "SELECT * FROM pengiriman_sl WHERE tanggal_antar = '$tanggal_awal' AND no_polisi = '$no_polisi_ts'  "); 
+ 
+ }
+ else{
+ 
+  
+    $table4 = mysqli_query($koneksipbj, "SELECT * FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi = '$no_polisi_ts'  "); 
+    $table4x= mysqli_query($koneksipbj, "SELECT * FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi = '$no_polisi_ts'  "); 
+ 
+ }
 
-   $table4x = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
-
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -303,43 +307,55 @@ Logout
 
 
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php echo "<a href='../VLRKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+  <?php echo "<a href='../VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
 
   <div class="col-md-8">
    <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
  </div>
 
 
+ <br>
+<hr>
+<br>
 
-<h5 align="center" >Ongkos Kendaraan Etty</h5>
+ <h3 align='center' >Ongkos Mobil Driver <?= $no_polisi; ?></h3>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th align="center">No Polisi</th>
-      <th align="center">Total Ongkos Kendaraan</th>
-      <th align="center">Total Ongkos Kendaraan</th>
+      <th align="center">No</th>
+      <th align="center">Tanggal</th>
+      <th align="center">Nama Driver</th>
+      <th align="center">Toko DO</th>
+      <th align="center">Ongkos Mobil Driver</th>
+      <th align="center">Total Ongkos Mobil Driver</th>
 
 
     </tr>
   </thead>
   <tbody>
   <?php
-    $total_om_etty = 0;
+    $total_om = 0;
+    $no_urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-
     ?>
     <?php while($data = mysqli_fetch_array($table4)){
-      $nama_driver = $data['no_polisi'];
-      $total_gaji =$data['total_gaji'];
-      $total_om_etty =  $total_om_etty + $total_gaji;
+      $tanggal = $data['tanggal_antar'];
+      $nama_driver = $data['driver'];
+      $toko_do = $data['toko_do'];
+      $om =$data['om'];
+      $total_om = $total_om + $om; 
+      $no_urut = $no_urut +1; 
       echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$no_urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
       <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om_etty); ?> <?php echo" </td>
+      <td style='font-size: 14px' align = 'center'>$toko_do</td>
+      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($om); ?> <?php echo" </td>
+      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om); ?> <?php echo" </td>
 
       </tr>";
 }
@@ -352,33 +368,41 @@ Logout
 <hr>
 <br>
 
-
-<h5 align="center" >Ongkos Kendaraan Kadek</h5>
+<h3 align='center' >Ongkos Mobil Driver <?= $no_polisi; ?></h3>
 <!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example3" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th align="center">No Polisi</th>
-      <th align="center">Ongkos Kendaraan</th>
-      <th align="center">Total Ongkos Kendaraan</th>
+    <th align="center">No</th>
+      <th align="center">Tanggal</th>
+      <th align="center">Nama Driver</th>
+      <th align="center">Toko DO</th>
+      <th align="center">Ongkos Mobil Driver</th>
+      <th align="center">Total Ongkos Mobil Driver</th>
 
 
     </tr>
   </thead>
   <tbody>
   <?php
-  $total_om_kadek = 0;
-
+    $total_om = 0;
+    $no_urut = 0;
 
     ?>
     <?php while($data = mysqli_fetch_array($table4x)){
-      $nama_driver = $data['no_polisi'];
-      $total_gaji =$data['total_gaji'];
-      $total_om_kadek = $total_om_kadek + $total_gaji;
+      $tanggal = $data['tanggal_antar'];
+      $nama_driver = $data['driver'];
+      $toko_do = $data['toko_do'];
+      $om =$data['om'];
+      $total_om = $total_om + $om; 
+      $no_urut = $no_urut +1; 
       echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$no_urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
       <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om_kadek); ?> <?php echo" </td>
+      <td style='font-size: 14px' align = 'center'>$toko_do</td>
+      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($om); ?> <?php echo" </td>
+      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om); ?> <?php echo" </td>
 
       </tr>";
 }
