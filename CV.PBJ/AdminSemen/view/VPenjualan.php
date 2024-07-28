@@ -28,8 +28,8 @@ if (isset($_GET['tanggal1'])) {
   $tanggal_awal = $_POST['tanggal1'];
   $tanggal_akhir = $_POST['tanggal2'];
 } else {
-  $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
+  $tanggal_awal = date('Y-m-d');
+  $tanggal_akhir = date('Y-m-d');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
