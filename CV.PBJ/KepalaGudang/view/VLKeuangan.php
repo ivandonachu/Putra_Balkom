@@ -28,7 +28,10 @@ if ($jabatan_valid == 'KG Mesuji') {
     $kode_gudang = 'KG Ruko M2';
 } else if ($jabatan_valid == 'KG Kuto Sari') {
     $kode_gudang = 'KG Kuto Sari';
-} else {
+}else if ($jabatan_valid == 'KG BK 11') {
+    $kode_gudang = 'KG BK 11';
+}
+ else {
     header("Location: logout.php");
     exit;
 }
