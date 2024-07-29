@@ -286,20 +286,20 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <label>No Blok 1</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_1" required="">
+                                                        <label>Blok</label>
+                                                        <input class="form-control form-control-sm" type="text" name="blok_a1">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Nama Penyadap 1</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_1" required="">
+                                                        <label>Jumlah Batang</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_a1">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang 1</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_1" required="">
+                                                        <label>Jumlah Batang Mati</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_a1">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 1</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_1" required="">
+                                                        <label>Hasil</label>
+                                                        <input class="form-control form-control-sm" type="text" name="hasil_a1">
                                                     </div>
                                                 </div>
 
@@ -307,20 +307,20 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <label>No Blok 2</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_2">
+                                                        <label>Blok</label>
+                                                        <input class="form-control form-control-sm" type="text" name="blok_a2">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Nama Penyadap 2</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_2">
+                                                        <label>Jumlah Batang</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_a2">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang 2</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_2">
+                                                        <label>Jumlah Batang Mati</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_a2">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 2</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_2">
+                                                        <label>Hasil</label>
+                                                        <input class="form-control form-control-sm" type="text" name="hasil_a2">
                                                     </div>
                                                 </div>
 
@@ -328,20 +328,20 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <label>No Blok 3</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_3">
+                                                        <label>Blok</label>
+                                                        <input class="form-control form-control-sm" type="text" name="blok_a3">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Nama Penyadap 3</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_3">
+                                                        <label>Jumlah Batang</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_a3">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang 3</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_3">
+                                                        <label>Jumlah Batang Mati</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_a3">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 3</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_3">
+                                                        <label>Hasil</label>
+                                                        <input class="form-control form-control-sm" type="text" name="hasil_a3">
                                                     </div>
                                                 </div>
 
@@ -349,20 +349,20 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <label>No Blok 4</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_4">
+                                                        <label>Blok</label>
+                                                        <input class="form-control form-control-sm" type="text" name="blok_a4">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Nama Penyadap 4</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_4">
+                                                        <label>Jumlah Batang</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_a4">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang 4</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_4">
+                                                        <label>Jumlah Batang Mati</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_a4">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 4</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_4">
+                                                        <label>Hasil</label>
+                                                        <input class="form-control form-control-sm" type="text" name="hasil_a4">
                                                     </div>
                                                 </div>
 
@@ -370,20 +370,20 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <label>No Blok 5</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_5">
+                                                        <label>Blok</label>
+                                                        <input class="form-control form-control-sm" type="text" name="blok_a5">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Nama Penyadap 5</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_5">
+                                                        <label>Jumlah Batang</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_a5">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang 5</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_5">
+                                                        <label>Jumlah Batang Mati</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_a5">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 5</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_5">
+                                                        <label>Hasil</label>
+                                                        <input class="form-control form-control-sm" type="text" name="hasil_a5">
                                                     </div>
                                                 </div>
 
@@ -391,20 +391,20 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <label>No Blok 6</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_6">
+                                                        <label>Blok</label>
+                                                        <input class="form-control form-control-sm" type="text" name="blok_a6">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Nama Penyadap 6</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_6">
+                                                        <label>Jumlah Batang</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_a6">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang 6</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_6">
+                                                        <label>Jumlah Batang Mati</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_a6" >
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 6</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_6">
+                                                        <label>Hasil</label>
+                                                        <input class="form-control form-control-sm" type="text" name="hasil_a6" >
                                                     </div>
                                                 </div>
 
@@ -412,86 +412,24 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <label>No Blok 7</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_7">
+                                                        <label>Blok</label>
+                                                        <input class="form-control form-control-sm" type="text" name="blok_a6">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Nama Penyadap 7</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_7">
+                                                        <label>Jumlah Batang</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_a6" >
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang 7</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_7">
+                                                        <label>Jumlah Batang Mati</label>
+                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_a7" >
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 7</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_7">
+                                                        <label>Hasil</label>
+                                                        <input class="form-control form-control-sm" type="text" name="hasil_a7" >
                                                     </div>
                                                 </div>
 
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <label>No Blok 8</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_8">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Nama Penyadap 8</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_8">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Jumlah Batang 8</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_8">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 8</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_8">
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <label>No Blok 9</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_9">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Nama Penyadap 9</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_9">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Jumlah Batang 9</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_9">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 9</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_9">
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <label>No Blok 10</label>
-                                                        <input class="form-control form-control-sm" type="text" name="no_blok_10">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Nama Penyadap 10</label>
-                                                        <input class="form-control form-control-sm" type="text" name="nama_penyadap_10">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Jumlah Batang 10</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_10">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Jumlah Batang Mati 10</label>
-                                                        <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati_10">
-                                                    </div>
-                                                </div>
-
+                                                
 
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-primary"> CATAT</button>
@@ -513,10 +451,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <tr>
                                     <th>No</th>
                                     <th>Tanggal</th>
-                                    <th>No Blok</th>
-                                    <th>Nama Penyadap</th>
+                                    <th>Blok</th>
                                     <th>Jumlah Batang</th>
                                     <th>Jumlah Batang Mati</th>
+                                    <th>Hasil</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -535,22 +473,22 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <?php while ($data = mysqli_fetch_array($table)) {
                                     $no_laporan = $data['no_laporan'];
                                     $tanggal = $data['tanggal'];
-                                    $no_blok = $data['no_blok'];
-                                    $nama_penyadap = $data['nama_penyadap'];
+                                    $blok = $data['blok'];
                                     $jumlah_batang = $data['jumlah_batang'];
                                     $jumlah_batang_mati = $data['jumlah_batang_mati'];
+                                    $hasil = $data['hasil'];
                                     $urut = $urut + 1;
 
                                     $total_seluruh_batang = $jumlah_batang + $total_seluruh_batang;
                                     $total_seluruh_batang_mati = $total_seluruh_batang_mati +  $jumlah_batang_mati;
                                     echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$urut</td>
-      <td style='font-size: 14px' align = 'center'>$tanggal</td>
-      <td style='font-size: 14px' align = 'center'>$no_blok</td>
-      <td style='font-size: 14px' align = 'center'>$nama_penyadap</td>
-      <td style='font-size: 14px' align = 'center'>$jumlah_batang</td>
-      <td style='font-size: 14px' align = 'center'>$jumlah_batang_mati</td>
-      "; ?>
+                                    <td style='font-size: 14px' align = 'center'>$urut</td>
+                                    <td style='font-size: 14px' align = 'center'>$tanggal</td>
+                                    <td style='font-size: 14px' align = 'center'>$blok</td>
+                                    <td style='font-size: 14px' align = 'center'>$jumlah_batang</td>
+                                    <td style='font-size: 14px' align = 'center'>$jumlah_batang_mati</td>
+                                    <td style='font-size: 14px' align = 'center'>$hasil</td>
+                                    "; ?>
                                     <?php echo "<td style='font-size: 12px'>"; ?>
 
 
@@ -587,12 +525,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <label>No Blok</label>
-                                                                <input class="form-control form-control-sm" type="text" name="no_blok" value="<?php echo $no_blok; ?>" required="">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label>Nama Penyadap</label>
-                                                                <input class="form-control form-control-sm" type="text" name="nama_penyadap" value="<?php echo $nama_penyadap; ?>" required="">
+                                                                <label>Blok</label>
+                                                                <input class="form-control form-control-sm" type="text" name="blok" value="<?php echo $blok; ?>" required="">
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <label>Jumlah Batang</label>
@@ -601,6 +535,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                             <div class="col-md-4">
                                                                 <label>Jumlah Batang Mati</label>
                                                                 <input class="form-control form-control-sm" type="text" name="jumlah_batang_mati" value="<?php echo $jumlah_batang_mati; ?>" required="">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>Hasil</label>
+                                                                <input class="form-control form-control-sm" type="text" name="hasil" value="<?php echo $hasil; ?>" required="">
                                                             </div>
                                                         </div>
 

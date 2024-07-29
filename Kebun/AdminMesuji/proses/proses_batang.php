@@ -24,96 +24,68 @@ $tanggal_akhir = $_GET['tanggal2'];
 
 $tanggal = $_POST['tanggal'];
 
-$no_blok_1 = $_POST['no_blok_1'];
-$nama_penyadap_1 = $_POST['nama_penyadap_1'];
-$jumlah_batang_1 = $_POST['jumlah_batang_1'];
-$jumlah_batang_mati_1 = $_POST['jumlah_batang_mati_1'];
+$blok_a1 = $_POST['blok_a1'];
+$jumlah_batang_a1 = $_POST['jumlah_batang_a1'];
+$jumlah_batang_mati_a1 = $_POST['jumlah_batang_mati_a1'];
+$hasil_a1 = $_POST['hasil_a1'];
 
-$no_blok_2 = $_POST['no_blok_2'];
-$nama_penyadap_2 = $_POST['nama_penyadap_2'];
-$jumlah_batang_2 = $_POST['jumlah_batang_2'];
-$jumlah_batang_mati_2 = $_POST['jumlah_batang_mati_2'];
+$blok_a2 = $_POST['blok_a2'];
+$jumlah_batang_a2 = $_POST['jumlah_batang_a2'];
+$jumlah_batang_mati_a2 = $_POST['jumlah_batang_mati_a2'];
+$hasil_a2 = $_POST['hasil_a2'];
 
-$no_blok_3 = $_POST['no_blok_3'];
-$nama_penyadap_3 = $_POST['nama_penyadap_3'];
-$jumlah_batang_3 = $_POST['jumlah_batang_3'];
-$jumlah_batang_mati_3 = $_POST['jumlah_batang_mati_3'];
+$blok_a3 = $_POST['blok_a3'];
+$jumlah_batang_a3 = $_POST['jumlah_batang_a3'];
+$jumlah_batang_mati_a3 = $_POST['jumlah_batang_mati_a3'];
+$hasil_a3 = $_POST['hasil_a3'];
 
-$no_blok_4 = $_POST['no_blok_4'];
-$nama_penyadap_4 = $_POST['nama_penyadap_4'];
-$jumlah_batang_4 = $_POST['jumlah_batang_4'];
-$jumlah_batang_mati_4 = $_POST['jumlah_batang_mati_4'];
+$blok_a4 = $_POST['blok_a4'];
+$jumlah_batang_a4 = $_POST['jumlah_batang_a4'];
+$jumlah_batang_mati_a4 = $_POST['jumlah_batang_mati_a4'];
+$hasil_a4 = $_POST['hasil_a4'];
 
-$no_blok_5 = $_POST['no_blok_5'];
-$nama_penyadap_5 = $_POST['nama_penyadap_5'];
-$jumlah_batang_5 = $_POST['jumlah_batang_5'];
-$jumlah_batang_mati_5 = $_POST['jumlah_batang_mati_5'];
+$blok_a5 = $_POST['blok_a5'];
+$jumlah_batang_a5 = $_POST['jumlah_batang_a5'];
+$jumlah_batang_mati_a5 = $_POST['jumlah_batang_mati_a5'];
+$hasil_a5 = $_POST['hasil_a5'];
 
-$no_blok_6 = $_POST['no_blok_6'];
-$nama_penyadap_6 = $_POST['nama_penyadap_6'];
-$jumlah_batang_6= $_POST['jumlah_batang_6'];
-$jumlah_batang_mati_6 = $_POST['jumlah_batang_mati_6'];
+$blok_a6 = $_POST['blok_a6'];
+$jumlah_batang_a6 = $_POST['jumlah_batang_a6'];
+$jumlah_batang_mati_a6 = $_POST['jumlah_batang_mati_a6'];
+$hasil_a6 = $_POST['hasil_a6'];
 
-$no_blok_7 = $_POST['no_blok_7'];
-$nama_penyadap_7 = $_POST['nama_penyadap_7'];
-$jumlah_batang_7 = $_POST['jumlah_batang_7'];
-$jumlah_batang_mati_7 = $_POST['jumlah_batang_mati_7'];
+$blok_a7 = $_POST['blok_a7'];
+$jumlah_batang_a7 = $_POST['jumlah_batang_a7'];
+$jumlah_batang_mati_a7 = $_POST['jumlah_batang_mati_a7'];
+$hasil_a7 = $_POST['hasil_a7'];
 
-$no_blok_8 = $_POST['no_blok_8'];
-$nama_penyadap_8 = $_POST['nama_penyadap_8'];
-$jumlah_batang_8 = $_POST['jumlah_batang_8'];
-$jumlah_batang_mati_8 = $_POST['jumlah_batang_mati_8'];
-
-$no_blok_9 = $_POST['no_blok_9'];
-$nama_penyadap_9 = $_POST['nama_penyadap_9'];
-$jumlah_batang_9 = $_POST['jumlah_batang_9'];
-$jumlah_batang_mati_9 = $_POST['jumlah_batang_mati_9'];
-
-$no_blok_10 = $_POST['no_blok_10'];
-$nama_penyadap_10 = $_POST['nama_penyadap_10'];
-$jumlah_batang_10 = $_POST['jumlah_batang_10'];
-$jumlah_batang_mati_10 = $_POST['jumlah_batang_mati_10'];
-
-if($no_blok_1 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_1','$nama_penyadap_1','$jumlah_batang_1','$jumlah_batang_mati_1')");
+if($blok_a1 != ''){
+    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$blok_a1','$jumlah_batang_a1','$jumlah_batang_mati_a1','$hasil_a1')");
 }
 
-if($no_blok_2 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_2','$nama_penyadap_2','$jumlah_batang_2','$jumlah_batang_mati_2')");
+if($blok_a2 != ''){
+    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$blok_a2','$jumlah_batang_a2','$jumlah_batang_mati_a2','$hasil_a2')");
 }
 
-if($no_blok_3 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_3','$nama_penyadap_3','$jumlah_batang_3','$jumlah_batang_mati_3')");
+if($blok_a3 != ''){
+    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$blok_a3','$jumlah_batang_a3','$jumlah_batang_mati_a3','$hasil_a3')");
 }
 
-if($no_blok_4 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_4','$nama_penyadap_4','$jumlah_batang_4','$jumlah_batang_mati_4')");
+if($blok_a4 != ''){
+    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$blok_a4','$jumlah_batang_a4','$jumlah_batang_mati_a4','$hasil_a4')");
 }
 
-if($no_blok_5 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_5','$nama_penyadap_5','$jumlah_batang_5','$jumlah_batang_mati_5')");
+if($blok_a5 != ''){
+    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$blok_a5','$jumlah_batang_a5','$jumlah_batang_mati_a5','$hasil_a5')");
 }
 
-if($no_blok_6 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_6','$nama_penyadap_6','$jumlah_batang_6','$jumlah_batang_mati_6')");
+if($blok_a6 != ''){
+    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$blok_a6','$jumlah_batang_a6','$jumlah_batang_mati_a6','$hasil_a6')");
 }
 
-if($no_blok_7 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_7','$nama_penyadap_7','$jumlah_batang_7','$jumlah_batang_mati_7')");
+if($blok_a7 != ''){
+    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$blok_a7','$jumlah_batang_a7','$jumlah_batang_mati_a7','$hasil_a7')");
 }
-
-if($no_blok_8 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_8','$nama_penyadap_8','$jumlah_batang_8','$jumlah_batang_mati_8')");
-}
-
-if($no_blok_9 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_9','$nama_penyadap_9','$jumlah_batang_9','$jumlah_batang_mati_9')");
-}
-
-if($no_blok_10 != ''){
-    $query = mysqli_query($koneksi,"INSERT INTO laporan_batang_msj  VALUES('','$tanggal','$no_blok_10','$nama_penyadap_10','$jumlah_batang_10','$jumlah_batang_mati_1')");
-}
-
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VLBatang?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 
