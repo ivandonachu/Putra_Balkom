@@ -615,7 +615,7 @@ if (isset($_GET['tanggal1'])) {
            <div class="row">
             <div class="col-md-4">
                <label>Uang Makan</label>
-               <input class="form-control form-control-sm" type="number" name="uang_makan" required="" value="<?php echo $bpjs_ketenagakerjaan;?>">
+               <input class="form-control form-control-sm" type="number" name="uang_makan" required="" value="<?php echo $uang_makan;?>">
              </div>
              <div class="col-md-4">
                <label>Angsuran Bon Bulanan</label>
