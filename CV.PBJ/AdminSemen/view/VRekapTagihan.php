@@ -108,10 +108,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $pemilik = '';
                 $kontrak = '';
             }
-            if($kontrak == 'BMU'){
+ 
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
-            
             if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
@@ -175,7 +175,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
 
@@ -241,10 +242,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
-
             if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
@@ -307,7 +307,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
 
@@ -407,7 +407,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+   
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
 
@@ -506,7 +507,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
 
@@ -566,7 +567,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
 
@@ -632,7 +633,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
 
@@ -698,7 +699,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
 
