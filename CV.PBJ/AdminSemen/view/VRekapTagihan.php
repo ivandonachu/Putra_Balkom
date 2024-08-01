@@ -798,7 +798,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
             }
 
@@ -825,7 +825,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     $total_pendapatan_rli = $total_angkutan_edy_rli;
-    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_map_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu;
+    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu;
 }
 
 ?>
