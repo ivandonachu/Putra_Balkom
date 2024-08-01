@@ -97,8 +97,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
+                $total_angkutan_okut = $total_angkutan_okut + $total_angkut_bmu;
             }
 
         } else if ($kota == 'Kab Mesuji' || $kota == 'KAB MESUJI') {
@@ -141,10 +142,12 @@ if ($tanggal_awal == $tanggal_akhir) {
             }
 
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
+                $total_angkutan_mesuji = $total_angkutan_mesuji + $total_angkut_bmu;
             }
 
+            
         } else if ($kota == 'Kab Tlg Bwg' || $kota == 'KAB. TULANG BAWANG') {
             //BMU 10ton
             if ($qty >= 200 && $qty <= 300) {
@@ -185,8 +188,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
+                $total_angkutan_tlg_bwg = $total_angkutan_tlg_bwg + $total_angkut_bmu;
             }
 
         } else if ($kota == 'KAB WAY KANAN') {
@@ -228,8 +232,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if($kontrak == 'BMU'){
+            if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                 $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
+                $total_angkutan_way_kanan = $total_angkutan_way_kanan + $total_angkut_bmu;
             }
 
         } else if ($kota == 'Kab OKU Selatan' || $kota == 'KAB OKU SELATAN' || $kota == 'Kab Ogn Kmrg Ulu Sel') {
@@ -308,14 +313,15 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $tujuan == 'TB MANDIRI JAYA' || $tujuan == 'ANEKA JAYA' || $tujuan == 'ANEKA BAUT' || $tujuan == 'SUMBER ANUGRAH' || $tujuan == 'RIZKY' || $tujuan == 'PUTRA LIWA'
             ) {
 
-                if($kontrak == 'BMU'){
+                if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                     $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
+                    $total_angkutan_md_kota = $total_angkutan_md_kota + $total_angkut_bmu;
                 }
     
             } else {
 
-                if($kontrak == 'BMU'){
-                    $total_angkutan_global_bmu = $total_angkutan_global_bmu + $total_angkut_bmu;
+                if($kontrak == 'BMU' && $pemilik != 'MAP' ){
+                    $total_angkutan_okus = $total_angkutan_okus + $total_angkut_bmu;
                 }
     
             }
@@ -782,7 +788,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         }
 
 
-                                        if ($kontrak == 'BMU') {
+                                        if($kontrak == 'BMU' && $pemilik != 'MAP' ){
                                             $jumlah = $qty * $tarifx;
                                             $total = $total + $jumlah;
 
@@ -833,7 +839,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan OKU Timur</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_eki_okut) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_okut) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -849,7 +855,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan OKU Selatan</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_eki_okus) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_okus) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -865,7 +871,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Muara Dua Kota</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_eki_md_kota) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_md_kota) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -888,7 +894,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Tulang Bawang</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_eki_tlg_bwg) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_tlg_bwg) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -904,7 +910,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Way Kanan</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_eki_way_kanan) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_way_kanan) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -920,7 +926,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Mesuji</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_eki_mesuji) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_mesuji) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -941,7 +947,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan BMU Global</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_eki_bangunan) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_global_bmu) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
