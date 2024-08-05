@@ -318,6 +318,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option>KG Simpang Sender</option>
                                     <option>KG Ruko M2</option>
                                     <option>KG Kuto Sari</option>
+                                    <option>KG BK 11</option>
                                 </select>
                                 <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
                             </div>
