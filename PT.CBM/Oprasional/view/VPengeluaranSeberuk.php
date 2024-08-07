@@ -318,6 +318,7 @@ Menu Kepala Oprasional
                         <option>Biaya Konsumsi</option>
                         <option>Pengeluaran Lainnya</option>
                         <option>Listrik & Telepon</option>
+                        <option>Uang Jalan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -482,6 +483,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
                         <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
+                        <option <?php echo ($dataSelect == 'Uang Jalan') ? "selected": "" ?> >Uang Jalan</option> 
                     </select>
             </div>
             <div class="col-md-6">
