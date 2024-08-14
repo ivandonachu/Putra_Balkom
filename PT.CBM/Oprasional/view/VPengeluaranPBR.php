@@ -42,7 +42,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal'");
   $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
   $table3 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' AND referensi = 'PBR' GROUP BY nama_akun");
-  $table4 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Kota Batu GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksipbr, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM pengeluaran_pbr  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Kota Batu' GROUP BY nama_akun");
 
 
 }
