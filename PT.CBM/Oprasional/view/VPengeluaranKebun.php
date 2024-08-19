@@ -273,8 +273,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                           <div class="col-md-6">
                             <label>REF</label>
                             <select class="form-control form-control-sm" name="referensi" class="form-control">
-                              <option>Kebun</option>
                               <option>Kebun Lengkiti</option>
+                              <option>Kebun Mesuji</option>
                             </select>
                           </div>
                         </div>
@@ -437,7 +437,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <label>REF</label>
                                     <select class="form-control form-control-sm" name="referensi" class="form-control">
                                       <?php $dataSelect = $data['referensi']; ?>
-                                      <option <?php echo ($dataSelect == 'Kebun') ? "selected" : "" ?>>Kebun</option>
+                                      <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected" : "" ?>>Kebun Lengkiti</option>
+                                      <option <?php echo ($dataSelect == 'Kebun Mesuji') ? "selected" : "" ?>>Kebun Mesuji</option>
                                     </select>
                                   </div>
                                 </div>
