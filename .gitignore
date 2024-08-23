@@ -123,6 +123,18 @@
 /PT.BALSRI/Manager/view/VRincianLRBTA/koneksi.php
 /PT.BALSRI/Manager/view/VRincianLRPs/koneksi.php
 /PT.BALSRI/Pengawas/view/koneksi.php
+/PT.BALSRI/Keuangan/proses/koneksi.php
+/PT.BALSRI/Keuangan/view/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverBK/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverBKU/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverBL/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverBTA/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverLMG/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverPA/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverPL/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverPLG/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverTG/koneksi.php
+/PT.BALSRI/Keuangan/view/VRDriverUB/koneksi.php
 
 
 /PT.CBM/Administrasi/file_administrasi
