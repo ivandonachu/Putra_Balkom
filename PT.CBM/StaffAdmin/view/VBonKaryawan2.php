@@ -334,7 +334,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="nama" name="nama" class="form-control">
                               <?php
                               include 'koneksi.php';
-                              $result = mysqli_query($koneksi, "SELECT * FROM karyawan");
+                              $result = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
 
                               while ($data2 = mysqli_fetch_array($result)) {
                                 $data_pangakalan = $data2['nama_karyawan'];
