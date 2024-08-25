@@ -73,7 +73,7 @@ if ($pembayaran == 'Cash') {
 	$query = mysqli_query($koneksi,"INSERT INTO bon_karyawan VALUES ('','$tanggal',0000-00-00,'$kode_akun','$id_karyawan','$nama_karyawan','$jumlah',0,'$status_bon','$keterangan','$file')");
 
 	if ($query != "") {
-				//echo "<script> window.location='../view/VBonKaryawan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+				echo "<script> window.location='../view/VBonKaryawan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
 }
 elseif ($pembayaran == 'Transfer') {
