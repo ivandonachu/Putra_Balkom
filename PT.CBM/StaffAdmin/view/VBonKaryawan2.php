@@ -33,9 +33,9 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan WHERE tanggal = '$tanggal_awal'");
 } else {
-  $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan a INNER JOIN karyawan b ON a.id_karyawan = b.id_karyawan INNER JOIN kode_akun c ON c.kode_akun = a.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 }
 
 
@@ -428,7 +428,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <th>No</th>
                   <th>Tanggal</th>
                   <th>Tanggal Bayar</th>
-                  <th>Akun</th>
                   <th>Nama Karyawan</th>
                   <th>Jumlah Bon</th>
                   <th>Jumlah Bayar</th>
@@ -453,7 +452,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                   $tanggal = $data['tanggal'];
                   $tanggal_bayar = $data['tanggal_bayar'];
                   $jumlah_bayar = $data['jumlah_bayar'];
-                  $nama_akun = $data['nama_akun'];
                   $nama_karyawan = $data['nama_karyawan'];
                   $keterangan = $data['keterangan'];
                   $jumlah_bon = $data['jumlah_bon'];
@@ -463,7 +461,6 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$no_bon </td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$tanggal_bayar</td>
-      <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$nama_karyawan</td>
       <td style='font-size: 14px'>" ?> <?= formatuang($jumlah_bon); ?> <?php echo "</td>
       <td style='font-size: 14px'>" ?> <?= formatuang($jumlah_bayar); ?> <?php echo "</td>
