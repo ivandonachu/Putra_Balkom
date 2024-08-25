@@ -330,17 +330,17 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <div class="row">
 
                           <div class="col-md-6">
-                            <label>Nama</label>
-                            <select id="nama" name="nama" class="form-control">
+                          <label>Nama</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama" multiple data-live-search="true">
                               <?php
                               include 'koneksi.php';
-                              $result = mysqli_query($koneksi, "SELECT * FROM karyawan");
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan perusahaan = 'CBM'");
 
-                              while ($data2 = mysqli_fetch_array($result)) {
-                                $data_pangakalan = $data2['nama_karyawan'];
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $nama_karyawan = $data2['nama_karyawan'];
 
 
-                                echo "<option> $data_pangakalan </option> ";
+                                echo "<option> $nama_karyawan </option> ";
                               }
                               ?>
                             </select>
