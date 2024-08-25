@@ -45,13 +45,13 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 <head>
 
-  <meta charset="utf-8">
+<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Bon Bulanan Karyawan</title>
+  <title>Bon Pribadi Karyawan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -65,8 +65,12 @@ if ($tanggal_awal == $tanggal_akhir) {
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
+
 
   <!-- Link datepicker -->
+
 
 </head>
 
@@ -334,7 +338,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama" multiple data-live-search="true">
                               <?php
                               include 'koneksi.php';
-                              $result2 = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan perusahaan = 'CBM'");
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan ");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
                                 $nama_karyawan = $data2['nama_karyawan'];
@@ -614,9 +618,9 @@ if ($tanggal_awal == $tanggal_akhir) {
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
-  <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
   <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -624,7 +628,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
   <!-- Custom scripts for all pages-->
   <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-
+  <script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
   <!-- Tabel -->
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -640,18 +644,65 @@ if ($tanggal_awal == $tanggal_akhir) {
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      var table = $('#example').DataTable({
-        lengthChange: false,
-        buttons: ['copy', 'excel', 'csv', 'pdf', 'colvis']
-      });
+<script>
+  $(document).ready(function() {
+    var table = $('#example').DataTable( {
+      lengthChange: false,
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+    } );
 
-      table.buttons().container()
-        .appendTo('#example_wrapper .col-md-6:eq(0)');
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example3').DataTable( {
+      lengthChange: false,
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+    function createOptions(number) {
+      var options = [],
+        _options;
+
+      for (var i = 0; i < number; i++) {
+        var option = '<option value="' + i + '">Option ' + i + '</option>';
+        options.push(option);
+      }
+
+      _options = options.join('');
+
+      $('#number')[0].innerHTML = _options;
+      $('#number-multiple')[0].innerHTML = _options;
+
+      $('#number2')[0].innerHTML = _options;
+      $('#number2-multiple')[0].innerHTML = _options;
+    }
+
+    var mySelect = $('#first-disabled2');
+
+    createOptions(4000);
+
+    $('#special').on('click', function() {
+      mySelect.find('option:selected').prop('disabled', true);
+      mySelect.selectpicker('refresh');
+    });
+
+    $('#special2').on('click', function() {
+      mySelect.find('option:disabled').prop('disabled', false);
+      mySelect.selectpicker('refresh');
+    });
+
+    $('#basic2').selectpicker({
+      liveSearch: true,
+      maxOptions: 1
     });
   </script>
-
 </body>
 
 </html>
