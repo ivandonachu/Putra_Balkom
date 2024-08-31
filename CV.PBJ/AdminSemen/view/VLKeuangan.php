@@ -480,6 +480,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected" : "" ?>>Listrik & Telepon</option>
                                     <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected" : "" ?>>Alat Tulis Kantor</option>
                                     <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected" : "" ?>>Perbaikan Kendaraan</option>
+                                    <option <?php echo ($dataSelect == 'Pembelian Sparepart') ? "selected" : "" ?>>Pembelian Sparepart</option>
                                     <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected" : "" ?>>Gaji Karyawan</option>
                                     <option <?php echo ($dataSelect == 'Kembalikan Deposit') ? "selected" : "" ?>>Kembalikan Deposit</option>
                                     <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected" : "" ?>>Pengeluaran Lainnya</option>

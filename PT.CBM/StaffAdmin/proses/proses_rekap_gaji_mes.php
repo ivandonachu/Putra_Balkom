@@ -31,6 +31,7 @@ while($data2 = mysqli_fetch_array($table)){
     $gaji_pokok = $data2['gaji_pokok'];
     $tunjangan_jabatan = $data2['tunjangan_jabatan'];
     $tunjangan_operasional = $data2['tunjangan_operasional'];
+    $tunjangan_akomodasi = $data2['tunjangan_akomodasi'];
     $bpjs_kesehatan = $data2['bpjs_kesehatan'];
     $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
     $uang_makan_bulan = $data2['uang_makan_bulan'];
@@ -49,16 +50,16 @@ while($data2 = mysqli_fetch_array($table)){
     $bonus = $data2['bonus'];
     $insentif = $data2['insentif'];
     if($nama_karyawan == 'Septian Andriansyah' ){
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
-        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus +$insentif ;
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $tunjangan_akomodasi + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
+        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $tunjangan_akomodasi + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus +$insentif ;
     }
     else{
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_ketenagakerjaan;
-        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif;
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $tunjangan_akomodasi + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_ketenagakerjaan;
+        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $tunjangan_akomodasi + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif;
     }
     $keterangan = $data2['keterangan'];
 
-$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_mes VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_operasional','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$uang_makan_bulan','$fee_kehadiran','$lembur'
+$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_mes VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_operasional','$tunjangan_akomodasi','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$uang_makan_bulan','$fee_kehadiran','$lembur'
                                                                     ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$insentif','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 }
