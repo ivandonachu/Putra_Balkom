@@ -140,12 +140,10 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanPA">Tagihan Padalarang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanPL">Tagihan Plumpang</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTagihanUB">Tagihan Ujung Berung</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTagihanBA">Tagihan Balongan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifTG">Master Tarif TG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPA">Master Tarif PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifPL">Master Tarif PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifUB">Master Tarif UB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMasterTarifBA">Master Tarif BA</a>
         </div>
     </div>
 </li>
@@ -163,22 +161,18 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPA">Pengiriman PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanPL">Pengiriman PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengirimanUB">Pengiriman UB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanBA">Pengiriman BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseTG">Ritase TG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitasePA">Ritase PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitasePL">Ritase PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitaseUB">Ritase UB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitaseBA">Ritase BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhTG">Jarak Tempuh TG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPA">Jarak Tempuh PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhPL">Jarak Tempuh PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhUB">Jarak Tempuh UB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VJarakTempuhBA">Jarak Tempuh BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiTG">Gaji TG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiPA">Gaji PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiPL">Gaji PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiUB">Gaji UB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VGajiBA">Gaji BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
         </div>
     </div>
@@ -197,12 +191,10 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPA">Catat Perbaikan PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanPL">Catat Perbaikan PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanUB">Catat Perbaikan UB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VCatatPerbaikanBA">Catat Perbaikan BA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulTG">Pengeluaran Pul TG</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPA">Pengeluaran Pul PA</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulPL">Pengeluaran Pul PL</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulUB">Pengeluaran Pul UB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPulBA">Pengeluaran Pul BA</a>
         </div>
     </div>
 </li>
@@ -222,7 +214,6 @@ else{
         </div>
     </div>
 </li>
-
 
 
 <!-- Divider -->
