@@ -31,6 +31,10 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
+else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+}
 if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_pul_bk WHERE tanggal = '$tanggal_awal'");
 }

@@ -34,6 +34,10 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
+else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+}
 
 $nama_driver = $_GET['nama_driver'];
 
