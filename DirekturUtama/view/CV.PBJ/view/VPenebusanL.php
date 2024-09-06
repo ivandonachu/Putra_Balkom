@@ -484,11 +484,6 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             <br>
             <br>
-            <div class="row">
-              <div class="col-md-6">
-                <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-              </div>
-            </div>
 
 
 
@@ -554,7 +549,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                     echo "<tr>
-      <td style='font-size: 14px'>$no_urut</td
+      <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$no_do</td>
       <td style='font-size: 14px'>$no_so</td>
