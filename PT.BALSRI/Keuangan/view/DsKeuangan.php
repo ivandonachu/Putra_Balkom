@@ -85,7 +85,7 @@ $nama = $data['nama_karyawan'];
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdministrasi">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKeuangan">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -97,7 +97,7 @@ $nama = $data['nama_karyawan'];
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active" >
-                <a class="nav-link" href="DsAdministrasi">
+                <a class="nav-link" href="DsKeuangan">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;" >Dashboard</span></a>
                 </li>
