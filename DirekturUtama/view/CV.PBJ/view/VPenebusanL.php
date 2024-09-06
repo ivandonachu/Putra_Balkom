@@ -2,23 +2,21 @@
 session_start();
 include 'koneksi.php';
 if (!isset($_SESSION["login"])) {
-  header("Location: logout.php");
-  exit;
+    header("Location: logout.php");
+    exit;
 }
 $id = $_COOKIE['id_cookie'];
-$result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
+$result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
-$id1 = $data1['id_karyawan'];
+$nama = $data1['nama_pemilik'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
-if ($jabatan_valid == 'Admin Semen') {
+if ($jabatan_valid == 'Direktur Utama') {
 } else {
-  header("Location: logout.php");
-  exit;
+    header("Location: logout.php");
+    exit;
 }
-$result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
-$data = mysqli_fetch_array($result);
-$nama = $data['nama_karyawan'];
+
 
 
 if (isset($_GET['tanggal1'])) {
