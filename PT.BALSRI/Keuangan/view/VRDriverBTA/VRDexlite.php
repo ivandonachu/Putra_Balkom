@@ -135,6 +135,27 @@ else{
         </div>
     </div>
 </li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse2"
+          15 aria-expanded="true" aria-controls="collapse2">
+          <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Data PBJ</span>
+        </a>
+        <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Data PBJ</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="../VPenebusan">Penebusan PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="../VPenjualan">Penjualan Ety</a>
+            <a class="collapse-item" style="font-size: 15px;" href="../VPenjualanL">Penjualan Agus</a>
+            <a class="collapse-item" style="font-size: 15px;" href="../VKeuangan">Keuangan Ety</a>
+            <a class="collapse-item" style="font-size: 15px;" href="../VKeuanganL">Keuangan Agus</a>
+            <a class="collapse-item" style="font-size: 15px;" href="../VPengiriman">Pengiriman Ety</a>
+            <a class="collapse-item" style="font-size: 15px;" href="../VPengirimanL">Pengiriman Agus</a>
+            <a class="collapse-item" style="font-size: 15px;" href="../VLStokGudang">Laporan Stok Gudang</a>
+          </div>
+        </div>
+      </li>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
