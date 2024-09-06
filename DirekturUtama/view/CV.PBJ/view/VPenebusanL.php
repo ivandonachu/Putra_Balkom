@@ -536,7 +536,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $tanggal = $data['tanggal'];
                     $no_do = $data['no_do'];
                     $no_so = $data['no_so'];
-                    $no_so = $data['brand'];
+                    $brand = $data['brand'];
                     $tipe_semen = $data['tipe_semen'];
                     $tujuan = $data['tujuan'];
                     $kota = $data['kota'];
@@ -558,7 +558,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$no_do</td>
       <td style='font-size: 14px'>$no_so</td>
-      <td style='font-size: 14px'>$band</td>
+      <td style='font-size: 14px'>$brand</td>
       <td style='font-size: 14px'>$tipe_semen</td>
       <td style='font-size: 14px'>$tujuan</td>
       <td style='font-size: 14px'>$kota</td>
