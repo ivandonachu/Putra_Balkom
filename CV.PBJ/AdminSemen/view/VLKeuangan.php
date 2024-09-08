@@ -325,7 +325,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Pengeluaran PT Sawit Dalam</option>
                               <option>Pembelian Aset</option>
                               <option>Pengeluaran Pribadi</option>
-                              <option>Pembangunan Aset PBJ</option>
+                              <option>Pembangunan Aset</option>
                               <option>Sumbangan</option>
                             </select>
                           </div>
@@ -507,7 +507,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Pengeluaran PT Sawit Dalam') ? "selected" : "" ?>>Pengeluaran PT Sawit Dalam</option>
                                     <option <?php echo ($dataSelect == 'Pembelian Aset') ? "selected" : "" ?>>Pembelian Aset</option>
                                     <option <?php echo ($dataSelect == 'Pengeluaran Pribadi') ? "selected" : "" ?>>Pengeluaran Pribadi</option>
-                                    <option <?php echo ($dataSelect == 'Pembangunan Aset PBJ') ? "selected" : "" ?>>Pembangunan Aset PBJ</option>
+                                    <option <?php echo ($dataSelect == 'Pembangunan Aset') ? "selected" : "" ?>>Pembangunan Aset</option>
                                     <option <?php echo ($dataSelect == 'Sumbangan') ? "selected" : "" ?>>Sumbangan</option>
                                   </select>
                                 </div>
