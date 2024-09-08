@@ -323,9 +323,12 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Pengeluaran PT MJRE</option>
                               <option>Pengeluaran PT Gel Gel</option>
                               <option>Pengeluaran PT Sawit Dalam</option>
+                              <option>Kebun Seberuk</option>
+                              <option>Kebun Lengkiti</option>
+                              <option>Kebun Mesuji</option>
                               <option>Pembelian Aset</option>
-                              <option>Pengeluaran Pribadi</option>
                               <option>Pembangunan Aset</option>
+                              <option>Pengeluaran Pribadi</option>
                               <option>Sumbangan</option>
                             </select>
                           </div>
@@ -505,9 +508,12 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Pengeluaran PT MJRE') ? "selected" : "" ?>>Pengeluaran PT MJRE</option>
                                     <option <?php echo ($dataSelect == 'Pengeluaran PT Gel Gel') ? "selected" : "" ?>>Pengeluaran PT Gel Gel</option>
                                     <option <?php echo ($dataSelect == 'Pengeluaran PT Sawit Dalam') ? "selected" : "" ?>>Pengeluaran PT Sawit Dalam</option>
+                                    <option <?php echo ($dataSelect == 'Kebun Seberuk') ? "selected" : "" ?>>Kebun Seberuk</option>
+                                    <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected" : "" ?>>Kebun Lengkiti</option>
+                                    <option <?php echo ($dataSelect == 'Kebun Mesuji') ? "selected" : "" ?>>Kebun Mesuji</option>
                                     <option <?php echo ($dataSelect == 'Pembelian Aset') ? "selected" : "" ?>>Pembelian Aset</option>
-                                    <option <?php echo ($dataSelect == 'Pengeluaran Pribadi') ? "selected" : "" ?>>Pengeluaran Pribadi</option>
                                     <option <?php echo ($dataSelect == 'Pembangunan Aset') ? "selected" : "" ?>>Pembangunan Aset</option>
+                                    <option <?php echo ($dataSelect == 'Pengeluaran Pribadi') ? "selected" : "" ?>>Pengeluaran Pribadi</option>
                                     <option <?php echo ($dataSelect == 'Sumbangan') ? "selected" : "" ?>>Sumbangan</option>
                                   </select>
                                 </div>

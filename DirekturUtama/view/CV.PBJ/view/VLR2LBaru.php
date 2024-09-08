@@ -342,6 +342,105 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jml_atk_sl = 0;
     }
 
+    //Pengeluaran BBE
+    $table_bbe = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_bbe FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran PT BBE' ");
+    $data_bbe = mysqli_fetch_array($table_bbe);
+    $pengeluaran_bbe = $data_bbe['pengeluaran_bbe'];
+    if (!isset($data_bbe['pengeluaran_bbe'])) {
+        $pengeluaran_bbe = 0;
+    }
+
+    //Pengeluaran MJRE
+    $table_mjre = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_mjre FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran PT MJRE' ");
+    $data_mjre = mysqli_fetch_array($table_mjre);
+    $pengeluaran_mjre = $data_mjre['pengeluaran_mjre'];
+    if (!isset($data_mjre['pengeluaran_mjre'])) {
+        $pengeluaran_mjre = 0;
+    }
+
+    //Pengeluaran Gel Gel
+    $table_gel_gel = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_gel FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran PT Gel Gel' ");
+    $data_gel_gel = mysqli_fetch_array($table_gel_gel);
+    $pengeluaran_gel = $data_gel_gel['pengeluaran_gel'];
+    if (!isset($data_gel_gel['pengeluaran_gel'])) {
+        $pengeluaran_gel = 0;
+    }
+
+    //Pengeluaran Gel Gel
+    $table_gel_gel = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_gel FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran PT Gel Gel' ");
+    $data_gel_gel = mysqli_fetch_array($table_gel_gel);
+    $pengeluaran_gel = $data_gel_gel['pengeluaran_gel'];
+    if (!isset($data_gel_gel['pengeluaran_gel'])) {
+        $pengeluaran_gel = 0;
+    }
+
+    //Pengeluaran Sawit Dalam
+    $table_sawit_dalam = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_sawit_dalam FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran PT Sawit Dalam' ");
+    $data_sawit_dalam = mysqli_fetch_array($table_sawit_dalam);
+    $pengeluaran_sawit_dalam = $data_sawit_dalam['pengeluaran_sawit_dalam'];
+    if (!isset($data_sawit_dalam['pengeluaran_sawit_dalam'])) {
+        $pengeluaran_sawit_dalam = 0;
+    }
+
+    //Kebun Seberuk
+    $table_seberuk = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS kebun_seberuk FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Kebun Seberuk' ");
+    $data_seberuk = mysqli_fetch_array($table_seberuk);
+    $kebun_seberuk = $data_seberuk['kebun_seberuk'];
+    if (!isset($data_seberuk['kebun_seberuk'])) {
+        $kebun_seberuk = 0;
+    }
+
+    //Kebun Lengkiti
+    $table_lengkiti = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS kebun_lengkiti FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Kebun Lengkiti' ");
+    $data_lengkiti = mysqli_fetch_array($table_lengkiti);
+    $kebun_lengkiti = $data_lengkiti['kebun_lengkiti'];
+    if (!isset($data_lengkiti['kebun_lengkiti'])) {
+        $kebun_lengkiti = 0;
+    }
+
+    //Kebun Mesuji
+    $table_mesuji = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS kebun_mesuji FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Kebun Mesuji' ");
+    $data_mesuji = mysqli_fetch_array($table_mesuji);
+    $kebun_mesuji = $data_mesuji['kebun_mesuji'];
+    if (!isset($data_mesuji['kebun_mesuji'])) {
+        $kebun_mesuji = 0;
+    }
+
+    //Pembelian Aset
+    $table_pembelian_aset = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pembelian_aset FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pembelian Aset' ");
+    $data_pembelian_aset = mysqli_fetch_array($table_pembelian_aset);
+    $pembelian_aset = $data_pembelian_aset['pembelian_aset'];
+    if (!isset($data_pembelian_aset['pembelian_aset'])) {
+        $pembelian_aset = 0;
+    }
+
+    //Pembelian Aset
+    $table_pembangunan_aset = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pembangunan_aset FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pembangunan Aset' ");
+    $data_pembangunan_aset = mysqli_fetch_array($table_pembangunan_aset);
+    $pembangunan_aset = $data_pembangunan_aset['pembangunan_aset'];
+    if (!isset($data_pembangunan_aset['pembangunan_aset'])) {
+        $pembangunan_aset = 0;
+    }
+
+    //Pembelian Aset
+    $table_pengeluaran_pribadi = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_pribadi FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Pengeluaran Pribadi' ");
+    $data_pengeluaran_pribadi = mysqli_fetch_array($table_pengeluaran_pribadi);
+    $pengeluaran_pribadi = $data_pengeluaran_pribadi['pengeluaran_pribadi'];
+    if (!isset($data_pengeluaran_pribadi['pengeluaran_pribadi'])) {
+        $pengeluaran_pribadi = 0;
+    }
+
+    //Pembelian Aset
+    $table_sumbangan = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS sumbangan FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Sumbangan' ");
+    $data_sumbangan = mysqli_fetch_array($table_sumbangan);
+    $sumbangan = $data_sumbangan['sumbangan'];
+    if (!isset($data_sumbangan['sumbangan'])) {
+        $sumbangan = 0;
+    }
+
+
+
+    //bengkel
     $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bengkel) AS jumlah_perbaikan FROM riwayat_pengeluaran_workshop_s
                                          WHERE tanggal = '$tanggal_awal'");
     $data8 = mysqli_fetch_array($table8);
@@ -682,6 +781,103 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jml_perbaikan_2 = 0;
     }
 
+      //Pengeluaran BBE
+      $table_bbe = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_bbe FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran PT BBE' ");
+      $data_bbe = mysqli_fetch_array($table_bbe);
+      $pengeluaran_bbe = $data_bbe['pengeluaran_bbe'];
+      if (!isset($data_bbe['pengeluaran_bbe'])) {
+          $pengeluaran_bbe = 0;
+      }
+  
+      //Pengeluaran MJRE
+      $table_mjre = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_mjre FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran PT MJRE' ");
+      $data_mjre = mysqli_fetch_array($table_mjre);
+      $pengeluaran_mjre = $data_mjre['pengeluaran_mjre'];
+      if (!isset($data_mjre['pengeluaran_mjre'])) {
+          $pengeluaran_mjre = 0;
+      }
+  
+      //Pengeluaran Gel Gel
+      $table_gel_gel = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_gel FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran PT Gel Gel' ");
+      $data_gel_gel = mysqli_fetch_array($table_gel_gel);
+      $pengeluaran_gel = $data_gel_gel['pengeluaran_gel'];
+      if (!isset($data_gel_gel['pengeluaran_gel'])) {
+          $pengeluaran_gel = 0;
+      }
+  
+      //Pengeluaran Gel Gel
+      $table_gel_gel = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_gel FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran PT Gel Gel' ");
+      $data_gel_gel = mysqli_fetch_array($table_gel_gel);
+      $pengeluaran_gel = $data_gel_gel['pengeluaran_gel'];
+      if (!isset($data_gel_gel['pengeluaran_gel'])) {
+          $pengeluaran_gel = 0;
+      }
+  
+      //Pengeluaran Sawit Dalam
+      $table_sawit_dalam = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_sawit_dalam FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pengeluaran PT Sawit Dalam' ");
+      $data_sawit_dalam = mysqli_fetch_array($table_sawit_dalam);
+      $pengeluaran_sawit_dalam = $data_sawit_dalam['pengeluaran_sawit_dalam'];
+      if (!isset($data_sawit_dalam['pengeluaran_sawit_dalam'])) {
+          $pengeluaran_sawit_dalam = 0;
+      }
+  
+      //Kebun Seberuk
+      $table_seberuk = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS kebun_seberuk FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Kebun Seberuk' ");
+      $data_seberuk = mysqli_fetch_array($table_seberuk);
+      $kebun_seberuk = $data_seberuk['kebun_seberuk'];
+      if (!isset($data_seberuk['kebun_seberuk'])) {
+          $kebun_seberuk = 0;
+      }
+  
+      //Kebun Lengkiti
+      $table_lengkiti = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS kebun_lengkiti FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Kebun Lengkiti' ");
+      $data_lengkiti = mysqli_fetch_array($table_lengkiti);
+      $kebun_lengkiti = $data_lengkiti['kebun_lengkiti'];
+      if (!isset($data_lengkiti['kebun_lengkiti'])) {
+          $kebun_lengkiti = 0;
+      }
+  
+      //Kebun Mesuji
+      $table_mesuji = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS kebun_mesuji FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Kebun Mesuji' ");
+      $data_mesuji = mysqli_fetch_array($table_mesuji);
+      $kebun_mesuji = $data_mesuji['kebun_mesuji'];
+      if (!isset($data_mesuji['kebun_mesuji'])) {
+          $kebun_mesuji = 0;
+      }
+  
+      //Pembelian Aset
+      $table_pembelian_aset = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pembelian_aset FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pembelian Aset' ");
+      $data_pembelian_aset = mysqli_fetch_array($table_pembelian_aset);
+      $pembelian_aset = $data_pembelian_aset['pembelian_aset'];
+      if (!isset($data_pembelian_aset['pembelian_aset'])) {
+          $pembelian_aset = 0;
+      }
+  
+      //Pembelian Aset
+      $table_pembangunan_aset = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pembangunan_aset FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pembangunan Aset' ");
+      $data_pembangunan_aset = mysqli_fetch_array($table_pembangunan_aset);
+      $pembangunan_aset = $data_pembangunan_aset['pembangunan_aset'];
+      if (!isset($data_pembangunan_aset['pembangunan_aset'])) {
+          $pembangunan_aset = 0;
+      }
+  
+      //Pembelian Aset
+      $table_pengeluaran_pribadi = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_pribadi FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND nama_akun = 'Pengeluaran Pribadi' ");
+      $data_pengeluaran_pribadi = mysqli_fetch_array($table_pengeluaran_pribadi);
+      $pengeluaran_pribadi = $data_pengeluaran_pribadi['pengeluaran_pribadi'];
+      if (!isset($data_pengeluaran_pribadi['pengeluaran_pribadi'])) {
+          $pengeluaran_pribadi = 0;
+      }
+  
+      //Pembelian Aset
+      $table_sumbangan = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS sumbangan FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Sumbangan' ");
+      $data_sumbangan = mysqli_fetch_array($table_sumbangan);
+      $sumbangan = $data_sumbangan['sumbangan'];
+      if (!isset($data_sumbangan['sumbangan'])) {
+          $sumbangan = 0;
+      }
+  
+
 
     $table8 = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bengkel) AS jumlah_perbaikan FROM riwayat_pengeluaran_workshop_s
                                          WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
@@ -726,6 +922,8 @@ $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $gaji_karyawan + $tota
     $biaya_pajak + $total_bunga_bank;
 
 $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
+
+$pengeluaran_selain_pbj = $pengeluaran_bbe + $pengeluaran_mjre + $pengeluaran_gel + $pengeluaran_sawit_dalam + $kebun_seberuk + $kebun_mesuji + $kebun_lengkiti + $pembelian_aset + $pembangunan_aset + $pengeluaran_pribadi + $sumbangan;
 
 
 
@@ -1268,28 +1466,105 @@ $laba_bersih_sebelum_pajak =  $laba_kotor - $total_biaya_usaha_final;
                                                     ?>
                                                     <td class="thick-line"></td>
                                                 </tr>
-                                                <tr style="background-color:    #F0F8FF; ">
+                                                <tr>
                                                     <td><strong>Pengeluaran Khusus</strong></td>
                                                     <td class="thick-line"></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPengeluaranKhusus?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
+                                                <tr>
+                                                    <td><strong>Pengeluaran PT BBE</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($pengeluaran_bbe); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPengeluaranBBE?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pengeluaran PT MJRE</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($pengeluaran_mjre); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPengeluaranMJRE?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pengeluaran PT Gel Gel</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($pengeluaran_gel); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPengeluaranGel?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pengeluaran PT Sawit Dalam</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($pengeluaran_sawit_dalam); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPengeluaranSawitD?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pengeluaran Kebun Seberuk</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($kebun_seberuk); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VKebunSeberuk?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pengeluaran Kebun Lengkiti</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($kebun_lengkiti); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VKebunLengkiti?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pengeluaran Kebun Mesuji</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($kebun_mesuji); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VKebunMesuji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pembelian Aset</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($pembelian_aset); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPembelianAset?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pembangunan Aset</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($pembangunan_aset); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPembangunanAset?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pengeluaran Pribadi</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($pengeluaran_pribadi); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPengeluaranPribadi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Sumbangan</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($sumbangan); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VSumbangan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
                                                 <tr style="background-color: navy;  color:white;">
-                                                    <td><strong>LABA BERSIH DIKURANGI PENGELUIARAN KHUSUS</strong></td>
+                                                    <td><strong>LABA BERSIH PENGELUARAN SELAIN PBJ</strong></td>
                                                     <td class="thick-line"></td>
                                                     <?php
 
-                                                    if ($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl) > 0) { ?>
+                                                    if ($laba_bersih_sebelum_pajak - $pengeluaran_selain_pbj > 0) { ?>
 
-                                                        <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl)); ?> </td>
+                                                        <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak - $pengeluaran_selain_pbj); ?> </td>
                                                         <td class="no-line text-left"><?= formatuang(0); ?> </td>
-                                                    <?php } else if ($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl) < 0) { ?>
+                                                    <?php } else if ($laba_bersih_sebelum_pajak - $pengeluaran_selain_pbj < 0) { ?>
 
                                                         <td class="no-line text-left"><?= formatuang(0); ?></td>
-                                                        <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl)); ?></td>
+                                                        <td class="no-line text-left"><?= formatuang($laba_bersih_sebelum_pajak - $pengeluaran_selain_pbj); ?></td>
 
-                                                    <?php } else if ($laba_bersih_sebelum_pajak - ($jumlah_pengeluaran_khusus_s + $jumlah_pengeluaran_khusus_sl) == 0) { ?>
+                                                    <?php } else if ($laba_bersih_sebelum_pajak - $pengeluaran_selain_pbj == 0) { ?>
 
                                                         <td class="no-line text-left"><?= formatuang(0); ?></td>
                                                         <td class="no-line text-left"><?= formatuang(0); ?></td>
