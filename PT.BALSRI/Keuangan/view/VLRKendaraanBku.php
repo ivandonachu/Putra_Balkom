@@ -600,7 +600,7 @@ else{
      echo "<tr>
      <td style='font-size: 14px' align = 'center'>$mt</td>
      <td style='font-size: 14px' align = 'center'>$jenis_ken</td>"?>
-     <?php echo "<td class='text-center'><a href='VLRKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$mt'>LR Kendaraan</a></td>"; ?>
+     <?php echo "<td class='text-center'><a href='VLRKendaraanBku?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$mt'>LR Kendaraan</a></td>"; ?>
      
     
   <?php echo  " </tr>";
