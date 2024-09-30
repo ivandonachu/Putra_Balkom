@@ -293,7 +293,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <option></option>
                                                         <?php
                                                         include 'koneksi.php';
-                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM driver_sawit");   
+                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM driver_sawit_msj");   
 
                                                         while ($data2 = mysqli_fetch_array($result2)){
                                                         $data_pangakalan = $data2['nama_driver'];
@@ -311,7 +311,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <option></option>
                                                         <?php
                                                         include 'koneksi.php';
-                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM kendaraan_sawit");   
+                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM kendaraan_sawit_msj");   
 
                                                         while ($data2 = mysqli_fetch_array($result2)){
                                                         $data_pangakalan = $data2['no_polisi'];
@@ -496,7 +496,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <option></option>
                                                         <?php
                                                         include 'koneksi.php';
-                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM driver_sawit");   
+                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM driver_sawit_msj");   
                                                         $dataSelect = $data['nama_driver'];
                                                         while ($data2 = mysqli_fetch_array($result2)){
                                                         $data_pangakalan = $data2['nama_driver'];
@@ -516,7 +516,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <option></option>
                                                         <?php
                                                         include 'koneksi.php';
-                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM kendaraan_sawit");   
+                                                        $result2 = mysqli_query($koneksi, "SELECT * FROM kendaraan_sawit_msj");   
                                                         $dataSelect = $data['no_polisi'];
                                                         while ($data2 = mysqli_fetch_array($result2)){
                                                         $data_pangakalan = $data2['no_polisi'];
