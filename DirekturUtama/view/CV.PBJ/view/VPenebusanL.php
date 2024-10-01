@@ -2,8 +2,8 @@
 session_start();
 include 'koneksi.php';
 if (!isset($_SESSION["login"])) {
-    header("Location: logout.php");
-    exit;
+  header("Location: logout.php");
+  exit;
 }
 $id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
@@ -13,8 +13,8 @@ $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
 } else {
-    header("Location: logout.php");
-    exit;
+  header("Location: logout.php");
+  exit;
 }
 
 
@@ -41,7 +41,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah OPC Type 1 Debit
   $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_debit ,  SUM(jumlah) AS uang_copct1_debit  FROM pembelian_sl WHERE 
                                                                                                                       tanggal = '$tanggal_awal' AND tipe_bayar = 'Debit' AND material = 'Curah OPC Type 1' OR 
-                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Debit' AND material = 'Curah OPC Type 1'");
+                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Debit' AND material = 'UltraPro Curah'");
 
   $data2 = mysqli_fetch_array($table2);
   $penjualan_copct1_debit = $data2['penjualan_copct1_debit'];
@@ -50,7 +50,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah OPC Type 1 Tunai
   $table21 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_tunai ,  SUM(jumlah) AS uang_copct1_tunai  FROM pembelian_sl WHERE  
                                                                                                                       tanggal = '$tanggal_awal' AND tipe_bayar = 'Tunai' AND material = 'Curah OPC Type 1' OR 
-                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Tunai' AND material = 'Curah OPC Type 1'");
+                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Tunai' AND material = 'UltraPro Curah'");
   $data21 = mysqli_fetch_array($table21);
   $penjualan_copct1_tunai = $data21['penjualan_copct1_tunai'];
   $uang_copct1_tunai = $data21['uang_copct1_tunai'];
@@ -58,7 +58,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah OPC Type 1 Bon
   $table22 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_bon ,  SUM(jumlah) AS uang_copct1_bon  FROM pembelian_sl WHERE  
                                                                                                                       tanggal = '$tanggal_awal' AND tipe_bayar = 'Bon' AND material = 'Curah OPC Type 1' OR 
-                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Bon' AND material = 'Curah OPC Type 1'");
+                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Bon' AND material = 'UltraPro Curah'");
   $data22 = mysqli_fetch_array($table22);
   $penjualan_copct1_bon = $data22['penjualan_copct1_bon'];
   $uang_copct1_bon = $data22['uang_copct1_bon'];
@@ -66,7 +66,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah PCC Debit
   $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_debit ,  SUM(jumlah) AS uang_cpcc_debit  FROM pembelian_sl WHERE  
                                                                                                                       tanggal = '$tanggal_awal' AND tipe_bayar = 'Debit' AND material = 'Curah PCC' OR
-                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Debit' AND material = 'Curah PCC'");
+                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Debit' AND material = 'EzPro Curah'");
   $data3 = mysqli_fetch_array($table3);
   $penjualan_cpcc_debit = $data3['penjualan_cpcc_debit'];
   $uang_cpcc_debit = $data3['uang_cpcc_debit'];
@@ -74,7 +74,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah PCC Tunai
   $table31 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_tunai ,  SUM(jumlah) AS uang_cpcc_tunai  FROM pembelian_sl WHERE 
                                                                                                                       tanggal = '$tanggal_awal' AND tipe_bayar = 'Tunai' AND material = 'Curah PCC'OR
-                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Tunai' AND material = 'Curah PCC'");
+                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Tunai' AND material = 'EzPro Curah'");
   $data31 = mysqli_fetch_array($table31);
   $penjualan_cpcc_tunai = $data31['penjualan_cpcc_tunai'];
   $uang_cpcc_tunai = $data31['uang_cpcc_tunai'];
@@ -82,7 +82,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah PCC Bon
   $table32 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_bon ,  SUM(jumlah) AS uang_cpcc_bon  FROM pembelian_sl WHERE 
                                                                                                                       tanggal = '$tanggal_awal' AND tipe_bayar = 'Bon' AND material = 'Curah PCC'OR
-                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Bon' AND material = 'Curah PCC'");
+                                                                                                                      tanggal = '$tanggal_awal' AND tipe_bayar = 'Bon' AND material = 'EzPro Curah'");
   $data32 = mysqli_fetch_array($table32);
   $penjualan_cpcc_bon = $data32['penjualan_cpcc_bon'];
   $uang_cpcc_bon = $data32['uang_cpcc_bon'];
@@ -163,7 +163,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah OPC Type 1 Debit
   $table2 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_debit ,  SUM(jumlah) AS uang_copct1_debit  FROM pembelian_sl WHERE 
                                                                                                                       tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Debit' AND material = 'Curah OPC Type 1' OR 
-                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Debit' AND material = 'Curah OPC Type 1'");
+                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Debit' AND material = 'UltraPro Curah'");
 
   $data2 = mysqli_fetch_array($table2);
   $penjualan_copct1_debit = $data2['penjualan_copct1_debit'];
@@ -172,7 +172,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah OPC Type 1 Tunai
   $table21 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_tunai ,  SUM(jumlah) AS uang_copct1_tunai  FROM pembelian_sl WHERE  
                                                                                                                       tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Tunai' AND material = 'Curah OPC Type 1' OR 
-                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Tunai' AND material = 'Curah OPC Type 1'");
+                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Tunai' AND material = 'UltraPro Curah'");
   $data21 = mysqli_fetch_array($table21);
   $penjualan_copct1_tunai = $data21['penjualan_copct1_tunai'];
   $uang_copct1_tunai = $data21['uang_copct1_tunai'];
@@ -180,7 +180,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah OPC Type 1 Bon
   $table22 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_copct1_bon ,  SUM(jumlah) AS uang_copct1_bon  FROM pembelian_sl WHERE  
                                                                                                                       tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Bon' AND material = 'Curah OPC Type 1' OR 
-                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Bon' AND material = 'Curah OPC Type 1'");
+                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Bon' AND material = 'UltraPro Curah'");
   $data22 = mysqli_fetch_array($table22);
   $penjualan_copct1_bon = $data22['penjualan_copct1_bon'];
   $uang_copct1_bon = $data22['uang_copct1_bon'];
@@ -188,7 +188,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah PCC Debit
   $table3 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_debit ,  SUM(jumlah) AS uang_cpcc_debit  FROM pembelian_sl WHERE  
                                                                                                                       tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Debit' AND material = 'Curah PCC' OR
-                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Debit' AND material = 'Curah PCC'");
+                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Debit' AND material = 'EzPro Curah'");
   $data3 = mysqli_fetch_array($table3);
   $penjualan_cpcc_debit = $data3['penjualan_cpcc_debit'];
   $uang_cpcc_debit = $data3['uang_cpcc_debit'];
@@ -196,7 +196,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah PCC Tunai
   $table31 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_tunai ,  SUM(jumlah) AS uang_cpcc_tunai  FROM pembelian_sl WHERE 
                                                                                                                       tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Tunai' AND material = 'Curah PCC'OR
-                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Tunai' AND material = 'Curah PCC'");
+                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Tunai' AND material = 'EzPro Curah'");
   $data31 = mysqli_fetch_array($table31);
   $penjualan_cpcc_tunai = $data31['penjualan_cpcc_tunai'];
   $uang_cpcc_tunai = $data31['uang_cpcc_tunai'];
@@ -204,7 +204,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   //Curah PCC Bon
   $table32 = mysqli_query($koneksipbj, "SELECT SUM(qty) AS penjualan_cpcc_bon ,  SUM(jumlah) AS uang_cpcc_bon  FROM pembelian_sl WHERE 
                                                                                                                       tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Bon' AND material = 'Curah PCC'OR
-                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Bon' AND material = 'Curah PCC'");
+                                                                                                                      tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_bayar = 'Bon' AND material = 'EzPro Curah'");
   $data32 = mysqli_fetch_array($table32);
   $penjualan_cpcc_bon = $data32['penjualan_cpcc_bon'];
   $uang_cpcc_bon = $data32['uang_cpcc_bon'];
@@ -324,43 +324,43 @@ if ($tanggal_awal == $tanggal_akhir) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
-    <div class="sidebar-brand-icon rotate-n-15">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
+        <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3"> <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png"></div>
-</a>
-<br>
+        </div>
+        <div class="sidebar-brand-text mx-3"> <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png"></div>
+      </a>
+      <br>
 
-<br>
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+      <br>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active">
-    <a class="nav-link" href="DsCVPBJ">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;">Dashboard</span></a>
-</li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="DsCVPBJ">
+          <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+          <span style="font-size: 16px;">Dashboard</span></a>
+      </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
-<!-- Heading -->
-<div class="sidebar-heading" style="font-size: 15px; color:white;">
-    Menu CV.PBJ (Semen)
-</div>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
-        <span style="font-size: 15px; color:white;">List Company</span>
-    </a>
-    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Heading -->
+      <div class="sidebar-heading" style="font-size: 15px; color:white;">
+        Menu CV.PBJ (Semen)
+      </div>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">List Company</span>
+        </a>
+        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
             <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
@@ -371,34 +371,34 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
             <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
+          </div>
         </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-        <span style="font-size: 15px; color:white;">Report Etty</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Report Etty</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+          </div>
         </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo3">
-        <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-        <span style="font-size: 15px; color:white;">Report Made Dani</span>
-    </a>
-    <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo3">
+          <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Report Made Dani</span>
+        </a>
+        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
@@ -409,17 +409,17 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
 
+          </div>
         </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
-        <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-        <span style="font-size: 15px; color:white;">Report Gudang</span>
-    </a>
-    <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
+          <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Report Gudang</span>
+        </a>
+        <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
             <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
@@ -427,12 +427,12 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
 
+          </div>
         </div>
-    </div>
-</li>
+      </li>
 
-<?php if ($nama == 'Nyoman Edy Susanto') {
-    echo "
+      <?php if ($nama == 'Nyoman Edy Susanto') {
+        echo "
 <!-- Nav Item - Pages Collapse Menu -->
 <li class='nav-item'>
     <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseTwo4' 15 aria-expanded='true' aria-controls='collapseTwo4'>
@@ -453,7 +453,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         </div>
     </div>
 </li>";
-} ?>
+      } ?>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -629,539 +629,638 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-            <?php echo  " </tr>";
+                    <?php echo  " </tr>";
                   }
-            ?>
+                    ?>
 
-            </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
+            <br>
+
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Big Bag OPC Type 1 Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbopct1_debit ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Big Bag OPC Type 1 Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbopct1_debit) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Big Bag OPC Type 1 Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbopct1_tunai  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Big Bag OPC Type 1 Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbopct1_tunai) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Big Bag OPC Type 1 Bon</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbopct1_bon  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Big Bag OPC Type 1 Bon</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbopct1_bon) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Big Bag PCC Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbpcc_debit ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Big Bag PCC Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbpcc_debit) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Big Bag PCC Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbpcc_tunai  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Big Bag PCC Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbpcc_tunai) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Big Bag PCC Bon</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbpcc_bon  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Big Bag PCC Bon</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbpcc_bon) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Curah OPC Type 1 Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= round($penjualan_copct1_debit, 3) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Curah OPC Type 1 Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_copct1_debit) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Curah OPC Type 1 Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_copct1_tunai  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Curah OPC Type 1 Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_copct1_tunai) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Curah OPC Type 1 Bon</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_copct1_bon  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Curah OPC Type 1 Bon</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_copct1_bon) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Curah PCC Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_cpcc_debit ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Curah PCC Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_cpcc_debit) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Curah PCC Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_cpcc_tunai  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Curah PCC Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_cpcc_tunai) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Curah PCC Bon</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_cpcc_bon  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Curah PCC Bom</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_cpcc_bon) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Sak PCC 50 Kg Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_debit ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Sak PCC 50 Kg Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_debit) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Sak PCC 50 Kg Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_tunai  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Sak PCC 50 Kg Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_tunai) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Sak PCC 50 Kg Bon</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_bon  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Sak PCC 50 Kg Bom</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_bon) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Sak PCC 50 Kg Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_debit + $penjualan_bbopct1_debit + $penjualan_bbpcc_debit ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Sak PCC 50 Kg Debit</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_debit + $uang_bbopct1_debit + $uang_bbpcc_debit ) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Sak PCC 50 Kg Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_tunai + $penjualan_bbopct1_tunai + $penjualan_bbpcc_tunai  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Global Tunai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_tunai + $uang_bbopct1_tunai + $uang_bbpcc_tunai) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Penebusan Global Bon</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_bon + $penjualan_bbopct1_bon + $penjualan_bbpcc_bon ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Uang Global Bom</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_bon + $uang_bbopct1_bon + $uang_bbpcc_bon) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+            <br>
           </div>
-          <br>
-
-          <div class="row" style="margin-right: 20px; margin-left: 20px;">
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Big Bag OPC Type 1 Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbopct1_debit ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Big Bag OPC Type 1 Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbopct1_debit) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Big Bag OPC Type 1 Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbopct1_tunai  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Big Bag OPC Type 1 Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbopct1_tunai) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Big Bag OPC Type 1 Bon</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbopct1_bon  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Big Bag OPC Type 1 Bon</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbopct1_bon) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <br>
-
-          <div class="row" style="margin-right: 20px; margin-left: 20px;">
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Big Bag PCC Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbpcc_debit ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Big Bag PCC Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbpcc_debit) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Big Bag PCC Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbpcc_tunai  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Big Bag PCC Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbpcc_tunai) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Big Bag PCC Bon</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_bbpcc_bon  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Big Bag PCC Bon</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_bbpcc_bon) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <br>
-
-          <div class="row" style="margin-right: 20px; margin-left: 20px;">
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Curah OPC Type 1 Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= round($penjualan_copct1_debit, 3) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Curah OPC Type 1 Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_copct1_debit) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Curah OPC Type 1 Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_copct1_tunai  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Curah OPC Type 1 Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_copct1_tunai) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Curah OPC Type 1 Bon</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_copct1_bon  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Curah OPC Type 1 Bon</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_copct1_bon) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <br>
-
-          <div class="row" style="margin-right: 20px; margin-left: 20px;">
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Curah PCC Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_cpcc_debit ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Curah PCC Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_cpcc_debit) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Curah PCC Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_cpcc_tunai  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Curah PCC Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_cpcc_tunai) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Curah PCC Bon</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_cpcc_bon  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Curah PCC Bom</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_cpcc_bon) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <br>
-
-          <div class="row" style="margin-right: 20px; margin-left: 20px;">
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Sak PCC 50 Kg Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_debit ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Sak PCC 50 Kg Debit</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_debit) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Sak PCC 50 Kg Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_tunai  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Sak PCC 50 Kg Tunai</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_tunai) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Penebusan Sak PCC 50 Kg Bon</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_bon  ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Uang Sak PCC 50 Kg Bom</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_bon) ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <br>
-          <br>
-          <br>
         </div>
       </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
     </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
-        </div>
-      </div>
-    </footer>
-    <!-- End of Footer -->
-
-  </div>
-  <!-- End of Content Wrapper -->
+    <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
