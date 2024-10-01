@@ -1151,7 +1151,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Penebusan Sak PCC 50 Kg Debit</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_debit + $penjualan_bbopct1_debit + $penjualan_bbpcc_debit ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_debit + $penjualan_bbopct1_debit + $penjualan_bbpcc_debit + $penjualan_copct1_debit + $penjualan_cpcc_debit ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -1167,7 +1167,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Uang Sak PCC 50 Kg Debit</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_debit + $uang_bbopct1_debit + $uang_bbpcc_debit ) ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_debit + $uang_bbopct1_debit + $uang_bbpcc_debit + $uang_copct1_debit + $uang_cpcc_debit) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1183,7 +1183,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Penebusan Sak PCC 50 Kg Tunai</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_tunai + $penjualan_bbopct1_tunai + $penjualan_bbpcc_tunai  ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_tunai + $penjualan_bbopct1_tunai + $penjualan_bbpcc_tunai + $penjualan_copct1_tunai + $penjualan_cpcc_tunai ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -1199,7 +1199,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Uang Global Tunai</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_tunai + $uang_bbopct1_tunai + $uang_bbpcc_tunai) ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_tunai + $uang_bbopct1_tunai + $uang_bbpcc_tunai + $uang_copct1_tunai + $uang_cpcc_tunai) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1215,7 +1215,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Penebusan Global Bon</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_bon + $penjualan_bbopct1_bon + $penjualan_bbpcc_bon ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_sakpcc_bon + $penjualan_bbopct1_bon + $penjualan_bbpcc_bon + $penjualan_copct1_bon + $penjualan_cpcc_bon?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
@@ -1231,7 +1231,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                           Uang Global Bom</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_bon + $uang_bbopct1_bon + $uang_bbpcc_bon) ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_sakpcc_bon + $uang_bbopct1_bon + $uang_bbpcc_bon + $uang_copct1_bon + $uang_cpcc_bon) ?></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
