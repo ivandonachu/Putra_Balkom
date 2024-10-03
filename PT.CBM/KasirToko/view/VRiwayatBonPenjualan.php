@@ -614,28 +614,29 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
-
 <script>
-  $(document).ready(function() {
-    var table = $('#example2').DataTable( {
-      lengthChange: false,
-    } );
+    $(document).ready(function() {
+      var table = $('#example2').DataTable({
+        lengthChange: false,
+        buttons: ['excel']
+      });
 
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
+      table.buttons().container()
+        .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      var table = $('#example3').DataTable({
+        lengthChange: false,
+        buttons: ['excel']
+      });
 
-<script>
-  $(document).ready(function() {
-    var table = $('#example3').DataTable( {
-      lengthChange: false,
-    } );
-
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
+      table.buttons().container()
+        .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
+  </script>
+  
 
 </body>
 
