@@ -1211,6 +1211,36 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
+                                                    <td>8</td>
+                                                    <td class="text-left">Tagihan BMU Yanti</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_yanti_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanYantiBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td class="text-left">Tagihan BMU Nengah</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_nengah_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanNengahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td class="text-left">Tagihan BMU Joko</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_joko_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanJokoBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td class="text-left">Tagihan BMU Kustomo</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_kustomo_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanKustomoBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td class="text-left">Tagihan BMU Kodri</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_kodri_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanKodriBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
                                                     <td>7</td>
                                                     <td class="text-left">Tagihan BMU Global</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_global_bmu); ?></td>
