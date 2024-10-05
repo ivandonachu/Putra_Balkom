@@ -128,6 +128,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB MESUJI') {
             //RLI
@@ -196,6 +206,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB. TULANG BAWANG') {
             //RLI
@@ -261,6 +281,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB WAY KANAN') {
             //RLI
@@ -327,6 +357,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB OKU SELATAN') {
             //RLI
@@ -428,6 +468,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         }
     }
@@ -435,7 +485,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     $total_pendapatan_rli = $total_angkutan_edy_rli;
-    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_map_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu;
+    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_map_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
+                            + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu;
 } else {
 
 
@@ -527,6 +578,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB MESUJI') {
             //RLI
@@ -587,6 +648,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB. TULANG BAWANG') {
             //RLI
@@ -653,6 +724,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB WAY KANAN') {
             //RLI
@@ -719,6 +800,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB OKU SELATAN') {
             //RLI
@@ -819,6 +910,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         }
     }
@@ -826,7 +927,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     $total_pendapatan_rli = $total_angkutan_edy_rli;
-    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu;
+    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu
+                            + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu;
 }
 
 ?>
