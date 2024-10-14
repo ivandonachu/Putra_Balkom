@@ -423,6 +423,10 @@ if (isset($_GET['tanggal1'])) {
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="0">
              </div>
              <div class="col-md-4">
+               <label>Rit NJE</label>
+               <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="0">
+             </div>
+             <div class="col-md-4">
                <label>BPJS Kesehatan</label>
                <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="0">
              </div>
@@ -484,6 +488,8 @@ if (isset($_GET['tanggal1'])) {
           <th style="font-size: 14px" scope="col">Upah PPE</th>
           <th style="font-size: 14px" scope="col">Rit PAP</th>
           <th style="font-size: 14px" scope="col">Upah PAP</th>
+          <th style="font-size: 14px" scope="col">Rit NJE</th>
+          <th style="font-size: 14px" scope="col">Upah NJE</th>
           <th style="font-size: 14px" scope="col">Uang Makan</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
@@ -516,6 +522,8 @@ if (isset($_GET['tanggal1'])) {
           $upah_nje = $data2['upah_nje'];
           $rit_gas_palembang = $data2['rit_gas_palembang'];
           $upah_gas_palembang = $data2['upah_gas_palembang'];
+          $rit_nje2 = $data2['rit_nje2'];
+          $upah_nje2 = $data2['upah_nje2'];
           $uang_makan = $data2['uang_makan'];
           $bpjs_kesehatan = $data2['bpjs_kesehatan'];
           $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
@@ -542,6 +550,8 @@ if (isset($_GET['tanggal1'])) {
           <td style='font-size: 14px'>"; ?> <?= formatuang($upah_nje); ?> <?php echo "</td>
           <td style='font-size: 14px'>$rit_gas_palembang</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($upah_gas_palembang); ?> <?php echo "</td>
+          <td style='font-size: 14px'>$rit_nje2</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_nje2); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
@@ -599,6 +609,10 @@ if (isset($_GET['tanggal1'])) {
              <div class="col-md-4">
                <label>Rit PAP</label>
                <input class="form-control form-control-sm" type="number" name="rit_gas_palembang" required="" value="<?php echo $rit_gas_palembang;?>">
+             </div>
+             <div class="col-md-4">
+               <label>Rit NJE</label>
+               <input class="form-control form-control-sm" type="number" name="rit_nje2" required="" value="<?php echo $rit_nje2;?>">
              </div>
              <div class="col-md-4">
                <label>BPJS Kesehatan</label>

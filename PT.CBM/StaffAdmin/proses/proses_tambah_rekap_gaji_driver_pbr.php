@@ -28,6 +28,8 @@ exit;
     $upah_nje = 100000 * $rit_nje;
     $rit_gas_palembang = $_POST['rit_gas_palembang'];
     $upah_gas_palembang = 200000 * $rit_gas_palembang;
+    $rit_nje2 = $_POST['rit_nje2'];
+    $upah_nje2 = 100000 * $rit_nje2;
     $bpjs_kesehatan = $_POST['bpjs_kesehatan'];
     $bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
     $uang_makan = $_POST['uang_makan'];

@@ -354,7 +354,7 @@ data-parent="#accordionSidebar">
                 <select id="nama_rute" name="nama_rute" class="form-control">
                     <option>PPE</option>
                     <option>PAP</option>
-
+                    <option>NJE</option>
                 </select>
              </div>  
          </div>
@@ -471,6 +471,7 @@ data-parent="#accordionSidebar">
                     <?php $dataSelect = $data['nama_rute']; ?>
                     <option <?php echo ($dataSelect == 'PPE') ? "selected": "" ?>>PPE</option>
                     <option <?php echo ($dataSelect == 'PAP') ? "selected": "" ?>>PAP</option>
+                    <option <?php echo ($dataSelect == 'NJE') ? "selected": "" ?>>NJE</option>
                 </select>
                 </div>          
       </div>
@@ -538,53 +539,72 @@ data-parent="#accordionSidebar">
       <th>Upah PPE</th>
       <th>Rit PAP</th>
       <th>Upah PAP</th>
+      <th>Rit NJE</th>
+      <th>Upah NJE</th>
       <th>Upah Total</th>
     </tr>
   </thead>
   <tbody>
   <?php 
     $total_gaji_nje = 0;
-    $total_gaji_pep = 0;
+    $total_gaji_pap = 0;
+    $total_gaji_ppe = 0;
     $total_rit_nje = 0;
-    $total_rit_pep = 0;
+    $total_rit_pap = 0;
+    $total_rit_ppe = 0;
   ?>
     <?php while($data = mysqli_fetch_array($table2)){
       $nama_driver = $data['nama_driver'];
       $nama_rute =$data['nama_rute'];
-      $table3 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_nje, SUM(rit) AS rit_nje FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'PPE'");
+      $table3 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_ppe, SUM(rit) AS rit_ppe FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'PPE'");
       $data3 = mysqli_fetch_array($table3);
-      $total_gaji_nje = $data3['uang_gaji_nje'];
-      if (  $total_gaji_nje == ""  ) {
-        $total_gaji_nje = 0;
+      $total_gaji_ppe = $data3['uang_gaji_ppe'];
+      if (  $total_gaji_ppe == ""  ) {
+        $total_gaji_ppe = 0;
       }
-      $total_rit_nje = $data3['rit_nje'];
-      if (  $total_rit_nje == ""  ) {
-        $total_rit_nje = 0;
+      $total_rit_ppe = $data3['rit_ppe'];
+      if (  $total_rit_ppe == ""  ) {
+        $total_rit_ppe = 0;
       }
       
 
-      $table4 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_pep , SUM(rit) AS rit_pep FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PAP'");
+      $table4 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_pap , SUM(rit) AS rit_pap FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PAP'");
       $data4 = mysqli_fetch_array($table4);
 
-      $total_gaji_pep = $data4['uang_gaji_pep'];
-      if (  $total_gaji_pep == ""  ) {
-        $total_gaji_pep = 0;
+      $total_gaji_pap = $data4['uang_gaji_pap'];
+      if (  $total_gaji_pap == ""  ) {
+        $total_gaji_pap = 0;
       }
 
-      $total_rit_pep = $data4['rit_pep'];
-      if (  $total_rit_pep == ""  ) {
-        $total_rit_pep = 0;
+      $total_rit_pap = $data4['rit_pap'];
+      if (  $total_rit_pap == ""  ) {
+        $total_rit_pap = 0;
+      }
+
+      $table5 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_nje , SUM(rit) AS rit_nje FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'NJE'");
+      $data5 = mysqli_fetch_array($table5);
+
+      $total_gaji_nje = $data5['uang_gaji_nje'];
+      if (  $total_gaji_nje == ""  ) {
+        $total_gaji_nje = 0;
+      }
+
+      $total_rit_nje = $data5['rit_nje'];
+      if (  $total_rit_nje == ""  ) {
+        $total_rit_nje = 0;
       }
 
       echo "<tr>
 
     <td style='font-size: 14px' >$nama_driver</td>
     <td style='font-size: 14px' >Driver</td>
+    <td style='font-size: 14px' >$total_rit_ppe</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_ppe); ?> <?php echo "</td>
+    <td style='font-size: 14px' >$total_rit_pap</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pap); ?> <?php echo "</td>
     <td style='font-size: 14px' >$total_rit_nje</td>
     <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_nje); ?> <?php echo "</td>
-    <td style='font-size: 14px' >$total_rit_pep</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pep); ?> <?php echo "</td>
-    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_pep + $total_gaji_nje); ?> <?php echo "</td>
+    <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total_gaji_ppe + $total_gaji_pap + $total_gaji_nje); ?> <?php echo "</td>
 
 
  </tr>";

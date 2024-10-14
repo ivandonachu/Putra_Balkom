@@ -28,6 +28,8 @@ exit;
     $upah_nje = 100000 * $rit_nje;
     $rit_gas_palembang = $_POST['rit_gas_palembang'];
     $upah_gas_palembang = 200000 * $rit_gas_palembang;
+    $rit_nje2 = $_POST['rit_nje2'];
+    $upah_nje2 = 100000 * $rit_nje2;
     $uang_makan = $_POST['uang_makan'];
     $bpjs_kesehatan = $_POST['bpjs_kesehatan'];
     $bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
@@ -36,7 +38,7 @@ exit;
     $total_gaji_diterima =  $upah_nje + $upah_gas_palembang  + $uang_makan ;
     $keterangan = $_POST['keterangan'];
 
-$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_mes VALUES('','$tanggal','$nama_driver','$jabatan','$rit_nje','$upah_nje','$rit_gas_palembang','$upah_gas_palembang','$uang_makan','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan','$total_gaji',
+$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_mes VALUES('','$tanggal','$nama_driver','$jabatan','$rit_nje','$upah_nje','$rit_gas_palembang','$upah_gas_palembang','$rit_nje2','$upah_nje2','$uang_makan','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan','$total_gaji',
                                                                         '$total_gaji_diterima','$keterangan')");
 
 
