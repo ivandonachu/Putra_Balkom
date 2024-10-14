@@ -29,7 +29,9 @@ if($nama_rute == 'PPE'){
 else if($nama_rute == 'PAP'){
     $uang_gaji = 200000;
 }
-
+else if($nama_rute == 'NJE'){
+    $uang_gaji = 100000;
+}
 
 	
 			$query = mysqli_query($koneksi,"UPDATE laporan_rit_mes SET  tanggal = '$tanggal', nama_driver = '$nama_driver' ,nama_rute = '$nama_rute' , uang_gaji = '$uang_gaji'   WHERE no_laporan = '$no_laporan'");
