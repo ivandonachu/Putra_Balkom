@@ -38,7 +38,7 @@ exit;
     $total_gaji_diterima =  $upah_nje +  $uang_makan + $upah_gas_palembang ;
     $keterangan = $_POST['keterangan'];
 
-$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbr VALUES('','$tanggal','$nama_driver','$jabatan','$rit_nje','$upah_nje','$rit_gas_palembang','$upah_gas_palembang','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$uang_makan','$angsuran_bon_bulanan','$total_gaji',
+$query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbr VALUES('','$tanggal','$nama_driver','$jabatan','$rit_nje','$upah_nje','$rit_gas_palembang','$upah_gas_palembang','$rit_nje2','$upah_nje2','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$uang_makan','$angsuran_bon_bulanan','$total_gaji',
                                                                         '$total_gaji_diterima','$keterangan')");
 
 
