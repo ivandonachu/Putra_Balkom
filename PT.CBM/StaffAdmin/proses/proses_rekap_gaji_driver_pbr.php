@@ -29,7 +29,7 @@ while($data = mysqli_fetch_array($table2)){
 
     $nama_driver = $data['nama_driver'];
     $nama_rute =$data['nama_rute'];
-    $table3 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_ppe, SUM(rit) AS rit_ppe FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'PPE'");
+    $table3 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_ppe, SUM(rit) AS rit_ppe FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'PPE'");
       $data3 = mysqli_fetch_array($table3);
       $total_gaji_ppe = $data3['uang_gaji_ppe'];
       if (  $total_gaji_ppe == ""  ) {
@@ -41,7 +41,7 @@ while($data = mysqli_fetch_array($table2)){
       }
       
 
-      $table4 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_pap , SUM(rit) AS rit_pap FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PAP'");
+      $table4 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_pap , SUM(rit) AS rit_pap FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'PAP'");
       $data4 = mysqli_fetch_array($table4);
 
       $total_gaji_pap = $data4['uang_gaji_pap'];
@@ -54,7 +54,7 @@ while($data = mysqli_fetch_array($table2)){
         $total_rit_pap = 0;
       }
 
-      $table5 = mysqli_query($koneksi,"SELECT SUM(uang_gaji) AS uang_gaji_nje , SUM(rit) AS rit_nje FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'NJE'");
+      $table5 = mysqli_query($koneksipbr,"SELECT SUM(uang_gaji) AS uang_gaji_nje , SUM(rit) AS rit_nje FROM laporan_rit_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'NJE'");
       $data5 = mysqli_fetch_array($table5);
 
       $total_gaji_nje = $data5['uang_gaji_nje'];
