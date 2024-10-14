@@ -51,6 +51,11 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_soma_bmu = 0;
     $total_angkutan_berkah_bmu = 0;
     $total_angkutan_syafuan_bmu = 0;
+    $total_angkutan_yanti_bmu = 0;
+    $total_angkutan_nengah_bmu = 0;
+    $total_angkutan_joko_bmu = 0;
+    $total_angkutan_kustomo_bmu = 0;
+    $total_angkutan_kodri_bmu = 0;
     $total_angkutan_global_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
@@ -487,7 +492,15 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_pendapatan_rli = $total_angkutan_edy_rli;
     $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_map_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
                             + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu;
-} else {
+}
+
+
+
+
+
+
+
+else {
 
 
 
@@ -501,6 +514,12 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_soma_bmu = 0;
     $total_angkutan_berkah_bmu = 0;
     $total_angkutan_syafuan_bmu = 0;
+    $total_angkutan_yanti_bmu = 0;
+    $total_angkutan_nengah_bmu = 0;
+    $total_angkutan_joko_bmu = 0;
+    $total_angkutan_kustomo_bmu = 0;
+    $total_angkutan_kodri_bmu = 0;
+    $total_angkutan_global_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -775,6 +794,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             if (isset($data2p['status_kendaraan'])) {
                 $pemilik = $data2p['status_kendaraan'];
                 $kontrak = $data2p['kontrak'];
+
             } else {
                 $pemilik = '';
                 $kontrak = '';

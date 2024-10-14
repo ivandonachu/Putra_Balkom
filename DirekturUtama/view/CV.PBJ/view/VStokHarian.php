@@ -592,15 +592,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?></h4>
                         <!-- Tabel -->
                         <div style="overflow-x: auto" align='center'>
-                            <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                        <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal</th>
                                         <th>Jenis Semen</th>
+                                        <th>Stok Awal/zak</th>
                                         <th>Stok Masuk/zak</th>
                                         <th>Stok Keluar/zak</th>
-                                        <th>Total Stok/zak</th>
+                                        <th>Total Akhir/zak</th>
 
                                     </tr>
                                 </thead>
@@ -622,12 +623,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $stok_masuk = $data['stok_masuk'];
                                         $stok_keluar = $data['stok_keluar'];
                                         $total_stok = $data['total_stok'];
+                                        $stok_awal = $total_stok + $stok_keluar + $stok_masuk;
                                         $urut = $urut + 1;
 
                                         echo "<tr>
                                             <td style='font-size: 14px' align = 'center'>$urut</td>
                                             <td style='font-size: 14px' align = 'center'>$tanggal</td>
                                             <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_awal</td>
                                             <td style='font-size: 14px' align = 'center'>$stok_masuk</td>
                                             <td style='font-size: 14px' align = 'center'>$stok_keluar</td>
                                             <td style='font-size: 14px' align = 'center'>$total_stok</td>
