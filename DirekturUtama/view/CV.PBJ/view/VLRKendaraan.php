@@ -49,6 +49,11 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_soma_bmu = 0;
     $total_angkutan_berkah_bmu = 0;
     $total_angkutan_syafuan_bmu = 0;
+    $total_angkutan_yanti_bmu = 0;
+    $total_angkutan_nengah_bmu = 0;
+    $total_angkutan_joko_bmu = 0;
+    $total_angkutan_kustomo_bmu = 0;
+    $total_angkutan_kodri_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -112,6 +117,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -120,6 +127,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB MESUJI') {
             //RLI
@@ -173,6 +190,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -181,6 +200,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB. TULANG BAWANG') {
             //RLI
@@ -226,13 +255,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $pemilik = '';
                 $kontrak = '';
             }
-
             if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -241,6 +271,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB WAY KANAN') {
             //RLI
@@ -293,6 +333,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -301,6 +343,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB OKU SELATAN') {
             //RLI
@@ -387,6 +439,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -395,6 +449,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         }
     }
@@ -416,6 +480,11 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_soma_bmu = 0;
     $total_angkutan_berkah_bmu = 0;
     $total_angkutan_syafuan_bmu = 0;
+    $total_angkutan_yanti_bmu = 0;
+    $total_angkutan_nengah_bmu = 0;
+    $total_angkutan_joko_bmu = 0;
+    $total_angkutan_kustomo_bmu = 0;
+    $total_angkutan_kodri_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -479,6 +548,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -487,6 +558,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB MESUJI') {
             //RLI
@@ -533,6 +614,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -541,6 +624,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB. TULANG BAWANG') {
             //RLI
@@ -593,6 +686,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -601,6 +696,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB WAY KANAN') {
             //RLI
@@ -653,6 +758,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -661,6 +768,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB OKU SELATAN') {
             //RLI
@@ -747,6 +864,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_edy_bmu = $total_angkutan_edy_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
                 $total_angkutan_rama_bmu = $total_angkutan_rama_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu = $total_angkutan_map_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
                 $total_angkutan_eki_bangunan_bmu = $total_angkutan_eki_bangunan_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
@@ -755,6 +874,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_berkah_bmu = $total_angkutan_berkah_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
                 $total_angkutan_syafuan_bmu = $total_angkutan_syafuan_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+                $total_angkutan_yanti_bmu = $total_angkutan_yanti_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+                $total_angkutan_nengah_bmu = $total_angkutan_nengah_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+                $total_angkutan_joko_bmu = $total_angkutan_joko_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+                $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+                $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
         }
     }
@@ -788,22 +917,147 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jml_pembelian_sparepart = 0;
     }
     //pengiriman ety
-    $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE 
-    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'");
+    $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8344YC'  
+     OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8370YC' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8971YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8521YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8251YC'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8101YA'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8694YA'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8930VA'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8221YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8223YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8224YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8225YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8226YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8227YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8876UY'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8515YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8969YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8101YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8252YC'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8376YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8970YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8231KN'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE9789AV'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE9816AV'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8405YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8965V' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8966V' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8884UY' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1718XL' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1705XL' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1707XL' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1759XL' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1726XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1725XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1703XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1778XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1678XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1765XL'");
     $data2 = mysqli_fetch_array($table2);
     $total_uj = $data2['total_uj'];
     $total_gaji = $data2['total_gaji'];
     $total_om = $data2['total_om'];
-    $total_bs = $data2['total_bs'];
+
 
     //pengiriman kadek
-    $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE 
-    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'");
+    $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8344YC'  
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8370YC' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8971YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8521YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8251YC'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8101YA'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8694YA'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8930VA'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8221YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8223YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8224YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8225YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8226YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8227YD'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8876UY'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8515YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8969YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8101YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8252YC'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8376YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8970YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8231KN'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE9789AV'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE9816AV'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8405YB'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8965V' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8966V' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8884UY' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1718XL' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1705XL' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1707XL' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1759XL' 
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1726XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1725XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1703XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1778XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1678XL'
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1765XL' ");
     $data2sl = mysqli_fetch_array($table2sl);
     $total_uj_sl = $data2sl['total_uj'];
     $total_gaji_sl = $data2sl['total_gaji'];
     $total_om_sl = $data2sl['total_om'];
-    $total_bs_sl = $data2sl['total_bs'];
+  
+
+    //pengiriman ety
+    $table2x = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8344YC'  
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8370YC'
+     OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8266WY'
+      OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8294WV'
+       OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'Z9888DD'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8135FS'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8165FN'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8670HU'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8297CE'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8837CE'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8220V'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8290VA'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'B9052VDA' 
+          OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8770GB' 
+           OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8454UH' 
+            OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8970FO' 
+             OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8805NM' 
+              OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8227DS' 
+               OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8045YC' 
+                OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8651FO' 
+                 OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8608YB' 
+                  OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8971YB' ");
+    $data2x = mysqli_fetch_array($table2x);
+    $total_bs = $data2x['total_bs'];
+
+    //pengiriman kadek
+    $table2slx = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE 
+    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8344YC'  
+    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8370YC'
+     OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8266WY'
+      OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8294WV'
+       OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'Z9888DD'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8135FS'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8165FN'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8670HU'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8297CE'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8837CE'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8220V'
+        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8290VA' 
+         OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'B9052VDA' 
+          OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8770GB' 
+           OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8454UH' 
+            OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8970FO' 
+             OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8805NM' 
+              OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8227DS' 
+               OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8045YC' 
+                OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8651FO' 
+                 OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8608YB' 
+                  OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8971YB' ");
+    $data2slx = mysqli_fetch_array($table2slx);
+    $total_bs_sl = $data2slx['total_bs'];
 
 
 
@@ -825,7 +1079,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-    $laba_kotor = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu + $total_angkutan_edy_rli;
+    $laba_kotor = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu + $total_angkutan_edy_rli + $total_angkutan_yanti_bmu + 
+    $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu;
 
     $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_perbaikan_1 + $biaya_perbaikan_2 + $jml_pembelian_sparepart;
 
@@ -1191,6 +1446,41 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td>4-106</td>
                                                     <td class="text-left">Tagihan BMU Syafuan</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_syafuan_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-106</td>
+                                                    <td class="text-left">Tagihan BMU Yanti</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_yanti_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-106</td>
+                                                    <td class="text-left">Tagihan BMU Nengah</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_nengah_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-106</td>
+                                                    <td class="text-left">Tagihan BMU Joko</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_joko_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-106</td>
+                                                    <td class="text-left">Tagihan BMU Kustomo</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_kustomo_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-106</td>
+                                                    <td class="text-left">Tagihan BMU Kodri</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_kodri_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>

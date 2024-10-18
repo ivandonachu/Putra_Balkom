@@ -49,6 +49,11 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_soma_bmu = 0;
     $total_angkutan_berkah_bmu = 0;
     $total_angkutan_syafuan_bmu = 0;
+    $total_angkutan_yanti_bmu = 0;
+    $total_angkutan_nengah_bmu = 0;
+    $total_angkutan_joko_bmu = 0;
+    $total_angkutan_kustomo_bmu = 0;
+    $total_angkutan_kodri_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -478,6 +483,11 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_soma_bmu = 0;
     $total_angkutan_berkah_bmu = 0;
     $total_angkutan_syafuan_bmu = 0;
+    $total_angkutan_yanti_bmu = 0;
+    $total_angkutan_nengah_bmu = 0;
+    $total_angkutan_joko_bmu = 0;
+    $total_angkutan_kustomo_bmu = 0;
+    $total_angkutan_kodri_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
