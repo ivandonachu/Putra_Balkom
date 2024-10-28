@@ -35,25 +35,26 @@ exit;
     $bonus_3 = $_POST['bonus_3'];
     $potongan_absen = $_POST['potongan_absen'];
     $angsuran_pinjaman = $_POST['angsuran_pinjaman'];
+    $absen_terlambat = $_POST['absen_terlambat'];
     $insentif = $_POST['insentif'];
     $potongan_bon = $_POST['potongan_bon'];
     $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif ;
-    if($mama_karyawan == 'Made Dani Asmara'  ){
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif  - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan);
+    if($nama_karyawan == 'Made Dani Asmara'  ){
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif  - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $absen_terlambat);
 
     }
     else if($total_gaji >= 3400000){
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif  - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $bpjs_kesehatan);
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif  - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $bpjs_kesehatan + $absen_terlambat);
     }
     else if($total_gaji < 3400000 ){
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif  - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan);
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif  - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $absen_terlambat);
 
     }
     
     $keterangan = $_POST['keterangan'];
 
 $query = mysqli_query($koneksi,"INSERT INTO list_gaji_pbj VALUES('','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_akomodasi','$uang_makan','$bpjs_ketenagakerjaan','$bpjs_kesehatan','$lembur','$premi_kehadiran'
-                                                                    ,'$bonus_1','$bonus_2','$bonus_3','$insentif','$potongan_absen','$angsuran_pinjaman','$potongan_bon','$total_gaji','$total_gaji_diterima','$keterangan')");
+                                                                    ,'$bonus_1','$bonus_2','$bonus_3','$absen_terlambat','$insentif','$potongan_absen','$angsuran_pinjaman','$potongan_bon','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 
 if ($query != "") {

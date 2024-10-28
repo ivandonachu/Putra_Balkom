@@ -70,6 +70,8 @@ $html = '
         $bonus_1 = $data['bonus_1'];
         $bonus_2 = $data['bonus_2'];
         $bonus_3 = $data['bonus_3'];
+        $insentif = $data['insentif'];
+        $absen_terlambat = $data['absen_terlambat'];
         $potongan_absen = $data['potongan_absen'];
         $angsuran_pinjaman = $data['angsuran_pinjaman'];
         $potongan_bon = $data['potongan_bon'];
@@ -132,7 +134,6 @@ $html = '
     
         </table>
 
-        <br>
 
         <table align="center" style="width:100%" border="1" cellspacing="0">
 
@@ -153,6 +154,14 @@ $html = '
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($bonus_3) .'</td>
         </tr>
         <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Insentif</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($insentif) .'</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Absen Terlambat</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($absen_terlambat) .'</td>
+        </tr>
+        <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Potongan Bon</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($potongan_bon) .'</td>
         </tr>
@@ -162,8 +171,6 @@ $html = '
         </tr>
     
         </table>
-
-        <br>
 
         <table align="center" style="width:100%" border="1" cellspacing="0">
 
