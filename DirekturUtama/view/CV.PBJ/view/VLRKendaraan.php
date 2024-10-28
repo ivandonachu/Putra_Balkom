@@ -485,6 +485,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_joko_bmu = 0;
     $total_angkutan_kustomo_bmu = 0;
     $total_angkutan_kodri_bmu = 0;
+    $total_angkutan_map_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -916,150 +917,97 @@ if ($tanggal_awal == $tanggal_akhir) {
     if (!isset($data7['total_pembelian_sparepart'])) {
         $jml_pembelian_sparepart = 0;
     }
-    //pengiriman ety
-    $table2 = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8344YC'  
-     OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8370YC' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8971YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8521YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8251YC'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8101YA'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8694YA'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8930VA'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8221YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8223YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8224YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8225YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8226YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8227YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8876UY'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8515YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8969YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8101YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8252YC'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8376YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8970YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8231KN'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE9789AV'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE9816AV'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8405YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8965V' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8966V' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8884UY' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1718XL' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1705XL' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1707XL' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1759XL' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1726XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1725XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1703XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1778XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1678XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1765XL'");
+
+
+    //pengiriman 1
+    $table2 = mysqli_query($koneksipbj, "SELECT no_polisi, driver, sum(uj) as total_uj, sum(ug) as total_ug, sum(om) as total_om  FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi ");
     $data2 = mysqli_fetch_array($table2);
-    $total_uj = $data2['total_uj'];
-    $total_gaji = $data2['total_gaji'];
-    $total_om = $data2['total_om'];
+    $total_uj = 0;
+    $total_gaji = 0;
+    $total_om = 0;
 
+    while ($data2 = mysqli_fetch_array($table2)) {
+    $no_polisi = $data2['no_polisi'];
+    $uj = $data2['total_uj'];
+    $ug = $data2['total_ug'];
+    $om = $data2['total_om'];
+    if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
+    $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
+    $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
+    $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
+    $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+        $total_uj = $total_uj + $uj;
+        $total_gaji = $total_gaji + $ug;
+        $total_om = $total_om + $om;
+    }
+    else{
 
-    //pengiriman kadek
-    $table2sl = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8344YC'  
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8370YC' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8971YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8521YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8251YC'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8101YA'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8694YA'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8930VA'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8221YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8223YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8224YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8225YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8226YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8227YD'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8876UY'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8515YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8969YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8101YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8252YC'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8376YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8970YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8231KN'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE9789AV'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE9816AV'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8405YB'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8965V' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8966V' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8884UY' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1718XL' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1705XL' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1707XL' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1759XL' 
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1726XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1725XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1703XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1778XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1678XL'
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG1765XL' ");
+    }
+    }
+
+    //pengiriman 2
+    $table2sl = mysqli_query($koneksipbj, "SELECT no_polisi, driver, sum(uj) as total_uj_sl, sum(ug) as total_ug_sl, sum(om) as total_om_sl  FROM pengiriman_sl WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  GROUP BY no_polisi ");
     $data2sl = mysqli_fetch_array($table2sl);
-    $total_uj_sl = $data2sl['total_uj'];
-    $total_gaji_sl = $data2sl['total_gaji'];
-    $total_om_sl = $data2sl['total_om'];
-  
+    $total_uj_sl = 0;
+    $total_gaji_sl = 0;
+    $total_om_sl = 0;
 
-    //pengiriman ety
-    $table2x = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8344YC'  
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8370YC'
-     OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8266WY'
-      OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8294WV'
-       OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'Z9888DD'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8135FS'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8165FN'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8670HU'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8297CE'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8837CE'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8220V'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8290VA'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'B9052VDA' 
-          OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8770GB' 
-           OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8454UH' 
-            OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8970FO' 
-             OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8805NM' 
-              OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8227DS' 
-               OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8045YC' 
-                OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8651FO' 
-                 OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8608YB' 
-                  OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8971YB' ");
-    $data2x = mysqli_fetch_array($table2x);
-    $total_bs = $data2x['total_bs'];
+    while ($data2sl = mysqli_fetch_array($table2sl)) {
+    $no_polisi = $data2sl['no_polisi'];
+    $uj = $data2sl['total_uj_sl'];
+    $ug = $data2sl['total_ug_sl'];
+    $om = $data2sl['total_om_sl'];
+    if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
+    $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
+    $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
+    $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
+    $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+        $total_uj_sl = $total_uj_sl + $uj;
+        $total_gaji_sl = $total_gaji_sl + $ug;
+        $total_om_sl = $total_om_sl + $om;
+    }
+    else{
+        
+    }
+    }
 
-    //pengiriman kadek
-    $table2slx = mysqli_query($koneksipbj, "SELECT SUM(uj) AS total_uj, SUM(ug) AS total_gaji, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_sl WHERE 
-    tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8344YC'  
-    OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8370YC'
-     OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8266WY'
-      OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8294WV'
-       OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'Z9888DD'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8135FS'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8165FN'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8670HU'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8297CE'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8837CE'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8220V'
-        OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8290VA' 
-         OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'B9052VDA' 
-          OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BE8770GB' 
-           OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8454UH' 
-            OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8970FO' 
-             OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8805NM' 
-              OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8227DS' 
-               OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8045YC' 
-                OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8651FO' 
-                 OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8608YB' 
-                  OR tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = 'BG8971YB' ");
-    $data2slx = mysqli_fetch_array($table2slx);
-    $total_bs_sl = $data2slx['total_bs'];
+        
+    //pengiriman 1 bs
+    $table2x = mysqli_query($koneksipbj, "SELECT no_polisi, driver, SUM(bs) as total_bs  FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi ");
+    $total_bs = 0;
 
+    while ($data2x = mysqli_fetch_array($table2x)) {
+    $no_polisi = $data2x['no_polisi'];
+    $bs = $data2x['total_bs'];
+    if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BE8266WY' ||$no_polisi == 'BE8294WV' ||$no_polisi == 'Z9888DD' ||$no_polisi == 'BG8135FS' ||$no_polisi == 'BG8165FN' ||$no_polisi == 'BE8670HU' ||$no_polisi == 'BG8297CE' ||
+    $no_polisi == 'BG8837CE' ||$no_polisi == 'BG8220V' ||$no_polisi == 'BG8290VA' ||$no_polisi == 'B9052VDA' ||$no_polisi == 'BE8770GB' ||$no_polisi == 'BG8454UH' ||$no_polisi == 'BG8970FO' ||$no_polisi == 'BG8805NM' ||$no_polisi == 'BG8045YC' ||
+    $no_polisi == 'BG8651FO' ||$no_polisi == 'BG8608YB' ||$no_polisi == 'BG8971YB'){
+        $total_bs = $total_bs + $bs;
+    }
+    else{
+        
+    }
+    }
 
+    //pengiriman 2 bs
+    $table2slx = mysqli_query($koneksipbj, "SELECT no_polisi, driver, SUM(bs) as total_bs_sl FROM pengiriman_sl WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi");
+    $total_bs_sl = 0;
+
+    while ($data2slx = mysqli_fetch_array($table2slx)) {
+    $no_polisi = $data2slx['no_polisi'];
+    $bs = $data2slx['total_bs_sl'];
+    if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BE8266WY' ||$no_polisi == 'BE8294WV' ||$no_polisi == 'Z9888DD' ||$no_polisi == 'BG8135FS' ||$no_polisi == 'BG8165FN' ||$no_polisi == 'BE8670HU' ||$no_polisi == 'BG8297CE' ||
+    $no_polisi == 'BG8837CE' ||$no_polisi == 'BG8220V' ||$no_polisi == 'BG8290VA' ||$no_polisi == 'B9052VDA' ||$no_polisi == 'BE8770GB' ||$no_polisi == 'BG8454UH' ||$no_polisi == 'BG8970FO' ||$no_polisi == 'BG8805NM' ||$no_polisi == 'BG8045YC' ||
+    $no_polisi == 'BG8651FO' ||$no_polisi == 'BG8608YB' ||$no_polisi == 'BG8971YB'){
+        $total_bs_sl = $total_bs_sl + $bs;
+
+    }
+    else{
+        
+    }
+    }
+
+    
 
     //Biaya tarikan etty
     $table_tarikan_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_tarikan FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
@@ -1079,19 +1027,17 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-    $laba_kotor = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu + $total_angkutan_edy_rli + $total_angkutan_yanti_bmu + 
-    $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu;
+    $laba_kotor = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu + $total_angkutan_edy_rli + $total_angkutan_yanti_bmu +
+        $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu;
 
     $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_perbaikan_1 + $biaya_perbaikan_2 + $jml_pembelian_sparepart;
 
     $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
-    $table1001=  mysqli_query($koneksipbj, "SELECT no_polisi FROM kendaraan_sl_sp WHERE status_kendaraan = 'Bapak Nyoman Edi' AND kontrak = 'BMU' ");
-    $table1002=  mysqli_query($koneksipbj, "SELECT no_polisi FROM kendaraan_sl_sp WHERE status_kendaraan = 'Bapak Nyoman Edi' AND kontrak = 'RLI' ");
-
-
+    $table1001 =  mysqli_query($koneksipbj, "SELECT no_polisi FROM kendaraan_sl_sp WHERE status_kendaraan = 'Bapak Nyoman Edi' AND kontrak = 'BMU' ");
+    $table1002 =  mysqli_query($koneksipbj, "SELECT no_polisi FROM kendaraan_sl_sp WHERE status_kendaraan = 'Bapak Nyoman Edi' AND kontrak = 'RLI' ");
+    
 }
-
 ?>
 
 
@@ -1215,8 +1161,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
                 </div>
             </li>
-           <!-- Nav Item - Pages Collapse Menu -->
-           <li class="nav-item">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
                     <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
                     <span style="font-size: 15px; color:white;">Report Gudang</span>
@@ -1454,35 +1400,35 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="text-left">Tagihan BMU Yanti</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_yanti_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanYantiBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-106</td>
                                                     <td class="text-left">Tagihan BMU Nengah</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_nengah_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanNengahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-106</td>
                                                     <td class="text-left">Tagihan BMU Joko</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_joko_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanJokoBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-106</td>
                                                     <td class="text-left">Tagihan BMU Kustomo</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_kustomo_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanKustomoBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-106</td>
                                                     <td class="text-left">Tagihan BMU Kodri</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_kodri_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanKodriBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color: navy;  color:white;">
                                                     <td><strong>TOTAL LABA KOTOR</strong></td>
@@ -1600,75 +1546,75 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                     <br>
-                        <br>
-                        <h3 class="text-center">Laba Rugi Kendaraan Pak Nyoman Edi</h3>
-                        <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                            <thead>
+                    <br>
+                    <h3 class="text-center">Laba Rugi Kendaraan Pak Nyoman Edi</h3>
+                    <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                        <thead>
                             <tr>
-                                     <th class="text-center">No</th>
-                                    <th class="text-center">No Polisi</th>
-                                    <th class="text-center">Jenis Kendaraan</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    $no_urut =0;
-                                ?>
-                                <?php while ($data = mysqli_fetch_array($table1001)) {
-                                    $no_polisi = $data['no_polisi'];
-                                    $no_urut = $no_urut +1;
+                                <th class="text-center">No</th>
+                                <th class="text-center">No Polisi</th>
+                                <th class="text-center">Jenis Kendaraan</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no_urut = 0;
+                            ?>
+                            <?php while ($data = mysqli_fetch_array($table1001)) {
+                                $no_polisi = $data['no_polisi'];
+                                $no_urut = $no_urut + 1;
 
-                                    echo "<tr>
+                                echo "<tr>
                                     <td style='font-size: 14px' align = 'center'>$no_urut</td>
                                     <td style='font-size: 14px' align = 'center'>$no_polisi</td>" ?>
-                                    <?php echo "<td class='text-center'><a href='VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>LR Kendaraan</a></td>"; ?>
+                                <?php echo "<td class='text-center'><a href='VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>LR Kendaraan</a></td>"; ?>
 
 
 
-                                <?php echo  " </tr>";
-                                }
-                                ?>
+                            <?php echo  " </tr>";
+                            }
+                            ?>
 
-                            </tbody>
-                        </table>
-                        <br>
-                        <br>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
 
-                        <br>
-                        <br>
-                        <h3 class="text-center">Laba Rugi Kendaraan Pak Nyoman Edi</h3>
-                        <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                            <thead>
-                                <tr>
-                                     <th class="text-center">No</th>
-                                    <th class="text-center">No Polisi</th>
-                                    <th class="text-center">Jenis Kendaraan</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    $no_urut =0;
-                                ?>
-                                <?php while ($data = mysqli_fetch_array($table1002)) {
-                                    $no_polisi = $data['no_polisi'];
-                                    $no_urut = $no_urut +1;
+                    <br>
+                    <br>
+                    <h3 class="text-center">Laba Rugi Kendaraan Pak Nyoman Edi</h3>
+                    <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                        <thead>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">No Polisi</th>
+                                <th class="text-center">Jenis Kendaraan</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no_urut = 0;
+                            ?>
+                            <?php while ($data = mysqli_fetch_array($table1002)) {
+                                $no_polisi = $data['no_polisi'];
+                                $no_urut = $no_urut + 1;
 
-                                    echo "<tr>
+                                echo "<tr>
                                     <td style='font-size: 14px' align = 'center'>$no_urut</td>
                                     <td style='font-size: 14px' align = 'center'>$no_polisi</td>" ?>
-                                    <?php echo "<td class='text-center'><a href='VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>LR Kendaraan</a></td>"; ?>
+                                <?php echo "<td class='text-center'><a href='VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>LR Kendaraan</a></td>"; ?>
 
 
-                                <?php echo  " </tr>";
-                                }
-                                ?>
+                            <?php echo  " </tr>";
+                            }
+                            ?>
 
-                            </tbody>
-                        </table>
-                        <br>
-                        <br>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
 
 
 

@@ -37,9 +37,9 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
 
  
-   $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
+   $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_om FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
 
-   $table4x = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
+   $table4x = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_om FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
 
 
 }
@@ -333,15 +333,21 @@ Logout
 
     ?>
     <?php while($data = mysqli_fetch_array($table4)){
-      $nama_driver = $data['no_polisi'];
-      $total_gaji =$data['total_gaji'];
-      $total_om_etty =  $total_om_etty + $total_gaji;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om_etty); ?> <?php echo" </td>
-
-      </tr>";
+      $no_polisi = $data['no_polisi'];
+      if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
+      $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
+      $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
+      $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
+      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+        $total_om =$data['total_om'];
+        $total_om_etty = $total_om_etty + $total_om; 
+        echo "<tr>
+        <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om); ?> <?php echo" </td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om_etty); ?> <?php echo" </td>
+  
+        </tr>";
+      }
 }
 ?>
 
@@ -372,15 +378,21 @@ Logout
 
     ?>
     <?php while($data = mysqli_fetch_array($table4x)){
-      $nama_driver = $data['no_polisi'];
-      $total_gaji =$data['total_gaji'];
-      $total_om_kadek = $total_om_kadek + $total_gaji;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om_kadek); ?> <?php echo" </td>
-
-      </tr>";
+       $no_polisi = $data['no_polisi'];
+       if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
+       $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
+       $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
+       $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
+       $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+         $total_om =$data['total_om'];
+         $total_om_kadek = $total_om_kadek + $total_om; 
+         echo "<tr>
+         <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+         <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om); ?> <?php echo" </td>
+         <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om_kadek); ?> <?php echo" </td>
+   
+         </tr>";
+       }
 }
 ?>
 

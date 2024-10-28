@@ -36,7 +36,7 @@ exit;
     $angsuran_bon_bulanan = $_POST['angsuran_bon_bulanan'];
     $bonus = $_POST['bonus'];
     $insentif = $_POST['insentif'];
-    if($nama_karyawan == 'Septian Andriansyah' ){
+    if($nama_karyawan == 'Septian Andriansyah' || $nama_karyawan = 'Dendi Wibowo'  ){
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
         $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif  ;
     }

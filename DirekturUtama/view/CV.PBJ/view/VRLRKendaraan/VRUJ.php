@@ -37,8 +37,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
 
  
-   $table4 = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
-   $table4x = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
+   $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(uj) AS total_uj FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
+   $table4x = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(uj) AS total_uj FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
    $table = mysqli_query($koneksipbj,"SELECT * FROM sewa_hiblow WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 
@@ -313,7 +313,7 @@ Logout
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th align="center">Nama Driver</th>
+      <th align="center">No Polisi</th>
       <th align="center">Uang Jalan</th>
       <th align="center">Total Uang Jalan</th>
 
@@ -329,14 +329,21 @@ Logout
 
     ?>
     <?php while($data = mysqli_fetch_array($table4)){
-      $nama_driver = $data['driver'];
-      $total_gaji =$data['total_gaji'];
-      $uj_etty = $uj_etty + $total_gaji ;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($uj_etty); ?> <?php echo" </td>
-      </tr>";
+      $no_polisi = $data['no_polisi'];
+      if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
+      $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
+      $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
+      $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
+      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+        $total_uj =$data['total_uj'];
+        $uj_etty = $uj_etty + $total_uj; 
+        echo "<tr>
+        <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_uj); ?> <?php echo" </td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($uj_etty); ?> <?php echo" </td>
+  
+        </tr>";
+      }
 }
 ?>
 
@@ -353,7 +360,7 @@ Logout
 <table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th align="center">Nama Driver</th>
+      <th align="center">No Polisi</th>
       <th align="center">Uang Jalan</th>
       <th align="center">Total Uang Jalan</th>
 
@@ -366,14 +373,21 @@ Logout
 
     ?>
     <?php while($data = mysqli_fetch_array($table4x)){
-      $nama_driver = $data['driver'];
-      $total_gaji =$data['total_gaji'];
-      $uj_kadek = $uj_kadek + $total_gaji ;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($uj_kadek); ?> <?php echo" </td>
-      </tr>";
+      $no_polisi = $data['no_polisi'];
+      if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
+      $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
+      $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
+      $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
+      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+        $total_uj =$data['total_uj'];
+        $uj_kadek = $uj_kadek + $total_uj; 
+        echo "<tr>
+        <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_uj); ?> <?php echo" </td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($uj_kadek); ?> <?php echo" </td>
+  
+        </tr>";
+      }
 }
 ?>
 

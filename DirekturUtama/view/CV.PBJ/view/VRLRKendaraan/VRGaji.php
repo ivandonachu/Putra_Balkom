@@ -37,8 +37,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
 
  
-   $table4 = mysqli_query($koneksipbj, "SELECT driver, SUM(ug) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
-   $table4x= mysqli_query($koneksipbj, "SELECT driver, SUM(ug) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
+   $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(ug) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
+   $table4x= mysqli_query($koneksipbj, "SELECT no_polisi,SUM(ug) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
    $table = mysqli_query($koneksicbm, "SELECT * FROM rekap_gaji_driver_pbj WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
    
@@ -312,95 +312,7 @@ Logout
  </div>
 
 
-
- <h3 align='center' >Rekap Gaji Driver</h3>
-
-<!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center';>
-              <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
-  <thead>
-    <tr>  
-          <th style="font-size: 14px" scope="col">No</th>
-          <th style="font-size: 14px" scope="col">Tanggal</th>
-          <th style="font-size: 14px" scope="col">Nama Karyawan</th>
-          <th style="font-size: 14px" scope="col">Rit Semen</th>
-          <th style="font-size: 14px" scope="col">Upah Semen</th>
-          <th style="font-size: 14px" scope="col">Rit Batu</th>
-          <th style="font-size: 14px" scope="col">Upah Batu</th>
-          <th style="font-size: 14px" scope="col">Bon</th>
-          <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
-          <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
-          <th style="font-size: 14px" scope="col">Total Gaji </th>
-          <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
-          <th style="font-size: 14px" scope="col">Keterangan </th>
-         
-        </tr>
-      </thead>
-      <tbody>
-      <?php
-      $no_urut = 0;
-      $total_sdh_di_tf = 0;
-      $total_blm_di_tf = 0;
-      $total_seluruh = 0;
-          function formatuang($angka)
-          {
-            $uang = "Rp " . number_format($angka, 0, ',', '.');
-            return $uang;
-          }
-      ?>
-
-        <?php while($data2 = mysqli_fetch_array($table)){
-          $no_riwayat = $data2['no_riwayat'];
-          $tanggal =$data2['tanggal'];
-          $nama_driver =$data2['nama_driver'];
-          $rit_semen = $data2['rit_semen'];
-          $upah_semen = $data2['upah_semen'];
-          $rit_batu = $data2['rit_batu'];
-          $upah_batu = $data2['upah_batu'];
-          $bpjs_kesehatan = $data2['bpjs_kesehatan'];
-          $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
-          $bon = $data2['bon'];
-          $total_gaji = $data2['total_gaji'];
-          $total_gaji_diterima = $data2['total_gaji_diterima'];
-          $keterangan = $data2['keterangan'];
-          $no_urut = $no_urut + 1 ;
-          $total_seluruh = $total_seluruh + $total_gaji_diterima;
-
-          if($keterangan == 'Sudah di Transfer'){
-            $total_sdh_di_tf = $total_sdh_di_tf + $total_gaji_diterima;
-          }
-          else{
-            $total_blm_di_tf = $total_blm_di_tf + $total_gaji_diterima;
-
-          }
-          echo "<tr>
-          <td style='font-size: 14px'>$no_urut</td>
-          <td style='font-size: 14px'>$tanggal</td>
-          <td style='font-size: 14px'>$nama_driver</td>
-          <td style='font-size: 14px'>$rit_semen</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_semen); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$rit_batu</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($upah_batu); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bon); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
-          <td style='font-size: 14px'>$keterangan</td>
-       
-      </tr>";
-  }
-  ?>
-
-</tbody>
-</table>
-</div>
-
-<br>
-<hr>
-<br>
-
- <h3 align='center' >Gaji Driver Etty</h3>
+ <h3 align='center' >Gaji Driver 1</h3>
 <!-- Tabel -->    
 <table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -416,18 +328,29 @@ Logout
   <?php
     $gaji_ety = 0;
     $gaji_kadek = 0;
-
+    function formatuang($angka)
+    {
+      $uang = "Rp " . number_format($angka, 0, ',', '.');
+      return $uang;
+    }
     ?>
     <?php while($data = mysqli_fetch_array($table4)){
-      $nama_driver = $data['driver'];
-      $total_gaji =$data['total_gaji'];
-      $gaji_ety = $gaji_ety + $total_gaji; 
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($gaji_ety); ?> <?php echo" </td>
+      $no_polisi = $data['no_polisi'];
+      if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
+      $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
+      $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
+      $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
+      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+        $total_gaji =$data['total_gaji'];
+        $gaji_ety = $gaji_ety + $total_gaji; 
+        echo "<tr>
+        <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($gaji_ety); ?> <?php echo" </td>
+  
+        </tr>";
+      }
 
-      </tr>";
 }
 ?>
 
@@ -438,7 +361,7 @@ Logout
 <hr>
 <br>
 
-<h3 align='center' >Gaji Driver Kadek</h3>
+<h3 align='center' >Gaji Driver 2</h3>
 <!-- Tabel -->    
 <table id="example3" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -453,15 +376,21 @@ Logout
   <tbody>
 
     <?php while($data = mysqli_fetch_array($table4x)){
-      $nama_driver = $data['driver'];
-      $total_gaji =$data['total_gaji'];
-      $gaji_kadek = $gaji_kadek + $total_gaji;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($gaji_kadek); ?> <?php echo" </td>
-
-      </tr>";
+      $no_polisi = $data['no_polisi'];
+      if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
+      $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
+      $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
+      $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
+      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+        $total_gaji =$data['total_gaji'];
+        $gaji_kadek = $gaji_kadek + $total_gaji; 
+        echo "<tr>
+        <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_gaji); ?> <?php echo" </td>
+        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($gaji_kadek); ?> <?php echo" </td>
+  
+        </tr>";
+      }
 }
 ?>
 
