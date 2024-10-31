@@ -39,7 +39,7 @@ $angsuran_pinjaman = $_POST['angsuran_pinjaman'];
 $potongan_bon = $_POST['potongan_bon'];
 
 $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif;
-if($$nama_karyawan == 'Made Dani Asmara' ){
+if($$nama_karyawan == 'Made Dani Asmara' || $$nama_karyawan == 'Etty Suswantari' || $$nama_karyawan == 'Wayan Jiwan Mukti' ){
 	$total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $bpjs_kesehatan + $absen_terlambat);
 }
 else{
