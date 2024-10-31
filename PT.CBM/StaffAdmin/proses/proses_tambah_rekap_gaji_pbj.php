@@ -40,14 +40,10 @@ exit;
     $insentif = $_POST['insentif'];
     $potongan_bon = $_POST['potongan_bon'];
     $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif;
-    if($nama_karyawan == 'Made Dani Asmara'  ){
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $absen_terlambat);
-
-    }
-    else if($total_gaji >= 3400000){
+    if($$nama_karyawan == 'Made Dani Asmara' ){
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $bpjs_kesehatan + $absen_terlambat);
     }
-    else if($total_gaji < 3400000 ){
+    else{
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $absen_terlambat);
 
     }
