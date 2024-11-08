@@ -51,9 +51,14 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal ='$tanggal_awal' AND kode_gudang = '$kode_gudang' ");
+    $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal ='$tanggal_awal' AND jenis_semen = 'SMBR' AND kode_gudang = '$kode_gudang' ");
+    $table2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal ='$tanggal_awal'  AND jenis_semen = 'Merdeka' AND kode_gudang = '$kode_gudang' ");
+    $table3 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal ='$tanggal_awal'  AND jenis_semen = 'Dynamix' AND kode_gudang = '$kode_gudang' ");
+    
 } else {
-    $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_gudang = '$kode_gudang'  ");
+    $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jenis_semen = 'SMBR' AND kode_gudang = '$kode_gudang'  ");
+    $table2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jenis_semen = 'Merdeka' AND kode_gudang = '$kode_gudang'  ");
+    $table3 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jenis_semen = 'Dynamix' AND kode_gudang = '$kode_gudang'  ");
 }
 
 
@@ -323,7 +328,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         </div>
 
 
-                        <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?></h4>
+                        <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?> SMBR</h4>
                         <!-- Tabel -->
                         <div style="overflow-x: auto" align='center'>
                             <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -336,7 +341,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         <th>Stok Masuk/zak</th>
                                         <th>Stok Keluar/zak</th>
                                         <th>Total Akhir/zak</th>
-
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -357,7 +362,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $stok_masuk = $data['stok_masuk'];
                                         $stok_keluar = $data['stok_keluar'];
                                         $total_stok = $data['total_stok'];
-                                        $stok_awal = $total_stok + $stok_keluar + $stok_masuk;
+                                        $stok_awal = ($total_stok + $stok_keluar) - $stok_masuk;
                                         $urut = $urut + 1;
 
                                         echo "<tr>
@@ -477,6 +482,308 @@ if ($tanggal_awal == $tanggal_akhir) {
                         </div>
                         <br>
                         <br>
+
+                        <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?> Merdeka</h4>
+                        <!-- Tabel -->
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Jenis Semen</th>
+                                        <th>Stok Awal/zak</th>
+                                        <th>Stok Masuk/zak</th>
+                                        <th>Stok Keluar/zak</th>
+                                        <th>Total Akhir/zak</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $urut = 0;
+                                    ?>
+                                    <?php while ($data = mysqli_fetch_array($table2)) {
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $kode_gudang = $data['kode_gudang'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $stok_masuk = $data['stok_masuk'];
+                                        $stok_keluar = $data['stok_keluar'];
+                                        $total_stok = $data['total_stok'];
+                                        $stok_awal = ($total_stok + $stok_keluar) - $stok_masuk;
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
+                                            <td style='font-size: 14px' align = 'center'>$urut</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_awal</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_masuk</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_keluar</td>
+                                            <td style='font-size: 14px' align = 'center'>$total_stok</td>
+                                            "; ?>
+                                        <?php echo "<td style='font-size: 12px'>"; ?>
+
+
+                                        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+                                        <!-- Form EDIT DATA -->
+
+                                        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"> Form Edit Laporan Harian Gudang </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <!-- Form Edit Data -->
+                                                    <div class="modal-body">
+                                                        <form action="../proses/edit_stok_harian" enctype="multipart/form-data" method="POST">
+
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label>Tanggal</label>
+                                                                    <input class="form-control" type="date" name="tanggal" value="<?php echo $tanggal; ?>">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>Jenis Semen</label>
+                                                                    <select id="jenis_semen" name="jenis_semen" class="form-control">
+                                                                        <?php $dataSelect = $data['jenis_semen']; ?>
+                                                                        <option <?php echo ($dataSelect == 'SMBR') ? "selected" : "" ?>>SMBR</option>
+                                                                        <option <?php echo ($dataSelect == 'Merdeka') ? "selected" : "" ?>>Merdeka</option>
+                                                                        <option <?php echo ($dataSelect == 'Dynamix') ? "selected" : "" ?>>Dynamix</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label>Stok Masuk</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="stok_masuk" required="" value="<?php echo $stok_masuk; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Stok Keluar</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="stok_keluar" required="" value="<?php echo $stok_keluar; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Total Stok</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="total_stok" required="" value="<?php echo $total_stok; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Ubah </button>
+                                                                <button type="reset" class="btn btn-danger"> RESET</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Button Hapus -->
+                                        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+                                        <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title"> <b> Hapus Laporan Harian Gudang </b> </h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <form action="../proses/hapus_stok_harian" method="POST">
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <div class="form-group">
+                                                                <h6> Yakin Ingin Hapus Data? </h6>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Hapus </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php echo  " </td> </tr>";
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+
+
+                        <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?> Dynamix</h4>
+                        <!-- Tabel -->
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Jenis Semen</th>
+                                        <th>Stok Awal/zak</th>
+                                        <th>Stok Masuk/zak</th>
+                                        <th>Stok Keluar/zak</th>
+                                        <th>Total Akhir/zak</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $urut = 0;
+                                    ?>
+                                    <?php while ($data = mysqli_fetch_array($table3)) {
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $kode_gudang = $data['kode_gudang'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $stok_masuk = $data['stok_masuk'];
+                                        $stok_keluar = $data['stok_keluar'];
+                                        $total_stok = $data['total_stok'];
+                                        $stok_awal = ($total_stok + $stok_keluar) - $stok_masuk;
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
+                                            <td style='font-size: 14px' align = 'center'>$urut</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_awal</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_masuk</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_keluar</td>
+                                            <td style='font-size: 14px' align = 'center'>$total_stok</td>
+                                            
+                                            "; ?>
+                                        <?php echo "<td style='font-size: 12px'>"; ?>
+
+
+                                        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+                                        <!-- Form EDIT DATA -->
+
+                                        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"> Form Edit Laporan Harian Gudang </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <!-- Form Edit Data -->
+                                                    <div class="modal-body">
+                                                        <form action="../proses/edit_stok_harian" enctype="multipart/form-data" method="POST">
+
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label>Tanggal</label>
+                                                                    <input class="form-control" type="date" name="tanggal" value="<?php echo $tanggal; ?>">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>Jenis Semen</label>
+                                                                    <select id="jenis_semen" name="jenis_semen" class="form-control">
+                                                                        <?php $dataSelect = $data['jenis_semen']; ?>
+                                                                        <option <?php echo ($dataSelect == 'SMBR') ? "selected" : "" ?>>SMBR</option>
+                                                                        <option <?php echo ($dataSelect == 'Merdeka') ? "selected" : "" ?>>Merdeka</option>
+                                                                        <option <?php echo ($dataSelect == 'Dynamix') ? "selected" : "" ?>>Dynamix</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label>Stok Masuk</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="stok_masuk" required="" value="<?php echo $stok_masuk; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Stok Keluar</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="stok_keluar" required="" value="<?php echo $stok_keluar; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Total Stok</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="total_stok" required="" value="<?php echo $total_stok; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Ubah </button>
+                                                                <button type="reset" class="btn btn-danger"> RESET</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Button Hapus -->
+                                        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+                                        <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title"> <b> Hapus Laporan Harian Gudang </b> </h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <form action="../proses/hapus_stok_harian" method="POST">
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <div class="form-group">
+                                                                <h6> Yakin Ingin Hapus Data? </h6>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Hapus </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php echo  " </td> </tr>";
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+
+
                     </div>
                 </div>
             </div>
@@ -552,6 +859,30 @@ if ($tanggal_awal == $tanggal_akhir) {
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
+                lengthChange: false,
+                buttons: [ 'excel']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+<script>
+        $(document).ready(function() {
+            var table = $('#example2').DataTable({
+                lengthChange: false,
+                buttons: [ 'excel']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+<script>
+        $(document).ready(function() {
+            var table = $('#example3').DataTable({
                 lengthChange: false,
                 buttons: [ 'excel']
             });

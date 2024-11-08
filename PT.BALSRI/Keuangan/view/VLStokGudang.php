@@ -38,7 +38,9 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal ='$tanggal_awal' AND kode_gudang = '$kode_gudang' ");
+    $table = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal ='$tanggal_awal' AND jenis_semen = 'SMBR' AND kode_gudang = '$kode_gudang' ");
+    $table2 = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal ='$tanggal_awal'  AND jenis_semen = 'Merdeka' AND kode_gudang = '$kode_gudang' ");
+    $table3 = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal ='$tanggal_awal'  AND jenis_semen = 'Dynamix' AND kode_gudang = '$kode_gudang' ");
 
     // Gudang Mesuji SMBR
     $table_mesuji_smbr = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal ='$tanggal_awal' AND kode_gudang = 'KG Mesuji' AND jenis_semen = 'SMBR'  ORDER BY no_laporan DESC LIMIT 1 ");
@@ -168,7 +170,9 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_stok_bk_11 = $data_bk_11['total_stok'];
     $tanggal_bk_11 = $data_bk_11['tanggal'];
 } else {
-    $table = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_gudang = '$kode_gudang'  ");
+    $table = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jenis_semen = 'SMBR' AND kode_gudang = '$kode_gudang'  ");
+    $table2 = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jenis_semen = 'Merdeka' AND kode_gudang = '$kode_gudang'  ");
+    $table3 = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jenis_semen = 'Dynamix' AND kode_gudang = '$kode_gudang'  ");
 
     // Gudang Mesuji SMBR
     $table_mesuji_smbr = mysqli_query($koneksipbj, "SELECT * FROM laporan_stok_harian_gudang  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_gudang = 'KG Mesuji' AND jenis_semen = 'SMBR'  ORDER BY no_laporan DESC LIMIT 1 ");
@@ -534,7 +538,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-                        <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?></h4>
+                        <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?> SMBR</h4>
                         <!-- Tabel -->
                         <div style="overflow-x: auto" align='center'>
                             <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -547,7 +551,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         <th>Stok Masuk/zak</th>
                                         <th>Stok Keluar/zak</th>
                                         <th>Total Akhir/zak</th>
-
+                           
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -568,7 +572,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $stok_masuk = $data['stok_masuk'];
                                         $stok_keluar = $data['stok_keluar'];
                                         $total_stok = $data['total_stok'];
-                                        $stok_awal = $total_stok + $stok_keluar + $stok_masuk;
+                                        $stok_awal = ($total_stok + $stok_keluar) - $stok_masuk;
                                         $urut = $urut + 1;
 
                                         echo "<tr>
@@ -580,6 +584,105 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <td style='font-size: 14px' align = 'center'>$stok_keluar</td>
                                             <td style='font-size: 14px' align = 'center'>$total_stok</td>
                                         </tr>";
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+
+                        <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?> Merdeka</h4>
+                        <!-- Tabel -->
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Jenis Semen</th>
+                                        <th>Stok Awal/zak</th>
+                                        <th>Stok Masuk/zak</th>
+                                        <th>Stok Keluar/zak</th>
+                                        <th>Total Akhir/zak</th>
+                         
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $urut = 0;
+                                    ?>
+                                    <?php while ($data = mysqli_fetch_array($table2)) {
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $kode_gudang = $data['kode_gudang'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $stok_masuk = $data['stok_masuk'];
+                                        $stok_keluar = $data['stok_keluar'];
+                                        $total_stok = $data['total_stok'];
+                                        $stok_awal = ($total_stok + $stok_keluar) - $stok_masuk;
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
+                                            <td style='font-size: 14px' align = 'center'>$urut</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_awal</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_masuk</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_keluar</td>
+                                            <td style='font-size: 14px' align = 'center'>$total_stok</td>
+                                           </tr>";
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+
+
+                        <h4 align='center'> Laporan Harian Gudang <?= $kode_gudang; ?> Dynamix</h4>
+                        <!-- Tabel -->
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Jenis Semen</th>
+                                        <th>Stok Awal/zak</th>
+                                        <th>Stok Masuk/zak</th>
+                                        <th>Stok Keluar/zak</th>
+                                        <th>Total Akhir/zak</th>
+                         
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $urut = 0;
+                                    ?>
+                                    <?php while ($data = mysqli_fetch_array($table3)) {
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $kode_gudang = $data['kode_gudang'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $stok_masuk = $data['stok_masuk'];
+                                        $stok_keluar = $data['stok_keluar'];
+                                        $total_stok = $data['total_stok'];
+                                        $stok_awal = ($total_stok + $stok_keluar) - $stok_masuk;
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
+                                            <td style='font-size: 14px' align = 'center'>$urut</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_awal</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_masuk</td>
+                                            <td style='font-size: 14px' align = 'center'>$stok_keluar</td>
+                                            <td style='font-size: 14px' align = 'center'>$total_stok</td>
+                                     </tr>";
                                     }
                                     ?>
 
@@ -797,7 +900,31 @@ if ($tanggal_awal == $tanggal_akhir) {
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['excel']
+                buttons: [ 'excel']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+<script>
+        $(document).ready(function() {
+            var table = $('#example2').DataTable({
+                lengthChange: false,
+                buttons: [ 'excel']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+<script>
+        $(document).ready(function() {
+            var table = $('#example3').DataTable({
+                lengthChange: false,
+                buttons: [ 'excel']
             });
 
             table.buttons().container()
