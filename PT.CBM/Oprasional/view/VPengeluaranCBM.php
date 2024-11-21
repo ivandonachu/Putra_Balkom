@@ -982,7 +982,7 @@ Menu Kepala Oprasional
 <hr>
 <br>
 
-<h5 align="center" >Rincian Pengeluaran Exxa Gema Gaisza/h5>
+<h5 align="center" >Rincian Pengeluaran Exxa Gema Gaisza </h5>
 <!-- Tabel -->    
 <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -1032,7 +1032,7 @@ Menu Kepala Oprasional
 <hr>
 <br>
 
-<h5 align="center" >Rincian Pengeluaran Gel Gel/h5>
+<h5 align="center" >Rincian Pengeluaran Gel Gel </h5>
 <!-- Tabel -->    
 <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
