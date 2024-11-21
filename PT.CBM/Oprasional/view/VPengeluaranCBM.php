@@ -48,6 +48,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $table7 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal' AND referensi = 'BBM' GROUP BY nama_akun");
   $table8 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
   $table9 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal' AND referensi = 'EGG' GROUP BY nama_akun");
+  $table10 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal = '$tanggal_awal' AND referensi = 'GelGel' GROUP BY nama_akun");
 
 }
 else{
@@ -61,6 +62,7 @@ else{
   $table7 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'BBM' GROUP BY nama_akun");
   $table8 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
   $table9 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'EGG' GROUP BY nama_akun");
+  $table10 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'GelGel' GROUP BY nama_akun");
   
 }
 
@@ -310,6 +312,7 @@ Menu Kepala Oprasional
               <option>MJRE</option>
               <option>BBM</option>
               <option>EGG</option>
+              <option>GelGel</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -497,6 +500,7 @@ Menu Kepala Oprasional
               <option <?php echo ($dataSelect == 'MJRE') ? "selected": "" ?> >MJRE</option>
               <option <?php echo ($dataSelect == 'BBM') ? "selected": "" ?> >BBM</option>
               <option <?php echo ($dataSelect == 'EGG') ? "selected": "" ?> >EGG</option>
+              <option <?php echo ($dataSelect == 'GelGel') ? "selected": "" ?> >GelGel</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -992,6 +996,56 @@ Menu Kepala Oprasional
     $total_seluruh = 0;
   ?>
     <?php while($data = mysqli_fetch_array($table9)){
+      $nama_akun = $data['nama_akun'];
+      $jumlah =$data['total_jumlah'];
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya'|| $nama_akun == 'Bunga Bank Pemasukan') {
+    
+      }
+      else{
+        $total_seluruh = $total_seluruh + $jumlah;
+      }
+
+      echo "<tr>
+      " ;
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya'|| $nama_akun == 'Bunga Bank Pemasukan') {
+    
+      }
+      else{
+        echo" <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+     
+
+    echo" </tr>";
+}
+
+?>
+      <td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
+
+      </tr>
+</tbody>
+</table>
+
+
+<br>
+<hr>
+<br>
+
+<h5 align="center" >Rincian Pengeluaran Gel Gel/h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $total_seluruh = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table10)){
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['total_jumlah'];
       if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya'|| $nama_akun == 'Bunga Bank Pemasukan') {
