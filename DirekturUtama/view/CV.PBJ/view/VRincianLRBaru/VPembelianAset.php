@@ -40,8 +40,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
 
   $table = mysqli_query($koneksipbj, "SELECT * FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pembelian Aset' ");
-  $table = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pembelian Aset' ");
-  $data = mysqli_fetch_array($table);
+  $table2 = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS total_pengeluaran  FROM keuangan_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Pembelian Aset' ");
+  $data = mysqli_fetch_array($table2);
   $total_pengeluaran = $data['total_pengeluaran'];
 
 }
