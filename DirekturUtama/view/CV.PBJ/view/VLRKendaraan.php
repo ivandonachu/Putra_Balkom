@@ -39,6 +39,61 @@ function formatuang($angka)
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
+    
+    //kota bumi
+    $tabel_kotabumi = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_kota_bumi WHERE tanggal = '$tanggal_awal' ");
+
+    $total_angkutan_edy_bmu_kb = 0;
+    $total_angkutan_rama_bmu_kb = 0;
+    $total_angkutan_soma_bmu_kb = 0;
+    $total_angkutan_berkah_bmu_kb = 0;
+    $total_angkutan_map_bmu_kb = 0;
+    
+    while ($data1 = mysqli_fetch_array($tabel_kotabumi)) {
+
+        $no_polisi_ts = $data1['no_polisi'];
+        $qty = $data1['qty'];
+        $driver = $data1['driver'];
+
+        if ($qty >= 200 && $qty <= 300) {
+    
+            $total_angkut_bmu_kotabumi = $qty * 8149;
+        }
+
+        else if ($qty > 300 && $qty <= 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
+
+        else if ($qty > 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
+
+        $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_angkutan_edy_bmu_kb = $total_angkutan_edy_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
+                $total_angkutan_rama_bmu_kb = $total_angkutan_rama_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu_kb = $total_angkutan_map_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+                $total_angkutan_soma_bmu_kb = $total_angkutan_soma_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+                $total_angkutan_berkah_bmu_kb = $total_angkutan_berkah_bmu_kb + $total_angkut_bmu_kotabumi;
+            } 
+            
+}
 
     //Untung angkutan / pranko
     $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko'  OR tanggal = '$tanggal_awal' AND tipe_semen = 'FRC'  ");
@@ -469,6 +524,61 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu;
 } else {
 
+
+    //kota bumi
+    $tabel_kotabumi = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_kota_bumi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+    $total_angkutan_edy_bmu_kb = 0;
+    $total_angkutan_rama_bmu_kb = 0;
+    $total_angkutan_soma_bmu_kb = 0;
+    $total_angkutan_berkah_bmu_kb = 0;
+    $total_angkutan_map_bmu_kb = 0;
+    
+    while ($data1 = mysqli_fetch_array($tabel_kotabumi)) {
+
+        $no_polisi_ts = $data1['no_polisi'];
+        $qty = $data1['qty'];
+        $driver = $data1['driver'];
+
+        if ($qty >= 200 && $qty <= 300) {
+    
+            $total_angkut_bmu_kotabumi = $qty * 8149;
+        }
+
+        else if ($qty > 300 && $qty <= 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
+
+        else if ($qty > 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
+      
+        $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_angkutan_edy_bmu_kb = $total_angkutan_edy_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
+                $total_angkutan_rama_bmu_kb = $total_angkutan_rama_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu_kb = $total_angkutan_map_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+                $total_angkutan_soma_bmu_kb = $total_angkutan_soma_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+                $total_angkutan_berkah_bmu_kb = $total_angkutan_berkah_bmu_kb + $total_angkut_bmu_kotabumi;
+            } 
+            
+        }
 
 
     //Untung angkutan / pranko
@@ -920,7 +1030,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     //pengiriman 1
-    $table2 = mysqli_query($koneksipbj, "SELECT no_polisi, driver, sum(uj) as total_uj, sum(ug) as total_ug, sum(om) as total_om  FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi ");
+    $table2 = mysqli_query($koneksipbj, "SELECT no_polisi, driver, sum(uj) as total_uj, sum(ug) as total_ug, sum(om) as total_om  FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' GROUP BY no_polisi ");
     $data2 = mysqli_fetch_array($table2);
     $total_uj = 0;
     $total_gaji = 0;
@@ -946,7 +1056,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
     //pengiriman 2
-    $table2sl = mysqli_query($koneksipbj, "SELECT no_polisi, driver, sum(uj) as total_uj_sl, sum(ug) as total_ug_sl, sum(om) as total_om_sl  FROM pengiriman_sl WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  GROUP BY no_polisi ");
+    $table2sl = mysqli_query($koneksipbj, "SELECT no_polisi, driver, sum(uj) as total_uj_sl, sum(ug) as total_ug_sl, sum(om) as total_om_sl  FROM pengiriman_sl WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  GROUP BY no_polisi ");
     $data2sl = mysqli_fetch_array($table2sl);
     $total_uj_sl = 0;
     $total_gaji_sl = 0;
@@ -973,7 +1083,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         
     //pengiriman 1 bs
-    $table2x = mysqli_query($koneksipbj, "SELECT no_polisi, driver, SUM(bs) as total_bs  FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi ");
+    $table2x = mysqli_query($koneksipbj, "SELECT no_polisi, driver, SUM(bs) as total_bs  FROM pengiriman_s WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' GROUP BY no_polisi ");
     $total_bs = 0;
 
     while ($data2x = mysqli_fetch_array($table2x)) {
@@ -981,7 +1091,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $bs = $data2x['total_bs'];
     if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BE8266WY' ||$no_polisi == 'BE8294WV' ||$no_polisi == 'Z9888DD' ||$no_polisi == 'BG8135FS' ||$no_polisi == 'BG8165FN' ||$no_polisi == 'BE8670HU' ||$no_polisi == 'BG8297CE' ||
     $no_polisi == 'BG8837CE' ||$no_polisi == 'BG8220V' ||$no_polisi == 'BG8290VA' ||$no_polisi == 'B9052VDA' ||$no_polisi == 'BE8770GB' ||$no_polisi == 'BG8454UH' ||$no_polisi == 'BG8970FO' ||$no_polisi == 'BG8805NM' ||$no_polisi == 'BG8045YC' ||
-    $no_polisi == 'BG8651FO' ||$no_polisi == 'BG8608YB' ||$no_polisi == 'BG8971YB'){
+    $no_polisi == 'BG8651FO' ||$no_polisi == 'BG8608YB' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8220V'||$no_polisi == 'BG8290VA'||$no_polisi == 'BG8297CE'||$no_polisi == 'BG8837CE'||$no_polisi == 'BG8251V' ){
         $total_bs = $total_bs + $bs;
     }
     else{
@@ -990,7 +1100,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
     //pengiriman 2 bs
-    $table2slx = mysqli_query($koneksipbj, "SELECT no_polisi, driver, SUM(bs) as total_bs_sl FROM pengiriman_sl WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi");
+    $table2slx = mysqli_query($koneksipbj, "SELECT no_polisi, driver, SUM(bs) as total_bs_sl FROM pengiriman_sl WHERE tanggal_antar  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' GROUP BY no_polisi");
     $total_bs_sl = 0;
 
     while ($data2slx = mysqli_fetch_array($table2slx)) {
@@ -998,7 +1108,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $bs = $data2slx['total_bs_sl'];
     if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BE8266WY' ||$no_polisi == 'BE8294WV' ||$no_polisi == 'Z9888DD' ||$no_polisi == 'BG8135FS' ||$no_polisi == 'BG8165FN' ||$no_polisi == 'BE8670HU' ||$no_polisi == 'BG8297CE' ||
     $no_polisi == 'BG8837CE' ||$no_polisi == 'BG8220V' ||$no_polisi == 'BG8290VA' ||$no_polisi == 'B9052VDA' ||$no_polisi == 'BE8770GB' ||$no_polisi == 'BG8454UH' ||$no_polisi == 'BG8970FO' ||$no_polisi == 'BG8805NM' ||$no_polisi == 'BG8045YC' ||
-    $no_polisi == 'BG8651FO' ||$no_polisi == 'BG8608YB' ||$no_polisi == 'BG8971YB'){
+    $no_polisi == 'BG8651FO' ||$no_polisi == 'BG8608YB' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8220V'||$no_polisi == 'BG8290VA'||$no_polisi == 'BG8297CE'||$no_polisi == 'BG8837CE'||$no_polisi == 'BG8251V'){
         $total_bs_sl = $total_bs_sl + $bs;
 
     }
@@ -1007,7 +1117,6 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
     }
 
-    
 
     //Biaya tarikan etty
     $table_tarikan_s = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_biaya_tarikan FROM keuangan_s WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tarikan' ");
@@ -1028,7 +1137,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     $laba_kotor = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu + $total_angkutan_edy_rli + $total_angkutan_yanti_bmu +
-        $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu;
+        $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu + $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb;
 
     $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_perbaikan_1 + $biaya_perbaikan_2 + $jml_pembelian_sparepart;
 
@@ -1349,7 +1458,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <tr>
                                                     <td>4-100</td>
                                                     <td class="text-left">Tagihan BMU Bapak Edy</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu + $total_angkutan_edy_bmu_kb); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanEdyBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
@@ -1363,7 +1472,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <tr>
                                                     <td>4-102</td>
                                                     <td class="text-left">Tagihan BMU Bapak Rama</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_rama_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_rama_bmu + $total_angkutan_rama_bmu_kb); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanRamaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
@@ -1377,14 +1486,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <tr>
                                                     <td>4-104</td>
                                                     <td class="text-left">Tagihan BMU Soma</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_soma_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_soma_bmu + $total_angkutan_soma_bmu_kb); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSomaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-105</td>
                                                     <td class="text-left">Tagihan BMU Berkah</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_berkah_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_berkah_bmu + $total_angkutan_berkah_bmu_kb); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanBerkahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>

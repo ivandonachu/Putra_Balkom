@@ -42,6 +42,62 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table = mysqli_query($koneksipbj, "SELECT * FROM penjualan_s WHERE tanggal_do = '$tanggal_akhir' ORDER BY no_penjualan ASC");
 } else {
 
+    //kota bumi
+    $tabel_kotabumi = mysqli_query($koneksipbj, "SELECT * FROM pembelian_kota_bumi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+    $tabel_kotabumi2 = mysqli_query($koneksipbj, "SELECT * FROM pembelian_kota_bumi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    $total_angkutan_edy_bmu_kb = 0;
+    $total_angkutan_rama_bmu_kb = 0;
+    $total_angkutan_soma_bmu_kb = 0;
+    $total_angkutan_berkah_bmu_kb = 0;
+    $total_angkutan_map_bmu_kb = 0;
+    
+    while ($data1 = mysqli_fetch_array($tabel_kotabumi2)) {
+
+        $no_polisi_ts = $data1['no_polisi'];
+        $qty = $data1['qty'];
+        $driver = $data1['driver'];
+
+        if ($qty >= 200 && $qty <= 300) {
+    
+            $total_angkut_bmu_kotabumi = $qty * 8149;
+        }
+
+        else if ($qty > 300 && $qty <= 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
+
+        else if ($qty > 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
+      
+        $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_angkutan_edy_bmu_kb = $total_angkutan_edy_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
+                $total_angkutan_rama_bmu_kb = $total_angkutan_rama_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu_kb = $total_angkutan_map_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+                $total_angkutan_soma_bmu_kb = $total_angkutan_soma_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+                $total_angkutan_berkah_bmu_kb = $total_angkutan_berkah_bmu_kb + $total_angkut_bmu_kotabumi;
+            } 
+            
+}
+
     $table = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'   ");
 
     //Untung angkutan / pranko
@@ -938,6 +994,108 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <hr>
                         <br>
 
+                        <h5 align='center'>Rekap Pranko BMU Kota Bumi</h5>
+                        <!-- Tabel -->
+                        <div align='center' style="overflow-x: auto">
+                            <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>QTY</th>
+                                        <th>Tarif</th>
+                                        <th>Jumlah</th>
+                                        <th>Total</th>
+                                        <th>Driver</th>
+                                        <th>No Polisi</th>        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+
+                                    $no_urut = 0;
+                                    $total_tagihan = 0;
+                                    $jumlah = 0;
+                             
+
+
+                                    ?>
+
+                                    <?php while ($data = mysqli_fetch_array($tabel_kotabumi)) {
+
+                                        $tanggal = $data['tanggal'];
+                                        $qty = $data['qty'];
+                                        $no_polisi = $data["no_polisi"];
+                                        $driver = $data["driver"];
+                                        $no_urut = $no_urut + 1;
+                                     
+                                        $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi' ");
+                                        $data2p = mysqli_fetch_array($table2p);
+                                        if (isset($data2p['status_kendaraan'])) {
+                                            $pemilik = $data2p['status_kendaraan'];
+                                            $kontrak = $data2p['kontrak'];
+                                        } else {
+                                            $pemilik = "";
+                                            $kontrak  = "";
+                                        }
+
+                                        if($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU' ){
+
+                                            if ($qty >= 200 && $qty <= 300) {
+                                                $tarifx = 8149;
+                                                $total_angkut_bmu_kotabumi = $qty * 8149;
+                                        
+    
+                                            }
+                                    
+                                            else if ($qty > 300 && $qty <= 500) {
+                                                $tarifx = 7238;
+                                                $total_angkut_bmu_kotabumi = $qty * $tarifx;
+                                  
+                                            }
+                                    
+                                            else if ($qty > 500) {
+                                                $tarifx = 7238;
+                                                $total_angkut_bmu_kotabumi = $qty * $tarifx;
+                                          
+    
+                                            }
+    
+                                            $total_tagihan = $total_tagihan +  $total_angkut_bmu_kotabumi;
+                                                                                        echo "<tr>
+                                                <td style='font-size: 14px'>$no_urut</td>
+                                                <td style='font-size: 14px'>$tanggal</td>
+                                                <td style='font-size: 14px'>$qty</td>
+                                                <td style='font-size: 14px'>"; ?> <?= formatuang($tarifx); ?> <?php echo "</td>
+                                                <td style='font-size: 14px'>" ?> <?= formatuang($total_angkut_bmu_kotabumi); ?> <?php echo "</td>
+                                                <td style='font-size: 14px'>" ?> <?= formatuang($total_tagihan); ?> <?php echo "</td>
+                                                <td style='font-size: 14px'>$driver</td>
+                                                <td style='font-size: 14px'>$no_polisi</td>
+                                                "; ?>
+    
+    
+    
+    
+                                            <?php echo  " </tr>";
+
+                                        }
+                                        else{
+                                           
+                                        }
+
+                            
+                                     
+                                        }
+                                    
+                                        ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+
 
                         <br>
                         <hr>
@@ -1060,8 +1218,26 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Total Tagihan BMU Kota Bumi</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_bmu_kb) ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-right: 20px; margin-left: 20px;">
+                            <div class="col-xl-12 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan BMU Global</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy + $total_angkutan_edy_bmu_kb) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1151,6 +1327,17 @@ if ($tanggal_awal == $tanggal_akhir) {
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
+                lengthChange: true,
+                buttons: ['excel']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+        <script>
+        $(document).ready(function() {
+            var table = $('#example2').DataTable({
                 lengthChange: true,
                 buttons: ['excel']
             });

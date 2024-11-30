@@ -50,6 +50,12 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table1 = mysqli_query($koneksi, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ");
     
     $total_angkutan_global_bmu = 0;
+    $total_angkutan_okut = 0;
+    $total_angkutan_mesuji = 0;
+    $total_angkutan_tlg_bwg = 0;
+    $total_angkutan_way_kanan = 0;
+    $total_angkutan_md_kota = 0;
+    $total_angkutan_okus = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -556,7 +562,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <br>
 
-                        <h5 align='center'>Rekap Pranko BMU Eki Bangunan</h5>
+                        <h5 align='center'>Rekap Pranko BMU GLOBAL</h5>
                         <!-- Tabel -->
                         <div align='center' style="overflow-x: auto">
                             <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">

@@ -337,6 +337,7 @@ Logout
   <tbody>
   <?php
     $total_bs_etty = 0;
+    $total_bs1 = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -344,15 +345,32 @@ Logout
 
     ?>
     <?php while($data = mysqli_fetch_array($table4)){
-      $nama_driver = $data['no_polisi'];
-      $total_bs =$data['total_bs'];
-      $total_bs_etty =  $total_bs_etty + $total_bs;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs_etty); ?> <?php echo" </td>
+      $no_polisi = $data['no_polisi'];
+      $total_bs1 =$data['total_bs'];
+  
+      if($total_bs1 == 0){
 
-      </tr>";
+      }
+      else{
+  
+        if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BE8266WY' ||$no_polisi == 'BE8294WV' ||$no_polisi == 'Z9888DD' ||$no_polisi == 'BG8135FS' ||$no_polisi == 'BG8165FN' ||$no_polisi == 'BE8670HU' ||$no_polisi == 'BG8297CE' ||
+        $no_polisi == 'BG8837CE' ||$no_polisi == 'BG8220V' ||$no_polisi == 'BG8290VA' ||$no_polisi == 'B9052VDA' ||$no_polisi == 'BE8770GB' ||$no_polisi == 'BG8454UH' ||$no_polisi == 'BG8970FO' ||$no_polisi == 'BG8805NM' ||$no_polisi == 'BG8045YC' ||
+        $no_polisi == 'BG8651FO' ||$no_polisi == 'BG8608YB' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8220V'||$no_polisi == 'BG8290VA'||$no_polisi == 'BG8297CE'||$no_polisi == 'BG8837CE'||$no_polisi == 'BG8251V'){
+          $total_bs_etty =  $total_bs_etty + $total_bs1;
+          echo "<tr>
+          <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+          <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs1); ?> <?php echo" </td>
+          <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs_etty); ?> <?php echo" </td>
+    
+          </tr>";
+       
+        }
+        else{
+          
+        }
+  
+        }
+       
 }
 ?>
 
@@ -379,19 +397,36 @@ Logout
   <tbody>
   <?php
   $total_bs_kadek = 0;
-
+  $total_bs2 = 0;
 
     ?>
-    <?php while($data = mysqli_fetch_array($table4x)){
-      $nama_driver = $data['no_polisi'];
-      $total_bs =$data['total_bs'];
-      $total_bs_kadek = $total_bs_kadek + $total_bs;
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$nama_driver</td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs); ?> <?php echo" </td>
-      <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs_kadek); ?> <?php echo" </td>
+    <?php while($data2 = mysqli_fetch_array($table4x)){
+      $no_polisi = $data2['no_polisi'];
+      $total_bs2 =$data2['total_bs'];
+     
+      if($total_bs2 == 0){
 
-      </tr>";
+      }
+      else{
+
+        if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BE8266WY' ||$no_polisi == 'BE8294WV' ||$no_polisi == 'Z9888DD' ||$no_polisi == 'BG8135FS' ||$no_polisi == 'BG8165FN' ||$no_polisi == 'BE8670HU' ||$no_polisi == 'BG8297CE' ||
+        $no_polisi == 'BG8837CE' ||$no_polisi == 'BG8220V' ||$no_polisi == 'BG8290VA' ||$no_polisi == 'B9052VDA' ||$no_polisi == 'BE8770GB' ||$no_polisi == 'BG8454UH' ||$no_polisi == 'BG8970FO' ||$no_polisi == 'BG8805NM' ||$no_polisi == 'BG8045YC' ||
+        $no_polisi == 'BG8651FO' ||$no_polisi == 'BG8608YB' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8220V'||$no_polisi == 'BG8290VA'||$no_polisi == 'BG8297CE'||$no_polisi == 'BG8837CE'||$no_polisi == 'BG8251V'){
+          $total_bs_kadek = $total_bs_kadek + $total_bs2;
+          echo "<tr>
+          <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+          <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs2); ?> <?php echo" </td>
+          <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_bs_kadek); ?> <?php echo" </td>
+    
+          </tr>";
+        
+        }
+        else{
+          
+        }
+
+      }
+    
 }
 ?>
 

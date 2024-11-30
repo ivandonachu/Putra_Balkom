@@ -39,6 +39,64 @@ function formatuang($angka)
 
 if ($tanggal_awal == $tanggal_akhir) {
 
+    //kota bumi
+    $tabel_kotabumi = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_kota_bumi WHERE tanggal = '$tanggal_awal' ");
+
+    $total_angkutan_edy_bmu_kb = 0;
+    $total_angkutan_rama_bmu_kb = 0;
+    $total_angkutan_soma_bmu_kb = 0;
+    $total_angkutan_berkah_bmu_kb = 0;
+    $total_angkutan_map_bmu_kb = 0;
+    
+    while ($data1 = mysqli_fetch_array($tabel_kotabumi)) {
+
+        $no_polisi_ts = $data1['no_polisi'];
+        $qty = $data1['qty'];
+        $driver = $data1['driver'];
+
+        if ($qty >= 200 && $qty <= 300) {
+    
+            $total_angkut_bmu_kotabumi = $qty * 8149;
+        }
+
+        else if ($qty > 300 && $qty <= 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
+
+        else if ($qty > 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
+
+        $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_angkutan_edy_bmu_kb = $total_angkutan_edy_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
+                $total_angkutan_rama_bmu_kb = $total_angkutan_rama_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu_kb = $total_angkutan_map_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+                $total_angkutan_soma_bmu_kb = $total_angkutan_soma_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+                $total_angkutan_berkah_bmu_kb = $total_angkutan_berkah_bmu_kb + $total_angkut_bmu_kotabumi;
+            } 
+            
+}
+
+    
+
+
     //Untung angkutan / pranko
     $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko'  ");
     $total_angkutan_edy_rli = 0;
@@ -468,10 +526,68 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     $total_pendapatan_rli = $total_angkutan_edy_rli;
-    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_map_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu;
+    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu  + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
+                            + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu
+                            + $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb;
+
 } else {
 
 
+      //kota bumi
+      $tabel_kotabumi = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_kota_bumi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+      $total_angkutan_edy_bmu_kb = 0;
+      $total_angkutan_rama_bmu_kb = 0;
+      $total_angkutan_soma_bmu_kb = 0;
+      $total_angkutan_berkah_bmu_kb = 0;
+      $total_angkutan_map_bmu_kb = 0;
+      
+      while ($data1 = mysqli_fetch_array($tabel_kotabumi)) {
+  
+          $no_polisi_ts = $data1['no_polisi'];
+          $qty = $data1['qty'];
+          $driver = $data1['driver'];
+  
+          if ($qty >= 200 && $qty <= 300) {
+      
+              $total_angkut_bmu_kotabumi = $qty * 8149;
+          }
+  
+          else if ($qty > 300 && $qty <= 500) {
+                 
+              $total_angkut_bmu_kotabumi = $qty * 7238;
+          }
+  
+          else if ($qty > 500) {
+                 
+              $total_angkut_bmu_kotabumi = $qty * 7238;
+          }
+        
+          $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+              $data2p = mysqli_fetch_array($table2p);
+              if (isset($data2p['status_kendaraan'])) {
+                  $pemilik = $data2p['status_kendaraan'];
+                  $kontrak = $data2p['kontrak'];
+              } else {
+                  $pemilik = '';
+                  $kontrak = '';
+              }
+  
+  
+              if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                  $total_angkutan_edy_bmu_kb = $total_angkutan_edy_bmu_kb + $total_angkut_bmu_kotabumi;
+              } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
+                  $total_angkutan_rama_bmu_kb = $total_angkutan_rama_bmu_kb + $total_angkut_bmu_kotabumi;
+              } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                  $total_angkutan_map_bmu_kb = $total_angkutan_map_bmu_kb + $total_angkut_bmu_kotabumi;
+              } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+                  $total_angkutan_soma_bmu_kb = $total_angkutan_soma_bmu_kb + $total_angkut_bmu_kotabumi;
+              } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+                  $total_angkutan_berkah_bmu_kb = $total_angkutan_berkah_bmu_kb + $total_angkut_bmu_kotabumi;
+              } 
+              
+  }
+  
 
     //Untung angkutan / pranko
     $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ");
@@ -894,8 +1010,10 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     $total_pendapatan_rli = $total_angkutan_edy_rli;
-    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_map_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
-                            + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu;
+    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
+                            + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu
+                            + $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb;
+
 }
 
 ?>
@@ -1199,19 +1317,19 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <tr>
                                                     <td>1</td>
                                                     <td class="text-left">Tagihan BMU Bapak Edy</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu + $total_angkutan_edy_bmu_kb); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanEdyBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
                                                     <td class="text-left">Tagihan BMU Bapak Rama</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_rama_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_rama_bmu + $total_angkutan_rama_bmu_kb); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanRamaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
                                                     <td class="text-left">Tagihan BMU MAP</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_map_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_map_bmu + $total_angkutan_map_bmu_kb); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanMapBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
@@ -1223,13 +1341,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <tr>
                                                     <td>5</td>
                                                     <td class="text-left">Tagihan BMU Soma</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_soma_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_soma_bmu + $total_angkutan_soma_bmu_kb); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanSomaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>6</td>
                                                     <td class="text-left">Tagihan BMU Berkah</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_berkah_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_berkah_bmu + $total_angkutan_berkah_bmu_kb); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanBerkahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
@@ -1245,28 +1363,41 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanYantiBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>7</td>
+                                                    <td>9</td>
                                                     <td class="text-left">Tagihan BMU Nengah</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_nengah_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanNengahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>7</td>
+                                                    <td>10</td>
                                                     <td class="text-left">Tagihan BMU Joko</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_joko_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanJokoBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>7</td>
+                                                    <td>11</td>
                                                     <td class="text-left">Tagihan BMU Kustomo</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_kustomo_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanKustomoBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>7</td>
+                                                    <td>12</td>
                                                     <td class="text-left">Tagihan BMU Kodri</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_kodri_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanKodriBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>13</td>
+                                                    <td class="text-left">Total BMU</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
+                                                     + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>14</td>
+                                                    <td class="text-left">Total BMU Kota Bumi</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanBMUKB?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
@@ -1276,7 +1407,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="thick-line"></td>
                                                 </tr>
                                                 <tr style="background-color: navy;  color:white;">
-                                                    <td><strong>TOTAL TAGIHAN RLI</strong></td>
+                                                    <td><strong>TOTAL TAGIHAN BMU</strong></td>
                                                     <td class="thick-line"></td>
                                                     <td class="no-line text-left"><?= formatuang($total_pendapatan_bmu); ?> </td>
                                                     <td class="thick-line"></td>
