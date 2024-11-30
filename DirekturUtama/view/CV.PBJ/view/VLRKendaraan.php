@@ -109,6 +109,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_joko_bmu = 0;
     $total_angkutan_kustomo_bmu = 0;
     $total_angkutan_kodri_bmu = 0;
+    $total_angkutan_samsul_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -514,6 +515,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
                 $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Samsul' && $kontrak == 'BMU') {
+                $total_angkutan_samsul_bmu = $total_angkutan_samsul_bmu + $total_angkut_bmu;
             }
         }
     }
@@ -596,6 +599,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_kustomo_bmu = 0;
     $total_angkutan_kodri_bmu = 0;
     $total_angkutan_map_bmu = 0;
+    $total_angkutan_samsul_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -995,7 +999,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
                 $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Samsul' && $kontrak == 'BMU') {
+                $total_angkutan_samsul_bmu = $total_angkutan_samsul_bmu + $total_angkut_bmu;
             }
+            
         }
     }
 
@@ -1538,6 +1545,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="text-left"><?= formatuang($total_angkutan_kodri_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanKodriBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-106</td>
+                                                    <td class="text-left">Tagihan BMU Samsul</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_samsul_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSamsulBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color: navy;  color:white;">
                                                     <td><strong>TOTAL LABA KOTOR</strong></td>
