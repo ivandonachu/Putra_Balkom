@@ -37,6 +37,7 @@ if (isset($_GET['tanggal1'])) {
 }
 
 
+
 function formatuang($angka)
 {
     $uang = "Rp " . number_format($angka, 2, ',', '.');
@@ -45,8 +46,10 @@ function formatuang($angka)
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-    //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts'  OR tanggal = '$tanggal_awal' AND tipe_semen = 'FRC' AND no_polisi = '$no_polisi_ts'  ");
+
+        $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts'  OR tanggal = '$tanggal_awal' AND tipe_semen = 'FRC' AND no_polisi = '$no_polisi_ts'  ");
+    
+ 
     $total_angkutan_edy_rli = 0;
     $total_angkutan_edy_bmu = 0;
     $total_angkutan_rama_bmu = 0;
@@ -411,11 +414,14 @@ if ($tanggal_awal == $tanggal_akhir) {
 } else {
 
 
-
+    
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND no_polisi = '$no_polisi_ts'  ");
-    $total_angkutan_edy_rli = 0;
+
+        $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND no_polisi = '$no_polisi_ts' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND no_polisi = '$no_polisi_ts'  ");
+  
+   
     $total_angkutan_edy_bmu = 0;
+    $total_angkutan_edy_rli = 0;
     $total_angkutan_rama_bmu = 0;
     $total_angkutan_eki_bangunan_bmu = 0;
     $total_angkutan_soma_bmu = 0;
@@ -814,12 +820,18 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_om_sl = $data2sl['total_om'];
     $total_bs_sl = $data2sl['total_bs'];
 
-
+    //Krdit Kendaraan
+    $table_kredit_kendaraan = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bayar) AS jumlah_kredit_kendaraan FROM kredit_kendaraan  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi_baru = '$no_polisi_ts' ");
+    $data_kredit_kendaraan = mysqli_fetch_array($table_kredit_kendaraan);
+    $total_kredit_kendaraan = $data_kredit_kendaraan['jumlah_kredit_kendaraan'];
+    if (!isset($data_kredit_kendaraan['jumlah_kredit_kendaraan'])) {
+        $total_kredit_kendaraan = 0;
+    }
 
 
     $laba_kotor = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu + $total_angkutan_edy_rli;
 
-    $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_perbaikan + $jml_pembelian_sparepart;
+    $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_bs_sl + $jml_perbaikan + $jml_pembelian_sparepart + $total_kredit_kendaraan;
 
     $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
@@ -1190,13 +1202,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRUJ?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>5-514</td>
-                                                    <td class="text-left">Ongkos Mobil</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_om + $total_om_sl); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VROM?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>"; ?>
-                                                </tr>
-                                                <tr>
                                                     <td>5-595</td>
                                                     <td class="text-left">Perbaikan Kendaraan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
@@ -1204,11 +1209,18 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>5-595</td>
+                                                    <td>5-596</td>
                                                     <td class="text-left">Pembalian Sparepart</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jml_pembelian_sparepart); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-597</td>
+                                                    <td class="text-left">Kredit Kendaraan</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_kredit_kendaraan); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRPerKendaraan/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color:    #F0F8FF; ">
                                                     <td><strong>Total Biaya Usaha</strong></td>
@@ -1270,8 +1282,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <tr>
                                      <th class="text-center">No</th>
                                     <th class="text-center">No Polisi</th>
-                                    <th class="text-center">Jenis Kendaraan</th>
-                                    <th></th>
+                                    <th class="text-center">Rincian</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -1306,8 +1318,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <tr>
                                      <th class="text-center">No</th>
                                     <th class="text-center">No Polisi</th>
-                                    <th class="text-center">Jenis Kendaraan</th>
-                                    <th></th>
+                                    <th class="text-center">Rincian</th>
+          
                                 </tr>
                             </thead>
                             <tbody>

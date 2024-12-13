@@ -1052,7 +1052,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
     $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
     $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
-    $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+    $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'||$no_polisi == 'BE8917ACU' ||$no_polisi == 'BE8943ACU' ||$no_polisi == 'BE8946ACU' ||$no_polisi == 'BE8931ACU' ||$no_polisi == 'BE8920ACU' ||$no_polisi == 'BE8940ACU' ||$no_polisi == 'BE8928ACU' ||$no_polisi == 'BE8934ACU' ||
+    $no_polisi == 'BE8925ACU' ||$no_polisi == 'BE8937ACU'){
         $total_uj = $total_uj + $uj;
         $total_gaji = $total_gaji + $ug;
         $total_om = $total_om + $om;
@@ -1078,7 +1079,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
     $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
     $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
-    $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+    $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'||$no_polisi == 'BE8917ACU' ||$no_polisi == 'BE8943ACU' ||$no_polisi == 'BE8946ACU' ||$no_polisi == 'BE8931ACU' ||$no_polisi == 'BE8920ACU' ||$no_polisi == 'BE8940ACU' ||$no_polisi == 'BE8928ACU' ||$no_polisi == 'BE8934ACU' ||
+    $no_polisi == 'BE8925ACU' ||$no_polisi == 'BE8937ACU'){
         $total_uj_sl = $total_uj_sl + $uj;
         $total_gaji_sl = $total_gaji_sl + $ug;
         $total_om_sl = $total_om_sl + $om;
@@ -1140,13 +1142,22 @@ if ($tanggal_awal == $tanggal_akhir) {
         $jml_biaya_tarikan_sl = 0;
     }
 
+    //Krdit Kendaraan
+    $table_kredit_kendaraan = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bayar) AS jumlah_kredit_kendaraan FROM kredit_kendaraan  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $data_kredit_kendaraan = mysqli_fetch_array($table_kredit_kendaraan);
+    $total_kredit_kendaraan = $data_kredit_kendaraan['jumlah_kredit_kendaraan'];
+    if (!isset($data_kredit_kendaraan['jumlah_kredit_kendaraan'])) {
+        $total_kredit_kendaraan = 0;
+    }
+
+
 
 
 
     $laba_kotor = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu + $total_angkutan_edy_rli + $total_angkutan_yanti_bmu +
         $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu + $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb;
 
-    $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_perbaikan_1 + $biaya_perbaikan_2 + $jml_pembelian_sparepart;
+    $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_perbaikan_1 + $biaya_perbaikan_2 + $jml_pembelian_sparepart + $total_kredit_kendaraan;
 
     $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
@@ -1610,11 +1621,18 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRPerbaikan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>5-595</td>
+                                                    <td>5-596</td>
                                                     <td class="text-left">Pembalian Sparepart</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($jml_pembelian_sparepart); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-597</td>
+                                                    <td class="text-left">Kredit Kendaraan</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_kredit_kendaraan); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRKredit?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr style="background-color:    #F0F8FF; ">
                                                     <td><strong>Total Biaya Usaha</strong></td>
@@ -1676,8 +1694,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <tr>
                                 <th class="text-center">No</th>
                                 <th class="text-center">No Polisi</th>
-                                <th class="text-center">Jenis Kendaraan</th>
-                                <th></th>
+                                <th class="text-center">Rincian</th>
+                        
                             </tr>
                         </thead>
                         <tbody>
@@ -1712,8 +1730,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <tr>
                                 <th class="text-center">No</th>
                                 <th class="text-center">No Polisi</th>
-                                <th class="text-center">Jenis Kendaraan</th>
-                                <th></th>
+                                <th class="text-center">Rincian</th>
+                            
                             </tr>
                         </thead>
                         <tbody>

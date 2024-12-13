@@ -340,7 +340,8 @@ Logout
       $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
       $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
       $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
-      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'||$no_polisi == 'BE8917ACU' ||$no_polisi == 'BE8943ACU' ||$no_polisi == 'BE8946ACU' ||$no_polisi == 'BE8931ACU' ||$no_polisi == 'BE8920ACU' ||$no_polisi == 'BE8940ACU' ||$no_polisi == 'BE8928ACU' ||$no_polisi == 'BE8934ACU' ||
+      $no_polisi == 'BE8925ACU' ||$no_polisi == 'BE8937ACU'){
         $total_gaji =$data['total_gaji'];
         $gaji_ety = $gaji_ety + $total_gaji; 
         echo "<tr>
@@ -381,7 +382,8 @@ Logout
       $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
       $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
       $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
-      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'){
+      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'||$no_polisi == 'BE8917ACU' ||$no_polisi == 'BE8943ACU' ||$no_polisi == 'BE8946ACU' ||$no_polisi == 'BE8931ACU' ||$no_polisi == 'BE8920ACU' ||$no_polisi == 'BE8940ACU' ||$no_polisi == 'BE8928ACU' ||$no_polisi == 'BE8934ACU' ||
+      $no_polisi == 'BE8925ACU' ||$no_polisi == 'BE8937ACU'){
         $total_gaji =$data['total_gaji'];
         $gaji_kadek = $gaji_kadek + $total_gaji; 
         echo "<tr>
