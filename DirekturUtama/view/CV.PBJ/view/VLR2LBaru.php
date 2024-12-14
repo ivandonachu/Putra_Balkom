@@ -513,6 +513,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         }
 
         
+        
 
     //pembelian 1
     $table_pembelian_1 = mysqli_query($koneksipbj, "SELECT harga_beli, qty, jumlah , harga FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' ");
