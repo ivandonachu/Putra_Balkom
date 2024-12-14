@@ -483,6 +483,37 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_penebusan_dani_p = 0;
     //PENJUALAN CASH
 
+        //penjualan cash ety 1
+        $table_penjualan_cash_1 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_cash_1 FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' ");
+        $data_penjualan_cash_1 = mysqli_fetch_array($table_penjualan_cash_1);
+        $total_penjualan_ety_c = $data_penjualan_cash_1['total_penjualan_cash_1'];
+        if (!isset($data_penjualan_cash_1['total_penjualan_cash_1'])) {
+            $total_penjualan_ety_c = 0;
+        }
+        //penjualan Bon ety 1
+        $table_penjualan_bon_1 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_bon_1 FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' ");
+        $data_penjualan_bon_1 = mysqli_fetch_array($table_penjualan_bon_1);
+        $total_penjualan_ety_p = $data_penjualan_bon_1['total_penjualan_bon_1'];
+        if (!isset($data_penjualan_bon_1['total_penjualan_bon_1'])) {
+            $total_penjualan_ety_p = 0;
+        }
+        //penjualan cash dani 1
+        $table_penjualan_cash_2 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_cash_2 FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' ");
+        $data_penjualan_cash_2 = mysqli_fetch_array($table_penjualan_cash_2);
+        $total_penjualan_dani_c = $data_penjualan_cash_2['total_penjualan_cash_2'];
+        if (!isset($data_penjualan_cash_2['total_penjualan_cash_2'])) {
+            $total_penjualan_dani_c = 0;
+        }
+        //penjualan Bon dani 1
+        $table_penjualan_bon_2 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_bon_2 FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' ");
+        $data_penjualan_bon_2 = mysqli_fetch_array($table_penjualan_bon_2);
+        $total_penjualan_dani_p = $data_penjualan_bon_2['total_penjualan_bon_2'];
+        if (!isset($data_penjualan_bon_2['total_penjualan_bon_2'])) {
+            $total_penjualan_dani_p = 0;
+        }
+
+        
+
     //pembelian 1
     $table_pembelian_1 = mysqli_query($koneksipbj, "SELECT harga_beli, qty, jumlah , harga FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' ");
     while ($data_pembelian_1 = mysqli_fetch_array($table_pembelian_1)) {
