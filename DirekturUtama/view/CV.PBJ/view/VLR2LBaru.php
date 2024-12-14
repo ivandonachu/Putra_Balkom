@@ -528,7 +528,6 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         $jumlah_beli = $harga_beli * $qty;
 
-        $total_penjualan_ety_c = $total_penjualan_ety_c + $jumlah;
         $total_penebusan_ety_c = $total_penebusan_ety_c + $jumlah_beli;
     }
 
@@ -548,7 +547,6 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         $jumlah_beli = $harga_beli * $qty;
 
-        $total_penjualan_dani_c = $total_penjualan_dani_c + $jumlah;
         $total_penebusan_dani_c = $total_penebusan_dani_c + $jumlah_beli;
     }
 
@@ -569,7 +567,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         $jumlah_beli = $harga_beli * $qty;
 
-        $total_penjualan_ety_p = $total_penjualan_ety_p + $jumlah;
+
         $total_penebusan_ety_p = $total_penebusan_ety_p + $jumlah_beli;
     }
 
@@ -591,7 +589,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         $jumlah_beli = $harga_beli * $qty;
 
-        $total_penjualan_dani_p = $total_penjualan_dani_p + $jumlah;
+        
         $total_penebusan_dani_p = $total_penebusan_dani_p + $jumlah_beli;
     }
 
