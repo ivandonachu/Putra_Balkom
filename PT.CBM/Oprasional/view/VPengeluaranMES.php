@@ -299,6 +299,8 @@ Menu Kepala Oprasional
               <option>MES</option>
               <option>Kebun Kota Batu</option>
               <option>GelGel</option>
+              <option>MJRE</option>
+              <option>BBE</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -480,6 +482,8 @@ Menu Kepala Oprasional
               <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
               <option <?php echo ($dataSelect == 'Kebun Kota Batu') ? "selected": "" ?> >Kebun Kota Batu</option>
               <option <?php echo ($dataSelect == 'GelGel') ? "selected": "" ?> >GelGel</option>
+              <option <?php echo ($dataSelect == 'MJRE') ? "selected": "" ?> >MJRE</option>
+              <option <?php echo ($dataSelect == 'BBE') ? "selected": "" ?> >BBE</option>
             </select>
           </div>
           <div class="col-md-4">
