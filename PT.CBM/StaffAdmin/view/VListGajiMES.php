@@ -456,6 +456,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_mes");
                <input class="form-control form-control-sm" type="number" name="insentif" required="" value="0">
              </div>
              <div class="col-md-3">
+               <label>Hutang Pribadi</label>
+               <input class="form-control form-control-sm" type="number" name="hutang_pribadi" required="" value="0">
+             </div>
+             <div class="col-md-3">
                 <label>Keterangan</label>
                 <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                   <option>Transfer</option>
@@ -505,6 +509,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_mes");
           <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan</th>
           <th style="font-size: 14px" scope="col">Bonus</th>
           <th style="font-size: 14px" scope="col">Insentif</th>
+          <th style="font-size: 14px" scope="col">Hutang Pribadi</th>
           <th style="font-size: 14px" scope="col">Total Gaji</th>
           <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
           <th style="font-size: 14px" scope="col">Keterangan </th>
@@ -549,6 +554,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_mes");
             }
           $bonus = $data2['bonus'];
           $insentif = $data2['insentif'];
+          $hutang_pribadi = $data2['hutang_pribadi'];
           $total_gaji = $data2['total_gaji'];
           $total_gaji_diterima = $data2['total_gaji_diterima'];
           $keterangan = $data2['keterangan'];
@@ -580,6 +586,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_mes");
           <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bonus); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($insentif); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($hutang_pribadi); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
           <td style='font-size: 14px'>$keterangan</td>
@@ -684,6 +691,10 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_mes");
              <div class="col-md-3">
                <label>Insentif</label>
                <input class="form-control form-control-sm" type="number" name="insentif" required="" value="<?php echo $insentif;?>">
+             </div>
+             <div class="col-md-3">
+               <label>Hutang Pribadi</label>
+               <input class="form-control form-control-sm" type="number" name="hutang_pribadi" required="" value="<?php echo $hutang_pribadi;?>">
              </div>
              <div class="col-md-3">
                 <label>Keterangan</label>

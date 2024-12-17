@@ -158,7 +158,7 @@ while($data = mysqli_fetch_array($table2)){
                                                                              ,'$total_rit_nikan','$total_uang_gaji_nikan','$total_rit_kota_baru','$total_uang_gaji_kota_baru','$total_rit_batu_marta'
                                                                              ,'$total_uang_gaji_batu_marta', '$total_rit_bantu_tabung_pertamina' ,'$total_uang_gaji_bantu_tabung_pertamina' , '$total_rit_melati' ,'$total_uang_melati'
                                                                              , '$total_rit_lampung' ,'$total_uang_lampung'
-                                                                             ,0,'$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan','$total_gaji','$total_gaji_diterima','Transfer')");
+                                                                             ,0,'$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan',0,'$total_gaji','$total_gaji_diterima','Transfer')");
 
 }
 

@@ -42,14 +42,14 @@ else{
 
 
 $keterangan = $_POST['keterangan'];
-
+$hutang_pribadi = $_POST['hutang_pribadi'];
 
 
 
 
 
 	$query = mysqli_query($koneksi,"UPDATE rekap_gaji_driver_pbj SET tanggal = '$tanggal', nama_driver = '$nama_driver', rit_semen = '$rit_semen' , upah_semen = '$upah_semen' , rit_batu = '$rit_batu' , 
-                                                             upah_batu = '$upah_batu', bon = '$bon' , bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan', bpjs_kesehatan = '$bpjs_kesehatan', total_gaji = '$total_gaji' , 
+                                                             upah_batu = '$upah_batu', bon = '$bon' , bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan', bpjs_kesehatan = '$bpjs_kesehatan', hutang_pribadi = '$hutang_pribadi', total_gaji = '$total_gaji' , 
                                                              total_gaji_diterima = '$total_gaji_diterima' , keterangan = '$keterangan'   WHERE no_riwayat = '$no_riwayat'");
 
 

@@ -93,7 +93,7 @@ while($data = mysqli_fetch_array($table2)){
       }
 
 
-    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbr VALUES('','$tanggal','$nama_driver','Driver','$total_rit_ppe','$total_gaji_ppe','$total_rit_pap','$total_gaji_pap','$total_rit_nje','$total_gaji_nje','$bpjs_kesehatan','$bpjs_ketenagakerjaan',0,'$angsuran_bon_bulanan','$total_gaji',
+    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbr VALUES('','$tanggal','$nama_driver','Driver','$total_rit_ppe','$total_gaji_ppe','$total_rit_pap','$total_gaji_pap','$total_rit_nje','$total_gaji_nje','$bpjs_kesehatan','$bpjs_ketenagakerjaan',0,'$angsuran_bon_bulanan',0,'$total_gaji',
                                                                         '$total_gaji_diterima','Transfer')");
 
 }

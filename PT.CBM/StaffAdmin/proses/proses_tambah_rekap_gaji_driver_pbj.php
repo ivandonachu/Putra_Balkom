@@ -40,8 +40,8 @@ exit;
     }
 
     $keterangan = $_POST['keterangan'];
-
-    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbj VALUES('','$tanggal','$nama_driver','$rit_semen','$upah_semen','$rit_batu','$upah_batu','$bon','$bpjs_ketenagakerjaan','$bpjs_kesehatan','$total_gaji',
+    $hutang_pribadi = $_POST['hutang_pribadi'];
+    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbj VALUES('','$tanggal','$nama_driver','$rit_semen','$upah_semen','$rit_batu','$upah_batu','$bon','$bpjs_ketenagakerjaan','$bpjs_kesehatan','$hutang_pribadi','$total_gaji',
     '$total_gaji_diterima','Transfer')");
 
 

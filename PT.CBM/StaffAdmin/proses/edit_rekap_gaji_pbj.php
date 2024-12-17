@@ -52,12 +52,12 @@ else{
 }
 
 $keterangan = $_POST['keterangan'];
-
+$hutang_pribadi = $_POST['hutang_pribadi'];
 
 
 $query = mysqli_query($koneksi,"UPDATE rekap_gaji_pbj SET    tanggal = '$tanggal' ,nama_karyawan = '$nama_karyawan', jabatan = '$jabatan' , gaji_pokok = '$gaji_pokok' , tunjangan_jabatan = '$tunjangan_jabatan' , tunjangan_akomodasi = '$tunjangan_akomodasi' , 
                                                              uang_makan = '$uang_makan', bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan', bpjs_kesehatan = '$bpjs_kesehatan', lembur = '$lembur', premi_kehadiran = '$premi_kehadiran' , bonus_1 = '$bonus_1' , bonus_2 = '$bonus_2' 
-                                                             , bonus_3 = '$bonus_3', absen_terlambat = '$absen_terlambat', insentif = '$insentif', potongan_absen = '$potongan_absen', angsuran_pinjaman = '$angsuran_pinjaman', potongan_bon = '$potongan_bon' , total_gaji = '$total_gaji' , total_gaji_diterima = '$total_gaji_diterima'
+                                                             , bonus_3 = '$bonus_3', absen_terlambat = '$absen_terlambat', insentif = '$insentif', hutang_pribadi = '$hutang_pribadi', potongan_absen = '$potongan_absen', angsuran_pinjaman = '$angsuran_pinjaman', potongan_bon = '$potongan_bon' , total_gaji = '$total_gaji' , total_gaji_diterima = '$total_gaji_diterima'
                                                              , keterangan = '$keterangan' WHERE no_riwayat = '$no_riwayat'");
 
 

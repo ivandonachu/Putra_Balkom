@@ -73,6 +73,7 @@ $html = '
         $denda_absen = $data['denda_absen'];
         $angsuran_bon_bulanan = $data['angsuran_bon_bulanan'];
         $bonus = $data['bonus'];
+        $hutang_pribadi = $data['hutang_pribadi'];
         $total_gaji_diterima = $data['total_gaji_diterima'];
         $keterangan = $data['keterangan'];
 
@@ -134,10 +135,13 @@ $html = '
         <td align="left" style="font-size: 10px; width:30%; ">Bonus</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($bonus) .'</td>
         </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Hutang Pribadi</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($hutang_pribadi) .'</td>
+        </tr>
     
         </table>
 
-        <br>
 
         <table align="center" style="width:100%" border="1" cellspacing="0">
 
@@ -156,7 +160,7 @@ $html = '
     
         </table>
 
-        <br>
+ 
 
         <table align="center" style="width:100%" border="1" cellspacing="0">
 

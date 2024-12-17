@@ -449,6 +449,10 @@ if (isset($_GET['tanggal1'])) {
                <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="0">
              </div>
              <div class="col-md-4">
+               <label>Hutang Pribadi</label>
+               <input class="form-control form-control-sm" type="number" name="hutang_pribadi" required="" value="0">
+             </div>
+             <div class="col-md-4">
                 <label>Keterangan</label>
                 <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                   <option>Transfer</option>
@@ -494,6 +498,7 @@ if (isset($_GET['tanggal1'])) {
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
           <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan </th>
+          <th style="font-size: 14px" scope="col">Hutang Pribadi </th>
           <th style="font-size: 14px" scope="col">Total Gaji </th>
           <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
           <th style="font-size: 14px" scope="col">Keterangan </th>
@@ -528,6 +533,7 @@ if (isset($_GET['tanggal1'])) {
           $bpjs_kesehatan = $data2['bpjs_kesehatan'];
           $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
           $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+          $hutang_pribadi = $data2['hutang_pribadi'];
           $total_gaji = $data2['total_gaji'];
           $total_gaji_diterima = $data2['total_gaji_diterima'];
           $keterangan = $data2['keterangan'];
@@ -556,6 +562,7 @@ if (isset($_GET['tanggal1'])) {
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($hutang_pribadi); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
           <td style='font-size: 14px'>$keterangan</td>
@@ -635,6 +642,10 @@ if (isset($_GET['tanggal1'])) {
              <div class="col-md-3">
                <label>Angsuran Bon Bulanan</label>
                <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="<?php echo $angsuran_bon_bulanan;?>">
+             </div>
+             <div class="col-md-3">
+               <label>Hutang Pribadi</label>
+               <input class="form-control form-control-sm" type="number" name="hutang_pribadi" required="" value="<?php echo $hutang_pribadi;?>">
              </div>
              <div class="col-md-3">
                  <label>Keterangan</label>

@@ -46,9 +46,9 @@ exit;
         $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif;
     }
     $keterangan = $_POST['keterangan'];
-
+    $hutang_pribadi = $_POST['hutang_pribadi'];
 $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_pbr VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_akomodasi','$tunjangan_operasional','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$uang_makan_bulan','$fee_kehadiran','$lembur'
-                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$insentif','$total_gaji','$total_gaji_diterima','$keterangan')");
+                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$insentif','$hutang_pribadi','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 
 if ($query != "") {
