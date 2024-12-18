@@ -382,8 +382,175 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <div class="row">
                           <div class="col-md-6">
-                            <label>Nama Buruh</label>
-                            <select id="tokens" class="selectpicker form-control" name="nama_buruh" data-live-search="true">
+                            <label>Nama Buruh 1</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_1" data-live-search="true">
+                              <option></option>
+                              <?php
+                              include 'koneksi.php';
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
+
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $data_pangakalan = $data2['nama_buruh'];
+
+
+                                echo "<option> $data_pangakalan </option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <label>Nama Buruh 2</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_2" data-live-search="true">
+                              <option></option>
+                              <?php
+                              include 'koneksi.php';
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
+
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $data_pangakalan = $data2['nama_buruh'];
+
+
+                                echo "<option> $data_pangakalan </option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Nama Buruh 3</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_3" data-live-search="true">
+                              <option></option>
+                              <?php
+                              include 'koneksi.php';
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
+
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $data_pangakalan = $data2['nama_buruh'];
+
+
+                                echo "<option> $data_pangakalan </option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <label>Nama Buruh 4</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_4" data-live-search="true">
+                              <option></option>
+                              <?php
+                              include 'koneksi.php';
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
+
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $data_pangakalan = $data2['nama_buruh'];
+
+
+                                echo "<option> $data_pangakalan </option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Nama Buruh 5</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_5" data-live-search="true">
+                              <option></option>
+                              <?php
+                              include 'koneksi.php';
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
+
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $data_pangakalan = $data2['nama_buruh'];
+
+
+                                echo "<option> $data_pangakalan </option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <label>Nama Buruh 6</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_6" data-live-search="true">
+                              <option></option>
+                              <?php
+                              include 'koneksi.php';
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
+
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $data_pangakalan = $data2['nama_buruh'];
+
+
+                                echo "<option> $data_pangakalan </option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Nama Buruh 7</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_7" data-live-search="true">
+                              <option></option>
+                              <?php
+                              include 'koneksi.php';
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
+
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $data_pangakalan = $data2['nama_buruh'];
+
+
+                                echo "<option> $data_pangakalan </option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <label>Nama Buruh 8</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_8" data-live-search="true">
+                              <option></option>
+                              <?php
+                              include 'koneksi.php';
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
+
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $data_pangakalan = $data2['nama_buruh'];
+
+
+                                echo "<option> $data_pangakalan </option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Nama Buruh 9</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_9" data-live-search="true">
+                              <option></option>
+                              <?php
+                              include 'koneksi.php';
+                              $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
+
+                              while ($data2 = mysqli_fetch_array($result2)) {
+                                $data_pangakalan = $data2['nama_buruh'];
+
+
+                                echo "<option> $data_pangakalan </option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <label>Nama Buruh 10</label>
+                            <select id="tokens" class="selectpicker form-control" name="nama_buruh_10" data-live-search="true">
                               <option></option>
                               <?php
                               include 'koneksi.php';
