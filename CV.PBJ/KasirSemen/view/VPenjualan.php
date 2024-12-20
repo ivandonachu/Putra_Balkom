@@ -381,7 +381,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <div class="row">
                           <div class="col-md-6">
                             <label>QTY</label>
-                            <input class="form-control form-control-sm" type="number" id="qty" name="qty" onkeyup="sum();" required="">
+                            <input class="form-control form-control-sm" type="float" id="qty" name="qty" onkeyup="sum();" required="">
                           </div>
                           <div class="col-md-6">
                             <label>Satuan</label>
@@ -669,7 +669,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <div class="row">
                                 <div class="col-md-6">
                                   <label>QTY</label>
-                                  <input class="form-control form-control-sm" type="number" id="qty2" name="qty" onkeyup="sum2();" required="" value="<?php echo $qty; ?>">
+                                  <input class="form-control form-control-sm" type="float" id="qty2" name="qty" onkeyup="sum2();" required="" value="<?php echo $qty; ?>">
 
                                 </div>
                                 <div class="col-md-6">
