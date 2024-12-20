@@ -1332,11 +1332,11 @@ if ($tanggal_awal == $tanggal_akhir) {
     });
   </script>
 
-  <script>
+<script>
     function sum() {
       var banyak_barang = document.getElementById('qty').value;
       var harga = document.getElementById('harga').value;
-      var result = parseInt(banyak_barang) * parseInt(harga);
+      var result = parseFloat(banyak_barang) * parseFloat(harga);
       if (!isNaN(result)) {
         document.getElementById('jumlah').value = result;
       }
