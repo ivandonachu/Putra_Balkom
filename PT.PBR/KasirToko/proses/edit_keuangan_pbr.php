@@ -63,11 +63,11 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-		$query3 = mysqli_query($koneksipbr,"UPDATE keuangan_pbr SET tanggal = '$tanggal' , referensi = '$referensi', rekening = '$rekening' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_pengeluaran = 
+		$query3 = mysqli_query($koneksi,"UPDATE keuangan_pbr SET tanggal = '$tanggal' , referensi = '$referensi', rekening = '$rekening' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_pengeluaran = 
 		'$no_pengeluaran'");
 	}
 	else{
-		$query3 = mysqli_query($koneksipbr,"UPDATE keuangan_pbr SET tanggal = '$tanggal' , referensi = '$referensi', rekening = '$rekening' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_pengeluaran = 
+		$query3 = mysqli_query($koneksi,"UPDATE keuangan_pbr SET tanggal = '$tanggal' , referensi = '$referensi', rekening = '$rekening' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_pengeluaran = 
 		'$no_pengeluaran'");
 	}
 	

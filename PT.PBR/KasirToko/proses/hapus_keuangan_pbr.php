@@ -29,7 +29,7 @@ $no_pengeluaran = $_POST['no_pengeluaran'];
 		
 
 		//Hapusriwayat keberangkatan
-		$query = mysqli_query($koneksipbr,"DELETE FROM keuangan_pbr WHERE no_pengeluaran = '$no_pengeluaran'");
+		$query = mysqli_query($koneksi,"DELETE FROM keuangan_pbr WHERE no_pengeluaran = '$no_pengeluaran'");
 
 
 

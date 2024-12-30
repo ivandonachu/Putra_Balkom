@@ -65,7 +65,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksipbr,"INSERT INTO keuangan_mes VALUES ('','$tanggal','$referensi','$rekening','$nama_akun','$jumlah','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO keuangan_mes VALUES ('','$tanggal','$referensi','$rekening','$nama_akun','$jumlah','$keterangan','$file')");
 
 
 			if ($query != "") {
