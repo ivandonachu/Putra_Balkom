@@ -52,8 +52,8 @@ $nama = $data['nama_karyawan'];
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-               <!-- Sidebar -->
-               <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+            <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
@@ -94,6 +94,8 @@ $nama = $data['nama_karyawan'];
             <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPBR">Keuangan PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuanganMES">Keuangan MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>

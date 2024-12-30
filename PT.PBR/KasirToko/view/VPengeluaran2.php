@@ -131,6 +131,8 @@ else{
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPBR">Keuangan PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganMES">Keuangan MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPembelian1">Pembelian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanSaldo">Laporan Saldo</a>
@@ -139,7 +141,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Bon Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitDriverMES">Laporan Rit MES</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitDriverPBR">Laporan Rit PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriverPBR">Laporan Rit PBR</a>
                     </div>
                 </div>
             </li>
@@ -181,7 +183,6 @@ else{
             </div>
         </div>
     </li>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
