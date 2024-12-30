@@ -20,30 +20,32 @@ exit;
 }
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+    $no_polisi = $_GET['no_polisi'];
+    $no_polisi_ts = str_replace(" ", "", $no_polisi);
+   } 
+   
+   elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+    $no_polisi = $_POST['no_polisi'];
+    $no_polisi_ts = str_replace(" ", "", $no_polisi);
+   }  
+   
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal' GROUP BY no_polisi "); 
+  $table = mysqli_query($koneksipbj, "SELECT * FROM kredit_kendaraan WHERE tanggal = '$tanggal_awal' AND no_polisi_baru = '$no_polisi_ts'  ");
 
 }
 else{
 
- 
-   $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_om FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
-
-   $table4x = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_om FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
-
+  $table = mysqli_query($koneksipbj, "SELECT * FROM kredit_kendaraan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi_baru = '$no_polisi_ts'  ");
 
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +57,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rincian Gaji</title>
+  <title>Rincian Kredit Kendaraan Kendaraan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,8 +80,9 @@ else{
 
 <body id="page-top">
 
- <!-- Page Wrapper -->
- <div id="wrapper">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
  <!-- Sidebar -->
  <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
@@ -301,111 +304,73 @@ Logout
 <div>   
 
 
-
+  <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php echo "<a href='../VLRKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
-
-  <div class="col-md-8">
+  <div align="left">
+      <?php echo "<a href='../VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+    </div>
+<div class="row">
+  <div class="col-md-6">
    <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
  </div>
+</div>
 
 
-
-<h5 align="center" >Ongkos Kendaraan Etty</h5>
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-      <th align="center">No Polisi</th>
-      <th align="center">Total Ongkos Kendaraan</th>
-      <th align="center">Total Ongkos Kendaraan</th>
-
-
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>No Polisi Lama</th>
+      <th>No Polisi Baru</th>
+      <th>Jumlah Kredit</th>
+      <th>Total</th>
     </tr>
   </thead>
   <tbody>
-  <?php
-    $total_om_etty = 0;
+    <?php
+    $total = 0;
+    $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
 
     ?>
-    <?php while($data = mysqli_fetch_array($table4)){
-      $no_polisi = $data['no_polisi'];
-      if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
-      $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
-      $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
-      $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
-      $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'||$no_polisi == 'BE8917ACU' ||$no_polisi == 'BE8943ACU' ||$no_polisi == 'BE8946ACU' ||$no_polisi == 'BE8931ACU' ||$no_polisi == 'BE8920ACU' ||$no_polisi == 'BE8940ACU' ||$no_polisi == 'BE8928ACU' ||$no_polisi == 'BE8934ACU' ||
-      $no_polisi == 'BE8925ACU' ||$no_polisi == 'BE8937ACU'){
-        $total_om =$data['total_om'];
-        $total_om_etty = $total_om_etty + $total_om; 
-        echo "<tr>
-        <td style='font-size: 14px' align = 'center'>$no_polisi</td>
-        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om); ?> <?php echo" </td>
-        <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om_etty); ?> <?php echo" </td>
-  
-        </tr>";
-      }
+
+    <?php while($data = mysqli_fetch_array($table)){
+      $tanggal =$data['tanggal'];
+      $no_polisi_lama =$data['no_polisi_lama'];
+      $no_polisi_baru =$data['no_polisi_baru'];
+      $jumlah_bayar = $data['jumlah_bayar'];
+      $total = $total + $jumlah_bayar;
+      $urut = $urut + 1;
+
+      echo "<tr>
+      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$no_polisi_lama</td>
+      <td style='font-size: 14px'>$no_polisi_baru</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah_bayar); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      "; ?>
+    
+
+<?php echo  " </tr>";
 }
 ?>
 
 </tbody>
 </table>
-
-<br>
-<hr>
-<br>
-
-
-<h5 align="center" >Ongkos Kendaraan Kadek</h5>
-<!-- Tabel -->    
-<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th align="center">No Polisi</th>
-      <th align="center">Ongkos Kendaraan</th>
-      <th align="center">Total Ongkos Kendaraan</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
-  <?php
-  $total_om_kadek = 0;
-
-
-    ?>
-    <?php while($data = mysqli_fetch_array($table4x)){
-       $no_polisi = $data['no_polisi'];
-       if($no_polisi == 'BG8344YC' ||$no_polisi == 'BG8370YC' ||$no_polisi == 'BG8971YB' ||$no_polisi == 'BG8521YB' ||$no_polisi == 'BG8251YC' ||$no_polisi == 'BG8101YA' ||$no_polisi == 'BG8694YA' ||$no_polisi == 'BG8930VA' ||$no_polisi == 'BG8221YD' ||
-       $no_polisi == 'BG8223YD' ||$no_polisi == 'BG8224YD' ||$no_polisi == 'BG8225YD' ||$no_polisi == 'BG8226YD' ||$no_polisi == 'BG8227YD' ||$no_polisi == 'BG8876UY' ||$no_polisi == 'BG8515YB' ||$no_polisi == 'BG8969YB' ||$no_polisi == 'BG8101YB' ||
-       $no_polisi == 'BG8252YC' ||$no_polisi == 'BG8376YB' ||$no_polisi == 'BG8970YB' ||$no_polisi == 'BG8231KN' ||$no_polisi == 'BE9789AV' ||$no_polisi == 'BE9816AV' ||$no_polisi == 'BG8405YB' ||$no_polisi == 'BG8965V' ||$no_polisi == 'BG8966V' ||
-       $no_polisi == 'BG8884UY' ||$no_polisi == 'BG1718XL' ||$no_polisi == 'BG1705XL' ||$no_polisi == 'BG1707XL' ||$no_polisi == 'BG1759XL' ||$no_polisi == 'BG1726XL' ||$no_polisi == 'BG1725XL' ||$no_polisi == 'BG1703XL' ||$no_polisi == 'BG1778XL' ||
-       $no_polisi == 'BG1678XL' ||$no_polisi == 'BG1765XL'||$no_polisi == 'BE8917ACU' ||$no_polisi == 'BE8943ACU' ||$no_polisi == 'BE8946ACU' ||$no_polisi == 'BE8931ACU' ||$no_polisi == 'BE8920ACU' ||$no_polisi == 'BE8940ACU' ||$no_polisi == 'BE8928ACU' ||$no_polisi == 'BE8934ACU' ||
-       $no_polisi == 'BE8925ACU' ||$no_polisi == 'BE8937ACU'){
-         $total_om =$data['total_om'];
-         $total_om_kadek = $total_om_kadek + $total_om; 
-         echo "<tr>
-         <td style='font-size: 14px' align = 'center'>$no_polisi</td>
-         <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om); ?> <?php echo" </td>
-         <td style='font-size: 14px' align = 'center'>"?> <?= formatuang($total_om_kadek); ?> <?php echo" </td>
-   
-         </tr>";
-       }
-}
-?>
-
-</tbody>
-</table>
-
-<br>
-<br>
-<br>
 </div>
+<br>
+<br>
+<br>
+
+
 </div>
+
 </div>
 <!-- End of Main Content -->
 
@@ -476,31 +441,17 @@ aria-hidden="true">
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-
 <script>
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: ['excel']
+      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
     } );
 
     table.buttons().container()
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
-
-<script>
-  $(document).ready(function() {
-    var table = $('#example1').DataTable( {
-      lengthChange: false,
-      buttons: ['excel']
-    } );
-
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
-
 
 </body>
 

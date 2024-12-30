@@ -49,6 +49,7 @@ while($data2 = mysqli_fetch_array($table)){
       }
     $bonus = $data2['bonus'];
     $insentif = $data2['insentif'];
+    $hutang_pribadi = $data2['hutang_pribadi'];
     if($nama_karyawan == 'Septian Andriansyah' || $nama_karyawan == 'Okta Mayasari' ){
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
         $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif  ;
@@ -60,7 +61,7 @@ while($data2 = mysqli_fetch_array($table)){
     $keterangan = $data2['keterangan'];
 
 $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_pbr VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_akomodasi','$tunjangan_operasional','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$uang_makan_bulan','$fee_kehadiran','$lembur'
-                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$insentif','$total_gaji','$total_gaji_diterima','$keterangan')");
+                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$insentif','$hutang_pribadi','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 }
 

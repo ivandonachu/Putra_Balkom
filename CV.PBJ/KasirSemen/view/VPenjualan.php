@@ -84,6 +84,16 @@ if ($tanggal_awal == $tanggal_akhir) {
   $data5 = mysqli_fetch_array($table5);
   $penjualan_bag_bon = $data5['penjualan_bag_bon'];
   $uang_bag_bon = $data5['uang_bag_bon'];
+
+  $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_curah ,  SUM(jumlah) AS uang_curah  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' ");
+  $data5 = mysqli_fetch_array($table5);
+  $penjualan_curah = $data5['penjualan_curah'];
+  $uang_curah = $data5['uang_curah'];
+
+  $table6 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_curah_bon ,  SUM(jumlah) AS uang_curah_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Curah' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah'");
+  $data6 = mysqli_fetch_array($table6);
+  $penjualan_curah_bon = $data6['penjualan_curah_bon'];
+  $uang_curah_bon = $data6['uang_curah_bon'];
 }
 
 
@@ -371,13 +381,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <div class="row">
                           <div class="col-md-6">
                             <label>QTY</label>
-                            <input class="form-control form-control-sm" type="number" id="qty" name="qty" onkeyup="sum();" required="">
+                            <input class="form-control form-control-sm" type="float" id="qty" name="qty" onkeyup="sum();" required="">
                           </div>
                           <div class="col-md-6">
                             <label>Satuan</label>
                             <select id="satuan" name="satuan" class="form-control">
                               <option>Zak</option>
                               <option>Bag</option>
+                              <option>Curah</option>
                             </select>
                           </div>
                         </div>
@@ -658,7 +669,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <div class="row">
                                 <div class="col-md-6">
                                   <label>QTY</label>
-                                  <input class="form-control form-control-sm" type="number" id="qty2" name="qty" onkeyup="sum2();" required="" value="<?php echo $qty; ?>">
+                                  <input class="form-control form-control-sm" type="float" id="qty2" name="qty" onkeyup="sum2();" required="" value="<?php echo $qty; ?>">
 
                                 </div>
                                 <div class="col-md-6">
@@ -667,7 +678,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <?php $dataSelect = $data['satuan']; ?>
                                     <option <?php echo ($dataSelect == 'Zak') ? "selected" : "" ?>>Zak</option>
                                     <option <?php echo ($dataSelect == 'Bag') ? "selected" : "" ?>>Bag</option>
-
+                                    <option <?php echo ($dataSelect == 'Curah') ? "selected" : "" ?>>Curah</option>
                                   </select>
                                 </div>
                               </div>
@@ -1128,6 +1139,74 @@ if ($tanggal_awal == $tanggal_akhir) {
                 </div>
               </div>
             </div>
+            <br>
+            <br>
+            <div class="row" style="margin-right: 20px; margin-left: 20px;">
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Penjualan Curah</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_curah   ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Uang Curah</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_curah) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Curah BON</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penjualan_curah_bon  ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-truck-loading fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Uang Curah BON</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($uang_curah_bon) ?></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <br>
             <hr>
@@ -1253,11 +1332,11 @@ if ($tanggal_awal == $tanggal_akhir) {
     });
   </script>
 
-  <script>
+<script>
     function sum() {
       var banyak_barang = document.getElementById('qty').value;
       var harga = document.getElementById('harga').value;
-      var result = parseInt(banyak_barang) * parseInt(harga);
+      var result = parseFloat(banyak_barang) * parseFloat(harga);
       if (!isNaN(result)) {
         document.getElementById('jumlah').value = result;
       }

@@ -75,6 +75,7 @@ $html = '
         $potongan_absen = $data['potongan_absen'];
         $angsuran_pinjaman = $data['angsuran_pinjaman'];
         $potongan_bon = $data['potongan_bon'];
+        $hutang_pribadi = $data['hutang_pribadi'];
         $total_gaji_diterima = $data['total_gaji_diterima'];
         $total_gaji = $data['total_gaji'];
            
@@ -168,6 +169,10 @@ $html = '
         <tr>
         <td align="left" style="font-size: 10px; width:30%; ">Potongan Absen</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($potongan_absen) .'</td>
+        </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Hutang Pribadi</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($hutang_pribadi) .'</td>
         </tr>
     
         </table>

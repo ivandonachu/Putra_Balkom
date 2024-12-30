@@ -68,6 +68,7 @@ $html = '
         $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
         $asuransi = $bpjs_kesehatan + $bpjs_ketenagakerjaan;
         $angsuran_bon_bulanan = $data['angsuran_bon_bulanan'];
+        $hutang_pribadi = $data['hutang_pribadi'];
         $total_gaji = $data['total_gaji'];
         $total_gaji_diterima = $data['total_gaji_diterima'];
         $keterangan = $data['keterangan'];
@@ -117,7 +118,6 @@ $html = '
     
         </table>
 
-        <br>
 
         <table align="center" style="width:100%" border="1" cellspacing="0">
 
@@ -125,10 +125,13 @@ $html = '
         <td align="left" style="font-size: 10px; width:30%; ">Potongan Bon</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($angsuran_bon_bulanan) .'</td>
         </tr>
+          <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Hutang Pribadi</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($hutang_pribadi) .'</td>
+        </tr>
     
         </table>
 
-        <br>
 
         <table align="center" style="width:100%" border="1" cellspacing="0">
 

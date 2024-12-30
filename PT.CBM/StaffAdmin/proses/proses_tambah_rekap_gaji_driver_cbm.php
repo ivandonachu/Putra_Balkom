@@ -46,13 +46,14 @@ exit;
     $bpjs_kesehatan = $_POST['bpjs_kesehatan'];
     $bpjs_ketenagakerjaan = $_POST['bpjs_ketenagakerjaan'];
     $angsuran_bon_bulanan = $_POST['angsuran_bon_bulanan'];
+    $hutang_pribadi = $_POST['hutang_pribadi'];
     $total_gaji = $upah_nje + $upah_gas_palembang + $upah_nikan + $upah_kota_baru + $upah_batu_marta + $upah_bantu_tabung_pertamina  + $uang_makan + $upah_melati + $rit_lampung;
     $total_gaji_diterima =  $upah_nje + $upah_gas_palembang + $upah_nikan + $upah_kota_baru + $upah_batu_marta + $upah_melati + $rit_lampung + $uang_makan  + $upah_bantu_tabung_pertamina  - $bpjs_ketenagakerjaan;
     $keterangan = $_POST['keterangan'];
 
 $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_cbm VALUES('','$tanggal','$nama_driver','$jabatan','$rit_nje','$upah_nje','$rit_gas_palembang','$upah_gas_palembang'
                                                                          ,'$rit_nikan','$upah_nikan','$rit_kota_baru','$upah_kota_baru','$rit_batu_marta','$upah_batu_marta', '$rit_bantu_tabung_pertamina', '$upah_bantu_tabung_pertamina'
-                                                                         , '$rit_melati', '$upah_melati', '$rit_lampung', '$upah_lampung' ,'$uang_makan','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan','$total_gaji'
+                                                                         , '$rit_melati', '$upah_melati', '$rit_lampung', '$upah_lampung' ,'$uang_makan','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$angsuran_bon_bulanan','$hutang_pribadi','$total_gaji'
                                                                          ,'$total_gaji_diterima','$keterangan')");
 
 

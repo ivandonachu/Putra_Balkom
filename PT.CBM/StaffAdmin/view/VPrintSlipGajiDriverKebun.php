@@ -72,6 +72,7 @@ $html = '
         $upah_kampas_pupuk_kebun_lengkiti = $data['upah_kampas_pupuk_kebun_lengkiti'];
         $rit_muat_batu = $data['rit_muat_batu'];
         $upah_muat_batu = $data['upah_muat_batu'];
+        $hutang_pribadi = $data['hutang_pribadi'];
         $total_gaji = $data['total_gaji'];
         $total_gaji_diterima = $data['total_gaji_diterima'];
         $keterangan = $data['keterangan'];
@@ -141,12 +142,13 @@ $html = '
         <td align="left" style="font-size: 10px; width:30%; ">Upah Kampas Pupuk Kebun Lenkiti</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_kampas_pupuk_kebun_lengkiti) .'</td>
         </tr>
+        <tr>
+        <td align="left" style="font-size: 10px; width:30%; ">Hutang Pribadi</td>
+        <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($hutang_pribadi) .'</td>
+        </tr>
       
     
         </table>
-
-
-        <br>
 
         <table align="center" style="width:100%" border="1" cellspacing="0">
 

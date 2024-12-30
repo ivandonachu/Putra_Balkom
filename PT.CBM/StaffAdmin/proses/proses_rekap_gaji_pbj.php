@@ -40,6 +40,7 @@ while($data2 = mysqli_fetch_array($table)){
     $angsuran_pinjaman = $data2['angsuran_pinjaman'];
     $absen_terlambat = $data2['absen_terlambat'];
     $insentif = $data2['insentif'];
+    $hutang_pribadi = $data2['hutang_pribadi'];
     $potongan_bon = $data2['potongan_bon'];
     $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif;
 
@@ -55,7 +56,7 @@ while($data2 = mysqli_fetch_array($table)){
     $keterangan = $data2['keterangan'];
 
     $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_pbj VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_akomodasi','$uang_makan','$bpjs_ketenagakerjaan','$bpjs_kesehatan','$lembur','$premi_kehadiran'
-                                                                        ,'$bonus_1','$bonus_2','$bonus_3','$absen_terlambat','$insentif','$potongan_absen','$angsuran_pinjaman','$potongan_bon','$total_gaji','$total_gaji_diterima','$keterangan')");
+                                                                        ,'$bonus_1','$bonus_2','$bonus_3','$absen_terlambat','$insentif','$hutang_pribadi','$potongan_absen','$angsuran_pinjaman','$potongan_bon','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 }
 

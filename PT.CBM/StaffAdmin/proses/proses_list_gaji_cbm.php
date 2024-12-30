@@ -36,18 +36,19 @@ exit;
     $angsuran_bon_bulanan = $_POST['angsuran_bon_bulanan'];
     $bonus = $_POST['bonus'];
     $insentif = $_POST['insentif'];
-    if($nama_karyawan == 'Septian Andriansyah' || $nama_karyawan = 'Dendi Wibowo'  ){
+    $hutang_pribadi = $_POST['hutang_pribadi'];
+    if($nama_karyawan == 'Septian Andriansyah' || $nama_karyawan == 'Dendi Wibowo'  ){
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
-        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif  ;
+        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif ;
     }
     else{
-        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_ketenagakerjaan;
-        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif;
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_ketenagakerjaan ;
+        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif ;
     }
     $keterangan = $_POST['keterangan'];
 
 $query = mysqli_query($koneksi,"INSERT INTO list_gaji_cbm VALUES('','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_akomodasi','$tunjangan_operasional','$bpjs_kesehatan','$bpjs_ketenagakerjaan','$uang_makan_bulan','$fee_kehadiran','$lembur'
-                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$insentif','$total_gaji','$total_gaji_diterima','$keterangan')");
+                                                                    ,'$absen_terlambat','$denda_absen','$angsuran_bon_bulanan','$bonus','$insentif','$hutang_pribadi','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 
 if ($query != "") {

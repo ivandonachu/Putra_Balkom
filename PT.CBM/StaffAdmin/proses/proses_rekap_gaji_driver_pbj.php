@@ -64,7 +64,7 @@ while($data = mysqli_fetch_array($table2)){
     $total_gaji = $total_gaji_semen + $total_gaji_batu;
     $total_gaji_diterima =  $total_gaji_semen + $total_gaji_batu - $bpjs_ketenagakerjaan - $bpjs_kesehatan;
 
-    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbj VALUES('','$tanggal','$nama_driver','$total_rit_semen','$total_gaji_semen','$total_rit_batu','$total_gaji_batu',0,'$bpjs_ketenagakerjaan','$bpjs_kesehatan','$total_gaji',
+    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_pbj VALUES('','$tanggal','$nama_driver','$total_rit_semen','$total_gaji_semen','$total_rit_batu','$total_gaji_batu',0,'$bpjs_ketenagakerjaan','$bpjs_kesehatan',0,'$total_gaji',
                                                                         '$total_gaji_diterima','Transfer')");
 
 }

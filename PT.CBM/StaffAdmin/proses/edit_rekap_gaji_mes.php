@@ -48,13 +48,13 @@ else{
     $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $tunjangan_akomodasi + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif;
 }
 $keterangan = $_POST['keterangan'];
-
+$hutang_pribadi = $_POST['hutang_pribadi'];
 
 
 
 	$query = mysqli_query($koneksi,"UPDATE rekap_gaji_mes SET tanggal = '$tanggal', nama_karyawan = '$nama_karyawan', jabatan = '$jabatan' , gaji_pokok = '$gaji_pokok' , tunjangan_jabatan = '$tunjangan_jabatan' , tunjangan_operasional = '$tunjangan_operasional' ,  tunjangan_akomodasi = '$tunjangan_akomodasi' , 
                                                               bpjs_kesehatan = '$bpjs_kesehatan', bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan', uang_makan_bulan = '$uang_makan_bulan', fee_kehadiran = '$fee_kehadiran', lembur = '$lembur' , absen_terlambat = '$absen_terlambat' , denda_absen = '$denda_absen' 
-                                                             , angsuran_bon_bulanan = '$angsuran_bon_bulanan' , bonus = '$bonus', insentif = '$insentif', total_gaji = '$total_gaji' , total_gaji_diterima = '$total_gaji_diterima' , keterangan = '$keterangan'  WHERE no_riwayat = '$no_riwayat'");
+                                                             , angsuran_bon_bulanan = '$angsuran_bon_bulanan' , bonus = '$bonus', insentif = '$insentif', hutang_pribadi = '$hutang_pribadi', total_gaji = '$total_gaji' , total_gaji_diterima = '$total_gaji_diterima' , keterangan = '$keterangan'  WHERE no_riwayat = '$no_riwayat'");
 
 
 if ($query != "") {

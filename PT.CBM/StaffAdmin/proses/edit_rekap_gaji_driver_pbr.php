@@ -38,14 +38,14 @@ $angsuran_bon_bulanan = $_POST['angsuran_bon_bulanan'];
 $total_gaji = $upah_nje + $uang_makan  + $upah_gas_palembang;
 $total_gaji_diterima =  $upah_nje + $uang_makan  + $upah_gas_palembang - $bpjs_ketenagakerjaan;
 $keterangan = $_POST['keterangan'];
-
+$hutang_pribadi = $_POST['hutang_pribadi'];
 
 
 
 
 
 	$query = mysqli_query($koneksi,"UPDATE rekap_gaji_driver_pbr SET tanggal = '$tanggal', nama_driver = '$nama_driver', jabatan = '$jabatan' , rit_nje = '$rit_nje' , upah_nje = '$upah_nje' , rit_gas_palembang = '$rit_gas_palembang' , rit_nje2 = '$rit_nje2' , upah_nje2 = '$upah_nje2',
-                                                             upah_gas_palembang = '$upah_gas_palembang', bpjs_kesehatan = '$bpjs_kesehatan' , bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan', uang_makan = '$uang_makan', angsuran_bon_bulanan = '$angsuran_bon_bulanan', total_gaji = '$total_gaji' , 
+                                                             upah_gas_palembang = '$upah_gas_palembang', bpjs_kesehatan = '$bpjs_kesehatan' , bpjs_ketenagakerjaan = '$bpjs_ketenagakerjaan', uang_makan = '$uang_makan', angsuran_bon_bulanan = '$angsuran_bon_bulanan', hutang_pribadi = '$hutang_pribadi', total_gaji = '$total_gaji' , 
                                                              total_gaji_diterima = '$total_gaji_diterima' , keterangan = '$keterangan'   WHERE no_riwayat = '$no_riwayat'");
 
 

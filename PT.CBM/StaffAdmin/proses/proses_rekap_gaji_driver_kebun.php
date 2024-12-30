@@ -119,7 +119,7 @@ while($data2 = mysqli_fetch_array($table2)){
 
 
 $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_driver_kebun VALUES('','$tanggal','$nama_driver','Driver','$total_rit_sawit_dabuk','$total_gaji_sawit_dabuk','$total_rit_getah_palembang','$total_gaji_getah_palembang','$total_rit_pupuk_kegudang','$total_gaji_pupuk_kegudang',
-                                                                        '$total_rit_muat_nipah','$total_gaji_muat_nipah','$total_rit_kebun_lengkiti','$total_gaji_kebun_lengkiti','$total_rit_batu','$total_gaji_batu','$total_gaji','$total_gaji_diterima','Transfer')");
+                                                                        '$total_rit_muat_nipah','$total_gaji_muat_nipah','$total_rit_kebun_lengkiti','$total_gaji_kebun_lengkiti','$total_rit_batu','$total_gaji_batu',0,'$total_gaji','$total_gaji_diterima','Transfer')");
 
 }
 
