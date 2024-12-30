@@ -299,7 +299,7 @@ data-parent="#accordionSidebar">
           <div class="col-md-4">
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
-              <option>PBR</option>
+              <option>MES</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -470,9 +470,7 @@ data-parent="#accordionSidebar">
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <?php $dataSelect = $data['referensi']; ?>
-              <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
-              <option <?php echo ($dataSelect == 'Kebun Kota Batu') ? "selected": "" ?> >Kebun Kota Batu</option>
-              <option <?php echo ($dataSelect == 'GelGel') ? "selected": "" ?> >GelGel</option>
+              <option <?php echo ($dataSelect == 'MES') ? "selected": "" ?> >MES</option>
             </select>
           </div>
           <div class="col-md-4">

@@ -471,8 +471,6 @@ data-parent="#accordionSidebar">
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <?php $dataSelect = $data['referensi']; ?>
               <option <?php echo ($dataSelect == 'PBR') ? "selected": "" ?> >PBR</option>
-              <option <?php echo ($dataSelect == 'Kebun Kota Batu') ? "selected": "" ?> >Kebun Kota Batu</option>
-              <option <?php echo ($dataSelect == 'GelGel') ? "selected": "" ?> >GelGel</option>
             </select>
           </div>
           <div class="col-md-4">
