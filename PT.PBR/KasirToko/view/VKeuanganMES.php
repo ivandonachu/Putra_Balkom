@@ -320,7 +320,7 @@ data-parent="#accordionSidebar">
                         <option></option>
                         <option>Saldo Sebelumnya</option>
                         <option>Setor Tunai</option>
-                        <option>Penarikan Cash</option>
+                        <option>Setor Rekening MES</option>
                         <option>Transport / Perjalanan Dinas</option>
                         <option>Biaya Penjualan & Pemasaran</option>
                         <option>Biaya Perbaikan Kendaraan</option>
@@ -490,7 +490,7 @@ data-parent="#accordionSidebar">
                         <?php $dataSelect = $data['nama_akun']; ?>
                         <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
                         <option <?php echo ($dataSelect == 'Setor Tunai') ? "selected": "" ?> >Setor Tunai</option>
-                        <option <?php echo ($dataSelect == 'Penarikan Cash') ? "selected": "" ?> >Penarikan Cash</option>
+                        <option <?php echo ($dataSelect == 'Setor Rekening MES') ? "selected": "" ?> >Setor Rekening MES</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
                         <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
