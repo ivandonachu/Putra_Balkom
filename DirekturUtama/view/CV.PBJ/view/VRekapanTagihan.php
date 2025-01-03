@@ -519,6 +519,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
                 $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Samsul' && $kontrak == 'BMU') {
+                $total_angkutan_samsul_bmu = $total_angkutan_samsul_bmu + $total_angkut_bmu;
             }
         }
     }
