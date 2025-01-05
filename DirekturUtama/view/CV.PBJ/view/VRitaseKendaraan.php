@@ -375,7 +375,7 @@ else{
           $pemilik = "";
           $kontrak  = "";
       }
-      if ($pemilik == 'Bapak Nyoman Edi' ) {
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
 
       echo "<tr>
 
@@ -423,7 +423,7 @@ $total_point = 0;
           $pemilik = "";
           $kontrak  = "";
       }
-      if ($pemilik == 'Bapak Nyoman Edi' ) {
+      if ( $pemilik == 'Bapak Rama'  ) {
 
       echo "<tr>
 
@@ -472,7 +472,7 @@ $total_point = 0;
           $pemilik = "";
           $kontrak  = "";
       }
-      if ($pemilik == 'Bapak Nyoman Edi' ) {
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
 
       echo "<tr>
 
@@ -522,7 +522,7 @@ $total_point = 0;
           $pemilik = "";
           $kontrak  = "";
       }
-      if ($pemilik == 'Bapak Nyoman Edi' ) {
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
 
       echo "<tr>
 
@@ -572,7 +572,7 @@ $total_point = 0;
           $pemilik = "";
           $kontrak  = "";
       }
-      if ($pemilik == 'Bapak Nyoman Edi' ) {
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
 
       echo "<tr>
 
@@ -621,7 +621,7 @@ $total_point = 0;
           $pemilik = "";
           $kontrak  = "";
       }
-      if ($pemilik == 'Bapak Nyoman Edi' ) {
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
 
       echo "<tr>
 
@@ -670,7 +670,7 @@ $total_point = 0;
           $pemilik = "";
           $kontrak  = "";
       }
-      if ($pemilik == 'Bapak Nyoman Edi' ) {
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
 
       echo "<tr>
 
