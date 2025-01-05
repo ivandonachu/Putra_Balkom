@@ -41,56 +41,14 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table = mysqli_query($koneksi, "SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' ");
 
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksi, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
-    $total_angkutan_edy = 0;
-    $total_angkutan_edy_okut = 0;
-    $total_angkutan_edy_okus = 0;
-    $total_angkutan_edy_md_kota = 0;
-    $total_angkutan_edy_mesuji = 0;
-    $total_angkutan_edy_tlg_bwg = 0;
-    $total_angkutan_edy_way_kanan = 0;
-    $total_angkutan_rama = 0;
-    $total_angkutan_rama_okut = 0;
-    $total_angkutan_rama_okus = 0;
-    $total_angkutan_rama_md_kota = 0;
-    $total_angkutan_rama_mesuji = 0;
-    $total_angkutan_rama_tlg_bwg = 0;
-    $total_angkutan_rama_way_kanan = 0;
-    $total_map = 0;
-    $total_angkutan_map_okut = 0;
-    $total_angkutan_map_okus = 0;
-    $total_angkutan_map_md_kota = 0;
-    $total_angkutan_map_mesuji = 0;
-    $total_angkutan_map_tlg_bwg = 0;
-    $total_angkutan_map_way_kanan = 0;
-    $total_eki_bangunan = 0;
-    $total_angkutan_eki_okut = 0;
-    $total_angkutan_eki_okus = 0;
-    $total_angkutan_eki_md_kota = 0;
-    $total_angkutan_eki_mesuji = 0;
-    $total_angkutan_eki_tlg_bwg = 0;
-    $total_angkutan_eki_way_kanan = 0;
-    $total_angkutan_soma = 0;
-    $total_angkutan_soma_okut = 0;
-    $total_angkutan_soma_okus = 0;
-    $total_angkutan_soma_md_kota = 0;
-    $total_angkutan_soma_mesuji = 0;
-    $total_angkutan_soma_tlg_bwg = 0;
-    $total_angkutan_soma_way_kanan = 0;
-    $total_angkutan_berkah = 0;
-    $total_angkutan_berkah_okut = 0;
-    $total_angkutan_berkah_okus = 0;
-    $total_angkutan_berkah_md_kota = 0;
-    $total_angkutan_berkah_mesuji = 0;
-    $total_angkutan_berkah_tlg_bwg = 0;
-    $total_angkutan_berkah_way_kanan = 0;
-    $total_angkutan_syafuan = 0;
-    $total_angkutan_syafuan_okut = 0;
-    $total_angkutan_syafuan_okus = 0;
-    $total_angkutan_syafuan_md_kota = 0;
-    $total_angkutan_syafuan_mesuji = 0;
-    $total_angkutan_syafuan_tlg_bwg = 0;
-    $total_angkutan_syafuan_way_kanan = 0;
+    $table1 = mysqli_query($koneksi, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'   ");
+    $total_angkutan_wayan = 0;
+    $total_angkutan_wayan_okut = 0;
+    $total_angkutan_wayan_okus = 0;
+    $total_angkutan_wayan_md_kota = 0;
+    $total_angkutan_wayan_mesuji = 0;
+    $total_angkutan_wayan_tlg_bwg = 0;
+    $total_angkutan_wayan_way_kanan = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -138,28 +96,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
-                $total_angkutan_edy = $total_angkutan_edy + $total_angkut_bmu;
-                $total_angkutan_edy_okut = $total_angkutan_edy_okut + $total_angkut_bmu;
-            } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
-                $total_angkutan_rama = $total_angkutan_rama + $total_angkut_bmu;
-                $total_angkutan_rama_okut = $total_angkutan_rama_okut + $total_angkut_bmu;
-            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map = $total_map + $total_angkut_bmu;
-                $total_angkutan_map_okut = $total_angkutan_map_okut + $total_angkut_bmu;
-            } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
-                $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
-                $total_angkutan_eki_okut = $total_angkutan_eki_okut + $total_angkut_bmu;
-            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
-                $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
-                $total_angkutan_soma_okut = $total_angkutan_soma_okut + $total_angkut_bmu;
-            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
-                $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
-                $total_angkutan_berkah_okut = $total_angkutan_berkah_okut + $total_angkut_bmu;
-            } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
-                $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
-                $total_angkutan_syafuan_okut = $total_angkutan_syafuan_okut + $total_angkut_bmu;
-            }
+            if ($pemilik == 'Pak Wayan' && $kontrak == 'BMU') {
+                $total_angkutan_wayan = $total_angkutan_wayan + $total_angkut_bmu;
+                $total_angkutan_wayan_okut = $total_angkutan_wayan_okut + $total_angkut_bmu;
+            } 
+
         } else if ($kota == 'Kab Mesuji' || $kota == 'KAB MESUJI') {
 
             //BMU 20ton
@@ -200,28 +141,11 @@ if ($tanggal_awal == $tanggal_akhir) {
             }
 
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
-                $total_angkutan_edy = $total_angkutan_edy + $total_angkut_bmu;
-                $total_angkutan_edy_mesuji = $total_angkutan_edy_mesuji + $total_angkut_bmu;
-            } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
-                $total_angkutan_rama = $total_angkutan_rama + $total_angkut_bmu;
-                $total_angkutan_rama_mesuji = $total_angkutan_rama_mesuji + $total_angkut_bmu;
-            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map = $total_map + $total_angkut_bmu;
-                $total_angkutan_map_mesuji = $total_angkutan_map_mesuji + $total_angkut_bmu;
-            } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
-                $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
-                $total_angkutan_eki_mesuji = $total_angkutan_eki_mesuji + $total_angkut_bmu;
-            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
-                $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
-                $total_angkutan_soma_mesuji = $total_angkutan_soma_mesuji + $total_angkut_bmu;
-            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
-                $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
-                $total_angkutan_berkah_mesuji = $total_angkutan_berkah_mesuji + $total_angkut_bmu;
-            } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
-                $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
-                $total_angkutan_syafuan_mesuji = $total_angkutan_syafuan_mesuji + $total_angkut_bmu;
-            }
+            if ($pemilik == 'Pak Wayan' && $kontrak == 'BMU') {
+                $total_angkutan_wayan = $total_angkutan_wayan + $total_angkut_bmu;
+                $total_angkutan_wayan_mesuji = $total_angkutan_wayan_mesuji + $total_angkut_bmu;
+            } 
+
         } else if ($kota == 'Kab Tlg Bwg' || $kota == 'KAB. TULANG BAWANG') {
             //BMU 10ton
             if ($qty >= 200 && $qty <= 300) {
@@ -262,28 +186,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
-                $total_angkutan_edy = $total_angkutan_edy + $total_angkut_bmu;
-                $total_angkutan_edy_tlg_bwg = $total_angkutan_edy_tlg_bwg + $total_angkut_bmu;
-            } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
-                $total_angkutan_rama = $total_angkutan_rama + $total_angkut_bmu;
-                $total_angkutan_rama_tlg_bwg = $total_angkutan_rama_tlg_bwg + $total_angkut_bmu;
-            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map = $total_map + $total_angkut_bmu;
-                $total_angkutan_map_tlg_bwg = $total_angkutan_map_tlg_bwg + $total_angkut_bmu;
-            } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
-                $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
-                $total_angkutan_eki_tlg_bwg = $total_angkutan_eki_tlg_bwg + $total_angkut_bmu;
-            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
-                $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
-                $total_angkutan_soma_tlg_bwg = $total_angkutan_soma_tlg_bwg + $total_angkut_bmu;
-            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
-                $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
-                $total_angkutan_berkah_tlg_bwg = $total_angkutan_berkah_tlg_bwg + $total_angkut_bmu;
-            } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
-                $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
-                $total_angkutan_syafuan_tlg_bwg = $total_angkutan_syafuan_tlg_bwg + $total_angkut_bmu;
-            }
+            if ($pemilik == 'Pak Wayan' && $kontrak == 'BMU') {
+                $total_angkutan_wayan = $total_angkutan_wayan + $total_angkut_bmu;
+                $total_angkutan_wayan_tlg_bwg = $total_angkutan_wayan_tlg_bwg + $total_angkut_bmu;
+            } 
+
         } else if ($kota == 'KAB WAY KANAN') {
             //BMU 10ton
             if ($qty >= 200 && $qty <= 300) {
@@ -323,28 +230,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $kontrak = '';
             }
 
-            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
-                $total_angkutan_edy = $total_angkutan_edy + $total_angkut_bmu;
-                $total_angkutan_edy_way_kanan = $total_angkutan_edy_way_kanan + $total_angkut_bmu;
-            } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
-                $total_angkutan_rama = $total_angkutan_rama + $total_angkut_bmu;
-                $total_angkutan_rama_way_kanan = $total_angkutan_rama_way_kanan + $total_angkut_bmu;
-            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                $total_map = $total_map + $total_angkut_bmu;
-                $total_angkutan_map_way_kanan = $total_angkutan_map_way_kanan + $total_angkut_bmu;
-            } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
-                $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
-                $total_angkutan_eki_way_kanan = $total_angkutan_eki_way_kanan + $total_angkut_bmu;
-            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
-                $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
-                $total_angkutan_soma_way_kanan = $total_angkutan_soma_way_kanan + $total_angkut_bmu;
-            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
-                $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
-                $total_angkutan_berkah_way_kanan = $total_angkutan_berkah_way_kanan + $total_angkut_bmu;
-            } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
-                $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
-                $total_angkutan_syafuan_way_kanan = $total_angkutan_syafuan_way_kanan + $total_angkut_bmu;
-            }
+            if ($pemilik == 'Pak Wayan' && $kontrak == 'BMU') {
+                $total_angkutan_wayan = $total_angkutan_wayan + $total_angkut_bmu;
+                $total_angkutan_wayan_way_kanan = $total_angkutan_wayan_way_kanan + $total_angkut_bmu;
+            } 
+
         } else if ($kota == 'Kab OKU Selatan' || $kota == 'KAB OKU SELATAN' || $kota == 'Kab Ogn Kmrg Ulu Sel') {
             if (
                 $tujuan == 'TK BESI 88' || $tujuan == 'TB BERKAH' || $tujuan == 'EKA JAYA' || $tujuan == 'ANUGRAH' ||
@@ -421,51 +311,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $tujuan == 'TB MANDIRI JAYA' || $tujuan == 'ANEKA JAYA' || $tujuan == 'ANEKA BAUT' || $tujuan == 'SUMBER ANUGRAH' || $tujuan == 'RIZKY' || $tujuan == 'PUTRA LIWA'
             ) {
 
-                if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
-                    $total_angkutan_edy = $total_angkutan_edy + $total_angkut_bmu;
-                    $total_angkutan_edy_md_kota = $total_angkutan_edy_md_kota + $total_angkut_bmu;
-                } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
-                    $total_angkutan_rama = $total_angkutan_rama + $total_angkut_bmu;
-                    $total_angkutan_rama_md_kota = $total_angkutan_rama_md_kota + $total_angkut_bmu;
-                } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                    $total_map = $total_map + $total_angkut_bmu;
-                    $total_angkutan_map_md_kota = $total_angkutan_map_md_kota + $total_angkut_bmu;
-                } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
-                    $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
-                    $total_angkutan_eki_md_kota = $total_angkutan_eki_md_kota + $total_angkut_bmu;
-                } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
-                    $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
-                    $total_angkutan_soma_md_kota = $total_angkutan_soma_md_kota  + $total_angkut_bmu;
-                } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
-                    $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
-                    $total_angkutan_berkah_md_kota = $total_angkutan_berkah_md_kota  + $total_angkut_bmu;
-                } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
-                    $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
-                    $total_angkutan_syafuan_md_kota = $total_angkutan_syafuan_md_kota  + $total_angkut_bmu;
-                }
+                if ($pemilik == 'Pak Wayan' && $kontrak == 'BMU') {
+                    $total_angkutan_wayan = $total_angkutan_wayan + $total_angkut_bmu;
+                    $total_angkutan_wayan_md_kota = $total_angkutan_wayan_md_kota + $total_angkut_bmu;
+                } 
+
             } else {
 
-                if ($pemilik == 'Bapak Nyoman Edi') {
-                    $total_angkutan_edy = $total_angkutan_edy + $total_angkut_bmu;
-                    $total_angkutan_edy_okus = $total_angkutan_edy_okus + $total_angkut_bmu;
-                } else if ($pemilik == 'Bapak Rama') {
-                    $total_angkutan_rama = $total_angkutan_rama + $total_angkut_bmu;
-                    $total_angkutan_rama_okus = $total_angkutan_rama_okus + $total_angkut_bmu;
-                } else if ($pemilik == 'MAP') {
-                    $total_map = $total_map + $total_angkut_bmu;
-                    $total_angkutan_map_okus = $total_angkutan_map_okus + $total_angkut_bmu;
-                } else if ($pemilik == 'Eki Bangunan') {
-                    $total_eki_bangunan = $total_eki_bangunan + $total_angkut_bmu;
-                    $total_angkutan_eki_okus = $total_angkutan_eki_okus + $total_angkut_bmu;
-                } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
-                    $total_angkutan_soma = $total_angkutan_soma + $total_angkut_bmu;
-                    $total_angkutan_soma_okus = $total_angkutan_soma_okus  + $total_angkut_bmu;
-                } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
-                    $total_angkutan_berkah = $total_angkutan_berkah + $total_angkut_bmu;
-                    $total_angkutan_berkah_okus = $total_angkutan_berkah_okus  + $total_angkut_bmu;
-                } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
-                    $total_angkutan_syafuan = $total_angkutan_syafuan + $total_angkut_bmu;
-                    $total_angkutan_syafuan_okus = $total_angkutan_syafuan_okus  + $total_angkut_bmu;
+                if ($pemilik == 'Pak Wayan') {
+                    $total_angkutan_wayan = $total_angkutan_wayan + $total_angkut_bmu;
+                    $total_angkutan_wayan_okus = $total_angkutan_wayan_okus + $total_angkut_bmu;
                 }
             }
         }
@@ -700,7 +555,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <br>
 
-                        <h5 align='center'>Rekap Pranko BMU Syafuan</h5>
+                        <h5 align='center'>Rekap Pranko BMU wayan</h5>
                         <!-- Tabel -->
                         <div align='center' style="overflow-x: auto">
                             <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -913,7 +768,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         }
 
 
-                                        if ($pemilik == "Syafuan" && $kontrak == 'BMU') {
+                                        if ($pemilik == "Pak Wayan" && $kontrak == 'BMU') {
                                             $jumlah = $qty * $tarifx;
                                             $total = $total + $jumlah;
 
@@ -964,7 +819,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan OKU Timur</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_syafuan_okut) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_wayan_okut) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -980,7 +835,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan OKU Selatan</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_syafuan_okus) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_wayan_okus) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -996,7 +851,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Muara Dua Kota</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_syafuan_md_kota) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_wayan_md_kota) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1019,7 +874,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Tulang Bawang</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_syafuan_tlg_bwg) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_wayan_tlg_bwg) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1035,7 +890,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Way Kanan</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_syafuan_way_kanan) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_wayan_way_kanan) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1051,7 +906,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan Mesuji</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_syafuan_mesuji) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_wayan_mesuji) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -1072,7 +927,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Tagihan BMU Global</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_syafuan) ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_wayan) ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

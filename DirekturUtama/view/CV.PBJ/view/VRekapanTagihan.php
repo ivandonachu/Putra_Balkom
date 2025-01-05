@@ -36,9 +36,8 @@ function formatuang($angka)
     $uang = "Rp " . number_format($angka, 2, ',', '.');
     return $uang;
 }
-
 if ($tanggal_awal == $tanggal_akhir) {
-
+    
     //kota bumi
     $tabel_kotabumi = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_kota_bumi WHERE tanggal = '$tanggal_awal' ");
 
@@ -94,15 +93,11 @@ if ($tanggal_awal == $tanggal_akhir) {
             
 }
 
-    
-
-
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko'  ");
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal = '$tanggal_awal' AND tipe_semen = 'Pranko'  OR tanggal = '$tanggal_awal' AND tipe_semen = 'FRC'  ");
     $total_angkutan_edy_rli = 0;
     $total_angkutan_edy_bmu = 0;
     $total_angkutan_rama_bmu = 0;
-    $total_angkutan_map_bmu = 0;
     $total_angkutan_eki_bangunan_bmu = 0;
     $total_angkutan_soma_bmu = 0;
     $total_angkutan_berkah_bmu = 0;
@@ -112,6 +107,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_joko_bmu = 0;
     $total_angkutan_kustomo_bmu = 0;
     $total_angkutan_kodri_bmu = 0;
+    $total_angkutan_samsul_bmu = 0;
+    $total_angkutan_wayan_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -196,7 +193,6 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
                 $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
-            
         } else if ($kota == 'KAB MESUJI') {
             //RLI
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
@@ -269,6 +265,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
                 $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Wayan' && $kontrak == 'BMU') {
+                $total_angkutan_wayan_bmu = $total_angkutan_wayan_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB. TULANG BAWANG') {
             //RLI
@@ -314,7 +312,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $pemilik = '';
                 $kontrak = '';
             }
-
             if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'RLI') {
                 $total_angkutan_edy_rli = $total_angkutan_edy_rli + $total_angkut_rli;
             } else if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
@@ -519,6 +516,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
                 $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Samsul' && $kontrak == 'BMU') {
+                $total_angkutan_samsul_bmu = $total_angkutan_samsul_bmu + $total_angkut_bmu;
             }
         }
     }
@@ -526,75 +525,71 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     $total_pendapatan_rli = $total_angkutan_edy_rli;
-    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu  + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
-                            + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu
-                            + $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb;
-
+    $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu;
 } else {
 
 
-      //kota bumi
-      $tabel_kotabumi = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_kota_bumi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+    //kota bumi
+    $tabel_kotabumi = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_kota_bumi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
-      $total_angkutan_edy_bmu_kb = 0;
-      $total_angkutan_rama_bmu_kb = 0;
-      $total_angkutan_soma_bmu_kb = 0;
-      $total_angkutan_berkah_bmu_kb = 0;
-      $total_angkutan_map_bmu_kb = 0;
+    $total_angkutan_edy_bmu_kb = 0;
+    $total_angkutan_rama_bmu_kb = 0;
+    $total_angkutan_soma_bmu_kb = 0;
+    $total_angkutan_berkah_bmu_kb = 0;
+    $total_angkutan_map_bmu_kb = 0;
+    
+    while ($data1 = mysqli_fetch_array($tabel_kotabumi)) {
+
+        $no_polisi_ts = $data1['no_polisi'];
+        $qty = $data1['qty'];
+        $driver = $data1['driver'];
+
+        if ($qty >= 200 && $qty <= 300) {
+    
+            $total_angkut_bmu_kotabumi = $qty * 8149;
+        }
+
+        else if ($qty > 300 && $qty <= 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
+
+        else if ($qty > 500) {
+               
+            $total_angkut_bmu_kotabumi = $qty * 7238;
+        }
       
-      while ($data1 = mysqli_fetch_array($tabel_kotabumi)) {
-  
-          $no_polisi_ts = $data1['no_polisi'];
-          $qty = $data1['qty'];
-          $driver = $data1['driver'];
-  
-          if ($qty >= 200 && $qty <= 300) {
-      
-              $total_angkut_bmu_kotabumi = $qty * 8149;
-          }
-  
-          else if ($qty > 300 && $qty <= 500) {
-                 
-              $total_angkut_bmu_kotabumi = $qty * 7238;
-          }
-  
-          else if ($qty > 500) {
-                 
-              $total_angkut_bmu_kotabumi = $qty * 7238;
-          }
-        
-          $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
-              $data2p = mysqli_fetch_array($table2p);
-              if (isset($data2p['status_kendaraan'])) {
-                  $pemilik = $data2p['status_kendaraan'];
-                  $kontrak = $data2p['kontrak'];
-              } else {
-                  $pemilik = '';
-                  $kontrak = '';
-              }
-  
-  
-              if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
-                  $total_angkutan_edy_bmu_kb = $total_angkutan_edy_bmu_kb + $total_angkut_bmu_kotabumi;
-              } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
-                  $total_angkutan_rama_bmu_kb = $total_angkutan_rama_bmu_kb + $total_angkut_bmu_kotabumi;
-              } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
-                  $total_angkutan_map_bmu_kb = $total_angkutan_map_bmu_kb + $total_angkut_bmu_kotabumi;
-              } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
-                  $total_angkutan_soma_bmu_kb = $total_angkutan_soma_bmu_kb + $total_angkut_bmu_kotabumi;
-              } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
-                  $total_angkutan_berkah_bmu_kb = $total_angkutan_berkah_bmu_kb + $total_angkut_bmu_kotabumi;
-              } 
-              
-  }
-  
+        $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_angkutan_edy_bmu_kb = $total_angkutan_edy_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
+                $total_angkutan_rama_bmu_kb = $total_angkutan_rama_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+                $total_angkutan_map_bmu_kb = $total_angkutan_map_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+                $total_angkutan_soma_bmu_kb = $total_angkutan_soma_bmu_kb + $total_angkut_bmu_kotabumi;
+            } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+                $total_angkutan_berkah_bmu_kb = $total_angkutan_berkah_bmu_kb + $total_angkut_bmu_kotabumi;
+            } 
+            
+        }
+
 
     //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  ");
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
     $total_angkutan_edy_rli = 0;
     $total_angkutan_edy_bmu = 0;
     $total_angkutan_rama_bmu = 0;
-    $total_angkutan_map_bmu = 0;
     $total_angkutan_eki_bangunan_bmu = 0;
     $total_angkutan_soma_bmu = 0;
     $total_angkutan_berkah_bmu = 0;
@@ -604,6 +599,9 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_joko_bmu = 0;
     $total_angkutan_kustomo_bmu = 0;
     $total_angkutan_kodri_bmu = 0;
+    $total_angkutan_map_bmu = 0;
+    $total_angkutan_samsul_bmu = 0;
+    $total_angkutan_wayan_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -754,6 +752,9 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
                 $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
             }
+            else if ($pemilik == 'Pak Wayan' && $kontrak == 'BMU') {
+                $total_angkutan_wayan_bmu = $total_angkutan_wayan_bmu + $total_angkut_bmu;
+            }
         } else if ($kota == 'KAB. TULANG BAWANG') {
             //RLI
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
@@ -1003,17 +1004,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_angkutan_kustomo_bmu = $total_angkutan_kustomo_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
                 $total_angkutan_kodri_bmu = $total_angkutan_kodri_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Samsul' && $kontrak == 'BMU') {
+                $total_angkutan_samsul_bmu = $total_angkutan_samsul_bmu + $total_angkut_bmu;
             }
+            
         }
     }
+
 
 
 
     $total_pendapatan_rli = $total_angkutan_edy_rli;
     $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
                             + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu
-                            + $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb;
-
+                            + $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb +$total_angkutan_wayan_bmu +$total_angkutan_samsul_bmu;
 }
 
 ?>
@@ -1053,134 +1057,136 @@ if ($tanggal_awal == $tanggal_akhir) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+      <!-- Sidebar -->
+      <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsCVPBJ">
+    <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3"> <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png"></div>
-            </a>
-            <br>
+    </div>
+    <div class="sidebar-brand-text mx-3"> <img style="margin-top: 50px; height: 100px; width: 110px; " src="../gambar/Logo PBJ.png"></div>
+</a>
+<br>
 
-            <br>
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<br>
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="DsCVPBJ">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;">Dashboard</span></a>
-            </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active">
+    <a class="nav-link" href="DsCVPBJ">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;">Dashboard</span></a>
+</li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                Menu CV.PBJ (Semen)
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">List Company</span>
-                </a>
-                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Report Etty</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo3">
-                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Report Made Dani</span>
-                </a>
-                <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Sewa Hiblow</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
-                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Report Gudang</span>
-                </a>
-                <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+<!-- Divider -->
+<hr class="sidebar-divider">
+<!-- Heading -->
+<div class="sidebar-heading" style="font-size: 15px; color:white;">
+    Menu CV.PBJ (Semen)
+</div>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
+        <span style="font-size: 15px; color:white;">List Company</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
+            <a class="collapse-item" style="font-size: 15px;" href="DsPBJ">CV.PBJ</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/Kebun/view/DsKebun">Kebun</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
+        </div>
+    </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+        <span style="font-size: 15px; color:white;">Report Etty</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualan">Laporan Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengiriman">Laporan Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluran">Laporan Pengeluaran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+        </div>
+    </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo3">
+        <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+        <span style="font-size: 15px; color:white;">Report Made Dani</span>
+    </a>
+    <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluar">Laporan Stok Keluar</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualanL">Laporan Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenebusanL">Laporan Penebusan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSewaHiBlow">Sewa Hiblow</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengirimanL">Laporan Pengiriman</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
 
-                    </div>
-                </div>
-            </li>
-            <?php if ($nama == 'Nyoman Edy Susanto') {
-                echo "
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class='nav-item'>
-                <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseTwo4' 15 aria-expanded='true' aria-controls='collapseTwo4'>
-                    <i class='fa fa-clipboard-list' style='font-size: 15px; color:white;'></i>
-                    <span style='font-size: 15px; color:white;'>Report Laba Rugi</span>
-                </a>
-                <div id='collapseTwo4' class='collapse' aria-labelledby='headingTwo' data-parent='#accordionSidebar'>
-                    <div class='bg-white py-2 collapse-inner rounded'>
-                        <h6 class='collapse-header' style='font-size: 15px;'>Report</h6>
-                        <a class='collapse-item' style='font-size: 15px;' href='VLR2LBaru'>Laba Rugi</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi Back Up</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='VLRKendaraan'>Laba Rugi Kendaraan</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='VRekapanTagihan'>Rekap Tagihan</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='VRekapanHarga'>Rekapan Harga</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='VRekapSparepart'>Rekap Sparepart</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='VRekapPiutang'>Rekap Piutang</a>
-                        <a class='collapse-item' style='font-size: 15px;' href='VPenjualanRegion'>Penjualan Per Region</a>
-                    </div>
-                </div>
-            </li>";
-            } ?>
+        </div>
+    </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4xx" 15 aria-expanded="true" aria-controls="collapseTwo4xx">
+        <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+        <span style="font-size: 15px; color:white;">Report Gudang</span>
+    </a>
+    <div id="collapseTwo4xx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Report</h6>
 
+            <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VStokKeluar">Laporan Stok Keluar</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+
+        </div>
+    </div>
+</li>
+
+<?php if ($nama == 'Nyoman Edy Susanto') {
+    echo "
+<!-- Nav Item - Pages Collapse Menu -->
+<li class='nav-item'>
+    <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseTwo4' 15 aria-expanded='true' aria-controls='collapseTwo4'>
+        <i class='fa fa-clipboard-list' style='font-size: 15px; color:white;'></i>
+        <span style='font-size: 15px; color:white;'>Report Laba Rugi</span>
+    </a>
+    <div id='collapseTwo4' class='collapse' aria-labelledby='headingTwo' data-parent='#accordionSidebar'>
+        <div class='bg-white py-2 collapse-inner rounded'>
+            <h6 class='collapse-header' style='font-size: 15px;'>Report</h6>
+            <a class='collapse-item' style='font-size: 15px;' href='VLR2LBaru'>Laba Rugi</a>
+            <a class='collapse-item' style='font-size: 15px;' href='VLR2L'>Laba Rugi Back Up</a>
+            <a class='collapse-item' style='font-size: 15px;' href='VLRKendaraan'>Laba Rugi Kendaraan</a>
+            <a class='collapse-item' style='font-size: 15px;' href='VRekapanTagihan'>Rekap Tagihan</a>
+            <a class='collapse-item' style='font-size: 15px;' href='VRekapanHarga'>Rekapan Harga</a>
+            <a class='collapse-item' style='font-size: 15px;' href='VRekapSparepart'>Rekap Sparepart</a>
+            <a class='collapse-item' style='font-size: 15px;' href='VRekapPiutang'>Rekap Piutang</a>
+            <a class='collapse-item' style='font-size: 15px;' href='VPenjualanRegion'>Penjualan Per Region</a>
+        </div>
+    </div>
+</li>";
+} ?>
 
 
 
@@ -1293,7 +1299,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title" align="Center"><strong>LR Tagihan BMU PT PBJ</strong></h3>
+                                    <h3 class="panel-title" align="Center"><strong>Tagihan BMU PT PBJ</strong></h3>
                                 </div>
 
                                 <div>
@@ -1304,7 +1310,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-condensed" style="color : black;">
+                                    <table class="table table-condensed" style="color : black;">
                                             <thead>
                                                 <tr>
                                                     <td><strong>No</strong></td>
@@ -1317,19 +1323,19 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <tr>
                                                     <td>1</td>
                                                     <td class="text-left">Tagihan BMU Bapak Edy</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu + $total_angkutan_edy_bmu_kb); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanEdyBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
                                                     <td class="text-left">Tagihan BMU Bapak Rama</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_rama_bmu + $total_angkutan_rama_bmu_kb); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_rama_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanRamaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
                                                     <td class="text-left">Tagihan BMU MAP</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_map_bmu + $total_angkutan_map_bmu_kb); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_map_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanMapBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
@@ -1341,13 +1347,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <tr>
                                                     <td>5</td>
                                                     <td class="text-left">Tagihan BMU Soma</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_soma_bmu + $total_angkutan_soma_bmu_kb); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_soma_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanSomaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>6</td>
                                                     <td class="text-left">Tagihan BMU Berkah</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_berkah_bmu + $total_angkutan_berkah_bmu_kb); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_berkah_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanBerkahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
@@ -1388,13 +1394,26 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 </tr>
                                                 <tr>
                                                     <td>13</td>
-                                                    <td class="text-left">Total BMU</td>
-                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
-                                                     + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <td class="text-left">Tagihan BMU Samsul</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_samsul_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanSamsulBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>14</td>
+                                                    <td class="text-left">Tagihan BMU Pak Wayan</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_wayan_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanWayanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>15</td>
+                                                    <td class="text-left">Total BMU</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu 
+                                                     + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu + $total_angkutan_samsul_bmu
+                                                     + $total_angkutan_wayan_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>16</td>
                                                     <td class="text-left">Total BMU Kota Bumi</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianRLI/VRTagihanBMUKB?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
@@ -1430,7 +1449,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title" align="Center"><strong>LR Tagihan RLI PT PBJ</strong></h3>
+                                    <h3 class="panel-title" align="Center"><strong>Tagihan RLI PT PBJ</strong></h3>
                                 </div>
 
                                 <div>
