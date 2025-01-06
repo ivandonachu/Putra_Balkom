@@ -332,6 +332,10 @@ data-parent="#accordionSidebar">
                         <option>Biaya Administrasi</option>
                         <option>Pengeluaran Lainnya</option>
                         <option>Karyawan Kasbon</option>
+                        <option>Uang Makan</option>
+                        <option>Uang Antar Gas</option>
+                        <option>Uang Bongkar Ulang</option>
+                        <option>Uang Lembur</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -503,6 +507,10 @@ data-parent="#accordionSidebar">
                         <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
                         <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
                         <option <?php echo ($dataSelect == 'Karyawan Kasbon') ? "selected": "" ?> >Karyawan Kasbon</option>
+                        <option <?php echo ($dataSelect == 'Uang Makan') ? "selected": "" ?> >Uang Makan</option>
+                        <option <?php echo ($dataSelect == 'Uang Antar Gas') ? "selected": "" ?> >Uang Antar Gas</option>
+                        <option <?php echo ($dataSelect == 'Uang Bongkar Ulang') ? "selected": "" ?> >Uang Bongkar Ulang</option>
+                        <option <?php echo ($dataSelect == 'Uang Lembur') ? "selected": "" ?> >Uang Lembur</option>
                     </select>
             </div>
             <div class="col-md-6">
