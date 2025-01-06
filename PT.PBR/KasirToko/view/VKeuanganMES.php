@@ -320,6 +320,7 @@ data-parent="#accordionSidebar">
                         <option></option>
                         <option>Saldo Sebelumnya</option>
                         <option>Setor Tunai</option>
+                        <option>Tf dari Rek CBM</option>
                         <option>Setor Rekening MES</option>
                         <option>Transport / Perjalanan Dinas</option>
                         <option>Biaya Penjualan & Pemasaran</option>
@@ -412,7 +413,7 @@ data-parent="#accordionSidebar">
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Setor Tunai' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Setor Tunai' || $nama_akun == 'Saldo Sebelumnya'|| $nama_akun == 'Tf dari Rek CBM') {
         $total = $total + $jumlah;
       }
       else{
@@ -428,7 +429,7 @@ data-parent="#accordionSidebar">
       <td style='font-size: 14px'>$rekening</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Setor Tunai' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Setor Tunai' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Tf dari Rek CBM') {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -490,6 +491,7 @@ data-parent="#accordionSidebar">
                         <?php $dataSelect = $data['nama_akun']; ?>
                         <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
                         <option <?php echo ($dataSelect == 'Setor Tunai') ? "selected": "" ?> >Setor Tunai</option>
+                        <option <?php echo ($dataSelect == 'Tf dari Rek CBM') ? "selected": "" ?> >Tf dari Rek CBM</option>
                         <option <?php echo ($dataSelect == 'Setor Rekening MES') ? "selected": "" ?> >Setor Rekening MES</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
