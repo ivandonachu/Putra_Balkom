@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include'koneksi.php';
@@ -23,25 +22,28 @@ $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$i
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
+
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
- $referensi1 = $_GET['referensi'];
- $rekening1 = $_GET['rekening'];
- $status_saldo1 = $_GET['status_saldo'];
-} 
-
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-} 
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+   } 
+   
+   elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+   }  
+   
+   else{
+       $tanggal_awal = date('Y-m-1');
+     $tanggal_akhir = date('Y-m-31');
+     }
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' ");
-
+  $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_saldo_armada WHERE tanggal = '$tanggal_awal' ");
+$table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 }
 else{
-$table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = '$referensi1' AND nama_rekening = '$rekening1' AND status_saldo = '$status_saldo1'  ");
-
+$table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_saldo_armada  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
+$table2 = mysqli_query($koneksipbr, "SELECT * FROM rekening ");
 
 }
  ?>
@@ -56,7 +58,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tangg
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Penggunaan Uang</title>
+  <title>Laporan Saldo MES PBR</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -82,107 +84,107 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tangg
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKepalaOprasional">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKepalaOprasional">
+   <div class="sidebar-brand-icon rotate-n-15">
 
-                </div>
-                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-            </a>
+   </div>
+   <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active" >
-                <a class="nav-link" href="DsKepalaOprasional">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;" >Dashboard</span></a>
-                </li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+   <a class="nav-link" href="DsKepalaOprasional">
+       <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+       <span style="font-size: 16px;" >Dashboard</span></a>
+   </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+<!-- Divider -->
+<hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Kepala Oprasional
+<!-- Heading -->
+<div class="sidebar-heading" style="font-size: 15px; color:white;">
+Menu Kepala Oprasional
+</div>
+
+<!-- Nav Item - Pages Collapse Menu -->
+   <li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+     15  aria-expanded="true" aria-controls="collapseTwo">
+       <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+       <span style="font-size: 15px; color:white;" >Oprasional</span>
+   </a>
+   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header" style="font-size: 15px;">Menu Oprasional</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBRKasir">Pengeluaran PBR/MES </a>
+           <a class="collapse-item" style="font-size: 15px;" href="VRekapUang">Rekap Uang Masuk</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VRekapTF">Rekap TF ke Bank</a>
+           
        </div>
-
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Oprasional</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Oprasional</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Penggunaan Saldo</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBRKasir">Pengeluaran PBR/MES </a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRekapUang">Rekap Uang Masuk</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRekapTF">Rekap TF ke Bank</a>
-                        
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Pengeluaran</span>
-                </a>
-                <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranCBM">Pengeluaran CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranMES">Pengeluaran MES</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Lengkiti</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranSeberuk">Pengeluaran Seberuk</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKPesanAntar">Keuangan Pesan Antar</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLSaldoRekening">Laporan Saldo Rekening</a>
-                    </div>
-                </div>
-            </li>
-             <!-- Nav Item - Pages Collapse Menu -->
-             <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoxx"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >Mocash</span>
-                </a>
-                <div id="collapseTwoxx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Mocash</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoxxz"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >MES & PBR</span>
-                </a>
-                <div id="collapseTwoxxz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu MES & PBR</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPTMESPBR">Pengeluaran MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLSaldoPTMESPBR">Saldo MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPTMES">Keuangan MES</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPTPBR">Keuangan PBR</a>
-                    </div>
-                </div>
-            </li>
+   </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+   <li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
+     15  aria-expanded="true" aria-controls="collapseTwo">
+       <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+       <span style="font-size: 15px; color:white;" >Pengeluaran</span>
+   </a>
+   <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header" style="font-size: 15px;">Menu Pengeluaran</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranCBM">Pengeluaran CBM</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranMES">Pengeluaran MES</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPBR">Pengeluaran PBR</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Lengkiti</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranSeberuk">Pengeluaran Seberuk</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VLKPesanAntar">Keuangan Pesan Antar</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VLSaldoRekening">Laporan Saldo Rekening</a>
+       </div>
+   </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoxx"
+     15  aria-expanded="true" aria-controls="collapseTwo">
+       <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+       <span style="font-size: 15px; color:white;" >Mocash</span>
+   </a>
+   <div id="collapseTwoxx" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header" style="font-size: 15px;">Menu Mocash</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
+       </div>
+   </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoxxz"
+     15  aria-expanded="true" aria-controls="collapseTwo">
+       <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+       <span style="font-size: 15px; color:white;" >MES & PBR</span>
+   </a>
+   <div id="collapseTwoxxz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+       <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header" style="font-size: 15px;">Menu MES & PBR</h6>
+           <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPTMESPBR">Pengeluaran MES & PBR</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VLSaldoPTMESPBR">Saldo MES & PBR</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPTMES">Keuangan MES</a>
+           <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPTPBR">Keuangan PBR</a>
+       </div>
+   </div>
+</li>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -218,7 +220,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tangg
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
-          
+
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
@@ -228,7 +230,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tangg
                     <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
                     <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
-        <!-- Dropdown - User Information -->
+                <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
@@ -254,30 +256,34 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tangg
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-  <div>
-    <div align="left">
-    <?php echo "<a href='VSaldoBaru?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+ <?php  echo "<form  method='POST' action='VLSaldoPTMESPBR' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
+      </div>
     </div>
-    </div>
-  
-  
+  </form>
+
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-   
-</div>
- <br>
+   </div>
+
 
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Rekening</th>
-      <th>REF/Digunakan</th>
       <th>Akun</th>
+      <th>REF/Tujuan</th>
+      <th>Saldo/Asal</th>
       <th>Debit</th>
       <th>Kredit</th>
       <th>Keterangan</th>
@@ -286,6 +292,18 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tangg
   </thead>
   <tbody>
     <?php
+    //dana masuk cbm ke mes
+    $dana_masuk_cbm_mes = 0;
+    //dana masuk cbm ke pbr
+    $dana_masuk_cbm_pbr = 0;
+
+
+  
+    //setor mes ke  mes
+    $setor_mes_mes = 0;
+    //setor pbr ke pbr
+    $setor_pbr_pbr = 0;
+
 
     
     $urut = 0;
@@ -298,23 +316,41 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tangg
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
-      $nama_rekening = $data['nama_rekening'];
       $referensi = $data['referensi'];
       $nama_akun = $data['nama_akun'];
+      $nama_rekening = $data['nama_rekening'];
       $jumlah = $data['jumlah'];
       $file_bukti = $data['file_bukti'];
       $keterangan = $data['keterangan'];
       $status_saldo = $data['status_saldo'];
+    
+    //Dana Masuk cbm ke pbr
+    if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'PBR') {
+        $dana_masuk_cbm_mes = $dana_masuk_cbm_mes + $jumlah;
+      }
+    //Dana Masuk CBM Keluar mes
+    else if ($status_saldo == 'Masuk' && $nama_rekening == 'CBM' && $referensi == 'MES') {
+        $dana_masuk_cbm_pbr = $dana_masuk_cbm_pbr + $jumlah;
+      }
+    //Setor pbr kELUAR pbr
+    else if ($status_saldo == 'Keluar' && $nama_rekening == 'PBR' && $referensi == 'PBR') {
+        $setor_mes_mes = $setor_mes_mes + $jumlah;
+      }
+    //Setor mes keluar mes
+    else if ($status_saldo == 'Keluar' && $nama_rekening == 'MES' && $referensi == 'MES') {
+        $setor_pbr_pbr = $setor_pbr_pbr + $jumlah;
+      }
+   
+   
 
         $urut = $urut + 1;
+
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_rekening</td>
-      <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
-      
-     ";
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$nama_rekening</td>";
 
 
       if ($status_saldo == 'Masuk') {
@@ -337,15 +373,56 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_saldo_armada  WHERE tangg
         
       echo "
       <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="../file_oprasional/<?= $file_bukti ?>" href="../file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      
-    </tr>";
+       <td style='font-size: 14px'>"; ?> <a download="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     </tr>";
   }
   ?>
 
 </tbody>
 </table>
 </div>
+  </div>
+<br>
+<br>
+<br>
+
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+<h6 align="center">Rekap Saldo MES & PBR</h6>
+<!-- Tabel -->    
+<table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Total Setor PBR ke PBR</th>
+      <th>Total Setor MES ke MES</th>
+      <th>Total Dana Masuk CBM ke PBR</th>
+      <th>Total Dana Masuk CBM ke MES</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($setor_pbr_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($setor_mes_mes); ?> <?php echo "</td>
+      
+      <td style='font-size: 14px'>";?> <?= formatuang($dana_masuk_cbm_pbr); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($dana_masuk_cbm_mes); ?> <?php echo "</td>
+      
+
+        </tr>";
+  
+  ?>
+
+</tbody>
+</table>
+</div>
+
+
+
+<br>
+<br>
+<br>
 
 
 </div>
