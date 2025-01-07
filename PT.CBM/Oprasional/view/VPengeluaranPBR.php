@@ -414,7 +414,7 @@ Menu Kepala Oprasional
       <th>Kredit</th>
       <th>Total</th>
       <th>File</th>
-
+      <th>Aksi</th></th>
     </tr>
   </thead>
   <tbody>
