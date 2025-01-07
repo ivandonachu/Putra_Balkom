@@ -303,7 +303,7 @@ Menu Kepala Oprasional
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_pengeluaran_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_pengeluaran_pbr?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-4">
@@ -484,7 +484,7 @@ Menu Kepala Oprasional
 
       <!-- Form Edit Data -->
       <div class="modal-body">
-        <form action="../proses/edit_pengeluaran_mes" enctype="multipart/form-data" method="POST">
+        <form action="../proses/edit_pengeluaran_pbr" enctype="multipart/form-data" method="POST">
         <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
         <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran;?>">
@@ -595,7 +595,7 @@ Menu Kepala Oprasional
     
 
           <div class="modal-body">
-            <form action="../proses/hapus_pengeluaran_mes" method="POST">
+            <form action="../proses/hapus_pengeluaran_pbr" method="POST">
               <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran; ?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
