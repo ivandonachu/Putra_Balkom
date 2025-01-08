@@ -491,7 +491,7 @@ else{
       $keterangan = $data['keterangan'];
       $jumlah_bon = $data['jumlah_bon'];
       $jumlah_angsuran = $data['jumlah_angsuran'];
-      $file_bukti = $data['file_bukti'];
+      $file_bukti = $data['file_bukti_x'];
       $status_hutang = $data['status_bayar'];
       $urut = $urut + 1;
       $sql_riw_bon = mysqli_query($koneksi, "SELECT tanggal_bayar FROM riwayat_bon_pribadi WHERE no_bon = '$no_bon' ORDER BY no_riwayat DESC LIMIT 1");
