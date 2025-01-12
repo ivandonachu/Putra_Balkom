@@ -318,7 +318,7 @@ else{
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Setor Tunai' || $nama_akun == 'Saldo Sebelumnya'|| $nama_akun == 'Tf dari Rek CBM') {
+      if ($nama_akun == 'Saldo Awal Bulan' || $nama_akun == 'Tf dari Admin') {
         $total = $total + $jumlah;
       }
       else{
@@ -334,7 +334,7 @@ else{
       <td style='font-size: 14px'>$rekening</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Setor Tunai' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Tf dari Rek CBM') {
+      if ($nama_akun == 'Saldo Awal Bulan' || $nama_akun == 'Tf dari Admin') {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -375,7 +375,7 @@ else{
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['total_jumlah'];
 
-      if ($nama_akun == 'Setor Tunai' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Awal Bulan' || $nama_akun == 'Tf dari Admin') {
         $sisa_saldo  = $sisa_saldo + $jumlah;
         $total_saldo = $total_saldo + $jumlah;
       }
