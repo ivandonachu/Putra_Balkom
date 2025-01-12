@@ -80,7 +80,7 @@ else if ($total_bayar < $jumlah_bon) {
 
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET   total_bayar = '$total_bayar', jumlah_angsuran = '$jumlah_angsuran' , status_bayar = '$status_bayar' , file_bukti = '$file' WHERE no_bon = 
+		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET   total_bayar = '$total_bayar', jumlah_angsuran = '$jumlah_angsuran' , status_bayar = '$status_bayar' , file_bukti_x = '$file' WHERE no_bon = 
 		'$no_bon'");
 		mysqli_query($koneksi,"INSERT INTO riwayat_bon_pribadi VALUES ('','$no_bon','$tanggal','$jumlah_bayar','$jumlah_angsuran')");
 
@@ -97,7 +97,7 @@ else if ($total_bayar == $jumlah_bon) {
 
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET  total_bayar = '$total_bayar', jumlah_angsuran = '$jumlah_angsuran' , status_bayar = '$status_bayar' , file_bukti = '$file' WHERE no_bon = 
+		$query3 = mysqli_query($koneksi,"UPDATE bon_pribadi SET  total_bayar = '$total_bayar', jumlah_angsuran = '$jumlah_angsuran' , status_bayar = '$status_bayar' , file_bukti_x = '$file' WHERE no_bon = 
 		'$no_bon'");
 		mysqli_query($koneksi,"INSERT INTO riwayat_bon_pribadi VALUES ('','$no_bon','$tanggal','$jumlah_bayar','$jumlah_angsuran')");
 
