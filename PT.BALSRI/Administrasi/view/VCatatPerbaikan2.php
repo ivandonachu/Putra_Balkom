@@ -363,6 +363,7 @@ else{
             <option>Cuci Mobil</option>
             <option>Tambal Ban/Cek Ban</option>
             <option>Ganti Ban</option>
+            <option>Jasa Ganti Ban</option>
             <option>Biaya Lainnya</option>
           </select>
         </div>       
@@ -535,6 +536,7 @@ else{
                         <option <?php echo ($dataSelect == 'Cuci Mobil') ? "selected": "" ?>>Cuci Mobil</option>
                         <option <?php echo ($dataSelect == 'Tambal Ban/Cek Ban') ? "selected": "" ?>>Tambal Ban/Cek Ban</option>
                         <option <?php echo ($dataSelect == 'Ganti Ban') ? "selected": "" ?>>Ganti Ban</option>
+                        <option <?php echo ($dataSelect == 'Jasa Ganti Ban') ? "selected": "" ?>>Jasa Ganti Ban</option>
                         <option <?php echo ($dataSelect == 'Biaya Lainnya') ? "selected": "" ?>>Biaya Lainnya</option>
                       </select>
 
