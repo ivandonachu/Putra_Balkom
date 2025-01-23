@@ -321,6 +321,7 @@ data-parent="#accordionSidebar">
                         <option></option>
                         <option>Saldo Awal Bulan</option>
                         <option>Tf dari Rek Admin</option>
+                        <option>Uang Masuk</option>
                         <option>Transport / Perjalanan Dinas</option>
                         <option>Biaya Penjualan & Pemasaran</option>
                         <option>Biaya Perbaikan Kendaraan</option>
@@ -416,7 +417,7 @@ data-parent="#accordionSidebar">
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Saldo Awal Bulan' || $nama_akun == 'Tf dari Admin') {
+      if ($nama_akun == 'Saldo Awal Bulan' || $nama_akun == 'Tf dari Admin' || $nama_akun == 'Uang Masuk') {
         $total = $total + $jumlah;
       }
       else{
@@ -494,6 +495,7 @@ data-parent="#accordionSidebar">
                         <?php $dataSelect = $data['nama_akun']; ?>
                         <option <?php echo ($dataSelect == 'Saldo Awal Bulan') ? "selected": "" ?> >Saldo Awal Bulan</option>
                         <option <?php echo ($dataSelect == 'Tf dari Admin') ? "selected": "" ?> >Tf dari Admin</option>
+                        <option <?php echo ($dataSelect == 'Uang Masuk') ? "selected": "" ?> >Uang Masuk</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
                         <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
@@ -610,7 +612,7 @@ data-parent="#accordionSidebar">
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['total_jumlah'];
 
-      if ($nama_akun == 'Saldo Awal Bulan' || $nama_akun == 'Tf dari Admin') {
+      if ($nama_akun == 'Saldo Awal Bulan' || $nama_akun == 'Tf dari Admin' || $nama_akun == 'Uang Masuk') {
         $sisa_saldo  = $sisa_saldo + $jumlah;
         $total_saldo = $total_saldo + $jumlah;
       }
