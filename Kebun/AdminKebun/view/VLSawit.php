@@ -542,7 +542,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Tare</label>
-                                                        <input class="form-control form-control-sm" type="float" id="tare" name="tare" onkeyup="sum();" value="<?php echo $gross;?>" required=""> 
+                                                        <input class="form-control form-control-sm" type="float" id="tare" name="tare" onkeyup="sum();" value="<?php echo $tare;?>" required=""> 
                                                     </div>
                                                 </div>
 
