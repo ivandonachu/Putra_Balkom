@@ -616,7 +616,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($lembur); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($premi_kehadiran); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus_1); ?> <?php echo "</td>nan
+          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus_1); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bonus_2); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bonus_3); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($potongan_absen); ?> <?php echo "</td>

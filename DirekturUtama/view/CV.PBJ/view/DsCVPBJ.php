@@ -179,7 +179,7 @@ if ($jabatan_valid == 'Direktur Utama') {
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganL">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranL">Laporan Pengeluaran</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTonasePembelian">Tonase Pembelian</a>
-
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseUnit">Ritase Unit</a>
                     </div>
                 </div>
             </li>
