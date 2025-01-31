@@ -444,7 +444,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <td style='font-size: 14px'>$timbang_pabrikx /KG</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($uang_timbang_pabrik_x); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>$keterangan</td>
-                                <td style='font-size: 14px'>"; ?> <a download="../file_admin_seberuk/<?= $file_bukti ?>" href="../file_admin_seberuk/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                                <td style='font-size: 14px'>"; ?> <a download="/Kebun/AdminSeberuk/file_admin_seberuk/<?= $file_bukti ?>" href="/Kebun/AdminSeberuk/file_admin_seberuk/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
                                 "; ?>
                                 <?php echo "<td style='font-size: 12px'>"; ?>
                                 <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
