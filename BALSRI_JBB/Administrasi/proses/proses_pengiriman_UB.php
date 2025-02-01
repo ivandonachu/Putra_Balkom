@@ -18,7 +18,7 @@ else{  header("Location: logout.php");
 exit;
 }
 $tanggal_awal = $_GET['tanggal1'];
-$tanggal_akhir = $_GET['tanggal2'];
+$tanggal_akhir = $_GET['tanggal2']; 
 $tanggal = $_POST['tanggal'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
