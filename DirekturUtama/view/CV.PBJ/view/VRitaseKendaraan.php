@@ -59,6 +59,7 @@ else{
   $table4 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  AND kota = 'KAB MESUJI' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND kota = 'KAB MESUJI' GROUP BY no_polisi  ");
   $table5 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  AND kota = 'KAB WAY KANAN' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND kota = 'KAB WAY KANAN' GROUP BY no_polisi  ");
   $table6 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  AND kota = 'KAB. TULANG BAWANG' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND kota = 'KAB. TULANG BAWANG' GROUP BY no_polisi  ");
+  $table8 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko'  AND kota = 'KAB. OGAN KOM ILIR' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND kota = 'KAB. OGAN KOM ILIR' GROUP BY no_polisi  ");
   $table7 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_kota_bumi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi  ");
 
 
@@ -643,6 +644,55 @@ $total_point = 0;
 <hr>
 <br>
 
+<h5 align="center" >Rincian RIT Driver OKI</h5>
+<!-- Tabel -->    
+<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No Polisi</th>
+      <th>Rit </th>
+      <th>Total Point </th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+$total_point = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table8)){
+      $no_polisi = $data['no_polisi'];
+      $total_rit =$data['total_rit'];
+      $total_point = $total_rit * 2;
+      $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi' ");
+      $data2p = mysqli_fetch_array($table2p);
+      if (isset($data2p['status_kendaraan'])) {
+          $pemilik = $data2p['status_kendaraan'];
+          $kontrak = $data2p['kontrak'];
+      } else {
+          $pemilik = "";
+          $kontrak  = "";
+      }
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
+
+      echo "<tr>
+
+    <td style='font-size: 14px' >$no_polisi</td>
+    <td style='font-size: 14px' >$total_rit</td>
+    <td style='font-size: 14px' >$total_point</td>
+    
+
+
+ </tr>";
+      }
+}
+
+?>
+</tbody>
+</table>
+
+<br>
+<hr>
+<br>
+
 <h5 align="center" >Rincian RIT Driver Kota Bumi</h5>
 <!-- Tabel -->    
 <table id="example7" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
@@ -837,6 +887,18 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example7').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example8').DataTable( {
       lengthChange: true,
       buttons: ['excel']
     } );
