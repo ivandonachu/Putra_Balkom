@@ -397,7 +397,7 @@ else{
 <hr>
 <br>
 
-<h5 align="center" >Rincian RIT Driver Timur</h5>
+<h5 align="center" >Rincian RIT Driver OKU Timur</h5>
 <!-- Tabel -->    
 <table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
@@ -424,7 +424,7 @@ $total_point = 0;
           $pemilik = "";
           $kontrak  = "";
       }
-      if ( $pemilik == 'Bapak Rama'  ) {
+      if ( $pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
 
       echo "<tr>
 
