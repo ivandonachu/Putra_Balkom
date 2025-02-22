@@ -23,6 +23,10 @@
 /CV.PBJ/KepalaGudang/view/koneksi.php
 /CV.PBJ/KepalaGudang/file_kg
 
+/CV.PBJ/AdminGudang/proses/koneksi.php
+/CV.PBJ/AdminGudang/view/koneksi.php
+/CV.PBJ/AdminGudang/file_admin_gudang
+
 /DirekturUtama/view/koneksi.php
 /DirekturUtama/view/BatuBara/view/koneksi.php
 /DirekturUtama/view/BatuBara/view/VRincianLR/koneksi.php
