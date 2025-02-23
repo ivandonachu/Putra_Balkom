@@ -277,6 +277,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <label>Tanggal</label>
                                                         <div class="col-sm-10">
                                                             <input type="date" id="tanggal" name="tanggal" required="">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
                                                         </div>
 
 
@@ -414,6 +415,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                             <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                                                             <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
                                                             <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
                                                             <div class="row">
                                                                 <div class="col-md-6">
 
@@ -499,6 +501,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                             <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
                                                             <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                                                             <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
 
 
                                                             <div class="form-group">
@@ -534,7 +537,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                                 ?>
                                         <?php echo "
                                         <td style='font-size: 14px'>" ?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
-                                        <td style='font-size: 14px'>"; ?> <a download="../file_semen/<?= $file_bukti ?>" href="../file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                                        <td style='font-size: 14px'>"; ?> <a download="../file_admin_gudang/<?= $file_bukti ?>" href="../file_admin_gudang/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
                                         " ?>
                                         <?php echo  "</tr>";
                                     }
