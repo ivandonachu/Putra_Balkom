@@ -104,7 +104,7 @@ $nama = $data['nama_karyawan'];
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdminGudang">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -118,7 +118,7 @@ $nama = $data['nama_karyawan'];
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="DsAdminSemen">
+                <a class="nav-link" href="DsAdminGudang">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;">Dashboard</span></a>
             </li>
@@ -140,9 +140,10 @@ $nama = $data['nama_karyawan'];
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluarMasuk">Laporan Keluar Masuk</a> 
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Stok Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluarMasuk">Keluar Masuk</a> 
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapOpname">Laporan Opname</a>
                     </div>
                 </div>
             </li>

@@ -13,11 +13,9 @@ $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 
 if ($jabatan_valid == 'Admin Gudang') {
-
-}
-
-else{  header("Location: logout.php");
-exit;
+} else {
+    header("Location: logout.php");
+    exit;
 }
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
@@ -43,11 +41,233 @@ if ($tanggal_awal == $tanggal_akhir) {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian  WHERE tanggal ='$tanggal_awal' AND jenis_semen = 'SMBR' AND nama_gudang = '$nama_gudang' ");
     $table2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian  WHERE tanggal ='$tanggal_awal'  AND jenis_semen = 'Merdeka' AND nama_gudang = '$nama_gudang' ");
     $table3 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian  WHERE tanggal ='$tanggal_awal'  AND jenis_semen = 'Dynamix' AND nama_gudang = '$nama_gudang' ");
-    
+
+    //SMBR
+    $sql_stok_awal_smbr = mysqli_query($koneksi, "SELECT stok_awal FROM laporan_stok_harian WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR' ORDER BY no_laporan ASC LIMIT 1");
+    $data_stok_awal_smbr = mysqli_fetch_array($sql_stok_awal_smbr);
+
+    if (isset($data_stok_awal_smbr['stok_awal'])) {
+        $laporan_stok_awal_smbr = $data_stok_awal_smbr['stok_awal'];
+    } else {
+        $laporan_stok_awal_smbr = 0;
+    }
+
+    $sql_stok_akhir_smbr = mysqli_query($koneksi, "SELECT stok_akhir FROM laporan_stok_harian WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR' ORDER BY no_laporan DESC LIMIT 1");
+    $data_stok_akhir_smbr = mysqli_fetch_array($sql_stok_akhir_smbr);
+
+    if (isset($data_stok_akhir_smbr['stok_akhir'])) {
+        $laporan_stok_akhir_smbr = $data_stok_akhir_smbr['stok_akhir'];
+    } else {
+        $laporan_stok_akhir_smbr = 0;
+    }
+
+    $sql_stok_masuk_smbr = mysqli_query($koneksi, "SELECT SUM(qty_masuk) as total_qty_masuk FROM laporan_stok_masuk WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR'");
+    $data_stok_masuk_smbr = mysqli_fetch_array($sql_stok_masuk_smbr);
+
+    if (isset($data_stok_masuk_smbr['total_qty_masuk'])) {
+        $laporan_total_qty_masuk_smbr = $data_stok_masuk_smbr['total_qty_masuk'];
+    } else {
+        $laporan_total_qty_masuk_smbr = 0;
+    }
+
+    $sql_stok_keluar_smbr = mysqli_query($koneksi, "SELECT SUM(qty) as total_qty_keluar FROM laporan_stok_keluar WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR'");
+    $data_stok_keluar_smbr = mysqli_fetch_array($sql_stok_keluar_smbr);
+
+    if (isset($data_stok_keluar_smbr['total_qty_keluar'])) {
+        $laporan_total_qty_keluar_smbr = $data_stok_keluar_smbr['total_qty_keluar'];
+    } else {
+        $laporan_total_qty_keluar_smbr = 0;
+    }
+
+    //MDK
+    $sql_stok_awal_mdk = mysqli_query($koneksi, "SELECT stok_awal FROM laporan_stok_harian WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka' ORDER BY no_laporan ASC LIMIT 1");
+    $data_stok_awal_mdk = mysqli_fetch_array($sql_stok_awal_mdk);
+
+    if (isset($data_stok_awal_mdk['stok_awal'])) {
+        $laporan_stok_awal_mdk = $data_stok_awal_mdk['stok_awal'];
+    } else {
+        $laporan_stok_awal_mdk = 0;
+    }
+
+    $sql_stok_akhir_mdk = mysqli_query($koneksi, "SELECT stok_akhir FROM laporan_stok_harian WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka' ORDER BY no_laporan DESC LIMIT 1");
+    $data_stok_akhir_mdk = mysqli_fetch_array($sql_stok_akhir_mdk);
+
+    if (isset($data_stok_akhir_mdk['stok_akhir'])) {
+        $laporan_stok_akhir_mdk = $data_stok_akhir_mdk['stok_akhir'];
+    } else {
+        $laporan_stok_akhir_mdk = 0;
+    }
+
+    $sql_stok_masuk_mdk = mysqli_query($koneksi, "SELECT SUM(qty_masuk) as total_qty_masuk FROM laporan_stok_masuk WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka'");
+    $data_stok_masuk_mdk = mysqli_fetch_array($sql_stok_masuk_mdk);
+
+    if (isset($data_stok_masuk_mdk['total_qty_masuk'])) {
+        $laporan_total_qty_masuk_mdk = $data_stok_masuk_mdk['total_qty_masuk'];
+    } else {
+        $laporan_total_qty_masuk_mdk = 0;
+    }
+
+    $sql_stok_keluar_mdk = mysqli_query($koneksi, "SELECT SUM(qty) as total_qty_keluar FROM laporan_stok_keluar WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka'");
+    $data_stok_keluar_mdk = mysqli_fetch_array($sql_stok_keluar_mdk);
+
+    if (isset($data_stok_keluar_mdk['total_qty_keluar'])) {
+        $laporan_total_qty_keluar_mdk = $data_stok_keluar_mdk['total_qty_keluar'];
+    } else {
+        $laporan_total_qty_keluar_mdk = 0;
+    }
+
+    //Dynamix
+    $sql_stok_awal_dynamix = mysqli_query($koneksi, "SELECT stok_awal FROM laporan_stok_harian WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix' ORDER BY no_laporan ASC LIMIT 1");
+    $data_stok_awal_dynamix = mysqli_fetch_array($sql_stok_awal_dynamix);
+
+    if (isset($data_stok_awal_dynamix['stok_awal'])) {
+        $laporan_stok_awal_dynamix = $data_stok_awal_dynamix['stok_awal'];
+    } else {
+        $laporan_stok_awal_dynamix = 0;
+    }
+
+    $sql_stok_akhir_dynamix = mysqli_query($koneksi, "SELECT stok_akhir FROM laporan_stok_harian WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix' ORDER BY no_laporan DESC LIMIT 1");
+    $data_stok_akhir_dynamix = mysqli_fetch_array($sql_stok_akhir_dynamix);
+
+    if (isset($data_stok_akhir_dynamix['stok_akhir'])) {
+        $laporan_stok_akhir_dynamix = $data_stok_akhir_dynamix['stok_akhir'];
+    } else {
+        $laporan_stok_akhir_dynamix = 0;
+    }
+
+    $sql_stok_masuk_dynamix = mysqli_query($koneksi, "SELECT SUM(qty_masuk) as total_qty_masuk FROM laporan_stok_masuk WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix'");
+    $data_stok_masuk_dynamix = mysqli_fetch_array($sql_stok_masuk_dynamix);
+
+    if (isset($data_stok_masuk_dynamix['total_qty_masuk'])) {
+        $laporan_total_qty_masuk_dynamix = $data_stok_masuk_dynamix['total_qty_masuk'];
+    } else {
+        $laporan_total_qty_masuk_dynamix = 0;
+    }
+
+    $sql_stok_keluar_dynamix = mysqli_query($koneksi, "SELECT SUM(qty) as total_qty_keluar FROM laporan_stok_keluar WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix'");
+    $data_stok_keluar_dynamix = mysqli_fetch_array($sql_stok_keluar_dynamix);
+
+    if (isset($data_stok_keluar_dynamix['total_qty_keluar'])) {
+        $laporan_total_qty_keluar_dynamix = $data_stok_keluar_dynamix['total_qty_keluar'];
+    } else {
+        $laporan_total_qty_keluar_dynamix = 0;
+    }
+
 } else {
     $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jenis_semen = 'SMBR' AND nama_gudang = '$nama_gudang'  ");
     $table2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jenis_semen = 'Merdeka' AND nama_gudang = '$nama_gudang'  ");
     $table3 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND jenis_semen = 'Dynamix' AND nama_gudang = '$nama_gudang'  ");
+
+    //SMBR
+    $sql_stok_awal_smbr = mysqli_query($koneksi, "SELECT stok_awal FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR' ORDER BY no_laporan ASC LIMIT 1");
+    $data_stok_awal_smbr = mysqli_fetch_array($sql_stok_awal_smbr);
+
+    if (isset($data_stok_awal_smbr['stok_awal'])) {
+        $laporan_stok_awal_smbr = $data_stok_awal_smbr['stok_awal'];
+    } else {
+        $laporan_stok_awal_smbr = 0;
+    }
+
+    $sql_stok_akhir_smbr = mysqli_query($koneksi, "SELECT stok_akhir FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR' ORDER BY no_laporan DESC LIMIT 1");
+    $data_stok_akhir_smbr = mysqli_fetch_array($sql_stok_akhir_smbr);
+
+    if (isset($data_stok_akhir_smbr['stok_akhir'])) {
+        $laporan_stok_akhir_smbr = $data_stok_akhir_smbr['stok_akhir'];
+    } else {
+        $laporan_stok_akhir_smbr = 0;
+    }
+
+    $sql_stok_masuk_smbr = mysqli_query($koneksi, "SELECT SUM(qty_masuk) as total_qty_masuk FROM laporan_stok_masuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR'");
+    $data_stok_masuk_smbr = mysqli_fetch_array($sql_stok_masuk_smbr);
+
+    if (isset($data_stok_masuk_smbr['total_qty_masuk'])) {
+        $laporan_total_qty_masuk_smbr = $data_stok_masuk_smbr['total_qty_masuk'];
+    } else {
+        $laporan_total_qty_masuk_smbr = 0;
+    }
+
+    $sql_stok_keluar_smbr = mysqli_query($koneksi, "SELECT SUM(qty) as total_qty_keluar FROM laporan_stok_keluar WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR'");
+    $data_stok_keluar_smbr = mysqli_fetch_array($sql_stok_keluar_smbr);
+
+    if (isset($data_stok_keluar_smbr['total_qty_keluar'])) {
+        $laporan_total_qty_keluar_smbr = $data_stok_keluar_smbr['total_qty_keluar'];
+    } else {
+        $laporan_total_qty_keluar_smbr = 0;
+    }
+
+    //MDK
+    $sql_stok_awal_mdk = mysqli_query($koneksi, "SELECT stok_awal FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka' ORDER BY no_laporan ASC LIMIT 1");
+    $data_stok_awal_mdk = mysqli_fetch_array($sql_stok_awal_mdk);
+
+    if (isset($data_stok_awal_mdk['stok_awal'])) {
+        $laporan_stok_awal_mdk = $data_stok_awal_mdk['stok_awal'];
+    } else {
+        $laporan_stok_awal_mdk = 0;
+    }
+
+    $sql_stok_akhir_mdk = mysqli_query($koneksi, "SELECT stok_akhir FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka' ORDER BY no_laporan DESC LIMIT 1");
+    $data_stok_akhir_mdk = mysqli_fetch_array($sql_stok_akhir_mdk);
+
+    if (isset($data_stok_akhir_mdk['stok_akhir'])) {
+        $laporan_stok_akhir_mdk = $data_stok_akhir_mdk['stok_akhir'];
+    } else {
+        $laporan_stok_akhir_mdk = 0;
+    }
+
+    $sql_stok_masuk_mdk = mysqli_query($koneksi, "SELECT SUM(qty_masuk) as total_qty_masuk FROM laporan_stok_masuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka'");
+    $data_stok_masuk_mdk = mysqli_fetch_array($sql_stok_masuk_mdk);
+
+    if (isset($data_stok_masuk_mdk['total_qty_masuk'])) {
+        $laporan_total_qty_masuk_mdk = $data_stok_masuk_mdk['total_qty_masuk'];
+    } else {
+        $laporan_total_qty_masuk_mdk = 0;
+    }
+
+    $sql_stok_keluar_mdk = mysqli_query($koneksi, "SELECT SUM(qty) as total_qty_keluar FROM laporan_stok_keluar WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka'");
+    $data_stok_keluar_mdk = mysqli_fetch_array($sql_stok_keluar_mdk);
+
+    if (isset($data_stok_keluar_mdk['total_qty_keluar'])) {
+        $laporan_total_qty_keluar_mdk = $data_stok_keluar_mdk['total_qty_keluar'];
+    } else {
+        $laporan_total_qty_keluar_mdk = 0;
+    }
+
+    //Dynamix
+    $sql_stok_awal_dynamix = mysqli_query($koneksi, "SELECT stok_awal FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix' ORDER BY no_laporan ASC LIMIT 1");
+    $data_stok_awal_dynamix = mysqli_fetch_array($sql_stok_awal_dynamix);
+
+    if (isset($data_stok_awal_dynamix['stok_awal'])) {
+        $laporan_stok_awal_dynamix = $data_stok_awal_dynamix['stok_awal'];
+    } else {
+        $laporan_stok_awal_dynamix = 0;
+    }
+
+    $sql_stok_akhir_dynamix = mysqli_query($koneksi, "SELECT stok_akhir FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix' ORDER BY no_laporan DESC LIMIT 1");
+    $data_stok_akhir_dynamix = mysqli_fetch_array($sql_stok_akhir_dynamix);
+
+    if (isset($data_stok_akhir_dynamix['stok_akhir'])) {
+        $laporan_stok_akhir_dynamix = $data_stok_akhir_dynamix['stok_akhir'];
+    } else {
+        $laporan_stok_akhir_dynamix = 0;
+    }
+
+    $sql_stok_masuk_dynamix = mysqli_query($koneksi, "SELECT SUM(qty_masuk) as total_qty_masuk FROM laporan_stok_masuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix'");
+    $data_stok_masuk_dynamix = mysqli_fetch_array($sql_stok_masuk_dynamix);
+
+    if (isset($data_stok_masuk_dynamix['total_qty_masuk'])) {
+        $laporan_total_qty_masuk_dynamix = $data_stok_masuk_dynamix['total_qty_masuk'];
+    } else {
+        $laporan_total_qty_masuk_dynamix = 0;
+    }
+
+    $sql_stok_keluar_dynamix = mysqli_query($koneksi, "SELECT SUM(qty) as total_qty_keluar FROM laporan_stok_keluar WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix'");
+    $data_stok_keluar_dynamix = mysqli_fetch_array($sql_stok_keluar_dynamix);
+
+    if (isset($data_stok_keluar_dynamix['total_qty_keluar'])) {
+        $laporan_total_qty_keluar_dynamix = $data_stok_keluar_dynamix['total_qty_keluar'];
+    } else {
+        $laporan_total_qty_keluar_dynamix = 0;
+    }
 }
 
 ?>
@@ -90,7 +310,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdminGudang">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -104,7 +324,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="DsAdminSemen">
+                <a class="nav-link" href="DsAdminGudang">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;">Dashboard</span></a>
             </li>
@@ -126,10 +346,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluar">Laporan Stok Keluar</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Stok Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluarMasuk">Keluar Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapOpname">Laporan Opname</a>
                     </div>
                 </div>
             </li>
@@ -234,29 +454,29 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <span>-</span>
                                 <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
                                 <select id="tokens" class="selectpicker form-control-sm" name="nama_gudang" data-live-search="true">
-                                                <?php
-                                                include 'koneksi.php';
+                                    <?php
+                                    include 'koneksi.php';
 
 
-                                                $result = mysqli_query($koneksi, "SELECT nama_gudang FROM list_gudang");
+                                    $result = mysqli_query($koneksi, "SELECT nama_gudang FROM list_gudang");
 
-                                                while ($data2 = mysqli_fetch_array($result)) {
-                                                    $nama_gudangx = $data2['nama_gudang'];
+                                    while ($data2 = mysqli_fetch_array($result)) {
+                                        $nama_gudangx = $data2['nama_gudang'];
 
-                                                    if (isset($_POST['nama_gudang'])  ) { ?>
-                                                        <?php $dataSelectx = $_POST['nama_gudang'];
+                                        if (isset($_POST['nama_gudang'])) { ?>
+                                            <?php $dataSelectx = $_POST['nama_gudang'];
 
-                                                        echo "<option" ?> <?php echo ($dataSelectx == $nama_gudangx) ? "selected" : "" ?>> <?php echo $nama_gudangx; ?> <?php echo "</option>";
-                                                                                                                                                                        } else if (!isset($_POST['nama_gudang'])) { ?>
-                                                        <option value="<?= $data2['nama_gudang']; ?>"><?php echo $data2['nama_gudang']; ?></option> <?php
-                                                                                                                                                                        }
+                                            echo "<option" ?> <?php echo ($dataSelectx == $nama_gudangx) ? "selected" : "" ?>> <?php echo $nama_gudangx; ?> <?php echo "</option>";
+                                                                                                                                                                    } else if (!isset($_POST['nama_gudang'])) { ?>
+                                            <option value="<?= $data2['nama_gudang']; ?>"><?php echo $data2['nama_gudang']; ?></option> <?php
+                                                                                                                                                                    }
 
-                                                                                                                                                        ?>
+                                                                                                                                        ?>
 
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
                             </div>
                         </div>
@@ -311,7 +531,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <br>
 
                                                 <div class="row">
-                                                 <div class="col-md-3">
+                                                    <div class="col-md-3">
                                                         <label>Stok Awal</label>
                                                         <input class="form-control form-control-sm" type="number" name="stok_awal" required="">
                                                     </div>
@@ -392,7 +612,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $stok_pecah_beku = $data['stok_pecah_beku'];
                                         $stok_akhir = $data['stok_akhir'];
                                         $keterangan = $data['keterangan'];
-                                        
+
                                         $urut = $urut + 1;
 
                                         echo "<tr>
@@ -552,20 +772,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     $urut = 0;
                                     ?>
                                     <?php while ($data = mysqli_fetch_array($table2)) {
-                                         $no_laporan = $data['no_laporan'];
-                                         $tanggal = $data['tanggal'];
-                                         $nama_gudang = $data['nama_gudang'];
-                                         $jenis_semen = $data['jenis_semen'];
-                                         $stok_awal = $data['stok_awal'];
-                                         $stok_masuk = $data['stok_masuk'];
-                                         $stok_keluar = $data['stok_keluar'];
-                                         $stok_pecah_beku = $data['stok_pecah_beku'];
-                                         $stok_akhir = $data['stok_akhir'];
-                                         $keterangan = $data['keterangan'];
-                                         
-                                         $urut = $urut + 1;
- 
-                                         echo "<tr>
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $nama_gudang = $data['nama_gudang'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $stok_awal = $data['stok_awal'];
+                                        $stok_masuk = $data['stok_masuk'];
+                                        $stok_keluar = $data['stok_keluar'];
+                                        $stok_pecah_beku = $data['stok_pecah_beku'];
+                                        $stok_akhir = $data['stok_akhir'];
+                                        $keterangan = $data['keterangan'];
+
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
                                              <td style='font-size: 14px' align = 'center'>$urut</td>
                                              <td style='font-size: 14px' align = 'center'>$tanggal</td>
                                              <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
@@ -722,20 +942,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     $urut = 0;
                                     ?>
                                     <?php while ($data = mysqli_fetch_array($table3)) {
-                                         $no_laporan = $data['no_laporan'];
-                                         $tanggal = $data['tanggal'];
-                                         $nama_gudang = $data['nama_gudang'];
-                                         $jenis_semen = $data['jenis_semen'];
-                                         $stok_awal = $data['stok_awal'];
-                                         $stok_masuk = $data['stok_masuk'];
-                                         $stok_keluar = $data['stok_keluar'];
-                                         $stok_pecah_beku = $data['stok_pecah_beku'];
-                                         $stok_akhir = $data['stok_akhir'];
-                                         $keterangan = $data['keterangan'];
-                                         
-                                         $urut = $urut + 1;
- 
-                                         echo "<tr>
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $nama_gudang = $data['nama_gudang'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $stok_awal = $data['stok_awal'];
+                                        $stok_masuk = $data['stok_masuk'];
+                                        $stok_keluar = $data['stok_keluar'];
+                                        $stok_pecah_beku = $data['stok_pecah_beku'];
+                                        $stok_akhir = $data['stok_akhir'];
+                                        $keterangan = $data['keterangan'];
+
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
                                              <td style='font-size: 14px' align = 'center'>$urut</td>
                                              <td style='font-size: 14px' align = 'center'>$tanggal</td>
                                              <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
@@ -866,6 +1086,56 @@ if ($tanggal_awal == $tanggal_akhir) {
                             </table>
                         </div>
                         <br>
+                        <hr>
+                        <br>
+                        <!-- Kotak pemasukan pengeluaran -->
+                        <?php if ($tanggal_awal == $tanggal_akhir) { ?>
+                            <h5 align="center" style='font-size: clamp(12px, 1vw, 18px); color: black;'>REKAP OPNAME STOK <?= $nama_gudang ?> <?= $tanggal_awal ?> </h5>
+
+                        <?php } else { ?>
+
+                            <h5 align="center" style='font-size: clamp(12px, 1vw, 18px); color: black;'>REKAP OPNAME STOK <?= $nama_gudang ?> <?= $tanggal_awal ?> - <?= $tanggal_akhir ?></h5>
+                        <?php  }
+                        ?>
+
+                        <!-- Tabel -->
+                        <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                            <thead>
+                                <tr>
+                                    <th style='font-size: clamp(12px, 1vw, 12px); color: black;'>Nama Barang</th>
+                                    <th style='font-size: clamp(12px, 1vw, 12px); color: black;'>STOK AWAL</th>
+                                    <th style='font-size: clamp(12px, 1vw, 12px); color: black;'>TOTAL STOK MASUK</th>
+                                    <th style='font-size: clamp(12px, 1vw, 12px); color: black;'>TOTAL STOK KELUAR</th>
+                                    <th style='font-size: clamp(12px, 1vw, 12px); color: black;'>STOK AKHIR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> Semen Baturaja</td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_stok_awal_smbr; ?> </td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_total_qty_masuk_smbr; ?> </td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_total_qty_keluar_smbr; ?> </td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_stok_akhir_smbr; ?> </td>
+                                </tr>
+                                <tr>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> Semen Merdeka</td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_stok_awal_mdk; ?> </td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_total_qty_masuk_mdk; ?> </td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_total_qty_keluar_mdk; ?> </td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_stok_akhir_mdk; ?> </td>
+                                </tr>
+                                <tr>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> Semen Dynamix</td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_stok_awal_dynamix; ?> </td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_total_qty_masuk_dynamix; ?> </td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_total_qty_keluar_dynamix; ?> </td>
+                                    <td style='font-size: clamp(12px, 1vw, 12px); color: black;'> <?= $laporan_stok_akhir_dynamix; ?> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <br>
+                        <br>
                         <br>
 
 
@@ -945,7 +1215,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: [ 'excel']
+                buttons: ['excel']
             });
 
             table.buttons().container()
@@ -953,11 +1223,11 @@ if ($tanggal_awal == $tanggal_akhir) {
         });
     </script>
 
-<script>
+    <script>
         $(document).ready(function() {
             var table = $('#example2').DataTable({
                 lengthChange: false,
-                buttons: [ 'excel']
+                buttons: ['excel']
             });
 
             table.buttons().container()
@@ -965,11 +1235,11 @@ if ($tanggal_awal == $tanggal_akhir) {
         });
     </script>
 
-<script>
+    <script>
         $(document).ready(function() {
             var table = $('#example3').DataTable({
                 lengthChange: false,
-                buttons: [ 'excel']
+                buttons: ['excel']
             });
 
             table.buttons().container()

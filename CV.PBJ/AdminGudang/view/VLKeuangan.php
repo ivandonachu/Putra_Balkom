@@ -12,28 +12,12 @@ $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 
-if ($jabatan_valid == 'KG Mesuji') {
-    $kode_gudang = 'KG Mesuji';
-} else if ($jabatan_valid == 'KG Way Kanan') {
-    $kode_gudang = 'KG Way Kanan';
-} else if ($jabatan_valid == 'KG Rantau Panjang') {
-    $kode_gudang = 'KG Rantau Panjang';
-} else if ($jabatan_valid == 'KG Unit 1') {
-    $kode_gudang = 'KG Unit 1';
-} else if ($jabatan_valid == 'KG MES') {
-    $kode_gudang = 'KG MES';
-} else if ($jabatan_valid == 'KG Simpang Sender') {
-    $kode_gudang = 'KG Simpang Sender';
-} else if ($jabatan_valid == 'KG Ruko M2') {
-    $kode_gudang = 'KG Ruko M2';
-} else if ($jabatan_valid == 'KG Kuto Sari') {
-    $kode_gudang = 'KG Kuto Sari';
-}else if ($jabatan_valid == 'KG BK 11') {
-    $kode_gudang = 'KG BK 11';
+if ($jabatan_valid == 'Admin Gudang') {
+
 }
- else {
-    header("Location: logout.php");
-    exit;
+
+else{  header("Location: logout.php");
+exit;
 }
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
@@ -43,23 +27,27 @@ $nama = $data['nama_karyawan'];
 if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
     $tanggal_akhir = $_GET['tanggal2'];
+    $nama_gudang = $_GET['nama_gudang'];
 } elseif (isset($_POST['tanggal1'])) {
     $tanggal_awal = $_POST['tanggal1'];
     $tanggal_akhir = $_POST['tanggal2'];
+    $nama_gudang = $_POST['nama_gudang'];
 } else {
     $tanggal_awal = date('Y-m-1');
     $tanggal_akhir = date('Y-m-31');
+    $nama_gudang = 'GD MESUJI SP PEMATANG';
 }
 
+
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM laporan_keuangan_gudang WHERE tanggal = '$tanggal_awal' AND kode_gudang = '$kode_gudang'");
+    $table = mysqli_query($koneksi, "SELECT * FROM laporan_keuangan_ad_gudang WHERE tanggal = '$tanggal_awal' AND nama_gudang = '$nama_gudang'");
 
-    $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM laporan_keuangan_gudang  WHERE tanggal = '$tanggal_awal' AND kode_gudang = '$kode_gudang' GROUP BY nama_akun");
+    $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM laporan_keuangan_ad_gudang  WHERE tanggal = '$tanggal_awal' AND nama_gudang = '$nama_gudang' GROUP BY nama_akun");
 } else {
-    $table = mysqli_query($koneksi, "SELECT * FROM laporan_keuangan_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_gudang = '$kode_gudang' ");
+    $table = mysqli_query($koneksi, "SELECT * FROM laporan_keuangan_ad_gudang WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' ");
 
 
-    $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM laporan_keuangan_gudang  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_gudang = '$kode_gudang' GROUP BY nama_akun");
+    $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM laporan_keuangan_ad_gudang  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' GROUP BY nama_akun");
 }
 
 
@@ -103,7 +91,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasir">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsAdminGudang">
                 <div class="sidebar-brand-icon rotate-n-15">
 
                 </div>
@@ -117,7 +105,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="DsAdminSemen">
+                <a class="nav-link" href="DsAdminGudang">
                     <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
                     <span style="font-size: 16px;">Dashboard</span></a>
             </li>
@@ -127,7 +115,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             <!-- Heading -->
             <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                KG SEMEN <?= $kode_gudang ?>
+                ADMIN GUDANG
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -139,10 +127,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokMasuk">Laporan Stok Masuk</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluar">Laporan Stok Keluar</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Laporan Stok Harian</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Laporan Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokHarian">Stok Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VStokKeluarMasuk">Keluar Masuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan">Keuangan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapOpname">Laporan Opname</a>
                     </div>
                 </div>
             </li>
@@ -171,7 +159,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-                    <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan Gudang</h5></a>"; ?>
+                    <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Pencatatan Keuangan Gudang $nama_gudang </h5></a>"; ?>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -218,12 +206,36 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <!-- Name Page -->
                     <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-                        <?php echo "<form  method='POST' action='VLKeuangan' style='margin-bottom: 15px;'>" ?>
+                    <?php echo "<form  method='POST' action='VLKeuangan'>" ?>
                         <div>
                             <div align="left" style="margin-left: 20px;">
                                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
                                 <span>-</span>
                                 <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                                <select id="tokens" class="selectpicker form-control-sm" name="nama_gudang" data-live-search="true">
+                                    <?php
+                                    include 'koneksi.php';
+
+
+                                    $result = mysqli_query($koneksi, "SELECT nama_gudang FROM list_gudang");
+
+                                    while ($data2 = mysqli_fetch_array($result)) {
+                                        $nama_gudangx = $data2['nama_gudang'];
+
+                                        if (isset($_POST['nama_gudang'])) { ?>
+                                            <?php $dataSelectx = $_POST['nama_gudang'];
+
+                                            echo "<option" ?> <?php echo ($dataSelectx == $nama_gudangx) ? "selected" : "" ?>> <?php echo $nama_gudangx; ?> <?php echo "</option>";
+                                                                                                                                                        } else if (!isset($_POST['nama_gudang'])) { ?>
+                                            <option value="<?= $data2['nama_gudang']; ?>"><?php echo $data2['nama_gudang']; ?></option> <?php
+                                                                                                                                                        }
+
+                                                                                                                                        ?>
+
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
                             </div>
                         </div>
@@ -504,8 +516,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                         <?php echo  " </td>"; ?> <?php echo "
                                         <td style='font-size: 14px'>$keterangan</td>";
-                                                                                                        if ($status_saldo == 'Masuk') {
-                                                                                                            echo "
+                                                                    if ($status_saldo == 'Masuk') {
+                                                                        echo "
                                             <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
                                                                                                         } else {
                                                                                                             echo "
@@ -520,11 +532,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <td style='font-size: 14px'>" ?> <?php echo "</td>";
                                                                                                         }
                                                                                 ?>
-                                                                            <?php echo "
+                                        <?php echo "
                                         <td style='font-size: 14px'>" ?> <?= formatuang($total_debit - $total_kredit); ?> <?php echo "   </td>
                                         <td style='font-size: 14px'>"; ?> <a download="../file_semen/<?= $file_bukti ?>" href="../file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
                                         " ?>
-                                                                            <?php echo  "</tr>";
+                                        <?php echo  "</tr>";
                                     }
 
                                         ?>
@@ -587,7 +599,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     if ($nama_akun == 'Uang Penjualan' || $nama_akun == 'Pemasukan Lainnya' || $nama_akun == 'Saldo Awal Bulan') {
                                         $sisa_saldo  = $sisa_saldo + $jumlah;
                                         $total_saldo = $total_saldo + $jumlah;
-                                    }  else {
+                                    } else {
                                         $sisa_saldo  = $sisa_saldo - $jumlah;
                                         $total_pengeluaran = $total_pengeluaran + $jumlah;
                                     }
@@ -703,7 +715,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: [ 'excel']
+                buttons: ['excel']
             });
 
             table.buttons().container()
