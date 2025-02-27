@@ -424,6 +424,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                <input class="form-control form-control-sm" type="number" name="tunjangan_akomodasi" required="" value="0">
              </div>
              <div class="col-md-3">
+               <label>Tunjangan Oprasional</label>
+               <input class="form-control form-control-sm" type="number" name="tunjungan_oprasional" required="" value="0">
+             </div>
+             <div class="col-md-3">
                <label>BPJS Kesehatan</label>
                <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="0">
              </div>
@@ -535,6 +539,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           <th style="font-size: 14px" scope="col">Gaji Pokok</th>
           <th style="font-size: 14px" scope="col">Tunjangan Jabatan</th>
           <th style="font-size: 14px" scope="col">Tunjangan Akomodasi</th>
+          <th style="font-size: 14px" scope="col">Tunjangan Oprasional</th>
           <th style="font-size: 14px" scope="col">Uang Makan / Bulan</th>
           <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
           <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
@@ -576,6 +581,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           $gaji_pokok = $data2['gaji_pokok'];
           $tunjangan_jabatan = $data2['tunjangan_jabatan'];
           $tunjangan_akomodasi = $data2['tunjangan_akomodasi'];
+          $tunjangan_oprasional = $data2['tunjangan_oprasional'];
           $uang_makan = $data2['uang_makan'];
           $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
           $bpjs_kesehatan = $data2['bpjs_kesehatan'];
@@ -611,6 +617,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           <td style='font-size: 14px'>"; ?> <?= formatuang($gaji_pokok); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_jabatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_akomodasi); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_oprasional); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
@@ -680,6 +687,10 @@ if ($tanggal_awal == $tanggal_akhir) {
              <div class="col-md-3">
                <label>Tunjangan Akomodasi</label>
                <input class="form-control form-control-sm" type="number" name="tunjangan_akomodasi" required="" value="<?php echo $tunjangan_akomodasi;?>">
+             </div>
+             <div class="col-md-3">
+               <label>Tunjangan Oprasional</label>
+               <input class="form-control form-control-sm" type="number" name="tunjangan_oprasional" required="" value="<?php echo $tunjangan_oprasional;?>">
              </div>
              <div class="col-md-3">
                <label>BPJS Kesehatan</label>
