@@ -128,7 +128,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 }
                
            
-        } else if ($kota == 'Kab Mesuji' || $kota == 'KAB MESUJI') {
+        } else if ($kota == 'Kab Mesuji' || $kota == 'KAB MESUJI' || $kota == 'KA MESUJI') {
 
             //BMU 20ton
             if ($qty >= 200 && $qty <= 500) {
