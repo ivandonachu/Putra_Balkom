@@ -384,6 +384,7 @@ else{
                         <option>Kembalikan Pinjaman Saldo</option>
                         <option>Sparepart Kendaraan</option>
                         <option>Biaya Konsumsi</option>
+                        <option>Perbaikan Kendaraan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -567,6 +568,7 @@ else{
                         <option <?php echo ($dataSelect == 'Kembalikan Pinjaman Saldo') ? "selected": "" ?> >Kembalikan Pinjaman Saldo</option>
                         <option <?php echo ($dataSelect == 'Sparepart Kendaraan') ? "selected": "" ?> >Sparepart Kendaraan</option>
                         <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+                        <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?> >Perbaikan Kendaraan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -787,6 +789,7 @@ else{
                         <option <?php echo ($dataSelect == 'Transport & Perjalanan Dinas') ? "selected": "" ?> >Transport & Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Kembalikan Pinjaman Saldo') ? "selected": "" ?> >Kembalikan Pinjaman Saldo</option>
                         <option <?php echo ($dataSelect == 'Sparepart Kendaraan') ? "selected": "" ?> >Sparepart Kendaraan</option>
+                        <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?> >Perbaikan Kendaraan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -1008,6 +1011,7 @@ else{
                         <option <?php echo ($dataSelect == 'Transport & Perjalanan Dinas') ? "selected": "" ?> >Transport & Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Kembalikan Pinjaman Saldo') ? "selected": "" ?> >Kembalikan Pinjaman Saldo</option>
                         <option <?php echo ($dataSelect == 'Sparepart Kendaraan') ? "selected": "" ?> >Sparepart Kendaraan</option>
+                        <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?> >Perbaikan Kendaraan</option>s
                     </select>
             </div>
             <div class="col-md-6">
