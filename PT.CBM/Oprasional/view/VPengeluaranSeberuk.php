@@ -337,6 +337,7 @@ Menu Kepala Oprasional
                         <option>Listrik & Telepon</option>
                         <option>Uang Jalan</option>
                         <option>Biaya Kantor</option>
+                        <option>Perbaikan Kendaraan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -503,6 +504,7 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
                         <option <?php echo ($dataSelect == 'Uang Jalan') ? "selected": "" ?> >Uang Jalan</option> 
                         <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option> 
+                        <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?> >Perbaikan Kendaraan</option> 
                     </select>
             </div>
             <div class="col-md-6">
