@@ -690,8 +690,8 @@ else{
 
     $laba_bersih_sebelum_pajak = $laba_kotor - $total_biaya_usaha_final;
 
-    $table1001 =  mysqli_query($koneksipbj, "SELECT no_polisi FROM kendaraan_sl_sp WHERE status_kendaraan = 'Bapak Nyoman Edi' AND kontrak = 'BMU' ");
-    $table1002 =  mysqli_query($koneksipbj, "SELECT no_polisi FROM kendaraan_sl_sp WHERE status_kendaraan = 'Bapak Nyoman Edi' AND kontrak = 'RLI' ");
+    $table1001 =  mysqli_query($koneksipbj, "SELECT no_polisi FROM kendaraan_sl WHERE status_kendaraan = 'Bapak Nyoman Edi' AND kontrak = 'BMU' ");
+
     
 }
 ?>
@@ -1267,39 +1267,7 @@ else{
 
                     <br>
                     <br>
-                    <h3 class="text-center">Laba Rugi Kendaraan Pak Nyoman Edi</h3>
-                    <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                        <thead>
-                            <tr>
-                                <th class="text-center">No</th>
-                                <th class="text-center">No Polisi</th>
-                                <th class="text-center">Rincian</th>
-                            
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $no_urut = 0;
-                            ?>
-                            <?php while ($data = mysqli_fetch_array($table1002)) {
-                                $no_polisi = $data['no_polisi'];
-                                $no_urut = $no_urut + 1;
-
-                                echo "<tr>
-                                    <td style='font-size: 14px' align = 'center'>$no_urut</td>
-                                    <td style='font-size: 14px' align = 'center'>$no_polisi</td>" ?>
-                                <?php echo "<td class='text-center'><a href='VLRPerKendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisi'>LR Kendaraan</a></td>"; ?>
-
-
-                            <?php echo  " </tr>";
-                            }
-                            ?>
-
-                        </tbody>
-                    </table>
-                    <br>
-                    <br>
-
+                    
 
 
                 </div>
