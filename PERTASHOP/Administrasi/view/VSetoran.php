@@ -34,6 +34,11 @@ if (isset($_GET['tanggal1'])) {
   $tanggal_akhir = $_POST['tanggal2'];
   $lokasi = $_POST['lokasi'];
  } 
+ else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+}
+
 
 
 if ($tanggal_awal == $tanggal_akhir) {
@@ -407,6 +412,8 @@ data-parent="#accordionSidebar">
   <tbody>
     <?php
     $total = 0;
+    $total_dexlite = 0;
+    $total_pertamax = 0;
     $urut = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
@@ -427,8 +434,17 @@ data-parent="#accordionSidebar">
      $jumlah = $data['jumlah'];
      $no_rekening = $data['no_rekening'];
      $file_bukti = $data['file_bukti'];
+    
+     if($nama_barang == 'Dexlite'){
+      $total_dexlite = $total_dexlite + $jumlah;
+      $total = $total + $jumlah;
+     }
+     else if($nama_barang == 'Pertamax'){
+      $total_pertamax = $total_pertamax + $jumlah;
+      $total = $total + $jumlah;
+     }
+    
 
-     $total = $total + $jumlah;
      $urut = $urut + 1;
 
 
@@ -624,6 +640,38 @@ data-parent="#accordionSidebar">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
             Total Setoran</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total); ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Setoran Dexlite</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_dexlite); ?></div>
+          </div>
+          <div class="col-auto">
+           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+            Total Setoran Pertamax</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_pertamax); ?></div>
           </div>
           <div class="col-auto">
            <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
