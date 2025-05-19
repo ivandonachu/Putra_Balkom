@@ -60,6 +60,11 @@ else{
   $table5 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB WAY KANAN' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB WAY KANAN' GROUP BY no_polisi  ");
   $table6 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. TULANG BAWANG' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. TULANG BAWANG' GROUP BY no_polisi  ");
   $table8 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. OGAN KOM ILIR' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. OGAN KOM ILIR' GROUP BY no_polisi  ");
+  $table6 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. TULANG BAWANG' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. TULANG BAWANG' GROUP BY no_polisi  ");
+  $table8 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. OGAN KOM ILIR' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. OGAN KOM ILIR' GROUP BY no_polisi  ");
+  $table9 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. OGAN KOM ULU' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB.OGAN KOM ULU' GROUP BY no_polisi  ");
+  $table10 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. PESISIR BARAT' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB.PESISIR BARAT' GROUP BY no_polisi  ");
+  $table11 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. LAMPUNG BARAT' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB.LAMPUNG BARAT' GROUP BY no_polisi  ");
   $table7 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_kota_bumi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi  ");
 
 
@@ -659,6 +664,153 @@ $total_point = 0;
 $total_point = 0;
   ?>
     <?php while($data = mysqli_fetch_array($table8)){
+      $no_polisi = $data['no_polisi'];
+      $total_rit =$data['total_rit'];
+      $total_point = $total_rit * 2;
+      $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi' ");
+      $data2p = mysqli_fetch_array($table2p);
+      if (isset($data2p['status_kendaraan'])) {
+          $pemilik = $data2p['status_kendaraan'];
+          $kontrak = $data2p['kontrak'];
+      } else {
+          $pemilik = "";
+          $kontrak  = "";
+      }
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
+
+      echo "<tr>
+
+    <td style='font-size: 14px' >$no_polisi</td>
+    <td style='font-size: 14px' >$total_rit</td>
+    <td style='font-size: 14px' >$total_point</td>
+    
+
+
+ </tr>";
+      }
+}
+
+?>
+</tbody>
+</table>
+
+<br>
+<hr>
+<br>
+
+<h5 align="center" >Rincian RIT Driver OKU</h5>
+<!-- Tabel -->    
+<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No Polisi</th>
+      <th>Rit </th>
+      <th>Total Point </th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+$total_point = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table9)){
+      $no_polisi = $data['no_polisi'];
+      $total_rit =$data['total_rit'];
+      $total_point = $total_rit * 2;
+      $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi' ");
+      $data2p = mysqli_fetch_array($table2p);
+      if (isset($data2p['status_kendaraan'])) {
+          $pemilik = $data2p['status_kendaraan'];
+          $kontrak = $data2p['kontrak'];
+      } else {
+          $pemilik = "";
+          $kontrak  = "";
+      }
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
+
+      echo "<tr>
+
+    <td style='font-size: 14px' >$no_polisi</td>
+    <td style='font-size: 14px' >$total_rit</td>
+    <td style='font-size: 14px' >$total_point</td>
+    
+
+
+ </tr>";
+      }
+}
+
+?>
+</tbody>
+</table>
+
+<br>
+<hr>
+<br>
+
+<h5 align="center" >Rincian RIT Driver PESIBAR</h5>
+<!-- Tabel -->    
+<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No Polisi</th>
+      <th>Rit </th>
+      <th>Total Point </th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+$total_point = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table10)){
+      $no_polisi = $data['no_polisi'];
+      $total_rit =$data['total_rit'];
+      $total_point = $total_rit * 2;
+      $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi' ");
+      $data2p = mysqli_fetch_array($table2p);
+      if (isset($data2p['status_kendaraan'])) {
+          $pemilik = $data2p['status_kendaraan'];
+          $kontrak = $data2p['kontrak'];
+      } else {
+          $pemilik = "";
+          $kontrak  = "";
+      }
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
+
+      echo "<tr>
+
+    <td style='font-size: 14px' >$no_polisi</td>
+    <td style='font-size: 14px' >$total_rit</td>
+    <td style='font-size: 14px' >$total_point</td>
+    
+
+
+ </tr>";
+      }
+}
+
+?>
+</tbody>
+</table>
+
+<br>
+<hr>
+<br>
+
+<h5 align="center" >Rincian RIT Driver LAMBAR</h5>
+<!-- Tabel -->    
+<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No Polisi</th>
+      <th>Rit </th>
+      <th>Total Point </th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+$total_point = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table11)){
       $no_polisi = $data['no_polisi'];
       $total_rit =$data['total_rit'];
       $total_point = $total_rit * 2;
