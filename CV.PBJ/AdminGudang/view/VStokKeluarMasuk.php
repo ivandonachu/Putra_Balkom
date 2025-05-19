@@ -38,8 +38,12 @@ if (isset($_GET['tanggal1'])) {
 
 
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_masuk  WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' ");
-    $table2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_keluar  WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' ");
+    $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_masuk  WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang'and jenis_semen = 'SMBR'  ");
+    $table2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_keluar  WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang'and jenis_semen = 'SMBR'  ");
+    $table_mdk = mysqli_query($koneksi, "SELECT * FROM laporan_stok_masuk WHERE tanggal ='$tanggal_awal' AND nama_gudang= '$nama_gudang' and jenis_semen = 'Merdeka' ");
+    $table_mdk2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_keluar WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka' ");
+    $table_dyx = mysqli_query($koneksi, "SELECT * FROM laporan_stok_masuk WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix' ");
+    $table_dyx2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_keluar WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix' ");
 
     //SMBR
     $sql_stok_awal_smbr = mysqli_query($koneksi, "SELECT stok_awal FROM laporan_stok_harian WHERE tanggal ='$tanggal_awal' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR' ORDER BY no_laporan ASC LIMIT 1");
@@ -151,11 +155,13 @@ if ($tanggal_awal == $tanggal_akhir) {
     } else {
         $laporan_total_qty_keluar_dynamix = 0;
     }
-
-
 } else {
-    $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_masuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang'  ");
-    $table2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_keluar WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang'  ");
+    $table = mysqli_query($koneksi, "SELECT * FROM laporan_stok_masuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR' ");
+    $table2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_keluar WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR' ");
+    $table_mdk = mysqli_query($koneksi, "SELECT * FROM laporan_stok_masuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka' ");
+    $table_mdk2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_keluar WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Merdeka' ");
+    $table_dyx = mysqli_query($koneksi, "SELECT * FROM laporan_stok_masuk WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix' ");
+    $table_dyx2 = mysqli_query($koneksi, "SELECT * FROM laporan_stok_keluar WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'Dynamix' ");
 
     //SMBR
     $sql_stok_awal_smbr = mysqli_query($koneksi, "SELECT stok_awal FROM laporan_stok_harian WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_gudang = '$nama_gudang' and jenis_semen = 'SMBR' ORDER BY no_laporan ASC LIMIT 1");
@@ -464,12 +470,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $nama_gudangx = $data2['nama_gudang'];
 
                                         if (isset($_POST['nama_gudang'])) { ?>
+
                                             <?php $dataSelectx = $_POST['nama_gudang'];
 
+
                                             echo "<option" ?> <?php echo ($dataSelectx == $nama_gudangx) ? "selected" : "" ?>> <?php echo $nama_gudangx; ?> <?php echo "</option>";
-                                                                                                                                                        } else if (!isset($_POST['nama_gudang'])) { ?>
+                                                                                                                                                        } else  if (isset($_GET['nama_gudang'])) { ?>
+
+                                            <?php
+                                                                                                                                                            $dataSelectx = $_GET['nama_gudang'];
+
+                                                                                                                                                            echo "<option" ?> <?php echo ($dataSelectx == $nama_gudangx) ? "selected" : "" ?>> <?php echo $nama_gudangx; ?> <?php echo "</option>";
+                                                                                                                                                                                                                                                                        } else if (!isset($_POST['nama_gudang']) or !isset($_GET['nama_gudang'])) { ?>
                                             <option value="<?= $data2['nama_gudang']; ?>"><?php echo $data2['nama_gudang']; ?></option> <?php
-                                                                                                                                                        }
+                                                                                                                                                                                                                                                                        }
 
                                                                                                                                         ?>
 
@@ -688,6 +702,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                             </div>
                         </div>
 
+                        <br>
+                        <br>
+                        <hr>
+                        <br>
+                        <br>
 
                         <h4 align='center'> Laporan Stok Masuk <?= $nama_gudang; ?> SMBR</h4>
                         <!-- Tabel -->
@@ -901,6 +920,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                         </div>
                         <br>
                         <br>
+                        <hr>
+                        <br>
+                        <br>
                         <h4 align='center'> Laporan Stok Keluar <?= $nama_gudang; ?> SMBR</h4>
                         <!-- Tabel -->
                         <div style="overflow-x: auto" align='center'>
@@ -1075,9 +1097,799 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 </tbody>
                             </table>
                         </div>
+
+                        <br>
                         <br>
                         <hr>
                         <br>
+                        <br>
+
+
+
+                        <h4 align='center'> Laporan Stok Masuk <?= $nama_gudang; ?> MDK</h4>
+                        <!-- Tabel -->
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example4" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal Masuk</th>
+                                        <th>No Do</th>
+                                        <th>Nama Gudang</th>
+                                        <th>Jenis Semen</th>
+                                        <th>QTY Masuk</th>
+                                        <th>Expenditur Angkutan</th>
+                                        <th>Jenis Angkutan</th>
+                                        <th>Driver</th>
+                                        <th>No Polisi</th>
+                                        <th>Keterangan</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $urut = 0;
+                                    $total_qty_masuk = 0;
+
+
+                                    ?>
+                                    <?php while ($data = mysqli_fetch_array($table_mdk)) {
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $nama_gudang = $data['nama_gudang'];
+                                        $no_do = $data['no_do'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $qty_masuk = $data['qty_masuk'];
+                                        $total_qty_masuk = $qty_masuk +  $total_qty_masuk;
+                                        $expenditur = $data['expenditur'];
+                                        $jenis_angkutan = $data['jenis_angkutan'];
+                                        $driver = $data['driver'];
+                                        $keterangan = $data['keterangan'];
+                                        $no_polisi = $data['no_polisi'];
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
+                                            <td style='font-size: 14px' align = 'center'>$urut</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal</td>
+                                            <td style='font-size: 14px' align = 'center'>$no_do</td>
+                                            <td style='font-size: 14px' align = 'center'>$nama_gudang</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
+                                            <td style='font-size: 14px' align = 'center'>$qty_masuk</td>
+                                            <td style='font-size: 14px' align = 'center'>$expenditur</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_angkutan</td>
+                                            <td style='font-size: 14px' align = 'center'>$driver</td>
+                                            <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+                                            <td style='font-size: 14px' align = 'center'>$keterangan</td>
+                                            "; ?>
+                                        <?php echo "<td style='font-size: 12px'>"; ?>
+
+
+                                        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formeditmasuk<?php echo $data['no_laporan']; ?>">Edit</button>
+
+                                        <!-- Form EDIT DATA -->
+
+                                        <div class="modal fade" id="formeditmasuk<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"> Form Edit Laporan Stok Masuk Gudang </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <!-- Form Edit Data -->
+                                                    <div class="modal-body">
+                                                        <form action="../proses/edit_stok_masuk" enctype="multipart/form-data" method="POST">
+
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label>Tanggal</label>
+                                                                    <input class="form-control" type="date" name="tanggal" value="<?php echo $tanggal; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label>No Do</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="no_do" required="" value="<?php echo $no_do; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Jenis Semen</label>
+                                                                    <select id="jenis_semen" name="jenis_semen" class="form-control form-control-sm">
+                                                                        <?php $dataSelect = $data['jenis_semen']; ?>
+                                                                        <option <?php echo ($dataSelect == 'SMBR') ? "selected" : "" ?>>SMBR</option>
+                                                                        <option <?php echo ($dataSelect == 'Merdeka') ? "selected" : "" ?>>Merdeka</option>
+                                                                        <option <?php echo ($dataSelect == 'Dynamix') ? "selected" : "" ?>>Dynamix</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>QTY Masuk</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="qty_masuk" required="" value="<?php echo $qty_masuk; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label>Expenditur Angkutan</label>
+                                                                    <select id="expenditur" name="expenditur" class="form-control form-control-sm">
+                                                                        <?php $dataSelect = $data['expenditur']; ?>
+                                                                        <option <?php echo ($dataSelect == 'PBJ') ? "selected" : "" ?>>PBJ</option>
+                                                                        <option <?php echo ($dataSelect == 'BMU') ? "selected" : "" ?>>BMU</option>
+                                                                        <option <?php echo ($dataSelect == 'MAP') ? "selected" : "" ?>>MAP</option>
+                                                                        <option <?php echo ($dataSelect == 'RLI') ? "selected" : "" ?>>RLI</option>
+                                                                        <option <?php echo ($dataSelect == 'Lainnya') ? "selected" : "" ?>>Lainnya</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label>Jenis Angkutan</label>
+                                                                    <select id="jenis_angkutan" name="jenis_angkutan" class="form-control form-control-sm">
+                                                                        <?php $dataSelect = $data['jenis_angkutan']; ?>
+                                                                        <option <?php echo ($dataSelect == 'Coltdisel') ? "selected" : "" ?>>Coltdisel</option>
+                                                                        <option <?php echo ($dataSelect == 'Engkel') ? "selected" : "" ?>>Engkel</option>
+                                                                        <option <?php echo ($dataSelect == 'Tronton') ? "selected" : "" ?>>Tronton</option>
+                                                                        <option <?php echo ($dataSelect == 'Trailer') ? "selected" : "" ?>>Trailer</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label>Driver</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="driver" required="" value="<?php echo $driver; ?>">
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label>No Polisi</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="no_polisi" required="" value="<?php echo $no_polisi; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label>Keterangan</label>
+                                                                    <textarea class="form-control form-control-sm" id="keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan; ?></textarea>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Ubah </button>
+                                                                <button type="reset" class="btn btn-danger"> RESET</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Button Hapus -->
+                                        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapusmasuk<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+                                        <div class="modal fade" id="PopUpHapusmasuk<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title"> <b> Hapus Laporan Stok Masuk Gudang </b> </h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <form action="../proses/hapus_stok_masuk" method="POST">
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
+                                                            <div class="form-group">
+                                                                <h6> Yakin Ingin Hapus Data? </h6>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Hapus </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php echo  " </td> </tr>";
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <hr>
+                        <br>
+                        <br>
+                        <h4 align='center'> Laporan Stok Keluar <?= $nama_gudang; ?> MDK</h4>
+                        <!-- Tabel -->
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example5" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Pembeli (Toko / Proyek)</th>
+                                        <th>Alamat</th>
+                                        <th>Nama Gudang</th>
+                                        <th>Jenis Semen</th>
+                                        <th>QTY</th>
+                                        <th>Harga</th>
+                                        <th>Jumlah</th>
+                                        <th>Keterangan</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $urut = 0;
+                                    $total_qty_keluar = 0;
+                                    ?>
+                                    <?php while ($data = mysqli_fetch_array($table_mdk2)) {
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $nama_gudang = $data['nama_gudang'];
+                                        $pembeli = $data['pembeli'];
+                                        $alamat = $data['alamat'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $qty = $data['qty'];
+                                        $total_qty_keluar = $total_qty_keluar + $qty;
+                                        $harga = $data['harga'];
+                                        $jumlah = $data['jumlah'];
+                                        $keterangan = $data['keterangan'];
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
+                                            <td style='font-size: 14px' align = 'center'>$urut</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal</td>
+                                            <td style='font-size: 14px' align = 'center'>$pembeli</td>
+                                            <td style='font-size: 14px' align = 'center'>$alamat</td>
+                                            <td style='font-size: 14px' align = 'center'>$nama_gudang</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
+                                            <td style='font-size: 14px' align = 'center'>$qty</td>
+                                            <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($harga); ?> <?php echo "</td>
+                                            <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
+                                            <td style='font-size: 14px' align = 'center'>$keterangan</td>
+                                            "; ?>
+                                        <?php echo "<td style='font-size: 12px'>"; ?>
+
+
+                                        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+                                        <!-- Form EDIT DATA -->
+
+                                        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"> Form Edit Laporan Stok Keluar Gudang </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <!-- Form Edit Data -->
+                                                    <div class="modal-body">
+                                                        <form action="../proses/edit_stok_keluar" enctype="multipart/form-data" method="POST">
+
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
+
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label>Tanggal</label>
+                                                                    <input class="form-control form-control-sm" type="date" name="tanggal" value="<?php echo $tanggal; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Pembeli (Toko/Proyek)</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="pembeli" required="" value="<?php echo $pembeli; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Alamat</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="alamat" required="" value="<?php echo $alamat; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label>Jenis Semen</label>
+                                                                    <select id="jenis_semen" name="jenis_semen" class="form-control">
+                                                                        <?php $dataSelect = $data['jenis_semen']; ?>
+                                                                        <option <?php echo ($dataSelect == 'SMBR') ? "selected" : "" ?>>SMBR</option>
+                                                                        <option <?php echo ($dataSelect == 'Merdeka') ? "selected" : "" ?>>Merdeka</option>
+                                                                        <option <?php echo ($dataSelect == 'Dynamix') ? "selected" : "" ?>>Dynamix</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>QTY</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="qty" required="" value="<?php echo $qty; ?>">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>QTY</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="harga" required="" value="<?php echo $harga; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label>Keterangan</label>
+                                                                    <textarea class="form-control form-control-sm" id="keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan; ?></textarea>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Ubah </button>
+                                                                <button type="reset" class="btn btn-danger"> RESET</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Button Hapus -->
+                                        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+                                        <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title"> <b> Hapus Laporan Stok Keluar Gudang </b> </h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <form action="../proses/hapus_stok_keluar" method="POST">
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
+                                                            <div class="form-group">
+                                                                <h6> Yakin Ingin Hapus Data? </h6>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Hapus </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php echo  " </td> </tr>";
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <br>
+                        <br>
+                        <hr>
+                        <br>
+                        <br>
+
+
+                        <h4 align='center'> Laporan Stok Masuk <?= $nama_gudang; ?> DYX</h4>
+                        <!-- Tabel -->
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example6" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal Masuk</th>
+                                        <th>No Do</th>
+                                        <th>Nama Gudang</th>
+                                        <th>Jenis Semen</th>
+                                        <th>QTY Masuk</th>
+                                        <th>Expenditur Angkutan</th>
+                                        <th>Jenis Angkutan</th>
+                                        <th>Driver</th>
+                                        <th>No Polisi</th>
+                                        <th>Keterangan</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $urut = 0;
+                                    $total_qty_masuk = 0;
+                                    ?>
+                                    <?php while ($data = mysqli_fetch_array($table_dyx)) {
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $nama_gudang = $data['nama_gudang'];
+                                        $no_do = $data['no_do'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $qty_masuk = $data['qty_masuk'];
+                                        $total_qty_masuk = $qty_masuk +  $total_qty_masuk;
+                                        $expenditur = $data['expenditur'];
+                                        $jenis_angkutan = $data['jenis_angkutan'];
+                                        $driver = $data['driver'];
+                                        $keterangan = $data['keterangan'];
+                                        $no_polisi = $data['no_polisi'];
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
+                                            <td style='font-size: 14px' align = 'center'>$urut</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal</td>
+                                            <td style='font-size: 14px' align = 'center'>$no_do</td>
+                                            <td style='font-size: 14px' align = 'center'>$nama_gudang</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
+                                            <td style='font-size: 14px' align = 'center'>$qty_masuk</td>
+                                            <td style='font-size: 14px' align = 'center'>$expenditur</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_angkutan</td>
+                                            <td style='font-size: 14px' align = 'center'>$driver</td>
+                                            <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+                                            <td style='font-size: 14px' align = 'center'>$keterangan</td>
+                                            "; ?>
+                                        <?php echo "<td style='font-size: 12px'>"; ?>
+
+
+                                        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formeditmasuk<?php echo $data['no_laporan']; ?>">Edit</button>
+
+                                        <!-- Form EDIT DATA -->
+
+                                        <div class="modal fade" id="formeditmasuk<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"> Form Edit Laporan Stok Masuk Gudang </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <!-- Form Edit Data -->
+                                                    <div class="modal-body">
+                                                        <form action="../proses/edit_stok_masuk" enctype="multipart/form-data" method="POST">
+
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label>Tanggal</label>
+                                                                    <input class="form-control" type="date" name="tanggal" value="<?php echo $tanggal; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label>No Do</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="no_do" required="" value="<?php echo $no_do; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Jenis Semen</label>
+                                                                    <select id="jenis_semen" name="jenis_semen" class="form-control form-control-sm">
+                                                                        <?php $dataSelect = $data['jenis_semen']; ?>
+                                                                        <option <?php echo ($dataSelect == 'SMBR') ? "selected" : "" ?>>SMBR</option>
+                                                                        <option <?php echo ($dataSelect == 'Merdeka') ? "selected" : "" ?>>Merdeka</option>
+                                                                        <option <?php echo ($dataSelect == 'Dynamix') ? "selected" : "" ?>>Dynamix</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>QTY Masuk</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="qty_masuk" required="" value="<?php echo $qty_masuk; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label>Expenditur Angkutan</label>
+                                                                    <select id="expenditur" name="expenditur" class="form-control form-control-sm">
+                                                                        <?php $dataSelect = $data['expenditur']; ?>
+                                                                        <option <?php echo ($dataSelect == 'PBJ') ? "selected" : "" ?>>PBJ</option>
+                                                                        <option <?php echo ($dataSelect == 'BMU') ? "selected" : "" ?>>BMU</option>
+                                                                        <option <?php echo ($dataSelect == 'MAP') ? "selected" : "" ?>>MAP</option>
+                                                                        <option <?php echo ($dataSelect == 'RLI') ? "selected" : "" ?>>RLI</option>
+                                                                        <option <?php echo ($dataSelect == 'Lainnya') ? "selected" : "" ?>>Lainnya</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label>Jenis Angkutan</label>
+                                                                    <select id="jenis_angkutan" name="jenis_angkutan" class="form-control form-control-sm">
+                                                                        <?php $dataSelect = $data['jenis_angkutan']; ?>
+                                                                        <option <?php echo ($dataSelect == 'Coltdisel') ? "selected" : "" ?>>Coltdisel</option>
+                                                                        <option <?php echo ($dataSelect == 'Engkel') ? "selected" : "" ?>>Engkel</option>
+                                                                        <option <?php echo ($dataSelect == 'Tronton') ? "selected" : "" ?>>Tronton</option>
+                                                                        <option <?php echo ($dataSelect == 'Trailer') ? "selected" : "" ?>>Trailer</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label>Driver</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="driver" required="" value="<?php echo $driver; ?>">
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label>No Polisi</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="no_polisi" required="" value="<?php echo $no_polisi; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label>Keterangan</label>
+                                                                    <textarea class="form-control form-control-sm" id="keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan; ?></textarea>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Ubah </button>
+                                                                <button type="reset" class="btn btn-danger"> RESET</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Button Hapus -->
+                                        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapusmasuk<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+                                        <div class="modal fade" id="PopUpHapusmasuk<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title"> <b> Hapus Laporan Stok Masuk Gudang </b> </h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <form action="../proses/hapus_stok_masuk" method="POST">
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
+                                                            <div class="form-group">
+                                                                <h6> Yakin Ingin Hapus Data? </h6>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Hapus </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php echo  " </td> </tr>";
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <hr>
+                        <br>
+                        <br>
+
+                        <h4 align='center'> Laporan Stok Keluar <?= $nama_gudang; ?> DYX</h4>
+                        <!-- Tabel -->
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example7" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Pembeli (Toko / Proyek)</th>
+                                        <th>Alamat</th>
+                                        <th>Nama Gudang</th>
+                                        <th>Jenis Semen</th>
+                                        <th>QTY</th>
+                                        <th>Harga</th>
+                                        <th>Jumlah</th>
+                                        <th>Keterangan</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $urut = 0;
+                                    $total_qty_keluar = 0;
+                                    ?>
+                                    <?php while ($data = mysqli_fetch_array($table_dyx2)) {
+                                        $no_laporan = $data['no_laporan'];
+                                        $tanggal = $data['tanggal'];
+                                        $nama_gudang = $data['nama_gudang'];
+                                        $pembeli = $data['pembeli'];
+                                        $alamat = $data['alamat'];
+                                        $jenis_semen = $data['jenis_semen'];
+                                        $qty = $data['qty'];
+                                        $total_qty_keluar = $total_qty_keluar + $qty;
+                                        $harga = $data['harga'];
+                                        $jumlah = $data['jumlah'];
+                                        $keterangan = $data['keterangan'];
+                                        $urut = $urut + 1;
+
+                                        echo "<tr>
+                                            <td style='font-size: 14px' align = 'center'>$urut</td>
+                                            <td style='font-size: 14px' align = 'center'>$tanggal</td>
+                                            <td style='font-size: 14px' align = 'center'>$pembeli</td>
+                                            <td style='font-size: 14px' align = 'center'>$alamat</td>
+                                            <td style='font-size: 14px' align = 'center'>$nama_gudang</td>
+                                            <td style='font-size: 14px' align = 'center'>$jenis_semen</td>
+                                            <td style='font-size: 14px' align = 'center'>$qty</td>
+                                            <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($harga); ?> <?php echo "</td>
+                                            <td style='font-size: 14px' align = 'center'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
+                                            <td style='font-size: 14px' align = 'center'>$keterangan</td>
+                                            "; ?>
+                                        <?php echo "<td style='font-size: 12px'>"; ?>
+
+
+                                        <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+                                        <!-- Form EDIT DATA -->
+
+                                        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"> Form Edit Laporan Stok Keluar Gudang </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <!-- Form Edit Data -->
+                                                    <div class="modal-body">
+                                                        <form action="../proses/edit_stok_keluar" enctype="multipart/form-data" method="POST">
+
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
+
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label>Tanggal</label>
+                                                                    <input class="form-control form-control-sm" type="date" name="tanggal" value="<?php echo $tanggal; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Pembeli (Toko/Proyek)</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="pembeli" required="" value="<?php echo $pembeli; ?>">
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Alamat</label>
+                                                                    <input class="form-control form-control-sm" type="text" name="alamat" required="" value="<?php echo $alamat; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label>Jenis Semen</label>
+                                                                    <select id="jenis_semen" name="jenis_semen" class="form-control">
+                                                                        <?php $dataSelect = $data['jenis_semen']; ?>
+                                                                        <option <?php echo ($dataSelect == 'SMBR') ? "selected" : "" ?>>SMBR</option>
+                                                                        <option <?php echo ($dataSelect == 'Merdeka') ? "selected" : "" ?>>Merdeka</option>
+                                                                        <option <?php echo ($dataSelect == 'Dynamix') ? "selected" : "" ?>>Dynamix</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>QTY</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="qty" required="" value="<?php echo $qty; ?>">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>QTY</label>
+                                                                    <input class="form-control form-control-sm" type="number" name="harga" required="" value="<?php echo $harga; ?>">
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label>Keterangan</label>
+                                                                    <textarea class="form-control form-control-sm" id="keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan; ?></textarea>
+                                                                </div>
+                                                            </div>
+
+                                                            <br>
+
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Ubah </button>
+                                                                <button type="reset" class="btn btn-danger"> RESET</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Button Hapus -->
+                                        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+                                        <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title"> <b> Hapus Laporan Stok Keluar Gudang </b> </h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                            <span aria-hidden="true"> &times; </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <form action="../proses/hapus_stok_keluar" method="POST">
+                                                            <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                                                            <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                                            <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                                                            <input type="hidden" name="nama_gudang" value="<?php echo $nama_gudang; ?>">
+                                                            <div class="form-group">
+                                                                <h6> Yakin Ingin Hapus Data? </h6>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary"> Hapus </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php echo  " </td> </tr>";
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <br>
+                        <br>
+                        <hr>
+                        <br>
+                        <br>
+
                         <!-- Kotak pemasukan pengeluaran -->
                         <?php if ($tanggal_awal == $tanggal_akhir) { ?>
                             <h5 align="center" style='font-size: clamp(12px, 1vw, 18px); color: black;'>REKAP OPNAME STOK <?= $nama_gudang ?> <?= $tanggal_awal ?> </h5>
@@ -1228,6 +2040,54 @@ if ($tanggal_awal == $tanggal_akhir) {
     <script>
         $(document).ready(function() {
             var table = $('#example3').DataTable({
+                lengthChange: false,
+                buttons: ['excel']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#example4').DataTable({
+                lengthChange: false,
+                buttons: ['excel']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#example5').DataTable({
+                lengthChange: false,
+                buttons: ['excel']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#example6').DataTable({
+                lengthChange: false,
+                buttons: ['excel']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#example7').DataTable({
                 lengthChange: false,
                 buttons: ['excel']
             });
