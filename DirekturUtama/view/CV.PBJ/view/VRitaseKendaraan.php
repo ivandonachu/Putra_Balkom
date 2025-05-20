@@ -700,7 +700,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver OKU</h5>
 <!-- Tabel -->    
-<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example9" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -749,7 +749,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver PESIBAR</h5>
 <!-- Tabel -->    
-<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example10" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -798,7 +798,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver LAMBAR</h5>
 <!-- Tabel -->    
-<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example11" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -1051,6 +1051,43 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example8').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example9').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example10').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example11').DataTable( {
       lengthChange: true,
       buttons: ['excel']
     } );
