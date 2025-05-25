@@ -496,7 +496,7 @@ else{
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Transport Fee' || $nama_akun == 'Bunga Bank Pemasukan') {
+      if ($nama_akun == 'Transport Fee' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Kembalikan Pinjaman Saldo') {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -940,7 +940,7 @@ else{
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Transport Fee' || $nama_akun == 'Bunga Bank Pemasukan' ) {
+      if ($nama_akun == 'Transport Fee' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Kembalikan Pinjaman Saldo' ) {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
