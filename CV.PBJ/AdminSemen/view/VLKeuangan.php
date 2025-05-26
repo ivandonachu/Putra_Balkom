@@ -331,6 +331,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Pengeluaran Pribadi</option>
                               <option>Sumbangan</option>
                               <option>Kredit Kendaraan</option>
+                              <option>Pengeluaran CV PBJ</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -517,6 +518,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <option <?php echo ($dataSelect == 'Pengeluaran Pribadi') ? "selected" : "" ?>>Pengeluaran Pribadi</option>
                                     <option <?php echo ($dataSelect == 'Sumbangan') ? "selected" : "" ?>>Sumbangan</option>
                                     <option <?php echo ($dataSelect == 'Kredit Kendaraan') ? "selected" : "" ?>>Kredit Kendaraan</option>
+                                    <option <?php echo ($dataSelect == 'Pengeluaran CV PBJ') ? "selected" : "" ?>>Pengeluaran CV PBJ</option>
                                   </select>
                                 </div>
                                 <div class="col-md-6">
