@@ -938,7 +938,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 
-$total_bunga_bank = (50000000 * $bulan_bunga) + $total_bunga_bank_1;
+$total_bunga_bank = $total_bunga_bank_1;
 
 
 $total_pendapatan = $total_penjualan_dani_c + $total_penjualan_dani_p + $total_penjualan_ety_c + $total_penjualan_ety_p + $jml_cashback;
