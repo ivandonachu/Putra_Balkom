@@ -31,15 +31,15 @@ elseif (isset($_POST['tanggal1'])) {
 
 if ($tanggal_awal == $tanggal_akhir) {
 
-  $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal' GROUP BY no_polisi "); 
+  $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal'  AND tipe_semen = 'AS' GROUP BY no_polisi "); 
 
 }
 else{
 
  
-   $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
+   $table4 = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_semen = 'AS' GROUP BY no_polisi "); 
 
-   $table4x = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi "); 
+   $table4x = mysqli_query($koneksipbj, "SELECT no_polisi, SUM(om) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND tipe_semen = 'AS' GROUP BY no_polisi "); 
 
 
 }

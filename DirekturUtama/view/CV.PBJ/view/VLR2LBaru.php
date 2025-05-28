@@ -898,7 +898,16 @@ if ($tanggal_awal == $tanggal_akhir) {
       if (!isset($data_pengeluaran_pribadi['pengeluaran_pribadi'])) {
           $pengeluaran_pribadi = 0;
       }
+      
+            //Pembelian Aset
+      $table_cv_pbj = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS pengeluaran_cv_pbj FROM keuangan_sl  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND nama_akun = 'Pengeluaran CV PBJ' ");
+      $data_cv_pbj = mysqli_fetch_array($table_cv_pbj);
+      $pengeluaran_cv_pbj = $data_cv_pbj['pengeluaran_cv_pbj'];
+      if (!isset($data_cv_pbj['pengeluaran_cv_pbj'])) {
+          $pengeluaran_cv_pbj = 0;
+      }
   
+
       //Pembelian Aset
       $table_sumbangan = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS sumbangan FROM keuangan_sl  WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Sumbangan' ");
       $data_sumbangan = mysqli_fetch_array($table_sumbangan);
@@ -906,6 +915,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       if (!isset($data_sumbangan['sumbangan'])) {
           $sumbangan = 0;
       }
+  
   
 
 
@@ -1557,6 +1567,13 @@ $pengeluaran_selain_pbj = $pengeluaran_bbe + $pengeluaran_mjre + $pengeluaran_ge
                                                     <td class="thick-line"></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($pembelian_aset); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPembelianAset?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Pengeluaran CV PBJ</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($pengeluaran_cv_pbj); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBaru/VPembelianAset?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>

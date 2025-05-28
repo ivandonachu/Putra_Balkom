@@ -37,8 +37,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
 
  
-   $table4 = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
-   $table4x = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY driver "); 
+   $table4 = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_s  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'AS' GROUP BY driver "); 
+   $table4x = mysqli_query($koneksipbj, "SELECT driver, SUM(uj) AS total_gaji FROM pengiriman_sl  WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'AS' GROUP BY driver "); 
    $table = mysqli_query($koneksipbj,"SELECT * FROM sewa_hiblow WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
 
