@@ -360,6 +360,7 @@ else{
              <option>Transport / Perjalanan Dinas</option>
              <option>Biaya Konsumsi</option>
              <option>Denda Kredit</option>
+             <option>Biaya Tol</option>
           </select>
         </div>            
 
@@ -508,6 +509,7 @@ else{
              <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
              <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
              <option <?php echo ($dataSelect == 'Denda Kredit') ? "selected": "" ?> >Denda Kredit</option>
+             <option <?php echo ($dataSelect == 'Biaya Tol') ? "selected": "" ?> >Biaya Tol</option>
           </select>
 
         </div>            
