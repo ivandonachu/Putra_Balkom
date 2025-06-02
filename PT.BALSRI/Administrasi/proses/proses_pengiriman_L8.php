@@ -45,7 +45,7 @@ else{
 	$dexlite = $jt_gps/6;
 }
 
-$u_dex = $dexlite*13650;
+$u_dex = $dexlite*13020;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
 if ($jns_trans == 'Lost') {
