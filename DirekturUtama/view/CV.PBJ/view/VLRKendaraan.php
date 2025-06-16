@@ -980,13 +980,13 @@ if ($tanggal_awal == $tanggal_akhir) {
         $ug = $data2['total_ug'];
         $om = $data2['total_om'];
         if (
-            $no_polisi == 'BG8344YC' || $no_polisi == 'BG8370YC' || $no_polisi == 'BG8971YB' || $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8101YA' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' ||
-            $no_polisi == 'BG8223YD' || $no_polisi == 'BG8224YD' || $no_polisi == 'BG8225YD' || $no_polisi == 'BG8226YD' || $no_polisi == 'BG8227YD' || $no_polisi == 'BG8876UY' || $no_polisi == 'BG8515YB' || $no_polisi == 'BG8969YB' || $no_polisi == 'BG8101YB' ||
-            $no_polisi == 'BG8252YC' || $no_polisi == 'BG8376YB' || $no_polisi == 'BG8970YB' || $no_polisi == 'BG8231KN' || $no_polisi == 'BE9789AV' || $no_polisi == 'BE9816AV' || $no_polisi == 'BG8405YB' || $no_polisi == 'BG8965V' || $no_polisi == 'BG8966V' ||
-            $no_polisi == 'BG8884UY' || $no_polisi == 'BG1718XL' || $no_polisi == 'BG1705XL' || $no_polisi == 'BG1707XL' || $no_polisi == 'BG1759XL' || $no_polisi == 'BG1726XL' || $no_polisi == 'BG1725XL' || $no_polisi == 'BG1703XL' || $no_polisi == 'BG1778XL' ||
-            $no_polisi == 'BG1678XL' || $no_polisi == 'BG1765XL' || $no_polisi == 'BE8917ACU' || $no_polisi == 'BE8943ACU' || $no_polisi == 'BE8946ACU' || $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' || $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' ||
-            $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BG8083FP' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || $no_polisi == 'BG8535VD' ||
-            $no_polisi != 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH'  || $no_polisi == 'BG8148YH' || $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU' 
+            $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8101YA' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' || $no_polisi == 'BG8223YD' || 
+            $no_polisi == 'BG8224YD' || $no_polisi == 'BG8225YD' || $no_polisi == 'BG8226YD' || $no_polisi == 'BG8227YD' || $no_polisi == 'BG8876UY' || $no_polisi == 'BG8101YB' || $no_polisi == 'BG8376YB' ||
+            $no_polisi == 'BG8970YB' || $no_polisi == 'BG8405YB' || $no_polisi == 'BG8965V'  || $no_polisi == 'BG8966V'  || $no_polisi == 'BG8884UY' || $no_polisi == 'BG8083FP' || $no_polisi == 'BE8917ACU' ||
+            $no_polisi == 'BE8943ACU' || $no_polisi == 'BE8946ACU' || $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' || $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' ||
+            $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || 
+            $no_polisi == 'BG8535VD' || $no_polisi == 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH' || $no_polisi == 'BG8148YH' || 
+            $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU'
         ) {
             $total_uj = $total_uj + $uj;
             $total_gaji = $total_gaji + $ug;
@@ -1008,13 +1008,13 @@ if ($tanggal_awal == $tanggal_akhir) {
         $ug = $data2sl['total_ug_sl'];
         $om = $data2sl['total_om_sl'];
         if (
-            $no_polisi == 'BG8344YC' || $no_polisi == 'BG8370YC' || $no_polisi == 'BG8971YB' || $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8101YA' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' ||
-            $no_polisi == 'BG8223YD' || $no_polisi == 'BG8224YD' || $no_polisi == 'BG8225YD' || $no_polisi == 'BG8226YD' || $no_polisi == 'BG8227YD' || $no_polisi == 'BG8876UY' || $no_polisi == 'BG8515YB' || $no_polisi == 'BG8969YB' || $no_polisi == 'BG8101YB' ||
-            $no_polisi == 'BG8252YC' || $no_polisi == 'BG8376YB' || $no_polisi == 'BG8970YB' || $no_polisi == 'BG8231KN' || $no_polisi == 'BE9789AV' || $no_polisi == 'BE9816AV' || $no_polisi == 'BG8405YB' || $no_polisi == 'BG8965V' || $no_polisi == 'BG8966V' ||
-            $no_polisi == 'BG8884UY' || $no_polisi == 'BG1718XL' || $no_polisi == 'BG1705XL' || $no_polisi == 'BG1707XL' || $no_polisi == 'BG1759XL' || $no_polisi == 'BG1726XL' || $no_polisi == 'BG1725XL' || $no_polisi == 'BG1703XL' || $no_polisi == 'BG1778XL' ||
-            $no_polisi == 'BG1678XL' || $no_polisi == 'BG1765XL' || $no_polisi == 'BE8917ACU' || $no_polisi == 'BE8943ACU' || $no_polisi == 'BE8946ACU' || $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' || $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' ||
-            $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BG8083FP' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || $no_polisi == 'BG8535VD' ||
-            $no_polisi != 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH'  || $no_polisi == 'BG8148YH' || $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU' 
+            $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8101YA' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' || $no_polisi == 'BG8223YD' || 
+            $no_polisi == 'BG8224YD' || $no_polisi == 'BG8225YD' || $no_polisi == 'BG8226YD' || $no_polisi == 'BG8227YD' || $no_polisi == 'BG8876UY' || $no_polisi == 'BG8101YB' || $no_polisi == 'BG8376YB' ||
+            $no_polisi == 'BG8970YB' || $no_polisi == 'BG8405YB' || $no_polisi == 'BG8965V'  || $no_polisi == 'BG8966V'  || $no_polisi == 'BG8884UY' || $no_polisi == 'BG8083FP' || $no_polisi == 'BE8917ACU' ||
+            $no_polisi == 'BE8943ACU' || $no_polisi == 'BE8946ACU' || $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' || $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' ||
+            $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || 
+            $no_polisi == 'BG8535VD' || $no_polisi == 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH' || $no_polisi == 'BG8148YH' || 
+            $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU' 
         ) {
             $total_uj_sl = $total_uj_sl + $uj;
             $total_gaji_sl = $total_gaji_sl + $ug;
@@ -1032,13 +1032,13 @@ if ($tanggal_awal == $tanggal_akhir) {
         $no_polisi = $data2x['no_polisi'];
         $bs = $data2x['total_bs'];
         if (
-            $no_polisi != 'BG8344YC' || $no_polisi != 'BG8370YC' || $no_polisi != 'BG8971YB' || $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8101YA' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' ||
-            $no_polisi != 'BG8223YD' || $no_polisi != 'BG8224YD' || $no_polisi != 'BG8225YD' || $no_polisi != 'BG8226YD' || $no_polisi != 'BG8227YD' || $no_polisi != 'BG8876UY' || $no_polisi != 'BG8515YB' || $no_polisi != 'BG8969YB' || $no_polisi != 'BG8101YB' ||
-            $no_polisi != 'BG8252YC' || $no_polisi != 'BG8376YB' || $no_polisi != 'BG8970YB' || $no_polisi != 'BG8231KN' || $no_polisi != 'BE9789AV' || $no_polisi != 'BE9816AV' || $no_polisi != 'BG8405YB' || $no_polisi != 'BG8965V' || $no_polisi != 'BG8966V' ||
-            $no_polisi != 'BG8884UY' || $no_polisi != 'BG1718XL' || $no_polisi != 'BG1705XL' || $no_polisi != 'BG1707XL' || $no_polisi != 'BG1759XL' || $no_polisi != 'BG1726XL' || $no_polisi != 'BG1725XL' || $no_polisi != 'BG1703XL' || $no_polisi != 'BG1778XL' ||
-            $no_polisi != 'BG1678XL' || $no_polisi != 'BG1765XL' || $no_polisi != 'BE8917ACU' || $no_polisi != 'BE8943ACU' || $no_polisi != 'BE8946ACU' || $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' || $no_polisi != 'BE8928ACU' ||
-            $no_polisi != 'BE8934ACU' || $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BG8083FP' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || $no_polisi != 'BG8535VD' ||
-            $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH'  || $no_polisi != 'BG8148YH' || $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU' 
+            $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8101YA' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' || $no_polisi != 'BG8223YD' || 
+            $no_polisi != 'BG8224YD' || $no_polisi != 'BG8225YD' || $no_polisi != 'BG8226YD' || $no_polisi != 'BG8227YD' || $no_polisi != 'BG8876UY' || $no_polisi != 'BG8101YB' || $no_polisi != 'BG8376YB' ||
+            $no_polisi != 'BG8970YB' || $no_polisi != 'BG8405YB' || $no_polisi != 'BG8965V'  || $no_polisi != 'BG8966V'  || $no_polisi != 'BG8884UY' || $no_polisi != 'BG8083FP' || $no_polisi != 'BE8917ACU' ||
+            $no_polisi != 'BE8943ACU' || $no_polisi != 'BE8946ACU' || $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' || $no_polisi != 'BE8928ACU' || $no_polisi != 'BE8934ACU' ||
+            $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || 
+            $no_polisi != 'BG8535VD' || $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH' || $no_polisi != 'BG8148YH' || 
+            $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU'
         ) {
             $total_bs = $total_bs + $bs;
         } else {
@@ -1053,13 +1053,13 @@ if ($tanggal_awal == $tanggal_akhir) {
         $no_polisi = $data2slx['no_polisi'];
         $bs = $data2slx['total_bs_sl'];
         if (
-            $no_polisi != 'BG8344YC' || $no_polisi != 'BG8370YC' || $no_polisi != 'BG8971YB' || $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8101YA' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' ||
-            $no_polisi != 'BG8223YD' || $no_polisi != 'BG8224YD' || $no_polisi != 'BG8225YD' || $no_polisi != 'BG8226YD' || $no_polisi != 'BG8227YD' || $no_polisi != 'BG8876UY' || $no_polisi != 'BG8515YB' || $no_polisi != 'BG8969YB' || $no_polisi != 'BG8101YB' ||
-            $no_polisi != 'BG8252YC' || $no_polisi != 'BG8376YB' || $no_polisi != 'BG8970YB' || $no_polisi != 'BG8231KN' || $no_polisi != 'BE9789AV' || $no_polisi != 'BE9816AV' || $no_polisi != 'BG8405YB' || $no_polisi != 'BG8965V' || $no_polisi != 'BG8966V' ||
-            $no_polisi != 'BG8884UY' || $no_polisi != 'BG1718XL' || $no_polisi != 'BG1705XL' || $no_polisi != 'BG1707XL' || $no_polisi != 'BG1759XL' || $no_polisi != 'BG1726XL' || $no_polisi != 'BG1725XL' || $no_polisi != 'BG1703XL' || $no_polisi != 'BG1778XL' ||
-            $no_polisi != 'BG1678XL' || $no_polisi != 'BG1765XL' || $no_polisi != 'BE8917ACU' || $no_polisi != 'BE8943ACU' || $no_polisi != 'BE8946ACU' || $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' || $no_polisi != 'BE8928ACU' || $no_polisi != 'BE8934ACU' ||
-            $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BG8083FP' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || $no_polisi != 'BG8535VD' ||
-            $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH'  || $no_polisi != 'BG8148YH' || $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU' 
+            $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8101YA' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' || $no_polisi != 'BG8223YD' || 
+            $no_polisi != 'BG8224YD' || $no_polisi != 'BG8225YD' || $no_polisi != 'BG8226YD' || $no_polisi != 'BG8227YD' || $no_polisi != 'BG8876UY' || $no_polisi != 'BG8101YB' || $no_polisi != 'BG8376YB' ||
+            $no_polisi != 'BG8970YB' || $no_polisi != 'BG8405YB' || $no_polisi != 'BG8965V'  || $no_polisi != 'BG8966V'  || $no_polisi != 'BG8884UY' || $no_polisi != 'BG8083FP' || $no_polisi != 'BE8917ACU' ||
+            $no_polisi != 'BE8943ACU' || $no_polisi != 'BE8946ACU' || $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' || $no_polisi != 'BE8928ACU' || $no_polisi != 'BE8934ACU' ||
+            $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || 
+            $no_polisi != 'BG8535VD' || $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH' || $no_polisi != 'BG8148YH' || 
+            $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU'
         ) {
             $total_bs_sl = $total_bs_sl + $bs;
         } else {
@@ -1094,7 +1094,12 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-    $laba_kotor = $total_pendapatan_bmu +  $total_tagihan_kotabumi;
+    $laba_kotor_sebelum_pajak = $total_pendapatan_bmu +  $total_tagihan_kotabumi;
+
+    $pajak = ($laba_kotor_sebelum_pajak*11)/100;
+
+
+    $laba_kotor = $laba_kotor_sebelum_pajak + $pajak; 
 
     $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_perbaikan_1 + $biaya_perbaikan_2 + $jml_pembelian_sparepart + $total_kredit_kendaraan;
 
@@ -1538,6 +1543,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 </tr>
                                                 <tr style="background-color: navy;  color:white;">
                                                     <td><strong>TOTAL LABA KOTOR</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="no-line text-left"><?= formatuang($laba_kotor_sebelum_pajak); ?> </td>
+                                                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                                                    <td class="thick-line"></td>
+                                                </tr>
+                                                <tr style="background-color: navy;  color:white;">
+                                                    <td><strong>Pajak 11%</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="no-line text-left"><?= formatuang($pajak); ?> </td>
+                                                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                                                    <td class="thick-line"></td>
+                                                </tr>
+                                                <tr style="background-color: navy;  color:white;">
+                                                    <td><strong>TOTAL LABA KOTOR + Pajak 11%</strong></td>
                                                     <td class="thick-line"></td>
                                                     <td class="no-line text-left"><?= formatuang($laba_kotor); ?> </td>
                                                     <td class="no-line text-left"><?= formatuang(0); ?> </td>
