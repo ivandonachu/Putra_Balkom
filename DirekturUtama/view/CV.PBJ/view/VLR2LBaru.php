@@ -481,37 +481,99 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_penebusan_ety_p = 0;
     $total_penjualan_dani_p = 0;
     $total_penebusan_dani_p = 0;
-    //PENJUALAN CASH
-
-        //penjualan cash ety 1
-        $table_penjualan_cash_1 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_cash_1 FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' ");
+    //penjualan cash ety 1
+        $table_penjualan_cash_1 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_cash_1 FROM penjualan_s WHERE 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do != 'PT semen indonesia group (gudang balkom jaya)' AND toko_do != 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do != 'PT semen indonesia group (gudang balkom jaya)' AND toko_do != 'PT semen indonesia group (gudang putra balkom beli'");
+        
         $data_penjualan_cash_1 = mysqli_fetch_array($table_penjualan_cash_1);
         $total_penjualan_ety_c = $data_penjualan_cash_1['total_penjualan_cash_1'];
         if (!isset($data_penjualan_cash_1['total_penjualan_cash_1'])) {
             $total_penjualan_ety_c = 0;
         }
+
         //penjualan Bon ety 1
-        $table_penjualan_bon_1 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_bon_1 FROM penjualan_s WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' ");
+        $table_penjualan_bon_1 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_bon_1 FROM penjualan_s WHERE 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do != 'PT semen indonesia group (gudang balkom jaya)' AND toko_do != 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do != 'PT semen indonesia group (gudang balkom jaya)' AND toko_do != 'PT semen indonesia group (gudang putra balkom beli'");
         $data_penjualan_bon_1 = mysqli_fetch_array($table_penjualan_bon_1);
         $total_penjualan_ety_p = $data_penjualan_bon_1['total_penjualan_bon_1'];
         if (!isset($data_penjualan_bon_1['total_penjualan_bon_1'])) {
             $total_penjualan_ety_p = 0;
         }
+
         //penjualan cash dani 1
-        $table_penjualan_cash_2 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_cash_2 FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' ");
+        $table_penjualan_cash_2 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_cash_2 FROM penjualan_sl WHERE
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do != 'PT semen indonesia group (gudang balkom jaya)' AND toko_do != 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do != 'PT semen indonesia group (gudang balkom jaya)' AND toko_do != 'PT semen indonesia group (gudang putra balkom beli' ");
         $data_penjualan_cash_2 = mysqli_fetch_array($table_penjualan_cash_2);
         $total_penjualan_dani_c = $data_penjualan_cash_2['total_penjualan_cash_2'];
         if (!isset($data_penjualan_cash_2['total_penjualan_cash_2'])) {
             $total_penjualan_dani_c = 0;
         }
         //penjualan Bon dani 1
-        $table_penjualan_bon_2 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_bon_2 FROM penjualan_sl WHERE tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' OR tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' ");
+        $table_penjualan_bon_2 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_penjualan_bon_2 FROM penjualan_sl WHERE 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do != 'PT semen indonesia group (gudang balkom jaya)' AND toko_do != 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do != 'PT semen indonesia group (gudang balkom jaya)' AND toko_do != 'PT semen indonesia group (gudang putra balkom beli'");
         $data_penjualan_bon_2 = mysqli_fetch_array($table_penjualan_bon_2);
         $total_penjualan_dani_p = $data_penjualan_bon_2['total_penjualan_bon_2'];
         if (!isset($data_penjualan_bon_2['total_penjualan_bon_2'])) {
             $total_penjualan_dani_p = 0;
         }
 
+
+    //freebang
+
+        //freebang cash ety 1
+        $table_freebang_cash_1 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_freebag_cash_1 FROM penjualan_s WHERE 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli'");
+        
+        $data_freebang_cash_1 = mysqli_fetch_array($table_freebang_cash_1);
+        $total_freebang_ety_c = $data_freebang_cash_1['total_freebag_cash_1'];
+        if (!isset($data_freebang_cash_1['total_freebag_cash_1'])) {
+            $total_freebang_ety_c = 0;
+        }
+
+        //freebang Bon ety 1
+        $table_freebag_bon_1 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_freebag_bon_1 FROM penjualan_s WHERE 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli'");
+        $data_freebag_bon_1 = mysqli_fetch_array($table_freebag_bon_1);
+        $total_freebag_ety_p = $data_freebag_bon_1['total_freebag_bon_1'];
+        if (!isset($data_freebag_bon_1['total_freebag_bon_1'])) {
+            $total_freebag_ety_p = 0;
+        }
+
+        //freebang cash dani 1
+        $table_freebag_cash_2 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_freebag_cash_2 FROM penjualan_sl WHERE
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' ");
+        $data_freebag_cash_2 = mysqli_fetch_array($table_freebag_cash_2);
+        $total_freebag_dani_c = $data_freebag_cash_2['total_freebag_cash_2'];
+        if (!isset($data_freebag_cash_2['total_freebag_cash_2'])) {
+            $total_freebag_dani_c = 0;
+        }
+        //freebang Bon dani 1
+        $table_freebag_bon_2 = mysqli_query($koneksipbj, "SELECT sum(jumlah) as total_freebag_bon_2 FROM penjualan_sl WHERE 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' ");
+        $data_freebag_bon_2 = mysqli_fetch_array($table_freebag_bon_2);
+        $total_freebag_dani_p = $data_freebag_bon_2['total_freebag_bon_2'];
+        if (!isset($data_freebag_bon_2['total_freebag_bon_2'])) {
+            $total_freebag_dani_p = 0;
+        }
+        
+
+        $total_freebag_global = $total_freebang_ety_c +  $total_freebag_ety_p + $total_freebag_dani_c + $total_freebag_dani_p ;
         
         
 
@@ -951,7 +1013,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 $total_bunga_bank = $total_bunga_bank_1;
 
 
-$total_pendapatan = $total_penjualan_dani_c + $total_penjualan_dani_p + $total_penjualan_ety_c + $total_penjualan_ety_p + $jml_cashback;
+$total_pendapatan = $total_penjualan_dani_c + $total_penjualan_dani_p + $total_penjualan_ety_c + $total_penjualan_ety_p + $jml_cashback + $total_freebag_global;
 $pembelian_total = $total_penebusan_dani_c + $total_penebusan_dani_p + $total_penebusan_ety_c + $total_penebusan_ety_p;
 
 $laba_kotor = $total_pendapatan - $pembelian_total;
@@ -1304,7 +1366,7 @@ $pengeluaran_selain_pbj = $pengeluaran_bbe + $pengeluaran_mjre + $pengeluaran_ge
                                                 <tr>
                                                     <td>4-108</td>
                                                     <td class="text-left">Cashback</td>
-                                                    <td class="text-left"><?= formatuang($jml_cashback); ?></td>
+                                                    <td class="text-left"><?= formatuang($jml_cashback + $total_freebag_global); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBaru/VRCashback?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>

@@ -40,6 +40,35 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
   $table = mysqli_query($koneksipbj, "SELECT * FROM potongan_harga WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+
+  //freebang cash ety 1
+        $table_freebang_cash_1 = mysqli_query($koneksipbj, "SELECT * FROM penjualan_s WHERE 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli'");
+
+        //freebang Bon ety 1
+        $table_freebag_bon_1 = mysqli_query($koneksipbj, "SELECT * FROM penjualan_s WHERE 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli'");
+
+        //freebang cash dani 1
+        $table_freebag_cash_2 = mysqli_query($koneksipbj, "SELECT * FROM penjualan_sl WHERE
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' ");
+
+        //freebang Bon dani 1
+        $table_freebag_bon_2 = mysqli_query($koneksipbj, "SELECT * FROM penjualan_sl WHERE 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do = 'PT semen indonesia group (gudang balkom jaya)' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' OR 
+        tanggal_do BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND toko_do = 'PT semen indonesia group (gudang putra balkom beli' ");
+
 }
 
 
@@ -315,10 +344,11 @@ Logout
   <br>
   <br>
 
-
-
 <!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center'>
+  
+<h3>RINCIAN CASHBACK</h3>
+
   <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
@@ -363,6 +393,347 @@ Logout
 <br>
 <br>
 <br>
+
+<div style="overflow-x: auto" align = 'center'>
+    <h3 >RINCIAN JUAL CASHBACK SEMEN 1 CASH</h3>
+              <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>TGL DO</th>
+      <th>TGL Kirim</th>
+      <th>NO DO</th>
+      <th>Driver</th>
+      <th>NO Polisi</th>
+      <th>Tujuan Pengiriman</th>
+      <th>QTY</th>
+      <th>Satuan</th>
+      <th>Harga</th>
+      <th>Jumlah</th>    
+      <th>Nama Toko di DO</th>
+      <th>TGL Bayar</th>
+      <th>Status Bayar</th>
+      <th>Ket</th>
+      <th>Catatan</th>
+      <th>File</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $no_urut = 0;
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table_freebang_cash_1)){
+      $no_penjualan = $data['no_penjualan'];
+      $tanggal_do =$data['tanggal_do'];
+      $tanggal_kirim = $data['tanggal_kirim'];
+      $no_do = $data['no_do'];
+      $driver = $data['driver'];
+      $no_polisi = $data['no_polisi'];
+      $tujuan_pengiriman = $data['tujuan_pengiriman'];
+      $qty = $data['qty'];
+      $satuan = $data['satuan'];
+      $harga = $data['harga'];
+      $jumlah = $data['jumlah'];
+      $toko_do = $data['toko_do'];
+      $tempo = $data['tempo'];
+      $tanggal_bayar = $data['tanggal_bayar'];
+      $status_bayar = $data['status_bayar'];
+      $keterangan = $data['keterangan'];
+      $catatan = $data['catatan'];
+      $bulan = $data['bulan'];
+      $file_bukti = $data['file_bukti'];
+      $no_urut = $no_urut + 1;
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_urut</td> 
+      <td style='font-size: 14px'>$tanggal_do</td>
+      <td style='font-size: 14px'>$tanggal_kirim</td>
+      <td style='font-size: 14px'>$no_do</td>
+      <td style='font-size: 14px'>$driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$tujuan_pengiriman</td>
+      <td style='font-size: 14px'>$qty</td>
+      <td style='font-size: 14px'>$satuan</td>
+      <td style='font-size: 14px'>"?> <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$toko_do</td>
+      <td style='font-size: 14px'>$tanggal_bayar</td>
+      <td style='font-size: 14px'>$status_bayar</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>$catatan</td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+   
+
+
+
+<?php echo  " </tr>";
+}
+?>
+
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<br>
+
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center'>
+    <h3 >RINCIAN JUAL CASHBACK SEMEN 1 BON</h3>
+
+              <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>TGL DO</th>
+      <th>TGL Kirim</th>
+      <th>NO DO</th>
+      <th>Driver</th>
+      <th>NO Polisi</th>
+      <th>Tujuan Pengiriman</th>
+      <th>QTY</th>
+      <th>Satuan</th>
+      <th>Harga</th>
+      <th>Jumlah</th>    
+      <th>Nama Toko di DO</th>
+      <th>TGL Bayar</th>
+      <th>Status Bayar</th>
+      <th>Ket</th>
+      <th>Catatan</th>
+      <th>File</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $no_urut = 0;
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table_freebag_bon_1)){
+      $no_penjualan = $data['no_penjualan'];
+      $tanggal_do =$data['tanggal_do'];
+      $tanggal_kirim = $data['tanggal_kirim'];
+      $no_do = $data['no_do'];
+      $driver = $data['driver'];
+      $no_polisi = $data['no_polisi'];
+      $tujuan_pengiriman = $data['tujuan_pengiriman'];
+      $qty = $data['qty'];
+      $satuan = $data['satuan'];
+      $harga = $data['harga'];
+      $jumlah = $data['jumlah'];
+      $toko_do = $data['toko_do'];
+      $tempo = $data['tempo'];
+      $tanggal_bayar = $data['tanggal_bayar'];
+      $status_bayar = $data['status_bayar'];
+      $keterangan = $data['keterangan'];
+      $catatan = $data['catatan'];
+      $bulan = $data['bulan'];
+      $file_bukti = $data['file_bukti'];
+      $no_urut = $no_urut + 1;
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_urut</td> 
+      <td style='font-size: 14px'>$tanggal_do</td>
+      <td style='font-size: 14px'>$tanggal_kirim</td>
+      <td style='font-size: 14px'>$no_do</td>
+      <td style='font-size: 14px'>$driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$tujuan_pengiriman</td>
+      <td style='font-size: 14px'>$qty</td>
+      <td style='font-size: 14px'>$satuan</td>
+      <td style='font-size: 14px'>"?> <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$toko_do</td>
+      <td style='font-size: 14px'>$tanggal_bayar</td>
+      <td style='font-size: 14px'>$status_bayar</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>$catatan</td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>" href="/CV.PBJ/KasirSemen/file_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+   
+
+
+
+<?php echo  " </tr>";
+}
+?>
+
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<br>
+<div style="overflow-x: auto" align = 'center'>
+     <h3 >RINCIAN JUAL CASHBACK SEMEN 2 CASH</h3>
+              <table id="example4" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>TGL DO</th>
+      <th>TGL Kirim</th>
+      <th>NO DO</th>
+      <th>Driver</th>
+      <th>NO Polisi</th>
+      <th>Tujuan Pengiriman</th>
+      <th>Material</th>
+      <th>QTY</th>
+      <th>Harga</th>
+      <th>Jumlah</th>    
+      <th>Nama Toko di DO</th>
+      <th>TGL Bayar</th>
+      <th>Status Bayar</th>
+      <th>Ket</th>
+      <th>File</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $no_urut = 0;
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table_freebag_cash_2)){
+      $no_penjualan = $data['no_penjualan'];
+      $tanggal_do =$data['tanggal_do'];
+      $tanggal_kirim = $data['tanggal_kirim'];
+      $no_do = $data['no_do'];
+      $driver = $data['driver'];
+      $no_polisi = $data['no_polisi'];
+      $tujuan_pengiriman = $data['tujuan_pengiriman'];
+      $qty = $data['qty'];
+      $satuan = $data['satuan'];
+      $harga = $data['harga'];
+      $jumlah = $data['jumlah'];
+      $toko_do = $data['toko_do'];
+      $tempo = $data['tempo'];
+      $tanggal_bayar = $data['tanggal_bayar'];
+      $status_bayar = $data['status_bayar'];
+      $keterangan = $data['keterangan'];
+      $bulan = $data['bulan'];
+      $file_bukti = $data['file_bukti'];
+      $no_urut = $no_urut + 1;
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_urut</td>
+      <td style='font-size: 14px'>$tanggal_do</td>
+      <td style='font-size: 14px'>$tanggal_kirim</td>
+      <td style='font-size: 14px'>$no_do</td>
+      <td style='font-size: 14px'>$driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$tujuan_pengiriman</td>
+      <td style='font-size: 14px'>$satuan</td>
+      <td style='font-size: 14px'>$qty</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$toko_do</td>
+      <td style='font-size: 14px'>$tanggal_bayar</td>
+      <td style='font-size: 14px'>$status_bayar</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+   
+
+
+
+<?php echo  " </tr>";
+}
+?>
+
+</tbody>
+</table>
+<br>
+<br>
+<br>
+<div style="overflow-x: auto" align = 'center'>
+     <h3 >RINCIAN JUAL CASHBACK SEMEN 2 BON</h3>
+              <table id="example5" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>TGL DO</th>
+      <th>TGL Kirim</th>
+      <th>NO DO</th>
+      <th>Driver</th>
+      <th>NO Polisi</th>
+      <th>Tujuan Pengiriman</th>
+      <th>Material</th>
+      <th>QTY</th>
+      <th>Harga</th>
+      <th>Jumlah</th>    
+      <th>Nama Toko di DO</th>
+      <th>TGL Bayar</th>
+      <th>Status Bayar</th>
+      <th>Ket</th>
+      <th>File</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $no_urut = 0;
+
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table_freebag_bon_2)){
+      $no_penjualan = $data['no_penjualan'];
+      $tanggal_do =$data['tanggal_do'];
+      $tanggal_kirim = $data['tanggal_kirim'];
+      $no_do = $data['no_do'];
+      $driver = $data['driver'];
+      $no_polisi = $data['no_polisi'];
+      $tujuan_pengiriman = $data['tujuan_pengiriman'];
+      $qty = $data['qty'];
+      $satuan = $data['satuan'];
+      $harga = $data['harga'];
+      $jumlah = $data['jumlah'];
+      $toko_do = $data['toko_do'];
+      $tempo = $data['tempo'];
+      $tanggal_bayar = $data['tanggal_bayar'];
+      $status_bayar = $data['status_bayar'];
+      $keterangan = $data['keterangan'];
+      $bulan = $data['bulan'];
+      $file_bukti = $data['file_bukti'];
+      $no_urut = $no_urut + 1;
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$no_urut</td>
+      <td style='font-size: 14px'>$tanggal_do</td>
+      <td style='font-size: 14px'>$tanggal_kirim</td>
+      <td style='font-size: 14px'>$no_do</td>
+      <td style='font-size: 14px'>$driver</td>
+      <td style='font-size: 14px'>$no_polisi</td>
+      <td style='font-size: 14px'>$tujuan_pengiriman</td>
+      <td style='font-size: 14px'>$satuan</td>
+      <td style='font-size: 14px'>$qty</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$toko_do</td>
+      <td style='font-size: 14px'>$tanggal_bayar</td>
+      <td style='font-size: 14px'>$status_bayar</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"; ?> <a download="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>" href="/CV.PBJ/AdminSemen/file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      "; ?>
+   
+
+
+
+<?php echo  " </tr>";
+}
+?>
+
+</tbody>
+</table>
 
 </div>
 </div>
@@ -440,7 +811,51 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: ['excel' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+      buttons: ['excel' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example3').DataTable( {
+      lengthChange: false,
+      buttons: ['excel' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example4').DataTable( {
+      lengthChange: false,
+      buttons: ['excel' ]
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example5').DataTable( {
+      lengthChange: false,
+
     } );
 
     table.buttons().container()
