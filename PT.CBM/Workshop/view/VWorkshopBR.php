@@ -85,9 +85,9 @@ else{
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-     <!-- Sidebar - Brand -->
+            <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsWorkshop">
                 <div class="sidebar-brand-icon rotate-n-15">
 
@@ -130,9 +130,12 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBL">Workshop Balsri LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBR">Workshop Balsri BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBB">Workshop Batu Bara</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopGG">Workshop Gel Gel</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopMJRE">Workshop MJRE</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBBE">Workshop BBE</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Penggunaan BBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VInventorySparepart">Inventory Sparepart</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatSparepart">Riwayat Sparepart</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRiwayatSparepart">Riwayat Sparepart</a>
                     </div>
                 </div>
             </li>

@@ -119,6 +119,9 @@ $nama = $data['nama_karyawan'];
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBL">Workshop Balsri LMG</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBR">Workshop Balsri BTA</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBB">Workshop Batu Bara</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopGG">Workshop Gel Gel</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopMJRE">Workshop MJRE</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBBE">Workshop BBE</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Penggunaan BBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VInventorySparepart">Inventory Sparepart</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRiwayatSparepart">Riwayat Sparepart</a>

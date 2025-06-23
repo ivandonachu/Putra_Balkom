@@ -37,11 +37,11 @@ $tanggal_akhir = date('Y-m-31');
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksipbj,"SELECT * FROM riwayat_pengeluaran_workshop WHERE tanggal ='$tanggal_awal' ");
+  $table = mysqli_query($koneksibalsri,"SELECT * FROM riwayat_pengeluaran_workshop_gg WHERE tanggal ='$tanggal_awal' ");
 }
 
 else{
-  $table = mysqli_query($koneksipbj,"SELECT * FROM riwayat_pengeluaran_workshop WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+  $table = mysqli_query($koneksibalsri,"SELECT * FROM riwayat_pengeluaran_workshop_gg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 }
 
 ?>
@@ -56,7 +56,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Workshop PBJ Batu Bara</title>
+  <title>Workshop GEL GEL</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -73,8 +73,6 @@ else{
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
-
   <!-- Link datepicker -->
 
 </head>
@@ -84,7 +82,7 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
+   <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -164,7 +162,7 @@ else{
 
       <!-- Topbar -->
       <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VWorkshopBB'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Workshop PBJ Batu Bara</h5></a>"; ?>
+      <?php echo "<a href='VWorkshopMD'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Workshop Muara Dua</h5></a>"; ?>
 
        <!-- Sidebar Toggle (Topbar) -->
        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -175,7 +173,6 @@ else{
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
-
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -213,7 +210,7 @@ else{
 
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
- <?php  echo "<form  method='POST' action='VWorkshopBB' style='margin-bottom: 15px;'>" ?>
+ <?php  echo "<form  method='POST' action='VWorkshopGG' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -237,7 +234,7 @@ else{
          <div class="modal-dialog  modal-lg" role ="document">
            <div class="modal-content"> 
             <div class="modal-header">
-              <h5 class="modal-title">Form Workshop </h5>
+              <h5 class="modal-title"> Form Workshop </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -246,7 +243,7 @@ else{
             <!-- Form Input Data -->
             <div class="modal-body" align="left">
               
-                  <?php  echo "<form action='../proses/proses_workshop_bb?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                  <?php  echo "<form action='../proses/proses_workshop_gg?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
          
            <div class="row">
@@ -264,20 +261,7 @@ else{
        <div class="row">
           <div class="col-md-6">
           <label>Nama Driver</label>
-         <select id="tokens" class="selectpicker form-control" name="nama_driver" multiple data-live-search="true">
-        <?php
-        include 'koneksi.php';
-        $result = mysqli_query($koneksipbj, "SELECT * FROM driver");   
-
-        while ($data2 = mysqli_fetch_array($result)){
-          $data_pangakalan = $data2['nama_driver'];
-
-            echo "<option> $data_pangakalan </option> ";
-          
-        }
-        ?>
-      </select>
-
+         <input class="form-control form-control-sm" type="text" id="nama_driver" name="nama_driver" required=""> 
           </div>
   
           <div class="col-md-6">
@@ -369,109 +353,96 @@ else{
 
       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
 
-        <!-- Form EDIT DATA -->
+<!-- Form EDIT DATA -->
 
-        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role ="document">
-            <div class="modal-content"> 
-              <div class="modal-header">Form Edit Workshop </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                  <span aria-hidden="true"> &times; </span>
-                </button>
-              </div>
+<div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role ="document">
+    <div class="modal-content"> 
+      <div class="modal-header">Form Edit Workshop </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
 
 
-              <!-- Form Edit Data -->
-              <div class="modal-body">
-                <form action="../proses/edit_workshop_bb" enctype="multipart/form-data" method="POST">
+      <!-- Form Edit Data -->
+      <div class="modal-body">
+        <form action="../proses/edit_workshop_gg" enctype="multipart/form-data" method="POST">
 
-                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
-              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-               <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
+        <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+      <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+       <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
+
+          <div class="row">
+    <div class="col-md-6">
+
+      <label>Tanggal</label>
+      <div class="col-sm-10">
+       <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
+     </div>
+
+
+  </div>
+  <div class="col-md-6">
+  </div>
+</div>
+
+
+<div class="row">
   
-                  <div class="row">
-            <div class="col-md-6">
 
-              <label>Tanggal</label>
-              <div class="col-sm-10">
-               <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
-             </div>
-   
+<div class="col-md-6">
+<div>
+<label>Nama Driver</label>
+</div>
 
+   <input class="form-control form-control-sm" type="text" id="nama_driver" value="<?php echo $nama_driver;?>" name="nama_driver" required=""> 
+
+</div>    
+
+<div class="col-md-6">
+   <label>No Polisi</label>
+     <input class="form-control form-control-sm" type="text" id="no_polisi" value="<?php echo $no_polisi;?>" name="no_polisi" required=""> 
+</div>
+
+</div>
+
+<br>
+
+
+
+<div class="row">
+<div class="col-md-6">
+<label>Jumlah Pembayaran Bengkel</label>
+<input class="form-control form-control-sm" type="number" id="jumlah_bengkel" name="jumlah_bengkel" value="<?php echo $jumlah_bengkel;?>" required="">
+</div>    
+<div class="col-md-6">
+<label>Jumlah Penggunaan Sparepart</label>
+<input class="form-control form-control-sm" type="number" id="jumlah_sparepart" name="jumlah_sparepart" value="<?php echo $jumlah_sparepart;?>" required=""> 
+</div>         
+</div>
+
+
+
+<br>
+
+
+
+<div>
+<label>Upload File</label> 
+<input type="file" name="file"> 
+</div> 
+         
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Ubah </button>
+            <button type="reset" class="btn btn-danger"> RESET</button>
           </div>
-          <div class="col-md-6">
-          </div>
-        </div>
-
-
-        <div class="row">
-          
-
-        <div class="col-md-6">
-        <div>
-        <label>Nama Driver</label>
-        </div>
-        
-          <select class="form-control" name="nama_driver" >
-            <?php
-              $dataSelect = $data['nama_driver'];
-              include 'koneksi.php';
-              $result = mysqli_query($koneksipbj, "SELECT * FROM driver ");
-
-              while ($data2 = mysqli_fetch_array($result)) {
-                $nama_driver = $data2['nama_driver'];
-
-                echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
-                                                                                                                              }
-                                                                                                                            ?>
-          </select>
-
-        </div>    
-        
-        <div class="col-md-6">
-           <label>No Polisi</label>
-             <input class="form-control form-control-sm" type="text" id="no_polisi" value="<?php echo $no_polisi;?>" name="no_polisi" required=""> 
-        </div>
-
+        </form>
       </div>
-
-      <br>
-
-     
-
-      <div class="row">
-        <div class="col-md-6">
-        <label>Jumlah Pembayaran Bengkel</label>
-      <input class="form-control form-control-sm" type="number" id="jumlah_bengkel" name="jumlah_bengkel" value="<?php echo $jumlah_bengkel;?>" required="">
-        </div>    
-        <div class="col-md-6">
-        <label>Jumlah Penggunaan Sparepart</label>
-      <input class="form-control form-control-sm" type="number" id="jumlah_sparepart" name="jumlah_sparepart" value="<?php echo $jumlah_sparepart;?>" required=""> 
-        </div>         
-      </div>
-
-
-
-    <br>
-
-
-
-  <div>
-    <label>Upload File</label> 
-    <input type="file" name="file"> 
-  </div> 
-                 
-
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"> Ubah </button>
-                    <button type="reset" class="btn btn-danger"> RESET</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
+    </div>
+  </div>
+</div>
 
 
        <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Pengeluaran'></button>
@@ -480,14 +451,14 @@ else{
        <div class="modal-dialog" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
-            <h4 class="modal-title"> <b> Hapus Data Workshop </b> </h4>
+            <h4 class="modal-title"> <b> Form Workshop </b> </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
               <span aria-hidden="true"> &times; </span>
             </button>
           </div>
 
           <div class="modal-body">
-            <form action="../proses/hapus_workshop_bb" method="POST">
+            <form action="../proses/hapus_workshop_gg" method="POST">
               <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
@@ -561,8 +532,8 @@ aria-hidden="true">
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+<script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
+<script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -570,7 +541,7 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-<script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
+
 <!-- Tabel -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

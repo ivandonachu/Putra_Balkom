@@ -159,57 +159,60 @@ else{
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsWorkshop">
-    <div class="sidebar-brand-icon rotate-n-15">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsWorkshop">
+                <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-</a>
+                </div>
+                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
+            </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active" >
-    <a class="nav-link" href="DsWorkshop">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-    </li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active" >
+                <a class="nav-link" href="DsWorkshop">
+                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+                    <span style="font-size: 16px;" >Dashboard</span></a>
+                </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+                <!-- Divider -->
+                <hr class="sidebar-divider">
 
-    <!-- Heading -->
-     <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Workshop
-    </div>
+                <!-- Heading -->
+                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                     Menu Workshop
+                </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-briefcase" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Admin Workshop</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Admin Workshop</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Workshop CBM</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopMD">Workshop Muara Dua</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopSE">Workshop Semen</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBP">Workshop Balsri PLG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBL">Workshop Balsri LMG</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBR">Workshop Balsri BTA</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBB">Workshop Batu Bara</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Penggunaan BBM</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VInventorySparepart">Inventory Sparepart</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatSparepart">Riwayat Sparepart</a>
-        </div>
-    </div>
-</li>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-briefcase" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Admin Workshop</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Admin Workshop</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Workshop CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopMD">Workshop Muara Dua</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopSE">Workshop Semen</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBP">Workshop Balsri PLG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBL">Workshop Balsri LMG</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBR">Workshop Balsri BTA</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBB">Workshop Batu Bara</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopGG">Workshop Gel Gel</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopMJRE">Workshop MJRE</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VWorkshopBBE">Workshop BBE</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPenggunaanBBM">Penggunaan BBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VInventorySparepart">Inventory Sparepart</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRiwayatSparepart">Riwayat Sparepart</a>
+                    </div>
+                </div>
+            </li>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
