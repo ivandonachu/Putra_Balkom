@@ -41,7 +41,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
     // Tagihan
     // Tagihan
-  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_px a INNER JOIN master_tarif_px b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_px a INNER JOIN master_tarif_px b ON a.no=b.no  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND a.mt = '$no_polisilr'");
   $data = mysqli_fetch_array($table);
   $total_tagihan= $data['total_tagihan'];
 
