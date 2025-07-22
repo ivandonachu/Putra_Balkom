@@ -28,10 +28,7 @@ $jumlah_pesanan = $_POST['jumlah_pesanan'];
 $amt = $_POST['amt'];
 $mt = $_POST['mt'];
 
-$result = mysqli_query($koneksi, "SELECT * FROM tagihan_tg_8kl WHERE so = '$so' AND tanggal = '$tanggal' ");
- if(mysqli_num_rows($result) == 1 ){
-  	echo "<script>alert('SO sudah tercatat :)'); window.location='../view/VTagihanTG8KL?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>"; exit;
-      }
+
 
 $result2 = mysqli_query($koneksi, "SELECT * FROM tagihan_tg_8kl WHERE lo = '$lo' AND tanggal = '$tanggal' ");
  if(mysqli_num_rows($result2) == 1 ){
