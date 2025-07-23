@@ -39,6 +39,7 @@ while($data2 = mysqli_fetch_array($table)){
     $lembur = $data2['lembur'];
     $absen_terlambat = $data2['absen_terlambat'];
     $denda_absen = $data2['denda_absen'];
+    $hutang_pribadi = $data2['hutang_pribadi'];
 
     $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_karyawan' ");
     $data5 = mysqli_fetch_array($table5);
@@ -57,6 +58,10 @@ while($data2 = mysqli_fetch_array($table)){
     if($nama_karyawan == 'Septian Andriansyah' || $nama_karyawan == 'Okta Mayasari' || $nama_karyawan == 'Dendi Wibowo'|| $nama_karyawan == 'Dioni Saputra'|| $nama_karyawan == 'Devi Ratnasari' ){
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_kesehatan - $bpjs_ketenagakerjaan;
         $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif  ;
+    }
+        else if( $nama_karyawan == 'Komang Riski' ){
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $hutang_pribadi - $bpjs_ketenagakerjaan;
+        $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif ;
     }
     else{
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $tunjangan_operasional + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif - $bpjs_ketenagakerjaan ;
