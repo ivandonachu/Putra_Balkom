@@ -39,7 +39,6 @@ while($data2 = mysqli_fetch_array($table)){
     $lembur = $data2['lembur'];
     $absen_terlambat = $data2['absen_terlambat'];
     $denda_absen = $data2['denda_absen'];
-    $hutang_pribadi = $data2['hutang_pribadi'];
 
     $table5 = mysqli_query($koneksi, "SELECT SUM(jumlah_bon) AS total_bon FROM bon_karyawan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_karyawan = '$nama_karyawan' ");
     $data5 = mysqli_fetch_array($table5);

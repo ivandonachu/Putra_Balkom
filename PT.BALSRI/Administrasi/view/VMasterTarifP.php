@@ -542,16 +542,16 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
 
         <div class="row">
           <div class="col-md-4">
-             <label>KL 5</label>
-            <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required=""  value="<?php echo $kl4;?>">
+             <label>KL 3</label>
+            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required=""  value="<?php echo $kl3;?>">
            </div>
          <div class="col-md-4">
-             <label>KL 5</label>
+             <label>KL 4</label>
             <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required=""  value="<?php echo $kl4;?>">
            </div>
                 <div class="col-md-4">
              <label>KL 5</label>
-            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required=""  value="<?php echo $kl3;?>">
+            <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required=""  value="<?php echo $kl5;?>">
            </div>   
         </div>
 
@@ -566,33 +566,6 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
 </div>
 </div>
 
-<!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $urut;?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $urut; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
- <div class="modal-dialog" role ="document">
-   <div class="modal-content"> 
-    <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Sparepart </b> </h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-        <span aria-hidden="true"> &times; </span>
-      </button>
-    </div>
-
-    <div class="modal-body">
-      <form action="../proses/hapus_master_tarifP" method="POST">
-        <input type="hidden" name="delivery_point" value="<?php echo $delivery_point;?>">
-        <div class="form-group">
-          <h6> Yakin Ingin Hapus Data? </h6>             
-        </div>
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Hapus </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
 
 <?php echo  " </td> </tr>";
 }

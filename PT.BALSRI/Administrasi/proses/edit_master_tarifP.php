@@ -30,13 +30,14 @@ $kl1 = $_POST['kl1'];
 $kl2 = $_POST['kl2'];
 $kl3 = $_POST['kl3'];
 $kl4 = $_POST['kl4'];
+$kl5 = $_POST['kl5'];
 
 
 
 
 	
 
-		$query = mysqli_query($koneksi,"UPDATE master_tarif_p SET pemilik = '$pemilik' , sk_pola = '$sk_pola' , koe_factor = '$koe_factor', tarif_pertashop = '$tarif_pertashop' , jt = '$jt' , hrg_bbm = '$hrg_bbm' , kl1 = '$kl1' , kl2 = '$kl2' , kl3 = '$kl3' , kl4 = '$kl4'  WHERE delivery_point = '$delivery_point'");
+		$query = mysqli_query($koneksi,"UPDATE master_tarif_p SET pemilik = '$pemilik' , sk_pola = '$sk_pola' , koe_factor = '$koe_factor', tarif_pertashop = '$tarif_pertashop' , jt = '$jt' , hrg_bbm = '$hrg_bbm' , kl1 = '$kl1' , kl2 = '$kl2' , kl3 = '$kl3' , kl4 = '$kl4', kl5 = '$kl5'  WHERE delivery_point = '$delivery_point'");
 	
 	
 			echo "<script>alert('Update Data Berhasil :)'); window.location='../view/VMasterTarifP';</script>";exit;
