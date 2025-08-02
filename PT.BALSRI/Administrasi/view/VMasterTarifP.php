@@ -371,8 +371,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
 
         <div class="row">
           <div class="col-md-4">
-             <label>KL 5</label>
-            <input class="form-control form-control-sm" type="float" id="kl4" name="kl4" required="">
+             <label>KL 3</label>
+            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required="">
            </div>
          <div class="col-md-4">
              <label>KL 4</label>
@@ -380,8 +380,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
            </div>
              
            <div class="col-md-4">
-             <label>KL 3</label>
-            <input class="form-control form-control-sm" type="float" id="kl3" name="kl3" required="">
+             <label>KL 5</label>
+            <input class="form-control form-control-sm" type="float" id="kl5" name="kl5" required="">
            </div>   
         </div>
 
@@ -482,7 +482,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
                 <div class="row">
               <div class="col-md-6">
              <label>Pemilik</label>
-             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik" required="" value="<?php echo $pemilik;?>" >
+             <input class="form-control form-control-sm" type="text" id="pemilik" name="pemilik"  value="<?php echo $pemilik;?>" >
            </div> 
           <div class="col-md-6">
                <label>Delivey Point</label>
@@ -498,15 +498,15 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_p ");
 
            <div class="col-md-4">
              <label>Tarif Pertashop</label>
-             <input class="form-control form-control-sm" type="text" id="tarif_pertashop" name="tarif_pertashop" required="" value="<?php echo $tarif_pertashop;?>" >
+             <input class="form-control form-control-sm" type="text" id="tarif_pertashop" name="tarif_pertashop"  value="<?php echo $tarif_pertashop;?>" >
            </div> 
            <div class="col-md-4">
              <label>Koefisien Factor</label>
-             <input class="form-control form-control-sm" type="text" id="koe_factor" name="koe_factor" required="" value="<?php echo $koe_factor;?>" >
+             <input class="form-control form-control-sm" type="text" id="koe_factor" name="koe_factor"  value="<?php echo $koe_factor;?>" >
            </div>  
            <div class="col-md-4">
              <label>SK Pola</label>
-             <input class="form-control form-control-sm" type="text" id="sk_pola" name="sk_pola" required="" value="<?php echo $sk_pola;?>" >
+             <input class="form-control form-control-sm" type="text" id="sk_pola" name="sk_pola"  value="<?php echo $sk_pola;?>" >
            </div>            
          </div>
 
