@@ -128,9 +128,97 @@ if ($tanggal_awal == $tanggal_akhir) {
         }
     }
 
-    $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb +  $total_angkutan_map_bmu_kb + $total_angkutan_eki_bangunan_bmu_kb + $total_angkutan_syafuan_bmu_kb
-        + $total_angkutan_yanti_bmu_kb + $total_angkutan_nengah_bmu_kb + $total_angkutan_joko_bmu_kb + $total_angkutan_kustomo_bmu_kb + $total_angkutan_kodri_bmu_kb + $total_angkutan_samsul_bmu_kb +  $total_angkutan_wayan_bmu_kb + $total_angkutan_besi88_bmu_kb
-        + $total_angkutan_dedi_bmu_kb + $total_angkutan_rony_bmu_kb;
+   
+        //lamteng
+    $tabel_lamteng = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_lamteng WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
+
+    $total_angkutan_edy_bmu_lamteng = 0;
+    $total_angkutan_rama_bmu_lamteng = 0;
+    $total_angkutan_soma_bmu_lamteng = 0;
+    $total_angkutan_berkah_bmu_lamteng = 0;
+    $total_angkutan_map_bmu_lamteng = 0;
+    $total_angkutan_eki_bangunan_bmu_lamteng = 0;
+    $total_angkutan_syafuan_bmu_lamteng = 0;
+    $total_angkutan_yanti_bmu_lamteng = 0;
+    $total_angkutan_nengah_bmu_lamteng = 0;
+    $total_angkutan_joko_bmu_lamteng = 0;
+    $total_angkutan_kustomo_bmu_lamteng = 0;
+    $total_angkutan_kodri_bmu_lamteng = 0;
+    $total_angkutan_samsul_bmu_lamteng = 0;
+    $total_angkutan_wayan_bmu_lamteng = 0;
+    $total_angkutan_besi88_bmu_lamteng = 0;
+    $total_angkutan_dedi_bmu_lamteng = 0;
+    $total_angkutan_rony_bmu_lamteng = 0;
+
+    while ($data1 = mysqli_fetch_array($tabel_lamteng)) {
+
+        $no_polisi_ts = $data1['no_polisi'];
+        $qty = $data1['qty'];
+        $driver = $data1['driver'];
+
+        if ($qty >= 200 && $qty <= 300) {
+
+            $total_angkut_bmu_lamteng = $qty * 9062;
+        } else if ($qty > 300 && $qty <= 500) {
+
+            $total_angkut_bmu_lamteng = $qty * 7283;
+        } else if ($qty > 500) {
+
+            $total_angkut_bmu_lamteng = $qty * 7283;
+        }
+
+        $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+        $data2p = mysqli_fetch_array($table2p);
+        if (isset($data2p['status_kendaraan'])) {
+            $pemilik = $data2p['status_kendaraan'];
+            $kontrak = $data2p['kontrak'];
+        } else {
+            $pemilik = '';
+            $kontrak = '';
+        }
+
+
+
+        if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+            $total_angkutan_edy_bmu_lamteng = $total_angkutan_edy_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Bapak Rama' && $kontrak == 'BMU') {
+            $total_angkutan_rama_bmu_lamteng = $total_angkutan_rama_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'MAP' && $kontrak == 'BMU') {
+            $total_angkutan_map_bmu_lamteng = $total_angkutan_map_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Eki Bangunan' && $kontrak == 'BMU') {
+            $total_angkutan_eki_bangunan_bmu_lamteng = $total_angkutan_eki_bangunan_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Soma' && $kontrak == 'BMU') {
+            $total_angkutan_soma_bmu_lamteng = $total_angkutan_soma_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Berkah' && $kontrak == 'BMU') {
+            $total_angkutan_berkah_bmu_lamteng = $total_angkutan_berkah_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Syafuan' && $kontrak == 'BMU') {
+            $total_angkutan_syafuan_bmu_lamteng = $total_angkutan_syafuan_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Bu Yanti' && $kontrak == 'BMU') {
+            $total_angkutan_yanti_bmu_lamteng = $total_angkutan_yanti_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Pak Nengah' && $kontrak == 'BMU') {
+            $total_angkutan_nengah_bmu_lamteng = $total_angkutan_nengah_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Joko' && $kontrak == 'BMU') {
+            $total_angkutan_joko_bmu_lamteng = $total_angkutan_joko_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Kustomo' && $kontrak == 'BMU') {
+            $total_angkutan_kustomo_bmu_lamteng = $total_angkutan_kustomo_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Kodri' && $kontrak == 'BMU') {
+            $total_angkutan_kodri_bmu_lamteng = $total_angkutan_kodri_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Samsul' && $kontrak == 'BMU') {
+            $total_angkutan_samsul_bmu_lamteng = $total_angkutan_samsul_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'TB Besi 88' && $kontrak == 'BMU') {
+            $total_angkutan_besi88_bmu_lamteng = $total_angkutan_besi88_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Pak Wayan' && $kontrak == 'BMU') {
+            $total_angkutan_wayan_bmu_lamteng = $total_angkutan_wayan_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Pak Dedi' && $kontrak == 'BMU') {
+            $total_angkutan_dedi_bmu_lamteng = $total_angkutan_dedi_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
+            $total_angkutan_rony_bmu_lamteng = $total_angkutan_rony_bmu_lamteng + $total_angkut_bmu_lamteng;
+        }
+    }
+
+    $total_tagihan_lamteng = $total_angkutan_edy_bmu_lamteng + $total_angkutan_rama_bmu_lamteng + $total_angkutan_soma_bmu_lamteng + $total_angkutan_berkah_bmu_lamteng +  $total_angkutan_map_bmu_lamteng + $total_angkutan_eki_bangunan_bmu_lamteng + $total_angkutan_syafuan_bmu_lamteng
+        + $total_angkutan_yanti_bmu_lamteng + $total_angkutan_nengah_bmu_lamteng + $total_angkutan_joko_bmu_lamteng + $total_angkutan_kustomo_bmu_lamteng + $total_angkutan_kodri_bmu_lamteng + $total_angkutan_samsul_bmu_lamteng +  $total_angkutan_wayan_bmu_lamteng + $total_angkutan_besi88_bmu_lamteng
+        + $total_angkutan_dedi_bmu_lamteng + $total_angkutan_rony_bmu_lamteng;
 
     //Untung angkutan / pranko
     $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
@@ -1094,7 +1182,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-    $laba_kotor_sebelum_pajak = $total_pendapatan_bmu +  $total_tagihan_kotabumi;
+    $laba_kotor_sebelum_pajak = $total_pendapatan_bmu +  $total_tagihan_kotabumi + $total_tagihan_lamteng;
 
     $pajak = ($laba_kotor_sebelum_pajak*11)/100;
 
@@ -1538,6 +1626,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td>4-117</td>
                                                     <td class="text-left">Tagihan BMU Kota Bumi</td>
                                                     <td class="text-left"><?= formatuang($total_tagihan_kotabumi); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanKBBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-118</td>
+                                                    <td class="text-left">Tagihan BMU Lamteng</td>
+                                                    <td class="text-left"><?= formatuang($total_tagihan_lamteng); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanKBBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
