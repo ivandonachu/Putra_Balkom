@@ -127,7 +127,9 @@ if ($tanggal_awal == $tanggal_akhir) {
             $total_angkutan_rony_bmu_kb = $total_angkutan_rony_bmu_kb + $total_angkut_bmu_kotabumi;
         }
     }
-
+$total_tagihan_kb = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb +  $total_angkutan_map_bmu_kb + $total_angkutan_eki_bangunan_bmu_kb + $total_angkutan_syafuan_bmu_kb
+        + $total_angkutan_yanti_bmu_kb + $total_angkutan_nengah_bmu_kb + $total_angkutan_joko_bmu_kb + $total_angkutan_kustomo_bmu_kb + $total_angkutan_kodri_bmu_kb + $total_angkutan_samsul_bmu_kb +  $total_angkutan_wayan_bmu_kb + $total_angkutan_besi88_bmu_kb
+        + $total_angkutan_dedi_bmu_kb + $total_angkutan_rony_bmu_kb;
    
         //lamteng
     $tabel_lamteng = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_lamteng WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
