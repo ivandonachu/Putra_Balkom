@@ -421,11 +421,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['delivery_point']; ?>">Edit</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit">Edit</button>
 
       <!-- Form EDIT DATA -->
 
-      <div class="modal fade" id="formedit<?php echo $data['delivery_point']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+      <div class="modal fade" id="formedit" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role ="document">
           <div class="modal-content"> 
             <div class="modal-header">
@@ -506,8 +506,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_bk ");
 </div>
 
 <!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['delivery_point']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $data['delivery_point']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
+<div class="modal fade" id="PopUpHapus" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
  <div class="modal-dialog" role ="document">
    <div class="modal-content"> 
     <div class="modal-header">
