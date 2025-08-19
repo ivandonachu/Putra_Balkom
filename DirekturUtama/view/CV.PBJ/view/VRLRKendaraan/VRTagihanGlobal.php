@@ -386,7 +386,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $tipe_semen = $data['tipe_semen'];
                                         $tujuan = $data['tujuan'];
                                         $kota = $data['kota'];
-                                        $no_do = $data['no_do'];
+                                        $no_antri = $data['no_antri'];
                                         $material = $data['material'];
                                         $qty = $data['qty'];
                                         $harga = $data['harga'];
@@ -692,7 +692,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             echo "<tr>
                                             <td style='font-size: 14px'>$no_urut</td>
                                             <td style='font-size: 14px'>$tanggal</td>
-                                            <td style='font-size: 14px'>$no_do</td>
+                                            <td style='font-size: 14px'>$no_antri</td>
                                             <td style='font-size: 14px'>$tujuan</td>
                                             <td style='font-size: 14px'>$tipe_semen</td>
                                             <td style='font-size: 14px'>$kota</td>
