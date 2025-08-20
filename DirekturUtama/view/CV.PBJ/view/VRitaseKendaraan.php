@@ -652,7 +652,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver OKI</h5>
 <!-- Tabel -->    
-<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example7" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -701,7 +701,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver OKU</h5>
 <!-- Tabel -->    
-<table id="example9" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -750,7 +750,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver PESIBAR</h5>
 <!-- Tabel -->    
-<table id="example10" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example9" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -799,7 +799,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver LAMBAR</h5>
 <!-- Tabel -->    
-<table id="example11" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example10" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -848,7 +848,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver Kota Bumi</h5>
 <!-- Tabel -->    
-<table id="example7" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example11" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -912,7 +912,7 @@ $total_point = 0;
   <?php 
 $total_point = 0;
   ?>
-    <?php while($data = mysqli_fetch_array($table)){
+    <?php while($data = mysqli_fetch_array($table12)){
       $no_polisi = $data['no_polisi'];
       $total_rit =$data['total_rit'];
       $total_point = $total_rit * 2;
