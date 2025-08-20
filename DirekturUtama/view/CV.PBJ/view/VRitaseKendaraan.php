@@ -1021,7 +1021,7 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example1').DataTable( {
       lengthChange: true,
-      buttons: []
+      buttons: ['excel']
     } );
 
     table.buttons().container()
