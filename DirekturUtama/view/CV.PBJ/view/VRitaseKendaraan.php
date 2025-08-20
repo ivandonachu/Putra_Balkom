@@ -66,6 +66,7 @@ else{
   $table10 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. PESISIR BARAT' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB.PESISIR BARAT' GROUP BY no_polisi  ");
   $table11 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB. LAMPUNG BARAT' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kota = 'KAB.LAMPUNG BARAT' GROUP BY no_polisi  ");
   $table7 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_kota_bumi WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi  ");
+  $table12 = mysqli_query($koneksipbj,"SELECT no_polisi, count(*) AS total_rit FROM  pembelian_lamteng WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY no_polisi  ");
 
 
 }
@@ -358,7 +359,7 @@ else{
 
 <h5 align="center" >Rincian RIT Driver Global</h5>
 <!-- Tabel -->    
-<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example1" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -651,7 +652,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver OKI</h5>
 <!-- Tabel -->    
-<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example7" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -700,7 +701,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver OKU</h5>
 <!-- Tabel -->    
-<table id="example9" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example8" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -749,7 +750,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver PESIBAR</h5>
 <!-- Tabel -->    
-<table id="example10" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example9" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -798,7 +799,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver LAMBAR</h5>
 <!-- Tabel -->    
-<table id="example11" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example10" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -847,7 +848,7 @@ $total_point = 0;
 
 <h5 align="center" >Rincian RIT Driver Kota Bumi</h5>
 <!-- Tabel -->    
-<table id="example7" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example11" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -860,6 +861,58 @@ $total_point = 0;
 $total_point = 0;
   ?>
     <?php while($data = mysqli_fetch_array($table7)){
+      $no_polisi = $data['no_polisi'];
+      $total_rit =$data['total_rit'];
+      $total_point = $total_rit * 2;
+      $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi' ");
+      $data2p = mysqli_fetch_array($table2p);
+      if (isset($data2p['status_kendaraan'])) {
+          $pemilik = $data2p['status_kendaraan'];
+          $kontrak = $data2p['kontrak'];
+      } else {
+          $pemilik = "";
+          $kontrak  = "";
+      }
+      if ($pemilik == 'Bapak Nyoman Edi' || $pemilik == 'Bapak Rama'  ) {
+
+      echo "<tr>
+
+    <td style='font-size: 14px' >$no_polisi</td>
+    <td style='font-size: 14px' >$total_rit</td>
+    <td style='font-size: 14px' >$total_point</td>
+    
+
+
+ </tr>";
+      }
+}
+
+?>
+</tbody>
+</table>
+
+<br>
+<br>
+
+<br>
+<hr>
+<br>
+
+<h5 align="center" >Rincian RIT Driver LAMTENG</h5>
+<!-- Tabel -->    
+<table id="example12" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No Polisi</th>
+      <th>Rit </th>
+      <th>Total Point </th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+$total_point = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table12)){
       $no_polisi = $data['no_polisi'];
       $total_rit =$data['total_rit'];
       $total_point = $total_rit * 2;
@@ -966,9 +1019,9 @@ aria-hidden="true">
 
 <script>
   $(document).ready(function() {
-    var table = $('#example').DataTable( {
+    var table = $('#example1').DataTable( {
       lengthChange: true,
-      buttons: ['excel']
+      buttons: []
     } );
 
     table.buttons().container()
@@ -1088,6 +1141,18 @@ aria-hidden="true">
 <script>
   $(document).ready(function() {
     var table = $('#example11').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example12').DataTable( {
       lengthChange: true,
       buttons: ['excel']
     } );
