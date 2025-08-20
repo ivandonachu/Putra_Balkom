@@ -1150,17 +1150,7 @@ aria-hidden="true">
   } );
 </script>
 
-<script>
-  $(document).ready(function() {
-    var table = $('#example12').DataTable( {
-      lengthChange: true,
-      buttons: ['excel']
-    } );
 
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
 
 
 
