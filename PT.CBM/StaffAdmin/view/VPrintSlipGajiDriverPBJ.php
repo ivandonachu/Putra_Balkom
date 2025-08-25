@@ -93,19 +93,19 @@ $html = '
         <table align="center" style="width:100%" border="1" cellspacing="0">
 
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Ritase NJE</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Ritase Semen</td>
         <td align="right" style="font-size: 10px; width:79%;">'. $rit_semen .' Rit</td>
         </tr>
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Upah NJE</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Upah Semen</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_semen) .'</td>
         </tr>
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Ritase Gas Palembang</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Ritase Batu/Pasir</td>
         <td align="right" style="font-size: 10px; width:79%;">'. $rit_batu .' Rit</td>
         </tr>
         <tr>
-        <td align="left" style="font-size: 10px; width:30%; ">Upah Gas Palembang</td>
+        <td align="left" style="font-size: 10px; width:30%; ">Upah Batu/Pasir</td>
         <td align="right" style="font-size: 10px; width:79%;">'. formatuangx($upah_batu) .'</td>
         </tr>
         <tr>
