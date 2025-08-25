@@ -491,6 +491,31 @@ else{
 
                               <div class="row">
 
+          <div class="col-md-6">
+           <label>No Polisi</label>
+
+          
+                                  <select id="tokens" class="selectpicker form-control" name="no_polisi"  data-live-search="true">
+                                    <?php
+                                    include 'koneksi.php';
+                                    $dataSelect = $data['no_polisi'];
+                                    $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");
+
+                                    while ($data2 = mysqli_fetch_array($result)) {
+                                      $no_polisi = $data2['no_polisi'];
+
+
+                                      echo "<option" ?> <?php echo ($dataSelect == $no_polisi) ? "selected" : "" ?>> <?php echo $no_polisi; ?> <?php echo "</option>";
+                                                                                                                                                  }
+                                                                                                                                                    ?>
+                                  </select>
+
+        </div>
+
+      </div>
+
+                              <div class="row">
+
 
                                 <div class="col-md-12">
                                   <label>Jumlah</label>
