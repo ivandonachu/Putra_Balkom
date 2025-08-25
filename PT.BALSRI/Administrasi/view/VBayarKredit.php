@@ -453,6 +453,72 @@ else{
       <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
+
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+                    <!-- Form EDIT DATA -->
+
+                    <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title"> Form Edit Kredit </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                              <span aria-hidden="true"> &times; </span>
+                            </button>
+                          </div>
+
+                          <!-- Form Edit Data -->
+                          <div class="modal-body" align="left">
+                            <form action="../proses/edit_kredit" enctype="multipart/form-data" method="POST">
+
+                              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+                              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+
+
+                              <div class="row">
+                                <div class="col-md-6">
+
+                                  <label>Tanggal</label>
+                                  <div class="col-sm-10">
+                                    <input type="date" id="tanggal" name="tanggal" required="" value="<?php echo $tanggal; ?>">
+                                  </div>
+
+                                </div>
+
+                              </div>
+
+                              <div class="row">
+
+
+                                <div class="col-md-12">
+                                  <label>Jumlah</label>
+                                  <input class="form-control form-control-sm" type="text" id="jumlah" name="jumlah" required="" value="<?php echo $jumlah; ?>">
+                                </div>
+
+                              </div>
+
+
+
+                              <br>
+
+                              <div>
+                                <label>Upload File</label>
+                                <input type="file" name="file">
+                              </div>
+                          </div>
+
+
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"> Ubah </button>
+                            <button type="reset" class="btn btn-danger"> RESET</button>
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+     
     
 
 <!-- Button Hapus -->
