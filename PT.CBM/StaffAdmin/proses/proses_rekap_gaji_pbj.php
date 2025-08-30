@@ -57,7 +57,7 @@ while($data2 = mysqli_fetch_array($table)){
     $keterangan = $data2['keterangan'];
 
     $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_pbj VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_akomodasi','$tunjangan_oprasional','$uang_makan','$bpjs_ketenagakerjaan','$bpjs_kesehatan','$lembur','$premi_kehadiran'
-                                                                        ,'$bonus_1','$bonus_2','$bonus_3','$absen_terlambat','$insentif','$hutang_pribadi','$potongan_absen','$angsuran_pinjaman','$potongan_bon','$total_gaji','$total_gaji_diterima','$keterangan')");
+                                                                        ,'$bonus_1','$bonus_2','$bonus_3','$absen_terlambat','$insentif','$potongan_absen','$angsuran_pinjaman','$potongan_bon','$hutang_pribadi','$total_gaji','$total_gaji_diterima','$keterangan')");
 
 }
 
