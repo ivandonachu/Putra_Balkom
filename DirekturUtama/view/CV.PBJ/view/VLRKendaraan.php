@@ -61,6 +61,10 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_angkutan_besi88_bmu_kb = 0;
     $total_angkutan_dedi_bmu_kb = 0;
     $total_angkutan_rony_bmu_kb = 0;
+    $total_angkutan_azzahra_bmu_kb = 0;
+    $total_angkutan_sony_bmu_kb = 0;
+    $total_angkutan_ahmad_bmu_kb = 0;
+    $total_angkutan_gm_bmu_kb = 0;
 
     while ($data1 = mysqli_fetch_array($tabel_kotabumi)) {
 
@@ -125,13 +129,21 @@ if ($tanggal_awal == $tanggal_akhir) {
             $total_angkutan_dedi_bmu_kb = $total_angkutan_dedi_bmu_kb + $total_angkut_bmu_kotabumi;
         } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
             $total_angkutan_rony_bmu_kb = $total_angkutan_rony_bmu_kb + $total_angkut_bmu_kotabumi;
+        } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+            $total_angkutan_azzahra_bmu_kb = $total_angkutan_azzahra_bmu_kb + $total_angkut_bmu_kotabumi;
+        } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+            $total_angkutan_sony_bmu_kb = $total_angkutan_sony_bmu_kb + $total_angkut_bmu_kotabumi;
+        } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+            $total_angkutan_ahmad_bmu_kb = $total_angkutan_ahmad_bmu_kb + $total_angkut_bmu_kotabumi;
+        } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+            $total_angkutan_gm_bmu_kb = $total_angkutan_gm_bmu_kb + $total_angkut_bmu_kotabumi;
         }
     }
-$total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb +  $total_angkutan_map_bmu_kb + $total_angkutan_eki_bangunan_bmu_kb + $total_angkutan_syafuan_bmu_kb
+    $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_kb + $total_angkutan_soma_bmu_kb + $total_angkutan_berkah_bmu_kb +  $total_angkutan_map_bmu_kb + $total_angkutan_eki_bangunan_bmu_kb + $total_angkutan_syafuan_bmu_kb
         + $total_angkutan_yanti_bmu_kb + $total_angkutan_nengah_bmu_kb + $total_angkutan_joko_bmu_kb + $total_angkutan_kustomo_bmu_kb + $total_angkutan_kodri_bmu_kb + $total_angkutan_samsul_bmu_kb +  $total_angkutan_wayan_bmu_kb + $total_angkutan_besi88_bmu_kb
-        + $total_angkutan_dedi_bmu_kb + $total_angkutan_rony_bmu_kb;
-   
-        //lamteng
+        + $total_angkutan_dedi_bmu_kb + $total_angkutan_rony_bmu_kb + $total_angkutan_azzahra_bmu_kb + $total_angkutan_sony_bmu_kb + $total_angkutan_ahmad_bmu_kb + $total_angkutan_gm_bmu_kb;
+
+    //lamteng
     $tabel_lamteng = mysqli_query($koneksipbj, "SELECT no_polisi, driver, qty FROM pembelian_lamteng WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
 
     $total_angkutan_edy_bmu_lamteng = 0;
@@ -151,6 +163,10 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
     $total_angkutan_besi88_bmu_lamteng = 0;
     $total_angkutan_dedi_bmu_lamteng = 0;
     $total_angkutan_rony_bmu_lamteng = 0;
+    $total_angkutan_azzahra_bmu_lamteng = 0;
+    $total_angkutan_sony_bmu_lamteng = 0;
+    $total_angkutan_ahmad_bmu_lamteng = 0;
+    $total_angkutan_gm_bmu_lamteng = 0;
 
     while ($data1 = mysqli_fetch_array($tabel_lamteng)) {
 
@@ -215,12 +231,20 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
             $total_angkutan_dedi_bmu_lamteng = $total_angkutan_dedi_bmu_lamteng + $total_angkut_bmu_lamteng;
         } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
             $total_angkutan_rony_bmu_lamteng = $total_angkutan_rony_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+            $total_angkutan_azzahra_bmu_lamteng = $total_angkutan_azzahra_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+            $total_angkutan_sony_bmu_lamteng = $total_angkutan_sony_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+            $total_angkutan_ahmad_bmu_lamteng = $total_angkutan_ahmad_bmu_lamteng + $total_angkut_bmu_lamteng;
+        } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+            $total_angkutan_gm_bmu_lamteng = $total_angkutan_gm_bmu_lamteng + $total_angkut_bmu_lamteng;
         }
     }
 
     $total_tagihan_lamteng = $total_angkutan_edy_bmu_lamteng + $total_angkutan_rama_bmu_lamteng + $total_angkutan_soma_bmu_lamteng + $total_angkutan_berkah_bmu_lamteng +  $total_angkutan_map_bmu_lamteng + $total_angkutan_eki_bangunan_bmu_lamteng + $total_angkutan_syafuan_bmu_lamteng
         + $total_angkutan_yanti_bmu_lamteng + $total_angkutan_nengah_bmu_lamteng + $total_angkutan_joko_bmu_lamteng + $total_angkutan_kustomo_bmu_lamteng + $total_angkutan_kodri_bmu_lamteng + $total_angkutan_samsul_bmu_lamteng +  $total_angkutan_wayan_bmu_lamteng + $total_angkutan_besi88_bmu_lamteng
-        + $total_angkutan_dedi_bmu_lamteng + $total_angkutan_rony_bmu_lamteng;
+        + $total_angkutan_dedi_bmu_lamteng + $total_angkutan_rony_bmu_lamteng + $total_angkutan_azzahra_bmu_lamteng + $total_angkutan_sony_bmu_lamteng + $total_angkutan_ahmad_bmu_lamteng + $total_angkutan_gm_bmu_lamteng;
 
     //Untung angkutan / pranko
     $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
@@ -242,6 +266,10 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
     $total_angkutan_besi88_bmu = 0;
     $total_angkutan_dedi_bmu = 0;
     $total_angkutan_rony_bmu = 0;
+    $total_angkutan_azzahra_bmu = 0;
+    $total_angkutan_sony_bmu = 0;
+    $total_angkutan_ahmad_bmu = 0;
+    $total_angkutan_gm_bmu = 0;
     while ($data1 = mysqli_fetch_array($table1)) {
 
 
@@ -335,6 +363,14 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                 $total_angkutan_dedi_bmu = $total_angkutan_dedi_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
                 $total_angkutan_rony_bmu = $total_angkutan_rony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+                $total_angkutan_azzahra_bmu = $total_angkutan_azzahra_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+                $total_angkutan_sony_bmu = $total_angkutan_sony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+                $total_angkutan_ahmad_bmu = $total_angkutan_ahmad_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+                $total_angkutan_gm_bmu = $total_angkutan_gm_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB MESUJI') {
             //RLI
@@ -411,6 +447,14 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                 $total_angkutan_dedi_bmu = $total_angkutan_dedi_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
                 $total_angkutan_rony_bmu = $total_angkutan_rony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+                $total_angkutan_azzahra_bmu = $total_angkutan_azzahra_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+                $total_angkutan_sony_bmu = $total_angkutan_sony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+                $total_angkutan_ahmad_bmu = $total_angkutan_ahmad_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+                $total_angkutan_gm_bmu = $total_angkutan_gm_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB. TULANG BAWANG') {
 
@@ -492,6 +536,14 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                     $total_angkutan_dedi_bmu = $total_angkutan_dedi_bmu + $total_angkut_bmu;
                 } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
                     $total_angkutan_rony_bmu = $total_angkutan_rony_bmu + $total_angkut_bmu;
+                } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+                    $total_angkutan_azzahra_bmu = $total_angkutan_azzahra_bmu + $total_angkut_bmu;
+                } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+                    $total_angkutan_sony_bmu = $total_angkutan_sony_bmu + $total_angkut_bmu;
+                } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+                    $total_angkutan_ahmad_bmu = $total_angkutan_ahmad_bmu + $total_angkut_bmu;
+                } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+                    $total_angkutan_gm_bmu = $total_angkutan_gm_bmu + $total_angkut_bmu;
                 }
             } else {
                 //RLI
@@ -574,6 +626,14 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                     $total_angkutan_dedi_bmu = $total_angkutan_dedi_bmu + $total_angkut_bmu;
                 } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
                     $total_angkutan_rony_bmu = $total_angkutan_rony_bmu + $total_angkut_bmu;
+                } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+                    $total_angkutan_azzahra_bmu = $total_angkutan_azzahra_bmu + $total_angkut_bmu;
+                } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+                    $total_angkutan_sony_bmu = $total_angkutan_sony_bmu + $total_angkut_bmu;
+                } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+                    $total_angkutan_ahmad_bmu = $total_angkutan_ahmad_bmu + $total_angkut_bmu;
+                } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+                    $total_angkutan_gm_bmu = $total_angkutan_gm_bmu + $total_angkut_bmu;
                 }
             }
         } else if ($kota == 'KAB WAY KANAN') {
@@ -657,6 +717,14 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                 $total_angkutan_dedi_bmu = $total_angkutan_dedi_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
                 $total_angkutan_rony_bmu = $total_angkutan_rony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+                $total_angkutan_azzahra_bmu = $total_angkutan_azzahra_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+                $total_angkutan_sony_bmu = $total_angkutan_sony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+                $total_angkutan_ahmad_bmu = $total_angkutan_ahmad_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+                $total_angkutan_gm_bmu = $total_angkutan_gm_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB OKU SELATAN') {
             //RLI
@@ -667,31 +735,31 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
 
 
 
-                //BMU 10ton
-                if ($qty >= 1 && $qty <= 300) {
+            //BMU 10ton
+            if ($qty >= 1 && $qty <= 300) {
 
-                    $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
-                    $data3p = mysqli_fetch_array($table3p);
-                    $tarif_200 = $data3p['tarif_200'];
-                    $total_angkut_bmu = $qty * $tarif_200;
-                }
-                //BMU 20ton
-                else if ($qty > 300 && $qty <= 500) {
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_200 = $data3p['tarif_200'];
+                $total_angkut_bmu = $qty * $tarif_200;
+            }
+            //BMU 20ton
+            else if ($qty > 300 && $qty <= 500) {
 
-                    $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
-                    $data3p = mysqli_fetch_array($table3p);
-                    $tarif_400 = $data3p['tarif_400'];
-                    $total_angkut_bmu = $qty * $tarif_400;
-                }
-                //BMU 30ton
-                else if ($qty > 500) {
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_400 = $data3p['tarif_400'];
+                $total_angkut_bmu = $qty * $tarif_400;
+            }
+            //BMU 30ton
+            else if ($qty > 500) {
 
-                    $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
-                    $data3p = mysqli_fetch_array($table3p);
-                    $tarif_600 = $data3p['tarif_600'];
-                    $total_angkut_bmu = $qty * $tarif_600;
-                }
-            
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_600 = $data3p['tarif_600'];
+                $total_angkut_bmu = $qty * $tarif_600;
+            }
+
 
 
 
@@ -744,6 +812,14 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                 $total_angkutan_dedi_bmu = $total_angkutan_dedi_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
                 $total_angkutan_rony_bmu = $total_angkutan_rony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+                $total_angkutan_azzahra_bmu = $total_angkutan_azzahra_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+                $total_angkutan_sony_bmu = $total_angkutan_sony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+                $total_angkutan_ahmad_bmu = $total_angkutan_ahmad_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+                $total_angkutan_gm_bmu = $total_angkutan_gm_bmu + $total_angkut_bmu;
             }
         } else if ($kota == 'KAB. OGAN KOM ULU') {
 
@@ -822,10 +898,16 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                 $total_angkutan_dedi_bmu = $total_angkutan_dedi_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
                 $total_angkutan_rony_bmu = $total_angkutan_rony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+                $total_angkutan_azzahra_bmu = $total_angkutan_azzahra_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+                $total_angkutan_sony_bmu = $total_angkutan_sony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+                $total_angkutan_ahmad_bmu = $total_angkutan_ahmad_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+                $total_angkutan_gm_bmu = $total_angkutan_gm_bmu + $total_angkut_bmu;
             }
-        }
-
-        else if ($kota == 'KAB. LAMPUNG BARAT') {
+        } else if ($kota == 'KAB. LAMPUNG BARAT') {
 
 
             //BMU 10ton
@@ -902,10 +984,16 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                 $total_angkutan_dedi_bmu = $total_angkutan_dedi_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
                 $total_angkutan_rony_bmu = $total_angkutan_rony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+                $total_angkutan_azzahra_bmu = $total_angkutan_azzahra_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+                $total_angkutan_sony_bmu = $total_angkutan_sony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+                $total_angkutan_ahmad_bmu = $total_angkutan_ahmad_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+                $total_angkutan_gm_bmu = $total_angkutan_gm_bmu + $total_angkut_bmu;
             }
-        }
-
-        else if ($kota == 'KAB.PESISIR BARAT') {
+        } else if ($kota == 'KAB.PESISIR BARAT') {
 
 
             //BMU 10ton
@@ -982,11 +1070,19 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                 $total_angkutan_dedi_bmu = $total_angkutan_dedi_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Pak Rony' && $kontrak == 'BMU') {
                 $total_angkutan_rony_bmu = $total_angkutan_rony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Azzahra' && $kontrak == 'BMU') {
+                $total_angkutan_azzahra_bmu = $total_angkutan_azzahra_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Sony' && $kontrak == 'BMU') {
+                $total_angkutan_sony_bmu = $total_angkutan_sony_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'Pak Ahmad' && $kontrak == 'BMU') {
+                $total_angkutan_ahmad_bmu = $total_angkutan_ahmad_bmu + $total_angkut_bmu;
+            } else if ($pemilik == 'GM Balkom' && $kontrak == 'BMU') {
+                $total_angkutan_gm_bmu = $total_angkutan_gm_bmu + $total_angkut_bmu;
             }
         }
     }
 
-    
+
 
 
 
@@ -994,7 +1090,8 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
     $total_pendapatan_rli = $total_angkutan_edy_rli;
     $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu
         + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu + $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_kustomo_bmu + $total_angkutan_kodri_bmu
-        + $total_angkutan_wayan_bmu + $total_angkutan_samsul_bmu + $total_angkutan_besi88_bmu + $total_angkutan_dedi_bmu + $total_angkutan_rony_bmu;
+        + $total_angkutan_wayan_bmu + $total_angkutan_samsul_bmu + $total_angkutan_besi88_bmu + $total_angkutan_dedi_bmu + $total_angkutan_rony_bmu + $total_angkutan_azzahra_bmu 
+        + $total_angkutan_sony_bmu + $total_angkutan_ahmad_bmu + $total_angkutan_gm_bmu;
 
 
 
@@ -1041,13 +1138,13 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
         $ug = $data2['total_ug'];
         $om = $data2['total_om'];
         if (
-            $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8101YA' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' || $no_polisi == 'BG8223YD' || 
+            $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8101YA' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' || $no_polisi == 'BG8223YD' ||
             $no_polisi == 'BG8224YD' || $no_polisi == 'BG8225YD' || $no_polisi == 'BG8226YD' || $no_polisi == 'BG8227YD' || $no_polisi == 'BG8876UY' || $no_polisi == 'BG8101YB' || $no_polisi == 'BG8376YB' ||
             $no_polisi == 'BG8970YB' || $no_polisi == 'BG8405YB' || $no_polisi == 'BG8965V'  || $no_polisi == 'BG8966V'  || $no_polisi == 'BG8884UY' || $no_polisi == 'BG8083FP' || $no_polisi == 'BE8917ACU' ||
             $no_polisi == 'BE8943ACU' || $no_polisi == 'BE8946ACU' || $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' || $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' ||
-            $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || 
-            $no_polisi == 'BG8535VD' || $no_polisi == 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH' || $no_polisi == 'BG8148YH' || 
-            $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU'
+            $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' ||
+            $no_polisi == 'BG8535VD' || $no_polisi == 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH' || $no_polisi == 'BG8148YH' ||
+            $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU' || $no_polisi == 'BG1712XL' || $no_polisi == 'BG1722XL' || $no_polisi == 'BG8969YB' || $no_polisi == 'BG1711XL' || $no_polisi == 'BG8218YH'
         ) {
             $total_uj = $total_uj + $uj;
             $total_gaji = $total_gaji + $ug;
@@ -1069,13 +1166,13 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
         $ug = $data2sl['total_ug_sl'];
         $om = $data2sl['total_om_sl'];
         if (
-            $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8101YA' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' || $no_polisi == 'BG8223YD' || 
+            $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8101YA' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' || $no_polisi == 'BG8223YD' ||
             $no_polisi == 'BG8224YD' || $no_polisi == 'BG8225YD' || $no_polisi == 'BG8226YD' || $no_polisi == 'BG8227YD' || $no_polisi == 'BG8876UY' || $no_polisi == 'BG8101YB' || $no_polisi == 'BG8376YB' ||
             $no_polisi == 'BG8970YB' || $no_polisi == 'BG8405YB' || $no_polisi == 'BG8965V'  || $no_polisi == 'BG8966V'  || $no_polisi == 'BG8884UY' || $no_polisi == 'BG8083FP' || $no_polisi == 'BE8917ACU' ||
             $no_polisi == 'BE8943ACU' || $no_polisi == 'BE8946ACU' || $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' || $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' ||
-            $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || 
-            $no_polisi == 'BG8535VD' || $no_polisi == 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH' || $no_polisi == 'BG8148YH' || 
-            $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU' 
+            $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' ||
+            $no_polisi == 'BG8535VD' || $no_polisi == 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH' || $no_polisi == 'BG8148YH' ||
+            $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU' || $no_polisi == 'BG1712XL' || $no_polisi == 'BG1722XL' || $no_polisi == 'BG8969YB' || $no_polisi == 'BG1711XL' || $no_polisi == 'BG8218YH'
         ) {
             $total_uj_sl = $total_uj_sl + $uj;
             $total_gaji_sl = $total_gaji_sl + $ug;
@@ -1093,13 +1190,13 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
         $no_polisi = $data2x['no_polisi'];
         $bs = $data2x['total_bs'];
         if (
-            $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8101YA' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' || $no_polisi != 'BG8223YD' || 
+            $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8101YA' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' || $no_polisi != 'BG8223YD' ||
             $no_polisi != 'BG8224YD' || $no_polisi != 'BG8225YD' || $no_polisi != 'BG8226YD' || $no_polisi != 'BG8227YD' || $no_polisi != 'BG8876UY' || $no_polisi != 'BG8101YB' || $no_polisi != 'BG8376YB' ||
             $no_polisi != 'BG8970YB' || $no_polisi != 'BG8405YB' || $no_polisi != 'BG8965V'  || $no_polisi != 'BG8966V'  || $no_polisi != 'BG8884UY' || $no_polisi != 'BG8083FP' || $no_polisi != 'BE8917ACU' ||
             $no_polisi != 'BE8943ACU' || $no_polisi != 'BE8946ACU' || $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' || $no_polisi != 'BE8928ACU' || $no_polisi != 'BE8934ACU' ||
-            $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || 
-            $no_polisi != 'BG8535VD' || $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH' || $no_polisi != 'BG8148YH' || 
-            $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU'
+            $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' ||
+            $no_polisi != 'BG8535VD' || $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH' || $no_polisi != 'BG8148YH' ||
+            $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU' || $no_polisi != 'BG1712XL' || $no_polisi != 'BG1722XL' || $no_polisi != 'BG8969YB' || $no_polisi != 'BG1711XL' || $no_polisi != 'BG8218YH'
         ) {
             $total_bs = $total_bs + $bs;
         } else {
@@ -1114,13 +1211,13 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
         $no_polisi = $data2slx['no_polisi'];
         $bs = $data2slx['total_bs_sl'];
         if (
-            $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8101YA' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' || $no_polisi != 'BG8223YD' || 
+            $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8101YA' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' || $no_polisi != 'BG8223YD' ||
             $no_polisi != 'BG8224YD' || $no_polisi != 'BG8225YD' || $no_polisi != 'BG8226YD' || $no_polisi != 'BG8227YD' || $no_polisi != 'BG8876UY' || $no_polisi != 'BG8101YB' || $no_polisi != 'BG8376YB' ||
             $no_polisi != 'BG8970YB' || $no_polisi != 'BG8405YB' || $no_polisi != 'BG8965V'  || $no_polisi != 'BG8966V'  || $no_polisi != 'BG8884UY' || $no_polisi != 'BG8083FP' || $no_polisi != 'BE8917ACU' ||
             $no_polisi != 'BE8943ACU' || $no_polisi != 'BE8946ACU' || $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' || $no_polisi != 'BE8928ACU' || $no_polisi != 'BE8934ACU' ||
-            $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || 
-            $no_polisi != 'BG8535VD' || $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH' || $no_polisi != 'BG8148YH' || 
-            $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU'
+            $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' ||
+            $no_polisi != 'BG8535VD' || $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH' || $no_polisi != 'BG8148YH' ||
+            $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU' || $no_polisi != 'BG1712XL' || $no_polisi != 'BG1722XL' || $no_polisi != 'BG8969YB' || $no_polisi != 'BG1711XL' || $no_polisi != 'BG8218YH'
         ) {
             $total_bs_sl = $total_bs_sl + $bs;
         } else {
@@ -1157,10 +1254,12 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
 
     $laba_kotor_sebelum_pajak = $total_pendapatan_bmu +  $total_tagihan_kotabumi + $total_tagihan_lamteng;
 
-    $pajak = ($laba_kotor_sebelum_pajak*11)/100;
+    $pph_23 = ($laba_kotor_sebelum_pajak * 2) / 100;
+
+    $pajak = ($laba_kotor_sebelum_pajak * 11) / 100;
 
 
-    $laba_kotor = $laba_kotor_sebelum_pajak + $pajak; 
+    $laba_kotor = (($laba_kotor_sebelum_pajak + $pajak) - $pph_23);
 
     $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $total_om + $total_om_sl + $total_bs + $total_bs_sl + $jml_biaya_tarikan_sl + $jml_biaya_tarikan_s + $biaya_perbaikan_1 + $biaya_perbaikan_2 + $jml_pembelian_sparepart + $total_kredit_kendaraan;
 
@@ -1589,6 +1688,27 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanRonyBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
+                                                    <td>4-115</td>
+                                                    <td class="text-left">Tagihan BMU Az zahra</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_azzahra_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanAzzahraBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-115</td>
+                                                    <td class="text-left">Tagihan BMU Pak Ahmad</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_ahmad_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanAhmadBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-115</td>
+                                                    <td class="text-left">Tagihan BMU GM Balkom</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_gm_bmu); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanGMBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
                                                     <td>4-116</td>
                                                     <td class="text-left">Tagihan BMU Global</td>
                                                     <td class="text-left"><?= formatuang($total_pendapatan_bmu); ?></td>
@@ -1617,9 +1737,16 @@ $total_tagihan_kotabumi = $total_angkutan_edy_bmu_kb + $total_angkutan_rama_bmu_
                                                     <td class="thick-line"></td>
                                                 </tr>
                                                 <tr style="background-color: navy;  color:white;">
-                                                    <td><strong>Pajak 11%</strong></td>
+                                                    <td><strong>PPN 11%</strong></td>
                                                     <td class="thick-line"></td>
                                                     <td class="no-line text-left"><?= formatuang($pajak); ?> </td>
+                                                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                                                    <td class="thick-line"></td>
+                                                </tr>
+                                                <tr style="background-color: navy;  color:white;">
+                                                    <td><strong>PPH 23 2%</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="no-line text-left"><?= formatuang($pph_23); ?> </td>
                                                     <td class="no-line text-left"><?= formatuang(0); ?> </td>
                                                     <td class="thick-line"></td>
                                                 </tr>
