@@ -113,7 +113,7 @@ $selisih_bbm =  $total_dexlite - $uang_bbm;
    
 }
    // Tagihan spbu
-   $table_spbu = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND mt = '$no_polisilr'");
+   $table_spbu = mysqli_query($koneksibalsri, "SELECT SUM(total) AS total_tagihan, SUM(jt) AS total_jt, SUM(rit) AS total_rit  FROM tagihan_spbu a INNER JOIN master_tarif_spbu b ON a.delivery_point=b.delivery_point  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.mt = '$no_polisilr'");
    $data_spbu = mysqli_fetch_array($table_spbu);
    $total_tagihan_spbu = $data_spbu['total_tagihan'];
    //pengiriman spbu
@@ -590,8 +590,15 @@ $selisih_bbm =  $total_dexlite - $uang_bbm;
                 </tr>
                 <tr>
                  <td>4-100</td>
-                 <td class="text-left">Tagihan Patra</td>
+                 <td class="text-left">Tagihan Patra Pertashop</td>
                  <td class="text-left"><?= formatuang($total_tagihan); ?></td>
+                 <td class="text-left"><?= formatuang(0); ?></td>
+                 <?php echo "<td class='text-right'><a href='VRDriverLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
+             </tr>
+             <tr>
+                 <td>4-200</td>
+                 <td class="text-left">Tagihan Patra SPBU</td>
+                 <td class="text-left"><?= formatuang($total_tagihan_spbu); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <?php echo "<td class='text-right'><a href='VRDriverLMG/VRTagihan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'>Rincian</a></td>"; ?>
              </tr>
