@@ -405,6 +405,81 @@ else{
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
     
+ <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+      <!-- Form EDIT DATA -->
+
+      <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role ="document">
+          <div class="modal-content"> 
+            <div class="modal-header">
+              <h5 class="modal-title"> Form Edit Kredit </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true"> &times; </span>
+              </button>
+            </div>
+
+            <!-- Form Edit Data -->
+            <div class="modal-body">
+              <form action="../proses/edit_kredit" enctype="multipart/form-data" method="POST">
+
+                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>"> 
+                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+
+                <div class="row">
+                <div class="col-md-6">
+                <label>Tanggal</label>
+                
+                 <input  class="form-control" type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>">
+               </div>
+                             <div class="col-md-6">
+                <label>No Polisi</label>
+                <select id="no_polisi" name="no_polisi" class="form-control">
+                  <?php
+                  $dataSelect = $data['no_polisi']; 
+                  include 'koneksi.php';
+                  $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
+
+                  while ($data2 = mysqli_fetch_array($result)){
+                    $no_polisi = $data2['no_polisi'];
+
+                    echo "<option" ?> <?php echo ($dataSelect == $no_polisi) ? "selected" : "" ?>> <?php echo $no_polisi; ?> <?php echo "</option>" ;
+
+                  }
+                  ?>
+                </select>
+              </div>     
+                </div>
+
+               <br>
+
+            <div class="row">
+              <div class="col-md-6">
+
+                <label>Jumlah</label>
+                <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="" value="<?php echo $jml_pengeluaran;?>">
+
+              </div>   
+          </div>
+
+      <br>
+
+          <div>
+            <label>Upload File</label> 
+            <input type="file" name="file"> 
+          </div> 
+
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> Ubah </button>
+            <button type="reset" class="btn btn-danger"> RESET</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Button Hapus -->
 <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
