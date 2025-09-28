@@ -111,11 +111,7 @@ else{
     $table10 =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
 
     //akses kredit
-    $table101 =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
-    //totalkredit
-    $total_kredit = 0;
-    while($data = mysqli_fetch_array($table101)){
-        $mt = $data['mt'];
+
 
         $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
         $dataa = mysqli_fetch_array($tablee);
@@ -132,7 +128,7 @@ else{
             $total_kredit += $jml_kreditx;
         }
         
-    }
+    
     
 
     //pengeluran perbaikan
