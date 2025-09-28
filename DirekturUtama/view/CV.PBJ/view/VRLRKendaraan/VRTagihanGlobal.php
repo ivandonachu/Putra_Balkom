@@ -670,6 +670,34 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
                                             }
+                                        } else if ($kota == 'KAB. LAMPUNG TIMUR') {
+
+
+                                            //BMU 10ton
+                                            if ($qty >= 1 && $qty <= 300) {
+
+                                                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                                                $data3p = mysqli_fetch_array($table3p);
+                                                $tarifx = $data3p['tarif_200'];
+                                            
+                                            }
+                                            //BMU 20ton
+                                            else if ($qty > 300 && $qty <= 500) {
+
+                                                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                                                $data3p = mysqli_fetch_array($table3p);
+                                                $tarifx = $data3p['tarif_400'];
+                                                
+                                            }
+                                            //BMU 30ton
+                                            else if ($qty > 500) {
+
+                                                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                                                $data3p = mysqli_fetch_array($table3p);
+                                                $tarifx = $data3p['tarif_600'];
+                                                
+                                            }
+
                                         }
 
                                         

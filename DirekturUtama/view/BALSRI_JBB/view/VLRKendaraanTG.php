@@ -117,11 +117,11 @@ else{
     while($data = mysqli_fetch_array($table101)){
         $mt = $data['mt'];
 
-        $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
         $dataa = mysqli_fetch_array($tablee);
         $jml_kredit= $dataa['total_kredit'];
 
-        $tableex= mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt'");
+        $tableex= mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
         $dataax = mysqli_fetch_array($tableex);
         $jml_kreditx= $dataax['total_kreditx'];
 
