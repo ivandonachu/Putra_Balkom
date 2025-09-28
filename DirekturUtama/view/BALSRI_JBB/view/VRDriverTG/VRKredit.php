@@ -39,10 +39,10 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-        $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
+        $tablee = mysqli_query($koneksibalsri, "SELECT *  FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
 
 
-        $tableex= mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
+        $tableex= mysqli_query($koneksistre, "SELECT *  FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
    
 
 }
@@ -426,6 +426,54 @@ else{
 
 </tbody>
 </table>
+
+
+<br>
+<br>
+<!-- Tabel -->    
+<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>No Polisi</th>
+      <th>Jumlah Bayar Kredit</th>
+      <th>Total Bayar Kredit</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $total=0;
+
+
+    ?>
+
+               
+    
+    <?php while($data = mysqli_fetch_array($tableez)){
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $no_polisi =$data['no_polisi'];
+      $jumlah =$data['jumlah'];
+      $file_bukti = $data['file_bukti'];
+      $total = $total+$jumlah;
+      $urut = $urut + 1;
+
+      echo "<tr>
+      <td style='font-size: 14px' align = 'center'>$urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/BALSRI_JBB/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/BALSRI_JBB/Administrasi//file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      </tr>
+      ";
+}
+?>
+
+</tbody>
+</table>
 </div>
 
 <br>
@@ -506,7 +554,18 @@ aria-hidden="true">
   $(document).ready(function() {
     var table = $('#example').DataTable( {
       lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+      buttons: ['excel']
     } );
 
     table.buttons().container()
