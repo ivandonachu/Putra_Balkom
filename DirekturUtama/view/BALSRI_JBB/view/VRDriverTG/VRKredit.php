@@ -39,10 +39,10 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 
 else{
-    //list supir
-    $table10 =  mysqli_query($koneksibalsri_jbb, "SELECT mt FROM tagihan_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY mt ");
-    //totalkredit
-    $total_kredit = 0;
+        $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
+
+
+        $tableex= mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
    
 
 }
@@ -383,9 +383,12 @@ else{
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
+      <th>No</th>
+      <th>Tanggal</th>
       <th>No Polisi</th>
       <th>Jumlah Bayar Kredit</th>
       <th>Total Bayar Kredit</th>
+      <th>File</th>
     </tr>
   </thead>
   <tbody>
@@ -400,38 +403,24 @@ else{
 
                
     
-    <?php while($data = mysqli_fetch_array($table10)){
-       $mt = $data['mt'];
-       $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
-       $dataa = mysqli_fetch_array($tablee);
-       $jml_kredit= $dataa['total_kredit'];
-
-       $tableex= mysqli_query($koneksistre, "SELECT SUM(jumlah) AS total_kreditx FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
-       $dataax = mysqli_fetch_array($tableex);
-       $jml_kreditx= $dataax['total_kreditx'];
-
-       if(isset($jml_kredit)){
-           $total_kredit += $jml_kredit;
-       }
-       else if(isset($jml_kreditx)){
-           $total_kredit += $jml_kreditx;
-       }
-       
+    <?php while($data = mysqli_fetch_array($tablee)){
+      $no_laporan = $data['no_laporan'];
+      $tanggal =$data['tanggal'];
+      $no_polisi =$data['no_polisi'];
+      $jumlah =$data['jumlah'];
+      $file_bukti = $data['file_bukti'];
+      $total = $total+$jumlah;
+      $urut = $urut + 1;
 
       echo "<tr>
-     
-      <td style='font-size: 14px'>$mt</td>";
-      
-      if(isset($jml_kredit)){;
-        echo "<td style='font-size: 14px'>"?>  <?= formatuang($jml_kredit); ?> <?php echo "</td>";
-      }
-      else if(isset($jml_kreditx)){
-        echo "<td style='font-size: 14px'>"?>  <?= formatuang($jml_kreditx); ?> <?php echo "</td>";
-      }; echo"
-      
-      <td style='font-size: 14px'>"?>  <?= formatuang($total_kredit); ?> <?php echo "</td>
-      
- </tr>";
+      <td style='font-size: 14px' align = 'center'>$urut</td>
+      <td style='font-size: 14px' align = 'center'>$tanggal</td>
+      <td style='font-size: 14px' align = 'center'>$no_polisi</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px' align = 'center'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/BALSRI_JBB/Administrasi/file_administrasi/<?= $file_bukti ?>" href="/BALSRI_JBB/Administrasi//file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      </tr>
+      ";
 }
 ?>
 
