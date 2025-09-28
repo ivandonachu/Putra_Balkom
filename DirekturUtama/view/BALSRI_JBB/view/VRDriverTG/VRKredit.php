@@ -363,7 +363,7 @@ else{
     
     <div>
     <div align="left">
-      <?php echo "<a href='../VLRKendaraanTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+      <?php echo "<a href='../VLRKendaraanTG?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&no_polisi=$no_polisilr'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
     </div>
     </div>
   
@@ -394,6 +394,7 @@ else{
   <tbody>
     <?php
     $total=0;
+    $urut=0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -445,13 +446,14 @@ else{
   <tbody>
     <?php
     $total=0;
+    $urut=0;
 
 
     ?>
 
                
     
-    <?php while($data = mysqli_fetch_array($tableez)){
+    <?php while($data = mysqli_fetch_array($tableex)){
       $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
       $no_polisi =$data['no_polisi'];
