@@ -344,6 +344,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <label>Timbang Pabrik</label>
                                                         <input class="form-control form-control-sm" type="float"  name="timbang_pabrik"  required=""> 
                                                     </div>
+                                                    <div class="col-md-4">
+                                                        <label>Pengeluaran Ops Pabrik</label>
+                                                        <input class="form-control form-control-sm" type="float"  name="operasional_pabrik"  required=""> 
+                                                    </div>
 
                                                 </div>
                                         
@@ -391,6 +395,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <th>Timbang Gudang</th>
                                 <th>Total Uang Timbang Gudang</th>
                                 <th>Timbang Pabrik</th>
+                                <th>Pengeluaran Ops Pabrik</th>
                                 <th>Total Uang Timbang Pabrik</th>
                                 <th>KET</th>
                                 <th>File</th>
@@ -418,15 +423,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 $hargax = $data['harga'];
                                 $timbang_gudangx = $data['timbang_gudang'];
                                 $timbang_pabrikx = $data['timbang_pabrik'];
+                                $operasional_pabrik = $data['operasional_pabrik'];
                                 $uang_timbang_gudang_x = $hargax * $timbang_gudangx;
-                                $uang_timbang_pabrik_x = $hargax * $timbang_pabrikx;
+                                $uang_timbang_pabrik_x = $hargax * $timbang_pabrikx - $operasional_pabrik;
                                 $keterangan = $data['keterangan'];
                                 $file_bukti = $data['file_bukti'];
                                 $no_urut = $no_urut + 1;
 
                    
                                 $uang_timbang_gudang = $uang_timbang_gudang + $uang_timbang_gudang_x;
-                                $uang_timbang_pabrik = $uang_timbang_pabrik + $uang_timbang_pabrik_x;
+                                $uang_timbang_pabrik = $uang_timbang_pabrik + $uang_timbang_pabrik_x - $operasional_pabrik;
                                 echo "<tr>
                                 <td style='font-size: 14px'>$no_urut</td>
                                 <td style='font-size: 14px'>$tanggal</td>
@@ -435,6 +441,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <td style='font-size: 14px'>$timbang_gudangx /KG</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($uang_timbang_gudang_x); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>$timbang_pabrikx /KG</td>
+                                <td style='font-size: 14px'>"; ?> <?= formatuang($operasional_pabrik); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>"; ?> <?= formatuang($uang_timbang_pabrik_x); ?> <?php echo "</td>
                                 <td style='font-size: 14px'>$keterangan</td>
                                 <td style='font-size: 14px'>"; ?> <a download="../file_admin_seberuk/<?= $file_bukti ?>" href="../file_admin_seberuk/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
@@ -504,6 +511,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <div class="col-md-4">
                                                         <label>Timbang Pabrik</label>
                                                         <input class="form-control form-control-sm" type="float"  name="timbang_pabrik"  value="<?php echo $timbang_pabrikx;?>" required=""> 
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Pengeluaran Ops Pabrik</label>
+                                                        <input class="form-control form-control-sm" type="float"  name="operasional_pabrik"  value="<?php echo $operasional_pabrik;?>" required=""> 
                                                     </div>
                                                 </div>
 

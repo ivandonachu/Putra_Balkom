@@ -23,6 +23,7 @@ $no_laporan = $_POST['no_laporan'];
 $tanggal = $_POST['tanggal'];
 $no_polisi = $_POST['no_polisi'];
 $harga = $_POST['harga'];
+$operasional_pabrik = $_POST['operasional_pabrik'];
 $timbang_gudang = $_POST['timbang_gudang'];
 $timbang_pabrik = $_POST['timbang_pabrik'];
 $keterangan = $_POST['keterangan'];
@@ -61,11 +62,11 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE laporan_karet_seberuk SET tanggal = '$tanggal' , no_polisi = '$no_polisi' , harga = '$harga' , timbang_gudang = '$timbang_gudang' , timbang_pabrik = '$timbang_pabrik' , keterangan = '$keterangan'  WHERE no_laporan = 
+		$query3 = mysqli_query($koneksi,"UPDATE laporan_karet_seberuk SET tanggal = '$tanggal' , no_polisi = '$no_polisi' , harga = '$harga' , timbang_gudang = '$timbang_gudang' , timbang_pabrik = '$timbang_pabrik', operasional_pabrik = '$operasional_pabrik', keterangan = '$keterangan'  WHERE no_laporan = 
 		'$no_laporan'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE laporan_karet_seberuk SET tanggal = '$tanggal'  , no_polisi = '$no_polisi', harga = '$harga' , timbang_gudang = '$timbang_gudang' , timbang_pabrik = '$timbang_pabrik'  , keterangan = '$keterangan' , file_bukti = '$file' WHERE no_laporan = 
+		$query3 = mysqli_query($koneksi,"UPDATE laporan_karet_seberuk SET tanggal = '$tanggal'  , no_polisi = '$no_polisi', harga = '$harga' , timbang_gudang = '$timbang_gudang' , timbang_pabrik = '$timbang_pabrik' , operasional_pabrik = '$operasional_pabrik' , keterangan = '$keterangan' , file_bukti = '$file' WHERE no_laporan = 
 		'$no_laporan'");
 	}
 	

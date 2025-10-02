@@ -25,6 +25,7 @@ $no_polisi = $_POST['no_polisi'];
 $harga = $_POST['harga'];
 $timbang_gudang = $_POST['timbang_gudang'];
 $timbang_pabrik = $_POST['timbang_pabrik'];
+$operasional_pabrik = $_POST['operasional_pabrik'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -63,7 +64,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO laporan_karet_seberuk VALUES ('','$tanggal','$no_polisi','$timbang_gudang','$timbang_pabrik','$harga','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO laporan_karet_seberuk VALUES ('','$tanggal','$no_polisi','$timbang_gudang','$timbang_pabrik','$harga','$operasional_pabrik','$keterangan','$file')");
 
 
 			if ($query != "") {
