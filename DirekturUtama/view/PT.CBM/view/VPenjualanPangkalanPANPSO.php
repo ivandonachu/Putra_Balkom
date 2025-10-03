@@ -15,8 +15,7 @@ if ($jabatan_valid == 'Direktur Utama') {
 
 }
 
-
-else{  header("Location: logout.php");
+else{ header("Location: logout.php");
 exit;
 }
 
@@ -30,23 +29,30 @@ elseif (isset($_POST['tanggal1'])) {
  $tanggal_awal = $_POST['tanggal1'];
  $tanggal_akhir = $_POST['tanggal2'];
 }  
-
 else{
-    $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-  }
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+}
 if ($tanggal_awal == $tanggal_akhir) {
-  
-  $table = mysqli_query($koneksipbr, "SELECT * FROM mocash_pbr WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, akun_mocash,  SUM(jumlah) AS total_jumlah FROM mocash_pbr  WHERE tanggal = '$tanggal_awal' GROUP BY akun_mocash");
+
+$table = mysqli_query($koneksicbm, "SELECT * FROM penjualan_pangkalan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
+ WHERE tanggal = '$tanggal_awal'");
 
 }
+
+
+
+
+
+
+
+//elseeeeeeee
 else{
 
-  $table = mysqli_query($koneksipbr, "SELECT * FROM mocash_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksipbr, "SELECT nama_akun, akun_mocash,  SUM(jumlah) AS total_jumlah FROM mocash_pbr   WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY akun_mocash");
+$table = mysqli_query($koneksicbm, "SELECT * FROM penjualan_pangkalan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
+ WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 
-  
+
 }
 
 ?>
@@ -61,7 +67,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Mocash PBR</title>
+  <title>Penjualan Non Pso Pangkalan</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -77,6 +83,8 @@ else{
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
 
   <!-- Link datepicker -->
 
@@ -87,8 +95,8 @@ else{
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-     <!-- Sidebar -->
-     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+      <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
@@ -109,8 +117,8 @@ else{
         <span style="font-size: 16px;" >Dashboard</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+     <!-- Divider -->
+     <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading" style="font-size: 15px; color:white;">
                      Menu PT. CBM
@@ -246,7 +254,7 @@ else{
                         <a class="collapse-item" style="font-size: 15px;" href="VLStokGudangPANPSO">Stok Gudang BK3</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLStokRantauPanjangPANPSO">Stok Rantau Panjang</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VSetoranPANPSO">Setoran NPSO</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranPANPSO">Setoran PSO</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranPAPSO">Setoran PSO</a>
                     </div>
                 </div>
             </li>
@@ -282,7 +290,8 @@ else{
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Mocash PBR</h5></a>"; ?>
+      <?php echo "<a href='VPenjualan2?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Penjualan Non PSO Pangkalan</h5></a>"; ?>
+
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -294,16 +303,19 @@ else{
       <ul class="navbar-nav ml-auto">
 
 
+
+
+
         <div class="topbar-divider d-none d-sm-block"></div>
 
-        <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
+         <!-- Nav Item - User Information -->
+         <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
                     <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
-        <!-- Dropdown - User Information -->
+                <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
@@ -315,8 +327,8 @@ else{
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-              </div>
-             </li>
+            </div>
+        </li>
 
   </ul>
 
@@ -331,7 +343,7 @@ else{
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VMocashPBR' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VPenjualanPangkalanPANPSO' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -342,158 +354,210 @@ else{
     </div>
   </form>
 
+  
+  <br>
+  <br>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-   <div class="col-md-12">
-
-</div>
-</div>
+  </div>
 
 
 
-<!-- Tabel -->    
 <div style="overflow-x: auto" align = 'center' >
   <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Nama Akun</th>
-      <th>Akun Mocash</th>
+      <th>REF</th>
+      <th>Akun</th>
+      <th>Barang</th>
+      <th>Penyaluran</th>
+      <th>Nama</th>
+      <th>Pembayaran</th>
+      <th>QTY</th>
+      <th>Harga</th>
+      <th>Jumlah</th>    
       <th>Keterangan</th>
-      <th>Debit</th>
-      <th>Kredit</th>
-      <th>Total</th>
       <th>File</th>
-   
     </tr>
   </thead>
   <tbody>
     <?php
+    $total = 0;
+    $total_briva = 0;
+    $total_transfer = 0;
+    $total_cash = 0;
+    $L03 = 0;
+    $B05 = 0;
+    $B12 = 0;
+    $L12 = 0;
+    $L03_cash = 0;
+    $B05_cash = 0;
+    $B12_cash = 0;
+    $L12_cash = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
-    $urut = 0;
-    $total = 0;
+
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_pengeluaran = $data['no_pengeluaran'];
+      $no_transaksi = $data['no_transaksi'];
       $tanggal =$data['tanggal'];
+      $referensi = $data['referensi'];
       $nama_akun = $data['nama_akun'];
-      $akun_mocash = $data['akun_mocash'];
-      $keterangan = $data['keterangan'];
+      $nama_baja = $data['nama_baja'];
+      $penyaluran = $data['penyaluran'];
+      $nama = $data['nama'];
+      $pembayaran = $data['pembayaran'];
+      $qty = $data['qty'];
+      $harga = $data['harga'];
       $jumlah = $data['jumlah'];
+      $keterangan = $data['keterangan'];
       $file_bukti = $data['file_bukti'];
-      $urut  = $urut + 1;
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
-        $total = $total + $jumlah;
+      if($pembayaran == 'Cash' OR $pembayaran =='Deposit' ){
+        $total_cash = $total_cash + $jumlah;
       }
+      else if($pembayaran == 'Briva' ){
+        $total_briva = $total_briva + $jumlah;
+      }
+      else if($pembayaran == 'Transfer' ){
+        $total_transfer = $total_transfer + $jumlah;
+      }
+      if ($pembayaran == 'Cash' OR $pembayaran =='Deposit') {
+
+        if ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+          $L12_cash = $L12_cash + $jumlah;
+        }
+        elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+          $B05_cash = $B05_cash + $jumlah;
+        }
+        elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+          $B12_cash = $B12_cash + $jumlah;
+        }
+      }
+       
       else{
-        $total = $total - $jumlah;
+
+        if ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
+          $L12 = $L12 + $jumlah;
+        }
+        elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
+          $B05 = $B05 + $jumlah;
+        }
+        elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
+          $B12 = $B12 + $jumlah;
+        }
       }
 
+      $nama_baja1 = "Pembayaran Selain Penjualan";
 
-
+      $total = $total + $jumlah;
       echo "<tr>
-      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$no_transaksi</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$akun_mocash</td>
-      <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
-       echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-       echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
+      ";
+      if ($nama_akun == "Pendapatan Lain-lain Diluar Usaha") { 
+        echo "<td style='font-size: 14px'>$nama_baja1</td>";  
       }
-      else{
-        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
-        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
-      }
-      echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
- </tr>";
+      else { echo " <td style='font-size: 14px'>$nama_baja</td>";}
+      echo "
+      <td style='font-size: 14px'>$penyaluran</td>
+      <td style='font-size: 14px'>$nama</td>
+      <td style='font-size: 14px'>$pembayaran</td>
+      <td style='font-size: 14px'>$qty</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($harga); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$keterangan</td>
+      <td style='font-size: 14px'>"; ?> <a download="" href="/PT.CBM/PesanAntarNonPSO/file_pesan_antar/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      </tr>";
   }
   ?>
 
 </tbody>
 </table>
 </div>
-
+  </div>
 <br>
-<hr>
 <br>
+<br>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-<h5 align="center" >Rincian Mocash</h5>
-<!-- Tabel -->    
-<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-  <thead>
-    <tr>
-      <th>Akun</th>
-      <th>Total Mocash</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php 
-    $sisa_saldo = 0;
-    $total_pengeluaran = 0;
-    $total_saldo = 0;
-    $jumlah_riyanto = 0;
-    $jumlah_risa =0;
-  ?>
-    <?php while($data = mysqli_fetch_array($table2)){
-      $nama_akun = $data['nama_akun'];
-      $jumlah =$data['total_jumlah'];
-      $akun_mocash = $data['akun_mocash'];
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
-        $sisa_saldo  = $sisa_saldo + $jumlah;
-        $total_saldo = $total_saldo + $jumlah;
-      }
-      else{
-        $sisa_saldo  = $sisa_saldo - $jumlah;
-        $total_pengeluaran = $total_pengeluaran + $jumlah;
-      }
-     
+  <!-- Tabel -->    
+  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <thead>
+      <tr>
+        <th>Total Seluruh</th>
+        <th>Total Briva</th>
+        <th>Total Tranfer</th>
+        <th>Total Cash</th>
+      </tr>
+    </thead>
+    <tbody>
 
+      <?php 
+      echo "<tr>
+      <td style='font-size: 14px'>";?> <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_briva); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_transfer); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($total_cash); ?> <?php echo "</td>
 
+      </tr>";
+
+      ?>
+
+    </tbody>
+  </table>
+</div>
+<br>
+<div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+
+  <!-- Tabel -->    
+  <table  class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+    <thead>
+      <tr>
+
+        <th>Total Bright Gas 5,5 KG</th>
+        <th>Total Bright Gas 12 KG</th>
+        <th>Total Elpiji 12 KG</th>
+
+        <th>Cash Bright Gas 5,5 KG</th>
+        <th>Cash Bright Gas 12 KG</th>
+        <th>Cash Elpiji 12 KG</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <?php 
       echo "<tr>
 
-       <td style='font-size: 14px' >$akun_mocash</td>
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      
-     
+      <td style='font-size: 14px'>";?> <?= formatuang($B05 + $B05_cash); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B12 + $B12_cash); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L12 + $L12_cash); ?> <?php echo "</td>
 
-  </tr>";
-}
-?>    <tr>
-      <td style='font-size: 14px; ' ><strong>Total Sakdo</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($total_saldo); ?></strong> </td>
-      </tr>
-      <tr>
-      <td style='font-size: 14px; ' ><strong>Total Pengeluaran</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($total_pengeluaran); ?></strong> </td>
-      </tr>
-      <tr>
-      <td style='font-size: 14px; ' ><strong>Sisa Saldo</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($sisa_saldo); ?></strong> </td>
-      </tr>
-      
-     
-      
+      <td style='font-size: 14px'>";?> <?= formatuang($B05_cash); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($B12_cash); ?> <?php echo "</td>
+      <td style='font-size: 14px'>";?> <?= formatuang($L12_cash); ?> <?php echo "</td>
 
-      </tr>
-</tbody>
-</table>
+      </tr>";
 
+      ?>
 
+    </tbody>
+  </table>
+</div>
 <br>
 <br>
 </div>
+  
 
-</div>
 
 </div>
 <!-- End of Main Content -->
@@ -540,8 +604,8 @@ aria-hidden="true">
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
-<script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
 <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -549,7 +613,7 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-
+<script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
 <!-- Tabel -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -576,7 +640,43 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
+<script>
+  function createOptions(number) {
+    var options = [], _options;
 
+    for (var i = 0; i < number; i++) {
+      var option = '<option value="' + i + '">Option ' + i + '</option>';
+      options.push(option);
+    }
+
+    _options = options.join('');
+
+    $('#number')[0].innerHTML = _options;
+    $('#number-multiple')[0].innerHTML = _options;
+
+    $('#number2')[0].innerHTML = _options;
+    $('#number2-multiple')[0].innerHTML = _options;
+  }
+
+  var mySelect = $('#first-disabled2');
+
+  createOptions(4000);
+
+  $('#special').on('click', function () {
+    mySelect.find('option:selected').prop('disabled', true);
+    mySelect.selectpicker('refresh');
+  });
+
+  $('#special2').on('click', function () {
+    mySelect.find('option:disabled').prop('disabled', false);
+    mySelect.selectpicker('refresh');
+  });
+
+  $('#basic2').selectpicker({
+    liveSearch: true,
+    maxOptions: 1
+  });
+</script>
 </body>
 
 </html>

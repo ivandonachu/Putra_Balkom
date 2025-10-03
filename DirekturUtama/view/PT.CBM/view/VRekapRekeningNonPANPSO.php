@@ -1,21 +1,26 @@
 <?php
 session_start();
-include 'koneksi.php';
-if (!isset($_SESSION["login"])) {
-    header("Location: logout.php");
-    exit;
+include'koneksi.php';
+if(!isset($_SESSION["login"])){
+  header("Location: logout.php");
+  exit;
 }
-$id = $_COOKIE['id_cookie'];
+$id=$_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
-} else {
-    header("Location: logout.php");
-    exit;
+
 }
+
+else{ header("Location: logout.php");
+exit;
+}
+
+
+
 
 if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
@@ -29,87 +34,11 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-
-    $table = mysqli_query($koneksicbm, "SELECT * FROM laporan_saldo_rekening WHERE tanggal = '$tanggal_awal' ");
-
-    $sql_bri_nyoman_serli = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal = '$tanggal_awal' AND rekening = 'BRI Nyoman Serli' ORDER BY no_laporan DESC LIMIT 1");
-    $data_bri_nyoman_serli = mysqli_fetch_array($sql_bri_nyoman_serli);
-    $tanggal_bri_nyoman_serli = $data_bri_nyoman_serli['tanggal'];
-    $rekening_bri_nyoman_serli = $data_bri_nyoman_serli['rekening'];
-    $jumlah_saldo_bri_nyoman_serli = $data_bri_nyoman_serli['jumlah_saldo'];
-
-    $sql_bri_cbm = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal = '$tanggal_awal' AND rekening = 'BRI Cahaya Bumi Musi' ORDER BY no_laporan DESC LIMIT 1");
-    $data_bri_cbm = mysqli_fetch_array($sql_bri_cbm);
-    $tanggal_bri_cbm = $data_bri_cbm['tanggal'];
-    $rekening_bri_cbm = $data_bri_cbm['rekening'];
-    $jumlah_saldo_bri_cbm = $data_bri_cbm['jumlah_saldo'];
-
-    $sql_bri_mes = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal = '$tanggal_awal' AND rekening = 'BRI Mulia Elpiji Sejahtera' ORDER BY no_laporan DESC LIMIT 1");
-    $data_bri_nmes = mysqli_fetch_array($sql_bri_mes);
-    $tanggal_bri_mes = $data_bri_nmes['tanggal'];
-    $rekening_bri_mes = $data_bri_nmes['rekening'];
-    $jumlah_saldo_bri_mes = $data_bri_nmes['jumlah_saldo'];
-
-    $sql_bri_pbr = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal = '$tanggal_awal' AND rekening = 'BRI Putra Balkom Raya' ORDER BY no_laporan DESC LIMIT 1");
-    $data_bri_pbr = mysqli_fetch_array($sql_bri_pbr);
-    $tanggal_bri_pbr = $data_bri_pbr['tanggal'];
-    $rekening_bri_pbr = $data_bri_pbr['rekening'];
-    $jumlah_saldo_bri_pbr = $data_bri_pbr['jumlah_saldo'];
-
-    $sql_kebun_seberuk = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal = '$tanggal_awal' AND rekening = 'Kebun Seberuk' ORDER BY no_laporan DESC LIMIT 1");
-    $data_kebun_seberuk = mysqli_fetch_array($sql_kebun_seberuk);
-    $tanggal_kebun_seberuk = $data_kebun_seberuk['tanggal'];
-    $rekening_kebun_seberuk = $data_kebun_seberuk['rekening'];
-    $jumlah_saldo_kebun_seberuk = $data_kebun_seberuk['jumlah_saldo'];
-
-    $sql_kebun_lengkiti = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal = '$tanggal_awal' AND rekening = 'Kebun Lengkiti' ORDER BY no_laporan DESC LIMIT 1");
-    $data_kebun_lengkiti = mysqli_fetch_array($sql_kebun_lengkiti);
-    $tanggal_kebun_lengkiti = $data_kebun_lengkiti['tanggal'];
-    $rekening_kebun_lengkiti = $data_kebun_lengkiti['rekening'];
-    $jumlah_kebun_lengkiti = $data_kebun_lengkiti['jumlah_saldo'];
-
+    $table = mysqli_query($koneksicbm, "SELECT * FROM rekap_rekening_non_pso WHERE tanggal = '$tanggal_awal'");
 } else {
-
-    $table = mysqli_query($koneksicbm, "SELECT * FROM laporan_saldo_rekening  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  ");
-
-    $sql_bri_nyoman_serli = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening = 'BRI Nyoman Serli' ORDER BY no_laporan DESC LIMIT 1");
-    $data_bri_nyoman_serli = mysqli_fetch_array($sql_bri_nyoman_serli);
-    $tanggal_bri_nyoman_serli = $data_bri_nyoman_serli['tanggal'];
-    $rekening_bri_nyoman_serli = $data_bri_nyoman_serli['rekening'];
-    $jumlah_saldo_bri_nyoman_serli = $data_bri_nyoman_serli['jumlah_saldo'];
-
-    $sql_bri_cbm = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening = 'BRI Cahaya Bumi Musi' ORDER BY no_laporan DESC LIMIT 1");
-    $data_bri_cbm = mysqli_fetch_array($sql_bri_cbm);
-    $tanggal_bri_cbm = $data_bri_cbm['tanggal'];
-    $rekening_bri_cbm = $data_bri_cbm['rekening'];
-    $jumlah_saldo_bri_cbm = $data_bri_cbm['jumlah_saldo'];
-
-    $sql_bri_mes = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening = 'BRI Mulia Elpiji Sejahtera' ORDER BY no_laporan DESC LIMIT 1");
-    $data_bri_nmes = mysqli_fetch_array($sql_bri_mes);
-    $tanggal_bri_mes = $data_bri_nmes['tanggal'];
-    $rekening_bri_mes = $data_bri_nmes['rekening'];
-    $jumlah_saldo_bri_mes = $data_bri_nmes['jumlah_saldo'];
-
-    $sql_bri_pbr = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening = 'BRI Putra Balkom Raya' ORDER BY no_laporan DESC LIMIT 1");
-    $data_bri_pbr = mysqli_fetch_array($sql_bri_pbr);
-    $tanggal_bri_pbr = $data_bri_pbr['tanggal'];
-    $rekening_bri_pbr = $data_bri_pbr['rekening'];
-    $jumlah_saldo_bri_pbr = $data_bri_pbr['jumlah_saldo'];
-
-    $sql_kebun_seberuk = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening = 'Kebun Seberuk' ORDER BY no_laporan DESC LIMIT 1");
-    $data_kebun_seberuk = mysqli_fetch_array($sql_kebun_seberuk);
-    $tanggal_kebun_seberuk = $data_kebun_seberuk['tanggal'];
-    $rekening_kebun_seberuk = $data_kebun_seberuk['rekening'];
-    $jumlah_saldo_kebun_seberuk = $data_kebun_seberuk['jumlah_saldo'];
-
-    $sql_kebun_lengkiti = mysqli_query($koneksicbm, "SELECT * FROM laporan_keuangan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening = 'Kebun Lengkiti' ORDER BY no_laporan DESC LIMIT 1");
-    $data_kebun_lengkiti = mysqli_fetch_array($sql_kebun_lengkiti);
-    $tanggal_kebun_lengkiti = $data_kebun_lengkiti['tanggal'];
-    $rekening_kebun_lengkiti = $data_kebun_lengkiti['rekening'];
-    $jumlah_kebun_lengkiti = $data_kebun_lengkiti['jumlah_saldo'];
-    
+    $table = mysqli_query($koneksicbm, "SELECT * FROM rekap_rekening_non_pso WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal ASC");
+    $table2 = mysqli_query($koneksicbm, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM rekap_rekening_non_pso  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
 }
-
 
 
 ?>
@@ -124,7 +53,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Penggunaan Kas Kecil</title>
+    <title>Rekap Rekening Non PSO</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -148,39 +77,40 @@ if ($tanggal_awal == $tanggal_akhir) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+         <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
-                <div class="sidebar-brand-icon rotate-n-15">
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsPTCBM.php">
+    <div class="sidebar-brand-icon rotate-n-15">
 
+    </div>
+    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png" ></div>
+</a>
+
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
+
+
+  <!-- Nav Item - Dashboard -->
+<li class="nav-item active" >
+    <a class="nav-link" href="DsPTCBM">
+        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+        <span style="font-size: 16px;" >Dashboard</span></a>
+    </li>
+
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                     Menu PT. CBM
                 </div>
-                <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="gambar/Logo CBM.png"></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="DsPTCBM">
-                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-                    <span style="font-size: 16px;">Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading" style="font-size: 15px; color:white;">
-                Menu PT. CBM
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" 15 aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-building" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">List Company</span>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >List Company</span>
                 </a>
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -197,39 +127,41 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Laporan Perusahan</span>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Laporan Perusahan</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header" style="font-size: 15px;">Laporan</h6>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKeuangan1">Laporan Keuangan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPenjualan1">Laporan Penjualan</a>
-
-                        <?php if ($nama == 'Nyoman Edy Susanto') {
-                            echo "<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
+                        
+                        <?php if($nama == 'Nyoman Edy Susanto'){
+                        echo"<a class='collapse-item' style='font-size: 15px;' href='VLabaRugi'>Laba Rugi</a>";
                         } ?>
                         <a class="collapse-item" style="font-size: 15px;" href="VSaldoBaru">Laporan Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VBonKaryawan">Laporan BON </a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRincianSA">Alokasi SA </a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VUangPBJ">Uang PBJ</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKeberangkatan">Uang Jalan</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
                     </div>
                 </div>
             </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2" 15 aria-expanded="true" aria-controls="collapseTwo2">
-                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Daftar SDM</span>
+            
+             <!-- Nav Item - Pages Collapse Menu -->
+             <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                  15  aria-expanded="true" aria-controls="collapseTwo2">
+                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Daftar SDM</span>
                 </a>
                 <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -245,9 +177,10 @@ if ($tanggal_awal == $tanggal_akhir) {
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4" 15 aria-expanded="true" aria-controls="collapseTwo4">
-                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Rekap Gaji</span>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                  15  aria-expanded="true" aria-controls="collapseTwo4">
+                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Rekap Gaji</span>
                 </a>
                 <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -268,9 +201,10 @@ if ($tanggal_awal == $tanggal_akhir) {
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5" 15 aria-expanded="true" aria-controls="collapseTwo5">
-                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Pengeluaran</span>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+                  15  aria-expanded="true" aria-controls="collapseTwo5">
+                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Pengeluaran</span>
                 </a>
                 <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -302,22 +236,17 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VLStokGudangPANPSO">Stok Gudang BK3</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLStokRantauPanjangPANPSO">Stok Rantau Panjang</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VSetoranPANPSO">Setoran NPSO</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranPANPSO">Setoran PSO</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranPAPSO">Setoran PSO</a>
                     </div>
                 </div>
             </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="VLaporanKeuangan">
-                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Laporan Rekening</span>
-                </a>
-            </li>
-
-
-
-
-
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="VLaporanKeuangan">
+          <i class="fas fa-file-alt" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Laporan Rekening</span>
+        </a>
+      </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -342,36 +271,16 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-                    <?php echo "<a href='VKasKecil'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Kas Kecil</h5></a>"; ?>
+                    <?php echo "<a href='VLSaldo'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Rekening Non PSO</h5></a>"; ?>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
 
 
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
 
 
 
@@ -409,7 +318,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <!-- Name Page -->
                     <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-                        <?php echo "<form  method='POST' action='VKasKecil' style='margin-bottom: 15px;'>" ?>
+                        <?php echo "<form  method='POST' action='VRekapRekeningNonPANPSO' style='margin-bottom: 15px;'>" ?>
                         <div>
                             <div align="left" style="margin-left: 20px;">
                                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -425,113 +334,182 @@ if ($tanggal_awal == $tanggal_akhir) {
                                 <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
                             </div>
                         </div>
-
+                       
                         <!-- Tabel -->
-                        <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Tanggal</th>
-                                    <th>Akun</th>
-                                    <th>Keterangan</th>
-                                    <th>Debit</th>
-                                    <th>Kredit</th>
-                                    <th>file</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $total_kredit = 0;
-                                $total_debit = 0;
-                                $urut = 0;
-                                function formatuang($angka)
-                                {
-                                    $uang = "Rp " . number_format($angka, 2, ',', '.');
-                                    return $uang;
-                                }
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Referensi</th>
+                                        <th>Akun</th>
+                                        <th>Keterangan</th>
+                                        <th>Debit</th>
+                                        <th>Kredit</th>
+                                        <th>file</th>
 
-                                ?>
-                                <?php while ($data = mysqli_fetch_array($table)) {
-                                    $urut = $urut + 1;
-                                    $no_laporan = $data['no_transaksi'];
-                                    $tanggal = $data['tanggal'];
-                                    $nama_akun = $data['nama_akun'];
-                                    $jumlah = $data['jumlah'];
-                                    $keterangan = $data['keterangan'];
-                                    $status_saldo = $data['status_saldo'];
-                                    $file_bukti = $data['file_bukti'];
-                                    if ($status_saldo == 'Masuk') {
-                                        $total_debit = $total_debit + $jumlah;
-                                    } elseif ($status_saldo == 'Keluar') {
-                                        $total_kredit = $total_kredit + $jumlah;
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $total_kredit = 0;
+                                    $no_urut = 0;
+                                    $total_debit = 0;
+                                    function formatuang($angka)
+                                    {
+                                        $uang = "Rp " . number_format($angka, 2, ',', '.');
+                                        return $uang;
                                     }
 
-
-                                    echo "<tr>
-      <td style='font-size: 14px'>$urut</td>
+                                    ?>
+                                    <?php while ($data = mysqli_fetch_array($table)) {
+                                        $no_laporan = $data['no_transaksi'];
+                                        $tanggal = $data['tanggal'];
+                                        $referensi = $data['referensi'];
+                                        $nama_akun = $data['nama_akun'];
+                                        $status_saldo = $data['status_saldo'];
+                                        $jumlah = $data['jumlah'];
+                                        $keterangan = $data['keterangan'];
+                                        if ($status_saldo == 'Masuk') {
+                                            $total_debit = $total_debit + $jumlah;
+                                        } elseif ($status_saldo == 'Keluar') {
+                                            $total_kredit = $total_kredit + $jumlah;
+                                        }
+                                        $no_urut = $no_urut + 1;
+                                        $file_bukti = $data['file_bukti'];
+                                        echo "<tr>
+      <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$nama_akun</td>
+    
       <td style='font-size: 14px'>$keterangan</td>";
 
 
-                                    if ($nama_akun == 'Saldo Awal') {
-                                        echo "
+                                        if ($status_saldo == 'Masuk') {
+                                            echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                } else {
-                                                                    echo "
+                                                                    } else {
+                                                                        echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                }
+                                                                    }
 
-                                                                if ($nama_akun != 'Saldo Awal') {
-                                                                    echo "
+                                                                    if ($status_saldo == 'Keluar') {
+                                                                        echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                } else {
-                                                                    echo "
+                                                                    } else {
+                                                                        echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                }
+                                                                    }
+                                            ?>
+                                        <?php echo "
+      <td style='font-size: 14px'>"; ?> <a download="" href="/PT.CBM/PesanAntarNonPSO/file_pesan_antar/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+   
+                    </tr>";
+                                    }
+
                                         ?>
-                                    <?php echo "
-         <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      </tr>";
-                                                                                                                                                                            }
 
-                                                                                                                                                                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
+                            <!-- Tabel -->
+                            <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                                <thead>
+                                    <tr>
+                                        <th>Total Debit</th>
+                                        <th>Total Kredit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                        <!-- Tabel -->
-                        <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                            <thead>
-                                <tr>
-                                    <th>Total Debit</th>
-                                    <th>Total Kredit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <?php
-                                echo "<tr>
+                                    <?php
+                                    echo "<tr>
       <td style='font-size: 14px'>"; ?> <?= formatuang($total_debit); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <?= formatuang($total_kredit); ?> <?php echo "</td>
-        </tr>";
+      </tr>";
 
                                                                             ?>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+                       
+<br>
+<hr>
+<br>
+
+<h5 align="center" >Rincian Pengeluaran</h5>
+<!-- Tabel -->    
+<table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+  <thead>
+    <tr>
+      <th>Akun</th>
+      <th>Total Pengeluaran</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+    $sisa_saldo = 0;
+    $total_pengeluaran = 0;
+    $total_saldo = 0;
+  ?>
+    <?php while($data = mysqli_fetch_array($table2)){
+        $nama_akun = $data['nama_akun'];
+        $jumlah =$data['total_jumlah'];
+
+      if ($nama_akun == 'Saldo Awal' || $nama_akun == 'Saldo Masuk' || $nama_akun == 'Penjualan Non PSO' ) {
+        $sisa_saldo  = $sisa_saldo + $jumlah;
+        $total_saldo = $total_saldo + $jumlah;
+      }
+      else{
+        $sisa_saldo  = $sisa_saldo - $jumlah;
+        $total_pengeluaran = $total_pengeluaran + $jumlah;
+      }
+     
+
+
+      echo "<tr>
+
+       <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+      
+     
+
+  </tr>";
+}
+?>    <tr>
+<td style='font-size: 14px; ' ><strong>Total Sakdo</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_saldo); ?></strong> </td>
+      </tr>
+      <tr>
+      <td style='font-size: 14px; ' ><strong>Total Pengeluaran</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_pengeluaran); ?></strong> </td>
+      </tr>
+      <tr>
+      <td style='font-size: 14px; ' ><strong>Sisa Saldo</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($sisa_saldo); ?></strong> </td>
+      </tr>
+      
+     
+      
+
+      </tr>
+</tbody>
+</table>
+
+<br>
+<hr>
+
+
                     </div>
-                    <br>
-                    <br>
-                    <br>
-
                 </div>
-
             </div>
             <!-- End of Main Content -->
 
@@ -574,7 +552,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             </div>
         </div>
     </div>
-
+    </div>
     <!-- Bootstrap core JavaScript-->
     <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
     <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
