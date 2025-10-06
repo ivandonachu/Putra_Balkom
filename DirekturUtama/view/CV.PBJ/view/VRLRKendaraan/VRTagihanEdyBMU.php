@@ -821,7 +821,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <br>
 
-                        <h5 align='center'>Rekap Pranko BMU Bapak Nyoman Edy</h5>
+                        <h5 align='center'>Rekap Pranko BMU Pak Nyoman Edy</h5>
                         <!-- Tabel -->
                         <div align='center' style="overflow-x: auto">
                             <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -899,8 +899,14 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
 
-                                        //kak nyoman
-                                        if ($kota == 'Kab Ogn Kmrg Ulu Tim' || $kota == 'KAB OKU TIMUR') {
+                                         if ($kota == 'KAB OKU TIMUR') {
+
+                                            //RLI
+                                            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+                                            $data1p = mysqli_fetch_array($table1p);
+                                            $tarif = $data1p['tarif_pranko'];
+                                            $total_angkut_rli = $qty * $tarif;
+
                                             //BMU 10ton
                                             if ($qty >= 200 && $qty <= 300) {
 
@@ -922,10 +928,23 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
                                             }
-                                        } else if ($kota == 'Kab Mesuji' || $kota == 'KAB MESUJI') {
+                                        } else if ($kota == 'KAB MESUJI') {
+                                            //RLI
+                                            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+                                            $data1p = mysqli_fetch_array($table1p);
+                                            $tarif = $data1p['tarif_pranko'];
+                                            $total_angkut_rli = $qty * $tarif;
 
+
+                                            //BMU 10ton
+                                            if ($qty >= 200 && $qty <= 300) {
+
+                                                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                                                $data3p = mysqli_fetch_array($table3p);
+                                                $tarifx = $data3p['tarif_200'];
+                                            }
                                             //BMU 20ton
-                                            if ($qty >= 200 && $qty <= 500) {
+                                            else if ($qty > 300 && $qty <= 500) {
 
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
@@ -943,9 +962,8 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                             if ($tujuan == 'GDG PT PBJ TUBA 3') {
 
-
                                                 //BMU 10ton
-                                                if ($qty >= 1 && $qty <= 300) {
+                                                if ($qty >= 200 && $qty <= 300) {
 
                                                     $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = 'RAWAJITU SELATAN' ");
                                                     $data3p = mysqli_fetch_array($table3p);
@@ -973,7 +991,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $total_angkut_rli = $qty * $tarif;
 
                                                 //BMU 10ton
-                                                if ($qty >= 1 && $qty <= 300) {
+                                                if ($qty >= 200 && $qty <= 300) {
 
                                                     $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                     $data3p = mysqli_fetch_array($table3p);
@@ -995,6 +1013,12 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 }
                                             }
                                         } else if ($kota == 'KAB WAY KANAN') {
+                                            //RLI
+                                            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
+                                            $data1p = mysqli_fetch_array($table1p);
+                                            $tarif = $data1p['tarif_pranko'];
+                                            $total_angkut_rli = $qty * $tarif;
+
                                             //BMU 10ton
                                             if ($qty >= 200 && $qty <= 300) {
 
@@ -1017,50 +1041,66 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $tarifx = $data3p['tarif_600'];
                                             }
                                         } else if ($kota == 'KAB OKU SELATAN') {
-                                            //RLI
-                                            $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
-                                            $data1p = mysqli_fetch_array($table1p);
-                                            $tarif = $data1p['tarif_pranko'];
-                                            $total_angkut_rli = $qty * $tarif;
 
 
+                                            if ($tujuan == 'GDG PT PBA MUARA DUA') {
 
-                                            //BMU 10ton
-                                            if ($qty >= 1 && $qty <= 300) {
+                                                //BMU 10ton
+                                                if ($qty >= 1 && $qty <= 300) {
 
-                                                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
-                                                $data3p = mysqli_fetch_array($table3p);
-                                                $tarifx = $data3p['tarif_200'];
-                                
-                                            }
-                                            //BMU 20ton
-                                            else if ($qty > 300 && $qty <= 500) {
+                                                    $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = 'MUARA DUA' ");
+                                                    $data3p = mysqli_fetch_array($table3p);
+                                                    $tarifx = $data3p['tarif_200'];
+                                                    
+                                                }
+                                                //BMU 20ton
+                                                else if ($qty > 300 && $qty <= 500) {
 
-                                                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
-                                                $data3p = mysqli_fetch_array($table3p);
-                                                $tarifx  = $data3p['tarif_400'];
-                                            
-                                            }
-                                            //BMU 30ton
-                                            else if ($qty > 500) {
-
-                                                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
-                                                $data3p = mysqli_fetch_array($table3p);
-                                                $tarifx = $data3p['tarif_600'];
+                                                    $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = 'MUARA DUA' ");
+                                                    $data3p = mysqli_fetch_array($table3p);
+                                                    $tarifx = $data3p['tarif_400'];
                                                 
+                                                }
+                                                //BMU 30ton
+                                                else if ($qty > 500) {
+
+                                                    $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = 'MUARA DUA' ");
+                                                    $data3p = mysqli_fetch_array($table3p);
+                                                    $tarifx = $data3p['tarif_600'];
+                                         
+                                                }
+                                            } else {
+                                                //BMU 10ton
+                                                if ($qty >= 1 && $qty <= 300) {
+
+                                                    $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                                                    $data3p = mysqli_fetch_array($table3p);
+                                                    $tarifx = $data3p['tarif_200'];
+                                                }
+                                                //BMU 20ton
+                                                else if ($qty > 300 && $qty <= 500) {
+
+                                                    $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                                                    $data3p = mysqli_fetch_array($table3p);
+                                                    $tarifx = $data3p['tarif_200'];
+                                                }
+                                                //BMU 30ton
+                                                else if ($qty > 500) {
+
+                                                    $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
+                                                    $data3p = mysqli_fetch_array($table3p);
+                                                    $tarifx = $data3p['tarif_200'];
+                                                }
                                             }
-
-
                                         } else if ($kota == 'KAB. OGAN KOM ULU') {
 
 
                                             //BMU 10ton
-                                            if ($qty >= 1 && $qty <= 300) {
+                                            if ($qty >= 200 && $qty <= 300) {
 
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_200'];
-                                                
                                             }
                                             //BMU 20ton
                                             else if ($qty > 300 && $qty <= 500) {
@@ -1068,7 +1108,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_400'];
-                                            
                                             }
                                             //BMU 30ton
                                             else if ($qty > 500) {
@@ -1076,19 +1115,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
-                                                
                                             }
-
                                         } else if ($kota == 'KAB. LAMPUNG BARAT') {
 
 
                                             //BMU 10ton
-                                            if ($qty >= 1 && $qty <= 300) {
+                                            if ($qty >= 200 && $qty <= 300) {
 
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_200'];
-                                            
                                             }
                                             //BMU 20ton
                                             else if ($qty > 300 && $qty <= 500) {
@@ -1096,7 +1132,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_400'];
-                                            
                                             }
                                             //BMU 30ton
                                             else if ($qty > 500) {
@@ -1104,19 +1139,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
-                                            
                                             }
-
                                         } else if ($kota == 'KAB.PESISIR BARAT') {
 
 
                                             //BMU 10ton
-                                            if ($qty >= 1 && $qty <= 300) {
+                                            if ($qty >= 200 && $qty <= 300) {
 
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_200'];
-                                            
                                             }
                                             //BMU 20ton
                                             else if ($qty > 300 && $qty <= 500) {
@@ -1124,7 +1156,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_400'];
-                                                
                                             }
                                             //BMU 30ton
                                             else if ($qty > 500) {
@@ -1132,9 +1163,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
-                                                
                                             }
-
                                         } else if ($kota == 'KAB. LAMPUNG TIMUR') {
 
 
@@ -1144,7 +1173,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_200'];
-                                            
                                             }
                                             //BMU 20ton
                                             else if ($qty > 300 && $qty <= 500) {
@@ -1152,7 +1180,6 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_400'];
-                                                
                                             }
                                             //BMU 30ton
                                             else if ($qty > 500) {
@@ -1160,9 +1187,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_bmu WHERE nama_wilayah  = '$kota' ");
                                                 $data3p = mysqli_fetch_array($table3p);
                                                 $tarifx = $data3p['tarif_600'];
-                                                
                                             }
-
                                         }
     
 
@@ -1206,7 +1231,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <hr>
                         <br>
 
-                        <h5 align='center'>Rekap Pranko BMU Edy Kota Bumi</h5>
+                        <h5 align='center'>Rekap Pranko BMU Pak Nyoman Edi Kota Bumi</h5>
                         <!-- Tabel -->
                         <div align='center' style="overflow-x: auto">
                             <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -1297,7 +1322,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <hr>
                         <br>
 
-                        <h5 align='center'>Rekap Pranko BMU Edy Lamteng</h5>
+                        <h5 align='center'>Rekap Pranko BMU Pak Nyoman Edi Lamteng</h5>
                         <!-- Tabel -->
                         <div align='center' style="overflow-x: auto">
                             <table id="example3" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
@@ -1389,169 +1414,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <hr>
                         <br>
 
-                        <div class="row" style="margin-right: 20px; margin-left: 20px;">
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Tagihan OKU Timur</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_okut) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Tagihan OKU Selatan</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_okus) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Tagihan Muara Dua Kota</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_md_kota) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                       
-
-
-                        <div class="row" style="margin-right: 20px; margin-left: 20px;">
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Tagihan Tulang Bawang</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_tlg_bwg) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Tagihan Way Kanan</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_way_kanan) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Tagihan Mesuji</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_mesuji) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="row" style="margin-right: 20px; margin-left: 20px;">
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Tagihan BMU Kobum</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_bmu_kb) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Tagihan BMU Lamteng</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy_bmu_lamteng) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Tagihan BMU Global</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= formatuang($total_angkutan_edy + $total_angkutan_edy_bmu_kb + $total_angkutan_edy_bmu_lamteng) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br>
-                        <hr>
-                        <br>
-
-                        <br>
-                        <br>
+                      
 
                     </div>
                 </div>

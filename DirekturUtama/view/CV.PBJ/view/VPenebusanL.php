@@ -555,6 +555,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>Tanggal</th>
                     <th>NO DO</th>
                     <th>NO SO</th>
+                    <th>NO Antri</th>
                     <th>Brand</th>
                     <th>Tipe Semen</th>
                     <th>Tujuan</th>
@@ -588,6 +589,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $tanggal = $data['tanggal'];
                     $no_do = $data['no_do'];
                     $no_so = $data['no_so'];
+                    $no_antri = $data['no_antri'];
                     $brand = $data['brand'];
                     $tipe_semen = $data['tipe_semen'];
                     $tujuan = $data['tujuan'];
@@ -610,6 +612,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$no_do</td>
       <td style='font-size: 14px'>$no_so</td>
+      <td style='font-size: 14px'>$no_antri</td>
       <td style='font-size: 14px'>$brand</td>
       <td style='font-size: 14px'>$tipe_semen</td>
       <td style='font-size: 14px'>$tujuan</td>
