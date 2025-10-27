@@ -38,6 +38,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 else{
   $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_pengeluaran a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-560' AND referensi = 'MES' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND b.kode_akun = '5-560' AND referensi = 'ME' ");
   $table3 = mysqli_query($koneksipbr, "SELECT * FROM pengeluaran_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
+  $table4 = mysqli_query($koneksipbr, "SELECT * FROM keuangan_mes a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Konsumsi' ");
 }
 
  ?>
@@ -364,6 +365,78 @@ else{
 <hr>
 <br>
 <br>
+
+<h3 align = 'center'>Rincian Biaya Konsumsi (Keuangan Kasir)</h3>
+<!-- Tabel -->    
+<div style="overflow-x: auto" align = 'center' >
+  <table id="example2" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>REF</th>
+      <th>Rekening</th>
+      <th>Akun</th>
+      <th>Keterangan</th>
+      <th>Debit</th>
+      <th>Kredit</th>
+      <th>Total</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $urut = 0;
+    $total = 0;
+    ?>
+
+    <?php while($data = mysqli_fetch_array($table4)){
+      $no_pengeluaran = $data['no_pengeluaran'];
+      $tanggal =$data['tanggal'];
+      $referensi = $data['referensi'];
+      $rekening = $data['rekening'];
+      $nama_akun = $data['nama_akun'];
+      $keterangan = $data['keterangan'];
+      $jumlah = $data['jumlah'];
+      $file_bukti = $data['file_bukti'];
+      $urut  = $urut + 1;
+
+
+        $total = $total + $jumlah;
+
+
+
+
+      echo "<tr>
+      <td style='font-size: 14px'>$urut</td>
+      <td style='font-size: 14px'>$tanggal</td>
+      <td style='font-size: 14px'>$referensi</td>
+      <td style='font-size: 14px'>$rekening</td>
+      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$keterangan</td>";
+      if ($nama_akun == 'Saldo Awal Bulan' || $nama_akun == 'Tf dari Admin') {
+       echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+       echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
+      }
+      else{
+        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
+        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
+      }
+      echo" <td style='font-size: 14px'>"?>  <?= formatuang($total); ?> <?php echo "</td>
+      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+      </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+</div>
+
+<br>
+<br>
+<hr>
+<br>
+<br>
 </div>
 
 
@@ -455,6 +528,17 @@ aria-hidden="true">
     var table = $('#example3').DataTable( {
       lengthChange: false,
       buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+      lengthChange: false,
+      buttons: [ 'excel']
     } );
 
     table.buttons().container()

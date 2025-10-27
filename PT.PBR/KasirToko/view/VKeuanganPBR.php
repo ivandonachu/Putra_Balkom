@@ -45,7 +45,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_pbr a  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
   $table2 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah  FROM keuangan_pbr  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
 
 }
