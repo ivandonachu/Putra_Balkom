@@ -30,6 +30,7 @@ else{
 	$status_saldo = 'Keluar';
 }
 $jumlah = $_POST['jumlah'];
+$tujuan = $_POST['tujuan'];
 $keterangan = $_POST['keterangan'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
@@ -70,7 +71,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO keuangan_sl VALUES ('','$tanggal','$nama_akun','$rekening','$keterangan','$status_saldo','$jumlah','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO keuangan_sl VALUES ('','$tanggal','$nama_akun','$rekening','$tujuan','$keterangan','$status_saldo','$jumlah','$file')");
 
 			
 			if ($query != "") {

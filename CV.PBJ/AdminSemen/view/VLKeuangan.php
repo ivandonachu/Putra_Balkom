@@ -338,6 +338,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <label>Jumlah</label>
                             <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" value='0' required="">
                           </div>
+                          <div class="col-md-6">
+                            <label>Tujuan</label>
+                            <input class="form-control form-control-sm" type="text" id="tujuan" name="tujuan" value='' required="">
+                          </div>
                         </div>
 
 
@@ -381,6 +385,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th>Rekening</th>
                     <th>Akun</th>
                     <th></th>
+                    <th>Tujuan</th>
                     <th>Keterangan</th>
                     <th>Masuk</th>
                     <th>Keluar</th>
@@ -408,6 +413,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $nama_akun = $data['nama_akun'];
                     $status_saldo = $data['status_saldo'];
                     $jumlah = $data['jumlah'];
+                    $tujuan = $data['tujuan'];
                     $keterangan = $data['keterangan'];
                     if ($status_saldo == 'Masuk') {
                       $total_debit = $total_debit + $jumlah;
@@ -525,6 +531,10 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   <label>Jumlah</label>
                                   <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" value='<?php echo $jumlah; ?>' required="">
                                 </div>
+                                <div class="col-md-6">
+                                  <label>Tujuan</label>
+                                  <input class="form-control form-control-sm" type="text" id="tujuan" name="tujuan" value='<?php echo $tujuan; ?>' required="">
+                                </div>
                               </div>
 
 
@@ -586,6 +596,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
 
                     <?php echo  " </td>"; ?> <?php echo "
+                    <td style='font-size: 14px'>$tujuan</td>
       <td style='font-size: 14px'>$keterangan</td>";
 
 
