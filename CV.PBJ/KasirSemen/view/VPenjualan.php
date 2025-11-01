@@ -32,8 +32,8 @@ if (isset($_GET['tanggal1'])) {
   $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal)));
   $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir)));
 } else {
-  $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
+  $tanggal_awal = date('Y-m-d');
+  $tanggal_akhir = date('Y-m-d');
 
   $bulan_sebelum = date('Y-m-d', strtotime('-3 month', strtotime($tanggal_awal)));
   $bulan_sesudah =  date('Y-m-d', strtotime('+1 month', strtotime($tanggal_akhir)));
