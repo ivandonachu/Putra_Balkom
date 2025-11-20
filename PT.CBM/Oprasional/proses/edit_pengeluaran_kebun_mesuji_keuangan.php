@@ -61,11 +61,11 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-		$query3 = mysqli_query($koneksikebun,"UPDATE pengeluaran_kebun_mesuji_keuangan SET tanggal = '$tanggal' , referensi = '$referensi' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_pengeluaran = 
+		$query3 = mysqli_query($koneksikebun,"UPDATE pengeluaran_keb_mesuji_keuangan SET tanggal = '$tanggal' , referensi = '$referensi' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_pengeluaran = 
 		'$no_pengeluaran'");
 	}
 	else{
-		$query3 = mysqli_query($koneksikebun,"UPDATE pengeluaran_kebun_mesuji_keuangan SET tanggal = '$tanggal' , referensi = '$referensi' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_pengeluaran = 
+		$query3 = mysqli_query($koneksikebun,"UPDATE pengeluaran_keb_mesuji_keuangan SET tanggal = '$tanggal' , referensi = '$referensi' , nama_akun = '$nama_akun' , keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_pengeluaran = 
 		'$no_pengeluaran'");
 	}
 	

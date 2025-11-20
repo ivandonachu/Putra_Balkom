@@ -39,20 +39,20 @@ else{
   }
 if ($tanggal_awal == $tanggal_akhir) {
   
-  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun_mesuji_keuangan  WHERE tanggal = '$tanggal_awal' ORDER BY tanggal");
-  $table2 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_kebun_mesuji_keuangan  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_kebun_mesuji_keuangan  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Mesuji' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_kebun_mesuji_keuangan  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
+  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_keb_mesuji_keuangan  WHERE tanggal = '$tanggal_awal' ORDER BY tanggal");
+  $table2 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_keb_mesuji_keuangan  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_keb_mesuji_keuangan  WHERE tanggal = '$tanggal_awal' AND referensi = 'Kebun Mesuji' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_keb_mesuji_keuangan  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
 
 
 
 }
 else{
 
-  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_kebun_mesuji_keuangan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal");
-  $table2 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_kebun_mesuji_keuangan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
-  $table3 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_kebun_mesuji_keuangan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Mesuji' GROUP BY nama_akun");
-  $table4 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_kebun_mesuji_keuangan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
+  $table = mysqli_query($koneksikebun, "SELECT * FROM pengeluaran_keb_mesuji_keuangan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY tanggal");
+  $table2 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_keb_mesuji_keuangan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Seberuk' GROUP BY nama_akun");
+  $table3 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_keb_mesuji_keuangan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'Kebun Mesuji' GROUP BY nama_akun");
+  $table4 = mysqli_query($koneksikebun, "SELECT nama_akun, SUM(jumlah) AS jumlah FROM pengeluaran_keb_mesuji_keuangan  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
 
 
 }

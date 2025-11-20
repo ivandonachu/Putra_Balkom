@@ -62,7 +62,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksikebun,"INSERT INTO pengeluaran_kebun_mesuji_keuangan VALUES ('','$tanggal','$referensi','$nama_akun','$jumlah','$keterangan','$file')");
+	$query = mysqli_query($koneksikebun,"INSERT INTO pengeluaran_keb_mesuji_keuangan VALUES ('','$tanggal','$referensi','$nama_akun','$jumlah','$keterangan','$file')");
 
 
 			if ($query != "") {

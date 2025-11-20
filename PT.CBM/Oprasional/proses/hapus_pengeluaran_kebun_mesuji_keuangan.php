@@ -29,7 +29,7 @@ $no_pengeluaran = $_POST['no_pengeluaran'];
 		
 
 		//Hapusriwayat keberangkatan
-		$query = mysqli_query($koneksikebun,"DELETE FROM pengeluaran_kebun_mesuji_keuangan WHERE no_pengeluaran = '$no_pengeluaran'");
+		$query = mysqli_query($koneksikebun,"DELETE FROM pengeluaran_keb_mesuji_keuangan WHERE no_pengeluaran = '$no_pengeluaran'");
 
 
 
