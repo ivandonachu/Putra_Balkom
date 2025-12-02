@@ -96,7 +96,7 @@ if($id1 == 'a14'){
                                                                                                                                  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak' AND wilayah = 'Pesibar' OR 
                                                                                                                                  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND wilayah = 'Pesibar' OR 
                                                                                                                                  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak' AND wilayah = 'Lamtim' OR 
-                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND wilayah = 'Lamtim' OR ");
+                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND wilayah = 'Lamtim'");
   $data3 = mysqli_fetch_array($table3);
   $penjualan_zak_bon = $data3['penjualan_zak_bon'];
   $uang_zak_bon = $data3['uang_zak_bon'];
@@ -108,7 +108,7 @@ if($id1 == 'a14'){
                                                                                                                          tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' AND wilayah = 'Pesibar' OR 
                                                                                                                          tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' wilayah = 'Pesibar' OR 
                                                                                                                          tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' AND wilayah = 'Lamtim' OR 
-                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' wilayah = 'Lamtim' OR  ");
+                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' wilayah = 'Lamtim' ");
   $data4 = mysqli_fetch_array($table4);
   $penjualan_bag = $data4['penjualan_bag'];
   $uang_bag = $data4['uang_bag'];
@@ -120,7 +120,7 @@ if($id1 == 'a14'){
                                                                                                                                  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag' AND wilayah = 'Pesibar' OR 
                                                                                                                                  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag' wilayah = 'Pesibar' OR 
                                                                                                                                  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag' AND wilayah = 'Lamtim' OR 
-                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag' wilayah = 'Lamtim' OR ");
+                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag' wilayah = 'Lamtim' ");
   $data5 = mysqli_fetch_array($table5);
   $penjualan_bag_bon = $data5['penjualan_bag_bon'];
   $uang_bag_bon = $data5['uang_bag_bon'];
@@ -132,7 +132,7 @@ if($id1 == 'a14'){
                                                                                                                              tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah' AND wilayah = 'Pesibar' OR 
                                                                                                                              tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' AND wilayah = 'Pesibar' OR
                                                                                                                              tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah' AND wilayah = 'Lamtim' OR 
-                                                                                                                             tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' AND wilayah = 'Lamtim' OR ");
+                                                                                                                             tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' AND wilayah = 'Lamtim'");
   $data5 = mysqli_fetch_array($table5);
   $penjualan_curah = $data5['penjualan_curah'];
   $uang_curah = $data5['uang_curah'];
@@ -144,7 +144,7 @@ if($id1 == 'a14'){
                                                                                                                                      tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Curah' AND wilayah = 'Pesibar' OR 
                                                                                                                                      tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah' AND wilayah = 'Pesibar' OR
                                                                                                                                      tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Curah' AND wilayah = 'Lamtim' OR 
-                                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah' AND wilayah = 'Lamtim' OR");
+                                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah' AND wilayah = 'Lamtim'");
   $data6 = mysqli_fetch_array($table6);
   $penjualan_curah_bon = $data6['penjualan_curah_bon'];
   $uang_curah_bon = $data6['uang_curah_bon'];
