@@ -69,7 +69,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO keuangan_s VALUES ('','$tanggal','$nama_akun','$keterangan','$status_saldo','$jumlah','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO keuangan_s VALUES ('','$tanggal','$nama_akun','$keterangan','$status_saldo','$jumlah','$file','$id1')");
 
 			
 			if ($query != "") {

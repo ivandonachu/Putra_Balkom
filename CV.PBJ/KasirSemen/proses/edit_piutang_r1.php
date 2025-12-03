@@ -85,18 +85,18 @@ $no_pengiriman = $data_perta['no_pengiriman'];
 	if ($file == '') {
 			$query3 = mysqli_query($koneksi,"UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver' ,no_polisi = '$no_polisi' , 
 			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga_beli = '$harga_beli' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
-			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' WHERE no_penjualan = '$no_penjualan'");
+			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' , kode_input = '$id1'  WHERE no_penjualan = '$no_penjualan'");
 
 			$query4 = mysqli_query($koneksi,"UPDATE pengiriman_s SET no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi', 
-			toko_do = '$toko_do' WHERE no_pengiriman = '$no_pengiriman'");
+			toko_do = '$toko_do' , kode_input = '$id1'  WHERE no_pengiriman = '$no_pengiriman'");
 	}
 	else{
 			$query3 = mysqli_query($koneksi,"UPDATE penjualan_s SET tanggal_do = '$tanggal_do' , tanggal_kirim = '$tanggal_kirim', no_do = '$no_do' , driver = '$driver', no_polisi = '$no_polisi' , 
 			tujuan_pengiriman = '$tujuan_pengiriman' , qty = '$qty' , satuan = '$satuan' , harga_beli = '$harga_beli' , harga = '$harga' , jumlah = '$jumlah' , toko_do = '$toko_do' , tempo = '$tempo' , tanggal_bayar = '$tanggal_bayar' , 
-			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' , file_bukti = '$file'  WHERE no_penjualan = '$no_penjualan'");
+			status_bayar = '$status_bayar' , keterangan = '$keterangan' , catatan = '$catatan'  , bulan = '$bulan' , file_bukti = '$file'  , kode_input = '$id1'  WHERE no_penjualan = '$no_penjualan'");
 
 			$query4 = mysqli_query($koneksi,"UPDATE pengiriman_s SET  no_do = '$no_do', driver = '$driver', no_polisi = '$no_polisi',
-			toko_do = '$toko_do' WHERE no_pengiriman = '$no_pengiriman'");
+			toko_do = '$toko_do' , kode_input = '$id1'  WHERE no_pengiriman = '$no_pengiriman'");
 	}
 
 

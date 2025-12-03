@@ -72,27 +72,15 @@ else if($id1 == 'a3'){
 
     if ($tanggal_awal == $tanggal_akhir) {
 
-    $table = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lambar' OR  
-                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lambar' OR 
-                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Pesibar' OR  
-                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Pesibar' OR 
-                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lamtim' OR  
-                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lamtim' GROUP BY tujuan_pengiriman ");
+    $table = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lambar' AND wilayah != 'Pesibar'  AND wilayah != 'Lamtim' OR  
+                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lambar' AND wilayah != 'Pesibar'  AND wilayah != 'Lamtim' GROUP BY tujuan_pengiriman ");
 
-    $table2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lambar' OR 
-                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lambar' OR 
-                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Pesibar' OR 
-                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Pesibar' OR 
-                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lamtim' OR 
-                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lamtim' GROUP BY tujuan_pengiriman ");
+    $table2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lambar' AND wilayah != 'Pesibar' AND wilayah != 'Lamtim' OR 
+                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lambar' AND wilayah != 'Pesibar' AND wilayah != 'Lamtim' GROUP BY tujuan_pengiriman ");
 } else {
 
-    $table = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lambar' OR   
-                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lambar' OR  
-                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Pesibar' OR   
-                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Pesibar' OR  
-                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lamtim' OR   
-                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lamtim' GROUP BY tujuan_pengiriman ");
+    $table = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lambar' AND wilayah != 'Pesibar' AND wilayah != 'Lamtim' OR   
+                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lambar' AND wilayah != 'Pesibar' AND wilayah != 'Lamtim' GROUP BY tujuan_pengiriman ");
 
     $table2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND wilayah != 'Lambar' OR 
                                                                                                                        tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND wilayah != 'Lambar' OR 

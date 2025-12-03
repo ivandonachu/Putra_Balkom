@@ -81,7 +81,7 @@ else if ( $nama_file != "" ) {
 }
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_s VALUES('','$no_penjualan','$tanggal_antar','$no_do','$no_so','$driver','$no_polisi','$toko_do','$tipe_semen','$uj','$ug','$om','$bs','$tanggal_gaji','$tanggal_nota','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO pengiriman_s VALUES('','$no_penjualan','$tanggal_antar','$no_do','$no_so','$driver','$no_polisi','$toko_do','$tipe_semen','$uj','$ug','$om','$bs','$tanggal_gaji','$tanggal_nota','$keterangan','$file','$id1')");
 
 			if ($query != "") {
 			echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPengiriman?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
