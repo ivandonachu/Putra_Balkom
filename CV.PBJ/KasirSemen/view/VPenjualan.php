@@ -153,7 +153,7 @@ if($id1 == 'a14'){
 
 }
 
-else if($id1 == 'a3'){
+if($id == 'a3'){
 
  if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' AND wilayah != 'Lambar' OR 
@@ -189,9 +189,7 @@ else if($id1 == 'a3'){
   $penjualan_bag_bon = $data5['penjualan_bag_bon'];
   $uang_bag_bon = $data5['uang_bag_bon'];
 } else {
-  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND wilayah != 'Lambar' OR  
-                                                                   tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND wilayah != 'Pesibar' OR 
-                                                                   tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND wilayah != 'Lamtim' ORDER BY tanggal_kirim ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND wilayah != 'Lambar' AND wilayah != 'Pesibar' AND wilayah != 'Lamtim' ORDER BY tanggal_kirim ASC");
 
 
   $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' AND wilayah != 'Lambar' OR 
