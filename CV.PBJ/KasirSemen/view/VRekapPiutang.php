@@ -68,7 +68,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 }
 
-else{
+else if($id1 == 'a3'){
 
     if ($tanggal_awal == $tanggal_akhir) {
 

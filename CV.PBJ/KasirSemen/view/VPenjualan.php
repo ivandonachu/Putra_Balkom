@@ -153,7 +153,7 @@ if($id1 == 'a14'){
 
 }
 
-else{
+else if($id1 == 'a3'){
 
  if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' AND wilayah != 'Lambar' OR 
