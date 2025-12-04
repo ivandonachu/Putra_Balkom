@@ -137,6 +137,7 @@ WHERE  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'PBR
                         <a class="collapse-item" style="font-size: 15px;" href="VKredit">Kredit Kendaraan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPembelian">Pembelian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranAdmin">Pengeluaran</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranGGPE">Pengeluaran GGPE</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapPinjamSaldo">Rekap Pinjam Saldo</a>
                         <a class="collapse-item" style="font-size: 12px;" href="VRekapPengembalianSaldo">Rekap Pengembalian Saldo</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
