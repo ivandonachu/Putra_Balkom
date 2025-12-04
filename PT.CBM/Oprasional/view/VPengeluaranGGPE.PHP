@@ -39,15 +39,14 @@ else{
   }
 if ($tanggal_awal == $tanggal_akhir) {
   
-  $table = mysqli_query($koneksi, "SELECT * FROM mocash_cbm WHERE tanggal = '$tanggal_awal'");
-  $table2 = mysqli_query($koneksi, "SELECT nama_akun, akun_mocash,  SUM(jumlah) AS total_jumlah FROM mocash_cbm  WHERE tanggal = '$tanggal_awal' GROUP BY akun_mocash");
+  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_ggpe WHERE tanggal = '$tanggal_awal'");
+  $table10 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_ggpe  WHERE tanggal = '$tanggal_awal' AND referensi = 'GGPE' GROUP BY nama_akun");
 
 }
 else{
 
-  $table = mysqli_query($koneksi, "SELECT * FROM mocash_cbm WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-  $table2 = mysqli_query($koneksi, "SELECT nama_akun, akun_mocash,  SUM(jumlah) AS total_jumlah FROM mocash_cbm  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY akun_mocash");
-
+  $table = mysqli_query($koneksi, "SELECT * FROM pengeluaran_ggpe   WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table10 = mysqli_query($koneksi, "SELECT nama_akun, SUM(jumlah) AS total_jumlah FROM pengeluaran_ggpe  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND referensi = 'GGPE' GROUP BY nama_akun");
   
 }
 
@@ -63,7 +62,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Mocash CBM</title>
+  <title>Pengeluaran GGPE</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -216,7 +215,7 @@ Menu Kepala Oprasional
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Mocash CBM</h5></a>"; ?>
+      <?php echo "<a href='VPengeluaranGGPE?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Pengeluaran GGPE</h5></a>"; ?>
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -265,7 +264,7 @@ Menu Kepala Oprasional
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-    <?php  echo "<form  method='POST' action='VMocashCBM' style='margin-bottom: 15px;'>" ?>
+    <?php  echo "<form  method='POST' action='VPengeluaranGGPE' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -284,14 +283,14 @@ Menu Kepala Oprasional
 
     <!-- Button Input Data Bayar -->
     <div align="right">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Mocash </button> <br> <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Pengeluaran </button> <br> <br>
     </div>
     <!-- Form Modal  -->
     <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg" role ="document">
        <div class="modal-content"> 
         <div class="modal-header">
-          <h5 class="modal-title"> Form Mocash </h5>
+          <h5 class="modal-title"> Form Pengeluaran </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -299,7 +298,7 @@ Menu Kepala Oprasional
 
         <!-- Form Input Data -->
         <div class="modal-body" align="left">
-          <?php  echo "<form action='../proses/proses_mocash_cbm?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+          <?php  echo "<form action='../proses/proses_pengeluaran_ggpe?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
           <div class="row">
             <div class="col-md-4">
@@ -307,17 +306,15 @@ Menu Kepala Oprasional
                <input class="form-control form-control-sm" type="date" name="tanggal" required="">
           </div>
           <div class="col-md-4">
-            <label>Nama Akun</label>
-            <select class="form-control form-control-sm"  name="nama_akun" class="form-control">
-              <option>Mocash</option>
-              <option>Saldo Cek Masuk</option>
+            <label>REF</label>
+            <select class="form-control form-control-sm"  name="referensi" class="form-control">
+              <option>GGPE</option>
             </select>
           </div>
           <div class="col-md-4">
             <label>Rekening</label>
             <select class="form-control form-control-sm"  name="rekening" class="form-control">
-              <option>BRI Risa Septiana</option>
-              <option>BRI Rianto</option>
+              <option>BRI CBM</option>
             </select>
           </div>
         </div>
@@ -326,12 +323,31 @@ Menu Kepala Oprasional
 
         <div class="row">
             <div class="col-md-6">
-                 <label>Akun Mocash</label>
-                    <select class="form-control form-control-sm" name="akun_mocash" class="form-control ">
-                        <option>Risa</option>
-                        <option>Riyanto</option>
+                 <label>Akun</label>
+                    <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
+                        <option></option>
+                        <option>Saldo Sebelumnya</option>
                         <option>Saldo Cek Masuk</option>
-                        
+                        <option>Saldo Brimo Masuk</option>
+                        <option>Saldo Brankas Muara Dua</option>
+                        <option>Penarikan Cash</option>
+                        <option>Transport / Perjalanan Dinas</option>
+                        <option>Biaya Penjualan & Pemasaran</option>
+                        <option>Uang Jalan</option>  
+                        <option>Biaya Perbaikan Kendaraan</option>
+                        <option>Biaya Perbaikan Kendaraan Pribadi</option>
+                        <option>Sparepart</option>
+                        <option>Alat Tulis Kantor</option>
+                        <option>Listrik & Telepon</option>
+                        <option>Biaya Kantor</option>
+                        <option>Biaya Penyusutan</option>
+                        <option>Biaya Konsumsi</option>
+                        <option>Biaya Administrasi</option>
+                        <option>Pengeluaran Lainnya</option>
+                        <option>Karyawan Kasbon</option>
+                        <option>Stok Sparepart Gudang</option>
+                        <option>Bunga Bank</option>
+                        <option>Bunga Bank Pemasukan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -381,9 +397,9 @@ Menu Kepala Oprasional
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Nama Akun</th>
+      <th>REF</th>
       <th>Rekening</th>
-      <th>Akun Mocash</th>
+      <th>Akun</th>
       <th>Keterangan</th>
       <th>Debit</th>
       <th>Kredit</th>
@@ -405,15 +421,15 @@ Menu Kepala Oprasional
     <?php while($data = mysqli_fetch_array($table)){
       $no_pengeluaran = $data['no_pengeluaran'];
       $tanggal =$data['tanggal'];
-      $nama_akun = $data['nama_akun'];
+      $referensi = $data['referensi'];
       $rekening = $data['rekening'];
-      $akun_mocash = $data['akun_mocash'];
+      $nama_akun = $data['nama_akun'];
       $keterangan = $data['keterangan'];
       $jumlah = $data['jumlah'];
       $file_bukti = $data['file_bukti'];
       $urut  = $urut + 1;
 
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
         $total = $total + $jumlah;
       }
       else{
@@ -425,11 +441,11 @@ Menu Kepala Oprasional
       echo "<tr>
       <td style='font-size: 14px'>$urut</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>
+      <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$rekening</td>
-      <td style='font-size: 14px'>$akun_mocash</td>
+      <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan') {
        echo" <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
        echo" <td style='font-size: 14px'>"?>  <?= formatuang(0); ?> <?php echo "</td>";
       }
@@ -458,7 +474,7 @@ Menu Kepala Oprasional
 
       <!-- Form Edit Data -->
       <div class="modal-body">
-        <form action="../proses/edit_mocash_cbm" enctype="multipart/form-data" method="POST">
+        <form action="../proses/edit_pengeluaran_ggpe" enctype="multipart/form-data" method="POST">
         <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
         <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
         <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran;?>">
@@ -468,32 +484,56 @@ Menu Kepala Oprasional
                <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal;?>" >
           </div>
           <div class="col-md-4">
-            <label>Nama Akun</label>
-            <select class="form-control form-control-sm"  name="nama_akun" class="form-control">
-              <?php $dataSelect = $data['nama_akun']; ?>
-              <option <?php echo ($dataSelect == 'Mocash') ? "selected": "" ?> >Mocash</option>
-              <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
+            <label>REF</label>
+            <select class="form-control form-control-sm"  name="referensi" class="form-control">
+              <?php $dataSelect = $data['referensi']; ?>
+              <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
+              <option <?php echo ($dataSelect == 'Melodi Tani') ? "selected": "" ?> >Melodi Tani</option>
+              <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
+              <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Seberuk</option>
+              <option <?php echo ($dataSelect == 'MJRE') ? "selected": "" ?> >MJRE</option>
+              <option <?php echo ($dataSelect == 'BBM') ? "selected": "" ?> >BBM</option>
+              <option <?php echo ($dataSelect == 'EGG') ? "selected": "" ?> >EGG</option>
+              <option <?php echo ($dataSelect == 'GelGel') ? "selected": "" ?> >GelGel</option>
             </select>
           </div>
           <div class="col-md-4">
-                 <label>Rekening</label>
-                    <select class="form-control form-control-sm" name="rekening" class="form-control ">
-                        <?php $dataSelect = $data['rekening']; ?>
-                        <option <?php echo ($dataSelect == 'BRI Risa Septiana') ? "selected": "" ?> >BRI Risa Septiana</option>
-                        <option <?php echo ($dataSelect == 'BRI Rianto') ? "selected": "" ?> >BRI Rianto</option>
-                      
-                    </select>
-            </div>
+            <label>Rekening</label>
+            <select class="form-control form-control-sm"  name="rekening" class="form-control">
+              <?php $dataSelect = $data['rekening']; ?>
+              <option <?php echo ($dataSelect == 'BRI Nyoman Serli') ? "selected": "" ?> >BRI Nyoman Serli</option>
+              <option <?php echo ($dataSelect == 'BRI Cahaya Bumi Musi') ? "selected": "" ?> >BRI Cahaya Bumi Musi</option>
+              <option <?php echo ($dataSelect == 'Cash') ? "selected": "" ?> >Cash</option>
+            </select>
+          </div>
         </div>
       <br>
         <div class="row">
             <div class="col-md-6">
-                 <label>Akun Mocash</label>
-                    <select class="form-control form-control-sm" name="akun_mocash" class="form-control ">
-                        <?php $dataSelect = $data['akun_mocash']; ?>
+                 <label>Akun</label>
+                    <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
+                        <?php $dataSelect = $data['nama_akun']; ?>
+                        <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
                         <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
-                        <option <?php echo ($dataSelect == 'Risa') ? "selected": "" ?> >Risa</option>
-                        <option <?php echo ($dataSelect == 'Riyanto') ? "selected": "" ?> >Riyanto</option>
+                        <option <?php echo ($dataSelect == 'Saldo Brimo Masuk') ? "selected": "" ?> >Saldo Brimo Masuk</option>
+                        <option <?php echo ($dataSelect == 'Saldo Brankas Muara Dua') ? "selected": "" ?> >Saldo Brankas Muara Dua</option>
+                        <option <?php echo ($dataSelect == 'Penarikan Cash') ? "selected": "" ?> >Penarikan Cash</option>
+                        <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
+                        <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
+                        <option <?php echo ($dataSelect == 'Uang Jalan') ? "selected": "" ?> >Uang Jalan</option>
+                        <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
+                        <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan Pribadi') ? "selected": "" ?> >Biaya Perbaikan Kendaraan Pribadi</option>
+                        <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
+                        <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
+                        <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
+                        <option <?php echo ($dataSelect == 'Biaya Penyusutan') ? "selected": "" ?> >Biaya Penyusutan</option>
+                        <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+                        <option <?php echo ($dataSelect == 'Biaya Administrasi') ? "selected": "" ?> >Biaya Administrasi</option>
+                        <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected": "" ?> >Pengeluaran Lainnya</option>
+                        <option <?php echo ($dataSelect == 'Karyawan Kasbon') ? "selected": "" ?> >Karyawan Kasbon</option>
+                        <option <?php echo ($dataSelect == 'Stok Sparepart Gudang') ? "selected": "" ?> >Stok Sparepart Gudang</option>
+                        <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
+                        <option <?php echo ($dataSelect == 'Bunga Bank Pemasukan') ? "selected": "" ?> >Bunga Bank Pemasukan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -547,7 +587,7 @@ Menu Kepala Oprasional
     
 
           <div class="modal-body">
-            <form action="../proses/hapus_mocash_cbm" method="POST">
+            <form action="../proses/hapus_pengeluaran_ggpe" method="POST">
               <input type="hidden" name="no_pengeluaran" value="<?php echo $no_pengeluaran; ?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
@@ -577,67 +617,50 @@ Menu Kepala Oprasional
 <hr>
 <br>
 
-<h5 align="center" >Rincian Mocash</h5>
+<h5 align="center" >Rincian Pengeluaran GGPE </h5>
 <!-- Tabel -->    
 <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>Akun</th>
-      <th>Total Mocash</th>
+      <th>Total Pengeluaran</th>
     </tr>
   </thead>
   <tbody>
   <?php 
-    $sisa_saldo = 0;
-    $total_pengeluaran = 0;
-    $total_saldo = 0;
-    $jumlah_riyanto = 0;
-    $jumlah_risa =0;
+    $total_seluruh = 0;
   ?>
-    <?php while($data = mysqli_fetch_array($table2)){
+    <?php while($data = mysqli_fetch_array($table10)){
       $nama_akun = $data['nama_akun'];
       $jumlah =$data['total_jumlah'];
-      $akun_mocash = $data['akun_mocash'];
-      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya') {
-        $sisa_saldo  = $sisa_saldo + $jumlah;
-        $total_saldo = $total_saldo + $jumlah;
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya'|| $nama_akun == 'Bunga Bank Pemasukan') {
+    
       }
       else{
-        $sisa_saldo  = $sisa_saldo - $jumlah;
-        $total_pengeluaran = $total_pengeluaran + $jumlah;
+        $total_seluruh = $total_seluruh + $jumlah;
+      }
+
+      echo "<tr>
+      " ;
+      if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya'|| $nama_akun == 'Bunga Bank Pemasukan') {
+    
+      }
+      else{
+        echo" <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>";
       }
      
 
-
-      echo "<tr>
-
-       <td style='font-size: 14px' >$akun_mocash</td>
-        <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
-      
-     
-
-  </tr>";
+    echo" </tr>";
 }
-?>    <tr>
-      <td style='font-size: 14px; ' ><strong>Total Sakdo</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($total_saldo); ?></strong> </td>
-      </tr>
-      <tr>
-      <td style='font-size: 14px; ' ><strong>Total Pengeluaran</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($total_pengeluaran); ?></strong> </td>
-      </tr>
-      <tr>
-      <td style='font-size: 14px; ' ><strong>Sisa Saldo</strong></td>
-      <td style='font-size: 14px'> <strong> <?= formatuang($sisa_saldo); ?></strong> </td>
-      </tr>
-      
-     
-      
+
+?>
+      <td style='font-size: 14px; ' ><strong>TOTAL</strong></td>
+      <td style='font-size: 14px'> <strong> <?= formatuang($total_seluruh); ?></strong> </td>
 
       </tr>
 </tbody>
 </table>
-
 
 <br>
 <br>
