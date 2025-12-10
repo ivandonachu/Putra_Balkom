@@ -355,6 +355,7 @@ else{
           <div class="col-md-4">
             <label>Rekening</label>
             <select class="form-control form-control-sm"  name="rekening" class="form-control">
+              <option>BRI GGPE</option>
               <option>BRI CBM</option>
             </select>
           </div>
@@ -367,6 +368,7 @@ else{
                  <label>Akun</label>
                     <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
                         <option></option>
+                        <option>Saldo Modal</option>
                         <option>Saldo Sebelumnya</option>
                         <option>Saldo Cek Masuk</option>
                         <option>Saldo Brimo Masuk</option>
