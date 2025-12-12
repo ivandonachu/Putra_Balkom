@@ -491,7 +491,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                     echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
                                                                         }
                                                                         echo " <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>" href="/PT.CBM/StaffAdmin/file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
                       <?php echo "<td style='font-size: 12px'>"; ?>
 
