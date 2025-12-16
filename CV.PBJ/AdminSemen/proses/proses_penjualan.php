@@ -86,7 +86,7 @@ else if ( $nama_file != "" ) {
 
 
 	$query = mysqli_query($koneksi,"INSERT INTO penjualan_sl VALUES('','$tanggal_do','$tanggal_kirim','$no_do','$no_so','$driver','$no_polisi','$tujuan_pengiriman','$wilayah','$qty','$satuan','$harga_beli','$harga','$jumlah','$toko_do','$tempo','$tanggal_bayar','$status_bayar'
-		,'$keterangan','$catatan','$bulan','$file')");
+		,'$keterangan','$catatan','$bulan','$file','$id1')");
 
 			if ($query != "") {
 	echo "<script>alert('Data Proses Berhasil :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
