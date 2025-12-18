@@ -468,7 +468,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $file_bukti = $data['file_bukti'];
                     $urut  = $urut + 1;
 
-                    if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Saldo Modal' || $nama_akun == 'Saldo Masuk') {
+                    if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Saldo Modal' || $nama_akun == 'Saldo masuk') {
                       $total = $total + $jumlah;
                     } else {
                       $total = $total - $jumlah;
@@ -483,7 +483,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>$rekening</td>
       <td style='font-size: 14px'>$nama_akun</td>
       <td style='font-size: 14px'>$keterangan</td>";
-                    if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Saldo Modal' || $nama_akun == 'Saldo Masuk') {
+                    if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Saldo Modal' || $nama_akun == 'Saldo masuk') {
                       echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
                                                                           echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
                                                                   } else {
@@ -676,14 +676,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                 <?php while ($data = mysqli_fetch_array($table10)) {
                   $nama_akun = $data['nama_akun'];
                   $jumlah = $data['total_jumlah'];
-                  if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Saldo Modal' || $nama_akun == 'Saldo Masuk') {
+                  if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Saldo Modal' || $nama_akun == 'Saldo masuk') {
                   } else {
                     $total_seluruh = $total_seluruh + $jumlah;
                   }
 
                   echo "<tr>
       ";
-                  if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Saldo Modal' || $nama_akun == 'Saldo Masuk') {
+                  if ($nama_akun == 'Saldo Cek Masuk' || $nama_akun == 'Saldo Brimo Masuk' || $nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Bunga Bank Pemasukan' || $nama_akun == 'Saldo Modal' || $nama_akun == 'Saldo masuk') {
                   } else {
                     echo " <td style='font-size: 14px' >$nama_akun</td>
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
