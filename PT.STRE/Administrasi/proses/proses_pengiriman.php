@@ -56,7 +56,7 @@ else{
 }
 
 
-$u_dex = $dexlite*15000;
+$u_dex = $dexlite*13800;
 $u_solar = $solar*12000;
 $uang_makan = 625*$jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
