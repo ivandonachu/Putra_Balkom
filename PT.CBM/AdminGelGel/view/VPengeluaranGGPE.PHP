@@ -427,23 +427,15 @@ else{
             <label>REF</label>
             <select class="form-control form-control-sm"  name="referensi" class="form-control">
               <?php $dataSelect = $data['referensi']; ?>
-              <option <?php echo ($dataSelect == 'CBM') ? "selected": "" ?> >CBM</option>
-              <option <?php echo ($dataSelect == 'Melodi Tani') ? "selected": "" ?> >Melodi Tani</option>
-              <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Lengkiti</option>
-              <option <?php echo ($dataSelect == 'Kebun Lengkiti') ? "selected": "" ?> >Kebun Seberuk</option>
-              <option <?php echo ($dataSelect == 'MJRE') ? "selected": "" ?> >MJRE</option>
-              <option <?php echo ($dataSelect == 'BBM') ? "selected": "" ?> >BBM</option>
-              <option <?php echo ($dataSelect == 'EGG') ? "selected": "" ?> >EGG</option>
-              <option <?php echo ($dataSelect == 'GelGel') ? "selected": "" ?> >GelGel</option>
+              <option <?php echo ($dataSelect == 'GGPE') ? "selected": "" ?> >GGPE</option>
             </select>
           </div>
           <div class="col-md-4">
             <label>Rekening</label>
             <select class="form-control form-control-sm"  name="rekening" class="form-control">
               <?php $dataSelect = $data['rekening']; ?>
-              <option <?php echo ($dataSelect == 'BRI Nyoman Serli') ? "selected": "" ?> >BRI Nyoman Serli</option>
-              <option <?php echo ($dataSelect == 'BRI Cahaya Bumi Musi') ? "selected": "" ?> >BRI Cahaya Bumi Musi</option>
-              <option <?php echo ($dataSelect == 'Cash') ? "selected": "" ?> >Cash</option>
+              <option <?php echo ($dataSelect == 'BRI GGPE') ? "selected": "" ?> >BRI GGPE</option>
+              <option <?php echo ($dataSelect == 'BRI CBM') ? "selected": "" ?> >BRI CBM</option>
             </select>
           </div>
         </div>
