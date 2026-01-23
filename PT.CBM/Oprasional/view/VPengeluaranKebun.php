@@ -161,21 +161,21 @@ if ($tanggal_awal == $tanggal_akhir) {
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoxxz"
-                  15  aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-                    <span style="font-size: 15px; color:white;" >MES & PBR</span>
-                </a>
-                <div id="collapseTwoxxz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu MES & PBR</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPTMESPBR">Pengeluaran MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLSaldoPTMESPBR">Saldo MES & PBR</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPTMES">Keuangan MES</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPTPBR">Keuangan PBR</a>
-                    </div>
-                </div>
-            </li>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoxxz"
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">MES & PBR</span>
+        </a>
+        <div id="collapseTwoxxz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu MES & PBR</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranPTMESPBR">Pengeluaran MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLSaldoPTMESPBR">Saldo MES & PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPTMES">Keuangan MES</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPTPBR">Keuangan PBR</a>
+          </div>
+        </div>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -317,6 +317,11 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Pengeluaran Lainnya</option>
                               <option>Perbaikan Kendaraan</option>
                               <option>Listrik & Telepon</option>
+                              <option>Biaya Bangunan</option>
+                        <option>Asuransi</option>
+                        <option>Perawatan & Pemeliharaan Aset</option>
+                        <option>Pajak & Perizinan</option>
+                        <option>Biaya Sewa Kantor</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -415,14 +420,14 @@ if ($tanggal_awal == $tanggal_akhir) {
                     if ($nama_akun == 'Saldo Sebelumnya' || $nama_akun == 'Saldo Masuk') {
                       echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
                                                                                           echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
-                                                                                  } else if ($nama_akun == 'Penarikan Saldo') {
-                                                                                    echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                                          echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
-                                                                                  } else {
-                                                                                    echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
-                                                                                    echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                                        }
-                                                                                        echo " <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
+                                                                                                                                                      } else if ($nama_akun == 'Penarikan Saldo') {
+                                                                                                                                                        echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                                                                                                                                                        echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
+                                                                                                                                                      } else {
+                                                                                                                                                        echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
+                                                                                                                                                        echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                                                                                                                                                      }
+                                                                                                                                                      echo " <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
                       <?php echo "<td style='font-size: 12px'>"; ?>
@@ -480,7 +485,12 @@ if ($tanggal_awal == $tanggal_akhir) {
                                       <option <?php echo ($dataSelect == 'Konsumsi') ? "selected" : "" ?>>Konsumsi</option>
                                       <option <?php echo ($dataSelect == 'Pengeluaran Lainnya') ? "selected" : "" ?>>Pengeluaran Lainnya</option>
                                       <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected" : "" ?>>Perbaikan Kendaraan</option>
-                                      <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
+                                      <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected" : "" ?>>Listrik & Telepon</option>
+                                      <option <?php echo ($dataSelect == 'Biaya Bangunan') ? "selected" : "" ?>>Biaya Bangunan</option>
+                                      <option <?php echo ($dataSelect == 'Asuransi') ? "selected" : "" ?>>Asuransi</option>
+                                      <option <?php echo ($dataSelect == 'Perawatan & Pemeliharaan Aset') ? "selected" : "" ?>>Perawatan & Pemeliharaan Aset</option>
+                                      <option <?php echo ($dataSelect == 'Pajak & Perizinan') ? "selected" : "" ?>>Pajak & Perizinan</option>
+                                      <option <?php echo ($dataSelect == 'Biaya Sewa Kantor') ? "selected" : "" ?>>Biaya Sewa Kantor</option>
                                     </select>
                                   </div>
                                   <div class="col-md-6">

@@ -362,6 +362,11 @@ Menu Kepala Oprasional
                         <option>Pengeluaran Kebun Kota Batu</option>
                         <option>Alat & Bahan Bangunan Kebun Kota Batu</option>
                         <option>Karyawan Kasbon</option>
+                        <option>Biaya Bangunan</option>
+                        <option>Asuransi</option>
+                        <option>Perawatan & Pemeliharaan Aset</option>
+                        <option>Pajak & Perizinan</option>
+                        <option>Biaya Sewa Kantor</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -545,6 +550,11 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Pengeluaran Kebun Kota Batu') ? "selected": "" ?> >Pengeluaran Kebun Kota Batu</option>
                         <option <?php echo ($dataSelect == 'Alat & Bahan Bangunan Kebun Kota Batu') ? "selected": "" ?> >Alat & Bahan Bangunan Kebun Kota Batu</option>
                         <option <?php echo ($dataSelect == 'Karyawan Kasbon') ? "selected": "" ?> >Karyawan Kasbon</option>
+                        <option <?php echo ($dataSelect == 'Biaya Bangunan') ? "selected": "" ?> >Biaya Bangunan</option>
+                        <option <?php echo ($dataSelect == 'Asuransi') ? "selected": "" ?> >Asuransi</option>
+                        <option <?php echo ($dataSelect == 'Perawatan & Pemeliharaan Aset') ? "selected": "" ?> >Perawatan & Pemeliharaan Aset</option>
+                        <option <?php echo ($dataSelect == 'Pajak & Perizinan') ? "selected": "" ?> >Pajak & Perizinan</option>
+                        <option <?php echo ($dataSelect == 'Biaya Sewa Kantor') ? "selected": "" ?> >Biaya Sewa Kantor</option>
                         
                     </select>
             </div>

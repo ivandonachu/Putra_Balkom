@@ -372,6 +372,11 @@ Menu Kepala Oprasional
                         <option>Stok Sparepart Gudang</option>
                         <option>Bunga Bank</option>
                         <option>Bunga Bank Pemasukan</option>
+                        <option>Biaya Bangunan</option>
+                        <option>Asuransi</option>
+                        <option>Perawatan & Pemeliharaan Aset</option>
+                        <option>Pajak & Perizinan</option>
+                        <option>Biaya Sewa Kantor</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -558,6 +563,11 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Stok Sparepart Gudang') ? "selected": "" ?> >Stok Sparepart Gudang</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank Pemasukan') ? "selected": "" ?> >Bunga Bank Pemasukan</option>
+                        <option <?php echo ($dataSelect == 'Biaya Bangunan') ? "selected": "" ?> >Biaya Bangunan</option>
+                        <option <?php echo ($dataSelect == 'Asuransi') ? "selected": "" ?> >Asuransi</option>
+                        <option <?php echo ($dataSelect == 'Perawatan & Pemeliharaan Aset') ? "selected": "" ?> >Perawatan & Pemeliharaan Aset</option>
+                        <option <?php echo ($dataSelect == 'Pajak & Perizinan') ? "selected": "" ?> >Pajak & Perizinan</option>
+                        <option <?php echo ($dataSelect == 'Biaya Sewa Kantor') ? "selected": "" ?> >Biaya Sewa Kantor</option>
                     </select>
             </div>
             <div class="col-md-6">

@@ -338,6 +338,11 @@ Menu Kepala Oprasional
                         <option>Perbaikan Kendaraan</option>
                         <option>Bon Karyawan</option>
                         <option>Kembalikan Saldo</option>
+                        <option>Biaya Bangunan</option>
+                        <option>Asuransi</option>
+                        <option>Perawatan & Pemeliharaan Aset</option>
+                        <option>Pajak & Perizinan</option>
+                        <option>Biaya Sewa Kantor</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -507,6 +512,11 @@ Menu Kepala Oprasional
                         <option <?php echo ($dataSelect == 'Perbaikan Kendaraan') ? "selected": "" ?> >Perbaikan Kendaraan</option> 
                         <option <?php echo ($dataSelect == 'Bon Karyawan') ? "selected": "" ?> >Bon Karyawan</option> 
                         <option <?php echo ($dataSelect == 'Kembalikan Saldo') ? "selected": "" ?> >Kembalikan Saldo</option> 
+                        <option <?php echo ($dataSelect == 'Biaya Bangunan') ? "selected": "" ?> >Biaya Bangunan</option>
+                        <option <?php echo ($dataSelect == 'Asuransi') ? "selected": "" ?> >Asuransi</option>
+                        <option <?php echo ($dataSelect == 'Perawatan & Pemeliharaan Aset') ? "selected": "" ?> >Perawatan & Pemeliharaan Aset</option>
+                        <option <?php echo ($dataSelect == 'Pajak & Perizinan') ? "selected": "" ?> >Pajak & Perizinan</option>
+                        <option <?php echo ($dataSelect == 'Biaya Sewa Kantor') ? "selected": "" ?> >Biaya Sewa Kantor</option>
                     </select>
             </div>
             <div class="col-md-6">
