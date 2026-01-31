@@ -41,9 +41,9 @@ exit;
     $hutang_pribadi = $_POST['hutang_pribadi'];
     $potongan_bon = $_POST['potongan_bon'];
     $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif + $tunjangan_oprasional  ;
-    if($$nama_karyawan == 'Made Dani Asmara' || $nama_karyawan == 'Wayan Jiwan Mukti' || $nama_karyawan == 'Edi Sasmita' ){
+    if($nama_karyawan == 'Made Dani Asmara' || $nama_karyawan == 'Wayan Jiwan Mukti' || $nama_karyawan == 'Edi Sasmita' ){
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif + $tunjangan_oprasional  - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $bpjs_kesehatan + $absen_terlambat);
-    }else if ($$nama_karyawan == 'Ivanof Fernando Donachu') {
+    }else if ($nama_karyawan == 'Ivanof Fernando Donachu') {
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif + $tunjangan_oprasional - ($potongan_absen + $potongan_bon + $bpjs_kesehatan + $absen_terlambat);
     }
     else{
