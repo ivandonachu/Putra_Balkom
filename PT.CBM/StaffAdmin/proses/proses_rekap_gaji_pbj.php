@@ -1,29 +1,27 @@
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
-	header("Location: logout.php");
-	exit;
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
+    header("Location: logout.php");
+    exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Staff Admin') {
-
-}
-
-else{  header("Location: logout.php");
-exit;
+} else {
+    header("Location: logout.php");
+    exit;
 }
 
 
 $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_pbj");
-$tanggal =$_POST['tanggal'];
+$tanggal = $_POST['tanggal'];
 
-while($data2 = mysqli_fetch_array($table)){
-    $nama_karyawan =$data2['nama_karyawan'];
+while ($data2 = mysqli_fetch_array($table)) {
+    $nama_karyawan = $data2['nama_karyawan'];
     $jabatan = $data2['jabatan'];
     $gaji_pokok = $data2['gaji_pokok'];
     $tunjangan_jabatan = $data2['tunjangan_jabatan'];
@@ -45,25 +43,23 @@ while($data2 = mysqli_fetch_array($table)){
     $potongan_bon = $data2['potongan_bon'];
     $total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif + $tunjangan_oprasional;
 
-    if($$nama_karyawan == 'Made Dani Asmara' || $nama_karyawan == 'Wayan Jiwan Mukti' || $nama_karyawan == 'Edi Sasmita' ){
+    if ($$nama_karyawan == 'Made Dani Asmara' || $nama_karyawan == 'Wayan Jiwan Mukti' || $nama_karyawan == 'Edi Sasmita') {
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif + $tunjangan_oprasional - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $bpjs_kesehatan + $absen_terlambat);
     }
-    else{
+    else if ($$nama_karyawan == 'Ivanof Fernando Donachu') {
+        $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif + $tunjangan_oprasional - ($potongan_absen + $potongan_bon + $bpjs_kesehatan + $absen_terlambat);
+    } else {
         $total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_akomodasi + $uang_makan + $premi_kehadiran + $lembur + $bonus_1 + $bonus_2 + $bonus_3 + $insentif + $tunjangan_oprasional - ($potongan_absen + $potongan_bon + $bpjs_ketenagakerjaan + $absen_terlambat);
-
     }
-       
-    
+
+
     $keterangan = $data2['keterangan'];
 
-    $query = mysqli_query($koneksi,"INSERT INTO rekap_gaji_pbj VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_akomodasi','$tunjangan_oprasional','$uang_makan','$bpjs_ketenagakerjaan','$bpjs_kesehatan','$lembur','$premi_kehadiran'
+    $query = mysqli_query($koneksi, "INSERT INTO rekap_gaji_pbj VALUES('','$tanggal','$nama_karyawan','$jabatan','$gaji_pokok','$tunjangan_jabatan','$tunjangan_akomodasi','$tunjangan_oprasional','$uang_makan','$bpjs_ketenagakerjaan','$bpjs_kesehatan','$lembur','$premi_kehadiran'
                                                                         ,'$bonus_1','$bonus_2','$bonus_3','$absen_terlambat','$insentif','$potongan_absen','$angsuran_pinjaman','$potongan_bon','$hutang_pribadi','$total_gaji','$total_gaji_diterima','$keterangan')");
-
 }
 
 if ($query != "") {
-	echo "<script>alert('Proses Rekap Gaji Berhasil :)'); window.location='../view/VRekapGajiPBJ';</script>";exit;
-
+    echo "<script>alert('Proses Rekap Gaji Berhasil :)'); window.location='../view/VRekapGajiPBJ';</script>";
+    exit;
 }
-
-?>
