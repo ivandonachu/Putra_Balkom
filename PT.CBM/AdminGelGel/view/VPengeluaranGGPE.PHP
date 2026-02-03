@@ -253,7 +253,7 @@ else{
           <div class="col-md-4">
             <label>Rekening</label>
             <select class="form-control form-control-sm"  name="rekening" class="form-control">
-              <option>BRI GGPE</option>
+              <option>BRI GGPE</option> 
               <option>BRI CBM</option>
             </select>
           </div>
