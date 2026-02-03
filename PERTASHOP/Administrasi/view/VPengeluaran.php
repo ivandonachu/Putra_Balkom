@@ -314,13 +314,15 @@ else{
         <div class="col-md-6">
           <label>Akun</label>
           <select id="akun" name="akun" class="form-control">
-            <option>Biaya Kantor</option>
+            <option>Administrasi Kantor</option>
             <option>Listrik & Telepon</option>>
             <option>Alat Tulis Kantor</option>
              <option>Biaya Sewa</option>
              <option>Gaji Karyawan</option>
              <option>Transport & Perjalanan Dinas</option>
              <option>Biaya Konsumsi</option>
+             <option>Operasional Penjualan</option>
+             <option>Biaya Bangunan</option>
           </select>
         </div>          
         <div class="col-md-6">
