@@ -1059,7 +1059,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+         <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -1129,6 +1129,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VDriverSemen">List Driver</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraan">RIT PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraanTarahan">RIT Tarahan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraanPanjang">RIT Panjang</a>
                     </div>
                 </div>
             </li>

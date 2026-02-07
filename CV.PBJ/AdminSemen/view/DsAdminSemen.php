@@ -167,6 +167,9 @@ $nama = $data['nama_karyawan'];
                         <a class="collapse-item" style="font-size: 15px;" href="VDriverSemen">List Driver</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraan">RIT PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraanTarahan">RIT Tarahan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraanPanjang">RIT Panjang</a>
                     </div>
                 </div>
             </li>

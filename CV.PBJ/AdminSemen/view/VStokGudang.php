@@ -131,7 +131,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VFilePBJ">File PBJ</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VStokGudang">Stok Gudang</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapTagihan">Rekap Tagihan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRekapPiutang">Rekap Piutang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapPiutang">Rekap Piutang</a>
                     </div>
                 </div>
             </li>
@@ -147,6 +147,9 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VDriverSemen">List Driver</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VTokoDO">List Toko DO</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VListKota">List Kota</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraan">RIT PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraanTarahan">RIT Tarahan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraanPanjang">RIT Panjang</a>
                     </div>
                 </div>
             </li>
