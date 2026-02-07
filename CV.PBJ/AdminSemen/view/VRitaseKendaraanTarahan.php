@@ -302,7 +302,7 @@ else{
 
 <h5 align="center" >Rincian RIT Driver Rawajitu Tarahan</h5>
 <!-- Tabel -->    
-<table id="example2" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No Polisi</th>
@@ -573,7 +573,17 @@ aria-hidden="true">
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
+<script>
+  $(document).ready(function() {
+    var table = $('#example').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
 
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
 
 <script>
   $(document).ready(function() {
@@ -623,6 +633,90 @@ aria-hidden="true">
   } );
 </script>
 
+<script>
+  $(document).ready(function() {
+    var table = $('#example6').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example7').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example8').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example9').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example10').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example11').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#example12').DataTable( {
+      lengthChange: true,
+      buttons: ['excel']
+    } );
+
+    table.buttons().container()
+    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+  } );
+</script>
 
 
 
