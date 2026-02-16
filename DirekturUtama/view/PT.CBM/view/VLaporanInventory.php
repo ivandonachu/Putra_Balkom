@@ -14,41 +14,39 @@ $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
 
 }
-
-
 else{  header("Location: logout.php");
 exit;
 }
 
 
 if (isset($_GET['tanggal1'])) {
- $tanggal_awal = $_GET['tanggal1'];
- $tanggal_akhir = $_GET['tanggal2'];
-} 
+  $tanggal_awal = $_GET['tanggal1'];
+  $tanggal_akhir = $_GET['tanggal2'];
+ } 
+ 
+ elseif (isset($_POST['tanggal1'])) {
+  $tanggal_awal = $_POST['tanggal1'];
+  $tanggal_akhir = $_POST['tanggal2'];
+ }  
+ else{
+  $tanggal_awal = date('Y-m-1');
+$tanggal_akhir = date('Y-m-31');
+ }
+ 
+ if ($tanggal_awal == $tanggal_akhir) {
+   $table = mysqli_query($koneksicbm, "SELECT * FROM laporan_inventory  WHERE tanggal = '$tanggal_awal' ORDER BY no_laporan");
+ }
+ else{
+   $table = mysqli_query($koneksicbm, "SELECT * FROM laporan_inventory WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ORDER BY no_laporan ");
+ }
 
-elseif (isset($_POST['tanggal1'])) {
- $tanggal_awal = $_POST['tanggal1'];
- $tanggal_akhir = $_POST['tanggal2'];
-}  
-else{
-    $tanggal_awal = date('Y-m-1');
-  $tanggal_akhir = date('Y-m-31');
-  }
+   $table2 = mysqli_query($koneksicbm, "SELECT * FROM inventory a INNER JOIN baja b ON a.kode_baja=b.kode_baja");
 
-if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal = '$tanggal_awal'");
-}
-else{
-  $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_keberangkatan a INNER JOIN driver b ON  a.id_driver = b.id_driver WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-}
+ ?>
+ <!DOCTYPE html>
+ <html lang="en">
 
-
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+ <head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +54,7 @@ else{
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Keberangkatan</title>
+  <title>Laporan Inventory</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -79,10 +77,10 @@ else{
 
 <body id="page-top">
 
-   <!-- Page Wrapper -->
-    <div id="wrapper">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-         <!-- Sidebar -->
+    <!-- Sidebar -->
       <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
@@ -254,82 +252,58 @@ else{
           <span style="font-size: 15px; color:white;">Laporan Rekening</span>
         </a>
       </li>
-
-    
-    
-           
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    
-         
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-
-
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-                    <?php echo "<a href='VKeberangkatan'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Uang Jalan</h5></a>"; ?>
-                  <!-- Sidebar Toggle (Topbar) -->
-                  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                  </button>
-
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                        aria-labelledby="searchDropdown">
-                        <form class="form-inline mr-auto w-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search"
-                                aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
+<!-- Divider -->
+<hr class="sidebar-divider">
 
 
 
 
-                <div class="topbar-divider d-none d-sm-block"></div>
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
-                <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
+
+
+</ul>
+<!-- End of Sidebar -->
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+  <!-- Main Content -->
+  <div id="content">
+
+    <!-- Topbar -->
+    <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
+       <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Laporan Inventory</h5></a>"; ?>
+      <!-- Sidebar Toggle (Topbar) -->
+      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+      </button>
+
+
+
+      <!-- Topbar Navbar -->
+      <ul class="navbar-nav ml-auto">
+
+          
+       
+
+
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
                 </a>
-                <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+        <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
@@ -339,8 +313,8 @@ else{
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
-                </div>
-                </li>
+              </div>
+             </li>
 
   </ul>
 
@@ -354,8 +328,7 @@ else{
   <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-
-    <?php  echo "<form  method='POST' action='VKeberangkatan' style='margin-bottom: 15px;'>" ?>
+  <?php  echo "<form  method='POST' action='VLaporanInventory' style='margin-bottom: 15px;'>" ?>
     <div>
       <div align="left" style="margin-left: 20px;"> 
         <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
@@ -370,113 +343,119 @@ else{
     <div class="col-md-8">
      <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
    </div>
-   <br>
+  
+
+
 
 <!-- Tabel -->    
-<div style="overflow-x: auto" align = 'center' >
-  <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
       <th>Tanggal</th>
-      <th>Nama Driver</th>
-      <th>No Polisi</th>
-      <th>Posisi Bongkar</th>
-      <th>Tujuan Berangkat</th>
-      <th>Uang Jalan</th>
-      <th>LPG 3kg</th>
-      <th>LPG 3kg Rt</th>
-      <th>LPG 12kg</th>
-      <th>LPG 12kg Rt</th>
-      <th>BG 5,5kg</th>
-      <th>BG 5,5kg Rt</th>
-      <th>BG 12kg</th>
-      <th>BG 12kg Rt</th>
-      <th>Status</th>
-      <th>Keterangan</th>
-      <th>File LO</th>
-
+      <th>REF</th>
+      <th>L03K11</th>
+      <th>L03K10</th>
+      <th>L03K00</th>
+      <th>L12K11</th>
+      <th>L12K10</th>
+      <th>L12K00</th>
+      <th>B05K11</th>
+      <th>B05K10</th>
+      <th>B05K00</th>
+      <th>B12K11</th>
+      <th>B12K10</th>
+      <th>B12K00</th>
     </tr>
   </thead>
   <tbody>
-    <?php
-    function formatuang($angka){
-      $uang = "Rp " . number_format($angka,2,',','.');
-      return $uang;
-    }
-    $total_uang_jalan = 0;
-    ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-      $no_keberangkatan = $data['no_keberangkatan'];
+      $no_laporan = $data['no_laporan'];
       $tanggal =$data['tanggal'];
-      $nama_driver = $data['nama_driver'];
-      $no_polisi = $data['no_polisi'];
-      $posisi_bongkar = $data['posisi_bongkar'];
-      $tujuan_keberangkatan = $data['tujuan_berangkat'];
+      $referensi = $data['referensi'];
       $L03K11 = $data['L03K11'];
+      $L03K10 = $data['L03K10'];
       $L03K00 = $data['L03K00'];
       $L12K11 = $data['L12K11'];
+      $L12K10 = $data['L12K10'];
       $L12K00 = $data['L12K00'];
       $B05K11 = $data['B05K11'];
+      $B05K10 = $data['B05K10'];
       $B05K00 = $data['B05K00'];
       $B12K11 = $data['B12K11'];
+      $B12K10 = $data['B12K10'];
       $B12K00 = $data['B12K00'];
-      $uang_jalan = $data['uang_jalan'];
-      $keterangan = $data['keterangan'];
-      $file_bukti = $data['file_bukti'];
-      $status = $data['jenis_keberangkatan'];
-      $total_uang_jalan = $total_uang_jalan + $uang_jalan;
+
+
       echo "<tr>
-      <td style='font-size: 14px'>$no_keberangkatan</td>
+      <td style='font-size: 14px'>$no_laporan</td>
       <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_driver</td>
-      <td style='font-size: 14px'>$no_polisi</td>
-      <td style='font-size: 14px'>$posisi_bongkar</td>
-      <td style='font-size: 14px'>$tujuan_keberangkatan</td>
-      <td style='font-size: 14px'>"?>  <?= formatuang($uang_jalan); ?> <?php echo "</td>
+      <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$L03K11</td>
+      <td style='font-size: 14px'>$L03K10</td>
       <td style='font-size: 14px'>$L03K00</td>
       <td style='font-size: 14px'>$L12K11</td>
+      <td style='font-size: 14px'>$L12K10</td>
       <td style='font-size: 14px'>$L12K00</td>
       <td style='font-size: 14px'>$B05K11</td>
+      <td style='font-size: 14px'>$B05K10</td>
       <td style='font-size: 14px'>$B05K00</td>
       <td style='font-size: 14px'>$B12K11</td>
+      <td style='font-size: 14px'>$B12K10</td>
       <td style='font-size: 14px'>$B12K00</td>
-      <td style='font-size: 14px'>$status</td>
-      <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KepalaGudang/file_gudang/<?= $file_bukti ?>" href="/PT.CBM/KepalaGudang/file_gudang/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
      </tr>";
   }
   ?>
 
 </tbody>
 </table>
-</div>
-<br>
-<br>
 
-<div class="row" style="margin-right: 20px; margin-left: 20px;">
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-            Total Uang Jalan</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=  formatuang($total_uang_jalan); ?></div>
-          </div>
-          <div class="col-auto">
-           <i class="fas fa-gas-pump  fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <br>
-  </div>
+<br>
+<h5 align="center" >Inventory</h3>
+<!-- Tabel -->    
+<table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+   <thead>
+    <tr>
+      <th>Baja</th>
+      <th>Toko</th>
+      <th>Gudang</th>
+      <th>Global</th>
+      <th>Di Pinjam</th>
+      <th>Pasiv</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
 
+    <?php while($data2 = mysqli_fetch_array($table2)){
+      $nama_baja = $data2['nama_baja'];
+      $toko =$data2['toko'];
+      $gudang = $data2['gudang'];
+      $dipinjam = $data2['dipinjam'];
+      $passive = $data2['passive'];
+      $global = $toko + $gudang;
+      $total = $toko + $gudang + $dipinjam + $passive;
+      echo "<tr>
+      <td style='font-size: 14px'>$nama_baja</td>
+      <td style='font-size: 14px'>$toko</td>
+      <td style='font-size: 14px'>$gudang</td>
+      <td style='font-size: 14px'>$global</td>
+      <td style='font-size: 14px'>$dipinjam</td> 
+      <td style='font-size: 14px'>$passive</td> 
+      <td style='font-size: 14px'>$total</td> 
+        </tr>";
+  }
+  ?>
+
+</tbody>
+</table>
+
+<br>
+<br>
+<br>
+</div>
 </div>
 
 </div>
@@ -522,6 +501,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>

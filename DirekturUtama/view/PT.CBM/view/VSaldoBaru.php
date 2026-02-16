@@ -364,6 +364,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLaporanInventory">Laporan Inventory</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranCBM">Pengeluaran CBM</a>
           </div>
         </div>
       </li>
@@ -429,26 +431,26 @@ if ($tanggal_awal == $tanggal_akhir) {
         </div>
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo6" 15 aria-expanded="true" aria-controls="collapseTwo6">
-                    <i class="fas fa-file-alt" style="font-size: 15px; color:white;"></i>
-                    <span style="font-size: 15px; color:white;">Pesan Antar Non PSO</span>
-                </a>
-                <div id="collapseTwo6" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPANPSO">Penjualan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPangkalanPANPSO">Penjualan Pangkalan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLKeuanganPANPSO">Keuangan</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VRekapRekeningNonPANPSO">Rekening Non PSO</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLStokPANPSO">Laporan Stok</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLStokGudangPANPSO">Stok Gudang BK3</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VLStokRantauPanjangPANPSO">Stok Rantau Panjang</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranPANPSO">Setoran NPSO</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VSetoranPANPSO">Setoran PSO</a>
-                    </div>
-                </div>
-            </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo6" 15 aria-expanded="true" aria-controls="collapseTwo6">
+          <i class="fas fa-file-alt" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Pesan Antar Non PSO</span>
+        </a>
+        <div id="collapseTwo6" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPANPSO">Penjualan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VPenjualanPangkalanPANPSO">Penjualan Pangkalan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLKeuanganPANPSO">Keuangan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapRekeningNonPANPSO">Rekening Non PSO</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLStokPANPSO">Laporan Stok</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLStokGudangPANPSO">Stok Gudang BK3</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VLStokRantauPanjangPANPSO">Stok Rantau Panjang</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSetoranPANPSO">Setoran NPSO</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VSetoranPANPSO">Setoran PSO</a>
+          </div>
+        </div>
+      </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="VLaporanKeuangan">
@@ -620,20 +622,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                     if ($status_saldo == 'Masuk') {
                       echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
+                                                                    }
 
-                                                                  if ($status_saldo == 'Keluar') {
-                                                                    echo "
+                                                                    if ($status_saldo == 'Keluar') {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
+                                                                    }
 
-                                                                  echo "
+                                                                    echo "
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>" href="/PT.CBM/Oprasional/file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
     </tr>";
