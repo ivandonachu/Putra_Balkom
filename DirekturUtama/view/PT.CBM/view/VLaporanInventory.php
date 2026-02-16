@@ -156,7 +156,7 @@ $tanggal_akhir = date('Y-m-31');
                          <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                          <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
                          <a class="collapse-item" style="font-size: 15px;" href="VLaporanInventory">Laporan Inventory</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranCBM">Pengeluaran CBM</a>
+                       
                     </div>
                 </div>
             </li>
@@ -369,6 +369,7 @@ $tanggal_akhir = date('Y-m-31');
     </tr>
   </thead>
   <tbody>
+    <?php $no_urut = 0; ?>
 
     <?php while($data = mysqli_fetch_array($table)){
       $no_laporan = $data['no_laporan'];
@@ -386,10 +387,10 @@ $tanggal_akhir = date('Y-m-31');
       $B12K11 = $data['B12K11'];
       $B12K10 = $data['B12K10'];
       $B12K00 = $data['B12K00'];
-
+      $no_urut = $no_urut + 1;
 
       echo "<tr>
-      <td style='font-size: 14px'>$no_laporan</td>
+      <td style='font-size: 14px'>$no_urut</td>
       <td style='font-size: 14px'>$tanggal</td>
       <td style='font-size: 14px'>$referensi</td>
       <td style='font-size: 14px'>$L03K11</td>
@@ -437,6 +438,7 @@ $tanggal_akhir = date('Y-m-31');
       $passive = $data2['passive'];
       $global = $toko + $gudang;
       $total = $toko + $gudang + $dipinjam + $passive;
+
       echo "<tr>
       <td style='font-size: 14px'>$nama_baja</td>
       <td style='font-size: 14px'>$toko</td>

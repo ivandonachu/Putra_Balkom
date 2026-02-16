@@ -138,7 +138,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
                          <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                          <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
                          <a class="collapse-item" style="font-size: 15px;" href="VLaporanInventory">Laporan Inventory</a>
-                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranCBM">Pengeluaran CBM</a>
+                        
                     </div>
                 </div>
             </li>
