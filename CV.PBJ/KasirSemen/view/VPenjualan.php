@@ -501,6 +501,7 @@ if($id == 'a3'){
                               <option>Pesibar</option>
                               <option>Lamtim</option>
                               <option>Pali</option>
+                              <option>Lamsel</option>
                             </select>
                           </div>
                           <div class="col-md-6">
@@ -788,6 +789,7 @@ if($id == 'a3'){
                                     <option <?php echo ($dataSelect == 'Pesibar') ? "selected" : "" ?>>Pesibar</option>
                                     <option <?php echo ($dataSelect == 'Lamtim') ? "selected" : "" ?>>Lamtim</option>
                                     <option <?php echo ($dataSelect == 'Pali') ? "selected" : "" ?>>Pali</option>
+                                     <option <?php echo ($dataSelect == 'Lamsel') ? "selected" : "" ?>>Lamsel</option>
                                   </select>
 
                                 </div>
