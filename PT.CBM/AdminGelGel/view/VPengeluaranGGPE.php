@@ -268,6 +268,7 @@ else{
                         <option></option>
                         <option>Saldo Sebelumnya</option>
                         <option>Saldo Cek Masuk</option>
+                        <option>Saldo Masuk</option>
                         <option>Saldo Brimo Masuk</option>
                         <option>Saldo Brankas Muara Dua</option>
                         <option>Penarikan Cash</option>
@@ -447,6 +448,7 @@ else{
                         <?php $dataSelect = $data['nama_akun']; ?>
                         <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
                         <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
+                        <option <?php echo ($dataSelect == 'Saldo Masuk') ? "selected": "" ?> >Saldo Masuk</option>
                         <option <?php echo ($dataSelect == 'Saldo Brimo Masuk') ? "selected": "" ?> >Saldo Brimo Masuk</option>
                         <option <?php echo ($dataSelect == 'Saldo Brankas Muara Dua') ? "selected": "" ?> >Saldo Brankas Muara Dua</option>
                         <option <?php echo ($dataSelect == 'Penarikan Cash') ? "selected": "" ?> >Penarikan Cash</option>
