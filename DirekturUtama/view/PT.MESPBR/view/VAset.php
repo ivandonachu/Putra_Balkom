@@ -136,6 +136,9 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM aset");
                          <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran">Pengeluaran Kasir</a>
                          <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
                          <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VLaporanInventory">Laporan Inventory</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganMES">Keuangan MES</a>
+                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPBR">Keuangan PBR</a>
                     </div>
                 </div>
             </li>
