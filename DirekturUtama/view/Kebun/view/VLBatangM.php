@@ -72,212 +72,214 @@ if ($tanggal_awal == $tanggal_akhir) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
+   <!-- Sidebar -->
+        <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKebun">
-    <div class="sidebar-brand-icon rotate-n-15">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKebun">
+                <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png" ></div>
-</a>
+                </div>
+                <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo Melodi.png" ></div>
+            </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active" >
-    <a class="nav-link" href="DsKebun">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-    </li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active" >
+                <a class="nav-link" href="DsKebun">
+                    <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+                    <span style="font-size: 16px;" >Dashboard</span></a>
+                </li>
 
-     <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Heading -->
-    <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Kebun
-    </div>
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >List Company</span>
-    </a>
-    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
-            <a class="collapse-item" style="font-size: 15px;" href="DsKebun">Kebun</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
-            <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
-        </div>
-    </div>
-</li>
-    <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoZZZ"
-        15  aria-expanded="true" aria-controls="collapseTwoZZZ">
-        <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-            <span style="font-size: 15px; color:white;" >Report Laba Rugi</span>
-        </a>
-        <div id="collapseTwoZZZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="font-size: 15px;">Report Laba Rugi</h6>
-                <a class="collapse-item" style="font-size: 15px;" href="VLRSeberuk">Laba Rugi Seberuk</a>
-                <a class="collapse-item" style="font-size: 15px;" href="VLRLengkiti">Laba Rugi Lengkiti</a>
-            </div>
-        </div>
-    </li>
+                 <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading" style="font-size: 15px; color:white;">
+                     Menu Kebun
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                  <i class="fa fa-building" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >List Company</span>
+                </a>
+                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Company</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.CBM/view/DsPTCBM">PT.CBM</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/CV.PBJ/view/DsCVPBJ">CV.PBJ</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BatuBara/view/DsCVPBJ">Transport BB</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.BALSRI/view/DsPTBALSRI">PT.BALSRI</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.MESPBR/view/DsPTPBRMES">PT. MES & PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="DsKebun">Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PERTASHOP/view/DsPertashop">Pertashop</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/PT.STRE/view/DsPTSTRE">PT.Sri Trans Energi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="/DirekturUtama/view/BALSRI_JBB/view/DsBALSRIJBB">BALSRI JBB</a>
+                    </div>
+                </div>
+            </li>
+                <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoZZZ"
+                    15  aria-expanded="true" aria-controls="collapseTwoZZZ">
+                    <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
+                        <span style="font-size: 15px; color:white;" >Report Laba Rugi</span>
+                    </a>
+                    <div id="collapseTwoZZZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header" style="font-size: 15px;">Report Laba Rugi</h6>
+                            <a class="collapse-item" style="font-size: 15px;" href="VLRSeberuk">Laba Rugi Seberuk</a>
+                            <a class="collapse-item" style="font-size: 15px;" href="VLRLengkiti">Laba Rugi Lengkiti</a>
+                        </div>
+                    </div>
+                </li>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Report Lengkiti</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Report Lengkiti</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiL">Absensi Lengkiti</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLKegiatan">Laporan Kegiatan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLKaret">Laporan Karet</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLSawit">Laporan Sawit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Pengeluaran Kebun</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLMinyak">Stok Minyak</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLPupuk">Stok Pupuk</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLBatang">Laporan Batang</a>
-        </div>
-    </div>
-</li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                  <i class="fa fa-clipboard-list" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Report Lengkiti</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Report Lengkiti</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiL">Absensi Lengkiti</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKegiatan">Laporan Kegiatan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKaret">Laporan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLSawit">Laporan Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Pengeluaran Kebun</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLMinyak">Stok Minyak</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPupuk">Stok Pupuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLBatang">Laporan Batang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Lengkiti</a>
+                    </div>
+                </div>
+            </li>
 
-<li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x"
-    15  aria-expanded="true" aria-controls="collapseTwo1x">
-    <i class="fa fa-address-card" aria-hidden="true"></i>
-        <span style="font-size: 15px; color:white;" >SDM Lengkiti</span>
-    </a>
-    <div id="collapseTwo1x" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VDriverS">Driver Sawit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMobilS">Mobil Sawit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKaryawanK">Karyawan Karet</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKaryawanL">Karyawan Lengkiti</a>
-        </div>
-    </div>
-</li>
- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-      15  aria-expanded="true" aria-controls="collapseOne">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Pendapatan Seberuk</span>
-    </a>
-    <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu Pendapatan</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VPendapatanKaret">Pendapatan Karet</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTimbanganBTA">Timbangan Baturaja</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VDataProduksi">Data Produksi</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VTimbanganGetah">Timbangan Getah</a>
-        </div>
-    </div>
-</li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
-      15  aria-expanded="true" aria-controls="collapseTwo22">
-        <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Pengeluaran Seberuk</span>
-    </a>
-    <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VKasBesar">Kas Besar</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiPenyadap">Rekap Gaji Penyadap</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiBuhar">Rekap Gaji Buruh Harian</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranBuahSeberuk">Pengeluaran Buah</a>
-        </div>
-    </div>
-</li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z"
-      15  aria-expanded="true" aria-controls="collapseTwo22z">
-        <i class="fas fa-users" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Absensi Seberuk</span>
-    </a>
-    <div id="collapseTwo22z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Absensi</h6>
-            
-            <a class="collapse-item" style="font-size: 15px;" href="VKegiatanHarian">Kegiatan Harian</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VAbsensiBuruh">Absensi Buruh</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VAbsenFoto">Absensi Foto</a>
-        </div>
-    </div>
-</li>
-<li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz"
-      15  aria-expanded="true" aria-controls="collapseTwo1xz">
-        <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >SDM Seberuk</span>
-    </a>
-    <div id="collapseTwo1xz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VListBuruh">List Buruh</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VListBuruhHarian">List Buruh Harian</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VListKendaraan">List Kendaraan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VListAsetSeberuk">List Aset Seberuk</a>
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1x"
+                15  aria-expanded="true" aria-controls="collapseTwo1x">
+                <i class="fa fa-address-card" aria-hidden="true"></i>
+                    <span style="font-size: 15px; color:white;" >SDM Lengkiti</span>
+                </a>
+                <div id="collapseTwo1x" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriverS">Driver Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMobilS">Mobil Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawanK">Karyawan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawanL">Karyawan Lengkiti</a>
+                    </div>
+                </div>
+            </li>
+             <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                  15  aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Pendapatan Seberuk</span>
+                </a>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pendapatan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPendapatanKaret">Pendapatan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTimbanganBTA">Timbangan Baturaja</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDataProduksi">Data Produksi</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VTimbanganGetah">Timbangan Getah</a>
+                    </div>
+                </div>
+            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22"
+                  15  aria-expanded="true" aria-controls="collapseTwo22">
+                    <i class="fas fa-file-invoice-dollar" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Pengeluaran Seberuk</span>
+                </a>
+                <div id="collapseTwo22" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Pengiriman</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKasBesar">Kas Besar</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Kas Kecil</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGaji">Rekap Gaji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiPenyadap">Rekap Gaji Penyadap</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiBuhar">Rekap Gaji Buruh Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranBuahSeberuk">Pengeluaran Buah</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranSeberuk">Pengeluaran Seberuk</a>
+                    </div>
+                </div>
+            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo22z"
+                  15  aria-expanded="true" aria-controls="collapseTwo22z">
+                    <i class="fas fa-users" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Absensi Seberuk</span>
+                </a>
+                <div id="collapseTwo22z" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Absensi</h6>
+                        
+                        <a class="collapse-item" style="font-size: 15px;" href="VKegiatanHarian">Kegiatan Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsensiBuruh">Absensi Buruh</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VAbsenFoto">Absensi Foto</a>
+                    </div>
+                </div>
+            </li>
+           <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1xz"
+                  15  aria-expanded="true" aria-controls="collapseTwo1xz">
+                    <i class="fas fa-car" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >SDM Seberuk</span>
+                </a>
+                <div id="collapseTwo1xz" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListBuruh">List Buruh</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListBuruhHarian">List Buruh Harian</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListKendaraan">List Kendaraan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListAsetSeberuk">List Aset Seberuk</a>
 
-        </div>
-    </div>
-</li>
-<li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menumesuji1"
-      15  aria-expanded="true" aria-controls="menumesuji1">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Laporan Mesuji</span>
-    </a>
-    <div id="menumesuji1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiM">Absensi Mesuji</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLKegiatanM">Laporan Kegiatan</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLSawitM">Laporan Sawit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaranM">Pengeluaran Mesuji</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLMinyakM">Stok Minyak</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLPupukM">Stok Pupuk</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VRitDriverM">Laporan Rit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VLBatangM">Laporan Batang</a>
-        </div>
-    </div>
-</li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menumesuji2"
-      15  aria-expanded="true" aria-controls="menumesuji2">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >SDM Mesuji</span>
-    </a>
-    <div id="menumesuji2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
-            <a class="collapse-item" style="font-size: 15px;" href="VDriverM">Driver Sawit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VMobilM">Mobil Sawit</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKaryawanM">Karyawan Karet</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VKaryawanM">Karyawan Mesuji</a>
-            <a class="collapse-item" style="font-size: 15px;" href="VListAsetMesujiM">List Aset Mesuji</a>
-        </div>
-    </div>
-</li>
-
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menumesuji1"
+                  15  aria-expanded="true" aria-controls="menumesuji1">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Laporan Mesuji</span>
+                </a>
+                <div id="menumesuji1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu Laporan</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiM">Absensi Mesuji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLKegiatanM">Laporan Kegiatan</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLSawitM">Laporan Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaranM">Pengeluaran Mesuji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLMinyakM">Stok Minyak</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLPupukM">Stok Pupuk</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriverM">Laporan Rit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VLBatangM">Laporan Batang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranMesuji">Pengeluaran Mesuji</a>
+                    </div>
+                </div>
+            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menumesuji2"
+                  15  aria-expanded="true" aria-controls="menumesuji2">
+                    <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >SDM Mesuji</span>
+                </a>
+                <div id="menumesuji2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VDriverM">Driver Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMobilM">Mobil Sawit</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawanM">Karyawan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKaryawanM">Karyawan Mesuji</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListAsetMesujiM">List Aset Mesuji</a>
+                    </div>
+                </div>
+            </li>
 
 
             <!-- Divider -->

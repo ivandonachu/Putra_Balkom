@@ -100,7 +100,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+     <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -181,6 +181,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VLMinyak">Stok Minyak</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPupuk">Stok Pupuk</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLBatang">Laporan Batang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranKebun">Pengeluaran Lengkiti</a>
                     </div>
                 </div>
             </li>
@@ -232,6 +233,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiPenyadap">Rekap Gaji Penyadap</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiBuhar">Rekap Gaji Buruh Harian</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranBuahSeberuk">Pengeluaran Buah</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranSeberuk">Pengeluaran Seberuk</a>
                     </div>
                 </div>
             </li>
@@ -285,6 +287,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VLPupukM">Stok Pupuk</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitDriverM">Laporan Rit</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLBatangM">Laporan Batang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranMesuji">Pengeluaran Mesuji</a>
                     </div>
                 </div>
             </li>
@@ -305,6 +308,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     </div>
                 </div>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
