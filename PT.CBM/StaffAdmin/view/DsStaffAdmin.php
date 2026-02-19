@@ -218,6 +218,23 @@ $nama = $data['nama_karyawan'];
                     </div>
                 </div>
             </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                  15  aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
+                    <span style="font-size: 15px; color:white;" >Rekap Gaji GGPE</span>
+                </a>
+                <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji GGPE</h6>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiGGPE">List Gaji GGPE</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiGGPE">Rekap Gaji GGPE</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverGGPE">List Gaji Driver GGPE</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverGGPE">Rekap Gaji Driver GGPE</a>
+                    </div>
+                </div>
+            </li>
 
 
            

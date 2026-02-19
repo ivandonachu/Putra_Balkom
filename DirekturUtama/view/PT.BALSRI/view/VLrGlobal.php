@@ -96,7 +96,7 @@ else{
   $total_tagihan_global = $total_tagihan_br + $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bb + $total_tagihan_spbu + $total_tagihan_bk + $total_tagihan_bkl ;
 
   // Potongan global 10%
-  $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
+  $jumlah_potongan_global = (($total_tagihan_global * 12) / 100);
 
   //PENGIRIMAN
   //pengiriman baturaja
@@ -1144,7 +1144,7 @@ if (!isset($data_kredit['total_kredit'])) {
              </tr>
              <tr>
                  <td>4-101</td>
-                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 <td class="text-left">Potongan Biaya Oprasional 12%</td>
                  <td class="text-left"><?= formatuang($jumlah_potongan_global); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <td class="text-left"></td>

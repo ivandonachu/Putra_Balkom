@@ -95,7 +95,7 @@ else{
   $total_tagihan_global = $total_tagihan_br + $total_tagihan_lmg + $total_tagihan_plg + $total_tagihan_bb + $total_tagihan_spbu + $total_tagihan_bk + $total_tagihan_bkl ;
 
   // Potongan global 10%
-  $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
+  $jumlah_potongan_global = (($total_tagihan_global * 12) / 100);
 
   //PENGIRIMAN
   //pengiriman baturaja
@@ -742,7 +742,7 @@ else{
   $total_tagihan_global_jbb = $total_tagihan_ba + $total_tagihan_pa + $total_tagihan_pl + $total_tagihan_tg  + $total_tagihan_ub ;
 
   // Potongan global 10%
-  $jumlah_potongan_global_jbb = (($total_tagihan_global_jbb * 10) / 100);
+  $jumlah_potongan_global_jbb = (($total_tagihan_global_jbb * 12) / 100);
 
   //PENGIRIMAN
   //pengiriman balongan
@@ -2138,7 +2138,7 @@ if($tahun == 2023){
                 <td class="text-left"><?= formatuang($total_biaya_oprasional); ?></td>
             </tr>
             <tr style="background-color:    #F0F8FF; ">
-                <td><strong>Dana Oprasional 10%</strong></td>
+                <td><strong>Dana Oprasional 12%</strong></td>
                 <td class="thick-line"></td>
                 <td class="text-left"><?= formatuang($jumlah_potongan_global + $jumlah_potongan_global_jbb); ?></td>     
                 <td class="text-left"><?= formatuang(0); ?></td>
