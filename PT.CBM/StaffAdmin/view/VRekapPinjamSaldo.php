@@ -152,21 +152,21 @@ if ($tanggal_awal == $tanggal_akhir) {
     $jumlah_pbj_pribadi = 0;
   }
 
-    //PBR pinjam ke REKENIGN PRiBADI
-    $table_pbr_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_pbr_pribadi FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'Rekening Pribadi' AND rekening_peminjam = 'PBR' ");
-    $data_pbr_pribadi = mysqli_fetch_array($table_pbr_pribadi);
-    $jumlah_pbr_pribadi = $data_pbr_pribadi['jumlah_pbr_pribadi'];
-    if (!isset($data_pbr_pribadi['jumlah_pbr_pribadi'])) {
-      $jumlah_pbr_pribadi = 0;
-    }
+  //PBR pinjam ke REKENIGN PRiBADI
+  $table_pbr_pribadi = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_pbr_pribadi FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'Rekening Pribadi' AND rekening_peminjam = 'PBR' ");
+  $data_pbr_pribadi = mysqli_fetch_array($table_pbr_pribadi);
+  $jumlah_pbr_pribadi = $data_pbr_pribadi['jumlah_pbr_pribadi'];
+  if (!isset($data_pbr_pribadi['jumlah_pbr_pribadi'])) {
+    $jumlah_pbr_pribadi = 0;
+  }
 
-        //CBM pinjam ke PBR
-        $table_cbm_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_cbm_pbr FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'PBR' AND rekening_peminjam = 'CBM' ");
-        $data_cbm_pbr = mysqli_fetch_array($table_cbm_pbr);
-        $jumlah_cbm_pbr = $data_cbm_pbr['jumlah_cbm_pbr'];
-        if (!isset($data_cbm_pbr['jumlah_cbm_pbr'])) {
-          $jumlah_cbm_pbr = 0;
-        }
+  //CBM pinjam ke PBR
+  $table_cbm_pbr = mysqli_query($koneksi, "SELECT SUM(jumlah) AS jumlah_cbm_pbr FROM pinjam_saldo_admin  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND rekening_dipinjam = 'PBR' AND rekening_peminjam = 'CBM' ");
+  $data_cbm_pbr = mysqli_fetch_array($table_cbm_pbr);
+  $jumlah_cbm_pbr = $data_cbm_pbr['jumlah_cbm_pbr'];
+  if (!isset($data_cbm_pbr['jumlah_cbm_pbr'])) {
+    $jumlah_cbm_pbr = 0;
+  }
 }
 
 
@@ -345,6 +345,24 @@ if ($tanggal_awal == $tanggal_akhir) {
           </div>
         </div>
       </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji GGPE</span>
+        </a>
+        <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji GGPE</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiGGPE">List Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiGGPE">Rekap Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverGGPE">List Gaji Driver GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverGGPE">Rekap Gaji Driver GGPE</a>
+          </div>
+        </div>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -717,7 +735,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <div style="margin-right: 100px; margin-left: 100px;">
               <h6 align="Center">List Total Peminjaman Saldo</h6>
               <div style="overflow-x: auto" align='center'>
-                <table id="example1"  class="table-sm table-striped table-bordered  nowrap" style="width:550px">
+                <table id="example1" class="table-sm table-striped table-bordered  nowrap" style="width:550px">
                   <thead>
                     <th style='font-size: 11px'>PT Peminjam</th>
                     <th style='font-size: 11px'>PT Dipinjam</th>
@@ -920,8 +938,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     });
   </script>
 
-  
-<script>
+
+  <script>
     $(document).ready(function() {
       var table = $('#example1').DataTable({
         lengthChange: true,

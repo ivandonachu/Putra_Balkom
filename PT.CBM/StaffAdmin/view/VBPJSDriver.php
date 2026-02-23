@@ -201,6 +201,23 @@ $table4 = mysqli_query($koneksipbj, "SELECT * FROM driver_semen ");
           </div>
         </div>
       </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji GGPE</span>
+        </a>
+        <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji GGPE</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiGGPE">List Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiGGPE">Rekap Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverGGPE">List Gaji Driver GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverGGPE">Rekap Gaji Driver GGPE</a>
+          </div>
+        </div>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -545,119 +562,119 @@ $table4 = mysqli_query($koneksipbj, "SELECT * FROM driver_semen ");
 
               </tbody>
             </table>
-         
 
-          <br>
-          <hr>
-          <br>
 
-          <h3 align='center'>List Driver PBJ</h3>
-          <!-- Tabel -->
-          <table id="example4" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-            <thead>
-              <tr>
-                <th>ID Driver</th>
-                <th>Nama Driver</th>
-                <th>BPJS Kesehatan</th>
-                <th>BPJS Ketenagakerjaan</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
+            <br>
+            <hr>
+            <br>
 
-              <?php while ($data = mysqli_fetch_array($table4)) {
-                $nama_driverx = $data['nama_driver'];
-                $bpjs_kesehatan = $data['bpjs_kesehatan'];
-                $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
-                $id_driverx = $data['no_driver'];
-                echo "<tr>
+            <h3 align='center'>List Driver PBJ</h3>
+            <!-- Tabel -->
+            <table id="example4" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+              <thead>
+                <tr>
+                  <th>ID Driver</th>
+                  <th>Nama Driver</th>
+                  <th>BPJS Kesehatan</th>
+                  <th>BPJS Ketenagakerjaan</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <?php while ($data = mysqli_fetch_array($table4)) {
+                  $nama_driverx = $data['nama_driver'];
+                  $bpjs_kesehatan = $data['bpjs_kesehatan'];
+                  $bpjs_ketenagakerjaan = $data['bpjs_ketenagakerjaan'];
+                  $id_driverx = $data['no_driver'];
+                  echo "<tr>
       <td style='font-size: 14px'>$id_driverx</td>
       <td style='font-size: 14px'>$nama_driverx</td>
       <td style='font-size: 14px'>$bpjs_kesehatan</td>
       <td style='font-size: 14px'>$bpjs_ketenagakerjaan</td>
       "; ?>
-                <?php echo "<td style='font-size: 12px'>"; ?>
+                  <?php echo "<td style='font-size: 12px'>"; ?>
 
-                <!-- edit -->
-                <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formeditx<?php echo $data['no_driver']; ?>">Edit</button>
+                  <!-- edit -->
+                  <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formeditx<?php echo $data['no_driver']; ?>">Edit</button>
 
-                <!-- Form EDIT DATA -->
+                  <!-- Form EDIT DATA -->
 
-                <div class="modal fade" id="formeditx<?php echo $data['no_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title"> Form Edit Data Driver </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                          <span aria-hidden="true"> &times; </span>
-                        </button>
-                      </div>
-
-
-                      <!-- Form Edit Data -->
-                      <div class="modal-body">
-                        <form action="../proses/proses_edit_driver_pbj" method="POST">
+                  <div class="modal fade" id="formeditx<?php echo $data['no_driver']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title"> Form Edit Data Driver </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                            <span aria-hidden="true"> &times; </span>
+                          </button>
+                        </div>
 
 
-                          <div class="form-group">
-                            <label> Nama Driver </label>
-                            <input type="text" name="no_driver" class="form-control" value="<?php echo $nama_driverx; ?>" disabled="">
-                            <input type="hidden" name="no_driver" value="<?php echo $id_driverx; ?>">
-                          </div>
-                          <div class="form-group">
-                            <label>BPJS Kesehatan</label>
-                            <input type="text" name="bpjs_kesehatan" class="form-control" value="<?php echo $bpjs_kesehatan; ?>" required="">
-                          </div>
-                          <div class="form-group">
-                            <label>BPJS Ketenagakerjaan</label>
-                            <input type="text" name="bpjs_ketenagakerjaan" class="form-control" value="<?php echo $bpjs_ketenagakerjaan; ?>" required="">
-                          </div>
+                        <!-- Form Edit Data -->
+                        <div class="modal-body">
+                          <form action="../proses/proses_edit_driver_pbj" method="POST">
 
 
-                          <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"> Ubah </button>
-                            <button type="reset" class="btn btn-danger"> RESET</button>
-                          </div>
-                        </form>
+                            <div class="form-group">
+                              <label> Nama Driver </label>
+                              <input type="text" name="no_driver" class="form-control" value="<?php echo $nama_driverx; ?>" disabled="">
+                              <input type="hidden" name="no_driver" value="<?php echo $id_driverx; ?>">
+                            </div>
+                            <div class="form-group">
+                              <label>BPJS Kesehatan</label>
+                              <input type="text" name="bpjs_kesehatan" class="form-control" value="<?php echo $bpjs_kesehatan; ?>" required="">
+                            </div>
+                            <div class="form-group">
+                              <label>BPJS Ketenagakerjaan</label>
+                              <input type="text" name="bpjs_ketenagakerjaan" class="form-control" value="<?php echo $bpjs_ketenagakerjaan; ?>" required="">
+                            </div>
+
+
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary"> Ubah </button>
+                              <button type="reset" class="btn btn-danger"> RESET</button>
+                            </div>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
 
 
 
-              <?php echo  " </td> </tr>";
-              }
-              ?>
+                <?php echo  " </td> </tr>";
+                }
+                ?>
 
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
+
+
+          <br>
+          <br>
+          <br>
+
+
         </div>
 
-
-        <br>
-        <br>
-        <br>
-
-
       </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
 
     </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
-        </div>
-      </div>
-    </footer>
-    <!-- End of Footer -->
-
-  </div>
-  <!-- End of Content Wrapper -->
+    <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -745,7 +762,7 @@ $table4 = mysqli_query($koneksipbj, "SELECT * FROM driver_semen ");
         .appendTo('#example_wrapper .col-md-6:eq(0)');
     });
   </script>
-    <script>
+  <script>
     $(document).ready(function() {
       var table = $('#example4').DataTable({
         lengthChange: false,

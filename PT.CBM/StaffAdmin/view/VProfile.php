@@ -1,18 +1,17 @@
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
   header("Location: logout.php");
   exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Staff Admin') {
-
 }
 
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
@@ -105,41 +104,41 @@ $status_karyawan = $data['status_karyawan'];
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
-    <div class="sidebar-brand-icon rotate-n-15">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsStaffAdmin">
+        <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png" ></div>
-</a>
+        </div>
+        <div class="sidebar-brand-text mx-3"> <img style="height: 55px; width: 190px;" src="../gambar/Logo CBM.png"></div>
+      </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active" >
-    <a class="nav-link" href="DsStaffAdmin">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-    </li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="DsStaffAdmin">
+          <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+          <span style="font-size: 16px;">Dashboard</span></a>
+      </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Staff Admin
-    </div>
+      <!-- Heading -->
+      <div class="sidebar-heading" style="font-size: 15px; color:white;">
+        Menu Staff Admin
+      </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Admin Karyawaan</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Admin Karyawaan</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Gaji & Kas</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Penggajian dan Rekap</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKasKecil">Pencatatan Kas Kecil</a>
@@ -156,19 +155,19 @@ $status_karyawan = $data['status_karyawan'];
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBPJSDriver">BPJS Driver</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
+          </div>
         </div>
-    </div>
-</li>
+      </li>
 
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Rekap Gaji CBM</span>
-    </a>
-    <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji CBM</span>
+        </a>
+        <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji CBM</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiCBM">List Gaji CBM</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiCBM">Rekap Gaji CBM</a>
@@ -176,78 +175,94 @@ $status_karyawan = $data['status_karyawan'];
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverCBM">Rekap Gaji Driver CBM</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverKebun">List Gaji Driver Kebun</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverKebun">Rekap Gaji Driver Kebun</a>
+          </div>
         </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox1"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Rekap Gaji MES</span>
-    </a>
-    <div id="collapseTwox1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji MES</span>
+        </a>
+        <div id="collapseTwox1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji MES</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiMES">List Gaji MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiMES">Rekap Gaji MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverMES">List Gaji Driver MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverMES">Rekap Gaji Driver MES</a>
+          </div>
         </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Rekap Gaji PBR</span>
-    </a>
-    <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji PBR</span>
+        </a>
+        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji PBR</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiPBR">List Gaji PBR</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiPBR">Rekap Gaji PBR</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverPBR">List Gaji Driver PBR</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverPBR">Rekap Gaji Driver PBR</a>
+          </div>
         </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Rekap Gaji PBJ</span>
-    </a>
-    <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji PBJ</span>
+        </a>
+        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji PBJ</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiPBJ">List Gaji PBJ</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiPBJ">Rekap Gaji PBJ</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverPBJ">List Gaji Driver PBJ</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverPBJ">Rekap Gaji Driver PBJ</a>
+          </div>
         </div>
-    </div>
-</li>
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Rekap Gaji Balsri</span>
-    </a>
-    <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji Balsri</span>
+        </a>
+        <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji Balsri</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiBalsri">List Gaji Balsri</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiBalsri">Rekap Gaji Balsri</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverBalsri">List Gaji Driver Balsri</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverBalsri">Rekap Gaji Driver Balsri</a>
+          </div>
         </div>
-    </div>
-</li>
-
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji GGPE</span>
+        </a>
+        <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji GGPE</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiGGPE">List Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiGGPE">Rekap Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverGGPE">List Gaji Driver GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverGGPE">Rekap Gaji Driver GGPE</a>
+          </div>
+        </div>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -273,7 +288,7 @@ $status_karyawan = $data['status_karyawan'];
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-          
+
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -374,10 +389,10 @@ $status_karyawan = $data['status_karyawan'];
             Account settings
           </h4>
 
-          
+
           <div class="card overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
-            <div class="col-md-3 pt-0">
+              <div class="col-md-3 pt-0">
                 <div class="list-group list-group-flush account-settings-links">
                   <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
                   <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
@@ -388,7 +403,7 @@ $status_karyawan = $data['status_karyawan'];
                   <div class="tab-pane fade active show" id="account-general">
                     <?php echo "<form action='../proses/edit_profil' enctype='multipart/form-data' method='POST'>";  ?>
                     <div class="card-body media align-items-center">
-                    <img src="/assets/img/foto_profile/<?= $foto_profile; ?>" style="max-height: 150px; " alt="" class="d-block ui-w-80">
+                      <img src="/assets/img/foto_profile/<?= $foto_profile; ?>" style="max-height: 150px; " alt="" class="d-block ui-w-80">
                       <div class="media-body ml-4">
 
 
@@ -401,27 +416,27 @@ $status_karyawan = $data['status_karyawan'];
                     <div class="card-body">
                       <div class="form-group">
                         <label class="form-label">Nama</label>
-                        <input type="text" class="form-control mb-1" name="nama_karyawan" value="<?= $nama; ?> "disabled>
+                        <input type="text" class="form-control mb-1" name="nama_karyawan" value="<?= $nama; ?> " disabled>
                       </div>
                       <div class="form-group">
                         <label class="form-label">Jabatan</label>
                         <input type="text" class="form-control" value="<?= $jabatan; ?> " disabled>
-                      
+
                       </div>
                       <div class="form-group">
                         <label class="form-label">ID Karyawan</label>
                         <input type="text" class="form-control" value="<?= $id1; ?> " disabled>
-                 
+
                       </div>
                       <div class="form-group">
                         <label class="form-label">Status Karyawan</label>
-                        <input type="text" class="form-control" name="no_hp" value="<?= $status_karyawan; ?> "disabled>
+                        <input type="text" class="form-control" name="no_hp" value="<?= $status_karyawan; ?> " disabled>
                       </div>
                     </div>
                   </div>
 
 
-                    <div class="tab-pane fade" id="account-change-password">
+                  <div class="tab-pane fade" id="account-change-password">
                     <div class="card-body pb-2">
                       <div class="form-group">
                         <label class="form-label">Username</label>
@@ -471,7 +486,7 @@ $status_karyawan = $data['status_karyawan'];
       <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-          <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+            <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
           </div>
         </div>
       </footer>

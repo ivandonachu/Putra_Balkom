@@ -33,9 +33,9 @@ if (isset($_GET['tanggal1'])) {
 }
 
 if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_pbj WHERE tanggal = '$tanggal_awal'");
+  $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_ggpe WHERE tanggal = '$tanggal_awal'");
 } else {
-  $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_pbj WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+  $table = mysqli_query($koneksi, "SELECT * FROM rekap_gaji_ggpe WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
 }
 
 ?>
@@ -50,13 +50,11 @@ if ($tanggal_awal == $tanggal_akhir) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Rekap Gaji Karyawan PBJ</title>
+  <title>Rekap Gaji Karyawan GGPE</title>
 
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/sbadmin/vendor/bootstrap/css/bootstrap.min.css">
   <!-- Custom styles for this template-->
   <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
@@ -107,8 +105,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-          15 aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" 15 aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
           <span style="font-size: 15px; color:white;">Admin Karyawaan</span>
         </a>
@@ -136,8 +133,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox"
-          15 aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox" 15 aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
           <span style="font-size: 15px; color:white;">Rekap Gaji CBM</span>
         </a>
@@ -155,8 +151,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox1"
-          15 aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox1" 15 aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
           <span style="font-size: 15px; color:white;">Rekap Gaji MES</span>
         </a>
@@ -172,8 +167,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-          15 aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2" 15 aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
           <span style="font-size: 15px; color:white;">Rekap Gaji PBR</span>
         </a>
@@ -189,8 +183,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
-          15 aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" 15 aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
           <span style="font-size: 15px; color:white;">Rekap Gaji PBJ</span>
         </a>
@@ -206,8 +199,7 @@ if ($tanggal_awal == $tanggal_akhir) {
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
-          15 aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4" 15 aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
           <span style="font-size: 15px; color:white;">Rekap Gaji Balsri</span>
         </a>
@@ -238,6 +230,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           </div>
         </div>
       </li>
+
       
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -263,7 +256,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-          <?php echo "<a href='VRekapGajiPBJ'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Karyawan PBJ</h5></a>"; ?>
+          <?php echo "<a href='VRekapGajiGGPE'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Rekap Gaji Karyawan GGPE</h5></a>"; ?>
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -283,14 +276,12 @@ if ($tanggal_awal == $tanggal_akhir) {
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline  small" style="color:white;"><?php echo "$nama"; ?></span>
                 <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile -->
               </a>
               <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="userDropdown">
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="VProfile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
@@ -315,7 +306,7 @@ if ($tanggal_awal == $tanggal_akhir) {
           <!-- Name Page -->
           <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
-            <?php echo "<form  method='POST' action='VRekapGajiPBJ' style='margin-bottom: 15px;'>" ?>
+            <?php echo "<form  method='POST' action='VRekapGajiGGPE' style='margin-bottom: 15px;'>" ?>
             <div>
               <div align="left" style="margin-left: 20px;">
                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -333,7 +324,7 @@ if ($tanggal_awal == $tanggal_akhir) {
               <div class="col-md-2">
                 <!-- Button Input Data Bayar -->
                 <div align="right">
-                  <?php echo "<a href='VPrintSlipGajiPBJ?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' target='_blank'><button style='color:black;
+                  <?php echo "<a href='VPrintSlipGajiGGPE?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' target='_blank'><button style='color:black;
                                              '  type='submit' class=' btn btn-secondary' >  <i class='fa-solid fa-print'></i> Print Slip Gaji</button></a>";
 
                   ?>
@@ -357,7 +348,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                       <!-- Form Input Data -->
                       <div class="modal-body" align="left">
-                        <?php echo "<form action='../proses/hapus_seluruh_rekap_gaji_pbj?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                        <?php echo "<form action='../proses/hapus_seluruh_rekap_gaji_ggpe?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
                         <br>
 
@@ -403,7 +394,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                       <!-- Form Input Data -->
                       <div class="modal-body" align="left">
-                        <?php echo "<form action='../proses/proses_tambah_rekap_gaji_pbj?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                        <?php echo "<form action='../proses/proses_tambah_rekap_gaji_ggpe?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
                         <br>
 
@@ -429,23 +420,30 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <br>
 
                         <div class="row">
-                          <div class="col-md-3">
+
+                          <div class="col-md-4">
                             <label>Tunjangan Jabatan</label>
                             <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="0">
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <label>Tunjangan Akomodasi</label>
                             <input class="form-control form-control-sm" type="number" name="tunjangan_akomodasi" required="" value="0">
                           </div>
-                          <div class="col-md-3">
-                            <label>Tunjangan Oprasional</label>
-                            <input class="form-control form-control-sm" type="number" name="tunjungan_oprasional" required="" value="0">
+                          <div class="col-md-4">
+                            <label>Tunjangan Operasional</label>
+                            <input class="form-control form-control-sm" type="number" name="tunjangan_operasional" required="" value="0">
                           </div>
-                          <div class="col-md-3">
+                        </div>
+
+                        <br>
+
+
+                        <div class="row">
+                          <div class="col-md-6">
                             <label>BPJS Kesehatan</label>
                             <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="0">
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-6">
                             <label>BPJS Ketenagakerjaan</label>
                             <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="0">
                           </div>
@@ -456,64 +454,42 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <div class="row">
                           <div class="col-md-3">
                             <label>Uang Makan / Bulan</label>
-                            <input class="form-control form-control-sm" type="number" name="uang_makan" required="" value="0">
+                            <input class="form-control form-control-sm" type="number" name="uang_makan_bulan" required="" value="0">
+                          </div>
+                          <div class="col-md-3">
+                            <label>Fee Kehadiran</label>
+                            <input class="form-control form-control-sm" type="number" name="fee_kehadiran" required="" value="0">
                           </div>
                           <div class="col-md-3">
                             <label>Lembur</label>
                             <input class="form-control form-control-sm" type="number" name="lembur" required="" value="0">
                           </div>
                           <div class="col-md-3">
-                            <label>Premi Kehadiran</label>
-                            <input class="form-control form-control-sm" type="number" name="premi_kehadiran" required="" value="0">
-                          </div>
-                          <div class="col-md-3">
-                            <label>Bonus 1</label>
-                            <input class="form-control form-control-sm" type="number" name="bonus_1" required="" value="0">
-                          </div>
-                        </div>
-
-                        <br>
-
-
-                        <div class="row">
-                          <div class="col-md-3">
-                            <label>Bonus 2</label>
-                            <input class="form-control form-control-sm" type="number" name="bonus_2" required="" value="0">
-                          </div>
-                          <div class="col-md-3">
-                            <label>Bonus 3</label>
-                            <input class="form-control form-control-sm" type="number" name="bonus_3" required="" value="0">
-                          </div>
-                          <div class="col-md-3">
-                            <label>Potongan Absen</label>
-                            <input class="form-control form-control-sm" type="number" name="potongan_absen" required="" value="0">
-                          </div>
-                          <div class="col-md-3">
-                            <label>Angsuran Pinjaman</label>
-                            <input class="form-control form-control-sm" type="number" name="angsuran_pinjaman" required="" value="0">
-                          </div>
-                        </div>
-
-                        <br>
-
-                        <div class="row">
-                          <div class="col-md-4">
                             <label>Absen Terlambat</label>
                             <input class="form-control form-control-sm" type="number" name="absen_terlambat" required="" value="0">
                           </div>
-                          <div class="col-md-4">
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                          <div class="col-md-3">
+                            <label>Denda Absen</label>
+                            <input class="form-control form-control-sm" type="number" name="denda_absen" required="" value="0">
+                          </div>
+                          <div class="col-md-3">
+                            <label>Angsuran Bon Bulanan</label>
+                            <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="0">
+                          </div>
+                          <div class="col-md-3">
+                            <label>Bonus</label>
+                            <input class="form-control form-control-sm" type="number" name="bonus" required="" value="0">
+                          </div>
+                          <div class="col-md-3">
                             <label>Insentif</label>
                             <input class="form-control form-control-sm" type="number" name="insentif" required="" value="0">
                           </div>
-                          <div class="col-md-4">
-                            <label>Potongan Bon</label>
-                            <input class="form-control form-control-sm" type="number" name="potongan_bon" required="" value="0">
-                          </div>
-                          <div class="col-md-4">
-                            <label>Hutang Pribadi</label>
-                            <input class="form-control form-control-sm" type="number" name="hutang_pribadi" required="" value="0">
-                          </div>
-                          <div class="col-md-4">
+                          <div class="col-md-3">
                             <label>Keterangan</label>
                             <select class="form-control form-control-sm" id="keterangan" name="keterangan" class="form-control">
                               <option>Transfer</option>
@@ -554,20 +530,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <th style="font-size: 14px" scope="col">Tunjangan Jabatan</th>
                     <th style="font-size: 14px" scope="col">Tunjangan Akomodasi</th>
                     <th style="font-size: 14px" scope="col">Tunjangan Oprasional</th>
-                    <th style="font-size: 14px" scope="col">Uang Makan / Bulan</th>
-                    <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
                     <th style="font-size: 14px" scope="col">BPJS Kesehatan</th>
+                    <th style="font-size: 14px" scope="col">BPJS Ketenagakerjaan</th>
+                    <th style="font-size: 14px" scope="col">Uang Makan / Bulan</th>
+                    <th style="font-size: 14px" scope="col">Fee Kehadiran</th>
                     <th style="font-size: 14px" scope="col">Lembur</th>
-                    <th style="font-size: 14px" scope="col">Premi Kehadiran</th>
-                    <th style="font-size: 14px" scope="col">Bonus 1</th>
-                    <th style="font-size: 14px" scope="col">Bonus 2</th>
-                    <th style="font-size: 14px" scope="col">Bonus 3</th>
-                    <th style="font-size: 14px" scope="col">Potongan Absen</th>
-                    <th style="font-size: 14px" scope="col">Angsuran Pinjaman</th>
                     <th style="font-size: 14px" scope="col">Absen Terlambat</th>
+                    <th style="font-size: 14px" scope="col">Denda Absen</th>
+                    <th style="font-size: 14px" scope="col">Angsuran Bon Bulanan</th>
+                    <th style="font-size: 14px" scope="col">Bonus</th>
                     <th style="font-size: 14px" scope="col">Insentif</th>
-                    <th style="font-size: 14px" scope="col">Potongan Bon</th>
-                    <th style="font-size: 14px" scope="col">Hutang Pribadi</th>
                     <th style="font-size: 14px" scope="col">Total Gaji</th>
                     <th style="font-size: 14px" scope="col">Total Gaji Diterima </th>
                     <th style="font-size: 14px" scope="col">Keterangan </th>
@@ -595,21 +567,17 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $gaji_pokok = $data2['gaji_pokok'];
                     $tunjangan_jabatan = $data2['tunjangan_jabatan'];
                     $tunjangan_akomodasi = $data2['tunjangan_akomodasi'];
-                    $tunjangan_oprasional = $data2['tunjangan_oprasional'];
-                    $uang_makan = $data2['uang_makan'];
-                    $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
+                    $tunjangan_operasional = $data2['tunjangan_operasional'];
                     $bpjs_kesehatan = $data2['bpjs_kesehatan'];
+                    $bpjs_ketenagakerjaan = $data2['bpjs_ketenagakerjaan'];
+                    $uang_makan_bulan = $data2['uang_makan_bulan'];
+                    $fee_kehadiran = $data2['fee_kehadiran'];
                     $lembur = $data2['lembur'];
-                    $premi_kehadiran = $data2['premi_kehadiran'];
-                    $bonus_1 = $data2['bonus_1'];
-                    $bonus_2 = $data2['bonus_2'];
-                    $bonus_3 = $data2['bonus_3'];
-                    $potongan_absen = $data2['potongan_absen'];
-                    $angsuran_pinjaman = $data2['angsuran_pinjaman'];
                     $absen_terlambat = $data2['absen_terlambat'];
+                    $denda_absen = $data2['denda_absen'];
+                    $angsuran_bon_bulanan = $data2['angsuran_bon_bulanan'];
+                    $bonus = $data2['bonus'];
                     $insentif = $data2['insentif'];
-                    $potongan_bon = $data2['potongan_bon'];
-                    $hutang_pribadi = $data2['hutang_pribadi'];
                     $total_gaji = $data2['total_gaji'];
                     $total_gaji_diterima = $data2['total_gaji_diterima'];
                     $keterangan = $data2['keterangan'];
@@ -629,21 +597,17 @@ if ($tanggal_awal == $tanggal_akhir) {
           <td style='font-size: 14px'>"; ?> <?= formatuang($gaji_pokok); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_jabatan); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_akomodasi); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_oprasional); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($tunjangan_operasional); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_kesehatan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($bpjs_ketenagakerjaan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($uang_makan_bulan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($fee_kehadiran); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($lembur); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($premi_kehadiran); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus_1); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus_2); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus_3); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($potongan_absen); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_pinjaman); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($absen_terlambat); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($denda_absen); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($angsuran_bon_bulanan); ?> <?php echo "</td>
+          <td style='font-size: 14px'>"; ?> <?= formatuang($bonus); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($insentif); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($potongan_bon); ?> <?php echo "</td>
-          <td style='font-size: 14px'>"; ?> <?= formatuang($hutang_pribadi); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji); ?> <?php echo "</td>
           <td style='font-size: 14px'>"; ?> <?= formatuang($total_gaji_diterima); ?> <?php echo "</td>
           <td style='font-size: 14px'>$keterangan</td>
@@ -665,7 +629,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                           <!-- Form Edit Data -->
                           <div class="modal-body">
-                            <?php echo "<form action='../proses/edit_rekap_gaji_pbj?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                            <?php echo "<form action='../proses/edit_rekap_gaji_ggpe?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
                             <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat; ?>">
 
@@ -692,25 +656,30 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                             <div class="row">
 
-                              <div class="col-md-3">
+                              <div class="col-md-4">
                                 <label>Tunjangan Jabatan</label>
-                                <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="<?php echo $tunjangan_jabatan; ?>">
+                                <input class="form-control form-control-sm" type="number" name="tunjangan_jabatan" required="" value="0">
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-4">
                                 <label>Tunjangan Akomodasi</label>
-                                <input class="form-control form-control-sm" type="number" name="tunjangan_akomodasi" required="" value="<?php echo $tunjangan_akomodasi; ?>">
+                                <input class="form-control form-control-sm" type="number" name="tunjangan_akomodasi" required="" value="0">
                               </div>
-                              <div class="col-md-3">
-                                <label>Tunjangan Oprasional</label>
-                                <input class="form-control form-control-sm" type="number" name="tunjangan_oprasional" required="" value="<?php echo $tunjangan_oprasional; ?>">
+                              <div class="col-md-4">
+                                <label>Tunjangan Operasional</label>
+                                <input class="form-control form-control-sm" type="number" name="tunjangan_operasional" required="" value="0">
                               </div>
-                              <div class="col-md-3">
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                              <div class="col-md-6">
                                 <label>BPJS Kesehatan</label>
-                                <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="<?php echo $bpjs_kesehatan; ?>">
+                                <input class="form-control form-control-sm" type="number" name="bpjs_kesehatan" required="" value="0">
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-6">
                                 <label>BPJS Ketenagakerjaan</label>
-                                <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="<?php echo $bpjs_ketenagakerjaan; ?>">
+                                <input class="form-control form-control-sm" type="number" name="bpjs_ketenagakerjaan" required="" value="0">
                               </div>
                             </div>
 
@@ -719,63 +688,42 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <div class="row">
                               <div class="col-md-3">
                                 <label>Uang Makan / Bulan</label>
-                                <input class="form-control form-control-sm" type="number" name="uang_makan" required="" value="<?php echo $uang_makan; ?>">
+                                <input class="form-control form-control-sm" type="number" name="uang_makan_bulan" required="" value="<?php echo $uang_makan_bulan; ?>">
+                              </div>
+                              <div class="col-md-3">
+                                <label>Fee Kehadiran</label>
+                                <input class="form-control form-control-sm" type="number" name="fee_kehadiran" required="" value="<?php echo $fee_kehadiran; ?>">
                               </div>
                               <div class="col-md-3">
                                 <label>Lembur</label>
                                 <input class="form-control form-control-sm" type="number" name="lembur" required="" value="<?php echo $lembur; ?>">
                               </div>
                               <div class="col-md-3">
-                                <label>Premi Kehadiran</label>
-                                <input class="form-control form-control-sm" type="number" name="premi_kehadiran" required="" value="<?php echo $premi_kehadiran; ?>">
-                              </div>
-                              <div class="col-md-3">
-                                <label>Bonus 1</label>
-                                <input class="form-control form-control-sm" type="number" name="bonus_1" required="" value="<?php echo $bonus_1; ?>">
-                              </div>
-                            </div>
-
-                            <br>
-
-                            <div class="row">
-                              <div class="col-md-3">
-                                <label>Bonus 2</label>
-                                <input class="form-control form-control-sm" type="number" name="bonus_2" required="" value="<?php echo $bonus_2; ?>">
-                              </div>
-                              <div class="col-md-3">
-                                <label>Bonus 3</label>
-                                <input class="form-control form-control-sm" type="number" name="bonus_3" required="" value="<?php echo $bonus_3; ?>">
-                              </div>
-                              <div class="col-md-3">
-                                <label>Potongan Absen</label>
-                                <input class="form-control form-control-sm" type="number" name="potongan_absen" required="" value="<?php echo $potongan_absen; ?>">
-                              </div>
-                              <div class="col-md-3">
-                                <label>Angsuran Pinjaman</label>
-                                <input class="form-control form-control-sm" type="number" name="angsuran_pinjaman" required="" value="<?php echo $angsuran_pinjaman; ?>">
-                              </div>
-                            </div>
-
-                            <br>
-
-                            <div class="row">
-                              <div class="col-md-4">
                                 <label>Absen Terlambat</label>
                                 <input class="form-control form-control-sm" type="number" name="absen_terlambat" required="" value="<?php echo $absen_terlambat; ?>">
                               </div>
-                              <div class="col-md-4">
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                              <div class="col-md-3">
+                                <label>Denda Absen</label>
+                                <input class="form-control form-control-sm" type="number" name="denda_absen" required="" value="<?php echo $denda_absen; ?>">
+                              </div>
+                              <div class="col-md-3">
+                                <label>Angsuran Bon Bulanan</label>
+                                <input class="form-control form-control-sm" type="number" name="angsuran_bon_bulanan" required="" value="<?php echo $angsuran_bon_bulanan; ?>">
+                              </div>
+                              <div class="col-md-3">
+                                <label>Bonus</label>
+                                <input class="form-control form-control-sm" type="number" name="bonus" required="" value="<?php echo $bonus; ?>">
+                              </div>
+                              <div class="col-md-3">
                                 <label>Insentif</label>
                                 <input class="form-control form-control-sm" type="number" name="insentif" required="" value="<?php echo $insentif; ?>">
                               </div>
-                              <div class="col-md-4">
-                                <label>Potongan Bon</label>
-                                <input class="form-control form-control-sm" type="number" name="potongan_bon" required="" value="<?php echo $potongan_bon; ?>">
-                              </div>
-                              <div class="col-md-4">
-                                <label>Hutang Pribadi</label>
-                                <input class="form-control form-control-sm" type="number" name="hutang_pribadi" required="" value="<?php echo $hutang_pribadi; ?>">
-                              </div>
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                                 <label>Keterangan</label>
                                 <select class="form-control form-control-sm" name="keterangan" class="form-control">
                                   <?php
@@ -817,7 +765,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                           <div class="modal-body">
 
-                            <?php echo "<form action='../proses/hapus_rekap_gaji_pbj?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' method='POST'>";  ?>
+                            <?php echo "<form action='../proses/hapus_rekap_gaji_ggpe?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' method='POST'>";  ?>
                             <input type="hidden" name="no_riwayat" value="<?php echo $no_riwayat; ?>">
                             <div class="form-group">
                               <h6> Yakin Ingin Hapus Data? </h6>
@@ -928,8 +876,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

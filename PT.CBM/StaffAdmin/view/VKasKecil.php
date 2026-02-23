@@ -206,7 +206,25 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
           </div>
         </div>
       </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji GGPE</span>
+        </a>
+        <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji GGPE</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiGGPE">List Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiGGPE">Rekap Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverGGPE">List Gaji Driver GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverGGPE">Rekap Gaji Driver GGPE</a>
+          </div>
+        </div>
+      </li>
 
+      
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -350,19 +368,19 @@ $table2 = mysqli_query($koneksi, "SELECT * FROM rekening WHERE no_rekening = '2'
                   if ($nama_akun == 'Saldo Awal') {
                     echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
+                                                                    }
 
-                                                                  if ($nama_akun != 'Saldo Awal') {
-                                                                    echo "
+                                                                    if ($nama_akun != 'Saldo Awal') {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
-                                        ?>
+                                                                    }
+                                          ?>
                   <?php echo "
          <td style='font-size: 14px'>"; ?> <a download="../file_staff_admin/<?= $file_bukti ?>" href="../file_staff_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>

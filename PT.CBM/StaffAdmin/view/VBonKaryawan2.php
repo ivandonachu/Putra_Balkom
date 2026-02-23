@@ -45,7 +45,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 <head>
 
-<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -215,6 +215,23 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiBalsri">Rekap Gaji Balsri</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverBalsri">List Gaji Driver Balsri</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverBalsri">Rekap Gaji Driver Balsri</a>
+          </div>
+        </div>
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji GGPE</span>
+        </a>
+        <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji GGPE</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiGGPE">List Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiGGPE">Rekap Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverGGPE">List Gaji Driver GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverGGPE">Rekap Gaji Driver GGPE</a>
           </div>
         </div>
       </li>
@@ -616,8 +633,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     </div>
   </div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
   <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -642,28 +659,28 @@ if ($tanggal_awal == $tanggal_akhir) {
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-<script>
-  $(document).ready(function() {
-    var table = $('#example').DataTable( {
-      lengthChange: false,
-      buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
-    } );
+  <script>
+    $(document).ready(function() {
+      var table = $('#example').DataTable({
+        lengthChange: false,
+        buttons: ['copy', 'excel', 'csv', 'pdf', 'colvis']
+      });
 
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
-<script>
-  $(document).ready(function() {
-    var table = $('#example3').DataTable( {
-      lengthChange: false,
-    } );
+      table.buttons().container()
+        .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      var table = $('#example3').DataTable({
+        lengthChange: false,
+      });
 
-    table.buttons().container()
-    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-  } );
-</script>
-<script>
+      table.buttons().container()
+        .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
+  </script>
+  <script>
     function createOptions(number) {
       var options = [],
         _options;

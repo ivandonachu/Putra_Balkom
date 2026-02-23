@@ -122,7 +122,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranAdmin">Pengeluaran</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranGGPE">Pengeluaran GGPE</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRekapPinjamSaldo">Rekap Pinjam Saldo</a>
-                        <a class="collapse-item" style="font-size: 12px;" href="VRekapPengembalianSaldo">Rekap Pengembalian Saldo</a>
+            <a class="collapse-item" style="font-size: 12px;" href="VRekapPengembalianSaldo">Rekap Pengembalian Saldo</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Laporan Rit</a>
             <a class="collapse-item" style="font-size: 15px;" href="VBPJSDriver">BPJS Driver</a>
             <a class="collapse-item" style="font-size: 15px;" href="VTransportFee">Transport Fee</a>
@@ -212,6 +212,25 @@ if ($tanggal_awal == $tanggal_akhir) {
           </div>
         </div>
       </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-dollar-sign" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Rekap Gaji GGPE</span>
+        </a>
+        <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Rekap Gaji GGPE</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiGGPE">List Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiGGPE">Rekap Gaji GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VListGajiDriverGGPE">List Gaji Driver GGPE</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRekapGajiDriverGGPE">Rekap Gaji Driver GGPE</a>
+          </div>
+        </div>
+      </li>
+
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
