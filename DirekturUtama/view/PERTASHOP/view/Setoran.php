@@ -276,7 +276,7 @@ else{
       <th>Kode Perta</th>
       <th>Pertashop</th>
       <th>Penyetor</th>
-      <th>No Rek</th>
+      <th>Rekening</th>
       <th>Nama Barang</th>
       <th>Jumlah</th>
       <th>file</th>

@@ -347,8 +347,11 @@ data-parent="#accordionSidebar">
           </select>
           </div> 
         <div class="col-md-4">
-          <label>No Rekening</label>
-          <input class="form-control form-control-sm" type="text" id="no_rekening" name="no_rekening"  required="">
+          <label>Rekening</label>
+          <select id="no_rekening" name="no_rekening" class="form-control">
+            <option>Pertashop</option>
+            <option>Brilink</option>
+          </select>
         </div>    
         <div class="col-md-4">
         <label>Jumlah</label>
@@ -402,7 +405,7 @@ data-parent="#accordionSidebar">
       <th>Kode Perta</th>
       <th>Pertashop</th>
       <th>Penyetor</th>
-      <th>No Rek</th>
+      <th>Rekening</th>
       <th>Nama Barang</th>
       <th>Jumlah</th>
       <th>file</th>
@@ -550,7 +553,13 @@ data-parent="#accordionSidebar">
             </div>
         <div class="col-md-4">
           <label>No Rekening</label>
-          <input class="form-control form-control-sm" type="text" id="no_rekening" name="no_rekening"  value="<?php echo $no_rekening;?>"  required="">
+          <select id="no_rekening" name="no_rekening" class="form-control">
+                <?php
+                $dataSelect = $data['no_rekening']; ?>
+                <option <?php echo ($dataSelect == 'Pertashop') ? "selected" : "" ?>>Pertashop</option>
+                <option <?php echo ($dataSelect == 'Brilink') ? "selected" : "" ?>>Brilink</option>
+
+              </select>
         </div>    
         <div class="col-md-4">
         <label>Jumlah</label>
