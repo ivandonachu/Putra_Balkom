@@ -113,6 +113,13 @@
 /PERTASHOP/Karyawan/proses/koneksi.php
 /PERTASHOP/Karyawan/view/koneksi.php
 
+/PERTASHOP/AdminExxa/file_administrasi
+/PERTASHOP/AdminExxa/proses/koneksi.php
+/PERTASHOP/AdminExxa/view/koneksi.php
+/PERTASHOP/KaryawanExxa/file_karyawan
+/PERTASHOP/KaryawanExxa/proses/koneksi.php
+/PERTASHOP/KaryawanExxa/view/koneksi.php
+
 /PT.BALSRI/Administrasi/file_administrasi
 /PT.BALSRI/Administrasi/proses/koneksi.php
 /PT.BALSRI/Administrasi/view/koneksi.php

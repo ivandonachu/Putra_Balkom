@@ -43,7 +43,7 @@ if ($tanggal_awal == $tanggal_akhir) {
   $total_tagihan= $data['total_tagihan'];
   
   // Potongan 10%
-  $jumlah_potongan = (($total_tagihan * 10) / 100);
+  $jumlah_potongan = (($total_tagihan * 12.2) / 100);
 
   // Kredit Mobil 
   $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal = '$tanggal_awal'  AND no_polisi ='$no_polisilr'");
@@ -96,7 +96,7 @@ else{
     $selisih_bbm =  $total_dexlite - $uang_bbm;
 
       // Potongan 10%
-  $jumlah_potongan = (($total_tagihan * 10) / 100);
+  $jumlah_potongan = (($total_tagihan * 12.2) / 100);
 
   // Kredit Mobil 
   $tablee = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$no_polisilr'");
@@ -566,7 +566,7 @@ $laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
              </tr>
              <tr>
                  <td>4-101</td>
-                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 <td class="text-left">Potongan Biaya Oprasional 12.2%</td>
                  <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <td class="text-left"></td>
