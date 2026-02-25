@@ -73,7 +73,7 @@ else{
   $total_tagihan_global = $total_tagihan_ba + $total_tagihan_pa + $total_tagihan_pl + $total_tagihan_tg  + $total_tagihan_ub ;
 
   // Potongan global 10%
-  $jumlah_potongan_global = (($total_tagihan_global * 10) / 100);
+  $jumlah_potongan_global = (($total_tagihan_global * 12.2) / 100);
 
   //PENGIRIMAN
   //pengiriman balongan
@@ -1038,7 +1038,7 @@ else{
              </tr>
              <tr>
                  <td>4-101</td>
-                 <td class="text-left">Potongan Biaya Oprasional 10%</td>
+                 <td class="text-left">Potongan Biaya Oprasional 12.2%</td>
                  <td class="text-left"><?= formatuang($jumlah_potongan_global); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <td class="text-left"></td>

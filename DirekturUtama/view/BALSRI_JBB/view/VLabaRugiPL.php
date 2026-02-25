@@ -99,7 +99,7 @@ else{
   $total_tagihan= $data['total_tagihan'];
   
   // Potongan 10%
-  $jumlah_potongan = (($total_tagihan * 10) / 100);
+  $jumlah_potongan = (($total_tagihan * 12.2) / 100);
 
   //pengiriman_pl
   $table2 = mysqli_query($koneksibalsri_jbb, "SELECT SUM(dexlite) AS total_dex, SUM(um) AS uang_makan FROM pengiriman_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
@@ -656,7 +656,7 @@ $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
             </tr>
             <tr>
                  <td>4-101</td>
-                 <td class="text-left">Biaya Oprasional 10%</td>
+                 <td class="text-left">Biaya Oprasional 12.2%</td>
                  <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
                  <td class="text-left"><?= formatuang(0); ?></td>
                  <td class="text-left"></td>
