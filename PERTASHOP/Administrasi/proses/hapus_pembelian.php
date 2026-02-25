@@ -169,7 +169,21 @@ $lokasi = $_POST['lokasi'];
                                 echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
                                 }
         }
-	
+	else if($kode_perta == 'wayheling' && $nama_barang == 'Pertamax'){
+            
+                $query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
+            
+            $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '15' ");
+            $data_stok = mysqli_fetch_array($result2);
+            $stok_awal = $data_stok['stok'];
+            
+            $stok_baru = ($stok_awal - $qty)  ;
+            
+            $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '15'");
+                    if ($query != "") {
+                            echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
+                           }
+        }
 	
 		
 	

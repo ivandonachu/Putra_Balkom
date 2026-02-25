@@ -137,10 +137,25 @@ $kode_perta = $data_perta['kode_perta'];
                 if ($query != "") {
 				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
+			
         }
+		
         else if($kode_perta == 'muaradua' && $nama_barang == 'Dexlite'){
                
 	
 		    	echo "<script>alert('Barang Belum tersedia :)'); window.location='../view/VPenjualanDex?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 		
+        }
+		else if($kode_perta == 'wayheling' && $nama_barang == 'Pertamax'){
+
+            
+          $query = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('','$tanggal','$kode_perta','$nama_karyawan','$nama_barang','$jual',0,'$harga','$uang_diskon','$stok_awal','$stok_akhir','$bongkaran','$sonding_awal','$sonding_akhir','$sirkulasi','$losis_penyimpanan','$losis_penjualan','$keterangan','$file',0)");
+                
+
+                
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$sonding_akhir' WHERE kode_barang = '15'");
+                if ($query != "") {
+				echo "<script> window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+			
         }

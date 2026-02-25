@@ -115,3 +115,19 @@ $no_penjualan = $_POST['no_penjualan'];
 				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
 			}
         }
+        else if($kode_perta == 'wayheling' && $nama_barang == 'Pertamax'){
+           
+
+                
+                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '15' ");
+                $data_stok = mysqli_fetch_array($result2);
+                $stok_awal = $data_stok['stok'];
+                
+                $stok_baru = $stok_awal + ($qty);
+                
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '15'");
+                $query = mysqli_query($koneksi,"DELETE FROM penjualan WHERE no_penjualan = '$no_penjualan'");
+                	if ($query != "") {
+				echo "<script>alert('Data Berhasil Di Hapus :)'); window.location='../view/VPenjualan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir';</script>";exit;
+			}
+        }

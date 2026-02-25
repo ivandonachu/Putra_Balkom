@@ -205,6 +205,23 @@ else if($kode_perta == 'pul_bta' && $nama_barang == 'Dexlite'){
 	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '14'");
 
 }
+if($kode_perta == 'wayheling' && $nama_barang == 'Pertamax'){
+            
+	
+	
+	$result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '15' ");
+	$data_stok = mysqli_fetch_array($result2);
+	$stok_awal = $data_stok['stok'];
+
+	$result3 = mysqli_query($koneksi, "SELECT qty FROM pembelian WHERE no_pembelian = '$no_pembelian' ");
+	$data_pembelian = mysqli_fetch_array($result3);
+	$qty_pembelian = $data_pembelian['qty'];
+	
+	$stok_baru = (($stok_awal - $qty_pembelian) + $qty);
+	
+	$query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '15'");
+
+}
     
     if ($file == '') {
 		$query3 = mysqli_query($koneksi,"UPDATE pembelian SET no_so = '$no_so', tanggal = '$tanggal',tanggal_bongkar = '$tanggal_bongkar'  , kode_perta = '$kode_perta' , nama_barang = '$nama_barang', qty = '$qty' , harga = '$harga', volume_tangki = '$volume_tangki'

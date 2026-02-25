@@ -40,136 +40,47 @@ $lokasi = $_POST['lokasi'];
   
         
         
-        if($kode_perta == 'nusabakti' && $nama_barang == 'Pertamax'){
+        if($kode_perta == 'srikaton' && $nama_barang == 'Pertamax'){
             
             	$query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
                 
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '6' ");
+                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '1' ");
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
                 $stok_baru = ($stok_awal - $qty)  ;
                 
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '6'");
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '1'");
                 	if ($query != "") {
 				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 		       	}
         }
-        else if($kode_perta == 'nusabakti' && $nama_barang == 'Dexlite'){
+        else if($kode_perta == 'srikaton' && $nama_barang == 'Dexlite'){
                 $query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
                 
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '7' ");
+                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '2' ");
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
                 $stok_baru = ($stok_awal - $qty)  ;
                 
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '7'");
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '2'");
                 	if ($query != "") {
 				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 		       	}
         }
-        else if($kode_perta == 'bedilan' && $nama_barang == 'Pertamax'){
+        else if($kode_perta == 'sumberharjo' && $nama_barang == 'Pertamax'){
                 $query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
                 
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '8' ");
+                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '3' ");
                 $data_stok = mysqli_fetch_array($result2);
                 $stok_awal = $data_stok['stok'];
                 
                 $stok_baru = ($stok_awal - $qty) ;
                 
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '8'");
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '3'");
                 	if ($query != "") {
 				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
 		       	}
         }
-        else if($kode_perta == 'sumberjaya' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
-                
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '9' ");
-                $data_stok = mysqli_fetch_array($result2);
-                $stok_awal = $data_stok['stok'];
-                
-                $stok_baru = ($stok_awal - $qty) ;
-                
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '9'");
-                	if ($query != "") {
-				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
-		       	}
-        }
-        else if($kode_perta == 'muaradua' && $nama_barang == 'Pertamax'){
-                $query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
-                
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '10' ");
-                $data_stok = mysqli_fetch_array($result2);
-                $stok_awal = $data_stok['stok'];
-                
-                $stok_baru = ($stok_awal - $qty)  ;
-                
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '10'");
-                	if ($query != "") {
-				echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
-		       	}
-        }
-        else if($kode_perta == 'bk3' && $nama_barang == 'Pertamax'){
-            
-                $query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
-            
-            $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '11' ");
-            $data_stok = mysqli_fetch_array($result2);
-            $stok_awal = $data_stok['stok'];
-            
-            $stok_baru = ($stok_awal - $qty)  ;
-            
-            $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '11'");
-                    if ($query != "") {
-                            echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
-                           }
-        }
-        else if($kode_perta == 'bk3' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
-                
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '12' ");
-                $data_stok = mysqli_fetch_array($result2);
-                $stok_awal = $data_stok['stok'];
-                
-                $stok_baru = ($stok_awal - $qty)  ;
-                
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '12'");
-                        if ($query != "") {
-                                echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
-                                }
-        }
-        else if($kode_perta == 'pul_bta' && $nama_barang == 'Pertamax'){
-            
-                $query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
-            
-            $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '13' ");
-            $data_stok = mysqli_fetch_array($result2);
-            $stok_awal = $data_stok['stok'];
-            
-            $stok_baru = ($stok_awal - $qty)  ;
-            
-            $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '13'");
-                    if ($query != "") {
-                            echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
-                           }
-        }
-        else if($kode_perta == 'pul_bta' && $nama_barang == 'Dexlite'){
-                $query = mysqli_query($koneksi,"DELETE FROM pembelian WHERE no_pembelian = '$no_pembelian'");
-                
-                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '14' ");
-                $data_stok = mysqli_fetch_array($result2);
-                $stok_awal = $data_stok['stok'];
-                
-                $stok_baru = ($stok_awal - $qty)  ;
-                
-                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '14'");
-                        if ($query != "") {
-                                echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
-                                }
-        }
-	
-	
-		
-	
+        

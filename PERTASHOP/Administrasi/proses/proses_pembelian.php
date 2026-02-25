@@ -207,6 +207,20 @@ $kode_perta = $data_perta['kode_perta'];
                                 echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
                                 }
         }
+        else if($kode_perta == 'wayheling' && $nama_barang == 'Pertamax'){
+                $query = mysqli_query($koneksi,"INSERT INTO pembelian VALUES ('','$no_so','$tanggal','','$kode_perta','$nama_barang','$qty','$harga','$volume_tangki','$sonding_awal','$sonding_akhir','$keterangan','$file')");
+                
+                $result2 = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang = '15' ");
+                $data_stok = mysqli_fetch_array($result2);
+                $stok_awal = $data_stok['stok'];
+                
+                $stok_baru = ($stok_awal + $qty);
+                
+                $query2 = mysqli_query($koneksi,"UPDATE barang SET stok = '$stok_baru' WHERE kode_barang = '15'");
+                        if ($query != "") {
+                                echo "<script> window.location='../view/VPembelian?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&lokasi=$lokasi';</script>";exit;
+                                }
+        }
         
 
 
