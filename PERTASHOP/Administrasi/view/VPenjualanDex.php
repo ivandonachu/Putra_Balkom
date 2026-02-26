@@ -358,24 +358,7 @@ data-parent="#accordionSidebar">
         }
         
       }
-      else if($kode_perta == 'bedilan'){
-        $uang_be = $uang_be + $jumlah; 
-        $terjual_be = $terjual_be + $qty;
-        $total_uang_diskon_be = $total_uang_diskon_be + $uang_diskon;
-    
-      }
-      else if($kode_perta == 'muaradua'){
-        $uang_md = $uang_md + $jumlah; 
-        $terjual_md = $terjual_md + $qty;
-        $total_uang_diskon_md = $total_uang_diskon_md + $uang_diskon;
-       
-      }
-      else if($kode_perta == 'sumberjaya'){
-        $uang_sj = $uang_sj + $jumlah; 
-        $terjual_sj = $terjual_sj + $qty;
-        $total_uang_diskon_sj = $total_uang_diskon_sj + $uang_diskon;
-     
-      }
+
 
       echo "<tr>
       <td style='font-size: 11px' align = 'center'>$urut</td>
@@ -712,30 +695,7 @@ data-parent="#accordionSidebar">
       <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); ?></td>
      
   </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_max); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sj); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_be); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?></td>
-     
-  </tr>
+
 
 
 </tbody>
@@ -817,30 +777,7 @@ data-parent="#accordionSidebar">
       <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex - $total_uang_diskon_nb_dex); ?></td>
      
   </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max - $total_uang_diskon_nb_max); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj - $total_uang_diskon_sj); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be - $total_uang_diskon_be); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md - $total_uang_diskon_md); ?></td>
-     
-  </tr>
+
 
 
 
@@ -868,30 +805,6 @@ data-parent="#accordionSidebar">
       <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_nb_dex); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_nb_max); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_sj); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang( $total_uang_diskon_be); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_md); ?></td>
      
   </tr>
 

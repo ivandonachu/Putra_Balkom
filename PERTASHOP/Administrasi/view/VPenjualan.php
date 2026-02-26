@@ -308,10 +308,16 @@ data-parent="#accordionSidebar">
     $terjual_md = 0;
     $uang_sj = 0 ;
     $terjual_sj = 0;
+    $uang_wh = 0 ;
+    $terjual_wh = 0;
     $total_uang_diskon_nb_max = 0 ;
     $total_uang_diskon_be = 0 ;
     $total_losis_penjualan = 0;
     $total_losis_penyimpanan = 0;
+    $total_uang_diskon_nb_dex = 0;
+    $total_uang_diskon_md= 0;
+    $total_uang_diskon_sj = 0;
+    $total_uang_diskon_wh = 0;
 
     ?>
     <?php while($data = mysqli_fetch_array($table)){
@@ -374,6 +380,12 @@ data-parent="#accordionSidebar">
         $uang_sj = $uang_sj + $jumlah; 
         $terjual_sj = $terjual_sj + $qty;
         $total_uang_diskon_sj = $total_uang_diskon_sj + $uang_diskon;
+     
+      }
+      else if($kode_perta == 'wayheling'){
+        $uang_wh = $uang_wh + $jumlah; 
+        $terjual_wh = $terjual_wh + $qty;
+        $total_uang_diskon_wh = $total_uang_diskon_wh + $uang_diskon;
      
       }
 
@@ -733,8 +745,14 @@ data-parent="#accordionSidebar">
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Wayheling</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_wh); ?></td>
      
   </tr>
 
@@ -842,6 +860,12 @@ data-parent="#accordionSidebar">
       <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md - $total_uang_diskon_md); ?></td>
      
   </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Wayheling</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_wh - $total_uang_diskon_wh); ?></td>
+     
+  </tr>
 
 
 
@@ -893,6 +917,12 @@ data-parent="#accordionSidebar">
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_md); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Wayheling</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_wh); ?></td>
      
   </tr>
 

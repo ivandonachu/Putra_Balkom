@@ -436,6 +436,7 @@ else{
     $losis_sj = 0 ;
     $losis_md =0;
     $losis_be = 0;
+    $losis_wh = 0;
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -484,6 +485,10 @@ else{
         }
         else if($kode_perta == 'sumberjaya'){
           $losis_sj = $losis_sj + $losis; 
+          
+        }
+        else if($kode_perta == 'wayheling'){
+          $losis_wh = $losis_wh + $losis; 
           
         }
       }
@@ -807,6 +812,12 @@ else{
       <td style='font-size: 11px' align = 'center'>Muara Dua</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'><?=  ($losis_md); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Wayheling</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($losis_wh); ?></td>
      
   </tr>
 
