@@ -112,6 +112,7 @@ $nama = $data['nama_karyawan'];
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranGGPE">Pengeluaran GGPE</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VRitDriver">Ritase GGPE</a>
                     </div>
                 </div>
             </li>
