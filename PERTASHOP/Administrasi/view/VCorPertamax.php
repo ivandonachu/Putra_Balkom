@@ -310,6 +310,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option>Sumber Jaya</option>
                               <option>Pul Baturaja</option>
                               <option>Muara Dua</option>
+                              <option>Wayheling</option>
                             </select>
                           </div>
 

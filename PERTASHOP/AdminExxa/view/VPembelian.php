@@ -431,11 +431,10 @@ else{
     $losis = 0;
  
 
-    $losis_nb_dex = 0;
-    $losis_nb_max = 0;
-    $losis_sj = 0 ;
-    $losis_md =0;
-    $losis_be = 0;
+    $losis_srikaton_dex = 0;
+    $losis_srikaton_max = 0;
+    $losis_sumberharjo_max = 0 ;
+    
     function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
@@ -465,27 +464,20 @@ else{
 
 
       if($losis < 0){
-        if($kode_perta == 'nusabakti'){
+        if($kode_perta == 'srikaton'){
           if($nama_barang == 'Pertamax'){
-            $losis_nb_max = $losis_nb_max + $losis; 
+            $losis_srikaton_max = $losis_srikaton_max + $losis; 
           }
           else{
-            $losis_nb_dex = $losis_nb_dex + $losis;
+            $losis_srikaton_dex = $losis_srikaton_dex + $losis;
           }
           
         }
-        else if($kode_perta == 'bedilan'){
-          $losis_be = $losis_be + $losis; 
+        else if($kode_perta == 'sumberharjo'){
+          $losis_sumberharjo_max = $losis_sumberharjo_max + $losis; 
          
         }
-        else if($kode_perta == 'muaradua'){
-          $losis_md = $losis_md + $losis; 
-         
-        }
-        else if($kode_perta == 'sumberjaya'){
-          $losis_sj = $losis_sj + $losis; 
-          
-        }
+
       }
 
      
@@ -780,33 +772,21 @@ else{
 
   
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($losis_srikaton_dex); ?></td>
      
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_nb_max); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($losis_srikaton_max); ?></td>
      
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Sumber Harjo</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_sj); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_be); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($losis_md); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($losis_sumberharjo_max); ?></td>
      
   </tr>
 

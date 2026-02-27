@@ -312,11 +312,9 @@ data-parent="#accordionSidebar">
         <label>Lokasi Cor</label>
           <select id="lokasi_cor" name="lokasi_cor" class="form-control">
             <option>BK 3</option>
-            <option>Nusa Bakti</option>
-            <option>Bedilan</option>
-            <option>Sumber Jaya</option>
+            <option>Srikaton</option>
+            <option>Sumber Harjo</option>
             <option>Pul Baturaja</option>
-            <option>Muara Dua</option>
           </select>
           </div> 
           
@@ -460,16 +458,12 @@ data-parent="#accordionSidebar">
     <?php
     $urut = 0;
 
-    $cor_nb_max_sirkulasi = 0;
-    $cor_nb_max_penjualan = 0;
-    $cor_nb_dex_sirkulasi = 0;
-    $cor_nb_dex_penjualan = 0;
-    $cor_be_penjualan = 0;
-    $cor_be_sirkulasi = 0;
-    $cor_md_penjualan = 0;
-    $cor_md_sirkulasi = 0;
-    $cor_sj_penjualan = 0;
-    $cor_sj_sirkulasi = 0;
+    $cor_sr_max_sirkulasi = 0;
+    $cor_sr_max_penjualan = 0;
+    $cor_sr_dex_sirkulasi = 0;
+    $cor_sr_dex_penjualan = 0;
+    $cor_sh_penjualan = 0;
+    $cor_sh_sirkulasi = 0;
     $cor_pb_penjualan = 0;
     $cor_pb_sirkulasi = 0;
 
@@ -499,58 +493,38 @@ data-parent="#accordionSidebar">
       
       $urut = $urut + 1;
 
-      if($lokasi_cor == 'Nusa Bakti'){
+      if($lokasi_cor == 'Srikaton'){
         if($nama_barang == 'Pertamax'){
 
           if($jenis_cor == 'Sirkulasi' ){
-            $cor_nb_max_sirkulasi = $cor_nb_max_sirkulasi + $jumlah;
+            $cor_sr_max_sirkulasi = $cor_sr_max_sirkulasi + $jumlah;
           }
           else{
-            $cor_nb_max_penjualan = $cor_nb_max_penjualan + $jumlah;
+            $cor_sr_max_penjualan = $cor_sr_max_penjualan + $jumlah;
           }
           
         }
         else{
 
           if($jenis_cor == 'Sirkulasi' ){
-            $cor_nb_dex_sirkulasi = $cor_nb_dex_sirkulasi + $jumlah;
+            $cor_sr_dex_sirkulasi = $cor_sr_dex_sirkulasi + $jumlah;
           }
           else{
-            $cor_nb_dex_penjualan = $cor_nb_dex_penjualan + $jumlah;
+            $cor_sr_dex_penjualan = $cor_sr_dex_penjualan + $jumlah;
           }
           
         }
         
       }
-      else if($lokasi_cor == 'Bedilan'){
+      else if($lokasi_cor == 'Sumber Harjo'){
         
         if($jenis_cor == 'Sirkulasi' ){
-          $cor_be_sirkulasi = $cor_be_sirkulasi + $jumlah;
+          $cor_sh_sirkulasi = $cor_sh_sirkulasi + $jumlah;
         }
         else{
-          $cor_be_penjualan = $cor_be_penjualan + $jumlah;
+          $cor_sh_penjualan = $cor_sh_penjualan + $jumlah;
         }
   
-      }
-      else if($lokasi_cor == 'Muara Dua'){
-        
-        if($jenis_cor == 'Sirkulasi' ){
-          $cor_md_sirkulasi = $cor_md_sirkulasi + $jumlah;
-        }
-        else{
-          $cor_md_penjualan = $cor_md_penjualan + $jumlah;
-        }
-        
-      }
-      else if($lokasi_cor == 'Sumber Jaya'){
-
-        if($jenis_cor == 'Sirkulasi' ){
-          $cor_sj_sirkulasi = $cor_sj_sirkulasi + $jumlah;
-        }
-        else{
-          $cor_sj_penjualan = $cor_sj_penjualan + $jumlah;
-        }
-     
       }
       else if($lokasi_cor == 'Pul Baturaja'){
         
@@ -858,64 +832,40 @@ data-parent="#accordionSidebar">
 
   
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
       <td style='font-size: 11px' align = 'center'>Penjualan</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_dex_penjualan); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sr_dex_penjualan); ?></td>
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
       <td style='font-size: 11px' align = 'center'>Sirkulasi</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_dex_sirkulasi); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sr_dex_sirkulasi); ?></td>
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'>Penjualan</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_max_penjualan); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sr_max_penjualan); ?></td>
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'>Sirkulasi</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_nb_max_sirkulasi); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sr_max_sirkulasi); ?></td>
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Sumber Harjo</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'>Penjualan</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_sj_penjualan); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sh_penjualan); ?></td>
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
+      <td style='font-size: 11px' align = 'center'>Sumber Harjo</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
       <td style='font-size: 11px' align = 'center'>Sirkulasi</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_sj_sirkulasi); ?></td>
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'>Penjualan</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_be_penjualan); ?></td>
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'>Sirkulasi</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_be_sirkulasi); ?></td>
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'>Penjualan</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_md_penjualan); ?></td>
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'>Sirkulasi</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($cor_md_sirkulasi); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($cor_sh_sirkulasi); ?></td>
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Pul Baturaja</td>

@@ -297,18 +297,15 @@ data-parent="#accordionSidebar">
       return $uang;
     }
     $urut = 0;
-    $uang_nb_max = 0;
-    $terjual_nb_max = 0;
-    $uang_nb_dex = 0;
-    $terjual_nb_dex = 0 ;
-    $uang_be =0;
-    $terjual_be = 0;
-    $uang_md = 0;
-    $terjual_md = 0;
-    $uang_sj = 0 ;
-    $terjual_sj = 0;
-    $total_uang_diskon_nb_dex = 0 ;
-    $total_uang_diskon_be_dex = 0 ;
+    $uang_srikaton_max = 0;
+    $terjual_srikaton_max = 0;
+    $uang_srikaton_dex = 0;
+    $terjual_srikaton_dex = 0 ;
+    $uang_sumberharjo_max =0;
+    $terjual_sumberharjo_max = 0;
+    $total_uang_diskon_srikaton_max = 0 ;
+    $total_uang_diskon_srikaton_dex = 0 ;
+    $total_uang_diskon_sumberharjo_max = 0 ;
     $total_losis_penjualan = 0;
     $total_losis_penyimpanan = 0;
 
@@ -340,41 +337,29 @@ data-parent="#accordionSidebar">
       $urut = $urut + 1;
     
     
-      if($kode_perta == 'nusabakti'){
+     if($kode_perta == 'srikaton'){
         if($nama_barang == 'Pertamax'){
-          $uang_nb_max = $uang_nb_max + $jumlah ; 
-          $terjual_nb_max =  $terjual_nb_max + $qty;
+          $uang_srikaton_max = $uang_srikaton_max + $jumlah ; 
+          $terjual_srikaton_max =  $terjual_srikaton_max + $qty;
 
-          $total_uang_diskon_nb_max = $total_uang_diskon_nb_max + $uang_diskon;
+          $total_uang_diskon_srikaton_max = $total_uang_diskon_srikaton_max + $uang_diskon;
    
         }
         else{
-          $uang_nb_dex =  $uang_nb_dex + $jumlah; 
-          $terjual_nb_dex = $terjual_nb_dex + $qty;
+          $uang_srikaton_dex =  $uang_srikaton_dex + $jumlah; 
+          $terjual_srikaton_dex = $terjual_srikaton_dex + $qty;
 
-          $total_uang_diskon_nb_dex = $total_uang_diskon_nb_dex + $uang_diskon;
+          $total_uang_diskon_srikaton_dex = $total_uang_diskon_srikaton_dex + $uang_diskon;
         
      
         }
         
       }
-      else if($kode_perta == 'bedilan'){
-        $uang_be = $uang_be + $jumlah; 
-        $terjual_be = $terjual_be + $qty;
-        $total_uang_diskon_be = $total_uang_diskon_be + $uang_diskon;
+      else if($kode_perta == 'sumberharjo'){
+        $uang_sumberharjo_max = $uang_sumberharjo_max + $jumlah; 
+        $terjual_sumberharjo_max = $terjual_sumberharjo_max + $qty;
+        $total_uang_diskon_sumberharjo_max = $total_uang_diskon_sumberharjo_max + $uang_diskon;
     
-      }
-      else if($kode_perta == 'muaradua'){
-        $uang_md = $uang_md + $jumlah; 
-        $terjual_md = $terjual_md + $qty;
-        $total_uang_diskon_md = $total_uang_diskon_md + $uang_diskon;
-       
-      }
-      else if($kode_perta == 'sumberjaya'){
-        $uang_sj = $uang_sj + $jumlah; 
-        $terjual_sj = $terjual_sj + $qty;
-        $total_uang_diskon_sj = $total_uang_diskon_sj + $uang_diskon;
-     
       }
 
       echo "<tr>
@@ -665,7 +650,7 @@ data-parent="#accordionSidebar">
 <div style="overflow-x: auto" align = 'center'>
 <table  class="table-sm table-striped table-bordered  nowrap" style="width:auto">
   <thead>
-  <th>Lokasi</th>
+      <th>Lokasi</th>
       <th>Nama Barang</th>
       <th>STOK</th>
     </tr>
@@ -707,36 +692,23 @@ data-parent="#accordionSidebar">
 
   
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_srikaton_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_srikaton_dex); ?></td>
      
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Sumber Harjo</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_nb_max); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sumberharjo_max); ?></td>
      
   </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_sj); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_be); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  ($terjual_md); ?></td>
-     
-  </tr>
-
 
 </tbody>
 </table>
@@ -812,37 +784,23 @@ data-parent="#accordionSidebar">
 
   
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_srikaton_max - $total_uang_diskon_srikaton_max); ?></td>
+     
+  </tr>
+  <tr>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
       <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_dex - $total_uang_diskon_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_srikaton_dex - $total_uang_diskon_srikaton_dex); ?></td>
      
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
+      <td style='font-size: 11px' align = 'center'>Sumber Harjo</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_nb_max - $total_uang_diskon_nb_max); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sumberharjo_max - $total_uang_diskon_sumberharjo_max); ?></td>
      
   </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_sj - $total_uang_diskon_sj); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_be - $total_uang_diskon_be); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($uang_md - $total_uang_diskon_md); ?></td>
-     
-  </tr>
-
-
 
 </tbody>
 </table>
@@ -865,37 +823,23 @@ data-parent="#accordionSidebar">
 
   
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
-      <td style='font-size: 11px' align = 'center'>Dexlite</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_nb_dex); ?></td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
+      <td style='font-size: 11px' align = 'center'>Pertamax</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_srikaton_max); ?></td>
      
   </tr>
   <tr>
-      <td style='font-size: 11px' align = 'center'>Nusa Bakti</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_nb_max); ?></td>
+      <td style='font-size: 11px' align = 'center'>Srikaton</td>
+      <td style='font-size: 11px' align = 'center'>Dexlite</td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_srikaton_dex); ?></td>
      
   </tr>
   <tr>
       <td style='font-size: 11px' align = 'center'>Sumber Jaya</td>
       <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_sj); ?></td>
+      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_sumberharjo_max); ?></td>
      
   </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Bedilan</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang( $total_uang_diskon_be); ?></td>
-     
-  </tr>
-  <tr>
-      <td style='font-size: 11px' align = 'center'>Muara Dua</td>
-      <td style='font-size: 11px' align = 'center'>Pertamax</td>
-      <td style='font-size: 11px' align = 'center'><?=  formatuang($total_uang_diskon_md); ?></td>
-     
-  </tr>
-
-
 
 </tbody>
 </table>
