@@ -407,7 +407,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <?php while ($data = mysqli_fetch_array($table2)) {
                     $nama_driver = $data['nama_driver'];
                     $nama_rute = $data['nama_rute'];
-                    $table3 = mysqli_query($koneksi, "SELECT SUM(uang_gaji) AS uang_gaji_nje, SUM(rit) AS rit_nje FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'PDPDE DUABELAS BELITANG'");
+                    $table3 = mysqli_query($koneksi, "SELECT SUM(uang_gaji) AS uang_gaji_nje, SUM(rit) AS rit_nje FROM laporan_rit_ggpe WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver' AND nama_rute = 'PDPDE DUABELAS BELITANG'");
                     $data3 = mysqli_fetch_array($table3);
                     $total_gaji_nje = $data3['uang_gaji_nje'];
                     if ($total_gaji_nje == "") {
@@ -419,7 +419,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     }
 
 
-                    $table4 = mysqli_query($koneksi, "SELECT SUM(uang_gaji) AS uang_gaji_gas_palembang , SUM(rit) AS rit_gas_palembang FROM laporan_rit WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'DUABELAS MUARA DUA'");
+                    $table4 = mysqli_query($koneksi, "SELECT SUM(uang_gaji) AS uang_gaji_gas_palembang , SUM(rit) AS rit_gas_palembang FROM laporan_rit_ggpe WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'  AND  nama_driver = '$nama_driver'AND nama_rute = 'DUABELAS MUARA DUA'");
                     $data4 = mysqli_fetch_array($table4);
 
                     $total_uang_gaji_gas_palembang = $data4['uang_gaji_gas_palembang'];
