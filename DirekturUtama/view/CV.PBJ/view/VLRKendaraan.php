@@ -260,8 +260,8 @@ if ($tanggal_awal == $tanggal_akhir) {
         + $total_angkutan_dedi_bmu_lamteng + $total_angkutan_rony_bmu_lamteng + $total_angkutan_azzahra_bmu_lamteng + $total_angkutan_sony_bmu_lamteng + $total_angkutan_ahmad_bmu_lamteng + $total_angkutan_gm_bmu_lamteng + $total_angkutan_samsun_bmu_lamteng
         + $total_angkutan_tanry_bmu_lamteng + $total_angkutan_lion_bmu_lamteng + $total_angkutan_syaif_bmu_lamteng;
 
-    //Untung angkutan / pranko
-    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
+    //Untung angkutan / pranko BMU
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND plant = '79H7' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND plant = '79H7'  ");
     $total_angkutan_edy_rli = 0;
     $total_angkutan_edy_bmu = 0;
     $total_angkutan_rama_bmu = 0;
@@ -761,8 +761,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Pak Lion' && $kontrak == 'BMU') {
                 $total_angkutan_lion_bmu = $total_angkutan_lion_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
-                    $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
-                }
+                $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
+            }
         } else if ($kota == 'KAB OKU SELATAN') {
             //RLI
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
@@ -1039,8 +1039,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Pak Lion' && $kontrak == 'BMU') {
                 $total_angkutan_lion_bmu = $total_angkutan_lion_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
-                    $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
-                }
+                $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
+            }
         } else if ($kota == 'KAB. LAMPUNG BARAT') {
 
 
@@ -1129,8 +1129,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Pak Lion' && $kontrak == 'BMU') {
                 $total_angkutan_lion_bmu = $total_angkutan_lion_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
-                    $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
-                }
+                $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
+            }
         } else if ($kota == 'KAB.PESISIR BARAT') {
 
 
@@ -1219,8 +1219,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Pak Lion' && $kontrak == 'BMU') {
                 $total_angkutan_lion_bmu = $total_angkutan_lion_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
-                    $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
-                }
+                $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
+            }
         } else if ($kota == 'KAB. LAMPUNG TIMUR') {
 
 
@@ -1309,8 +1309,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Pak Lion' && $kontrak == 'BMU') {
                 $total_angkutan_lion_bmu = $total_angkutan_lion_bmu + $total_angkut_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
-                    $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
-                }
+                $total_angkutan_syaif_bmu = $total_angkutan_syaif_bmu + $total_angkut_bmu;
+            }
         }
     }
 
@@ -1319,6 +1319,193 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_pendapatan_bmu = $total_angkutan_edy_bmu + $total_angkutan_rama_bmu + $total_angkutan_eki_bangunan_bmu + $total_angkutan_soma_bmu + $total_angkutan_berkah_bmu + $total_angkutan_syafuan_bmu + $total_angkutan_yanti_bmu +
         $total_angkutan_nengah_bmu + $total_angkutan_joko_bmu + $total_angkutan_wayan_bmu + $total_angkutan_samsul_bmu + $total_angkutan_besi88_bmu + $total_angkutan_dedi_bmu + $total_angkutan_rony_bmu + $total_angkutan_azzahra_bmu
         + $total_angkutan_sony_bmu + $total_angkutan_ahmad_bmu + $total_angkutan_gm_bmu + $total_angkutan_samsun_bmu + $total_angkutan_tanry_bmu + $total_angkutan_lion_bmu + $total_angkutan_syaif_bmu;
+
+
+
+
+
+
+    //Untung angkutan / pranko SKB
+    $table1 = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND plant = '79A1' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND plant = '79A1'  ");
+    $total_angkutan_edy_skb = 0;
+
+    while ($data1 = mysqli_fetch_array($table1)) {
+
+
+        $kota = $data1['kota'];
+        $qty = $data1['qty'];
+        $tujuan = $data1['tujuan'];
+
+        if ($kota == 'KAB MESUJI') {
+
+            //SKB 20ton
+            if ($qty >= 1 && $qty <= 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_400 = $data3p['tarif_400'];
+                $total_angkut_bmu = $qty * $tarif_400;
+            }
+            //BMU 30ton
+            else if ($qty > 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_600 = $data3p['tarif_600'];
+                $total_angkut_bmu = $qty * $tarif_600;
+            }
+
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            $pemilik = 0;
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_angkutan_edy_skb = $total_angkutan_edy_skb + $total_angkut_bmu;
+            }
+        } else if ($kota == 'KAB. TULANG BAWANG') {
+
+            //BMU 10ton
+            if ($qty >= 1 && $qty <= 300) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_200 = $data3p['tarif_200'];
+                $total_angkut_bmu = $qty * $tarif_200;
+            }
+            //BMU 20ton
+            else if ($qty > 300 && $qty <= 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_400 = $data3p['tarif_400'];
+                $total_angkut_bmu = $qty * $tarif_400;
+            }
+            //BMU 30ton
+            else if ($qty > 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_600 = $data3p['tarif_600'];
+                $total_angkut_bmu = $qty * $tarif_600;
+            }
+
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_angkutan_edy_skb = $total_angkutan_edy_skb + $total_angkut_bmu;
+            }
+        } else if ($kota == 'KAB WAY KANAN') {
+
+            //BMU 10ton
+            if ($qty >= 1 && $qty <= 300) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_200 = $data3p['tarif_200'];
+                $total_angkut_bmu = $qty * $tarif_200;
+            }
+            //BMU 20ton
+            else if ($qty > 300 && $qty <= 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_400 = $data3p['tarif_400'];
+                $total_angkut_bmu = $qty * $tarif_400;
+            }
+            //BMU 30ton
+            else if ($qty > 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_600 = $data3p['tarif_600'];
+                $total_angkut_bmu = $qty * $tarif_600;
+            }
+
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_angkutan_edy_skb = $total_angkutan_edy_skb + $total_angkut_bmu;
+            }
+        } else if ($kota == 'KAB. LAMPUNG TIMUR') {
+
+
+            //BMU 10ton
+            if ($qty >= 1 && $qty <= 300) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_200 = $data3p['tarif_200'];
+                $total_angkut_bmu = $qty * $tarif_200;
+            }
+            //BMU 20ton
+            else if ($qty > 300 && $qty <= 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_400 = $data3p['tarif_400'];
+                $total_angkut_bmu = $qty * $tarif_400;
+            }
+            //BMU 30ton
+            else if ($qty > 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_600 = $data3p['tarif_600'];
+                $total_angkut_bmu = $qty * $tarif_600;
+            }
+
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_angkutan_edy_skb = $total_angkutan_edy_skb + $total_angkut_bmu;
+            }
+        }
+    }
+
+
 
 
 
@@ -1707,8 +1894,8 @@ if ($tanggal_awal == $tanggal_akhir) {
         + $total_om_lion_bmu_lamteng + $total_om_syaif_bmu_lamteng;
 
 
-    //OM angkutan / pranko
-    $table1_om = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
+    //OM angkutan / pranko bmu
+    $table1_om = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND plant = '79H7' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND plant = '79H7'  ");
     $total_om_edy_rli = 0;
     $total_om_edy_bmu = 0;
     $total_om_rama_bmu = 0;
@@ -1836,7 +2023,6 @@ if ($tanggal_awal == $tanggal_akhir) {
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                 $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
             }
-            
         } else if ($kota == 'KAB MESUJI') {
             //RLI
             $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
@@ -2008,8 +2194,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 } else if ($pemilik == 'Pak Lion' && $kontrak == 'BMU') {
                     $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
                 } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
-                $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
-            }
+                    $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+                }
             } else {
                 //RLI
                 $table1p = mysqli_query($koneksipbj, "SELECT tarif_pranko FROM list_kota_l WHERE nama_kota  = '$kota' ");
@@ -2098,8 +2284,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 } else if ($pemilik == 'Pak Lion' && $kontrak == 'BMU') {
                     $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
                 } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
-                $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
-            }
+                    $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+                }
             }
         } else if ($kota == 'KAB WAY KANAN') {
             //RLI
@@ -2281,8 +2467,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 } else if ($pemilik == 'Pak Lion' && $kontrak == 'BMU') {
                     $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
                 } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
-                $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
-            }
+                    $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+                }
             } else {
                 //BMU 10ton
                 if ($qty >= 1 && $qty <= 300) {
@@ -2368,8 +2554,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                 } else if ($pemilik == 'Pak Lion' && $kontrak == 'BMU') {
                     $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
                 } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
-                $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
-            }
+                    $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+                }
             }
         } else if ($kota == 'KAB. OGAN KOM ULU') {
 
@@ -2825,7 +3011,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     //OM angkutan / pranko
-    $table1_om = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'  ");
+    $table1_om = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND plant = '79H7' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND plant = '79H7'  ");
 
     $total_om_khusus_rama_bmu = 0;
     $total_om_khusus_gm_bmu = 0;
@@ -3396,13 +3582,200 @@ if ($tanggal_awal == $tanggal_akhir) {
         }
     }
 
+    //OM angkutan / pranko SKB
+    $table1_om = mysqli_query($koneksipbj, "SELECT no_polisi, kota, qty, tujuan FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND plant = '79A1' OR  tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND plant = '79A1'  ");
+
+    $total_om_edy_skb = 0;
 
 
-    $total_seluruh_om_khusus_bmu = $total_om_khusus_rama_bmu + $total_om_khusus_gm_bmu + $total_om_khusus_tanry_bmu;
+    while ($data1 = mysqli_fetch_array($table1_om)) {
+
+
+        $kota = $data1['kota'];
+        $qty = $data1['qty'];
+        $tujuan = $data1['tujuan'];
+
+        //kak nyoman
+        if ($kota == 'KAB MESUJI') {
+
+            //BMU 20ton
+            if ($qty >= 1 && $qty <= 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_400 = $data3p['tarif_400'];
+                $total_om_skb = $qty * $tarif_400;
+            }
+            //BMU 30ton
+            else if ($qty > 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_600 = $data3p['tarif_600'];
+                $total_om_skb = $qty * $tarif_600;
+            }
+
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            $pemilik = 0;
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_om_edy_skb = $total_om_edy_skb + $total_om_skb;
+            }
+        } else if ($kota == 'KAB. TULANG BAWANG') {
+
+            //BMU 10ton
+            if ($qty >= 1 && $qty <= 300) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_200 = $data3p['tarif_200'];
+                $total_om_skb = $qty * $tarif_200;
+            }
+            //BMU 20ton
+            else if ($qty > 300 && $qty <= 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_400 = $data3p['tarif_400'];
+                $total_om_skb = $qty * $tarif_400;
+            }
+            //BMU 30ton
+            else if ($qty > 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_600 = $data3p['tarif_600'];
+                $total_om_skb = $qty * $tarif_600;
+            }
+
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_om_edy_skb = $total_om_edy_skb + $total_om_skb;
+            }
+        } else if ($kota == 'KAB WAY KANAN') {
+
+
+            //BMU 10ton
+            if ($qty >= 1 && $qty <= 300) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_200 = $data3p['tarif_200'];
+                $total_om_skb = $qty * $tarif_200;
+            }
+            //BMU 20ton
+            else if ($qty > 300 && $qty <= 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_400 = $data3p['tarif_400'];
+                $total_om_skb = $qty * $tarif_400;
+            }
+            //BMU 30ton
+            else if ($qty > 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_600 = $data3p['tarif_600'];
+                $total_om_skb = $qty * $tarif_600;
+            }
+
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_om_edy_skb = $total_om_edy_skb + $total_om_skb;
+            }
+        } else if ($kota == 'KAB. LAMPUNG TIMUR') {
+
+
+            //BMU 10ton
+            if ($qty >= 1 && $qty <= 300) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_200 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_200 = $data3p['tarif_200'];
+                $total_om_skb = $qty * $tarif_200;
+            }
+            //BMU 20ton
+            else if ($qty > 300 && $qty <= 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_400 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_400 = $data3p['tarif_400'];
+                $total_om_skb = $qty * $tarif_400;
+            }
+            //BMU 30ton
+            else if ($qty > 500) {
+
+                $table3p = mysqli_query($koneksipbj, "SELECT tarif_600 FROM tarif_kso_skb WHERE nama_wilayah  = '$kota' ");
+                $data3p = mysqli_fetch_array($table3p);
+                $tarif_600 = $data3p['tarif_600'];
+                $total_om_skb = $qty * $tarif_600;
+            }
+
+            $no_polisi = trim($data1["no_polisi"]);
+            $no_polisi_ts = str_replace(" ", "", $no_polisi);
+
+            $table2p = mysqli_query($koneksipbj, "SELECT status_kendaraan , kontrak FROM kendaraan_sl WHERE no_polisi  = '$no_polisi_ts' ");
+            $data2p = mysqli_fetch_array($table2p);
+            if (isset($data2p['status_kendaraan'])) {
+                $pemilik = $data2p['status_kendaraan'];
+                $kontrak = $data2p['kontrak'];
+            } else {
+                $pemilik = '';
+                $kontrak = '';
+            }
+
+            if ($pemilik == 'Bapak Nyoman Edi' && $kontrak == 'BMU') {
+                $total_om_edy_skb = $total_om_edy_skb + $total_om_skb;
+            } 
+        }
+    }
 
 
 
-    $laba_kotor_sebelum_pajak = $total_pendapatan_bmu +  $total_tagihan_kotabumi + $total_tagihan_lamteng;
+
+
+
+    $total_seluruh_om_khusus_bmu = $total_om_khusus_rama_bmu + $total_om_khusus_gm_bmu + $total_om_khusus_tanry_bmu + $total_om_edy_skb;
+
+
+
+    $laba_kotor_sebelum_pajak = $total_pendapatan_bmu +  $total_tagihan_kotabumi + $total_tagihan_lamteng + $total_angkutan_edy_skb;
 
     $pph_23 = ($laba_kotor_sebelum_pajak * 2) / 100;
 
@@ -3732,6 +4105,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="text-left"><?= formatuang($total_angkutan_edy_bmu + $total_angkutan_edy_bmu_kb + $total_angkutan_edy_bmu_lamteng); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanEdyBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-101</td>
+                                                    <td class="text-left">Tagihan SKB Bapak Edy</td>
+                                                    <td class="text-left"><?= formatuang($total_angkutan_edy_skb); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanEdySKB?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-102</td>
@@ -4110,6 +4490,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_lamteng + $total_om_khusus_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMLamteng?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-123</td>
+                                                    <td class="text-left">Total OM SKB </td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_om_edy_skb); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMSKB?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-597</td>

@@ -1,33 +1,49 @@
 <?php
 session_start();
-include'koneksi.php';
-if(!isset($_SESSION["login"])){
-  header("Location: logout.php");
-  exit;
+include 'koneksi.php';
+if (!isset($_SESSION["login"])) {
+    header("Location: logout.php");
+    exit;
 }
-$id=$_COOKIE['id_cookie'];
+$id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksi, "SELECT * FROM account WHERE id_karyawan = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $id1 = $data1['id_karyawan'];
 $foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Admin Semen') {
-
-}
-
-else{  header("Location: logout.php");
-exit;
+} else {
+    header("Location: logout.php");
+    exit;
 }
 $result = mysqli_query($koneksi, "SELECT * FROM karyawan WHERE id_karyawan = '$id1'");
 $data = mysqli_fetch_array($result);
 $nama = $data['nama_karyawan'];
 
 
-
-$table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
+if (isset($_GET['tanggal1'])) {
+    $tanggal_awal = $_GET['tanggal1'];
+    $tanggal_akhir = $_GET['tanggal2'];
+   } 
+   
+   elseif (isset($_POST['tanggal1'])) {
+    $tanggal_awal = $_POST['tanggal1'];
+    $tanggal_akhir = $_POST['tanggal2'];
+   }  
+   else{
+     $tanggal_awal = date('Y-m-1');
+   $tanggal_akhir = date('Y-m-31');
+   }
+if ($tanggal_awal == $tanggal_akhir) {
+  $table = mysqli_query($koneksi, "SELECT * FROM kredit_kendaraan WHERE tanggal = '$tanggal_awal'");
+}
+else{
+  $table = mysqli_query($koneksi, "SELECT * FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+}
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,8 +55,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>List Kota</title>
-
+  <title>Kredit</title>
   <!-- Custom fonts for this template-->
   <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -62,10 +77,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
 
 <body id="page-top">
 
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
+      <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -142,6 +158,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
                     </div>
                 </div>
             </li>
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -166,7 +183,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
 
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-      <?php echo "<a href='VMasterTarif'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>List Kota</h5></a>"; ?>
+      <?php echo "<a href='VBungaBank'><h5 class='text-center sm' style='color:white; margin-top: 8px; '>Kredit</h5></a>"; ?>
+
       <!-- Sidebar Toggle (Topbar) -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -178,29 +196,37 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
       <ul class="navbar-nav ml-auto">
 
 
+
+
+
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
-                    <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile --> 
-                </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="VProfile">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                </a>
-              </div>
-             </li>
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="mr-2 d-none d-lg-inline  small"  style="color:white;"><?php echo "$nama"; ?></span>
+          <img class="img-profile rounded-circle"
+          src="img/undraw_profile.svg">
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+        aria-labelledby="userDropdown">
+        <a class="dropdown-item" href="VProfile">
+          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Profile
+        </a>
+        <a class="dropdown-item" href="VSetting">
+          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+          Settings
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          Logout
+        </a>
+      </div>
+    </li>
 
   </ul>
 
@@ -211,166 +237,279 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_kota_l ");
 <div>   
 
 
-
+  <!-- Name Page -->
   <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-
-
-   <div class="row">
-    <div class="col-md-10">
-
-    </div>
-    <div class="col-md-2">
-      <!-- Button Input Data Bayar -->
-      <div align="right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Tambah List Kota</button> <br> <br>
+    <?php  echo "<form  method='POST' action='VKreditKenPribadi' style='margin-bottom: 15px;'>" ?>
+    <div>
+      <div align="left" style="margin-left: 20px;"> 
+        <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1"> 
+        <span>-</span>
+        <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+        <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm" >Lihat</button>
       </div>
-      <!-- Form Modal  -->
-      <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg" role ="document">
-         <div class="modal-content"> 
-          <div class="modal-header">
-            <h5 class="modal-title"> Form Pencatatan Kota Pembelian</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-md-6">
+     <?php  echo" <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+   </div>
+   <div class="col-md-6">
+    <!-- Button Input Data Bayar -->
+    <div align="right">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Kredit </button> <br> <br>
+    </div>
+    
+     <!-- Form Modal  -->
+    <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg" role ="document">
+       <div class="modal-content"> 
+        <div class="modal-header">
+          <h5 class="modal-title"> Form Pencatatan Kredit </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <!-- Form Input Data -->
+        <div class="modal-body" align="left">
+          <?php  echo "<form action='../proses/proses_kredit_kendaraan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+
+          <div class="row">
+            <div class="col-md-6">
+
+              <label>Tanggal</label>
+              <div class="col-sm-10">
+               <input type="date" id="tanggal" name="tanggal" required="">
+             </div>
+
           </div> 
+        </div>
 
-          <!-- Form Input Data -->
-          <div class="modal-body" align="left">
-            <?php  echo "<form action='../proses/proses_kota' enctype='multipart/form-data' method='POST'>";  ?>
 
-            <br>
-            <div class="row">
-             <div class="col-md-6">
-               <label>Nama Kota</label>
-               <input class="form-control form-control-sm" type="text" id="nama_kota" name="nama_kota" required="">
-             </div>
-             <div class="col-md-6">
-               <label>Tarif Pranko</label>
-               <input class="form-control form-control-sm" type="text" id="tarif_pranko" name="tarif_pranko" required="">
-             </div>
-           </div>
+        <div class="row">
+          
 
-           <br>
+        <div class="col-md-6">
+          <label>No Polisi Lama</label>
+          <input class="form-control form-control-sm" type="text" id="no_polisi_lama" name="no_polisi_lama"  required="">
+        </div> 
+        <div class="col-md-6">
+          <label>No Polisi Baru</label>
+          <input class="form-control form-control-sm" type="text" id="no_polisi_baru" name="no_polisi_baru"  required="">
+        </div>            
 
- 
+        <div class="col-md-6">
+          <label>Jumlah</label>
+          <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  required="">
+        </div>    
+       
+      </div>
+
+  
+  
+    <br>
+
+    <div>
+     <label>Keterangan</label>
+     <div class="form-group">
+       <textarea id = "keterangan" name="keterangan" style="width: 300px;"></textarea>
+     </div>
+   </div>
+
+  <div>
+    <label>Upload File</label> 
+    <input type="file" name="file"> 
+  </div> 
+
 
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"> CATAT</button>
+        <button type="submit" class="btn btn-primary"> BAYAR</button>
         <button type="reset" class="btn btn-danger"> RESET</button>
       </div>
     </form>
   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
 
-</div>
-</div>
+
+
+
 
 <!-- Tabel -->    
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
       <th>No</th>
-      <th>Nama Lokasi</th>  
-      <th>Tarif Pranko</th>   
-      <th></th>
+      <th>Tanggal</th>
+      <th>No Polisi Lama</th>
+      <th>No Polisi Baru</th>
+      <th>Jumlah</th>
+      <th>Keterangan</th>
+      <th>file</th>
+      <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
-    <?php 
-      function formatuang($angka){
+    <?php
+ 
+    $urut = 0;
+    function formatuang($angka){
       $uang = "Rp " . number_format($angka,2,',','.');
       return $uang;
     }
+
     ?>
+
     <?php while($data = mysqli_fetch_array($table)){
-      $no = $data['no_kota'];
-      $nama_kota =$data['nama_kota'];
-      $tarif_pranko =$data['tarif_pranko'];
-     
-      echo "<tr>
-      <td style='font-size: 14px' align = 'center'>$no</td>
-      <td style='font-size: 14px' align = 'center'>$nama_kota</td>
-      <td style='font-size: 14px' align = 'center'>$tarif_pranko</td>
-      
-      "; ?>
-      <?php echo "<td style='font-size: 12px'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_kota']; ?>">Edit</button>
+     $no_laporan = $data['no_laporan'];
+     $tanggal =$data['tanggal'];
+     $no_polisi_lama = $data['no_polisi_lama'];
+     $no_polisi_baru = $data['no_polisi_baru'];
+     $jumlah = $data['jumlah'];
+     $keterangan = $data['keterangan'];
+     $file_bukti = $data['file_bukti'];
 
-      <!-- Form EDIT DATA -->
+     $urut = $urut + 1;
 
-      <div class="modal fade" id="formedit<?php echo $data['no_kota']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role ="document">
-          <div class="modal-content"> 
-            <div class="modal-header">
-              <h5 class="modal-title"> Form Edit Lokasi </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                <span aria-hidden="true"> &times; </span>
-              </button>
+
+     echo "<tr>
+     <td style='font-size: 14px'>$urut</td>
+     <td style='font-size: 14px'>$tanggal</td>
+     <td style='font-size: 14px'>$no_polisi_lama</td>
+     <td style='font-size: 14px'>$no_polisi_baru</td>
+     <td style='font-size: 14px'>"?>  <?= formatuang($jumlah); ?> <?php echo "</td>
+     <td style='font-size: 14px'>$keterangan</td>
+     <td style='font-size: 14px'>"; ?> <a download="../file_admin_semen/<?= $file_bukti ?>" href="../file_admin_semen/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+     "; ?>
+     <?php echo "<td style='font-size: 12px'>"; ?>
+
+       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+
+        <!-- Form EDIT DATA -->
+
+        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role ="document">
+            <div class="modal-content"> 
+              <div class="modal-header">Form Edit Kredit Kendaran </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true"> &times; </span>
+                </button>
+              </div>
+
+
+              <!-- Form Edit Data -->
+              <div class="modal-body">
+                <form action="../proses/edit_kredit_kendaraan" enctype="multipart/form-data" method="POST">
+
+                                <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+                                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
+                  <div class="row">
+                      <div class="col-md-6">
+
+                        <label>Tanggal</label>
+                        <div class="col-sm-10">
+                        <input type="date" id="tanggal" name="tanggal"  value="<?php echo $tanggal;?>" required="">
+                        </div>
+                      </div>
+                  </div>
+
+
+                 <div class="row">
+                            <div class="col-md-6">
+
+                            <label>No Polisi Lama</label>
+                            <input class="form-control form-control-sm" type="text" id="no_polisi_lama" name="no_polisi_lama"  value="<?php echo $no_polisi_lama;?>"  required="">
+
+                            </div>  
+                            <div class="col-md-6">
+
+                            <label>No Polisi Baru</label>
+                            <input class="form-control form-control-sm" type="text" id="no_polisi_baru" name="no_polisi_baru"  value="<?php echo $no_polisi_baru;?>"  required="">
+
+                            </div>  
+                            <div class="col-md-6">
+                            <label>Jumlah</label>
+                            <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah"  value="<?php echo $jumlah;?>"  required="">
+                            </div>           
+
+                        </div>
+
+                        <br>
+
+                        
+                        <div>
+                        <label>Keterangan</label>
+                        <div class="form-group">
+                        <textarea id = "keterangan" name="keterangan" style="width: 300px;"><?php echo $keterangan;?></textarea>
+                        </div>
+                    </div>
+
+                            
+                    
+                        <br>
+
+
+
+                    <div>
+                        <label>Upload File</label> 
+                        <input type="file" name="file"> 
+                    </div> 
+                                    
+
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"> Ubah </button>
+                    <button type="reset" class="btn btn-danger"> RESET</button>
+                  </div>
+                </form>
+              </div>
             </div>
-
-            <!-- Form Edit Data -->
-            <div class="modal-body">
-              <form action="../proses/edit_kota" enctype="multipart/form-data" method="POST">
-
-                <input type="hidden" name="no" value="<?php echo $no;?>"> 
-                
-
-                <div class="row">
-             <div class="col-md-6">
-               <label>Nama Kota</label>
-               <input class="form-control form-control-sm" type="text" id="nama_kota" name="nama_kota" required="" value="<?php echo $nama_kota;?>" >
-             </div>
-             <div class="col-md-6">
-               <label>Tarif Pranko</label>
-               <input class="form-control form-control-sm" type="text" id="tarif_pranko" name="tarif_pranko" required="" value="<?php echo $tarif_pranko;?>">
-             </div>
-           </div>
-
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Ubah </button>
-          <button type="reset" class="btn btn-danger"> RESET</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- Button Hapus -->
-<button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_kota']; ?>" data-toggle='tooltip' title='Hapus Data Dokumen'>Hapus</button>
-<div class="modal fade" id="PopUpHapus<?php echo $data['no_kota']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
- <div class="modal-dialog" role ="document">
-   <div class="modal-content"> 
-    <div class="modal-header">
-      <h4 class="modal-title"> <b> Hapus Data Lokasi </b> </h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-        <span aria-hidden="true"> &times; </span>
-      </button>
-    </div>
-
-    <div class="modal-body">
-      <form action="../proses/hapus_kota" method="POST">
-        <input type="hidden" name="no" value="<?php echo $no;?>">
-        <div class="form-group">
-          <h6> Yakin Ingin Hapus Data? </h6>             
+          </div>
         </div>
 
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"> Hapus </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
 
-<?php echo  " </td> </tr>";
-}
+
+
+      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'>Hapus</button>
+
+      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+       <div class="modal-dialog" role ="document">
+         <div class="modal-content"> 
+          <div class="modal-header">
+            <h4 class="modal-title"> <b> Hapus </b> </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true"> &times; </span>
+            </button>
+          </div>
+
+
+          <div class="modal-body">
+            <form action="../proses/hapus_kredit_kendaraan" method="POST">
+              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
+
+
+              <div class="form-group">
+                <h6> Yakin Ingin Hapus Data? </h6>             
+              </div>
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary"> Hapus </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <?php echo  " </td> </tr>";
+  }
+
 ?>
 
 </tbody>
@@ -464,8 +603,6 @@ aria-hidden="true">
     .appendTo( '#example_wrapper .col-md-6:eq(0)' );
   } );
 </script>
-
-
 
 </body>
 

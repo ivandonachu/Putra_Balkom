@@ -179,6 +179,7 @@ $status_karyawan = $data['status_karyawan'];
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraan">RIT PBR</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraanTarahan">RIT Tarahan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VRitaseKendaraanPanjang">RIT Panjang</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VKreditKendaraan">Kedit Kendaraan</a>
                     </div>
                 </div>
             </li>
