@@ -1669,7 +1669,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
     //Krdit Kendaraan
-    $table_kredit_kendaraan = mysqli_query($koneksipbj, "SELECT SUM(jumlah_bayar) AS jumlah_kredit_kendaraan FROM kredit_kendaraan  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table_kredit_kendaraan = mysqli_query($koneksipbj, "SELECT SUM(jumlah) AS jumlah_kredit_kendaraan FROM kredit_kendaraan  WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
     $data_kredit_kendaraan = mysqli_fetch_array($table_kredit_kendaraan);
     $total_kredit_kendaraan = $data_kredit_kendaraan['jumlah_kredit_kendaraan'];
     if (!isset($data_kredit_kendaraan['jumlah_kredit_kendaraan'])) {

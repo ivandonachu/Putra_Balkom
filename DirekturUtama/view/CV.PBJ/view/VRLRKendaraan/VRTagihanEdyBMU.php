@@ -821,7 +821,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <br>
 
-                        <h5 align='center'>Rekap Pranko BMU Pak Nyoman Edy</h5>
+                        <h5 align='center'>Rekap Tagihan BMU Pak Nyoman Edy</h5>
                         <!-- Tabel -->
                         <div align='center' style="overflow-x: auto">
                             <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
