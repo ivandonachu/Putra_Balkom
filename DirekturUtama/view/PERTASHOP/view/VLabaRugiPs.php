@@ -862,7 +862,7 @@ else{
                                     <td><strong>Sisa Stok</strong></td>
                                     <td class="text-left"></td>
                                     <td class="no-line text-left"><?= formatjumlah(($pembelian_pertamax + $sonding_awal_max ) - ($pertamax_terjual + $qty_ngecor_max) ); ?> Liter</td>
-                                    <td class="text-left"><?= formatuang(($total_pertamax + $total_ngecor_max) - ($pertamax_b + $total_uang_stok_awal_max) ); ?></td>
+                                    <td class="text-left"><?= formatuang(($pertamax_b + $total_uang_stok_awal_max) - ($total_pertamax + $total_ngecor_max)  ); ?></td>
                                     <td class="no-line text-left"></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
@@ -870,7 +870,7 @@ else{
                                     <td><strong>Sisa Stok + Losis</strong></td>
                                     <td class="text-left"></td>
                                     <td class="no-line text-left"><?= formatjumlah(($pembelian_pertamax + $sonding_awal_max + $total_losis_max) - ($pertamax_terjual + $qty_ngecor_max) ); ?> Liter</td>
-                                    <td class="text-left"><?= formatuang(($total_pertamax + $total_ngecor_max + $total_uang_losis_max) - ($pertamax_b + $total_uang_stok_awal_max) ); ?></td>
+                                    <td class="text-left"><?= formatuang(($pertamax_b + $total_uang_stok_awal_max) - ($total_pertamax + $total_ngecor_max + $total_uang_losis_max) ); ?></td>
                                     <td class="no-line text-left"></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
@@ -1060,7 +1060,7 @@ else{
                                     <td><strong>Sisa Stok</strong></td>
                                     <td class="text-left"></td>
                                     <td class="no-line text-left"><?= formatjumlah(($pembelian_dexlite + $sonding_awal_dex ) - ($dexlite_terjual + $qty_ngecor_dex) ); ?> Liter</td>
-                                    <td class="text-left"><?= formatuang(($total_dexlite + $total_ngecor_dex) - ($dexlite_b + $total_uang_stok_awal_dex) ); ?></td>
+                                    <td class="text-left"><?= formatuang(($dexlite_b + $total_uang_stok_awal_dex) - ($total_dexlite + $total_ngecor_dex) ); ?></td>
                                     <td class="no-line text-left"></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
@@ -1068,7 +1068,7 @@ else{
                                     <td><strong>Sisa Stok + Losis</strong></td>
                                     <td class="text-left"></td>
                                     <td class="no-line text-left"><?= formatjumlah(($pembelian_dexlite + $sonding_awal_dex + $total_losis_dex ) - ($dexlite_terjual + $qty_ngecor_dex) ); ?> Liter</td>
-                                    <td class="text-left"><?= formatuang(($total_dexlite + $total_ngecor_dex + $total_uang_losis_dex) - ($dexlite_b + $total_uang_stok_awal_dex) ); ?></td>
+                                    <td class="text-left"><?= formatuang(($dexlite_b + $total_uang_stok_awal_dex) - ($total_dexlite + $total_ngecor_dex + $total_uang_losis_dex)  ); ?></td>
                                     <td class="no-line text-left"></td>
                                      <?php echo "<td class='text-right'></td>"; ?>
                                 </tr>
