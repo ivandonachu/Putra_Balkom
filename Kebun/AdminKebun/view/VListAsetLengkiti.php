@@ -119,6 +119,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VLAbsensiL">Absensi Lengkiti</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKegiatan">Laporan Kegiatan</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLKaret">Laporan Karet</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VPendapatanKaret">Pendapatan Karet</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLSawit">Laporan Sawit</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLPengeluaran">Pengeluaran Kebun</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VLMinyak">Stok Minyak</a>
