@@ -105,6 +105,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
             <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VListRute">Rute</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">List Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashless">Monitoring Cashless</a>
         </div>
     </div>
 </li>

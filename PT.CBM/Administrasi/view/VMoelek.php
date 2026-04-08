@@ -104,6 +104,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM moelek");
         <h6 class="collapse-header" style="font-size: 15px;">Menu SDM</h6>
         <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
         <a class="collapse-item" style="font-size: 15px;" href="VListRute">Rute</a>a>
+        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashless">Monitoring Cashless</a>
       </div>
     </div>
   </li>

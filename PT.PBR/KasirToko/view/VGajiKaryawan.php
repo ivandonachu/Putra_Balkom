@@ -118,6 +118,8 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_penggajian");
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriverMES">Laporan Rit MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriverPBR">Laporan Rit PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessMES">Monitor Cashless MES</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessPBR">Monitor Cashless PBR</a>
         </div>
     </div>
 </li>

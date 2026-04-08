@@ -82,42 +82,42 @@ if ($tanggal_awal == $tanggal_akhir) {
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
-    <div class="sidebar-brand-icon rotate-n-15">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="DsKasirToko.php">
+        <div class="sidebar-brand-icon rotate-n-15">
 
-    </div>
-    <div class="sidebar-brand-text mx-3" > <img style="margin-top: 50px; height: 110px; width: 120px; " src="../gambar/Logo CBM.PNG" ></div>
-</a>
-<br> <br>
+        </div>
+        <div class="sidebar-brand-text mx-3"> <img style="margin-top: 50px; height: 110px; width: 120px; " src="../gambar/Logo CBM.PNG"></div>
+      </a>
+      <br> <br>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item active" >
-    <a class="nav-link" href="DsKasirToko.php">
-        <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
-        <span style="font-size: 16px;" >Dashboard</span></a>
-    </li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="DsKasirToko.php">
+          <i class="fas fa-fw fa-tachometer-alt" style="font-size: 18px;"></i>
+          <span style="font-size: 16px;">Dashboard</span></a>
+      </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading" style="font-size: 15px; color:white;">
-         Menu Kasir Toko
-    </div>
+      <!-- Heading -->
+      <div class="sidebar-heading" style="font-size: 15px; color:white;">
+        Menu Kasir Toko
+      </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-      15  aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-cash-register" style="font-size: 15px; color:white;" ></i>
-        <span style="font-size: 15px; color:white;" >Transaksi</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
+          15 aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-cash-register" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Transaksi</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="font-size: 15px;">Menu Transaksi</h6>
             <a class="collapse-item" style="font-size: 15px;" href="VPenjualan1">Penjualan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaran1">Pengeluaran</a>
@@ -132,47 +132,49 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriverMES">Laporan Rit MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VRitDriverPBR">Laporan Rit PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessMES">Monitor Cashless MES</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessPBR">Monitor Cashless PBR</a>
+          </div>
         </div>
-    </div>
-</li>
+      </li>
 
-<!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-    aria-expanded="true" aria-controls="collapseUtilities">
-    <i class="fas fa-dolly-flatbed" style="font-size: 15px; color:white;"></i>
-    <span style="font-size: 15px; color:white;">Pencatatan Inventory</span>
-</a>
-<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-data-parent="#accordionSidebar">
-<div class="bg-white py-2 collapse-inner rounded">
-    <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
-    <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
-    <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
-    <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
-    <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
-    <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
-</div>
-</div>
-</li>
-<!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesx"
-    aria-expanded="true" aria-controls="collapseUtilitiesx">
-    <i class="fas fa-clipboard-list" style="font-size: 15px; color:white;"></i>
-    <span style="font-size: 15px; color:white;">Administrasi</span>
-</a>
-<div id="collapseUtilitiesx" class="collapse" aria-labelledby="headingUtilities"
-data-parent="#accordionSidebar">
-<div class="bg-white py-2 collapse-inner rounded">
-    <h6 class="collapse-header" style="font-size: 15px;">Menu Administrasi</h6>
-    <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
-    <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">Karyawan</a>
-    <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
-    <a class="collapse-item" href="VRute" style="font-size: 15px;">Rute</a>
-</div>
-</div>
-</li>
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+          aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-dolly-flatbed" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Pencatatan Inventory</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+          data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Inventory</h6>
+            <a class="collapse-item" href="VInventoryPerusahaan" style="font-size: 15px;">Inventory Perusahaan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VRiwayatPeminjaman1">Riwayat Peminjaman</a>
+            <a class="collapse-item" href="VKonfirmasiRetur" style="font-size: 15px;">Konfirmasi Retur</a>
+            <a class="collapse-item" href="VKeberangkatan" style="font-size: 15px;">Keberangkatan</a>
+            <a class="collapse-item" href="VReturPangkalan" style="font-size: 15px;">Retur Pangkalan</a>
+          </div>
+        </div>
+      </li>
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesx"
+          aria-expanded="true" aria-controls="collapseUtilitiesx">
+          <i class="fas fa-clipboard-list" style="font-size: 15px; color:white;"></i>
+          <span style="font-size: 15px; color:white;">Administrasi</span>
+        </a>
+        <div id="collapseUtilitiesx" class="collapse" aria-labelledby="headingUtilities"
+          data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="font-size: 15px;">Menu Administrasi</h6>
+            <a class="collapse-item" style="font-size: 15px;" href="VPangkalan">Pangkalan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VKaryawan">Karyawan</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VDriver">Driver</a>
+            <a class="collapse-item" href="VRute" style="font-size: 15px;">Rute</a>
+          </div>
+        </div>
+      </li>
 
 
       <!-- Divider -->
@@ -508,7 +510,7 @@ data-parent="#accordionSidebar">
                             <!-- Form Edit Data -->
                             <div class="modal-body">
                               <form action="../proses/edit_bon" enctype="multipart/form-data" method="POST">
-                              <input type="hidden" name="no_bon" value="<?php echo $no_bon;?>"> 
+                                <input type="hidden" name="no_bon" value="<?php echo $no_bon; ?>">
                                 <label>Tanggal</label>
                                 <div class="col-sm-10">
                                   <input type="date" id="tanggal" name="tanggal" required="" value="<?php echo $tanggal; ?>" class="form-control">
@@ -528,15 +530,15 @@ data-parent="#accordionSidebar">
 
                             </div>
 
-            
 
 
-                          <br>
 
-                          <div class="row">
+                            <br>
 
-                            <div class="col-md-6">
-                              <label>Nama</label>
+                            <div class="row">
+
+                              <div class="col-md-6">
+                                <label>Nama</label>
                                 <select id="nama" name="nama" class="form-control ">
                                   <?php
                                   $dataSelect = $data['nama_karyawan'];
@@ -547,10 +549,10 @@ data-parent="#accordionSidebar">
                                     $nama_karyawan = $data2['nama_karyawan'];
 
                                     echo "<option" ?> <?php echo ($dataSelect == $nama_karyawan) ? "selected" : "" ?>> <?php echo $nama_karyawan; ?> <?php echo "</option>";
-                                  }?>                                                                                     
-                 
+                                                                                                                                                    } ?>
 
-                                <?php
+
+                                  <?php
                                   $dataSelect = $data['nama_karyawan'];
                                   include 'koneksi.php';
                                   $result = mysqli_query($koneksi, "SELECT * FROM driver ");
@@ -559,107 +561,107 @@ data-parent="#accordionSidebar">
                                     $nama_driver = $data2['nama_driver'];
 
                                     echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
-                                }
-                                ?>
-                              </select>
+                                                                                                                                                }
+                                                                                                                                                  ?>
+                                </select>
+                              </div>
+
+                              <div class="col-md-6">
+                                <label>Pembayaran</label>
+                                <select id="pembayaran" name="pembayaran" class="form-control">
+                                  <option>Cash</option>
+                                </select>
+                              </div>
+
                             </div>
 
-                            <div class="col-md-6">
-                              <label>Pembayaran</label>
-                              <select id="pembayaran" name="pembayaran" class="form-control">
-                                <option>Cash</option>
-                              </select>
+                            <br>
+
+                            <div class="form-group">
+                              <label>Jumlah Bon</label>
+                              <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" value="<?php echo $jumlah_bon; ?>" required="">
                             </div>
 
+
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary"> Ubah </button>
+                              <button type="reset" class="btn btn-danger"> RESET</button>
+                            </div>
+                            </form>
                           </div>
-
-                          <br>
-
-                          <div class="form-group">
-                            <label>Jumlah Bon</label>
-                            <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" value="<?php echo $jumlah_bon; ?>" required="">
-                          </div>
-
-
-                          <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"> Ubah </button>
-                            <button type="reset" class="btn btn-danger"> RESET</button>
-                          </div>
-                          </form>
                         </div>
                       </div>
             </div>
-          </div>
 
 
-          <!-- Form EDIT DATA -->
+            <!-- Form EDIT DATA -->
 
-          <div class="modal fade" id="formedit<?php echo $data['no_bon']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">Form Bayar BON </h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                    <span aria-hidden="true"> &times; </span>
-                  </button>
-                </div>
-
-
-                <!-- Form Edit Data -->
-                <div class="modal-body">
-                  <form action="../proses/end_bon_karyawan" enctype="multipart/form-data" method="POST">
+            <div class="modal fade" id="formedit<?php echo $data['no_bon']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">Form Bayar BON </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                      <span aria-hidden="true"> &times; </span>
+                    </button>
+                  </div>
 
 
-                    <input type="hidden" name="no_bon" value="<?php echo $no_bon; ?>">
-                    <input type="hidden" name="jumlah_bon" value="<?php echo $jumlah_bon; ?>">
+                  <!-- Form Edit Data -->
+                  <div class="modal-body">
+                    <form action="../proses/end_bon_karyawan" enctype="multipart/form-data" method="POST">
 
 
-                    <div class="row">
-                      <div class="col-md-6">
-                        <label>Tanggal</label>
-                        <div class="col-sm-10">
-                          <input type="date" id="tanggal" name="tanggal" value="<?php echo $tanggal; ?>" required="">
+                      <input type="hidden" name="no_bon" value="<?php echo $no_bon; ?>">
+                      <input type="hidden" name="jumlah_bon" value="<?php echo $jumlah_bon; ?>">
+
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label>Tanggal</label>
+                          <div class="col-sm-10">
+                            <input type="date" id="tanggal" name="tanggal" value="<?php echo $tanggal; ?>" required="">
+                          </div>
                         </div>
                       </div>
-                    </div>
 
 
-                    <div>
-                      <label>Upload File</label>
-                      <input type="file" name="file">
-                    </div>
+                      <div>
+                        <label>Upload File</label>
+                        <input type="file" name="file">
+                      </div>
 
 
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary"> Ubah </button>
-                      <button type="reset" class="btn btn-danger"> RESET</button>
-                    </div>
-                  </form>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"> Ubah </button>
+                        <button type="reset" class="btn btn-danger"> RESET</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <?php echo  " </td> </tr>";
+          <?php echo  " </td> </tr>";
                   }
-        ?>
+          ?>
 
-        </tbody>
-        </table>
+          </tbody>
+          </table>
+          </div>
         </div>
       </div>
+
     </div>
+    <!-- End of Main Content -->
 
-  </div>
-  <!-- End of Main Content -->
-
-  <!-- Footer -->
-  <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+    <!-- Footer -->
+    <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
+        </div>
       </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
+    </footer>
+    <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->
