@@ -151,6 +151,9 @@
 /PT.CBM/Administrasi/file_administrasi
 /PT.CBM/Administrasi/proses/koneksi.php
 /PT.CBM/Administrasi/view/koneksi.php
+/PT.CBM/Admin/file_admin
+/PT.CBM/Admin/proses/koneksi.php
+/PT.CBM/Admin/view/koneksi.php
 /PT.CBM/KasirToko/file_toko
 /PT.CBM/KasirToko/proses/koneksi.php
 /PT.CBM/KasirToko/view/koneksi.php
