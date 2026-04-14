@@ -25,7 +25,8 @@ $tanggal = $_POST['tanggal'];
 $nama_akun = $_POST['nama_akun'];
 $rekening = $_POST['rekening'];
 $jumlah = $_POST['jumlah'];
-$keterangan = $_POST['keterangan'];
+$keterangan_saldo_masuk = $_POST['keterangan_saldo_masuk'];
+$keterangan_saldo_keluar = $_POST['keterangan_saldo_keluar'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -61,10 +62,10 @@ else if ( $nama_file != "" ) {
 
 }
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE monitoring_rek_cashless_cbm SET tanggal = '$tanggal' , nama_akun = '$nama_akun' , rekening = '$rekening', keterangan = '$keterangan' , jumlah = '$jumlah'   WHERE no_transaksi = '$no_transaksi'");
+		$query3 = mysqli_query($koneksi,"UPDATE monitoring_rek_cashless_cbm SET tanggal = '$tanggal' , nama_akun = '$nama_akun' , rekening = '$rekening', keterangan_saldo_masuk = '$keterangan_saldo_masuk',keterangan_saldo_keluar = '$keterangan_saldo_keluar', jumlah = '$jumlah'   WHERE no_transaksi = '$no_transaksi'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE monitoring_rek_cashless_cbm SET tanggal = '$tanggal' , nama_akun = '$nama_akun' , rekening = '$rekening', keterangan = '$keterangan' , jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_transaksi = '$no_transaksi'");
+		$query3 = mysqli_query($koneksi,"UPDATE monitoring_rek_cashless_cbm SET tanggal = '$tanggal' , nama_akun = '$nama_akun' , rekening = '$rekening', keterangan_saldo_masuk = '$keterangan_saldo_masuk',keterangan_saldo_keluar = '$keterangan_saldo_keluar', jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_transaksi = '$no_transaksi'");
 	}
 	
 

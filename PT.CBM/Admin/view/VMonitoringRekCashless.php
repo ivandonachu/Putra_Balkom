@@ -249,6 +249,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select class="form-control form-control-sm" name="rekening" class="form-control">
                                                             <option>Brilink Novi</option>
                                                             <option>BRI CBM</option>
+                                                            <option>Bon</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -256,14 +257,25 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 <br>
 
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <label>Jumlah</label>
                                                         <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="">
                                                     </div>
+                                                </div>
+
+                                                <br>
+
+                                                <div class="row">
                                                     <div class="col-md-6">
-                                                        <label>Keterangan</label>
+                                                        <label>Keterangan Saldo Masuk</label>
                                                         <div class="form-group">
-                                                            <textarea class="form-control form-control-sm" name="keterangan" style="width: 300px;"></textarea>
+                                                            <textarea class="form-control form-control-sm" name="keterangan_saldo_masuk" style="width: 300px;"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Keterangan Saldo Keluar</label>
+                                                        <div class="form-group">
+                                                            <textarea class="form-control form-control-sm" name="keterangan_saldo_keluar" style="width: 300px;"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -299,7 +311,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         <th>Tanggal</th>
                                         <th>Nama Akun</th>
                                         <th>Rekening</th>
-                                        <th>Keterangan</th>
+                                        <th>Keterangan Saldo Masuk</th>
+                                        <th>Keterangan Saldo Keluar</th>
                                         <th>Debit</th>
                                         <th>Kredit</th>
                                         <th>Total</th>
@@ -323,7 +336,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         $tanggal = $data['tanggal'];
                                         $nama_akun = $data['nama_akun'];
                                         $rekening = $data['rekening'];
-                                        $keterangan = $data['keterangan'];
+                                        $keterangan_saldo_masuk = $data['keterangan_saldo_masuk'];
+                                        $keterangan_saldo_keluar = $data['keterangan_saldo_keluar'];
                                         $jumlah = $data['jumlah'];
                                         $file_bukti = $data['file_bukti'];
                                         $urut  = $urut + 1;
@@ -337,11 +351,12 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                                         echo "<tr>
-      <td style='font-size: 14px'>$urut</td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$rekening</td>
-      <td style='font-size: 14px'>$keterangan</td>";
+                                        <td style='font-size: 14px'>$urut</td>
+                                        <td style='font-size: 14px'>$tanggal</td>
+                                        <td style='font-size: 14px'>$nama_akun</td>
+                                        <td style='font-size: 14px'>$rekening</td>
+                                        <td style='font-size: 14px'>$keterangan_saldo_masuk</td>
+                                        <td style='font-size: 14px'>$keterangan_saldo_keluar</td>";      
                                         if ($nama_akun == 'Saldo Awal' || $nama_akun == 'Pembayaran Pangkalan') {
                                             echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
                                                                             echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
@@ -350,8 +365,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                     echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
                                                                         }
                                                                         echo " <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Admin/file_admin/<?= $file_bukti ?>" href="/PT.CBM/Admin/file_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
+                                            <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/Admin/file_admin/<?= $file_bukti ?>" href="/PT.CBM/Admin/file_admin/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>"; ?>
                                             <?php echo "<td style='font-size: 12px'>"; ?>
 
                                             <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Edit</button>
@@ -394,20 +408,32 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                             <?php $dataSelect = $data['rekening']; ?>
                                                                             <option <?php echo ($dataSelect == 'Brilink Novi') ? "selected" : "" ?>>Brilink Novi</option>
                                                                             <option <?php echo ($dataSelect == 'BRI CBM') ? "selected" : "" ?>>BRI CBM</option>
-
+                                                                            <option <?php echo ($dataSelect == 'Bon') ? "selected" : "" ?>>Bon</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
+
                                                                 <br>
+
                                                                 <div class="row">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-12">
                                                                         <label>Jumlah</label>
                                                                         <input class="form-control form-control-sm" type="number" value="<?php echo $jumlah; ?>" name="jumlah" required="">
                                                                     </div>
+                                                                </div>
+
+                                                                <br>
+                                                                <div class="row">
                                                                     <div class="col-md-6">
-                                                                        <label>Keterangan</label>
+                                                                        <label>Keterangan Saldo Masuk</label>
                                                                         <div class="form-group">
-                                                                            <textarea class="form-control form-control-sm" name="keterangan" style="width: 300px;"><?php echo $keterangan; ?></textarea>
+                                                                            <textarea class="form-control form-control-sm" name="keterangan_saldo_masuk" style="width: 300px;"><?php echo $keterangan_saldo_masuk; ?></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label>Keterangan Saldo Keluar</label>
+                                                                        <div class="form-group">
+                                                                            <textarea class="form-control form-control-sm" name="keterangan_saldo_keluar" style="width: 300px;"><?php echo $keterangan_saldo_keluar; ?></textarea>
                                                                         </div>
                                                                     </div>
                                                                 </div>

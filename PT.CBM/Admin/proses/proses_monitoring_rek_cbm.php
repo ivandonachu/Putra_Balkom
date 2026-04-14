@@ -24,7 +24,8 @@ $tanggal = $_POST['tanggal'];
 $nama_akun = $_POST['nama_akun'];
 $rekening = $_POST['rekening'];
 $jumlah = $_POST['jumlah'];
-$keterangan = $_POST['keterangan'];
+$keterangan_saldo_masuk = $_POST['keterangan_saldo_masuk'];
+$keterangan_saldo_keluar = $_POST['keterangan_saldo_keluar'];
 $nama_file = $_FILES['file']['name'];
 if ($nama_file == "") {
 	$file = "";
@@ -62,7 +63,7 @@ else if ( $nama_file != "" ) {
 
 
 
-	$query = mysqli_query($koneksi,"INSERT INTO monitoring_rek_cashless_cbm VALUES ('','$tanggal','$nama_akun','$rekening','$jumlah','$keterangan','$file')");
+	$query = mysqli_query($koneksi,"INSERT INTO monitoring_rek_cashless_cbm VALUES ('','$tanggal','$nama_akun','$rekening','$jumlah','$keterangan_saldo_masuk','$keterangan_saldo_keluar','$file')");
 
 
 			if ($query != "") {
