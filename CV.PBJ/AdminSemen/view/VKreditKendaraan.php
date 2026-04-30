@@ -365,7 +365,7 @@ else{
     ?>
 
     <?php while($data = mysqli_fetch_array($table)){
-     $no_laporan = $data['no_laporan'];
+     $no_transaksi = $data['no_transaksi'];
      $tanggal =$data['tanggal'];
      $no_polisi_lama = $data['no_polisi_lama'];
      $no_polisi_baru = $data['no_polisi_baru'];
@@ -387,11 +387,11 @@ else{
      "; ?>
      <?php echo "<td style='font-size: 12px'>"; ?>
 
-       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_laporan']; ?>">Edit</button>
+       <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Edit</button>
 
         <!-- Form EDIT DATA -->
 
-        <div class="modal fade" id="formedit<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="formedit<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
           <div class="modal-dialog" role ="document">
             <div class="modal-content"> 
               <div class="modal-header">Form Edit Kredit Kendaran </h5>
@@ -407,7 +407,7 @@ else{
 
                                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
-                                <input type="hidden" name="no_laporan" value="<?php echo $no_laporan;?>">
+                                <input type="hidden" name="no_transaksi" value="<?php echo $no_transaksi;?>">
                   <div class="row">
                       <div class="col-md-6">
 
@@ -474,9 +474,9 @@ else{
 
 
 
-      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_laporan']; ?>" data-toggle='tooltip' title='Hapus Transaksi'>Hapus</button>
+      <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $data['no_transaksi']; ?>" data-toggle='tooltip' title='Hapus Transaksi'>Hapus</button>
 
-      <div class="modal fade" id="PopUpHapus<?php echo $data['no_laporan']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+      <div class="modal fade" id="PopUpHapus<?php echo $data['no_transaksi']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
        <div class="modal-dialog" role ="document">
          <div class="modal-content"> 
           <div class="modal-header">
@@ -489,7 +489,7 @@ else{
 
           <div class="modal-body">
             <form action="../proses/hapus_kredit_kendaraan" method="POST">
-              <input type="hidden" name="no_laporan" value="<?php echo $no_laporan; ?>">
+              <input type="hidden" name="no_transaksi" value="<?php echo $no_transaksi; ?>">
               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir;?>">
 

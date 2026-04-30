@@ -18,7 +18,7 @@ else{  header("Location: logout.php");
 exit;
 }
 
-$no_laporan = $_POST['no_laporan'];
+$no_transaksi = $_POST['no_transaksi'];
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
 $tanggal = $_POST['tanggal'];
@@ -62,12 +62,12 @@ else if ( $nama_file != "" ) {
 }
 
 	if ($file == '') {
-		$query3 = mysqli_query($koneksi,"UPDATE kredit_kendaraan SET tanggal = '$tanggal' , no_polisi_baru = '$no_polisi_baru', no_polisi_lama = '$no_polisi_lama' , keterangan = '$keterangan' ,jumlah = '$jumlah'  WHERE no_laporan = 
-		'$no_laporan'");
+		$query3 = mysqli_query($koneksi,"UPDATE kredit_kendaraan SET tanggal = '$tanggal' , no_polisi_baru = '$no_polisi_baru', no_polisi_lama = '$no_polisi_lama' , keterangan = '$keterangan' ,jumlah = '$jumlah'  WHERE no_transaksi = 
+		'$no_transaksi'");
 	}
 	else{
-		$query3 = mysqli_query($koneksi,"UPDATE kredit_kendaraan SET tanggal = '$tanggal' , no_polisi_baru = '$no_polisi_baru', no_polisi_lama = '$no_polisi_lama' , keterangan = '$keterangan' ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_laporan = 
-		'$no_laporan'");
+		$query3 = mysqli_query($koneksi,"UPDATE kredit_kendaraan SET tanggal = '$tanggal' , no_polisi_baru = '$no_polisi_baru', no_polisi_lama = '$no_polisi_lama' , keterangan = '$keterangan' ,jumlah = '$jumlah' ,  file_bukti = '$file' WHERE no_transaksi = 
+		'$no_transaksi'");
 	}
 	
 

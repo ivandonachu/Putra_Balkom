@@ -19,7 +19,7 @@ exit;
 }
 $tanggal_awal = $_POST['tanggal1'];
 $tanggal_akhir = $_POST['tanggal2'];
-$no_laporan = $_POST['no_laporan'];
+$no_transaksi = $_POST['no_transaksi'];
 
 
 
@@ -27,7 +27,7 @@ $no_laporan = $_POST['no_laporan'];
 		
 
 		//Hapusriwayat keberangkatan
-		$query = mysqli_query($koneksi,"DELETE FROM kredit_kendaraan WHERE no_laporan = '$no_laporan'");
+		$query = mysqli_query($koneksi,"DELETE FROM kredit_kendaraan WHERE no_transaksi = '$no_transaksi'");
 
 
 
