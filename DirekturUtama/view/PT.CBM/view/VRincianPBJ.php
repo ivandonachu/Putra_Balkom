@@ -235,6 +235,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_saldo_armada  WHERE ta
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringRekCashless">Monitor Rek Cashless</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashless">Monitoring Cashless</a>
                     </div>
                 </div>
             </li>

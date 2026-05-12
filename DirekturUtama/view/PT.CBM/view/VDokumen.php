@@ -203,6 +203,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringRekCashless">Monitor Rek Cashless</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashless">Monitoring Cashless</a>
                     </div>
                 </div>
             </li>
@@ -357,6 +359,7 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
       $referensi =$data['referensi'];
       $no_rak = $data['no_rak'];
       $nama_dokumen = $data['nama_dokumen'];
+      $file_bukti = $data['file_bukti'];
       $keterangan = $data['keterangan'];
 
 

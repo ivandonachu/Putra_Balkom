@@ -487,7 +487,22 @@ if (!isset($data_perbaikan_pribadi_new['perbaikan_pribadi_new'])) {
     $total_perbaikan_pribadi_new = 0;
 }
 
+//buanga bank bni tabel bunga bank
+$tabel_bank_bni = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS bunga_bank_bni FROM bunga_bank WHERE tanggal = '$tanggal_awal' AND referensi = 'CBM' AND nama_bank = 'Bank BNI' ");
+$data_bank_bni = mysqli_fetch_array($tabel_bank_bni);
+$total_bunga_bank_bni = $data_bank_bni['bunga_bank_bni'];
+if (!isset($data_bank_bni['bunga_bank_bni'])) {
+    $total_bunga_bank_bni = 0;
+}
 
+//buanga bank bni
+$tabel_pengeluaran_admin = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS bunga_bank_bni FROM pengeluaran_admin WHERE WHERE tanggal = '$tanggal_awal' AND nama_akun = 'Bunga Bank' AND referensi = 'CBM' ");
+$data_pengeluaran_admin = mysqli_fetch_array($tabel_pengeluaran_admin);
+$total_bunga_bank_bni_admin = $data_pengeluaran_admin['bunga_bank_bni'];
+if (!isset($data_pengeluaran_admin['bunga_bank_bni'])) {
+    $total_bunga_bank_bni_admin = 0;
+}
+$total_bunga_bank_bni = $total_bunga_bank_bni + $total_bunga_bank_bni_admin;
 
 
 $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3 + $total_perbaikan_pribadi + $data_perbaikan_pribadi_new;
@@ -1149,6 +1164,8 @@ $laba_bersih_sebelum_pajak = ($laba_kotor + $total_pendapatan_lain) - $total_bia
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringRekCashless">Monitor Rek Cashless</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashless">Monitoring Cashless</a>
                     </div>
                 </div>
             </li>

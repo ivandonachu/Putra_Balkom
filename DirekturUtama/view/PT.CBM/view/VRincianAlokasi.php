@@ -234,6 +234,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM riwayat_penjualan a INNER JOIN
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringRekCashless">Monitor Rek Cashless</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashless">Monitoring Cashless</a>
                     </div>
                 </div>
             </li>

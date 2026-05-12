@@ -177,7 +177,7 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VGajiKaryawan">Gaji Karyawan</a>
             <a class="collapse-item" style="font-size: 15px;" href="VPengeluaranWorkshop">Pengeluaran Workshop</a>
             <a class="collapse-item" style="font-size: 15px;" href="VLaporanInventory">Laporan Inventory</a>
-            
+
           </div>
         </div>
       </li>
@@ -242,6 +242,8 @@ if ($tanggal_awal == $tanggal_akhir) {
             <a class="collapse-item" style="font-size: 15px;" href="VMocashCBM">Mocash CBM</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMocashMES">Mocash MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMocashPBR">Mocash PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMonitoringRekCashless">Monitor Rek Cashless</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashless">Monitoring Cashless</a>
           </div>
         </div>
       </li>
@@ -716,20 +718,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                   if ($status_saldo == 'Masuk') {
                     echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
+                                                                    }
 
-                                                                  if ($status_saldo == 'Keluar') {
-                                                                    echo "
+                                                                    if ($status_saldo == 'Keluar') {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
+                                                                    }
 
-                                                                  echo "
+                                                                    echo "
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_oprasional/<?= $file_bukti ?>" href="../file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
@@ -1021,20 +1023,20 @@ if ($tanggal_awal == $tanggal_akhir) {
                   if ($status_saldo == 'Masuk') {
                     echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
+                                                                    }
 
-                                                                  if ($status_saldo == 'Keluar') {
-                                                                    echo "
+                                                                    if ($status_saldo == 'Keluar') {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
-                                                                  } else {
-                                                                    echo "
+                                                                    } else {
+                                                                      echo "
         <td style='font-size: 14px'>" ?> <?php echo "</td>";
-                                                                  }
+                                                                    }
 
-                                                                  echo "
+                                                                    echo "
       <td style='font-size: 14px'>$keterangan</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_oprasional/<?= $file_bukti ?>" href="../file_oprasional/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
       "; ?>
