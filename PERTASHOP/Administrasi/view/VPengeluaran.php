@@ -323,6 +323,7 @@ else{
              <option>Biaya Konsumsi</option>
              <option>Operasional Penjualan</option>
              <option>Biaya Bangunan</option>
+             <option>Biaya Kantor Kutosari</option>
           </select>
         </div>          
         <div class="col-md-6">
@@ -508,6 +509,7 @@ else{
              <option <?php echo ($dataSelect == 'Gaji Karyawan') ? "selected": "" ?> >Gaji Karyawan</option>
              <option <?php echo ($dataSelect == 'Transport & Perjalanan Dinas') ? "selected": "" ?> >Transport & Perjalanan Dinas</option>
              <option <?php echo ($dataSelect == 'Biaya Konsumsi') ? "selected": "" ?> >Biaya Konsumsi</option>
+             <option <?php echo ($dataSelect == 'Biaya Kantor Kutosari') ? "selected": "" ?> >Biaya Kantor Kutosari</option>
 
           </select>
 
