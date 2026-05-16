@@ -2,49 +2,40 @@
 session_start();
 include 'koneksi.php';
 if (!isset($_SESSION["login"])) {
-    header("Location: logout.php");
-    exit;
+  header("Location: logout.php");
+  exit;
 }
 $id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
+$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
 } else {
-    header("Location: logout.php");
-    exit;
+  header("Location: logout.php");
+  exit;
 }
-
 
 
 if (isset($_GET['tanggal1'])) {
     $tanggal_awal = $_GET['tanggal1'];
     $tanggal_akhir = $_GET['tanggal2'];
-    $nama = $_GET['nama'];
-    $baja = $_GET['baja'];
-    $referensi = $_GET['referensi'];
 } elseif (isset($_POST['tanggal1'])) {
     $tanggal_awal = $_POST['tanggal1'];
     $tanggal_akhir = $_POST['tanggal2'];
+} else {
+    $tanggal_awal = date('Y-m-1');
+    $tanggal_akhir = date('Y-m-31');
 }
-
-
 if ($tanggal_awal == $tanggal_akhir) {
-    $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
- WHERE tanggal = '$tanggal_awal' ");
-}
 
+    $table = mysqli_query($koneksi, "SELECT * FROM monitoring_cashless_pbr WHERE tanggal = '$tanggal_awal'");
+    $table2 = mysqli_query($koneksi, "SELECT nama_pangkalan,  SUM(jumlah) AS total_jumlah,  SUM(briva) AS total_briva,  SUM(transaksis_transfer) AS total_transfer  FROM monitoring_cashless_pbr  WHERE tanggal = '$tanggal_awal' GROUP BY nama_pangkalan");
+} else {
 
-
-
-
-
-
-//elseeeeeeee
-else {
-    $table = mysqli_query($koneksipbr, "SELECT * FROM riwayat_penjualan a INNER JOIN kode_akun b ON a.kode_akun=b.kode_akun INNER JOIN baja c ON a.kode_baja=c.kode_baja
- WHERE tanggal  BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND a.nama = '$nama' AND a.kode_baja = '$baja' AND a.referensi = '$referensi' ");
+    $table = mysqli_query($koneksi, "SELECT * FROM monitoring_cashless_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table2 = mysqli_query($koneksi, "SELECT nama_pangkalan,  SUM(jumlah) AS total_jumlah,  SUM(briva) AS jumlah_briva,  SUM(transaksi_transfer) AS jumlah_transfer FROM monitoring_cashless_pbr  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_pangkalan");
 }
 
 ?>
@@ -59,12 +50,13 @@ else {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rincian alokasi <?php echo $nama;
-                            echo ($referensi); ?></title>
+    <title>Monitoring Cashless PBR</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/sbadmin/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Custom styles for this template-->
     <link href="/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
@@ -77,8 +69,6 @@ else {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
 
-    <!-- Link datepicker -->
-
 </head>
 
 <body id="page-top">
@@ -86,7 +76,7 @@ else {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+         <!-- Sidebar -->
         <ul class="navbar-nav  sidebar sidebar-dark accordion" style=" background-color: #004445" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -192,8 +182,7 @@ else {
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-                    <?php echo "<a href='VRincianAlokasi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja'><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Rincian Alokasi $nama  ( $referensi )</h5></a>"; ?>
-
+                    <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Monitoring Cashless PBR</h5></a>"; ?>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -205,26 +194,21 @@ else {
                     <ul class="navbar-nav ml-auto">
 
 
-
-
-
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline  small" style="color:white;"><?php echo "$nama"; ?></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="/assets/img/foto_profile/<?= $foto_profile; ?>"><!-- link foto profile -->
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="VProfile">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>
-                                <a class="dropdown-item" href="VSetting">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
@@ -245,152 +229,175 @@ else {
 
                     <!-- Name Page -->
                     <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
-                        <?php
-                        if ($referensi == 'MES') { ?>
-                            <div align="left">
-                                <?php echo "<a href='VRincianSAMES?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+
+
+                        <?php echo "<form  method='POST' action='VMonitoringCashlessPBR' style='margin-bottom: 15px;'>" ?>
+                        <div>
+                            <div align="left" style="margin-left: 20px;">
+                                <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
+                                <span>-</span>
+                                <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
+                                <button type="submit" name="submmit" style="font-size: 12px; margin-left: 10px; margin-bottom: 2px;" class="btn1 btn btn-outline-primary btn-sm">Lihat</button>
                             </div>
+                        </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
+                            </div>
+                        
+                        </div>
+
+
+
+                        <!-- Tabel -->
+                        <div style="overflow-x: auto" align='center'>
+                            <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Nama Pangkalan</th>
+                                        <th>QTY</th>
+                                        <th>Harga Satuan</th>
+                                        <th>Jumlah</th>
+                                        <th>Briva</th>
+                                        <th>Transfer</th>
+                                        <th>Status Valid</th>
+                                        <th>Referensi</th>
+                                        <th>Verified/Not Verified</th>
+                                        <th>Keterangan</th>
+                                        <th>File</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    function formatuang($angka)
+                                    {
+                                        $uang = "Rp " . number_format($angka, 2, ',', '.');
+                                        return $uang;
+                                    }
+                                    $urut = 0;
+
+                                    ?>
+
+                                    <?php while ($data = mysqli_fetch_array($table)) {
+                                        $no_transaksi = $data['no_transaksi'];
+                                        $tanggal = $data['tanggal'];
+                                        $nama_pangkalan = $data['nama_pangkalan'];
+                                        $qty = $data['qty'];
+                                        $harga_satuan = $data['harga_satuan'];
+                                        $jumlah = $data['jumlah'];
+                                        $briva = $data['briva'];
+                                        $transaksi_transfer = $data['transaksi_transfer'];
+                                        $status_valid = $data['status_valid'];
+                                        $referensi = $data['referensi'];
+                                        $status_verified = $data['status_valid'];
+                                        $keterangan = $data['keterangan'];
+                                        $file_bukti = $data['file_bukti'];
+                                        $urut  = $urut + 1;
+
+                                        echo "<tr>
+                                        <td style='font-size: 14px'>$urut</td>
+                                        <td style='font-size: 14px'>$tanggal</td>
+                                        <td style='font-size: 14px'>$nama_pangkalan</td>
+                                        <td style='font-size: 14px'>$qty</td>
+                                        <td style='font-size: 14px'>$harga_satuan</td>
+                                        <td style='font-size: 14px'>$jumlah</td>
+                                        <td style='font-size: 14px'>$briva</td>
+                                        <td style='font-size: 14px'>$transaksi_transfer</td>
+                                        <td style='font-size: 14px'>$status_valid</td>
+                                        <td style='font-size: 14px'>$referensi</td>
+                                        <td style='font-size: 14px'>$status_verified</td>
+                                        <td style='font-size: 14px'>$keterangan</td>
+                                        <td style='font-size: 14px'>"; ?> <a download="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
+                                       </tr>";
+                                    }
+                                        ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <br>
+                        <hr>
+                        <br>
+
+                        <h5 align="center">Rincian Mocash</h5>
+                        <!-- Tabel -->
+                        <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
+                            <thead>
+                                <tr>
+                                    <th>Pangkalan</th>
+                                    <th>Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $total_transaksi = 0;
+                                $total_transfer = 0;
+                                $total_briva = 0;
+                                ?>
+                                <?php while ($data = mysqli_fetch_array($table2)) {
+                                    $nama_pangkalan = $data['nama_pangkalan'];
+                                    $jumlah = $data['total_jumlah'];
+                                    $jumlah_briva = $data['jumlah_briva'];
+                                    $jumlah_transfer = $data['jumlah_transfer'];
+
+                                    $total_transaksi = $total_transaksi + $jumlah;
+                                    $total_transfer = $total_transfer + $jumlah_transfer;
+                                    $total_briva = $total_briva + $jumlah_briva;
+
+                                    echo "<tr>
+
+                                <td style='font-size: 14px' >$nama_pangkalan</td>
+                                <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
+                
+                                </tr>";
+                                                                                            }
+                                                                                                ?> <tr>
+                                    <td style='font-size: 14px; '><strong>Total Briva</strong></td>
+                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_briva); ?></strong> </td>
+                                </tr>
+                                <tr>
+                                    <td style='font-size: 14px; '><strong>Total Transfer</strong></td>
+                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_transfer); ?></strong> </td>
+                                </tr>
+                                <tr>
+                                    <td style='font-size: 14px; '><strong>Sisa Saldo</strong></td>
+                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_transaksi); ?></strong> </td>
+                                </tr>
+
+
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <br>
+                        <br>
                     </div>
-                <?php } else { ?>
-                    <div align="left">
-                        <?php echo "<a href='VRincianSAPBR?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir&nama=$nama&baja=$baja'><button type='button' class='btn btn-primary'>Kembali</button></a>"; ?>
+
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
                     </div>
                 </div>
-            <?php }
-            ?>
-            <div>
+            </footer>
+            <!-- End of Footer -->
 
-
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <?php echo " <a style='font-size: 12px'> Data yang Tampil  $tanggal_awal  sampai  $tanggal_akhir</a>" ?>
-                    </div>
-
-                </div>
-                <br>
-
-
-
-                <!-- Tabel -->
-                <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>REF</th>
-                            <th>Akun</th>
-                            <th>Barang</th>
-                            <th>Penyaluran</th>
-                            <th>Nama</th>
-                            <th>Pembayaran</th>
-                            <th>QTY</th>
-                            <th>Harga</th>
-                            <th>Jumlah</th>
-                            <th>Keterangan</th>
-                            <th>File</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $L03 = 0;
-                        $B05 = 0;
-                        $B12 = 0;
-                        $L12 = 0;
-                        $L03_cash = 0;
-                        $B05_cash = 0;
-                        $B12_cash = 0;
-                        $L12_cash = 0;
-                        function formatuang($angka)
-                        {
-                            $uang = "Rp " . number_format($angka, 2, ',', '.');
-                            return $uang;
-                        }
-
-                        ?>
-
-                        <?php while ($data = mysqli_fetch_array($table)) {
-                            $no_transaksi = $data['no_transaksi'];
-                            $tanggal = $data['tanggal'];
-                            $referensi = $data['referensi'];
-                            $nama_akun = $data['nama_akun'];
-                            $nama_baja = $data['nama_baja'];
-                            $penyaluran = $data['penyaluran'];
-                            $nama = $data['nama'];
-                            $pembayaran = $data['pembayaran'];
-                            $qty = $data['qty'];
-                            $harga = $data['harga'];
-                            $jumlah = $data['jumlah'];
-                            $keterangan = $data['keterangan'];
-                            $file_bukti = $data['file_bukti'];
-
-                            if ($pembayaran == 'Cash' or $pembayaran == 'Deposit') {
-                                if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
-                                    $L03_cash = $L03_cash + $jumlah;
-                                } elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
-                                    $L12_cash = $L12_cash + $jumlah;
-                                } elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
-                                    $B05_cash = $B05_cash + $jumlah;
-                                } elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
-                                    $B12_cash = $B12_cash + $jumlah;
-                                }
-                            } else {
-                                if ($nama_baja == 'Elpiji 3 Kg Isi' || $nama_baja == 'Elpiji 3 Kg Baja + Isi' || $nama_baja == 'Elpiji 3 Kg Baja Kosong') {
-                                    $L03 = $L03 + $jumlah;
-                                } elseif ($nama_baja == 'Elpiji 12 Kg Isi' || $nama_baja == 'Elpiji 12 Kg Baja + Isi' || $nama_baja == 'Elpiji 12 Kg Baja Kosong') {
-                                    $L12 = $L12 + $jumlah;
-                                } elseif ($nama_baja == 'Bright Gas 5,5 Kg Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja + Isi' || $nama_baja == 'Bright Gas 5,5 Kg Baja Kosong') {
-                                    $B05 = $B05 + $jumlah;
-                                } elseif ($nama_baja == 'Bright Gas 12 Kg Isi' || $nama_baja == 'Bright Gas 12 Kg Baja + Isi' || $nama_baja == 'Bright Gas 12 Kg Baja Kosong') {
-                                    $B12 = $B12 + $jumlah;
-                                }
-                            }
-
-
-
-
-                            echo "<tr>
-      <td style='font-size: 14px'>$no_transaksi</td>
-      <td style='font-size: 14px'>$tanggal</td>
-      <td style='font-size: 14px'>$referensi</td>
-      <td style='font-size: 14px'>$nama_akun</td>
-      <td style='font-size: 14px'>$nama_baja</td>
-      <td style='font-size: 14px'>$penyaluran</td>
-      <td style='font-size: 14px'>$nama</td>
-      <td style='font-size: 14px'>$pembayaran</td>
-      <td style='font-size: 14px'>$qty</td>
-      <td style='font-size: 14px'>"; ?> <?= formatuang($harga); ?> <?php echo "</td>
-      <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
-      <td style='font-size: 14px'>$keterangan</td>
-      <td style='font-size: 14px'>"; ?> <a download="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.CBM/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-      "; ?>
-
-                            <?php echo  "</tr>";
-                        }
-                            ?>
-
-                    </tbody>
-                </table>
-            </div>
-            <br>
-
-            </div>
         </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="footer" style="background-color:#2C7873; height: 55px; padding-top: 15px; ">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span style="color:white; font-size: 12px;">Copyright &copy; PutraBalkomCorp 2021</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -401,7 +408,8 @@ else {
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

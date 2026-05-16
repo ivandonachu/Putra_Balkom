@@ -350,6 +350,15 @@ if ($tanggal_awal == $tanggal_akhir) {
     if (!isset($data_kredit['total_kredit'])) {
         $total_kredit_kendaraan = 0;
     }
+        //BIAYA Prive
+    //kasir
+    $table16x = mysqli_query($koneksipbr, "SELECT SUM(jumlah_pengeluaran) AS total_prive FROM riwayat_pengeluaran WHERE  tanggal = '$tanggal_awal' AND kode_akun = '3-500' AND referensi = 'PB' OR  tanggal = '$tanggal_awal' AND kode_akun = '3-500' AND referensi = 'PBR'");
+    $data_biaya_prive = mysqli_fetch_array($table16x);
+    $total_biaya_prive = $data_biaya_prive['total_prive'];
+    if (!isset($data_biaya_prive['total_prive'])) {
+        $total_biaya_prive = 0;
+    }
+
 
     $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
@@ -979,6 +988,8 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <a class="collapse-item" style="font-size: 15px;" href="VLaporanInventory">Laporan Inventory</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganMES">Keuangan MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPBR">Keuangan PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessMES">Monitor Cashless MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessPBR">Monitor Cashless PBR</a>
                     </div>
                 </div>
             </li>

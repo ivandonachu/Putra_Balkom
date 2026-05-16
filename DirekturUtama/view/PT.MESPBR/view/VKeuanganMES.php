@@ -9,6 +9,7 @@ $id = $_COOKIE['id_cookie'];
 $result1 = mysqli_query($koneksicbm, "SELECT * FROM super_account WHERE username = '$id'");
 $data1 = mysqli_fetch_array($result1);
 $nama = $data1['nama_pemilik'];
+$foto_profile = $data1['foto_profile'];
 $jabatan_valid = $data1['jabatan'];
 if ($jabatan_valid == 'Direktur Utama') {
 } else {
@@ -160,6 +161,8 @@ else{
             <a class="collapse-item" style="font-size: 15px;" href="VLaporanInventory">Laporan Inventory</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKeuanganMES">Keuangan MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPBR">Keuangan PBR</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessMES">Monitor Cashless MES</a>
+            <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessPBR">Monitor Cashless PBR</a>
           </div>
         </div>
       </li>

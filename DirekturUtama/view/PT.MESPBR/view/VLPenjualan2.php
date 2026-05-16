@@ -1021,6 +1021,8 @@ else {
                         <a class="collapse-item" style="font-size: 15px;" href="VLaporanInventory">Laporan Inventory</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganMES">Keuangan MES</a>
                         <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPBR">Keuangan PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessMES">Monitor Cashless MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessPBR">Monitor Cashless PBR</a>
                     </div>
                 </div>
             </li>
