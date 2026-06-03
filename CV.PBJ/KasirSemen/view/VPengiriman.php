@@ -49,6 +49,22 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 }
 
+if($id1 == 'a15'){
+
+if ($tanggal_awal == $tanggal_akhir) {
+
+  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal' AND kode_input = 'a15' ");
+  
+  $table2 = mysqli_query($koneksi, "SELECT no_polisi,  SUM(uj) AS total_uj, SUM(ug) AS total_ug, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE tanggal_antar = '$tanggal_awal' AND kode_input = 'a15' GROUP BY no_polisi");
+} else {
+
+  $table = mysqli_query($koneksi, "SELECT * FROM pengiriman_s WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_input = 'a15' ORDER BY tanggal_antar ASC");
+
+  $table2 = mysqli_query($koneksi, "SELECT no_polisi,  SUM(uj) AS total_uj, SUM(ug) AS total_ug, SUM(om) AS total_om, SUM(bs) AS total_bs FROM pengiriman_s WHERE tanggal_antar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_input = 'a15' GROUP BY no_polisi");
+}
+
+}
+
 else if($id1 == 'a3'){
 
   if ($tanggal_awal == $tanggal_akhir) {
