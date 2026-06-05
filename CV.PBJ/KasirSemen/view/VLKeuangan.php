@@ -69,15 +69,15 @@ if($id1 == 'a15'){
 else if($id1 == 'a3'){
 
   if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal' AND kode_input != 'a14' ORDER BY no_transaksi ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal' AND kode_input != 'a14' OR tanggal = '$tanggal_awal' AND kode_input != 'a15' ORDER BY no_transaksi ASC");
 
-  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM keuangan_s  WHERE tanggal != '$tanggal_awal' AND kode_input = 'a14' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM keuangan_s  WHERE tanggal = '$tanggal_awal' AND kode_input != 'a14' OR tanggal = '$tanggal_awal' AND kode_input != 'a15' GROUP BY nama_akun");
   
 } else {
-  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_input != 'a14' ORDER BY tanggal ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_input != 'a14' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'AND kode_input != 'a15' ORDER BY tanggal ASC");
 
   
-  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM keuangan_s  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_input != 'a14' GROUP BY nama_akun");
+  $table2 = mysqli_query($koneksi, "SELECT nama_akun,  SUM(jumlah) AS total_jumlah FROM keuangan_s  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_input != 'a14' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_input != 'a15' GROUP BY nama_akun");
 }
 
 }

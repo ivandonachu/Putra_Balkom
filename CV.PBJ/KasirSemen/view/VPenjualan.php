@@ -201,10 +201,13 @@ if($id1 == 'a15'){
 if($id == 'a3'){
 
  if ($tanggal_awal == $tanggal_akhir) {
-  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir'  AND kode_input != 'a14' ORDER BY tanggal_kirim ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir'  AND kode_input != 'a14'
+                                                                OR tanggal_kirim = '$tanggal_akhir'  AND kode_input != 'a15' ORDER BY tanggal_kirim ASC");
 
   $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' AND kode_input != 'a14' OR 
-                                                                                                                         tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' AND kode_input != 'a14'");
+                                                                                                                         tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' AND kode_input != 'a14' OR 
+                                                                                                                         tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' AND kode_input != 'a15' OR 
+                                                                                                                         tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' AND kode_input != 'a15'");
   $data2 = mysqli_fetch_array($table2);
   $penjualan_zak = $data2['penjualan_zak'];
   $uang_zak = $data2['uang_zak'];
@@ -212,7 +215,9 @@ if($id == 'a3'){
 
 
   $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak' AND kode_input != 'a14' OR 
-                                                                                                                                 tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND kode_input != 'a14'");
+                                                                                                                                 tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND kode_input != 'a14' OR 
+                                                                                                                                 tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak' AND kode_input != 'a15' OR 
+                                                                                                                                 tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND kode_input != 'a15'");
   $data3 = mysqli_fetch_array($table3);
   $penjualan_zak_bon = $data3['penjualan_zak_bon'];
   $uang_zak_bon = $data3['uang_zak_bon'];
@@ -220,7 +225,9 @@ if($id == 'a3'){
 
 
   $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' AND kode_input != 'a14' OR 
-                                                                                                                         tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' AND kode_input != 'a14'");
+                                                                                                                         tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' AND kode_input != 'a14' OR 
+                                                                                                                         tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak' AND kode_input != 'a15' OR 
+                                                                                                                         tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND kode_input != 'a15'");
   $data4 = mysqli_fetch_array($table4);
   $penjualan_bag = $data4['penjualan_bag'];
   $uang_bag = $data4['uang_bag'];
@@ -228,7 +235,9 @@ if($id == 'a3'){
 
 
   $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag' AND kode_input != 'a14' OR 
-                                                                                                                                 tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag' AND kode_input != 'a14'");
+                                                                                                                                 tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag' AND kode_input != 'a14' OR
+                                                                                                                                 tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag' AND kode_input != 'a15' OR 
+                                                                                                                                 tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag' AND kode_input != 'a15'");
   $data5 = mysqli_fetch_array($table5);
   $penjualan_bag_bon = $data5['penjualan_bag_bon'];
   $uang_bag_bon = $data5['uang_bag_bon'];
@@ -236,7 +245,9 @@ if($id == 'a3'){
 
 
   $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_curah ,  SUM(jumlah) AS uang_curah  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah' AND kode_input != 'a14' OR 
-                                                                                                                             tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' AND kode_input != 'a14'");
+                                                                                                                             tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' AND kode_input != 'a14' OR
+                                                                                                                             tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah' AND kode_input != 'a15' OR 
+                                                                                                                             tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' AND kode_input != 'a15'");
   $data5 = mysqli_fetch_array($table5);
   $penjualan_curah = $data5['penjualan_curah'];
   $uang_curah = $data5['uang_curah'];
@@ -244,18 +255,22 @@ if($id == 'a3'){
 
   
   $table6 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_curah_bon ,  SUM(jumlah) AS uang_curah_bon  FROM penjualan_s WHERE  tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Curah' AND kode_input != 'a14' OR 
-                                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah' AND kode_input != 'a14'");
+                                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah' AND kode_input != 'a14' OR
+                                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Curah' AND kode_input != 'a15' OR 
+                                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah' AND kode_input != 'a15'");
   $data6 = mysqli_fetch_array($table6);
   $penjualan_curah_bon = $data6['penjualan_curah_bon'];
   $uang_curah_bon = $data6['uang_curah_bon'];
 
 }
  else {
-  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_input != 'a14' ORDER BY tanggal_kirim ASC");
+  $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_input != 'a14' OR tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND kode_input != 'a15' ORDER BY tanggal_kirim ASC");
 
 
   $table2 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak ,  SUM(jumlah) AS uang_zak  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' AND kode_input != 'a14' OR 
-                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' AND kode_input != 'a14'");
+                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' AND kode_input != 'a14' OR
+                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Zak' AND kode_input != 'a15' OR 
+                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Zak' AND kode_input != 'a15'");
   $data2 = mysqli_fetch_array($table2);
   $penjualan_zak = $data2['penjualan_zak'];
   $uang_zak = $data2['uang_zak'];
@@ -263,7 +278,9 @@ if($id == 'a3'){
 
 
   $table3 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_zak_bon ,  SUM(jumlah) AS uang_zak_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak' AND kode_input != 'a14' OR 
-                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND kode_input != 'a14'");
+                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND kode_input != 'a14' OR
+                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Zak' AND kode_input != 'a15' OR 
+                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Zak' AND kode_input != 'a15'");
   $data3 = mysqli_fetch_array($table3);
   $penjualan_zak_bon = $data3['penjualan_zak_bon'];
   $uang_zak_bon = $data3['uang_zak_bon'];
@@ -271,7 +288,9 @@ if($id == 'a3'){
 
 
   $table4 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag ,  SUM(jumlah) AS uang_bag  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' AND kode_input != 'a14' OR 
-                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' AND kode_input != 'a14'");
+                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' AND kode_input != 'a14' OR 
+                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Bag' AND kode_input != 'a15' OR 
+                                                                                                                         tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Bag' AND kode_input != 'a15'");
   $data4 = mysqli_fetch_array($table4);
   $penjualan_bag = $data4['penjualan_bag'];
   $uang_bag = $data4['uang_bag'];
@@ -279,7 +298,9 @@ if($id == 'a3'){
 
 
   $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_bag_bon ,  SUM(jumlah) AS uang_bag_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag' AND kode_input != 'a14' OR 
-                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag' AND kode_input != 'a14'");
+                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag' AND kode_input != 'a14' OR 
+                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Bag' AND kode_input != 'a15' OR 
+                                                                                                                                 tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Bag' AND kode_input != 'a15'");
   $data5 = mysqli_fetch_array($table5);
   $penjualan_bag_bon = $data5['penjualan_bag_bon'];
   $uang_bag_bon = $data5['uang_bag_bon'];
@@ -287,7 +308,9 @@ if($id == 'a3'){
 
 
   $table5 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_curah ,  SUM(jumlah) AS uang_curah  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah' AND kode_input != 'a14' OR 
-                                                                                                                             tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' AND kode_input != 'a14'");
+                                                                                                                             tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' AND kode_input != 'a14' OR
+                                                                                                                             tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Cash' AND satuan = 'Curah' AND kode_input != 'a15' OR 
+                                                                                                                             tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Lunas Transfer' AND satuan = 'Curah' AND kode_input != 'a15'");
   $data5 = mysqli_fetch_array($table5);
   $penjualan_curah = $data5['penjualan_curah'];
   $uang_curah = $data5['uang_curah'];
@@ -295,7 +318,9 @@ if($id == 'a3'){
 
   
   $table6 = mysqli_query($koneksi, "SELECT SUM(qty) AS penjualan_curah_bon ,  SUM(jumlah) AS uang_curah_bon  FROM penjualan_s WHERE  tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Curah' AND kode_input != 'a14' OR 
-                                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah' AND kode_input != 'a14'");
+                                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah' AND kode_input != 'a14' OR
+                                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon'AND satuan = 'Curah' AND kode_input != 'a15' OR 
+                                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil'AND satuan = 'Curah' AND kode_input != 'a15'");
   $data6 = mysqli_fetch_array($table6);
   $penjualan_curah_bon = $data6['penjualan_curah_bon'];
   $uang_curah_bon = $data6['uang_curah_bon'];
