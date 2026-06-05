@@ -50,7 +50,7 @@ if($id1 == 'a14'){
 
 }
 
-if($id1 == 'a15'){
+else if($id1 == 'a15'){
 
   if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM keuangan_s WHERE tanggal = '$tanggal_awal' AND kode_input = 'a15' ORDER BY no_transaksi ASC");

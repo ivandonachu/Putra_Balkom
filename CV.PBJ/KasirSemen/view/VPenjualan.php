@@ -118,7 +118,7 @@ if($id1 == 'a14'){
 }
 
 
-if($id1 == 'a15'){
+else if($id1 == 'a15'){
 
   if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' AND kode_input = 'a15' ORDER BY no_penjualan ASC");
@@ -198,7 +198,7 @@ if($id1 == 'a15'){
 }
 
 
-if($id == 'a3'){
+else if($id == 'a3'){
 
  if ($tanggal_awal == $tanggal_akhir) {
   $table = mysqli_query($koneksi, "SELECT * FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir'  AND kode_input != 'a14'

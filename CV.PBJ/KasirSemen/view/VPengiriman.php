@@ -49,7 +49,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 }
 
-if($id1 == 'a15'){
+else if($id1 == 'a15'){
 
 if ($tanggal_awal == $tanggal_akhir) {
 

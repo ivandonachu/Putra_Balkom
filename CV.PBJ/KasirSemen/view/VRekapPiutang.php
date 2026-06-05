@@ -52,7 +52,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 }
 
-if($id1 == 'a15'){
+else if($id1 == 'a15'){
 if ($tanggal_awal == $tanggal_akhir) {
 
     $table = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input = 'a15' OR  
