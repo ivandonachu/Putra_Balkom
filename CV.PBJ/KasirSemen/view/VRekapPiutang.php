@@ -72,35 +72,35 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 }
 
+
 else if($id1 == 'a3'){
 
     if ($tanggal_awal == $tanggal_akhir) {
 
-    $table = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input != 'a14' OR  
-                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input != 'a14' OR
-                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input != 'a15' OR  
-                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input != 'a15' GROUP BY tujuan_pengiriman ");
+    $table = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input = 'a3' OR  
+                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input = 'a3' OR
+                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input = '' OR  
+                                                                                                                     tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input = '' GROUP BY tujuan_pengiriman ");
 
-    $table2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input != 'a14' OR 
-                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input != 'a14' OR
-                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input != 'a15' OR 
-                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input != 'a15' GROUP BY tujuan_pengiriman ");
+    $table2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_sl WHERE tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input = 'a3' OR 
+                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input = 'a3' OR
+                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input = '' OR 
+                                                                                                                       tanggal_kirim = '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input = '' GROUP BY tujuan_pengiriman ");
 } else {
 
-    $table = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input != 'a14' OR   
-                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input != 'a14' OR
-                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input != 'a15' OR   
-                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input != 'a15' GROUP BY tujuan_pengiriman ");
+    $table = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_s WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input = 'a3' OR   
+                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input = 'a3' OR
+                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input = '' OR   
+                                                                                                                     tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input = '' GROUP BY tujuan_pengiriman ");
 
-    $table2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input != 'a14' OR 
-                                                                                                                       tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input != 'a14' OR
-                                                                                                                       tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input != 'a15' OR 
-                                                                                                                       tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input != 'a15' GROUP BY tujuan_pengiriman ");
+    $table2 = mysqli_query($koneksi, "SELECT tujuan_pengiriman , SUM(jumlah) AS jumlah_piutang FROM penjualan_sl WHERE tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input = 'a3' OR 
+                                                                                                                       tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input = 'a3' OR
+                                                                                                                       tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Nyicil' AND kode_input = '' OR 
+                                                                                                                       tanggal_kirim BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND status_bayar = 'Bon' AND kode_input = '' GROUP BY tujuan_pengiriman ");
 }
 
 
 }
-
 ?>
 
 
