@@ -138,6 +138,8 @@ $table = mysqli_query($koneksicbm, "SELECT * FROM dokumen");
             <a class="collapse-item" style="font-size: 15px;" href="VKeuanganPBR">Keuangan PBR</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessMES">Monitor Cashless MES</a>
             <a class="collapse-item" style="font-size: 15px;" href="VMonitoringCashlessPBR">Monitor Cashless PBR</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringRekCashlessMES">Mon Rek Cashless MES</a>
+                        <a class="collapse-item" style="font-size: 15px;" href="VMonitoringRekCashlessPBR">Mon Rek Cashless PBR</a>
           </div>
         </div>
       </li>

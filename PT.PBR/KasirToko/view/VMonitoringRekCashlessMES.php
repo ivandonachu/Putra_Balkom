@@ -32,12 +32,12 @@ if (isset($_GET['tanggal1'])) {
 }
 if ($tanggal_awal == $tanggal_akhir) {
 
-    $table = mysqli_query($koneksi, "SELECT * FROM monitoring_cashless_mes WHERE tanggal = '$tanggal_awal'");
-    $table2 = mysqli_query($koneksi, "SELECT nama_pangkalan,  SUM(jumlah) AS total_jumlah,  SUM(briva) AS total_briva,  SUM(transaksis_transfer) AS total_transfer  FROM monitoring_cashless_mes  WHERE tanggal = '$tanggal_awal' GROUP BY nama_pangkalan");
+    $table = mysqli_query($koneksi, "SELECT * FROM monitoring_rek_cashless_mes WHERE tanggal = '$tanggal_awal'");
+    $table2 = mysqli_query($koneksi, "SELECT nama_akun, rekening,  SUM(jumlah) AS total_jumlah FROM monitoring_rek_cashless_mes  WHERE tanggal = '$tanggal_awal' GROUP BY nama_akun");
 } else {
 
-    $table = mysqli_query($koneksi, "SELECT * FROM monitoring_cashless_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
-    $table2 = mysqli_query($koneksi, "SELECT nama_pangkalan,  SUM(jumlah) AS total_jumlah,  SUM(briva) AS jumlah_briva,  SUM(transaksi_transfer) AS jumlah_transfer FROM monitoring_cashless_mes  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_pangkalan");
+    $table = mysqli_query($koneksi, "SELECT * FROM monitoring_rek_cashless_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir'");
+    $table2 = mysqli_query($koneksi, "SELECT nama_akun, rekening,  SUM(jumlah) AS total_jumlah FROM monitoring_rek_cashless_mes  WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' GROUP BY nama_akun");
 }
 
 ?>
@@ -52,7 +52,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Monitoring Cashless MES</title>
+    <title>Monitoring Rek MES</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -68,8 +68,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
+
+    <!-- Link datepicker -->
 
 </head>
 
@@ -200,7 +200,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2C7873;">
-                    <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Monitoring Cashless MES</h5></a>"; ?>
+                    <?php echo "<a href=''><h5 class='text-center sm' style='color:white; margin-top: 8px;  '>Monitoring Rekening Cashless MES</h5></a>"; ?>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -249,7 +249,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                     <div class="pinggir1" style="margin-right: 20px; margin-left: 20px;">
 
 
-                        <?php echo "<form  method='POST' action='VMonitoringCashlessMES' style='margin-bottom: 15px;'>" ?>
+                        <?php echo "<form  method='POST' action='VMonitoringRekCashlessMES' style='margin-bottom: 15px;'>" ?>
                         <div>
                             <div align="left" style="margin-left: 20px;">
                                 <input type="date" id="tanggal1" style="font-size: 14px" name="tanggal1">
@@ -268,14 +268,14 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                 <!-- Button Input Data Bayar -->
                                 <div align="right">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i>Catat</button> <br> <br>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#input"> <i class="fas fa-plus-square mr-2"></i> Catat Transaksi </button> <br> <br>
                                 </div>
                                 <!-- Form Modal  -->
                                 <div class="modal fade bd-example-modal-lg" id="input" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title"> Form Monitoring Cashless </h5>
+                                                <h5 class="modal-title"> Form Transaksi </h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -283,7 +283,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                             <!-- Form Input Data -->
                                             <div class="modal-body" align="left">
-                                                <?php echo "<form action='../proses/proses_monitoring_cashless_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
+                                                <?php echo "<form action='../proses/proses_monitoring_rek_mes?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
 
                                                 <div class="row">
                                                     <div class="col-md-4">
@@ -291,64 +291,29 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <input class="form-control form-control-sm" type="date" name="tanggal" required="">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label>Nama Pangkalan</label>
-                                                        <select id="tokens" class="selectpicker form-control" name="nama_pangkalan" data-live-search="true">
-                                                            <?php
-                                                            include 'koneksi.php';
-                                                            $result = mysqli_query($koneksi, "SELECT * FROM pangkalan");
-
-                                                            while ($data2 = mysqli_fetch_array($result)) {
-                                                                $data_pangakalan = $data2['sub_penyalur'];
-
-
-                                                                echo "<option> $data_pangakalan </option> ";
-                                                            }
-                                                            ?>
+                                                        <label>Nama Akun</label>
+                                                        <select class="form-control form-control-sm" name="nama_akun" class="form-control">
+                                                            <option>Saldo Awal</option>
+                                                            <option>Pembayaran Pangkalan</option>
+                                                            <option>Penebusan</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label>QTY</label>
-                                                        <input class="form-control form-control-sm" type="number" id="qty" name="qty" required="">
+                                                        <label>Rekening</label>
+                                                        <select class="form-control form-control-sm" name="rekening" class="form-control">
+                                                            <option>Brilink Novi</option>
+                                                            <option>BRI MES</option>
+                                                            <option>Bon</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 
                                                 <br>
 
                                                 <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Harga Satuan</label>
-                                                        <input class="form-control form-control-sm" type="number" id="harga_satuan" name="harga_satuan" required="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Briva</label>
-                                                        <input class="form-control form-control-sm" type="number" id="briva" name="briva" required="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Transfer</label>
-                                                        <input class="form-control form-control-sm" type="number" id="transaksi_transfer" name="transaksi_transfer" required="" value="0">
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Status Valid</label>
-                                                        <select class="form-control form-control-sm" name="status_valid" class="form-control ">
-                                                            <option>Valid</option>
-                                                            <option>Tidak Valid</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Referensi</label>
-                                                        <input class="form-control form-control-sm" type="text" id="referensi" name="referensi" required="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Verified/Not Verified</label>
-                                                        <select class="form-control form-control-sm" name="status_verified" class="form-control ">
-                                                            <option>Verified</option>
-                                                            <option>Not Verified</option>
-                                                        </select>
+                                                    <div class="col-md-12">
+                                                        <label>Jumlah</label>
+                                                        <input class="form-control form-control-sm" type="number" id="jumlah" name="jumlah" required="">
                                                     </div>
                                                 </div>
 
@@ -356,9 +321,15 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label>Keterangan</label>
+                                                        <label>Keterangan Saldo Masuk</label>
                                                         <div class="form-group">
-                                                            <textarea class="form-control form-control-sm" name="keterangan" style="width: 300px;"></textarea>
+                                                            <textarea class="form-control form-control-sm" name="keterangan_saldo_masuk" style="width: 300px;"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Keterangan Saldo Keluar</label>
+                                                        <div class="form-group">
+                                                            <textarea class="form-control form-control-sm" name="keterangan_saldo_keluar" style="width: 300px;"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -392,16 +363,13 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal</th>
-                                        <th>Nama Pangkalan</th>
-                                        <th>QTY</th>
-                                        <th>Harga Satuan</th>
-                                        <th>Jumlah</th>
-                                        <th>Briva</th>
-                                        <th>Transfer</th>
-                                        <th>Status Valid</th>
-                                        <th>Referensi</th>
-                                        <th>Verified/Not Verified</th>
-                                        <th>Keterangan</th>
+                                        <th>Nama Akun</th>
+                                        <th>Rekening</th>
+                                        <th>Keterangan Saldo Masuk</th>
+                                        <th>Keterangan Saldo Keluar</th>
+                                        <th>Debit</th>
+                                        <th>Kredit</th>
+                                        <th>Total</th>
                                         <th>File</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -414,40 +382,45 @@ if ($tanggal_awal == $tanggal_akhir) {
                                         return $uang;
                                     }
                                     $urut = 0;
-
+                                    $total = 0;
                                     ?>
 
                                     <?php while ($data = mysqli_fetch_array($table)) {
                                         $no_transaksi = $data['no_transaksi'];
                                         $tanggal = $data['tanggal'];
-                                        $nama_pangkalan = $data['nama_pangkalan'];
-                                        $qty = $data['qty'];
-                                        $harga_satuan = $data['harga_satuan'];
+                                        $nama_akun = $data['nama_akun'];
+                                        $rekening = $data['rekening'];
+                                        $keterangan_saldo_masuk = $data['keterangan_saldo_masuk'];
+                                        $keterangan_saldo_keluar = $data['keterangan_saldo_keluar'];
                                         $jumlah = $data['jumlah'];
-                                        $briva = $data['briva'];
-                                        $transaksi_transfer = $data['transaksi_transfer'];
-                                        $status_valid = $data['status_valid'];
-                                        $referensi = $data['referensi'];
-                                        $status_verified = $data['status_valid'];
-                                        $keterangan = $data['keterangan'];
                                         $file_bukti = $data['file_bukti'];
                                         $urut  = $urut + 1;
+
+                                        if ($nama_akun == 'Saldo Awal' || $nama_akun == 'Pembayaran Pangkalan') {
+                                            $total = $total + $jumlah;
+                                        } else {
+                                            $total = $total - $jumlah;
+                                        }
+
+
 
                                         echo "<tr>
                                         <td style='font-size: 14px'>$urut</td>
                                         <td style='font-size: 14px'>$tanggal</td>
-                                        <td style='font-size: 14px'>$nama_pangkalan</td>
-                                        <td style='font-size: 14px'>$qty</td>
-                                        <td style='font-size: 14px'>$harga_satuan</td>
-                                        <td style='font-size: 14px'>$jumlah</td>
-                                        <td style='font-size: 14px'>$briva</td>
-                                        <td style='font-size: 14px'>$transaksi_transfer</td>
-                                        <td style='font-size: 14px'>$status_valid</td>
-                                        <td style='font-size: 14px'>$referensi</td>
-                                        <td style='font-size: 14px'>$status_verified</td>
-                                        <td style='font-size: 14px'>$keterangan</td>
-                                        <td style='font-size: 14px'>"; ?> <a download="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-                                        <td style='font-size: 12px'>"; ?>
+                                        <td style='font-size: 14px'>$nama_akun</td>
+                                        <td style='font-size: 14px'>$rekening</td>
+                                        <td style='font-size: 14px'>$keterangan_saldo_masuk</td>
+                                        <td style='font-size: 14px'>$keterangan_saldo_keluar</td>";
+                                        if ($nama_akun == 'Saldo Awal' || $nama_akun == 'Pembayaran Pangkalan') {
+                                            echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                                                                                                                echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
+                                                                                                                                                                            } else {
+                                                                                                                                                                                echo " <td style='font-size: 14px'>" ?> <?= formatuang(0); ?> <?php echo "</td>";
+                                                                                                                                                                                                            echo " <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>";
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                            echo " <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
+                                            <td style='font-size: 14px'>"; ?> <a download="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>" href="/PT.PBR/KasirToko/file_toko/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>"; ?>
+                                            <?php echo "<td style='font-size: 12px'>"; ?>
 
                                             <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['no_transaksi']; ?>">Edit</button>
 
@@ -456,7 +429,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                             <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $data['no_transaksi']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">Form Edit Monitoring Cashless</h5>
+                                                        <div class="modal-header">Form Edit Pengeluaran </h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                                                 <span aria-hidden="true"> &times; </span>
                                                             </button>
@@ -465,7 +438,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                                         <!-- Form Edit Data -->
                                                         <div class="modal-body">
-                                                            <form action="../proses/edit_monitoring_cashless_mes" enctype="multipart/form-data" method="POST">
+                                                            <form action="../proses/edit_monitoring_rek_cashless_mes" enctype="multipart/form-data" method="POST">
                                                                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                                                                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
                                                                 <input type="hidden" name="no_transaksi" value="<?php echo $no_transaksi; ?>">
@@ -475,80 +448,46 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                         <input class="form-control form-control-sm" type="date" name="tanggal" required="" value="<?php echo $tanggal; ?>">
                                                                     </div>
                                                                     <div class="col-md-4">
-                                                                        <div>
-                                                                            <label>Nama Pangkalan</label>
-                                                                        </div>
-
-                                                                        <select id="tokens" class="selectpicker form-control" name="nama_pangkalan" data-live-search="true">
-                                                                            <?php
-                                                                            include 'koneksi.php';
-                                                                            $dataSelect = $data['nama_pangkalan'];
-                                                                            $result = mysqli_query($koneksi, "SELECT * FROM pangkalan");
-
-                                                                            while ($data2 = mysqli_fetch_array($result)) {
-                                                                                $nama_pangkalan = $data2['sub_penyalur'];
-
-
-                                                                                echo "<option" ?> <?php echo ($dataSelect == $nama_pangkalan) ? "selected" : "" ?>> <?php echo $nama_pangkalan; ?> <?php echo "</option>";
-                                                                                                                                                                                                }
-                                                                                                                                                                                                    ?>
+                                                                        <label>Nama Akun</label>
+                                                                        <select class="form-control form-control-sm" name="nama_akun" class="form-control">
+                                                                            <?php $dataSelect = $data['nama_akun']; ?>
+                                                                            <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected" : "" ?>>Saldo Awal</option>
+                                                                            <option <?php echo ($dataSelect == 'Pembayaran Pangkalan') ? "selected" : "" ?>>Pembayaran Pangkalan</option>
+                                                                            <option <?php echo ($dataSelect == 'Penebusan') ? "selected" : "" ?>>Penebusan</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-4">
-                                                                        <label>QTY</label>
-                                                                        <input class="form-control form-control-sm" type="number" value="<?php echo $qty; ?>" name="qty" required="">
+                                                                        <label>Rekening</label>
+                                                                        <select class="form-control form-control-sm" name="rekening" class="form-control ">
+                                                                            <?php $dataSelect = $data['rekening']; ?>
+                                                                            <option <?php echo ($dataSelect == 'Brilink Novi') ? "selected" : "" ?>>Brilink Novi</option>
+                                                                            <option <?php echo ($dataSelect == 'BRI CBM') ? "selected" : "" ?>>BRI MES</option>
+                                                                            <option <?php echo ($dataSelect == 'Bon') ? "selected" : "" ?>>Bon</option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
 
                                                                 <br>
 
                                                                 <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <label>Harga Satuan</label>
-                                                                        <input class="form-control form-control-sm" type="number" value="<?php echo $harga_satuan; ?>" name="harga_satuan" required="">
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <label>Briva</label>
-                                                                        <input class="form-control form-control-sm" type="number" value="<?php echo $briva; ?>" name="briva" required="">
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label>Transfer</label>
-                                                                        <input class="form-control form-control-sm" type="number" value="<?php echo $transaksi_transfer; ?>" name="transaksi_transfer" required="">
+                                                                    <div class="col-md-12">
+                                                                        <label>Jumlah</label>
+                                                                        <input class="form-control form-control-sm" type="number" value="<?php echo $jumlah; ?>" name="jumlah" required="">
                                                                     </div>
                                                                 </div>
 
                                                                 <br>
-
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <label>Status Valid</label>
-                                                                        <select class="form-control form-control-sm" name="status_valid" class="form-control">
-                                                                            <?php $dataSelect = $data['status_valid']; ?>
-                                                                            <option <?php echo ($dataSelect == 'Valid') ? "selected" : "" ?>>Valid</option>
-                                                                            <option <?php echo ($dataSelect == 'Tidak Valid') ? "selected" : "" ?>>Tidak Valid</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <label>Referensi</label>
-                                                                        <input class="form-control form-control-sm" type="number" value="<?php echo $referensi; ?>" name="referensi" required="">
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <label>Verified/Not Verified</label>
-                                                                        <select class="form-control form-control-sm" name="status_verified" class="form-control">
-                                                                            <?php $dataSelect = $data['status_verified']; ?>
-                                                                            <option <?php echo ($dataSelect == 'Verified') ? "selected" : "" ?>>Verified</option>
-                                                                            <option <?php echo ($dataSelect == 'Not Verified') ? "selected" : "" ?>>Not Verified</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <br>
-
                                                                 <div class="row">
                                                                     <div class="col-md-6">
-                                                                        <label>Keterangan</label>
+                                                                        <label>Keterangan Saldo Masuk</label>
                                                                         <div class="form-group">
-                                                                            <textarea class="form-control form-control-sm" name="keterangan" style="width: 300px;"><?php echo $keterangan; ?></textarea>
+                                                                            <textarea class="form-control form-control-sm" name="keterangan_saldo_masuk" style="width: 300px;"><?php echo $keterangan_saldo_masuk; ?></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label>Keterangan Saldo Keluar</label>
+                                                                        <div class="form-group">
+                                                                            <textarea class="form-control form-control-sm" name="keterangan_saldo_keluar" style="width: 300px;"><?php echo $keterangan_saldo_keluar; ?></textarea>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -587,7 +526,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                                                         <div class="modal-body">
-                                                            <form action="../proses/hapus_monitoring_cashless_mes" method="POST">
+                                                            <form action="../proses/hapus_monitoring_rekening_cashless_mes" method="POST">
                                                                 <input type="hidden" name="no_transaksi" value="<?php echo $no_transaksi; ?>">
                                                                 <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                                                                 <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
@@ -617,49 +556,56 @@ if ($tanggal_awal == $tanggal_akhir) {
                         <hr>
                         <br>
 
-                        <h5 align="center">Rincian Mocash</h5>
+                        <h5 align="center">Rincian Monitoring Rekening Cashless MES</h5>
                         <!-- Tabel -->
                         <table class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
                             <thead>
                                 <tr>
-                                    <th>Pangkalan</th>
+                                    <th>Nama Akun</th>
                                     <th>Jumlah</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $total_transaksi = 0;
-                                $total_transfer = 0;
-                                $total_briva = 0;
+                                $sisa_saldo = 0;
+                                $total_pengeluaran = 0;
+                                $total_saldo = 0;
+                                $jumlah_riyanto = 0;
+                                $jumlah_risa = 0;
                                 ?>
                                 <?php while ($data = mysqli_fetch_array($table2)) {
-                                    $nama_pangkalan = $data['nama_pangkalan'];
+                                    $nama_akun = $data['nama_akun'];
                                     $jumlah = $data['total_jumlah'];
-                                    $jumlah_briva = $data['jumlah_briva'];
-                                    $jumlah_transfer = $data['jumlah_transfer'];
+                                    if ($nama_akun == 'Saldo Awal' || $nama_akun == 'Pembayaran Pangkalan') {
+                                        $sisa_saldo  = $sisa_saldo + $jumlah;
+                                        $total_saldo = $total_saldo + $jumlah;
+                                    } else {
+                                        $sisa_saldo  = $sisa_saldo - $jumlah;
+                                        $total_pengeluaran = $total_pengeluaran + $jumlah;
+                                    }
 
-                                    $total_transaksi = $total_transaksi + $jumlah;
-                                    $total_transfer = $total_transfer + $jumlah_transfer;
-                                    $total_briva = $total_briva + $jumlah_briva;
+
 
                                     echo "<tr>
 
-                                <td style='font-size: 14px' >$nama_pangkalan</td>
-                                <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
-                
-                                </tr>";
-                                                                                            }
-                                                                                                ?> <tr>
-                                    <td style='font-size: 14px; '><strong>Total Briva</strong></td>
-                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_briva); ?></strong> </td>
+       <td style='font-size: 14px' >$nama_akun</td>
+        <td style='font-size: 14px'>" ?> <?= formatuang($jumlah); ?> <?php echo "</td>
+      
+     
+
+  </tr>";
+                                                                    }
+                                                                        ?> <tr>
+                                    <td style='font-size: 14px; '><strong>Total Sakdo</strong></td>
+                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_saldo); ?></strong> </td>
                                 </tr>
                                 <tr>
-                                    <td style='font-size: 14px; '><strong>Total Transfer</strong></td>
-                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_transfer); ?></strong> </td>
+                                    <td style='font-size: 14px; '><strong>Total Pengeluaran</strong></td>
+                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_pengeluaran); ?></strong> </td>
                                 </tr>
                                 <tr>
                                     <td style='font-size: 14px; '><strong>Sisa Saldo</strong></td>
-                                    <td style='font-size: 14px'> <strong> <?= formatuang($total_transaksi); ?></strong> </td>
+                                    <td style='font-size: 14px'> <strong> <?= formatuang($sisa_saldo); ?></strong> </td>
                                 </tr>
 
 
@@ -721,8 +667,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/sbadmin/vendor/jquery/jquery.min.js"></script>
+    <script src="/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/sbadmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -730,7 +676,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     <!-- Custom scripts for all pages-->
     <script src="/sbadmin/js/sb-admin-2.min.js"></script>
-    <script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
+
     <!-- Tabel -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -757,44 +703,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                 .appendTo('#example_wrapper .col-md-6:eq(0)');
         });
     </script>
-    <script>
-        function createOptions(number) {
-            var options = [],
-                _options;
 
-            for (var i = 0; i < number; i++) {
-                var option = '<option value="' + i + '">Option ' + i + '</option>';
-                options.push(option);
-            }
-
-            _options = options.join('');
-
-            $('#number')[0].innerHTML = _options;
-            $('#number-multiple')[0].innerHTML = _options;
-
-            $('#number2')[0].innerHTML = _options;
-            $('#number2-multiple')[0].innerHTML = _options;
-        }
-
-        var mySelect = $('#first-disabled2');
-
-        createOptions(4000);
-
-        $('#special').on('click', function() {
-            mySelect.find('option:selected').prop('disabled', true);
-            mySelect.selectpicker('refresh');
-        });
-
-        $('#special2').on('click', function() {
-            mySelect.find('option:disabled').prop('disabled', false);
-            mySelect.selectpicker('refresh');
-        });
-
-        $('#basic2').selectpicker({
-            liveSearch: true,
-            maxOptions: 1
-        });
-    </script>
 </body>
 
 </html>
