@@ -41,7 +41,7 @@ if ($jen_ken == '8000 L') {
 	$solar = $jt_gps / 6;
 }
 
-$u_dex = $dexlite * 24800;
+$u_dex = $dexlite * 21150;
 $u_solar = $solar * 14000;
 $uang_makan = 625 * $jt_gps;
 $uang_jalan = $u_dex + $uang_makan;
