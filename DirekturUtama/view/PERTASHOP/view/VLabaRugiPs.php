@@ -239,16 +239,16 @@ else{
 
    //Sisa stok Akhir pertamax
 
-   $tabley1 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ORDER BY tanggal ");
+   $tabley1 = mysqli_query($koneksiperta, "SELECT no_penjualan FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ORDER BY tanggal DESC LIMIT 1 ");
 
    $datay1 = mysqli_fetch_array($tabley1);
-   $no_penjualan_akhir_max = $datay1['penjualan_akhir'];
+   $no_penjualan_akhir_max = $datay1['no_penjualan'];
 
         //no akhir pembelian pertamax
-        $tabley1z = mysqli_query($koneksiperta, "SELECT MAX(no_pembelian) AS pembelian_akhir FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+        $tabley1z = mysqli_query($koneksiperta, "SELECT no_pembelian FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ORDER BY tanggal DESC LIMIT 1 ");
 
         $datay1z = mysqli_fetch_array($tabley1z);
-        $no_pembelian_akhir_max = $datay1z['pembelian_akhir'];
+        $no_pembelian_akhir_max = $datay1z['no_pembelian'];
 
         $tabley22z = mysqli_query($koneksiperta, "SELECT harga FROM pembelian WHERE no_pembelian = '$no_pembelian_akhir_max' ");
         $datay22z = mysqli_fetch_array($tabley22z);
@@ -261,16 +261,16 @@ else{
    $total_uang_stok_max = $sonding_akhir_max * $harga_stok_akhir_max;
 
    //Sisa stok Akhir Dexlite
-   $tabley2 = mysqli_query($koneksiperta, "SELECT MAX(no_penjualan) AS penjualan_akhir FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+   $tabley2 = mysqli_query($koneksiperta, "SELECT no_penjualan FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ORDER BY tanggal DESC LIMIT 1 ");
 
    $datay2 = mysqli_fetch_array($tabley2);
-   $no_penjualan_akhir_dex = $datay2['penjualan_akhir'];
+   $no_penjualan_akhir_dex = $datay2['no_penjualan'];
      
         //no akhir pembelian Dexlite
-        $tabley2z = mysqli_query($koneksiperta, "SELECT MAX(no_pembelian) AS pembelian_akhir FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+        $tabley2z = mysqli_query($koneksiperta, "SELECT no_pembelian FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ORDER BY tanggal DESC LIMIT 1 ");
 
         $datay2z = mysqli_fetch_array($tabley2z);
-        $no_pembelian_akhir_dex = $datay2z['pembelian_akhir'];
+        $no_pembelian_akhir_dex = $datay2z['no_pembelian'];
         $tabley22z = mysqli_query($koneksiperta, "SELECT harga FROM pembelian WHERE no_pembelian = '$no_pembelian_akhir_dex' ");
         $datay22z = mysqli_fetch_array($tabley22z);
 
@@ -290,7 +290,7 @@ else{
    $no_penjualan_awal_max = $datay1x['penjualan_awal'];
 
         //no akhir pembelian Pertamax
-        $tabley1zx = mysqli_query($koneksiperta, "SELECT MIN(no_pembelian) AS pembelian_awal FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ");
+        $tabley1zx = mysqli_query($koneksiperta, "SELECT no_pembelian AS pembelian_awal FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Pertamax' AND b.lokasi = '$lokasi' ORDER BY tanggal ASC LIMIT 1 ");
 
         $datay1zx = mysqli_fetch_array($tabley1zx);
         $no_pembelian_awal_max = $datay1zx['pembelian_awal'];
@@ -306,13 +306,13 @@ else{
    $total_uang_stok_awal_max = $sonding_awal_max * $harga_stok_awal_max;
 
    //Sisa stok Awal Dexlite
-   $tabley2x = mysqli_query($koneksiperta, "SELECT MIN(no_penjualan) AS penjualan_awal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+   $tabley2x = mysqli_query($koneksiperta, "SELECT no_penjualan AS penjualan_awal FROM penjualan a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ORDER BY tanggal ASC LIMIT 1 ");
 
    $datay2x = mysqli_fetch_array($tabley2x);
    $no_penjualan_awal_dex = $datay2x['penjualan_awal'];
      
         //no akhir pembelian Dexlite
-        $tabley2zx = mysqli_query($koneksiperta, "SELECT MIN(no_pembelian) AS pembelian_awal FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ");
+        $tabley2zx = mysqli_query($koneksiperta, "SELECT no_pembelian AS pembelian_awal FROM pembelian a INNER JOIN pertashop b ON b.kode_perta=a.kode_perta WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_barang = 'Dexlite' AND b.lokasi = '$lokasi' ORDER BY tanggal ASC LIMIT 1 ");
 
         $datay2zx = mysqli_fetch_array($tabley2zx);
         $no_pembelian_awal_dex = $datay2zx['pembelian_awal'];
