@@ -388,7 +388,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg ");
 <table id="example" class="table-sm table-striped table-bordered dt-responsive nowrap" style="width:100%; ">
   <thead>
     <tr>
-   
+
       <th>Supply Point</th>
       <th>Alamat</th>
       <th>Delivery Point</th>   
@@ -403,7 +403,9 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg ");
     </tr>
   </thead>
   <tbody>
-
+    <?php
+    $no_urut = 0;
+    ?>
     <?php while($data = mysqli_fetch_array($table)){
 
       $supply_point =$data['supply_point'];
@@ -416,7 +418,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg ");
       $kl3 = $data['kl3'];
       $kl4 = $data['kl4'];
       $kl5 = $data['kl5'];
-
+      $no_urut = $no_urut + 1;
       echo "<tr>
   
       <td style='font-size: 14px' align = 'center'>$supply_point</td>
@@ -432,11 +434,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg ");
 
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['delivery_point']; ?>">Edit</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $no_urut ?>">Edit</button>
 
       <!-- Form EDIT DATA -->
 
-       <div class="modal fade" id="formedit<?php echo $data['delivery_point']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+       <div class="modal fade" id="formedit<?php echo $no_urut ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role ="document">
           <div class="modal-content"> 
             <div class="modal-header">
@@ -464,7 +466,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg ");
              </div>
              <div class="col-md-4">
                <label>Delivey Point</label>
-               <input class="form-control form-control-sm" type="text" id="delivery_point" name="delivery_point" required="" disabled value="<?php echo $delivery_point;?>" >
+               <input class="form-control form-control-sm" type="text" name="delivery_point" required="" disabled value="<?php echo $delivery_point;?>" >
              </div>
            </div>
 
