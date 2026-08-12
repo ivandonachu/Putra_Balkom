@@ -432,11 +432,11 @@ $table = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg ");
 
       "; ?>
       <?php echo "<td style='font-size: 12px'>"; ?>
-      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit">Edit</button>
+      <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $data['delivery_point']; ?>">Edit</button>
 
       <!-- Form EDIT DATA -->
 
-      <div class="modal fade" id="formedit" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+       <div class="modal fade" id="formedit<?php echo $data['delivery_point']; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role ="document">
           <div class="modal-content"> 
             <div class="modal-header">
