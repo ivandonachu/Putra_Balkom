@@ -634,20 +634,6 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                 <div class="col-md-6">
 
-                                  <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
-                                    <?php
-                                    include 'koneksi.php';
-                                    $dataSelect = $data['delivery_point'];
-                                    $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg");
-
-                                    while ($data2 = mysqli_fetch_array($result)) {
-                                      $data_tarif = $data2['delivery_point'];
-
-
-                                      echo "<option" ?> <?php echo ($dataSelect == $data_tarif) ? "selected" : "" ?>> <?php echo $data_tarif; ?> <?php echo "</option>";
-                                                                                                                                                  }
-                                                                                                                                                    ?>
-                                  </select>
 
                                 </div>
 
@@ -671,8 +657,42 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                               <div class="row">
 
+                                <div class="col-md-6">
+                                  <label>AMT</label>
+
+                                  <select id="amt" name="amt" class="form-control ">
+                                    <?php
+                                    $dataSelect = $data['amt'];
+                                    include 'koneksi.php';
+                                    $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Tanjung Gerem'");
+
+                                    while ($data2 = mysqli_fetch_array($result)) {
+                                      $nama_driver = $data2['nama_driver'];
+
+                                      echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
+                                                                                                                                                    }
+                                                                                                                                                      ?>
+                                  </select>
 
 
+                                </div>
+
+                                <div class="col-md-6">
+                                  <label>MT</label>
+                                  <select id="mt" name="mt" class="form-control">
+                                    <?php
+                                    $dataSelect = $data['mt'];
+                                    include 'koneksi.php';
+                                    $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Tanjung Gerem'");
+
+                                    while ($data2 = mysqli_fetch_array($result)) {
+                                      $no_polisi = $data2['no_polisi'];
+
+                                      echo "<option" ?> <?php echo ($dataSelect == $no_polisi) ? "selected" : "" ?>> <?php echo $no_polisi; ?> <?php echo "</option>";
+                                                                                                                                                }
+                                                                                                                                                  ?>
+                                  </select>
+                                </div>
                               </div>
 
                               <br>
