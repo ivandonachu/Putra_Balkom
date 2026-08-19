@@ -637,7 +637,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
                                     <?php
                                     include 'koneksi.php';
-                                    $dataSelect = $data['delivery_point'];
+                                    $dataSelect = $delivery_point;
                                     $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg");
 
                                     while ($data2 = mysqli_fetch_array($result)) {
@@ -653,7 +653,16 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                                 <div class="col-md-6">
-
+                                  <label>Jumlah Pemesanan</label>
+                                  <select id="jumlah_pesanan" name="jumlah_pesanan" class="form-control">
+                                    <?php
+                                    $dataSelect = $jumlah_pesanan; ?>
+                                    <option <?php echo ($dataSelect == 'kl1') ? "selected" : "" ?>>1000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl2') ? "selected" : "" ?>>2000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl3') ? "selected" : "" ?>>3000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl4') ? "selected" : "" ?>>4000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl5') ? "selected" : "" ?>>5000 L</option>
+                                  </select>
                                 </div>
 
                               </div>
@@ -667,7 +676,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                   <select id="amt" name="amt" class="form-control ">
                                     <?php
-                                    $dataSelect = $data['amt'];
+                                    $dataSelect = $amt;
                                     include 'koneksi.php';
                                     $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Tanjung Gerem'");
 
@@ -686,7 +695,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   <label>MT</label>
                                   <select id="mt" name="mt" class="form-control">
                                     <?php
-                                    $dataSelect = $data['mt'];
+                                    $dataSelect = $mt;
                                     include 'koneksi.php';
                                     $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Tanjung Gerem'");
 
