@@ -594,31 +594,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                               
                               <div class="row">
-                                <div class="col-md-6">
-
-                                  <label>Tanggal</label>
-                                  <div class="col-sm-10">
-                                    <input type="date" id="tanggal" name="tanggal" required="" disabled="" value="<?php echo $tanggal; ?>">
-                                  </div>
-
-                                </div>
-
-                              </div>
-
-                              <div class="row">
-
-
-                                <div class="col-md-6">
-                                  <label>SO</label>
-                                  <input class="form-control form-control-sm" type="text" id="so" name="so" required="" value="<?php echo $so; ?>">
-                                </div>
-
-
-
-                                <div class="col-md-6">
-                                  <label>LO</label>
-                                  <input class="form-control form-control-sm" type="text" id="lo" name="lo" required="" value="<?php echo $lo; ?>">
-                                </div>
+                                
 
                               </div>
 
