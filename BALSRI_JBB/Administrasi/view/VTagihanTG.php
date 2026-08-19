@@ -743,7 +743,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                 <div class="modal-body">
                   <form action="../proses/hapus_tagihan_TG" method="POST">
-                    <input type="hidden" name="no_tagihan" value="<?php echo $data['no_tagihan']; ?>">
+                    <input type="hidden" name="no_tagihan" value="<?php echo $no_tagihan; ?>">
                     <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                     <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
 
