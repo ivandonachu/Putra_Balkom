@@ -629,11 +629,11 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                               <br>
-                              <label>Delivery Point</label>
+                             
                               <div class="row">
 
                                 <div class="col-md-6">
-
+                                  <label>Delivery Point</label>
                                   <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
                                     <?php
                                     include 'koneksi.php';
@@ -653,7 +653,18 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                                 <div class="col-md-6">
-                                
+                                  <label>Jumlah Pemesanan</label>
+                                  <select id="jumlah_pesanan" name="jumlah_pesanan" class="form-control">
+                                    <?php
+                                     include 'koneksi.php';
+                                    $dataSelect = $data['jumlah_pesanan']; ?>
+                                    <option <?php echo ($dataSelect == 'kl1') ? "selected" : "" ?>>1000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl2') ? "selected" : "" ?>>2000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl3') ? "selected" : "" ?>>3000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl4') ? "selected" : "" ?>>4000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl5') ? "selected" : "" ?>>5000 L</option>
+                                  </select>
+                                </div>
 
                               </div>
 
