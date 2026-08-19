@@ -671,25 +671,6 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                               <div class="row">
 
-                                <div class="col-md-6">
-                                  <label>AMT</label>
-
-                                  <select id="amt" name="amt" class="form-control ">
-                                    <?php
-                                    $dataSelect = $data['amt'];
-                                    include 'koneksi.php';
-                                    $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Tanjung Gerem'");
-
-                                    while ($data2 = mysqli_fetch_array($result)) {
-                                      $nama_driver = $data2['nama_driver'];
-
-                                      echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
-                                                                                                                                                    }
-                                                                                                                                                      ?>
-                                  </select>
-
-
-                                </div>
 
                                 <div class="col-md-6">
                                   <label>MT</label>
@@ -731,7 +712,34 @@ if ($tanggal_awal == $tanggal_akhir) {
 
           <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $urut; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
 
+          <div class="modal fade" id="PopUpHapus<?php echo $urut; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"> <b> Hapus </b> </h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true"> &times; </span>
+                  </button>
+                </div>
 
+                <div class="modal-body">
+                  <form action="../proses/hapus_tagihan_TG" method="POST">
+                    <input type="hidden" name="no_tagihan" value="<?php echo $no_tagihan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+
+                    <div class="form-group">
+                      <h6> Yakin Ingin Hapus Data? </h6>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary"> Hapus </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
 
         <?php echo  " </td> </tr>";
                 }
