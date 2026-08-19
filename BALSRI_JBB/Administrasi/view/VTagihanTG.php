@@ -653,16 +653,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
 
                                 <div class="col-md-6">
-                                  <label>Jumlah Pemesanan</label>
-                                  <select id="jumlah_pesanan" name="jumlah_pesanan" class="form-control">
-                                    <?php
-                                    $dataSelect = $data['jumlah_pesanan']; ?>
-                                    <option <?php echo ($dataSelect == 'kl1') ? "selected" : "" ?>>1000 L</option>
-                                    <option <?php echo ($dataSelect == 'kl2') ? "selected" : "" ?>>2000 L</option>
-                                    <option <?php echo ($dataSelect == 'kl3') ? "selected" : "" ?>>3000 L</option>
-                                    <option <?php echo ($dataSelect == 'kl4') ? "selected" : "" ?>>4000 L</option>
-                                    <option <?php echo ($dataSelect == 'kl5') ? "selected" : "" ?>>5000 L</option>
-                                  </select>
+
                                 </div>
 
                               </div>
