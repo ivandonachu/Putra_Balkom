@@ -349,7 +349,7 @@ else{
              <input class="form-control form-control-sm" type="float" id="qty" name="qty" required="">
         </div>                
 
-        <input type="hidden" name="nama_karyawan" value="<?php echo $nama_karyawan;?>">  
+        <input type="hidden" name="nama_karyawan" value="<?php echo $nama;?>">  
         <div class="col-md-4">
           <label>Harga</label>
           <input class="form-control form-control-sm" type="float" id="harga" name="harga" required="">

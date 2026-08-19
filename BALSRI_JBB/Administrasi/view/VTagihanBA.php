@@ -391,7 +391,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <label>Delivery Point</label>
                             <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
                               <?php
-                              include 'koneksi.php';
+                            
                               $result2 = mysqli_query($koneksi, "SELECT * FROM master_tarif_ba");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -428,7 +428,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <label>AMT</label>
                             <select id="amt" name="amt" class="form-control ">
                               <?php
-                              include 'koneksi.php';
+                       
                               $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Balongan'");
 
                               while ($data2 = mysqli_fetch_array($result)) {
@@ -445,7 +445,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <label>MT</label>
                             <select id="mt" name="mt" class="form-control">
                               <?php
-                              include 'koneksi.php';
+                          
                               $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Balongan'");
 
                               while ($data2 = mysqli_fetch_array($result)) {
@@ -648,7 +648,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                                   <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
                                     <?php
-                                    include 'koneksi.php';
+                              
                                     $dataSelect = $data['delivery_point'];
                                     $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_ba");
 
@@ -689,7 +689,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   <select id="amt" name="amt" class="form-control ">
                                     <?php
                                     $dataSelect = $data['amt'];
-                                    include 'koneksi.php';
+                            
                                     $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Balongan'");
 
                                     while ($data2 = mysqli_fetch_array($result)) {
@@ -708,7 +708,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   <select id="mt" name="mt" class="form-control">
                                     <?php
                                     $dataSelect = $data['mt'];
-                                    include 'koneksi.php';
+                               
                                     $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Balongan'");
 
                                     while ($data2 = mysqli_fetch_array($result)) {

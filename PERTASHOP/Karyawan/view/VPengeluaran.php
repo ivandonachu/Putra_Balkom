@@ -1,6 +1,6 @@
 <?php
 session_start();
-include'koneksi.php';
+include 'koneksi.php';
 if(!isset($_SESSION["login"])){
   header("Location: logout.php");
   exit;
@@ -424,7 +424,7 @@ else{
                  <select id="lokasi" name="lokasi" class="form-control ">
                    <?php
                    $dataSelect = $data['lokasi']; 
-                   include 'koneksi.php';
+               
                    $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
                    while ($data2 = mysqli_fetch_array($result)){

@@ -271,7 +271,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <label>Lokasi</label>
                             <select id="lokasi" name="lokasi" class="form-control ">
                               <?php
-                              include 'koneksi.php';
+                           
                               $result = mysqli_query($koneksi, "SELECT * FROM pertashop where lokasi = '$lokasi'");
 
                               while ($data2 = mysqli_fetch_array($result)) {

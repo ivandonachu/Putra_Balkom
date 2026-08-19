@@ -1,6 +1,6 @@
 <?php
 session_start();
-include'koneksi.php';
+include 'koneksi.php';
 if(!isset($_SESSION["login"])){
   header("Location: logout.php");
   exit;
@@ -367,7 +367,7 @@ else{
            <label>AMT</label>
            <select id="amt" name="amt" class="form-control ">
             <?php
-            include 'koneksi.php';
+       
             $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Bengkulu'");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -385,7 +385,7 @@ else{
           <label>MT</label>
           <select id="mt" name="mt" class="form-control">
             <?php
-            include 'koneksi.php';
+        
             $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Bengkulu'");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -607,7 +607,7 @@ else{
                  <select id="amt" name="amt" class="form-control ">
                    <?php
                    $dataSelect = $data['amt']; 
-                   include 'koneksi.php';
+               
                    $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Bengkulu'");   
 
                    while ($data2 = mysqli_fetch_array($result)){
@@ -627,7 +627,7 @@ else{
                 <select id="mt" name="mt" class="form-control">
                   <?php
                   $dataSelect = $data['mt']; 
-                  include 'koneksi.php';
+              
                   $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Bengkulu'");   
 
                   while ($data2 = mysqli_fetch_array($result)){
