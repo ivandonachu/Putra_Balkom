@@ -602,26 +602,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                               <br>
                               <label>Delivery Point</label>
-                              <div class="row">
-
-                                <div class="col-md-6">
-
-                                  <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
-                                    <?php
-                                    include 'koneksi.php';
-                                    $dataSelect = $data['delivery_point'];
-                                    $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg");
-
-                                    while ($data2 = mysqli_fetch_array($result)) {
-                                      $data_tarif = $data2['delivery_point'];
-
-
-                                      echo "<option" ?> <?php echo ($dataSelect == $data_tarif) ? "selected" : "" ?>> <?php echo $data_tarif; ?> <?php echo "</option>";
-                                                                                                                                                  }
-                                                                                                                                                    ?>
-                                  </select>
-
-                                </div>
+                              
 
 
                                 <div class="col-md-6">
