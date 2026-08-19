@@ -490,7 +490,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                   <th>Harga</th>
                   <th>Total</th>
                   <th>File</th>
-   
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -572,7 +572,195 @@ if ($tanggal_awal == $tanggal_akhir) {
       <td style='font-size: 14px'>"; ?> <?= formatuang($harga); ?> <?php echo "</td>
       <td style='font-size: 14px'>" ?> <?= formatuang($total); ?> <?php echo "</td>
       <td style='font-size: 14px'>"; ?> <a download="../file_administrasi/<?= $file_bukti ?>" href="../file_administrasi/<?= $file_bukti ?>"> <?php echo "$file_bukti </a> </td>
-    </tr>";
+      "; ?>
+                    <?php echo "<td style='font-size: 12px'>"; ?>
+                    <button href="#" type="button" class="fas fa-edit bg-warning mr-2 rounded" data-toggle="modal" data-target="#formedit<?php echo $urut; ?>">Edit</button>
+
+                    <!-- Form EDIT DATA -->
+
+                    <div class="modal fade bd-example-modal-lg" id="formedit<?php echo $urut; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title"> Form Edit Tagihan </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                              <span aria-hidden="true"> &times; </span>
+                            </button>
+                          </div>
+
+                          <!-- Form Edit Data -->
+                          <div class="modal-body" align="left">
+                            <form action="../proses/edit_tagihan_TG" enctype="multipart/form-data" method="POST">
+
+                              <input type="hidden" name="no_tagihan" value="<?php echo $no_tagihan; ?>">
+                              <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                              <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+                              <input type="hidden" name="tanggal" value="<?php echo $tanggal; ?>">
+
+                              <div class="row">
+                                <div class="col-md-6">
+
+                                  <label>Tanggal</label>
+                                  <div class="col-sm-10">
+                                    <input type="date" id="tanggal" name="tanggal" required="" disabled="" value="<?php echo $tanggal; ?>">
+                                  </div>
+
+                                </div>
+
+                              </div>
+
+                              <div class="row">
+
+
+                                <div class="col-md-6">
+                                  <label>SO</label>
+                                  <input class="form-control form-control-sm" type="text" id="so" name="so" required="" value="<?php echo $so; ?>">
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                  <label>LO</label>
+                                  <input class="form-control form-control-sm" type="text" id="lo" name="lo" required="" value="<?php echo $lo; ?>">
+                                </div>
+
+                              </div>
+
+
+
+                              <br>
+                              <label>Delivery Point</label>
+                              <div class="row">
+
+                                <div class="col-md-6">
+
+                                  <select id="tokens" class="selectpicker form-control" name="delivery_point"  data-live-search="true">
+                                    <?php
+                                    include 'koneksi.php';
+                                    $dataSelect = $data['delivery_point'];
+                                    $result = mysqli_query($koneksi, "SELECT * FROM master_tarif_tg");
+
+                                    while ($data2 = mysqli_fetch_array($result)) {
+                                      $data_tarif = $data2['delivery_point'];
+
+
+                                      echo "<option" ?> <?php echo ($dataSelect == $data_tarif) ? "selected" : "" ?>> <?php echo $data_tarif; ?> <?php echo "</option>";
+                                                                                                                                                  }
+                                                                                                                                                    ?>
+                                  </select>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+                                  <label>Jumlah Pemesanan</label>
+                                  <select id="jumlah_pesanan" name="jumlah_pesanan" class="form-control">
+                                    <?php
+                                    $dataSelect = $data['jumlah_pesanan']; ?>
+                                    <option <?php echo ($dataSelect == 'kl1') ? "selected" : "" ?>>1000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl2') ? "selected" : "" ?>>2000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl3') ? "selected" : "" ?>>3000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl4') ? "selected" : "" ?>>4000 L</option>
+                                    <option <?php echo ($dataSelect == 'kl5') ? "selected" : "" ?>>5000 L</option>
+                                  </select>
+                                </div>
+
+                              </div>
+
+                              <br>
+
+                              <div class="row">
+
+                                <div class="col-md-6">
+                                  <label>AMT</label>
+
+                                  <select id="amt" name="amt" class="form-control ">
+                                    <?php
+                                    $dataSelect = $data['amt'];
+                                    include 'koneksi.php';
+                                    $result = mysqli_query($koneksi, "SELECT * FROM driver WHERE alamat = 'Tanjung Gerem'");
+
+                                    while ($data2 = mysqli_fetch_array($result)) {
+                                      $nama_driver = $data2['nama_driver'];
+
+                                      echo "<option" ?> <?php echo ($dataSelect == $nama_driver) ? "selected" : "" ?>> <?php echo $nama_driver; ?> <?php echo "</option>";
+                                                                                                                                                    }
+                                                                                                                                                      ?>
+                                  </select>
+
+
+                                </div>
+
+                                <div class="col-md-6">
+                                  <label>MT</label>
+                                  <select id="mt" name="mt" class="form-control">
+                                    <?php
+                                    $dataSelect = $data['mt'];
+                                    include 'koneksi.php';
+                                    $result = mysqli_query($koneksi, "SELECT * FROM kendaraan WHERE wilayah_operasi = 'Tanjung Gerem'");
+
+                                    while ($data2 = mysqli_fetch_array($result)) {
+                                      $no_polisi = $data2['no_polisi'];
+
+                                      echo "<option" ?> <?php echo ($dataSelect == $no_polisi) ? "selected" : "" ?>> <?php echo $no_polisi; ?> <?php echo "</option>";
+                                                                                                                                                }
+                                                                                                                                                  ?>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <br>
+
+                              <div>
+                                <label>Upload File</label>
+                                <input type="file" name="file">
+                              </div>
+                          </div>
+
+
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"> Ubah </button>
+                            <button type="reset" class="btn btn-danger"> RESET</button>
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+          
+
+
+          <button href="#" type="submit" class="fas fa-trash-alt bg-danger mr-2 rounded" data-toggle="modal" data-target="#PopUpHapus<?php echo $urut; ?>" data-toggle='tooltip' title='Hapus Transaksi'></button>
+
+          <div class="modal fade" id="PopUpHapus<?php echo $urut; ?>" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"> <b> Hapus </b> </h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true"> &times; </span>
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  <form action="../proses/hapus_tagihan_TG" method="POST">
+                    <input type="hidden" name="no_tagihan" value="<?php echo $data['no_tagihan']; ?>">
+                    <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
+
+                    <div class="form-group">
+                      <h6> Yakin Ingin Hapus Data? </h6>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary"> Hapus </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <?php echo  " </td> </tr>";
                 }
         ?>
 
