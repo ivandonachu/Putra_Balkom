@@ -316,7 +316,7 @@ data-parent="#accordionSidebar">
                 <label>Nama Driver</label>
                 <select id="nama_driver" name="nama_driver" class="form-control form-control-sm">
                 <?php
-                include 'koneksi.php';
+           
                 $result = mysqli_query($koneksi, "SELECT * FROM driver");   
 
                 while ($data2 = mysqli_fetch_array($result)){
@@ -431,7 +431,7 @@ data-parent="#accordionSidebar">
                 <select id="nama_driver" name="nama_driver" class="form-control ">
                     <?php
                     $dataSelect = $data['nama_driver']; 
-                    include 'koneksi.php';
+                  
                     $result = mysqli_query($koneksi, "SELECT * FROM driver ");   
 
                     while ($data2 = mysqli_fetch_array($result)){

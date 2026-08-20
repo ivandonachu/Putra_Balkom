@@ -584,7 +584,7 @@ $table4 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
                                     <label>Posisi Bongkar</label>
                                     <select id="posisi_bongkar" name="posisi_bongkar" class="form-control">
                                       <?php
-                                      include 'koneksi.php';
+                                 
                                       $result4 = mysqli_query($koneksi, "SELECT * FROM rute_driver");
 
                                       while ($data4 = mysqli_fetch_array($result4)) {
@@ -721,7 +721,7 @@ $table4 = mysqli_query($koneksi, "SELECT * FROM inventory a INNER JOIN baja b ON
                                     <label>Posisi Bongkar</label>
                                     <select id="posisi_bongkar" name="posisi_bongkar" class="form-control">
                                       <?php
-                                      include 'koneksi.php';
+                             
                                       $result4 = mysqli_query($koneksi, "SELECT * FROM rute_driver");
 
                                       while ($data4 = mysqli_fetch_array($result4)) {

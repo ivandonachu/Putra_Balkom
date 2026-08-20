@@ -554,7 +554,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="tujuan" multiple data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                          
                               $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");
 
                               while ($data2 = mysqli_fetch_array($result)) {
@@ -575,7 +575,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_kota" multiple data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                           
                               $result = mysqli_query($koneksi, "SELECT * FROM list_kota_l");
 
                               while ($data2 = mysqli_fetch_array($result)) {
@@ -813,7 +813,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   <select id="tokens" class="selectpicker form-control" name="tujuan" multiple data-live-search="true">
                                     <option></option>
                                     <?php
-                                    include 'koneksi.php';
+                                
                                     $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");
                                     $dataSelect = $data['tujuan'];
                                     while ($data2 = mysqli_fetch_array($result)) {
@@ -838,7 +838,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   <select id="tokens" class="selectpicker form-control" name="nama_kota" multiple data-live-search="true">
                                     <option></option>
                                     <?php
-                                    include 'koneksi.php';
+                                
                                     $result = mysqli_query($koneksi, "SELECT * FROM list_kota_l");
                                     $dataSelect = $data['kota'];
                                     while ($data2 = mysqli_fetch_array($result)) {

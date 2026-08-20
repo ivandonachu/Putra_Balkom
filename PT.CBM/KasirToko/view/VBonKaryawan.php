@@ -297,7 +297,7 @@ else{
           <label>Nama</label>
           <select id="nama" name="nama" class="form-control">
             <?php
-            include 'koneksi.php';
+        
             $result = mysqli_query($koneksi, "SELECT * FROM karyawan");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -309,7 +309,7 @@ else{
             }
             ?>
              <?php
-            include 'koneksi.php';
+   
             $result = mysqli_query($koneksi, "SELECT * FROM driver");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -443,7 +443,7 @@ else{
           </div>
 
           <?php
-          include 'koneksi.php';
+       
           $no_laporan = $data['no_bon'];
           $queryE = mysqli_query($koneksi, "SELECT * FROM bon_karyawan where no_bon = '$no_laporan'");
           $dataE = mysqli_fetch_array($queryE);

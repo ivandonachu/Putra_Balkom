@@ -438,7 +438,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM pangkalan");
                           </div>
 
                           <?php
-                          include 'koneksi.php';
+                    
                           $id_edit = $data['no_registrasi'];
                           $queryE = mysqli_query($koneksi, "SELECT * FROM pangkalan where no_registrasi = '$id_edit'");
                           $dataE = mysqli_fetch_array($queryE);

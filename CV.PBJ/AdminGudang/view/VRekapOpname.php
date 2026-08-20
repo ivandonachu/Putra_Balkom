@@ -221,7 +221,7 @@ if (isset($_GET['tanggal1'])) {
                                 <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
                                 <select id="tokens" class="selectpicker form-control-sm" name="nama_gudang" data-live-search="true">
                                     <?php
-                                    include 'koneksi.php';
+                                   
 
 
                                     $result = mysqli_query($koneksi, "SELECT nama_gudang FROM list_gudang");

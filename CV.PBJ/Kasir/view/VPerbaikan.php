@@ -309,7 +309,7 @@ else{
          <select id="amt" name="amt" class="form-control ">
              <option></option>
           <?php
-          include 'koneksi.php';
+      
           $result = mysqli_query($koneksi, "SELECT * FROM driver");   
 
           while ($data2 = mysqli_fetch_array($result)){
@@ -328,7 +328,7 @@ else{
         <select id="mt" name="mt" class="form-control">
             <option></option>
           <?php
-          include 'koneksi.php';
+         
           $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
 
           while ($data2 = mysqli_fetch_array($result)){
@@ -491,7 +491,7 @@ else{
                      <option></option>
                    <?php
                    $dataSelect = $data['amt']; 
-                   include 'koneksi.php';
+               
                    $result = mysqli_query($koneksi, "SELECT * FROM driver");   
 
                    while ($data2 = mysqli_fetch_array($result)){
@@ -512,7 +512,7 @@ else{
                     <option></option>
                   <?php
                   $dataSelect = $data['mt']; 
-                  include 'koneksi.php';
+               
                   $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
 
                   while ($data2 = mysqli_fetch_array($result)){

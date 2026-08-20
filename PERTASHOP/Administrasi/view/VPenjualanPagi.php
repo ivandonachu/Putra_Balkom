@@ -317,7 +317,7 @@ else{
            <label>Lokasi</label>
            <select id="lokasi" name="lokasi" class="form-control ">
             <?php
-            include 'koneksi.php';
+         
             $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
             while ($data2 = mysqli_fetch_array($result)){

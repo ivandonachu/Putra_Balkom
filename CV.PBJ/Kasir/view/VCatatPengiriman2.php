@@ -340,7 +340,7 @@ else{
            <label>Nama Perusahaan</label>
            <select id="nm_perusahaan" name="nm_perusahaan" class="form-control ">
             <?php
-            include 'koneksi.php';
+         
             $result = mysqli_query($koneksi, "SELECT * FROM lokasi_kirim");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -358,7 +358,7 @@ else{
           <label>Nama Lokasi</label>
           <select id="nm_lokasi" name="nm_lokasi" class="form-control">
             <?php
-            include 'koneksi.php';
+          
             $result = mysqli_query($koneksi, "SELECT * FROM lokasi_kirim order by no_lokasi DESC");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -382,7 +382,7 @@ else{
            <label>Driver</label>
            <select id="driver" name="driver" class="form-control ">
             <?php
-            include 'koneksi.php';
+     
             $result = mysqli_query($koneksi, "SELECT * FROM driver");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -400,7 +400,7 @@ else{
           <label>Kendaraan</label>
           <select id="kendaraan" name="kendaraan" class="form-control">
             <?php
-            include 'koneksi.php';
+   
             $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -599,7 +599,7 @@ else{
            <label>Nama Perusahaan</label>
            <select id="nm_perusahaan" name="nm_perusahaan" class="form-control ">
             <?php
-            include 'koneksi.php';
+   
             $dataSelect = $data['nm_perusahaan'];
             $result = mysqli_query($koneksi, "SELECT * FROM lokasi_kirim");   
 
@@ -617,7 +617,7 @@ else{
           <label>Nama Lokasi</label>
           <select id="nm_lokasi" name="nm_lokasi" class="form-control">
             <?php
-            include 'koneksi.php';
+     
              $dataSelect = $data['nm_lokasi'];
             $result = mysqli_query($koneksi, "SELECT * FROM lokasi_kirim");   
 
@@ -642,7 +642,7 @@ else{
            <label>Driver</label>
            <select id="driver" name="driver" class="form-control ">
             <?php
-            include 'koneksi.php';
+         
              $dataSelect = $data['nama_driver'];
             $result = mysqli_query($koneksi, "SELECT * FROM driver");   
 
@@ -660,7 +660,7 @@ else{
           <label>Kendaraan</label>
           <select id="kendaraan" name="kendaraan" class="form-control">
             <?php
-            include 'koneksi.php';
+       
              $dataSelect = $data['no_polisi'];
             $result = mysqli_query($koneksi, "SELECT * FROM kendaraan");   
 

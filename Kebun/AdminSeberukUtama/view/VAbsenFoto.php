@@ -293,7 +293,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="nama_karyawan_1" data-live-search="true">
                                                             <option></option>
                                                             <?php
-                                                            include 'koneksi.php';
+                                              
                                                             $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_seberuk");
 
                                                             while ($data2 = mysqli_fetch_array($result2)) {
@@ -317,7 +317,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="nama_karyawan_2" data-live-search="true">
                                                             <option></option>
                                                             <?php
-                                                            include 'koneksi.php';
+                                                        
                                                             $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_seberuk");
 
                                                             while ($data2 = mysqli_fetch_array($result2)) {
@@ -341,7 +341,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="nama_karyawan_3" data-live-search="true">
                                                             <option></option>
                                                             <?php
-                                                            include 'koneksi.php';
+                                                   
                                                             $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_seberuk");
 
                                                             while ($data2 = mysqli_fetch_array($result2)) {
@@ -365,7 +365,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="nama_karyawan_4" data-live-search="true">
                                                             <option></option>
                                                             <?php
-                                                            include 'koneksi.php';
+                                                    
                                                             $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_seberuk");
 
                                                             while ($data2 = mysqli_fetch_array($result2)) {
@@ -389,7 +389,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="nama_karyawan_5" data-live-search="true">
                                                             <option></option>
                                                             <?php
-                                                            include 'koneksi.php';
+                                                         
                                                             $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_seberuk");
 
                                                             while ($data2 = mysqli_fetch_array($result2)) {
@@ -525,7 +525,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                     <select id="tokens" class="selectpicker form-control" name="nama_karyawan" data-live-search="true">
                                                                         <option></option>
                                                                         <?php
-                                                                        include 'koneksi.php';
+                                                                  
                                                                         $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_seberuk");
                                                                         $dataSelect = $data['nama_karyawan'];
                                                                         while ($data2 = mysqli_fetch_array($result2)) {

@@ -371,7 +371,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_1"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+              
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){
@@ -396,7 +396,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_2"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+            
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){
@@ -421,7 +421,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_3"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+             
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){
@@ -446,7 +446,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_4"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+             
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){
@@ -471,7 +471,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_5"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+           
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){
@@ -496,7 +496,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_6"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+               
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){
@@ -521,7 +521,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_7"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+              
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){
@@ -546,7 +546,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_8"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+           
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){
@@ -571,7 +571,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_9"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+              
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){
@@ -596,7 +596,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");
                 <select id="tokens" class="selectpicker form-control" name="penyadap_10"  data-live-search="true">
                 <option></option>
                 <?php
-                include 'koneksi.php';
+               
                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_gaji_penyadap_seberuk");   
 
                 while ($data2 = mysqli_fetch_array($result2)){

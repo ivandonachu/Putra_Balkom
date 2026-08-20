@@ -354,7 +354,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <label>Nama</label>
                             <select id="tokens" class="selectpicker form-control" name="nama" multiple data-live-search="true">
                               <?php
-                              include 'koneksi.php';
+                  
                               $result2 = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan ");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -555,7 +555,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             </div>
 
                             <?php
-                            include 'koneksi.php';
+                         
                             $no_laporan = $data['no_bon'];
                             $queryE = mysqli_query($koneksi, "SELECT * FROM bon_karyawan where no_bon = '$no_laporan'");
                             $dataE = mysqli_fetch_array($queryE);

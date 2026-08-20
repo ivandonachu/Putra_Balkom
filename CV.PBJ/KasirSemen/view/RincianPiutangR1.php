@@ -334,7 +334,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                   <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan; ?>">
                                                   <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                                                   <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
-                                                  <input type="hidden" name="tanggal" value="<?php echo $tanggal; ?>">
+                                                  <input type="hidden" name="tanggal" value="<?php echo $tanggal_do; ?>">
                     
                     
                                                   <div class="row">

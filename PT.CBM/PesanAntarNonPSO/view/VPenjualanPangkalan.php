@@ -338,7 +338,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM penjualan_pangkalan a INNER JOIN 
           <select id="tokens" class="selectpicker form-control" name="nama" data-live-search="true">
             <option></option>
             <?php
-            include 'koneksi.php';
+      
             $result = mysqli_query($koneksi, "SELECT * FROM pangkalan");   
 
             while ($data2 = mysqli_fetch_array($result)){

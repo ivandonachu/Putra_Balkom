@@ -240,7 +240,7 @@ data-parent="#accordionSidebar">
         <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
         <select id="lokasi" name="lokasi"s>
             <?php
-            include 'koneksi.php';
+  
             $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -299,7 +299,7 @@ data-parent="#accordionSidebar">
            <label>Lokasi</label>
            <select id="lokasi" name="lokasi" class="form-control ">
             <?php
-            include 'koneksi.php';
+   
             $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -317,7 +317,7 @@ data-parent="#accordionSidebar">
            <label>Penyetor</label>
            <select id="penyetor" name="penyetor" class="form-control ">
             <?php
-            include 'koneksi.php';
+     
             $result = mysqli_query($koneksi, "SELECT * FROM akun_perta");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -504,7 +504,7 @@ data-parent="#accordionSidebar">
                  <select id="lokasi" name="lokasi" class="form-control ">
                    <?php
                    $dataSelect = $data['lokasi']; 
-                   include 'koneksi.php';
+       
                    $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
                    while ($data2 = mysqli_fetch_array($result)){
@@ -523,7 +523,7 @@ data-parent="#accordionSidebar">
                  <select id="penyetor" name="penyetor" class="form-control ">
                    <?php
                    $dataSelect = $data['penyetor']; 
-                   include 'koneksi.php';
+           
                    $result = mysqli_query($koneksi, "SELECT * FROM akun_perta");   
 
                    while ($data2 = mysqli_fetch_array($result)){

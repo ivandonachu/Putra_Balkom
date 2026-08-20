@@ -292,7 +292,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="nama_driver"  data-live-search="true">
                                                         <option></option>
                                                         <?php
-                                                        include 'koneksi.php';
+                                                  
                                                         $result2 = mysqli_query($koneksi, "SELECT * FROM driver_sawit_msj");   
 
                                                         while ($data2 = mysqli_fetch_array($result2)){
@@ -310,7 +310,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="no_polisi"  data-live-search="true">
                                                         <option></option>
                                                         <?php
-                                                        include 'koneksi.php';
+                                                     
                                                         $result2 = mysqli_query($koneksi, "SELECT * FROM kendaraan_sawit_msj");   
 
                                                         while ($data2 = mysqli_fetch_array($result2)){
@@ -495,7 +495,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="nama_driver"  data-live-search="true">
                                                         <option></option>
                                                         <?php
-                                                        include 'koneksi.php';
+                                        
                                                         $result2 = mysqli_query($koneksi, "SELECT * FROM driver_sawit_msj");   
                                                         $dataSelect = $data['nama_driver'];
                                                         while ($data2 = mysqli_fetch_array($result2)){
@@ -515,7 +515,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="no_polisi"  data-live-search="true">
                                                         <option></option>
                                                         <?php
-                                                        include 'koneksi.php';
+                                                 
                                                         $result2 = mysqli_query($koneksi, "SELECT * FROM kendaraan_sawit_msj");   
                                                         $dataSelect = $data['no_polisi'];
                                                         while ($data2 = mysqli_fetch_array($result2)){

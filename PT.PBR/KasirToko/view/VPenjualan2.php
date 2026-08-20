@@ -1170,7 +1170,7 @@ else {
                                                             <option>Khusus</option>
                                                             <option></option>
                                                             <?php
-                                                            include 'koneksi.php';
+                                                 
                                                             $result = mysqli_query($koneksi, "SELECT * FROM pangkalan");
 
                                                             while ($data2 = mysqli_fetch_array($result)) {
@@ -1338,7 +1338,7 @@ else {
                                                             <option>Karyawan</option>
                                                             <option>Khusus</option>
                                                             <?php
-                                                            include 'koneksi.php';
+                                                        
                                                             $result = mysqli_query($koneksi, "SELECT * FROM pangkalan");
 
                                                             while ($data2 = mysqli_fetch_array($result)) {
@@ -1488,7 +1488,7 @@ else {
                                                         <label>Nama Pangkalan</label>
                                                         <select id="tokens" class="selectpicker form-control" name="nama" multiple data-live-search="true">
                                                             <?php
-                                                            include 'koneksi.php';
+                                                       
                                                             $result = mysqli_query($koneksi, "SELECT * FROM pangkalan");
 
                                                             while ($data2 = mysqli_fetch_array($result)) {
@@ -1792,7 +1792,7 @@ else {
                                                                             <option <?php echo ($dataSelect == 'Karyawan') ? "selected" : "" ?>>Karyawan</option>
                                                                             <option <?php echo ($dataSelect == 'Khusus') ? "selected" : "" ?>>Khusus</option>
                                                                             <?php
-                                                                            include 'koneksi.php';
+                                                               
                                                                             $result = mysqli_query($koneksi, "SELECT * FROM pangkalan");
 
                                                                             while ($data2 = mysqli_fetch_array($result)) {
@@ -1875,7 +1875,7 @@ else {
                                                         </div>
 
                                                         <?php
-                                                        include 'koneksi.php';
+                                        
                                                         $no_laporan = $data['no_transaksi'];
                                                         $queryE = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan where no_transaksi = '$no_laporan'");
                                                         $dataE = mysqli_fetch_array($queryE);

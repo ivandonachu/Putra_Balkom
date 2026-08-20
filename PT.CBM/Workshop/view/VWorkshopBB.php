@@ -266,7 +266,7 @@ else{
           <label>Nama Driver</label>
          <select id="tokens" class="selectpicker form-control" name="nama_driver" multiple data-live-search="true">
         <?php
-        include 'koneksi.php';
+      
         $result = mysqli_query($koneksipbj, "SELECT * FROM driver");   
 
         while ($data2 = mysqli_fetch_array($result)){
@@ -415,7 +415,7 @@ else{
           <select class="form-control" name="nama_driver" >
             <?php
               $dataSelect = $data['nama_driver'];
-              include 'koneksi.php';
+              
               $result = mysqli_query($koneksipbj, "SELECT * FROM driver ");
 
               while ($data2 = mysqli_fetch_array($result)) {

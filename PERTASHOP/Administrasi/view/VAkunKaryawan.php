@@ -245,7 +245,7 @@ data-parent="#accordionSidebar">
                 
            <select id="lokasi" name="lokasi" class="form-control ">
             <?php
-            include 'koneksi.php';
+         
             $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
             while ($data2 = mysqli_fetch_array($result)){
@@ -268,7 +268,7 @@ data-parent="#accordionSidebar">
                   <label>Kode Pertashop</label>
                   <select name="kode_perta" class="form-control">
                     <?php
-                    include 'koneksi.php';
+            
                     $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
                     while ($data2 = mysqli_fetch_array($result)){
@@ -383,7 +383,7 @@ data-parent="#accordionSidebar">
                 
            <select id="lokasi" name="lokasi" class="form-control ">
             <?php
-            include 'koneksi.php';
+      
             $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
             $dataSelect = $data['nama'];
             while ($data2 = mysqli_fetch_array($result)){
@@ -400,7 +400,7 @@ data-parent="#accordionSidebar">
                   <label>Kode Pertashop</label>
                   <select name="kode_perta" class="form-control">
                     <?php
-                    include 'koneksi.php';
+                  
                     $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
                      $dataSelect = $data['kode_perta'];
                     while ($data2 = mysqli_fetch_array($result)){
@@ -458,7 +458,7 @@ data-parent="#accordionSidebar">
                 <div class="form-group">
               <select id="lokasi" name="lokasi" class="form-control ">
             <?php
-            include 'koneksi.php';
+        
             $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
             $dataSelect = $data['nama'];
             while ($data2 = mysqli_fetch_array($result)){
@@ -475,7 +475,7 @@ data-parent="#accordionSidebar">
                   <label>Kode Pertashop</label>
                   <select name="kode_perta" class="form-control">
                     <?php
-                    include 'koneksi.php';
+              
                     $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
                      $dataSelect = $data['kode_perta'];
                     while ($data2 = mysqli_fetch_array($result)){

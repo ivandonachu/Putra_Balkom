@@ -305,7 +305,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM riwayat_peminjaman a INNER JOIN r
                             </button>
                           </div>
                           <?php
-                          include 'koneksi.php';
+                   
                           //penjulan
                           $no_laporan = $data['no_transaksi'];
                           $queryE = mysqli_query($koneksi, "SELECT * FROM riwayat_penjualan where no_transaksi = '$no_laporan'");

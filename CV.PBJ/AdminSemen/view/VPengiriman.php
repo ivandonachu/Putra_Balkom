@@ -323,7 +323,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="toko_do" multiple data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                   
                               $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");
 
                               while ($data2 = mysqli_fetch_array($result)) {

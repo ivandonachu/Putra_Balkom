@@ -253,8 +253,8 @@ data-parent="#accordionSidebar">
                       <div class="modal-body" align="left">
 
                         <?php echo "<form action='../proses/proses_absensi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir' enctype='multipart/form-data' method='POST'>";  ?>
-                        <input type="hidden" name="nama_karyawan" value="<?php echo $nama_karyawan; ?>">
-                        <input type="hidden" name="lokasi" value="<?php echo $lokasi; ?>">
+                        <input type="hidden" name="nama_karyawan" value="<?php echo $nama; ?>">
+                        <input type="hidden" name="lokasi" value="">
 
                         <label>Upload File</label>
                         <input type="file" name="file">

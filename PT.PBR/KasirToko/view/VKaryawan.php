@@ -322,7 +322,7 @@ $table = mysqli_query($koneksi, "SELECT * FROM karyawan");
                         </div>
 
                         <?php
-                        include 'koneksi.php';
+                      
                         $id_edit = $data2['id_karyawan'];
                         $queryE = mysqli_query($koneksi, "SELECT * FROM karyawan where id_karyawan = '$id_edit'");
                         $dataE = mysqli_fetch_array($queryE);

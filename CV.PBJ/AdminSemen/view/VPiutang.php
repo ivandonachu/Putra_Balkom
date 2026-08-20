@@ -486,7 +486,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan; ?>">
                               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
-                              <input type="hidden" name="tanggal" value="<?php echo $tanggal; ?>">
+                              <input type="hidden" name="tanggal" value="<?php echo $tanggal_do; ?>">
 
 
                               <div class="row">
@@ -578,7 +578,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <select id="tokens" class="selectpicker form-control" name="toko_do" multiple data-live-search="true">
                                       <option></option>
                                       <?php
-                                      include 'koneksi.php';
+                             
                                       $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");
                                       $dataSelect = $data['toko_do'];
                                       while ($data2 = mysqli_fetch_array($result)) {

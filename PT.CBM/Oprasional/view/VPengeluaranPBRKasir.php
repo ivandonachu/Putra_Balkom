@@ -566,7 +566,7 @@ Menu Kepala Oprasional
           </div>
 
           <?php
-          include 'koneksi.php';
+        
           $no_laporan = $data['no_pengeluaran'];
           $queryE = mysqli_query($koneksi, "SELECT * FROM riwayat_pengeluaran where no_pengeluaran = '$no_laporan'");
           $dataE = mysqli_fetch_array($queryE);

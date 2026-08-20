@@ -283,7 +283,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                         <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
                                                             <option></option>
                                                             <?php
-                                                            include 'koneksi.php';
+                                                     
                                                             $result2 = mysqli_query($koneksi, "SELECT * FROM list_kendaraan_seberuk");
 
                                                             while ($data2 = mysqli_fetch_array($result2)) {
@@ -448,7 +448,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                                             <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
                                                                                 <option></option>
                                                                                 <?php
-                                                                                include 'koneksi.php';
+                                                                           
                                                                                 $result2 = mysqli_query($koneksi, "SELECT * FROM list_kendaraan_seberuk");
                                                                                 $dataSelect = $data['no_polisi'];
                                                                                 while ($data2 = mysqli_fetch_array($result2)) {

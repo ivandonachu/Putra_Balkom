@@ -386,7 +386,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_1" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                         
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -403,7 +403,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_2" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                            
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -423,7 +423,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_3" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                        
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -440,7 +440,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_4" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                    
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -460,7 +460,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_5" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                          
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -477,7 +477,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_6" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                 
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -498,7 +498,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_7" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+               
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -515,7 +515,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_8" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+               
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -536,7 +536,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_9" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+              
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -553,7 +553,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="nama_buruh_10" data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                
                               $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
 
                               while ($data2 = mysqli_fetch_array($result2)) {
@@ -653,7 +653,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                   <select id="tokens" class="selectpicker form-control" name="nama_buruh" data-live-search="true">
                                     <option></option>
                                     <?php
-                                    include 'koneksi.php';
+                                   
                                     $result2 = mysqli_query($koneksi, "SELECT * FROM list_burhar_seberuk");
                                     $dataSelect = $data['nama_buruh'];
                                     while ($data2 = mysqli_fetch_array($result2)) {

@@ -375,7 +375,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <option> Nur Hasanaah </option>
                               <option> Mang Jai </option>
                               <?php
-                              include 'koneksi.php';
+                       
                               $result2 = mysqli_query($koneksi, "SELECT * FROM seluruh_karyawan");
 
                               while ($data2 = mysqli_fetch_array($result2)) {

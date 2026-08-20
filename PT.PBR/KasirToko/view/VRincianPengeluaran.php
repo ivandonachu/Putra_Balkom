@@ -351,7 +351,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                           </div>
 
                           <?php
-                          include 'koneksi.php';
+               
                           $no_laporan = $data['no_bon'];
                           $queryE = mysqli_query($koneksi, "SELECT * FROM bon_karyawan where no_bon = '$no_laporan'");
                           $dataE = mysqli_fetch_array($queryE);

@@ -525,7 +525,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                             <select id="tokens" class="selectpicker form-control" name="toko_do" multiple data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                          
                               $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");
 
                               while ($data2 = mysqli_fetch_array($result)) {
@@ -698,7 +698,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               <input type="hidden" name="no_penjualan" value="<?php echo $no_penjualan; ?>">
                               <input type="hidden" name="tanggal1" value="<?php echo $tanggal_awal; ?>">
                               <input type="hidden" name="tanggal2" value="<?php echo $tanggal_akhir; ?>">
-                              <input type="hidden" name="tanggal" value="<?php echo $tanggal; ?>">
+                              <input type="hidden" name="tanggal" value="<?php echo $tanggal_do; ?>">
 
 
                               <div class="row">
@@ -814,7 +814,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                                     <select id="tokens" class="selectpicker form-control" name="toko_do" multiple data-live-search="true">
                                       <option></option>
                                       <?php
-                                      include 'koneksi.php';
+                               
                                       $result = mysqli_query($koneksi, "SELECT * FROM toko_do_l");
                                       $dataSelect = $data['toko_do'];
                                       while ($data2 = mysqli_fetch_array($result)) {
@@ -1015,24 +1015,24 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                       <div class="col-md-6">
                         <label>Uang Jalan</label>
-                        <input class="form-control form-control-sm" type="number" id="uj" name="uj" value="<?php echo $uj; ?>">
+                        <input class="form-control form-control-sm" type="number" id="uj" name="uj" value="">
                       </div>
 
 
                       <div class="col-md-6">
                         <label>Uang Gaji</label>
-                        <input class="form-control form-control-sm" type="number" id="ug" name="ug" value="<?php echo $ug; ?>">
+                        <input class="form-control form-control-sm" type="number" id="ug" name="ug" value="">
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <label>Ongkos Mobil</label>
-                        <input class="form-control form-control-sm" type="number" id="om" name="om" value="<?php echo $om; ?>">
+                        <input class="form-control form-control-sm" type="number" id="om" name="om" value="">
                       </div>
 
                       <div class="col-md-6">
                         <label>Biaya Sewa Kendaraan Luar</label>
-                        <input class="form-control form-control-sm" type="number" id="bs" name="bs" value="<?php echo $bs; ?>">
+                        <input class="form-control form-control-sm" type="number" id="bs" name="bs" value="">
                       </div>
 
                     </div>

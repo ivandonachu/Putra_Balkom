@@ -235,7 +235,7 @@ data-parent="#accordionSidebar">
         <input type="date" id="tanggal2" style="font-size: 14px" name="tanggal2">
         <select id="lokasi" name="lokasi"s>
             <?php
-            include 'koneksi.php';
+          
             $result = mysqli_query($koneksi, "SELECT * FROM pertashop");   
 
             while ($data2 = mysqli_fetch_array($result)){

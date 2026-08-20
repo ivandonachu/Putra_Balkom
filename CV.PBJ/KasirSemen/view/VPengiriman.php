@@ -320,7 +320,7 @@ else if($id1 == 'a3'){
                             <label>Driver</label>
                             <select id="tokens" class="selectpicker form-control" name="driver" multiple data-live-search="true">
                               <?php
-                              include 'koneksi.php';
+                       
                               $result = mysqli_query($koneksi, "SELECT * FROM driver_s");
 
                               while ($data2 = mysqli_fetch_array($result)) {
@@ -337,7 +337,7 @@ else if($id1 == 'a3'){
                             <label>Kendaraan</label>
                             <select id="tokens" class="selectpicker form-control" name="no_polisi" multiple data-live-search="true">
                               <?php
-                              include 'koneksi.php';
+                      
                               $result = mysqli_query($koneksi, "SELECT * FROM kendaraan_s");
 
                               while ($data2 = mysqli_fetch_array($result)) {
@@ -371,7 +371,7 @@ else if($id1 == 'a3'){
                             <select id="tokens" class="selectpicker form-control" name="toko_do" multiple data-live-search="true">
                               <option></option>
                               <?php
-                              include 'koneksi.php';
+                  
                               $result = mysqli_query($koneksi, "SELECT * FROM toko_do");
 
                               while ($data2 = mysqli_fetch_array($result)) {
