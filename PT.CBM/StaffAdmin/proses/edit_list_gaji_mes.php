@@ -36,7 +36,7 @@ $angsuran_bon_bulanan = $_POST['angsuran_bon_bulanan'];
 $bonus = $_POST['bonus'];
 $insentif = $_POST['insentif'];
 $hutang_pribadi = $_POST['hutang_pribadi'];
-if($nama_karyawan == 'Septian Andriansyah' ){
+if($nama_karyawan == 'Made Rido Fasnipa' ){
 	$total_gaji_diterima = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $tunjangan_akomodasi + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif- $bpjs_kesehatan - $bpjs_ketenagakerjaan;
 	$total_gaji = $gaji_pokok + $tunjangan_jabatan + $tunjangan_operasional + $tunjangan_akomodasi + $uang_makan_bulan + $fee_kehadiran + $lembur + $bonus + $insentif ;
 }

@@ -656,7 +656,7 @@ if ($tanggal_awal == $tanggal_akhir) {
                               </div>
                               <div class="col-md-4">
                                 <label>Hutang Pribadi</label>
-                                <input class="form-control form-control-sm" type="number" name="hutang_prbadi" required="" value="<?php echo $hutang_prbadi; ?>">
+                                <input class="form-control form-control-sm" type="number" name="hutang_pribadi" required="" value="<?php echo $hutang_pribadi; ?>">
                               </div>
                               <div class="col-md-4">
                                 <label>Keterangan</label>
