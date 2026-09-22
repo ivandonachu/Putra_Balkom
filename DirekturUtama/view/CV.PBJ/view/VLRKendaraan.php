@@ -1654,8 +1654,8 @@ while ($data = mysqli_fetch_array($table_bmu)) {
 
                                         $table_unit = mysqli_query($koneksipbj, "SELECT * FROM kendaraan_sl WHERE no_polisi = '$no_polisi' ");
                                         $data_unit = mysqli_fetch_array($table_unit);
-
-
+                                        
+                                        $no_urut = 0;
                                         if (!isset($data_unit['no_polisi'])) {
                                             $nopol_kso = 0;
                                         } else {
@@ -1670,6 +1670,7 @@ while ($data = mysqli_fetch_array($table_bmu)) {
                                           
                                         }
                                     }
+                                    $total_pendapatan_bmu = 0;
 $total_pendapatan_bmu = $total_pendapatan_bmu;
 
 
