@@ -333,7 +333,7 @@ else{
                 <label>Nama Driver</label>
                 <select id="nama_driver" name="nama_driver" class="form-control form-control-sm">
                 <?php
-                include 'koneksi.php';
+               
                 $result = mysqli_query($koneksi, "SELECT * FROM driver_semen");   
 
                 while ($data2 = mysqli_fetch_array($result)){
@@ -466,7 +466,7 @@ else{
                 <select id="nama_driver" name="nama_driver" class="form-control ">
                     <?php
                     $dataSelect = $data['nama_driver']; 
-                    include 'koneksi.php';
+               
                     $result = mysqli_query($koneksi, "SELECT * FROM driver_semen ");   
 
                     while ($data2 = mysqli_fetch_array($result)){
