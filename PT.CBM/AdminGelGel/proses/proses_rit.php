@@ -25,10 +25,10 @@ $tanggal = $_POST['tanggal'];
 $nama_driver = $_POST['nama_driver'];
 $nama_rute = $_POST['nama_rute'];
 if($nama_rute == 'PDPDE DUABELAS BELITANG'){
-    $uang_gaji = 200000;
+    $uang_gaji = 150000;
 }
 else if($nama_rute == 'PDPDE DUABELAS MUARA DUA'){
-    $uang_gaji = 200000;
+    $uang_gaji = 150000;
 }
 
 
