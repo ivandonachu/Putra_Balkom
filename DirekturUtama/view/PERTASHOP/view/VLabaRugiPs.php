@@ -257,7 +257,7 @@ else{
    $datay12 = mysqli_fetch_array($tabley12);
    $sonding_akhir_max = $datay12['sonding_akhir'];
    $stok_akhir_max = $datay12['stok_akhir'];
-   $harga_stok_akhir_max = $datay22z['harga'];
+   $harga_stok_akhir_max = $datay12['harga'];
    $total_uang_stok_max = $sonding_akhir_max * $harga_stok_akhir_max;
 
    //Sisa stok Akhir Dexlite
@@ -421,6 +421,7 @@ else{
     $total_uang_losis_dex = $total_losis_dex * $harga_stok_akhir_dex;
 }
   
+
 
   $laba_kotor_dex = $total_pendapatan_dex - $total_dexlite_b ;
   $laba_kotor_max = $total_pendapatan_max - $total_pertamax_b ;
