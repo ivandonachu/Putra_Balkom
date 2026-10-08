@@ -488,7 +488,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     if (!isset($data_gaji_x['total_gaji_new'])) {
         $total_gaji_karyawan_new = 0;
     }
-
+    
     //GAJI Drivver new
     $table101x = mysqli_query($koneksicbm, "SELECT SUM(total_gaji_diterima) AS total_gaji_driverx FROM rekap_gaji_driver_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' ");
     $data_gaji_driver = mysqli_fetch_array($table101x);
@@ -761,7 +761,9 @@ if ($tanggal_awal == $tanggal_akhir) {
         $total_pengeluaran_lainnya_new = 0;
     }
 
-    $total_biaya_usaha = $total_biaya_usaha + $total_biaya_usaha_keuangan + $total_pengeluaran_lainnya_new;
+    $total_biaya_usaha = $total_biaya_usaha + $total_biaya_usaha_keuangan;
+    $total_pengeluaran_lainnya = $total_pengeluaran_lainnya_new;
+
 
     //biaya administrasi new
     $table179x = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS biaya_administrasi_new FROM pengeluaran_pbr WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Administrasi' ");
@@ -850,7 +852,7 @@ if ($tanggal_awal == $tanggal_akhir) {
         $total_pajak = 0;
     }
 
-    $total_pengeluaran_lainnya = $total_pengeluaran_lainnya_new;
+
 
     //Biaya Admin
     $tabel_biaya_admin = mysqli_query($koneksicbm, "SELECT SUM(jumlah) AS biaya_admin FROM pengeluaran_admin WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Admin' AND referensi = 'PBR' ");
