@@ -715,7 +715,8 @@ if ($tanggal_awal == $tanggal_akhir) {
     if (!isset($data_biaya_usaha_keuangan['biaya_usaha_keuangan'])) {
         $total_biaya_usaha_keuangan = 0;
     }
-    $total_biaya_usaha = $total_biaya_usaha + $total_biaya_usaha_keuangan + $total_pengeluaran_lainnya_new;
+    $total_biaya_usaha = $total_biaya_usaha + $total_biaya_usaha_keuangan;
+    $total_pengeluaran_lainnya = $total_pengeluaran_lainnya_new;
 
     //biaya administrasi new
     $table179x = mysqli_query($koneksipbr, "SELECT SUM(jumlah) AS biaya_administrasi_new FROM pengeluaran_mes WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Administrasi' ");
@@ -806,7 +807,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
 
-    $total_pengeluaran_lainnya = $total_pengeluaran_lainnya_new;
+
 
     $total_perbaikan_kendaraan = $total_perbaikan_ken1 + $total_perbaikan_ken2 + $total_perbaikan_ken3;
 
