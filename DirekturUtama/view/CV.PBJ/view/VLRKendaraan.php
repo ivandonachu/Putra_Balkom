@@ -1315,13 +1315,10 @@ if ($tanggal_awal == $tanggal_akhir) {
     }
 
 
-    $total_pendapatan_rli = $total_angkutan_edy_rli;
 
 
-
-
-    $table_bmu = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC'   ");
-
+    $table_bmu = mysqli_query($koneksipbj, "SELECT * FROM pembelian_sl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'Pranko' AND plant = '79H7'  OR tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND tipe_semen = 'FRC' AND plant = '79H7'   ");
+  $total_pendapatan_bmu = 0;
 while ($data = mysqli_fetch_array($table_bmu)) {
 
                                         $kota = $data['kota'];
@@ -1670,8 +1667,7 @@ while ($data = mysqli_fetch_array($table_bmu)) {
                                           
                                         }
                                     }
-                                    $total_pendapatan_bmu = 0;
-$total_pendapatan_bmu = $total_pendapatan_bmu;
+                                  
 
 
     //Untung angkutan / pranko SKB
@@ -4128,10 +4124,10 @@ $total_pendapatan_bmu = $total_pendapatan_bmu;
 
     $pph_23 = ($laba_kotor_sebelum_pajak * 2) / 100;
 
-    $pajak = ($laba_kotor_sebelum_pajak * 11) / 100;
 
 
-    $laba_kotor = (($laba_kotor_sebelum_pajak + $pajak) - $pph_23);
+
+    $laba_kotor = (($laba_kotor_sebelum_pajak) - $pph_23);
 
     $total_biaya_usaha_final = $total_gaji + $total_gaji_sl + $total_uj + $total_uj_sl + $biaya_perbaikan_1 + $biaya_perbaikan_2 + $total_kredit_kendaraan + $total_seluruh_om_bmu + $total_om_lamteng + $total_om_kotabumi + $total_seluruh_om_khusus_bmu
         + $total_om_khusus_kotabumi + $total_om_khusus_lamteng;
@@ -4627,13 +4623,6 @@ $total_pendapatan_bmu = $total_pendapatan_bmu;
                                                     <td><strong>TOTAL LABA KOTOR</strong></td>
                                                     <td class="thick-line"></td>
                                                     <td class="no-line text-left"><?= formatuang($laba_kotor_sebelum_pajak); ?> </td>
-                                                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
-                                                    <td class="thick-line"></td>
-                                                </tr>
-                                                <tr style="background-color: navy;  color:white;">
-                                                    <td><strong>PPN 11%</strong></td>
-                                                    <td class="thick-line"></td>
-                                                    <td class="no-line text-left"><?= formatuang($pajak); ?> </td>
                                                     <td class="no-line text-left"><?= formatuang(0); ?> </td>
                                                     <td class="thick-line"></td>
                                                 </tr>
