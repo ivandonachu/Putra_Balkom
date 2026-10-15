@@ -2016,16 +2016,16 @@ if ($tanggal_awal == $tanggal_akhir) {
         $ug = $data2['total_ug'];
         $om = $data2['total_om'];
         if (
-            $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' || $no_polisi == 'BG8223YD' || $no_polisi == 'BG8224YD' ||
-            $no_polisi == 'BG8225YD' || $no_polisi == 'BG8226YD' || $no_polisi == 'BG8227YD' || $no_polisi == 'BG8101YB' || $no_polisi == 'BG8376YB' || $no_polisi == 'BG8970YB' || $no_polisi == 'BG8405YB' ||
-            $no_polisi == 'BG8965V' || $no_polisi == 'BG8966V' || $no_polisi == 'BG8884UY'  || $no_polisi == 'BG8083FP'  || $no_polisi == 'BE8917ACU' || $no_polisi == 'BE8943ACU' || $no_polisi == 'BE8946ACU' ||
-            $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' || $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' || $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' ||
-            $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || $no_polisi == 'BG8535VD' || $no_polisi == 'BG8542VD' ||
-            $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH' || $no_polisi == 'BG8148YH' || $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU' ||
-            $no_polisi == 'BG8101YA' || $no_polisi == 'BG1712XL' || $no_polisi == 'BG1722XL' || $no_polisi == 'BG8969YB' || $no_polisi == 'BG1711XL' || $no_polisi == 'BG8218YH' || $no_polisi == 'BG8302XB' ||
-            $no_polisi == 'BG8301XB' || $no_polisi == 'BG8300XB' || $no_polisi == 'BG8755XB' || $no_polisi == 'BG8754XB' || $no_polisi == 'BG1718XL' || $no_polisi == 'BG1716XL' || $no_polisi == 'BG1756XL' ||
-            $no_polisi == 'BG1715XL' || $no_polisi == 'BG8849XL' || $no_polisi == 'BG8558XL' || $no_polisi == 'BG8851XL' || $no_polisi == 'BG8857XL' || $no_polisi == 'BG8783XL' || $no_polisi == 'BG8784XL' ||
-            $no_polisi == 'BG8261YH' || $no_polisi == 'BG8245YH' || $no_polisi == 'BG8260YH'
+            $no_polisi == 'BG8251YC' || $no_polisi == 'BG8405YB' || $no_polisi == 'BG8965V' || $no_polisi == 'BG8966V' || $no_polisi == 'BG8376YB' || $no_polisi == 'BG8970YB' || $no_polisi == 'BG8930VA' ||
+            $no_polisi == 'BG8101YB' || $no_polisi == 'BG8515YB' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8521YB' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' ||
+            $no_polisi == 'BG8083FP' || $no_polisi == 'BE8917ACU' || $no_polisi == 'BE8943ACU'  || $no_polisi == 'BE8946ACU'  || $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' ||
+            $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' || $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || $no_polisi == 'BG8535VD' ||
+            $no_polisi == 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8148YH' || $no_polisi == 'BG8218YH' || $no_polisi == 'BG8245YH' ||
+            $no_polisi == 'BG8260YH' || $no_polisi == 'BG8261YH' || $no_polisi == 'BG8969YB' || $no_polisi == 'BG8170VD' || $no_polisi == 'BG8167VD' || $no_polisi == 'BG8168VD' || $no_polisi == 'BG8164VD' ||
+            $no_polisi == 'BG8172VD' || $no_polisi == 'BG8476YH' || $no_polisi == 'BG8473YH' || $no_polisi == 'BG8475YH' || $no_polisi == 'BG8471YH' || $no_polisi == 'BG8478YH' || $no_polisi == 'BG8472YH' ||
+            $no_polisi == 'BG8470YH' || $no_polisi == 'BG8469YH' || $no_polisi == 'BG8474YH' || $no_polisi == 'BG8477YH' || $no_polisi == 'BG8720YH' || $no_polisi == 'BG8741YH' || $no_polisi == 'BG8713YH' ||
+            $no_polisi == 'BG8721YH' || $no_polisi == 'BG8717YH' || $no_polisi == 'BG8726YH' || $no_polisi == 'BG8714YH' || $no_polisi == 'BG8727YH' || $no_polisi == 'BG8783YH' || $no_polisi == 'BG8782YH' ||
+            $no_polisi == 'BG8781YH' || $no_polisi == 'BG8711YH' || $no_polisi == 'BG8224YD' || $no_polisi == 'BG8223YD'
         ) {
             $total_uj = $total_uj + $uj;
             $total_gaji = $total_gaji + $ug;
@@ -2047,16 +2047,16 @@ if ($tanggal_awal == $tanggal_akhir) {
         $ug = $data2sl['total_ug_sl'];
         $om = $data2sl['total_om_sl'];
         if (
-            $no_polisi == 'BG8521YB' || $no_polisi == 'BG8251YC' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8930VA' || $no_polisi == 'BG8221YD' || $no_polisi == 'BG8223YD' || $no_polisi == 'BG8224YD' ||
-            $no_polisi == 'BG8225YD' || $no_polisi == 'BG8226YD' || $no_polisi == 'BG8227YD' || $no_polisi == 'BG8101YB' || $no_polisi == 'BG8376YB' || $no_polisi == 'BG8970YB' || $no_polisi == 'BG8405YB' ||
-            $no_polisi == 'BG8965V' || $no_polisi == 'BG8966V' || $no_polisi == 'BG8884UY'  || $no_polisi == 'BG8083FP'  || $no_polisi == 'BE8917ACU' || $no_polisi == 'BE8943ACU' || $no_polisi == 'BE8946ACU' ||
-            $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' || $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' || $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' ||
-            $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || $no_polisi == 'BG8535VD' || $no_polisi == 'BG8542VD' ||
-            $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8147YH' || $no_polisi == 'BG8148YH' || $no_polisi == 'BE8310LU' || $no_polisi == 'BE8314LU' ||
-            $no_polisi == 'BG8101YA' || $no_polisi == 'BG1712XL' || $no_polisi == 'BG1722XL' || $no_polisi == 'BG8969YB' || $no_polisi == 'BG1711XL' || $no_polisi == 'BG8218YH' || $no_polisi == 'BG8302XB' ||
-            $no_polisi == 'BG8301XB' || $no_polisi == 'BG8300XB' || $no_polisi == 'BG8755XB' || $no_polisi == 'BG8754XB' || $no_polisi == 'BG1718XL' || $no_polisi == 'BG1716XL' || $no_polisi == 'BG1756XL' ||
-            $no_polisi == 'BG1715XL' || $no_polisi == 'BG8849XL' || $no_polisi == 'BG8558XL' || $no_polisi == 'BG8851XL' || $no_polisi == 'BG8857XL' || $no_polisi == 'BG8783XL' || $no_polisi == 'BG8784XL' ||
-            $no_polisi == 'BG8261YH' || $no_polisi == 'BG8245YH' || $no_polisi == 'BG8260YH'
+            $no_polisi == 'BG8251YC' || $no_polisi == 'BG8405YB' || $no_polisi == 'BG8965V' || $no_polisi == 'BG8966V' || $no_polisi == 'BG8376YB' || $no_polisi == 'BG8970YB' || $no_polisi == 'BG8930VA' ||
+            $no_polisi == 'BG8101YB' || $no_polisi == 'BG8515YB' || $no_polisi == 'BG8694YA' || $no_polisi == 'BG8521YB' || $no_polisi == 'BE8528AUE' || $no_polisi == 'BE8537AUE' || $no_polisi == 'BG8381ZQ' ||
+            $no_polisi == 'BG8083FP' || $no_polisi == 'BE8917ACU' || $no_polisi == 'BE8943ACU'  || $no_polisi == 'BE8946ACU'  || $no_polisi == 'BE8931ACU' || $no_polisi == 'BE8920ACU' || $no_polisi == 'BE8940ACU' ||
+            $no_polisi == 'BE8928ACU' || $no_polisi == 'BE8934ACU' || $no_polisi == 'BE8925ACU' || $no_polisi == 'BE8937ACU' || $no_polisi == 'BG8541VD' || $no_polisi == 'BG8544VD' || $no_polisi == 'BG8535VD' ||
+            $no_polisi == 'BG8542VD' || $no_polisi == 'BG8540VD' || $no_polisi == 'BG8149YH' || $no_polisi == 'BG8150YH' || $no_polisi == 'BG8148YH' || $no_polisi == 'BG8218YH' || $no_polisi == 'BG8245YH' ||
+            $no_polisi == 'BG8260YH' || $no_polisi == 'BG8261YH' || $no_polisi == 'BG8969YB' || $no_polisi == 'BG8170VD' || $no_polisi == 'BG8167VD' || $no_polisi == 'BG8168VD' || $no_polisi == 'BG8164VD' ||
+            $no_polisi == 'BG8172VD' || $no_polisi == 'BG8476YH' || $no_polisi == 'BG8473YH' || $no_polisi == 'BG8475YH' || $no_polisi == 'BG8471YH' || $no_polisi == 'BG8478YH' || $no_polisi == 'BG8472YH' ||
+            $no_polisi == 'BG8470YH' || $no_polisi == 'BG8469YH' || $no_polisi == 'BG8474YH' || $no_polisi == 'BG8477YH' || $no_polisi == 'BG8720YH' || $no_polisi == 'BG8741YH' || $no_polisi == 'BG8713YH' ||
+            $no_polisi == 'BG8721YH' || $no_polisi == 'BG8717YH' || $no_polisi == 'BG8726YH' || $no_polisi == 'BG8714YH' || $no_polisi == 'BG8727YH' || $no_polisi == 'BG8783YH' || $no_polisi == 'BG8782YH' ||
+            $no_polisi == 'BG8781YH' || $no_polisi == 'BG8711YH' || $no_polisi == 'BG8224YD' || $no_polisi == 'BG8223YD'
         ) {
             $total_uj_sl = $total_uj_sl + $uj;
             $total_gaji_sl = $total_gaji_sl + $ug;
@@ -2074,16 +2074,16 @@ if ($tanggal_awal == $tanggal_akhir) {
         $no_polisi = $data2x['no_polisi'];
         $bs = $data2x['total_bs'];
         if (
-            $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' || $no_polisi != 'BG8223YD' || $no_polisi != 'BG8224YD' ||
-            $no_polisi != 'BG8225YD' || $no_polisi != 'BG8226YD' || $no_polisi != 'BG8227YD' || $no_polisi != 'BG8101YB' || $no_polisi != 'BG8376YB' || $no_polisi != 'BG8970YB' || $no_polisi != 'BG8405YB' ||
-            $no_polisi != 'BG8965V' || $no_polisi != 'BG8966V' || $no_polisi != 'BG8884UY'  || $no_polisi != 'BG8083FP'  || $no_polisi != 'BE8917ACU' || $no_polisi != 'BE8943ACU' || $no_polisi != 'BE8946ACU' ||
-            $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' || $no_polisi != 'BE8928ACU' || $no_polisi != 'BE8934ACU' || $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' ||
-            $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || $no_polisi != 'BG8535VD' || $no_polisi != 'BG8542VD' ||
-            $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH' || $no_polisi != 'BG8148YH' || $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU' ||
-            $no_polisi != 'BG8101YA' || $no_polisi != 'BG1712XL' || $no_polisi != 'BG1722XL' || $no_polisi != 'BG8969YB' || $no_polisi != 'BG1711XL' || $no_polisi != 'BG8218YH' || $no_polisi != 'BG8302XB' ||
-            $no_polisi != 'BG8301XB' || $no_polisi != 'BG8300XB' || $no_polisi != 'BG8755XB' || $no_polisi != 'BG8754XB' || $no_polisi != 'BG1718XL' || $no_polisi != 'BG1716XL' || $no_polisi != 'BG1756XL' ||
-            $no_polisi != 'BG1715XL' || $no_polisi != 'BG8849XL' || $no_polisi != 'BG8558XL' || $no_polisi != 'BG8851XL' || $no_polisi != 'BG8857XL' || $no_polisi != 'BG8783XL' || $no_polisi != 'BG8784XL' ||
-            $no_polisi != 'BG8261YH' || $no_polisi != 'BG8245YH' || $no_polisi != 'BG8260YH'
+            $no_polisi != 'BG8251YC' || $no_polisi != 'BG8405YB' || $no_polisi != 'BG8965V' || $no_polisi != 'BG8966V' || $no_polisi != 'BG8376YB' || $no_polisi != 'BG8970YB' || $no_polisi != 'BG8930VA' ||
+            $no_polisi != 'BG8101YB' || $no_polisi != 'BG8515YB' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8521YB' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' ||
+            $no_polisi != 'BG8083FP' || $no_polisi != 'BE8917ACU' || $no_polisi != 'BE8943ACU'  || $no_polisi != 'BE8946ACU'  || $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' ||
+            $no_polisi != 'BE8928ACU' || $no_polisi != 'BE8934ACU' || $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || $no_polisi != 'BG8535VD' ||
+            $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8148YH' || $no_polisi != 'BG8218YH' || $no_polisi != 'BG8245YH' ||
+            $no_polisi != 'BG8260YH' || $no_polisi != 'BG8261YH' || $no_polisi != 'BG8969YB' || $no_polisi != 'BG8170VD' || $no_polisi != 'BG8167VD' || $no_polisi != 'BG8168VD' || $no_polisi != 'BG8164VD' ||
+            $no_polisi != 'BG8172VD' || $no_polisi != 'BG8476YH' || $no_polisi != 'BG8473YH' || $no_polisi != 'BG8475YH' || $no_polisi != 'BG8471YH' || $no_polisi != 'BG8478YH' || $no_polisi != 'BG8472YH' ||
+            $no_polisi != 'BG8470YH' || $no_polisi != 'BG8469YH' || $no_polisi != 'BG8474YH' || $no_polisi != 'BG8477YH' || $no_polisi != 'BG8720YH' || $no_polisi != 'BG8741YH' || $no_polisi != 'BG8713YH' ||
+            $no_polisi != 'BG8721YH' || $no_polisi != 'BG8717YH' || $no_polisi != 'BG8726YH' || $no_polisi != 'BG8714YH' || $no_polisi != 'BG8727YH' || $no_polisi != 'BG8783YH' || $no_polisi != 'BG8782YH' ||
+            $no_polisi != 'BG8781YH' || $no_polisi != 'BG8711YH' || $no_polisi != 'BG8224YD' || $no_polisi != 'BG8223YD'
         ) {
             $total_bs = $total_bs + $bs;
         } else {
@@ -2098,16 +2098,16 @@ if ($tanggal_awal == $tanggal_akhir) {
         $no_polisi = $data2slx['no_polisi'];
         $bs = $data2slx['total_bs_sl'];
         if (
-            $no_polisi != 'BG8521YB' || $no_polisi != 'BG8251YC' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8930VA' || $no_polisi != 'BG8221YD' || $no_polisi != 'BG8223YD' || $no_polisi != 'BG8224YD' ||
-            $no_polisi != 'BG8225YD' || $no_polisi != 'BG8226YD' || $no_polisi != 'BG8227YD' || $no_polisi != 'BG8101YB' || $no_polisi != 'BG8376YB' || $no_polisi != 'BG8970YB' || $no_polisi != 'BG8405YB' ||
-            $no_polisi != 'BG8965V' || $no_polisi != 'BG8966V' || $no_polisi != 'BG8884UY'  || $no_polisi != 'BG8083FP'  || $no_polisi != 'BE8917ACU' || $no_polisi != 'BE8943ACU' || $no_polisi != 'BE8946ACU' ||
-            $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' || $no_polisi != 'BE8928ACU' || $no_polisi != 'BE8934ACU' || $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' ||
-            $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || $no_polisi != 'BG8535VD' || $no_polisi != 'BG8542VD' ||
-            $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8147YH' || $no_polisi != 'BG8148YH' || $no_polisi != 'BE8310LU' || $no_polisi != 'BE8314LU' ||
-            $no_polisi != 'BG8101YA' || $no_polisi != 'BG1712XL' || $no_polisi != 'BG1722XL' || $no_polisi != 'BG8969YB' || $no_polisi != 'BG1711XL' || $no_polisi != 'BG8218YH' || $no_polisi != 'BG8302XB' ||
-            $no_polisi != 'BG8301XB' || $no_polisi != 'BG8300XB' || $no_polisi != 'BG8755XB' || $no_polisi != 'BG8754XB' || $no_polisi != 'BG1718XL' || $no_polisi != 'BG1716XL' || $no_polisi != 'BG1756XL' ||
-            $no_polisi != 'BG1715XL' || $no_polisi != 'BG8849XL' || $no_polisi != 'BG8558XL' || $no_polisi != 'BG8851XL' || $no_polisi != 'BG8857XL' || $no_polisi != 'BG8783XL' || $no_polisi != 'BG8784XL' ||
-            $no_polisi != 'BG8261YH' || $no_polisi != 'BG8245YH' || $no_polisi != 'BG8260YH'
+            $no_polisi != 'BG8251YC' || $no_polisi != 'BG8405YB' || $no_polisi != 'BG8965V' || $no_polisi != 'BG8966V' || $no_polisi != 'BG8376YB' || $no_polisi != 'BG8970YB' || $no_polisi != 'BG8930VA' ||
+            $no_polisi != 'BG8101YB' || $no_polisi != 'BG8515YB' || $no_polisi != 'BG8694YA' || $no_polisi != 'BG8521YB' || $no_polisi != 'BE8528AUE' || $no_polisi != 'BE8537AUE' || $no_polisi != 'BG8381ZQ' ||
+            $no_polisi != 'BG8083FP' || $no_polisi != 'BE8917ACU' || $no_polisi != 'BE8943ACU'  || $no_polisi != 'BE8946ACU'  || $no_polisi != 'BE8931ACU' || $no_polisi != 'BE8920ACU' || $no_polisi != 'BE8940ACU' ||
+            $no_polisi != 'BE8928ACU' || $no_polisi != 'BE8934ACU' || $no_polisi != 'BE8925ACU' || $no_polisi != 'BE8937ACU' || $no_polisi != 'BG8541VD' || $no_polisi != 'BG8544VD' || $no_polisi != 'BG8535VD' ||
+            $no_polisi != 'BG8542VD' || $no_polisi != 'BG8540VD' || $no_polisi != 'BG8149YH' || $no_polisi != 'BG8150YH' || $no_polisi != 'BG8148YH' || $no_polisi != 'BG8218YH' || $no_polisi != 'BG8245YH' ||
+            $no_polisi != 'BG8260YH' || $no_polisi != 'BG8261YH' || $no_polisi != 'BG8969YB' || $no_polisi != 'BG8170VD' || $no_polisi != 'BG8167VD' || $no_polisi != 'BG8168VD' || $no_polisi != 'BG8164VD' ||
+            $no_polisi != 'BG8172VD' || $no_polisi != 'BG8476YH' || $no_polisi != 'BG8473YH' || $no_polisi != 'BG8475YH' || $no_polisi != 'BG8471YH' || $no_polisi != 'BG8478YH' || $no_polisi != 'BG8472YH' ||
+            $no_polisi != 'BG8470YH' || $no_polisi != 'BG8469YH' || $no_polisi != 'BG8474YH' || $no_polisi != 'BG8477YH' || $no_polisi != 'BG8720YH' || $no_polisi != 'BG8741YH' || $no_polisi != 'BG8713YH' ||
+            $no_polisi != 'BG8721YH' || $no_polisi != 'BG8717YH' || $no_polisi != 'BG8726YH' || $no_polisi != 'BG8714YH' || $no_polisi != 'BG8727YH' || $no_polisi != 'BG8783YH' || $no_polisi != 'BG8782YH' ||
+            $no_polisi != 'BG8781YH' || $no_polisi != 'BG8711YH' || $no_polisi != 'BG8224YD' || $no_polisi != 'BG8223YD'
         ) {
             $total_bs_sl = $total_bs_sl + $bs;
         } else {
@@ -2384,6 +2384,11 @@ if ($tanggal_awal == $tanggal_akhir) {
     $total_om_tanry_bmu = 0;
     $total_om_lion_bmu = 0;
     $total_om_syaif_bmu = 0;
+    $total_om_seno_bmu = 0;
+    $total_om_fauzi_bmu = 0;
+    $total_om_indra_bmu = 0;
+    $total_om_rio_bmu = 0;
+    $total_om_nasir_bmu = 0;
 
     while ($data1 = mysqli_fetch_array($table1_om)) {
 
@@ -2486,6 +2491,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                 $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
             }
         } else if ($kota == 'KAB MESUJI') {
             //RLI
@@ -2570,6 +2585,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                 $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
             }
         } else if ($kota == 'KAB. TULANG BAWANG') {
 
@@ -2659,6 +2684,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
                 } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                     $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                    $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                    $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                    $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                    $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                    $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
                 }
             } else {
                 //RLI
@@ -2749,6 +2784,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
                 } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                     $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                    $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                    $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                    $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                    $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                    $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
                 }
             }
         } else if ($kota == 'KAB WAY KANAN') {
@@ -2840,6 +2885,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                 $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
             }
         } else if ($kota == 'KAB OKU SELATAN') {
             //RLI
@@ -2932,6 +2987,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
                 } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                     $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                    $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                    $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                    $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                    $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                    $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
                 }
             } else {
                 //BMU 10ton
@@ -3019,6 +3084,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                     $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
                 } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                     $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                    $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                    $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                    $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                    $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+                } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                    $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
                 }
             }
         } else if ($kota == 'KAB. OGAN KOM ULU') {
@@ -3106,6 +3181,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                 $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
             }
         } else if ($kota == 'KAB. LAMPUNG BARAT') {
 
@@ -3192,6 +3277,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                 $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
             }
         } else if ($kota == 'KAB.PESISIR BARAT') {
 
@@ -3278,6 +3373,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                 $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
             }
         } else if ($kota == 'KAB. LAMPUNG TIMUR') {
 
@@ -3364,6 +3469,16 @@ if ($tanggal_awal == $tanggal_akhir) {
                 $total_om_lion_bmu = $total_om_lion_bmu + $total_om_bmu;
             } else if ($pemilik == 'Syaif' && $kontrak == 'BMU') {
                 $total_om_syaif_bmu = $total_om_syaif_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Seno' && $kontrak == 'BMU') {
+                $total_om_seno_bmu = $total_om_seno_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Fauzi' && $kontrak == 'BMU') {
+                $total_om_fauzi_bmu = $total_om_fauzi_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Indra' && $kontrak == 'BMU') {
+                $total_om_indra_bmu = $total_om_indra_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Rio' && $kontrak == 'BMU') {
+                $total_om_rio_bmu = $total_om_rio_bmu + $total_om_bmu;
+            } else if ($pemilik == 'Pak Nasir' && $kontrak == 'BMU') {
+                $total_om_nasir_bmu = $total_om_nasir_bmu + $total_om_bmu;
             }
         }
     }
@@ -4680,42 +4795,42 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                     <td class="text-left">Tagihan SIBA Pak Syaif</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_syaif_bmu + $total_angkutan_syaif_bmu_kb + $total_angkutan_syaif_bmu_lamteng); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanLionBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSyaifBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-121</td>
                                                     <td class="text-left">Tagihan SIBA Pak Seno</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_seno_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanLionBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanSenoBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-121</td>
                                                     <td class="text-left">Tagihan SIBA Pak Fauzi</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_fauzi_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanLionBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanFauziBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-121</td>
                                                     <td class="text-left">Tagihan SIBA Pak Indra</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_indra_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanLionBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanIndraBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-121</td>
                                                     <td class="text-left">Tagihan SIBA Pak Rio</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_rio_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanLionBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanRioBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-121</td>
                                                     <td class="text-left">Tagihan SIBA Pak Nasir</td>
                                                     <td class="text-left"><?= formatuang($total_angkutan_nasir_bmu); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanLionBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VRTagihanNasirBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-122</td>
@@ -4782,77 +4897,56 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 </tr>
                                                 <tr>
                                                     <td>4-103</td>
-                                                    <td class="text-left">OM BMU Bapak Rama</td>
+                                                    <td class="text-left">OM SIBA Bapak Rama</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_khusus_rama_bmu + $total_om_khusus_rama_bmu_kb + $total_om_khusus_rama_bmu_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMRamaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>4-104</td>
-                                                    <td class="text-left">OM BMU Eki Bangunan</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_om_eki_bangunan_bmu + $total_om_eki_bangunan_bmu_kb + $total_om_eki_bangunan_bmu_lamteng); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMEkiBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr>
-                                                <tr>
                                                     <td>4-105</td>
-                                                    <td class="text-left">OM BMU Soma</td>
+                                                    <td class="text-left">OM SIBA Soma</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_soma_bmu + $total_om_soma_bmu_kb + $total_om_soma_bmu_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMSomaBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-106</td>
-                                                    <td class="text-left">OM BMU Berkah</td>
+                                                    <td class="text-left">OM SIBA Berkah</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_berkah_bmu + $total_om_berkah_bmu_kb + $total_om_berkah_bmu_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMBerkahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
-                                                    <td>4-107</td>
-                                                    <td class="text-left">OM BMU Syafuan</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_om_syafuan_bmu + $total_om_syafuan_bmu_kb + $total_om_syafuan_bmu_lamteng); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMSyafuanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr>
-                                                <tr>
-                                                    <td>4-108</td>
-                                                    <td class="text-left">OM BMU Yanti</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_om_yanti_bmu + $total_om_yanti_bmu_kb + $total_om_yanti_bmu_lamteng); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMYantiBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
-                                                </tr>
-                                                <tr>
                                                     <td>4-109</td>
-                                                    <td class="text-left">OM BMU Nengah</td>
+                                                    <td class="text-left">OM SIBA Nengah</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_nengah_bmu + $total_om_nengah_bmu_kb + $total_om_nengah_bmu_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMNengahBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-110</td>
-                                                    <td class="text-left">OM BMU Joko</td>
+                                                    <td class="text-left">OM SIBA Joko</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_joko_bmu + $total_om_joko_bmu_kb + $total_om_joko_bmu_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMJokoBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-111</td>
-                                                    <td class="text-left">OM BMU Samsul</td>
+                                                    <td class="text-left">OM SIBA Samsul</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_samsul_bmu + $total_om_samsul_bmu_kb + $total_om_samsul_bmu_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMSamsulBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-112</td>
-                                                    <td class="text-left">OM BMU Pak Wayan</td>
+                                                    <td class="text-left">OM SIBA Pak Wayan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_wayan_bmu + $total_om_wayan_bmu_kb + $total_om_wayan_bmu_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMWayanBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-113</td>
-                                                    <td class="text-left">OM BMU Pak Dedi</td>
+                                                    <td class="text-left">OM SIBA Pak Dedi</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_dedi_bmu + $total_om_dedi_bmu_kb + $total_om_dedi_bmu_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMDediBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
@@ -4894,45 +4988,60 @@ if ($tanggal_awal == $tanggal_akhir) {
                                                 </tr>
                                                 <tr>
                                                     <td>4-119</td>
-                                                    <td class="text-left">OM BMU Pak Tanry Taman</td>
+                                                    <td class="text-left">OM BMU Pak Tanry </td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_om_khusus_tanry_bmu + $total_om_khusus_tanry_bmu_kb + $total_om_khusus_tanry_bmu_lamteng); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMTanryBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-120</td>
-                                                    <td class="text-left">OM BMU Pak Lion Taman</td>
+                                                    <td class="text-left">OM BMU Pak Syaif </td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_om_lion_bmu + $total_om_lion_bmu_kb + $total_om_lion_bmu_lamteng); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMLionBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <td class="text-left"><?= formatuang($total_om_syaif_bmu + $total_om_syaif_bmu_kb + $total_om_syaif_bmu_lamteng); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMSyaifBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-120</td>
-                                                    <td class="text-left">OM BMU Pak Syaif Taman</td>
+                                                    <td class="text-left">OM BMU Pak Seno </td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_om_syaif_bmu + $total_om_syaif_bmu_kb + $total_om_syaif_bmu_lamteng); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMLionBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                    <td class="text-left"><?= formatuang($total_om_seno_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMSenoBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
                                                 </tr>
+                                                <tr>
+                                                    <td>4-120</td>
+                                                    <td class="text-left">OM BMU Pak Fauzi </td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_om_fauzi_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMFauziBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-120</td>
+                                                    <td class="text-left">OM BMU Pak Indra </td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_om_indra_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMIndraBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-120</td>
+                                                    <td class="text-left">OM BMU Pak Rio </td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_om_rio_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMRioBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-120</td>
+                                                    <td class="text-left">OM BMU Pak Nasir </td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($total_om_nasir_bmu); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMNasirBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'>Rincian</a></td>"; ?>
+                                                </tr>
+
                                                 <tr>
                                                     <td>4-121</td>
                                                     <td class="text-left">Total OM BMU Global</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_seluruh_om_bmu + $total_seluruh_om_khusus_bmu); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMGlobal?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                                                </tr>
-                                                <tr>
-                                                    <td>4-122</td>
-                                                    <td class="text-left">Total OM BMU Kota Bumi</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_om_kotabumi + $total_om_khusus_kotabumi); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMKBBMU?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                                                </tr>
-                                                <tr>
-                                                    <td>4-123</td>
-                                                    <td class="text-left">Total OM BMU Lamteng</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_om_lamteng + $total_om_khusus_lamteng); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRLRKendaraan/VROMLamteng?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>4-123</td>

@@ -555,7 +555,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rincian BMU</title>
+    <title>Rincian SAMSUN SIBA</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -821,7 +821,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
                         <br>
 
-                        <h5 align='center'>Rekap Pranko BMU Samsun Taman</h5>
+                        <h5 align='center'>Rekap Pranko SIBA Samsun Taman</h5>
                         <!-- Tabel -->
                         <div align='center' style="overflow-x: auto">
                             <table id="example" class="table-sm table-striped table-bordered  nowrap" style="width:auto">
