@@ -267,12 +267,16 @@ else{
                  <label>Akun</label>
                     <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
                         <option></option>
+                        <option>Saldo Awal</option>
+                        <option>Modal</option>
+                        <option>Pemabelian LO</option>
                         <option>Saldo Sebelumnya</option>
                         <option>Saldo Cek Masuk</option>
                         <option>Saldo Masuk</option>
                         <option>Saldo Brimo Masuk</option>
                         <option>Saldo Brankas Muara Dua</option>
                         <option>Penarikan Cash</option>
+                        <option>Pembelian Aset</option>
                         <option>Transport / Perjalanan Dinas</option>
                         <option>Biaya Penjualan & Pemasaran</option>
                         <option>Uang Jalan</option>  
@@ -290,6 +294,10 @@ else{
                         <option>Stok Sparepart Gudang</option>
                         <option>Bunga Bank</option>
                         <option>Bunga Bank Pemasukan</option>
+                        <option>Gaji</option>
+                        <option>Pembayaran BPJS Kesehatan</option>
+                        <option>Perawatan dan Pemeliharaan Aset</option>
+                        <option>Pajak dan Peizinan</option>
                     </select>
             </div>
             <div class="col-md-6">
@@ -447,17 +455,21 @@ else{
                  <label>Akun</label>
                     <select class="form-control form-control-sm" name="nama_akun" class="form-control ">
                         <?php $dataSelect = $data['nama_akun']; ?>
+                        <option <?php echo ($dataSelect == 'Saldo Awal') ? "selected": "" ?> >Saldo Awal</option>
+                        <option <?php echo ($dataSelect == 'Modal') ? "selected": "" ?> >Modal</option>
                         <option <?php echo ($dataSelect == 'Saldo Sebelumnya') ? "selected": "" ?> >Saldo Sebelumnya</option>
                         <option <?php echo ($dataSelect == 'Saldo Cek Masuk') ? "selected": "" ?> >Saldo Cek Masuk</option>
                         <option <?php echo ($dataSelect == 'Saldo Masuk') ? "selected": "" ?> >Saldo Masuk</option>
                         <option <?php echo ($dataSelect == 'Saldo Brimo Masuk') ? "selected": "" ?> >Saldo Brimo Masuk</option>
                         <option <?php echo ($dataSelect == 'Saldo Brankas Muara Dua') ? "selected": "" ?> >Saldo Brankas Muara Dua</option>
                         <option <?php echo ($dataSelect == 'Penarikan Cash') ? "selected": "" ?> >Penarikan Cash</option>
+                        <option <?php echo ($dataSelect == 'Pembelian Aset') ? "selected": "" ?> >Pembelian Aset</option>
                         <option <?php echo ($dataSelect == 'Transport / Perjalanan Dinas') ? "selected": "" ?> >Transport / Perjalanan Dinas</option>
                         <option <?php echo ($dataSelect == 'Biaya Penjualan & Pemasaran') ? "selected": "" ?> >Biaya Penjualan & Pemasaran</option>
                         <option <?php echo ($dataSelect == 'Uang Jalan') ? "selected": "" ?> >Uang Jalan</option>
                         <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan') ? "selected": "" ?> >Biaya Perbaikan Kendaraan</option>
                         <option <?php echo ($dataSelect == 'Biaya Perbaikan Kendaraan Pribadi') ? "selected": "" ?> >Biaya Perbaikan Kendaraan Pribadi</option>
+                        <option <?php echo ($dataSelect == 'Sparepart') ? "selected": "" ?> >Sparepart</option>
                         <option <?php echo ($dataSelect == 'Alat Tulis Kantor') ? "selected": "" ?> >Alat Tulis Kantor</option>
                         <option <?php echo ($dataSelect == 'Listrik & Telepon') ? "selected": "" ?> >Listrik & Telepon</option>
                         <option <?php echo ($dataSelect == 'Biaya Kantor') ? "selected": "" ?> >Biaya Kantor</option>
@@ -469,6 +481,10 @@ else{
                         <option <?php echo ($dataSelect == 'Stok Sparepart Gudang') ? "selected": "" ?> >Stok Sparepart Gudang</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank') ? "selected": "" ?> >Bunga Bank</option>
                         <option <?php echo ($dataSelect == 'Bunga Bank Pemasukan') ? "selected": "" ?> >Bunga Bank Pemasukan</option>
+                        <option <?php echo ($dataSelect == 'Gaji') ? "selected": "" ?> >Gaji</option>
+                        <option <?php echo ($dataSelect == 'Pembayaran BPJS Kesehatan') ? "selected": "" ?> >Pembayaran BPJS Kesehatan</option>
+                        <option <?php echo ($dataSelect == 'Perawatan dan Pemeliharaan Aset') ? "selected": "" ?> >Perawatan dan Pemeliharaan Aset</option>
+                        <option <?php echo ($dataSelect == 'Pajak dan Peizinan') ? "selected": "" ?> >Pajak dan Peizinan</option>
                     </select>
             </div>
             <div class="col-md-6">
