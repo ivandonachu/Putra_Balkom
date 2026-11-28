@@ -730,7 +730,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 $pph_23_global = (($total_tagihan_global * 2) / 100);
 // Potongan global 12.2%
 $jumlah_potongan_global = ((($total_tagihan_global - $pph_23_global) * 12.2) / 100);
-$total_laba_kotor = $total_tagihan_global;
+$total_laba_kotor = $total_tagihan_global - $pph_23_global ;
 
 $sisa_oprasional_global = $jumlah_potongan_global - ($atk_global + $gaji_karyawan_global + $biaya_sewa_global + $transport_global + $biaya_umum_global);
 
