@@ -730,7 +730,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 $pph_23_global = (($total_tagihan_global * 2) / 100);
 // Potongan global 12.2%
 $jumlah_potongan_global = ((($total_tagihan_global - $pph_23_global) * 12.2) / 100);
-$total_laba_kotor = $total_tagihan_global - $pph_23_global ;
+$total_laba_kotor = $total_tagihan_global - $pph_23_global - $jumlah_potongan_global ;
 
 $sisa_oprasional_global = $jumlah_potongan_global - ($atk_global + $gaji_karyawan_global + $biaya_sewa_global + $transport_global + $biaya_umum_global);
 
@@ -738,8 +738,8 @@ $total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listr
 
 $total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $gaji_driver_global + $gaji_karyawan_global + $transport_global +  $konsumsi_global + $total_kredit + $denda_kredit_global_jbb + $biaya_umum_global + $biaya_tol_global;
 
-$laba_bersih_sebelum_pajak = $total_tagihan_global - $total_biaya_usaha_final;
-$laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_final_bbm;
+$laba_bersih_sebelum_pajak = $total_laba_kotor - $total_biaya_usaha_final;
+$laba_bersih_sebelum_pajak_bbm = $total_laba_kotor - $total_biaya_usaha_final_bbm;
 
 ?>
 
