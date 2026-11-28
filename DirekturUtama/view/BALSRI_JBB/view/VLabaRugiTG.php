@@ -637,7 +637,13 @@ $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
                                                     <td class="text-left"><?= formatuang($jumlah_pph_23); ?></td>
                                                     <td class="text-left"></td>
                                                 </tr>
-
+                                                <tr>
+                                                    <td>4-102</td>
+                                                    <td class="text-left">Biaya Oprasional 12.2%</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
+                                                    <td class="text-left"></td>
+                                                </tr>
                                                 <tr style="background-color: navy;  color:white;">
                                                     <td><strong>LABA KOTOR</strong></td>
                                                     <td class="thick-line"></td>

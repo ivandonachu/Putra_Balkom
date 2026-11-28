@@ -260,7 +260,8 @@ $jumlah_pph_23 = (($total_tagihan * 2) / 100);
 // Potongan 12.2 %
 $jumlah_potongan = ((($total_tagihan - $jumlah_pph_23)  * 12.2) / 100);
 
-$total_laba_kotor = $total_tagihan - $jumlah_pph_23;
+$total_laba_kotor = $total_tagihan - $jumlah_pph_23 - $jumlah_potongan;
+
 $sisa_oprasional = $jumlah_potongan - ($jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport);
 $total_biaya_usaha_final = $total_dexlite + $jml_biaya_kantor + $jml_listrik  +  $jml_perbaikan + $total_um + $gaji_driver  +  $jml_konsumsi + $total_kredit + $jml_atk + $gaji_karyawan + $jml_sewa + $jml_transport + $jml_biaya_tol + $total_denda_kredit;
 $laba_bersih_sebelum_pajak = $total_laba_kotor  - $total_biaya_usaha_final;
@@ -636,7 +637,13 @@ $laba_bersih_bbm = $total_laba_kotor  - $total_biaya_usaha_final_bbm;
                                                     <td class="text-left"><?= formatuang($jumlah_pph_23); ?></td>
                                                     <td class="text-left"></td>
                                                 </tr>
-
+                                                <tr>
+                                                    <td>4-102</td>
+                                                    <td class="text-left">Biaya Oprasional 12.2%</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($jumlah_potongan); ?></td>
+                                                    <td class="text-left"></td>
+                                                </tr>
                                                 <tr style="background-color: navy;  color:white;">
                                                     <td><strong>LABA KOTOR</strong></td>
                                                     <td class="thick-line"></td>

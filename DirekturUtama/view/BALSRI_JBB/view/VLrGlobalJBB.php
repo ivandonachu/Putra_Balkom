@@ -1105,9 +1105,16 @@ $laba_bersih_sebelum_pajak_bbm = $total_laba_kotor - $total_biaya_usaha_final_bb
                                                 </tr>
                                                 <tr>
                                                     <td>4-101</td>
-                                                    <td class="text-left">PPH 23 2%</td>
-                                                    <td class="text-left"><?= formatuang($pph_23_global); ?></td>
+                                                    <td class="text-left">PPH 23 2%</td> 
                                                     <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($pph_23_global); ?></td>
+                                                    <td class="text-left"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-101</td>
+                                                    <td class="text-left">Biaya Oprasional 12.2%</td> 
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($jumlah_potongan_global); ?></td>
                                                     <td class="text-left"></td>
                                                 </tr>
                                                 <tr style="background-color: navy;  color:white;">
