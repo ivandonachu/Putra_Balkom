@@ -281,6 +281,86 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     $atk_global = $jml_atk_ba + $jml_atk_pa + $jml_atk_pl + $jml_atk_tg  + $jml_atk_ub;
 
+    // Biaya Umum
+    //pengeluran Biaya Umum balongan
+    $table7_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_umum FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Umum' ");
+    $data7_ba = mysqli_fetch_array($table7_ba);
+    $jml_biaya_umum_ba = $data7_ba['jumlah_biaya_umum'];
+    if (!isset($data7_ba['jumlah_biaya_umum'])) {
+        $jml_biaya_umum_ba = 0;
+    }
+    //pengeluran Biaya Umum padalarang
+    $table7_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_umum FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Umum' ");
+    $data7_pa = mysqli_fetch_array($table7_pa);
+    $jml_biaya_umum_pa = $data7_pa['jumlah_biaya_umum'];
+    if (!isset($data7_pa['jumlah_biaya_umum'])) {
+        $jml_biaya_umum_pa = 0;
+    }
+    //pengeluran Biaya Umum plumpang
+    $table7_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_umum FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Umum' ");
+    $data7_pl = mysqli_fetch_array($table7_pl);
+    $jml_biaya_umum_pl = $data7_pl['jumlah_biaya_umum'];
+    if (!isset($data7_pl['jumlah_biaya_umum'])) {
+        $jml_biaya_umum_pl = 0;
+    }
+    //pengeluran Biaya Umum tanjung gerem
+    $table7_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_umum FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Umum' ");
+    $data7_tg = mysqli_fetch_array($table7_tg);
+    $jml_biaya_umum_tg = $data7_tg['jumlah_biaya_umum'];
+    if (!isset($data7_tg['jumlah_biaya_umum'])) {
+        $jml_biaya_umum_tg = 0;
+    }
+
+    //pengeluran Biaya Umum ujung berung
+    $table7_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_umum FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Umum' ");
+    $data7_ub = mysqli_fetch_array($table7_ub);
+    $jml_biaya_umum_ub = $data7_ub['jumlah_biaya_umum'];
+    if (!isset($data7_ub['jumlah_biaya_umum'])) {
+        $jml_biaya_umum_ub = 0;
+    }
+
+    $biaya_umum_global = $jml_biaya_umum_ba + $jml_biaya_umum_pa + $jml_biaya_umum_pl + $jml_biaya_umum_tg  + $jml_biaya_umum_ub;
+
+    // Biaya Tol
+    //pengeluran Biaya Tol balongan
+    $table8_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_tol FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tol' ");
+    $data8_ba = mysqli_fetch_array($table8_ba);
+    $jml_biaya_tol_ba = $data8_ba['jumlah_biaya_tol'];
+    if (!isset($data8_ba['jumlah_biaya_tol'])) {
+        $jml_biaya_tol_ba = 0;
+    }
+    //pengeluran Biaya Tol padalarang
+    $table8_pa = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_tol FROM pengeluaran_pul_pa WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tol' ");
+    $data8_pa = mysqli_fetch_array($table8_pa);
+    $jml_biaya_tol_pa = $data8_pa['jumlah_biaya_tol'];
+    if (!isset($data8_pa['jumlah_biaya_tol'])) {
+        $jml_biaya_tol_pa = 0;
+    }
+    //pengeluran Biaya Tol plumpang
+    $table8_pl = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_tol FROM pengeluaran_pul_pl WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tol' ");
+    $data8_pl = mysqli_fetch_array($table8_pl);
+    $jml_biaya_tol_pl = $data8_pl['jumlah_biaya_tol'];
+    if (!isset($data8_pl['jumlah_biaya_tol'])) {
+        $jml_biaya_tol_pl = 0;
+    }
+    //pengeluran Biaya Tol tanjung gerem
+    $table8_tg = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_tol FROM pengeluaran_pul_tg WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tol' ");
+    $data8_tg = mysqli_fetch_array($table8_tg);
+    $jml_biaya_tol_tg = $data8_tg['jumlah_biaya_tol'];
+    if (!isset($data8_tg['jumlah_biaya_tol'])) {
+        $jml_biaya_tol_tg = 0;
+    }
+
+    //pengeluran Biaya Tol ujung berung
+    $table8_ub = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_biaya_tol FROM pengeluaran_pul_ub WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Biaya Tol' ");
+    $data8_ub = mysqli_fetch_array($table8_ub);
+    $jml_biaya_tol_ub = $data8_ub['jumlah_biaya_tol'];
+    if (!isset($data8_ub['jumlah_biaya_tol'])) {
+        $jml_biaya_tol_ub = 0;
+    }
+
+    $biaya_tol_global = $jml_biaya_tol_ba + $jml_biaya_tol_pa + $jml_biaya_tol_pl + $jml_biaya_tol_tg  + $jml_biaya_tol_ub;
+
     //TRANSPORT DAN PERJALANAN DINAS
     //pengeluran Transnport / Perjalanan Dinas balongan
     $table61_ba = mysqli_query($koneksibalsri_jbb, "SELECT SUM(jumlah) AS jumlah_transport FROM pengeluaran_pul_ba WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_akun = 'Transport / Perjalanan Dinas' ");
@@ -490,7 +570,7 @@ if ($tanggal_awal == $tanggal_akhir) {
 
     $gaji_driver_global = $gaji_driver_ba + $gaji_driver_pa + $gaji_driver_pl + $gaji_driver_tg + $gaji_driver_tg_8kl + $gaji_driver_ub;
 
-    $total_gaji_karaywan_global = $gaji_karyawan_global + $gaji_driver_global;
+
 
     $total_kredit = 0;
 
@@ -521,7 +601,7 @@ if ($tanggal_awal == $tanggal_akhir) {
     //totalkredit tg
     $total_kredit_tg = 0;
     while ($data_tg = mysqli_fetch_array($table101_tg)) {
-        $mt_ub = $data_tg['mt'];
+        $mt_tg = $data_tg['mt'];
 
         $tablee_tg = mysqli_query($koneksibalsri, "SELECT SUM(jumlah) AS total_kredit FROM kredit_kendaraan WHERE tanggal BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND no_polisi ='$mt_tg'");
         $dataa_tg = mysqli_fetch_array($tablee_tg);
@@ -652,11 +732,11 @@ $pph_23_global = (($total_tagihan_global * 2) / 100);
 $jumlah_potongan_global = ((($total_tagihan_global - $pph_23_global) * 12.2) / 100);
 $total_laba_kotor = $total_tagihan_global - ($jumlah_potongan_global + $pph_23_global);
 
+$sisa_oprasional_global = $jumlah_potongan_global - ($atk_global + $gaji_karyawan_global + $biaya_sewa_global + $transport_global + $biaya_umum_global);
 
+$total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $gaji_driver_global + $gaji_karyawan_global + $transport_global +  $konsumsi_global + $total_kredit + $denda_kredit_global_jbb + $biaya_umum_global + $biaya_tol_global;
 
-$total_biaya_usaha_final = $total_dexlite_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $denda_kredit_global_jbb;
-
-$total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $total_gaji_karaywan_global + $transport_global +  $konsumsi_global + $total_kredit + $denda_kredit_global_jbb;
+$total_biaya_usaha_final_bbm = $total_bbm_global + $biaya_kantor_global + $listrik_global + $biaya_sewa_global + $atk_global + $perbaikan_global + $total_um_global + $gaji_driver_global + $gaji_karyawan_global + $transport_global +  $konsumsi_global + $total_kredit + $denda_kredit_global_jbb + $biaya_umum_global + $biaya_tol_global;
 
 $laba_bersih_sebelum_pajak = $total_tagihan_global - $total_biaya_usaha_final;
 $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_final_bbm;
@@ -1025,13 +1105,6 @@ $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_fina
                                                 </tr>
                                                 <tr>
                                                     <td>4-101</td>
-                                                    <td class="text-left">Potongan Biaya Oprasional 12.2%</td>
-                                                    <td class="text-left"><?= formatuang($jumlah_potongan_global); ?></td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4-101</td>
                                                     <td class="text-left">PPH 23 2%</td>
                                                     <td class="text-left"><?= formatuang($pph_23_global); ?></td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
@@ -1052,18 +1125,19 @@ $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_fina
                                                     <td class="thick-line"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>5-500</strong></td>
-                                                    <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                                                    <td><strong>4-101</strong></td>
+                                                    <td class="text-left"><strong>PEMOTONGAN BIAYA OPRASIONAL</strong></td>
                                                     <td class="text-left"></td>
                                                     <td class="text-left"></td>
                                                     <?php echo "<td class='text-right'></td>"; ?>
                                                 </tr>
+
                                                 <tr>
                                                     <td>5-510</td>
-                                                    <td class="text-left">GAJI</td>
+                                                    <td class="text-left">Gaji Karyawan</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($total_gaji_karaywan_global); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRGaji?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                    <td class="text-left"><?= formatuang($gaji_karyawan_global); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRGajiD?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-520</td>
@@ -1073,12 +1147,63 @@ $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_fina
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRATK?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
                                                 <tr>
+                                                    <td>5-570</td>
+                                                    <td class="text-left">Biaya Sewa</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($biaya_sewa_global); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                </tr>
+                                                <tr>
                                                     <td>5-530</td>
                                                     <td class="text-left">Transport & Perjalanan Dinas</td>
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($transport_global); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRPerjalanan?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
+                                                <tr>
+                                                    <td>5-531</td>
+                                                    <td class="text-left">Biaya Umum</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($biaya_umum_global); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRBiayaUmum?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>4-101</td>
+                                                    <td class="text-left">Biaya Oprasional 12.2%</td>
+                                                    <td class="text-left"><?= formatuang($jumlah_potongan_global); ?></td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"></td>
+                                                </tr>
+                                                <tr style="background-color: navy;  color:white;">
+                                                    <td><strong>Sisa Biaya Oprasional</strong></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="no-line text-left"><?= formatuang($sisa_oprasional_global); ?> </td>
+                                                    <td class="no-line text-left"><?= formatuang(0); ?> </td>
+                                                    <td class="thick-line"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="thick-line"></td>
+                                                    <td class="no-line text-left"></td>
+                                                    <td class="no-line text-left"></td>
+                                                    <td class="thick-line"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>5-500</strong></td>
+                                                    <td class="text-left"><strong>BIAYA USAHA</strong></td>
+                                                    <td class="text-left"></td>
+                                                    <td class="text-left"></td>
+                                                    <?php echo "<td class='text-right'></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-510</td>
+                                                    <td class="text-left">Gaji Driver</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($gaji_driver_global); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRGajiD?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                </tr>
+                                                
+                                                
                                                 <tr>
                                                     <td>5-540</td>
                                                     <td class="text-left">Biaya Kantor</td>
@@ -1100,13 +1225,7 @@ $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_fina
                                                     <td class="text-left"><?= formatuang($konsumsi_global); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRKonsumsi?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
-                                                <tr>
-                                                    <td>5-570</td>
-                                                    <td class="text-left">Biaya Sewa</td>
-                                                    <td class="text-left"><?= formatuang(0); ?></td>
-                                                    <td class="text-left"><?= formatuang($biaya_sewa_global); ?></td>
-                                                    <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRSewa?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
-                                                </tr>
+                                                
 
                                                 <tr>
                                                     <td>5-595</td>
@@ -1135,6 +1254,13 @@ $laba_bersih_sebelum_pajak_bbm = $total_tagihan_global - $total_biaya_usaha_fina
                                                     <td class="text-left"><?= formatuang(0); ?></td>
                                                     <td class="text-left"><?= formatuang($total_bbm_global); ?></td>
                                                     <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRDexlite?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
+                                                </tr>
+                                                <tr>
+                                                    <td>5-5972</td>
+                                                    <td class="text-left">Biaya Tol</td>
+                                                    <td class="text-left"><?= formatuang(0); ?></td>
+                                                    <td class="text-left"><?= formatuang($biaya_tol_global); ?></td>
+                                                    <?php echo "<td class='text-right'><a href='VRincianLRBTA/VRBiayaTol?tanggal1=$tanggal_awal&tanggal2=$tanggal_akhir'></a></td>"; ?>
                                                 </tr>
                                                 <tr>
                                                     <td>5-598</td>
